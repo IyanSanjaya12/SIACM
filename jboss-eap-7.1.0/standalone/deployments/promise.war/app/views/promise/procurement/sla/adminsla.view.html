@@ -1,0 +1,81 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.master.adminslaview.JUDUL"></span>
+	<small><span
+		translate="promise.procurement.master.adminslaview.KETERANGAN"></span></small>
+</div>
+<div class="panel panel-primary"
+	ng-controller="AdminSlaViewController as form">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<span translate="promise.procurement.master.adminslaview.SUBJUDUL"></span>
+	</h4>
+	<div class="panel-body">
+
+
+		<div class="col-md-12">
+			<div>
+				<div align="center" ng-if="form.loading == true">
+					<strong><em>Loading...</em><img src="app/img/loading.gif" border="0"
+						width="20px"></strong>
+				</div>
+				<table datatable="ng" class="row-border hover table-striped">
+					<thead>
+
+						<tr>
+							<th scope="col"style="text-align: center"><span
+								translate="promise.procurement.master.adminslaview.list.NOMOR"></span></th>
+							<th scope="col"style="text-align: center"><span
+								translate="promise.procurement.master.adminslaview.list.URAIANPROSES"></span></th>
+							<th scope="col"style="text-align: center"><span
+								translate="promise.procurement.master.adminslaview.list.TANGGALAWAL"></span></th>
+							<th scope="col"style="text-align: center"><span
+								translate="promise.procurement.master.adminslaview.list.TANGGALAKHIR"></span></th>
+							<th scope="col"style="text-align: center"><span
+								translate="promise.procurement.master.adminslaview.list.TANGGALREALISASI"></span></th>
+							<th scope="col"style="text-align: center"><span
+								translate="promise.procurement.master.adminslaview.list.SLA"></span></th>
+							<th scope="col"style="text-align: center"><span
+								translate="promise.procurement.master.adminslaview.list.JUMLAHHARI"></span></th>
+						</tr>
+
+					</thead>
+					<tbody>
+						<tr ng-repeat="p in form.ppList">
+							<td style="text-align: center" ng-bind="$index+1"></td>
+							<td style="text-align: center" ng-bind="p.sla.tahapan.nama"></td>
+							<td style="text-align: center"
+								ng-bind="p.prosesTglJadwalAwal | date: 'dd/MM/yyyy HH:mm:ss' "></td>
+							<td style="text-align: center"
+								ng-bind="p.prosesTglJadwalAkhir | date: 'dd/MM/yyyy HH:mm:ss' "></td>
+							<td style="text-align: center"
+								ng-bind="p.prosesTglAktual | date: 'dd/MM/yyyy HH:mm:ss' "></td>
+							<td style="text-align: center" ng-bind="p.sla.jumlahHari"></td>
+							<td style="text-align: center" ng-bind="p.prosesJumlahHari"></td>
+
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="panel-footer text-center">
+		<div class="row">
+			<div class="col-sm-10 text-right">Total Hari SLA</div>
+			<div class="col-sm-2" ng-bind="form.pengadaan.jumlahHariSla"></div>
+
+		</div>
+	</div>
+
+	<div class="panel-footer text-center">
+		<div align="center">
+			<button ng-class="'bg-' + app.theme.name" ng-click="form.back()"
+				class="btn btn-sm pull-center" ripple="">
+				<span class=""><em class="fa fa-chevron-left"></em></span>&nbsp;&nbsp;<font
+					color="white"><span
+					translate="promise.procurement.master.adminslaview.btn.KEMBALI"></span></font>
+			</button>
+		</div>
+	</div>
+
+</div>
+<!--END CONTROLLER-->

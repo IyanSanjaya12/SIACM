@@ -1,0 +1,97 @@
+<div class="app-view-header">	<span translate="promise.procurement.master.role_jabatan.judul"></span> 
+</div>
+<div ng-controller="RoleJabatanViewController as vm" class="panel panel-primary">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-tasks"></em>
+			<span ng-if="vm.toDo == 'Add'" translate="promise.procurement.master.role_jabatan.view.subjudul_tambah"></span>
+   		<span ng-if="vm.toDo == 'Edit'" translate="promise.procurement.master.role_jabatan.view.subjudul_ubah"></span>
+			<a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+					<em class="fa fa-chevron-circle-down"></em>
+			</a>
+	</h4>
+	<div class="panel-body collapse in">
+		<div class="text-center" ng-if="vm.loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong>
+		</div>
+		<form method="post" action="#" novalidate="" class="form-horizontal" name="formRoleJabatan" ng-class="{'submitted' : vm.submitted}">
+			<div class="form-group">
+				<label class="col-sm-4 control-label required">
+					<span translate="promise.procurement.master.role_jabatan.list.organisasi"></span>
+				</label>
+				<div class="col-sm-4">
+					<div class="col-sm-12">
+						<ui-select ng-model="vm.roleJabatan.jabatan.organisasi" name="organisasi" ng-change="changeOrganisasi()" theme="bootstrap" ng-disabled="vm.toDo == 'Edit'" readonly="vm.toDo == 'Edit'" required>
+							<ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+							<ui-select-choices repeat="organisasi in vm.organisasiListParentIsNull | filter: $select.search">
+								<div ng-bind-html="organisasi.nama | highlight: $select.search"></div>
+							</ui-select-choices>
+						</ui-select>
+						<strong style="color: red">{{vm.errorOrganisasi}}</strong>
+					</div>
+				</div>
+			</div> 
+			<div class="form-group">
+				<label class="col-sm-4 control-label required">	<span translate="promise.procurement.master.role_jabatan.list.jabatan"></span>
+				</label>
+				<div class="col-sm-4">
+					<div class="col-sm-12">
+						<ui-select ng-model="vm.roleJabatan.jabatan" name="jabatan" theme="bootstrap" ng-change="changeMandatoryJab()" ng-disabled="vm.toDo == 'Edit'"  required ng-blur="delValidation($event)">
+							<ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+							<ui-select-choices repeat="jabatan in vm.jabatanList | filter: $select.search">
+								<div ng-bind-html="jabatan.nama | highlight: $select.search"></div>
+							</ui-select-choices>
+						</ui-select>
+						<strong style="color: red">{{vm.errorJabatan}}</strong>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label required">	<span translate="promise.procurement.master.role_jabatan.list.role"></span>
+				</label>
+				<div class="col-sm-4">
+					<div class="col-sm-12">
+						<ui-select ng-model="vm.roleJabatan.role" name="role" theme="bootstrap" ng-change="changeMandatoryPm()" ng-blur="delValidation($event)" ng-show="showRoleCatalog">
+							<ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+							<ui-select-choices repeat="role in vm.roleListPm | filter: $select.search">
+								<div ng-bind-html="role.nama | highlight: $select.search"></div>
+							</ui-select-choices>
+						</ui-select>
+						<strong style="color: red">{{vm.errorRolePm}}</strong>
+					</div>
+					
+				</div>
+				<div class="col-sm-4">
+					<input type="checkbox" ng-change="checkBoxValidCatalog()" ng-model="showRoleCatalog" ng-disabled="vm.toDo == 'Edit'">
+					<label>eCatalog</label>
+				</div>
+			</div>
+			<!-- NEW FIELD  -->
+			<div class="form-group">
+				<label class="col-sm-4 control-label required">	<span translate="promise.procurement.master.role_jabatan.list.role"></span>
+				</label>
+				<div class="col-sm-4">
+					<div class="col-sm-12">
+						<ui-select ng-model="vm.roleJabatanCm.role" name="roleCm" theme="bootstrap" ng-change="changeMandatoryCm()" ng-blur="delValidation($event)" ng-show="showRoleCm">
+							<ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+							<ui-select-choices repeat="roleCm in vm.roleListCm | filter: $select.search">
+								<div ng-bind-html="roleCm.nama | highlight: $select.search"></div>
+							</ui-select-choices>
+						</ui-select>
+					<strong style="color: red">{{vm.errorRoleCm}}</strong>
+					</div>
+				</div>
+				<div class="col-sm-4">
+						<input type="checkbox" ng-change="checkBoxValidCm()" ng-model="showRoleCm" ng-disabled="vm.toDo == 'Edit'">
+						<label>CM</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-12 text-center">
+					<button type="button" ripple="" class="btn btn-secondary" ng-click="back()">	<span translate="template.button.kembali"></span>
+					</button>
+					<button type="button" ripple="" class="btn btn-primary" ng-click="save(vm.roleJabatan,vm.roleJabatanCm.role)">	<span translate="template.button.simpan"></span>
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

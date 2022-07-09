@@ -1,0 +1,268 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.RegistrasiVendor.DataKeuangan.judul">Satuan</span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary"
+	ng-controller="RegistrasiDataKeuanganViewController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<span ng-if="vm.toDo=='add'" translate="promise.procurement.RegistrasiVendor.DataKeuangan.view.subjudul_tambah"></span>
+		<span ng-if="vm.toDo=='edit'" translate="promise.procurement.RegistrasiVendor.DataKeuangan.view.subjudul_ubah"></span>
+	</h4>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-md-12">
+				<div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong></div>
+				<form method="post" action="#" novalidate="" class="form-horizontal">		                
+					<fieldset>
+						<div class="row">
+							<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+								<span translate="promise.procurement.RegistrasiVendor.DataKeuangan.view.subjudul1"></span>
+							</h4>
+						</div>
+		            	<div class="row">
+				        	<label class="col-sm-3 control-label"><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.view.nomor_audit"></span>
+				            	<label class="text-danger"> *</label>
+				            </label>
+				            <div class="col-sm-6">
+				            	<input name="nomorAudit" type="text" class="form-control shadow-z1 input-sm" ng-model="vm.dataKeuangan.nomorAudit">				                
+				                <strong style="color: red" translate={{vm.errorNomorAudit}} ></strong>
+                                <br/>
+				        	</div>
+						</div>
+		            	<div class="row">
+				        	<label class="col-sm-3 control-label"><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.view.tanggal_audit"></span>
+				            	<label class="text-danger"> *</label>
+				            </label>
+				            <div class="col-sm-3">
+								<div class="input-group">
+                        			<input name="tanggalAudit" type="text" datepicker-popup="dd/MM/yyyy" ng-model="vm.dataKeuangan.tanggalAudit" is-open="vm.tanggalAuditStatus"  class="form-control shadow-z1 input-sm" show-button-bar="false" readonly="true" required/>
+                            		<span class="input-group-btn">
+										<button type="button" ng-click="tanggalAuditOpen($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+											<em class="fa fa-calendar"></em>
+										</button>
+									</span>
+								</div>
+				                <strong style="color: red" translate={{vm.errorTanggalAudit}} ></strong>
+                                <br/>
+				        	</div>
+						</div>
+		            	<div class="row">
+				        	<label class="col-sm-3 control-label"><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.view.nama_audit"></span>
+				            	<label class="text-danger"> *</label>
+				            </label>
+				            <div class="col-sm-6">
+				            	<input name="namaAudit" type="text" class="form-control shadow-z1 input-sm" ng-model="vm.dataKeuangan.namaAudit">
+				                <strong style="color: red" translate={{vm.errorNamaAudit}} ></strong>
+                                <br/>
+				        	</div>
+						</div>
+						<div class="row">
+							<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+								<span translate="promise.procurement.RegistrasiVendor.DataKeuangan.view.subjudul2"></span>
+							</h4>
+						</div>
+                         <div class="row">
+                                <label class="col-sm-3 control-label"><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.view.tahun_keuangan"></span>
+                                    <label class="text-danger"> *</label>
+                                </label>
+                                <div class="col-sm-2">
+                                    
+								<ui-select ng-model="vm.temp.tahunKeuangan" theme="bootstrap"> 
+							<ui-select-match placeholder="++ Pilih ++">{{$select.selected.tahun}}</ui-select-match>
+							<ui-select-choices repeat="tahunKeuangan in vm.tahunKeuanganList | propsFilter: {tahun: $select.search}">
+								<div ng-bind-html="tahunKeuangan.tahun | highlight: $select.search"></div>
+							</ui-select-choices> 
+						</ui-select>
+
+					
+                                    <strong style="color: red" translate={{vm.errorTahunKeuangan}} ></strong>
+                                    <br/>
+                                </div>
+                            </div>
+
+						<div class="row">
+							<table class="table table-hover table-condensed table-striped bg-white">
+								<thead>
+									<tr style="font-weight: bold">
+                                    	<th scope="col"style="width:5%; text-align:left"></th>
+                                    	<th scope="col"style="width:15%; text-align:left"></th>
+                                    	<th scope="col"style="width:15%; text-align:left"></th>
+                                    	<th scope="col"style="width:15%; text-align:left"></th>
+                                    	<th scope="col"style="width:5%; text-align:left"></th>
+                                    	<th scope="col"style="width:15%; text-align:left"></th>
+                                    	<th scope="col"style="width:15%; text-align:left"></th>
+                                    	<th scope="col"style="width:15%; text-align:left"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td colspan="4"><center><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.view.aktiva"></span></center></td>
+										<td colspan="4"><center><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.view.pasiva"></span></center></td>
+									</tr>
+									<tr>
+										<td><span translate="">I</span></td>
+										<td colspan="3"><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.view.I"></span></td>
+										<td><span translate="">IV</span></td>
+										<td colspan="3"><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.view.IV"></span></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.view.kas"></span></td>
+										<td><input name="dataKas" type="number" class="form-control shadow-z1 input-sm" ng-model="vm.dataKeuangan.kas" ng-change="tambahAktivaLancar(); rugiLaba(); totalPasiva()"></td>
+										<td></td>
+										<td></td>
+										<td><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.view.hutang_dagang"></span></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="vm.dataKeuangan.hutangDagang" ng-change="tambahPasiva(); rugiLaba(); totalPasiva()"></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.view.bank"></span></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="vm.dataKeuangan.bank" ng-change="tambahAktivaLancar(); rugiLaba(); totalPasiva()"></td>
+										<td></td>
+										<td></td>
+										<td><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.view.hutang_pajak"></span></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="vm.dataKeuangan.hutangPajak" ng-change="tambahPasiva(); rugiLaba(); totalPasiva()"></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.view.total_piutang"></span></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="vm.dataKeuangan.totalPiutang" ng-change="tambahAktivaLancar(); rugiLaba(); totalPasiva()"></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.view.persediaan_barang"></span></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="vm.dataKeuangan.persediaanBarang" ng-change="tambahAktivaLancar(); rugiLaba(); totalPasiva()"></td>
+										<td></td>
+										<td></td>
+										<td><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.view.hutang_lainnya"></span></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="vm.dataKeuangan.hutangLainnya" ng-change="tambahPasiva(); rugiLaba(); totalPasiva()"></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.view.pekerjaan_dalam_proses"></span></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="vm.dataKeuangan.pekerjaanDalamProses" ng-change="tambahAktivaLancar(); rugiLaba(); totalPasiva()"></td>
+										<td></td>
+										<td></td>
+										<td><span translate="">Total (IV)</span></td>
+										<td></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="vm.dataKeuangan.totalHutangJangkaPendek" ng-change="totalPasiva()" readonly></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><span translate="">Total (I)</span></td>
+										<td></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="vm.dataKeuangan.totalAktivaLancar" ng-change="totalAktiva()" readonly></td>
+										<td><span translate="">V</span></td>
+										<td><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.view.V"></span></td>
+										<td></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="vm.dataKeuangan.hutangJangkaPanjang" ng-change="totalPasiva(); rugiLaba(); totalPasiva()"></td>
+									</tr>
+									<tr>
+										<td><span translate="">II</span></td>
+										<td><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.view.II"></span></td>
+										<td></td>
+										<td></td>
+										<td><span translate="">VI</span></td>
+										<td><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.view.VI"></span></td>
+										<td></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="vm.dataKeuangan.kekayaanBersih" ng-change="totalPasiva()" readonly></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.view.peralatan_dan_mesin"></span></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="vm.dataKeuangan.peralatanDanMesin" ng-change="tambahAktivaTetap(); rugiLaba(); totalPasiva()"></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.view.inventaris"></span></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="vm.dataKeuangan.inventaris" ng-change="tambahAktivaTetap(); rugiLaba(); totalPasiva()"></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.view.gedung"></span></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="vm.dataKeuangan.gedungGedung" ng-change="tambahAktivaTetap(); rugiLaba(); totalPasiva()"></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><span translate="">Total (II)</span></td>
+										<td></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="vm.dataKeuangan.totalAktivaTetap" ng-change="totalAktiva()" readonly></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><span translate="">III</span></td>
+										<td><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.view.III"></span></td>
+										<td></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="vm.dataKeuangan.aktivaLainnya" ng-change="totalAktiva(); rugiLaba(); totalPasiva()"></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><span translate="">Total</span></td>
+										<td></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="vm.dataKeuangan.totalAktiva" readonly><strong  style="color: red; text-align:center" translate={{vm.errorAktiva}} ></strong></td>
+										<td></td>
+										<td><span translate="">Total</span></td>
+										<td></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="vm.dataKeuangan.totalPasiva" readonly><strong  style="color: red; text-align:center" translate={{vm.errorPasiva}} ></strong></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						
+						<br />
+						<div class="form-group" >
+							<div class="col-md-5 col-md-push-2 col-sm-5 col-sm-push-3">
+								<button type="button" ripple="" class="mr btn btn-sm bg-default" ng-click="back()">
+									<span translate="template.button.kembali"></span>
+								</button>
+								<button type="button" ripple="" class="mr btn btn-sm bg-primary" ng-click="save()">
+									<span translate="template.button.simpan"></span>
+								</button>
+							</div>
+						</div>
+		        	</fieldset>
+				</form>
+			</div>		            
+		</div>
+	</div>
+</div>

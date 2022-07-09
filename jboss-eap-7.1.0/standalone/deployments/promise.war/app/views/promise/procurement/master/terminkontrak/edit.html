@@ -1,0 +1,121 @@
+<div class="app-view-header">
+    <span translate="promise.procurement.master.terminkontrak.JUDUL"></span>
+    <small><span translate="promise.procurement.master.terminkontrak.tambah.UBAH"></span></small>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="TerminKontrakUbahController as form">
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    <div class="panel-body">
+        <div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong></div>
+        <form method="post" action="#" novalidate="" class="form-horizontal">
+            <fieldset>
+                <div class="form-group">
+                    <label for="input-id-1" class="col-sm-2 control-label"><span translate="promise.procurement.master.terminkontrak.list.TANGGAL"></span>
+                        <label class="text-danger">*)</label>
+                    </label>
+                    <div class="col-sm-20">
+                        <div class="row">
+                            <div class="col-sm-10 col-lg-3">
+                                <div class="input-group">
+                                    <input type="text" datepicker-popup="{{form.format}}" ng-model="form.tanggal" is-open="form.tanggalOpened" min-date="false" max-date="false" datepicker-options="form.dateOptions" date-disabled="form.disabled(form.date, form.mode)" close-text="Close" class="form-control shadow-z1 input-sm" disabled="" style="background-color:white;"/>
+                                    <span class="input-group-btn">
+                                               <button type="button" ng-click="form.tanggalOpen($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+                                                  <em class="fa fa-calendar"></em>
+                                               </button>
+                                            </span>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="input-id-1" class="col-sm-2 control-label"><span translate="promise.procurement.master.terminkontrak.list.NILAI"></span>
+                        <label class="text-danger">*)</label>
+                    </label>
+                    <div class="col-sm-3">
+                        <input id="input-id-1" type="number" class="form-control" ng-model="form.nilai"/>
+                        <br/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="input-id-1" class="col-sm-2 control-label"><span translate="promise.procurement.master.terminkontrak.list.NILAITUKAR"></span>
+                        <label class="text-danger">*)</label>
+                    </label>
+                    <div class="col-sm-3">
+                        <input id="input-id-1" type="number" class="form-control" ng-model="form.nilaiTukar" />
+                        <br/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label"><span translate="promise.procurement.master.terminkontrak.list.KONTRAK"></span>
+                        <label class="text-danger">*)</label>
+                    </label>
+                    <div class="col-sm-8">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <ui-select ng-model="form.kontrak.selected" theme="bootstrap" ng-disabled="disabled">
+                                    <ui-select-match placeholder="++ Pilih ++">{{$select.selected.nomor}}</ui-select-match>
+                                    <ui-select-choices repeat="kontrak in kontrakList | filter: $select.search">
+                                        <div ng-bind-html="kontrak.nomor | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label"><span translate="promise.procurement.master.terminkontrak.list.JENISTERMIN"></span>
+                        <label class="text-danger">*)</label>
+                    </label>
+                    <div class="col-sm-8">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <ui-select ng-model="form.jenisTermin.selected" theme="bootstrap" ng-disabled="disabled">
+                                    <ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+                                    <ui-select-choices repeat="jenisTermin in jenisTerminList | filter: $select.search">
+                                        <div ng-bind-html="jenisTermin.nama | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label"><span translate="promise.procurement.master.terminkontrak.list.MATAUANG"></span>
+                        <label class="text-danger">*)</label>
+                    </label>
+                    <div class="col-sm-8">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <ui-select ng-model="form.mataUang.selected" theme="bootstrap" ng-disabled="disabled">
+                                    <ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+                                    <ui-select-choices repeat="mataUang in mataUangList | filter: $select.search">
+                                        <div ng-bind-html="mataUang.nama | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <div class="form-group">
+                    <label for="input-id-1" class="col-sm-2 control-label"><span translate="promise.procurement.master.terminkontrak.list.KETERANGAN"></span></label>
+                    <div class="col-sm-5">
+                        <textarea cols="30" rows="5" class="form-control" ng-model="form.keterangan"></textarea>
+                        <br/>
+                        <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-sm" ng-click="form.kembali()">
+                            <span class="btn-label">
+						  	<em class="fa fa-chevron-left"></em>
+						  </span><span translate="promise.procurement.master.itemtype.tambah.KEMBALI"></span>
+                        </button>
+                        <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="form.simpan()"><span translate="promise.procurement.master.itemtype.tambah.SIMPAN"></span></button>
+                    </div>
+                </div>
+                <div align="left"><strong style="background-color: yellow;color:green">{{message}}</strong></div>
+            </fieldset>
+        </form>
+    </div>
+</div>

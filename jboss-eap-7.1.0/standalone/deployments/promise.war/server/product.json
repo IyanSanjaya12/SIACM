@@ -1,0 +1,191 @@
+[
+    {
+        "product_id": "1",
+        "url": "app.promise.procurement-ecatalogDetail({productName:'KacangGaruda'})",
+        "img_url":
+            [
+                {
+                    "img_alt_url":"app/img/product/garing-garuda.jpg",
+                    "img_name":"Kacang Garing Garuda"
+                },
+                {
+                    "img_alt_url":"app/img/product/garuda-roasted-flavored.png",
+                    "img_name":"Kacang Garuda Roasted Flavored"
+                },
+                {
+                    "img_alt_url":"app/img/product/kacang-kulit.jpg",
+                    "img_name":"Kacang Kulit Garuda"
+                }
+            ],
+        "product_title": "Kacang Garuda",
+        "product_company_name": "PT Tudung Putra Jaya (TPJ)",
+        "product_company_url": "app.promise.procurement-vendorDetail({companyName:'GarudaFood'})",
+        "product_company_address": "Pati, Central Java",
+        "price": "",
+        "rate": 5,
+        "review":
+            [
+                {
+                    "user":"1",
+                    "text":"Lorem ipsum",
+                    "rate_by_user":4
+                },
+                {
+                    "user":"2",
+                    "text":"Lorem ipsum",
+                    "rate_by_user":5
+                }
+            ],
+        "desc": "<p>GarudaFood is a food and beverage company subordinated to Tudung Group. In addition to GarudaFood, Tudung Group also subordinates agribusiness companies operating in Crude Palm Oil field and peanuts.</p><p>GarudaFood Group had originated from PT Tudung Putra Jaya (TPJ), it was established in Pati, Central Java. The company founder is the deceased Darmo Putro, ex-warrior who had chosen to engage in business sector after the independence of Indonesia.</p><p>In early of 1987, TPJ started selling its peanut production products using a brand of Kacang Garing Garuda, which was recently known as: Kacang Garuda. Kacang Garuda earned the following awards: Indonesian Customer Satisfaction Award (ICSA) under the category of branded peanut for 16 times consecutively (2000 – 2015); Superbrands (2003 -&nbsp; 2004); Top Brand for Kids (2004); Indonesian Best Brand Award (IBBA, 2004 – 2015); Top Brand (2007 – 2015).</p><p>When national economy suffered from economic crisis, on December 1997, PT GarudaFood Jaya (GFJ) was established, producing Gery-branded biscuit. Gery Saluut earned Indonesian Best Brand Award (IBBA) from MARS and SWA Magazine for a period of 2005-2009, 2011 – 2013, 2015 under the category of wafer salut. In 2007-2015 Gery Chocolatos earned IBBA under the category of wafer stick.</p><p>In 1998 GarudaFood acquired PT Triteguh Manunggal Sejati (TRMS), producer of jelly and launched jelly product using brands of Okky and Keffy. Achievement of Okky jelly has been proven by its successfulness in earning Top Brand for Kids (TBK) Award 2004 under the category of jelly. In addition to TBK, OKKY Jelly also managed to earn IBBA (2005-2015). Okky jelly Drink also earned Top Brand Award 2007-2015 from Marketing Magazine in cooperation with Frontier.</p><p>In the end of 2002, TRMS launched jelly beverage products with a brand of Okky Jelly Drink and it also constituted a new phase for GarudaFood to deal with beverages business. Seriousness of GarudaFood in focusing on beverages business had also become apparent by the launching of Mountea, fruit-flavored tea beverage. Mountea had even been awarded by IBBA 2007-2015 under the category of tea beverage in cup packaging, Indonesia Customer Satisfaction Awarded by SWA MAgazine &amp; Frontier Survey Foundation in 2010 and also earned Word of Mouth Marketing Award given by SWA Magazine in 2011 – 2013.</p><p>GarudaFood also produces Snack with a brand of Leo, for category of Potato chips, banana chips, cassava chips products initiated from the end of 2005. In 2007-2011 Leo earned IBBA award for category of potato chips.</p><p>In national level, GarudaFood is also positively perceived as one of the admired food and beverage companies. Survey made by Frontier and BusinessWeek Indonesia Magazine in Jakarta and Surabaya in 2005 – 2011 indicated that GarudaFood was in the third position and 2nd position in food &amp; category in 2012 – 2013 of Indonesian Most Admired Company (IMAC) GarudaFood also actively performs corporate social responsibility (CSR) under the flag of GarudaFood Sehati.</p><p>To accelerate the achievement of its vision, in 2011 GarudaFood Group with non-alcohol division of&nbsp; Suntory Beverage &amp; Food, a company from Japan established a subsidiary PT Suntory Garuda Beverage, focused on the development of the beverage.</p><p>In 2012, GarudaFood also established Garuda Polyflex Foods Private Limited (GP Foods), a joint venture company with Polyflex India Private Limited in the&nbsp; food and beverage business.. GP Foods has a manufacturing facility in Bangalore that produces choco stick</p><p>Now, all potencies supported by&nbsp; above 16 thousands knowledge workers have become main asset to GarudaFood in the effort to go forward to meet a success as sustainable enterprise.</p>",
+        "shipping_from": "Jakarta",
+        "stock": 200
+    },
+    {
+        "product_id": "2",
+        "url": "app.promise.procurement-ecatalogDetail({productName:'Chocholatos'})",
+        "img_url":
+            [
+                {
+                    "img_alt_url":"app/img/product/chocholatos.png",
+                    "img_name":"Chocholatos"
+                },
+                {
+                    "img_alt_url":"app/img/product/chocolatosheader2.jpg",
+                    "img_name":"Chocholatos"
+                }
+            ],
+        "product_title": "Chocholatos",
+        "product_company_name": "PT Tudung Putra Jaya (TPJ)",
+        "product_company_url": "app.promise.procurement-vendorDetail({companyName:'GarudaFood'})",
+        "product_company_address": "Pati, Central Java",
+        "price": "",
+        "rate": 5,
+        "review":
+            [
+                {
+                    "user":"1",
+                    "text":"Lorem ipsum",
+                    "rate_by_user":4
+                },
+                {
+                    "user":"2",
+                    "text":"Lorem ipsum",
+                    "rate_by_user":5
+                }
+            ],
+        "desc": "<p>GarudaFood is a food and beverage company subordinated to Tudung Group. In addition to GarudaFood, Tudung Group also subordinates agribusiness companies operating in Crude Palm Oil field and peanuts.</p><p>GarudaFood Group had originated from PT Tudung Putra Jaya (TPJ), it was established in Pati, Central Java. The company founder is the deceased Darmo Putro, ex-warrior who had chosen to engage in business sector after the independence of Indonesia.</p><p>In early of 1987, TPJ started selling its peanut production products using a brand of Kacang Garing Garuda, which was recently known as: Kacang Garuda. Kacang Garuda earned the following awards: Indonesian Customer Satisfaction Award (ICSA) under the category of branded peanut for 16 times consecutively (2000 – 2015); Superbrands (2003 -&nbsp; 2004); Top Brand for Kids (2004); Indonesian Best Brand Award (IBBA, 2004 – 2015); Top Brand (2007 – 2015).</p><p>When national economy suffered from economic crisis, on December 1997, PT GarudaFood Jaya (GFJ) was established, producing Gery-branded biscuit. Gery Saluut earned Indonesian Best Brand Award (IBBA) from MARS and SWA Magazine for a period of 2005-2009, 2011 – 2013, 2015 under the category of wafer salut. In 2007-2015 Gery Chocolatos earned IBBA under the category of wafer stick.</p><p>In 1998 GarudaFood acquired PT Triteguh Manunggal Sejati (TRMS), producer of jelly and launched jelly product using brands of Okky and Keffy. Achievement of Okky jelly has been proven by its successfulness in earning Top Brand for Kids (TBK) Award 2004 under the category of jelly. In addition to TBK, OKKY Jelly also managed to earn IBBA (2005-2015). Okky jelly Drink also earned Top Brand Award 2007-2015 from Marketing Magazine in cooperation with Frontier.</p><p>In the end of 2002, TRMS launched jelly beverage products with a brand of Okky Jelly Drink and it also constituted a new phase for GarudaFood to deal with beverages business. Seriousness of GarudaFood in focusing on beverages business had also become apparent by the launching of Mountea, fruit-flavored tea beverage. Mountea had even been awarded by IBBA 2007-2015 under the category of tea beverage in cup packaging, Indonesia Customer Satisfaction Awarded by SWA MAgazine &amp; Frontier Survey Foundation in 2010 and also earned Word of Mouth Marketing Award given by SWA Magazine in 2011 – 2013.</p><p>GarudaFood also produces Snack with a brand of Leo, for category of Potato chips, banana chips, cassava chips products initiated from the end of 2005. In 2007-2011 Leo earned IBBA award for category of potato chips.</p><p>In national level, GarudaFood is also positively perceived as one of the admired food and beverage companies. Survey made by Frontier and BusinessWeek Indonesia Magazine in Jakarta and Surabaya in 2005 – 2011 indicated that GarudaFood was in the third position and 2nd position in food &amp; category in 2012 – 2013 of Indonesian Most Admired Company (IMAC) GarudaFood also actively performs corporate social responsibility (CSR) under the flag of GarudaFood Sehati.</p><p>To accelerate the achievement of its vision, in 2011 GarudaFood Group with non-alcohol division of&nbsp; Suntory Beverage &amp; Food, a company from Japan established a subsidiary PT Suntory Garuda Beverage, focused on the development of the beverage.</p><p>In 2012, GarudaFood also established Garuda Polyflex Foods Private Limited (GP Foods), a joint venture company with Polyflex India Private Limited in the&nbsp; food and beverage business.. GP Foods has a manufacturing facility in Bangalore that produces choco stick</p><p>Now, all potencies supported by&nbsp; above 16 thousands knowledge workers have become main asset to GarudaFood in the effort to go forward to meet a success as sustainable enterprise.</p>",
+        "shipping_from": "Jakarta",
+        "stock": 200
+    },
+    {
+        "product_id": "3",
+        "url": "app.promise.procurement-ecatalogDetail({productName:'PilusGaruda'})",
+        "img_url":
+            [
+                {
+                    "img_alt_url":"app/img/product/snack_pilus.jpg",
+                    "img_name":"Pilus Garuda"
+                },
+                {
+                    "img_alt_url":"app/img/product/Snack_Pilus_Original_95gr.jpg",
+                    "img_name":"Pilus Garuda"
+                }
+            ],
+        "product_title": "Pilus Garuda",
+        "product_company_name": "PT Tudung Putra Jaya (TPJ)",
+        "product_company_url": "app.promise.procurement-vendorDetail({companyName:'GarudaFood'})",
+        "product_company_address": "Pati, Central Java",
+        "price": "",
+        "rate": 5,
+        "review":
+            [
+                {
+                    "user":"1",
+                    "text":"Lorem ipsum",
+                    "rate_by_user":4
+                },
+                {
+                    "user":"2",
+                    "text":"Lorem ipsum",
+                    "rate_by_user":5
+                }
+            ],
+        "desc": "<p>GarudaFood is a food and beverage company subordinated to Tudung Group. In addition to GarudaFood, Tudung Group also subordinates agribusiness companies operating in Crude Palm Oil field and peanuts.</p><p>GarudaFood Group had originated from PT Tudung Putra Jaya (TPJ), it was established in Pati, Central Java. The company founder is the deceased Darmo Putro, ex-warrior who had chosen to engage in business sector after the independence of Indonesia.</p><p>In early of 1987, TPJ started selling its peanut production products using a brand of Kacang Garing Garuda, which was recently known as: Kacang Garuda. Kacang Garuda earned the following awards: Indonesian Customer Satisfaction Award (ICSA) under the category of branded peanut for 16 times consecutively (2000 – 2015); Superbrands (2003 -&nbsp; 2004); Top Brand for Kids (2004); Indonesian Best Brand Award (IBBA, 2004 – 2015); Top Brand (2007 – 2015).</p><p>When national economy suffered from economic crisis, on December 1997, PT GarudaFood Jaya (GFJ) was established, producing Gery-branded biscuit. Gery Saluut earned Indonesian Best Brand Award (IBBA) from MARS and SWA Magazine for a period of 2005-2009, 2011 – 2013, 2015 under the category of wafer salut. In 2007-2015 Gery Chocolatos earned IBBA under the category of wafer stick.</p><p>In 1998 GarudaFood acquired PT Triteguh Manunggal Sejati (TRMS), producer of jelly and launched jelly product using brands of Okky and Keffy. Achievement of Okky jelly has been proven by its successfulness in earning Top Brand for Kids (TBK) Award 2004 under the category of jelly. In addition to TBK, OKKY Jelly also managed to earn IBBA (2005-2015). Okky jelly Drink also earned Top Brand Award 2007-2015 from Marketing Magazine in cooperation with Frontier.</p><p>In the end of 2002, TRMS launched jelly beverage products with a brand of Okky Jelly Drink and it also constituted a new phase for GarudaFood to deal with beverages business. Seriousness of GarudaFood in focusing on beverages business had also become apparent by the launching of Mountea, fruit-flavored tea beverage. Mountea had even been awarded by IBBA 2007-2015 under the category of tea beverage in cup packaging, Indonesia Customer Satisfaction Awarded by SWA MAgazine &amp; Frontier Survey Foundation in 2010 and also earned Word of Mouth Marketing Award given by SWA Magazine in 2011 – 2013.</p><p>GarudaFood also produces Snack with a brand of Leo, for category of Potato chips, banana chips, cassava chips products initiated from the end of 2005. In 2007-2011 Leo earned IBBA award for category of potato chips.</p><p>In national level, GarudaFood is also positively perceived as one of the admired food and beverage companies. Survey made by Frontier and BusinessWeek Indonesia Magazine in Jakarta and Surabaya in 2005 – 2011 indicated that GarudaFood was in the third position and 2nd position in food &amp; category in 2012 – 2013 of Indonesian Most Admired Company (IMAC) GarudaFood also actively performs corporate social responsibility (CSR) under the flag of GarudaFood Sehati.</p><p>To accelerate the achievement of its vision, in 2011 GarudaFood Group with non-alcohol division of&nbsp; Suntory Beverage &amp; Food, a company from Japan established a subsidiary PT Suntory Garuda Beverage, focused on the development of the beverage.</p><p>In 2012, GarudaFood also established Garuda Polyflex Foods Private Limited (GP Foods), a joint venture company with Polyflex India Private Limited in the&nbsp; food and beverage business.. GP Foods has a manufacturing facility in Bangalore that produces choco stick</p><p>Now, all potencies supported by&nbsp; above 16 thousands knowledge workers have become main asset to GarudaFood in the effort to go forward to meet a success as sustainable enterprise.</p>",
+        "shipping_from": "Jakarta",
+        "stock": 200
+    },
+    {
+        "product_id": "4",
+        "url": "app.promise.procurement-ecatalogDetail({productName:'LeoKeripikKentang'})",
+        "img_url":
+            [
+                {
+                    "img_alt_url":"app/img/product/leo-hot-spicy.jpg",
+                    "img_name":"Leo Keripik Kentang Hot Spicy"
+                },
+                {
+                    "img_alt_url":"app/img/product/leo-sapi-panggang.jpg",
+                    "img_name":"Leo Keripik Kentang Sapi Panggang"
+                }
+            ],
+        "product_title": "Leo Keripik Kentang",
+        "product_company_name": "PT Tudung Putra Jaya (TPJ)",
+        "product_company_url": "app.promise.procurement-vendorDetail({companyName:'GarudaFood'})",
+        "product_company_address": "Pati, Central Java",
+        "price": "",
+        "rate": 3,
+        "review":
+            [
+                {
+                    "user":"1",
+                    "text":"Lorem ipsum",
+                    "rate_by_user":4
+                },
+                {
+                    "user":"2",
+                    "text":"Lorem ipsum",
+                    "rate_by_user":5
+                }
+            ],
+        "desc": "<p>GarudaFood is a food and beverage company subordinated to Tudung Group. In addition to GarudaFood, Tudung Group also subordinates agribusiness companies operating in Crude Palm Oil field and peanuts.</p><p>GarudaFood Group had originated from PT Tudung Putra Jaya (TPJ), it was established in Pati, Central Java. The company founder is the deceased Darmo Putro, ex-warrior who had chosen to engage in business sector after the independence of Indonesia.</p><p>In early of 1987, TPJ started selling its peanut production products using a brand of Kacang Garing Garuda, which was recently known as: Kacang Garuda. Kacang Garuda earned the following awards: Indonesian Customer Satisfaction Award (ICSA) under the category of branded peanut for 16 times consecutively (2000 – 2015); Superbrands (2003 -&nbsp; 2004); Top Brand for Kids (2004); Indonesian Best Brand Award (IBBA, 2004 – 2015); Top Brand (2007 – 2015).</p><p>When national economy suffered from economic crisis, on December 1997, PT GarudaFood Jaya (GFJ) was established, producing Gery-branded biscuit. Gery Saluut earned Indonesian Best Brand Award (IBBA) from MARS and SWA Magazine for a period of 2005-2009, 2011 – 2013, 2015 under the category of wafer salut. In 2007-2015 Gery Chocolatos earned IBBA under the category of wafer stick.</p><p>In 1998 GarudaFood acquired PT Triteguh Manunggal Sejati (TRMS), producer of jelly and launched jelly product using brands of Okky and Keffy. Achievement of Okky jelly has been proven by its successfulness in earning Top Brand for Kids (TBK) Award 2004 under the category of jelly. In addition to TBK, OKKY Jelly also managed to earn IBBA (2005-2015). Okky jelly Drink also earned Top Brand Award 2007-2015 from Marketing Magazine in cooperation with Frontier.</p><p>In the end of 2002, TRMS launched jelly beverage products with a brand of Okky Jelly Drink and it also constituted a new phase for GarudaFood to deal with beverages business. Seriousness of GarudaFood in focusing on beverages business had also become apparent by the launching of Mountea, fruit-flavored tea beverage. Mountea had even been awarded by IBBA 2007-2015 under the category of tea beverage in cup packaging, Indonesia Customer Satisfaction Awarded by SWA MAgazine &amp; Frontier Survey Foundation in 2010 and also earned Word of Mouth Marketing Award given by SWA Magazine in 2011 – 2013.</p><p>GarudaFood also produces Snack with a brand of Leo, for category of Potato chips, banana chips, cassava chips products initiated from the end of 2005. In 2007-2011 Leo earned IBBA award for category of potato chips.</p><p>In national level, GarudaFood is also positively perceived as one of the admired food and beverage companies. Survey made by Frontier and BusinessWeek Indonesia Magazine in Jakarta and Surabaya in 2005 – 2011 indicated that GarudaFood was in the third position and 2nd position in food &amp; category in 2012 – 2013 of Indonesian Most Admired Company (IMAC) GarudaFood also actively performs corporate social responsibility (CSR) under the flag of GarudaFood Sehati.</p><p>To accelerate the achievement of its vision, in 2011 GarudaFood Group with non-alcohol division of&nbsp; Suntory Beverage &amp; Food, a company from Japan established a subsidiary PT Suntory Garuda Beverage, focused on the development of the beverage.</p><p>In 2012, GarudaFood also established Garuda Polyflex Foods Private Limited (GP Foods), a joint venture company with Polyflex India Private Limited in the&nbsp; food and beverage business.. GP Foods has a manufacturing facility in Bangalore that produces choco stick</p><p>Now, all potencies supported by&nbsp; above 16 thousands knowledge workers have become main asset to GarudaFood in the effort to go forward to meet a success as sustainable enterprise.</p>",
+        "shipping_from": "Jakarta",
+        "stock": 200
+    },
+    {
+        "product_id": "5",
+        "url": "app.promise.procurement-ecatalogDetail({productName:'OkkyJellyDrink'})",
+        "img_url":
+            [
+                {
+                    "img_alt_url":"app/img/product/okky-jelly.jpg",
+                    "img_name":"Okky Jelly Drink"
+                },
+                {
+                    "img_alt_url":"app/img/product/okky_jelly_sirsak.jpg",
+                    "img_name":"Okky Jelly Drink Sirsak"
+                }
+            ],
+        "product_title": "Okky Jelly Drink",
+        "product_company_name": "PT Tudung Putra Jaya (TPJ)",
+        "product_company_url": "app.promise.procurement-vendorDetail({companyName:'GarudaFood'})",
+        "product_company_address": "Pati, Central Java",
+        "price": "",
+        "rate": 4,
+        "review":
+            [
+                {
+                    "user":"1",
+                    "text":"Lorem ipsum",
+                    "rate_by_user":4
+                },
+                {
+                    "user":"2",
+                    "text":"Lorem ipsum",
+                    "rate_by_user":5
+                }
+            ],
+        "desc": "<p>GarudaFood is a food and beverage company subordinated to Tudung Group. In addition to GarudaFood, Tudung Group also subordinates agribusiness companies operating in Crude Palm Oil field and peanuts.</p><p>GarudaFood Group had originated from PT Tudung Putra Jaya (TPJ), it was established in Pati, Central Java. The company founder is the deceased Darmo Putro, ex-warrior who had chosen to engage in business sector after the independence of Indonesia.</p><p>In early of 1987, TPJ started selling its peanut production products using a brand of Kacang Garing Garuda, which was recently known as: Kacang Garuda. Kacang Garuda earned the following awards: Indonesian Customer Satisfaction Award (ICSA) under the category of branded peanut for 16 times consecutively (2000 – 2015); Superbrands (2003 -&nbsp; 2004); Top Brand for Kids (2004); Indonesian Best Brand Award (IBBA, 2004 – 2015); Top Brand (2007 – 2015).</p><p>When national economy suffered from economic crisis, on December 1997, PT GarudaFood Jaya (GFJ) was established, producing Gery-branded biscuit. Gery Saluut earned Indonesian Best Brand Award (IBBA) from MARS and SWA Magazine for a period of 2005-2009, 2011 – 2013, 2015 under the category of wafer salut. In 2007-2015 Gery Chocolatos earned IBBA under the category of wafer stick.</p><p>In 1998 GarudaFood acquired PT Triteguh Manunggal Sejati (TRMS), producer of jelly and launched jelly product using brands of Okky and Keffy. Achievement of Okky jelly has been proven by its successfulness in earning Top Brand for Kids (TBK) Award 2004 under the category of jelly. In addition to TBK, OKKY Jelly also managed to earn IBBA (2005-2015). Okky jelly Drink also earned Top Brand Award 2007-2015 from Marketing Magazine in cooperation with Frontier.</p><p>In the end of 2002, TRMS launched jelly beverage products with a brand of Okky Jelly Drink and it also constituted a new phase for GarudaFood to deal with beverages business. Seriousness of GarudaFood in focusing on beverages business had also become apparent by the launching of Mountea, fruit-flavored tea beverage. Mountea had even been awarded by IBBA 2007-2015 under the category of tea beverage in cup packaging, Indonesia Customer Satisfaction Awarded by SWA MAgazine &amp; Frontier Survey Foundation in 2010 and also earned Word of Mouth Marketing Award given by SWA Magazine in 2011 – 2013.</p><p>GarudaFood also produces Snack with a brand of Leo, for category of Potato chips, banana chips, cassava chips products initiated from the end of 2005. In 2007-2011 Leo earned IBBA award for category of potato chips.</p><p>In national level, GarudaFood is also positively perceived as one of the admired food and beverage companies. Survey made by Frontier and BusinessWeek Indonesia Magazine in Jakarta and Surabaya in 2005 – 2011 indicated that GarudaFood was in the third position and 2nd position in food &amp; category in 2012 – 2013 of Indonesian Most Admired Company (IMAC) GarudaFood also actively performs corporate social responsibility (CSR) under the flag of GarudaFood Sehati.</p><p>To accelerate the achievement of its vision, in 2011 GarudaFood Group with non-alcohol division of&nbsp; Suntory Beverage &amp; Food, a company from Japan established a subsidiary PT Suntory Garuda Beverage, focused on the development of the beverage.</p><p>In 2012, GarudaFood also established Garuda Polyflex Foods Private Limited (GP Foods), a joint venture company with Polyflex India Private Limited in the&nbsp; food and beverage business.. GP Foods has a manufacturing facility in Bangalore that produces choco stick</p><p>Now, all potencies supported by&nbsp; above 16 thousands knowledge workers have become main asset to GarudaFood in the effort to go forward to meet a success as sustainable enterprise.</p>",
+        "shipping_from": "Jakarta",
+        "stock": 200
+    }
+]

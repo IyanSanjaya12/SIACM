@@ -1,0 +1,22 @@
+<div ng-controller="Test02Controller">
+    <div ng-show="true" align="center" style="padding-top:20%">
+        <strong><em><img src="app/img/loading.gif" border="0" height="20px" /></em></strong>
+    </div>
+    <div style="display:none">
+        <table datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="row-border hover">
+            <thead>
+                <tr>
+                    <th scope="col"style="text-align: center">No</th>
+                    <th scope="col"style="text-align: center">Nama</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="o in cacheList">
+                    <td style="text-align: center" ng-bind="$index+1"></td>
+                    <td style="text-align: center" ng-bind="o.nama"></td>
+                </tr>
+            </tbody>
+        </table>
+        <button ng-click="portal()">Portal</button>
+    </div>
+</div>

@@ -1,0 +1,138 @@
+<div class="app-view-header">
+	<span>Manage Catalog</span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="catalogImportCtrl as vm">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <em class="fa fa-tasks">&nbsp;</em> <span>Manage Catalog</span>
+    </h4>
+    <form class="form-horizontal" name="form">
+        <div class="panel-body">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">Pilih Dokumen</label>
+                    <div class="col-sm-6">
+                        <input  filestyle="" 
+                                type="file" 
+                                data-button-text="file Upload"
+                                data-class-button="btn btn-default"
+                                data-class-input="form-control inline" 
+                                nv-file-select=""
+                                uploader="vm.uploader" 
+                                class="form-control" />
+
+                        <!-- <a href="{{vm.template}}">Download Template</a> -->
+                        <a href='{{$root.backendAddress}}/file/viewTemplate/templateCatalog.xlsx'>Download Template</a>
+                        <a>&nbsp; &nbsp; &nbsp;</a>
+                        <a href='{{$root.backendAddress}}/file/viewTemplate/PanduanImportCatalog.xlsx'>Download Panduan</a>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <p ng-if="vm.uploader.queue.length"
+                        class="pull-right label label-info">Jumlah Antrian: {{
+                        vm.uploader.queue.length }}</p>
+                    <h4 class="page-header mt0">Upload Antrian</h4>
+                    <p ng-if="!vm.uploader.queue.length" class="lead text-center">Tidak
+                        Ada File, silahkan upload dokumen.</p>
+                    <div ng-if="vm.uploader.queue.length">
+                        <table ng-if="vm.uploader.queue.length" class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col"width="50%">Nama File</th>
+                                    <th scope="col"ng-show="vm.uploader.isHTML5">Ukuran</th>
+                                    <th scope="col"ng-show="vm.uploader.isHTML5">Proses</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in vm.uploader.queue">
+                                    <td><strong>{{ item.file.name }}</strong></td>
+                                    <td ng-show="vm.uploader.isHTML5" nowrap="">{{
+                                        item.file.size/1024/1024|number:2 }} MB</td>
+                                    <td ng-show="vm.uploader.isHTML5">
+                                        <div style="margin-bottom: 0;" class="progress progress-xs">
+                                            <div role="progressbar"
+                                                ng-style="{ 'width': item.progress + '%' }"
+                                                class="progress-bar"></div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <span ng-show="item.isSuccess">
+                                            <em class="fa fa-check fa-fw"></em>
+                                        </span> 
+                                        <span ng-show="item.isCancel"> 
+                                            <em class="fa fa-ban-circle fa-fw"></em>
+                                        </span> 
+                                        <span ng-show="item.isError"> 
+                                            <em class="fa fa-times fa-fw"></em>
+                                        </span>
+                                    </td>
+                                    <td nowrap="">
+                                        <button type="button" ng-click="item.upload()"
+                                            ng-disabled="item.isReady || item.isUploading || item.isSuccess"
+                                            class="btn btn-info btn-xs">
+                                            <span class="icon-cloud-upload mr"></span>Upload
+                                        </button>
+                                        <button type="button" ng-click="item.cancel()"
+                                            ng-disabled="!item.isUploading"
+                                            class="btn btn-warning btn-xs">
+                                            <span class="icon-cross mr"></span>Batal
+                                        </button>
+                                        <button type="button" ng-click="item.remove()"
+                                            class="btn btn-danger btn-xs">
+                                            <span class="icon-trash mr"></span>Hapus
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div>
+                        <p>Proses Antrian:</p>
+                        <div style="" class="progress progress-xs">
+                            <div role="progressbar"
+                                ng-style="{ 'width': vm.uploader.progress + '%' }"
+                                class="progress-bar"></div>
+                        </div>
+                    </div>
+                    <div align="center">
+                        <button type="button" ng-click="vm.uploader.uploadAll()"
+                            ng-disabled="!vm.uploader.getNotUploadedItems().length"
+                            class="btn btn-info btn-s">
+                            <span class="icon-cloud-upload mr"></span>Upload Semua
+                        </button>
+                        <button type="button" ng-click="vm.uploader.cancelAll()"
+                            ng-disabled="!vm.uploader.isUploading"
+                            class="btn btn-warning btn-s">
+                            <span class="icon-cross mr"></span>Batalkan Semua
+                        </button>
+                        <button type="button" ng-click="vm.uploader.clearQueue()"
+                            ng-disabled="!vm.uploader.queue.length"
+                            class="btn btn-danger btn-s">
+                            <span class="icon-trash mr"></span>Hapus Semua
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="form-group">
+                <div align="center">
+                    
+                    <a class="btn btn-default btn-sm btn-addon" ng-click="vm.kembali()">
+                        <em class="fa fa-chevron-left"></em>
+                        <span translate="promise.procurement.master.attribute.btn.KEMBALI"></span>
+                    </a>
+                    <a ng-class="'bg-' + app.theme.name" class="btn btn-sm btn-addon" ng-click="vm.simpan()">
+                        <em class="fa fa-save pull-right"></em>
+                        <span translate="promise.procurement.master.attribute.btn.SIMPAN"></span>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

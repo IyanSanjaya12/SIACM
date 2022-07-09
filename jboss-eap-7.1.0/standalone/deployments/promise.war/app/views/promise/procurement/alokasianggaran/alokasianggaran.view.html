@@ -1,0 +1,111 @@
+<!--
+SPESIFIC VIEW OF THE FIRST DETAIL EVALUASI TEKNIS MENU
+------------- START CONTROLLER -------------
+-->
+<div class="app-view-header"> <span translate="promise.procurement.panitia.alokasianggaran.JUDUL"></span>
+</div>
+<div ng-controller="AlokasiAnggaranViewController as form">
+	<form method="post" action="#" novalidate="" class="form-horizontal">
+		<div class="panel panel-primary">
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+                <em class="fa fa-tasks"></em>
+                <span translate="promise.procurement.panitia.alokasianggaran.SUBJUDUL"></span>
+                <a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+                        <em class="fa fa-chevron-circle-down"></em>
+                </a>
+            </h4>
+			<div class="panel-body collapse in">
+				<div class="col-md-12">
+					<div>
+						<div class="text-center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px" border="0"/></strong>
+						</div>
+						<div class="table-responsive" style="overflow:visible">
+							<table id="table-ext-1" class="table table-bordered table-hover" width="100%">
+								<tbody>
+									<tr>
+										<td style="text-align:left" width="30%"><span translate="general.no"></td>
+                                        <td style="text-align:left" width="70%"><input type="text" class="form-control" ng-model="form.data.nomorDraft" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><span translate="general.date"></td>
+                                        <td style="text-align:left"><div style="width:40%"><p class="input-group">
+                                                <input type="text" datepicker-popup="{{format}}" ng-model="form.data.tanggalDraft" is-open="tglOpened" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" class="form-control" ng-disabled="true" />
+                                                <span class="input-group-btn">
+								<button type="button" ng-click="tglOpen($event)" class="btn btn-default" ripple="">
+													<em class="fa fa-calendar"></em>
+								</button>
+								</span>
+											</p>
+						</div>
+						</td>
+						</tr>
+						<tr>
+							<td style="text-align:left"><span translate="promise.procurement.panitia.alokasianggaran.add.CABANG"></td>
+                                        <td style="text-align:left">{{panitia.cabang.nama}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><span translate="promise.procurement.panitia.alokasianggaran.add.BIROPENGADAAN"></td>
+                                        <td style="text-align:left"><div style="width:40%"><ui-select ng-model="form.data.biroPengadaan" theme="bootstrap" >
+                                                        <ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+                                                        <ui-select-choices repeat="object in biroPengadaanList | propsFilter: {id: $select.search}">
+                                                            <div ng-bind-html="object.nama | highlight: $select.search"></div>
+                                                        </ui-select-choices>
+                                                    </ui-select></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><span translate="general.year"></td>
+                                        <td style="text-align:left"><div style="width:40%"><input type="number" class="form-control shadow-z1 input-sm" ng-model="form.data.tahunAnggaran"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><span translate="promise.procurement.panitia.alokasianggaran.add.PERIODE"></td>
+                                        <td style="text-align:left"><div style="width:40%"><ui-select ng-model="form.data.periodeAnggaran" theme="bootstrap" >
+                                                        <ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+                                                        <ui-select-choices repeat="object in periodeList | propsFilter: {id: $select.search}">
+                                                            <div ng-bind-html="object.nama | highlight: $select.search"></div>
+                                                        </ui-select-choices>
+                                                    </ui-select></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><span translate="promise.procurement.panitia.alokasianggaran.add.JENIS"></td>
+                                        <td style="text-align:left"><div style="width:40%"><ui-select ng-model="form.data.jenisAnggaran" theme="bootstrap" >
+                                                        <ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+                                                        <ui-select-choices repeat="object in jenisList | propsFilter: {id: $select.search}">
+                                                            <div ng-bind-html="object.nama | highlight: $select.search"></div>
+                                                        </ui-select-choices>
+                                                    </ui-select></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><span translate="promise.procurement.panitia.alokasianggaran.add.JUMLAH"></td>
+                                        <td style="text-align:left">
+                                            <table>
+                                            <tr>
+                                                <td style="width:30%"><ui-select ng-model="form.data.mataUang" theme="bootstrap">
+                                                <ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+                                                <ui-select-choices repeat="object in mataUangList | propsFilter: {id: $select.search}">
+                                                    <div ng-bind-html="object.nama | highlight: $select.search"></div>
+                                                </ui-select-choices>
+                                            </ui-select></td>
+                                                <td style="width:10%"></td>
+                                                <td style="width:50%"><input type="text" promise-currency-blur class="form-control shadow-z1 input-sm" ng-model="form.data.jumlah" ng-show="gabungAnggaran!=true"><span ng-show="gabungAnggaran==true">{{form.data.jumlah | number:2}}</span>
+							</td>
+						</tr>
+						</table>
+						</td>
+						</tr>
+						</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel-footer">
+			<div class="form-group text-center">
+				<a class="btn btn-default" ng-click="back()"> <span translate="general.back"></span>
+				</a>
+				<a ng-class="'bg-' + app.theme.name" class="btn btn-primary" ng-click="save()"> <span translate="general.save"></span>
+				</a>
+			</div>
+		</div>
+	</form>
+</div>
+<!--END CONTROLLER-->

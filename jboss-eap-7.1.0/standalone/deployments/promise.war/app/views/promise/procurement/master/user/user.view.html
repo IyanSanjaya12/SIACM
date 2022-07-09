@@ -1,0 +1,244 @@
+<div class="app-view-header">
+    <span translate="promise.procurement.master.user.judul"></span>
+    <small> <span translate="promise.procurement.master.user.keterangan"></span></small>
+</div>
+
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="UserViewController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<span ng-if="vm.toDo=='add'" translate="promise.procurement.master.user.view.subjudul_tambah"></span>
+		<span ng-if="vm.toDo=='edit'" translate="promise.procurement.master.user.view.subjudul_ubah"></span>
+	</h4>
+	<div class="panel-body">
+		<div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="15px"></strong></div>
+		<div ng-show="!loading" ng-disabled="saving">
+			<form method="post" novalidate=""class="form-horizontal" action="#" ng-class="{'submitted' : vm.submitted}" name="userForm">
+					<div class="form-group">
+						<label for="input-id-1" class="col-sm-4 control-label required"><span
+							translate="promise.procurement.master.user.view.username"></span>
+							
+						</label>
+							
+						<div class="col-sm-4">
+							<input name="username"  ng-model="vm.userDTO.user.username" type="text" class="form-control" maxlength="120"  required ng-blur="delValidation($event)" disabled /> 
+							<!-- <strong style="color: red" translate={{vm.errorUsername}}> </strong> 
+							<br /> -->
+							<div class="input-error" ng-show="(vm.submitted && userForm.username.$invalid)">
+		       					<p ng-show="userForm.username.$error.required" translate="template.error.field_kosong"></p>
+		   						<p ng-show="!userForm.username.$error.required && userForm.username.$error.username" translate="promise.procurement.master.itemtype.error.nama_sama"></p>
+		       				</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="input-id-1" class="col-sm-4 control-label required"><span
+							translate="promise.procurement.master.user.view.nama_pengguna"></span>
+							
+						</label>
+						<div class="col-sm-4">
+							<input name="namaPengguna" type="text"
+								class="form-control" ng-model="vm.userDTO.user.namaPengguna" maxlength="120"  required ng-blur="delValidation($event)" disabled />
+							<div class="input-error" ng-show="(vm.submitted && userForm.namaPengguna.$invalid)">
+		       					<p ng-show="userForm.$error.required" translate="template.error.field_kosong"></p>
+		   						
+		       				</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="input-id-1" class="col-sm-4 control-label required"><span
+							translate="promise.procurement.master.user.view.password"></span>
+							
+						</label>
+						<div class="col-sm-4">
+							<input name="password" type="password"
+								class="form-control" ng-model="vm.userDTO.user.password" type="text" maxlength="120"  required ng-blur="delValidation($event)" />
+							<div class="input-error" ng-show="(vm.submitted && userForm.password.$invalid)">
+		       					<p ng-show="userForm.password.$error.required" translate="template.error.field_kosong"></p>
+		   						
+		       				</div>
+						</div>
+						<div class="col-sm-2">
+						<button type="button" ripple="" class="mr btn btn-md bg-primary"
+							ng-click="generate()">
+							<span translate="template.button.generate">
+							</span>
+						</button>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="input-id-1" class="col-sm-4 control-label required"><span
+							translate="promise.procurement.master.user.view.repassword"></span>
+							
+						</label>
+						<div class="col-sm-4">
+							<input type="password" name="rePassword"
+								class="form-control" ng-model="vm.rePassword" type="text" maxlength="120"  required ng-blur="delValidation($event)"/>
+							<div class="input-error" ng-show="(vm.submitted && userForm.rePassword.$invalid)">
+		       					<p ng-show="userForm.rePassword.$error.required" translate="template.error.field_kosong"></p>
+		   						
+		       				</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="email" class="col-sm-4 control-label required"><span
+							translate="promise.procurement.master.user.view.email"></span>
+							
+						</label>
+						<div class="col-sm-4">
+							<input type="email" name="email"
+								placeholder="promise@example.co.id" class="form-control"
+								ng-model="vm.userDTO.user.email" maxlength="120"  required ng-blur="delValidation($event)" disabled>
+							<div class="input-error" ng-show="(vm.submitted && userForm.email.$invalid)">
+		       					<p ng-show="userForm.email.$error.required" translate="template.error.field_kosong"></p>
+		       				</div>
+						</div>
+						
+					</div>
+
+					<br />
+					<div class="form-group">
+						<label for="departemen" class="col-sm-4 control-label required">Departemen
+							
+						</label>
+						<div class="col-sm-4">
+							<input type="text" name="organisasi" class="form-control"
+								ng-model="vm.organisasi" maxlength="120"  required ng-blur="delValidation($event)" disabled>
+							<div class="input-error" ng-show="(vm.submitted && userForm.organisasi.$invalid)">
+				   					<p ng-show="userForm.organisasi.$error.required" translate="template.error.field_kosong"></p>
+				   			</div>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="departemen" class="col-sm-4 control-label required">Role
+							
+						</label>
+						<div class="col-sm-4">
+							<input type="text" name="vm.rolePm" class="form-control"
+								ng-model="vm.rolePm.nama" maxlength="120"  required ng-blur="delValidation($event)" disabled>
+							<div class="input-error" ng-show="(vm.submitted && userForm.organisasi.$invalid)">
+				   					<p ng-show="userForm.organisasi.$error.required" translate="template.error.field_kosong"></p>
+				   			</div>
+						</div>
+					</div>
+
+					<!-- <div class="form-group mb">
+						<label for="" class="col-sm-4 control-label required"></label>
+						 
+						<div class="col-sm-4">
+							ROLE 
+							<table>
+								<tr style="height: 60px">
+									<td align="left">
+										<div class="checkbox-inline checkbox c-checkbox needsclick">
+											<label class="needsclick"> <input type="checkbox"
+												value="" class="needsclick" ng-model="vm.loginPm"
+												name="loginPm" required ng-blur="delValidation($event)" /> <span class="fa fa-check"></span>Login
+												PM (Procurement Management)
+											</label>
+										</div>
+									</td>
+									<td>&nbsp;&nbsp;&nbsp;</td>
+									<td>
+									<div ng-class="(vm.submitted && userForm.rolePM.$invalid) ? 'border-error' : !userForm.rolePM.$invalid ? '' : 'border-success'">
+									<ui-select name="rolePM" ng-model="vm.rolePm"
+											theme="bootstrap" ng-if="vm.loginPm"
+											style="width:250px" ng-required="true" required> <ui-select-match
+											placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+										<ui-select-choices
+											repeat="loginPm in vm.rolePmList | filter: $select.search">
+										<div ng-bind-html="loginPm.nama | highlight: $select.search"></div>
+										</ui-select-choices> </ui-select>
+									</div>
+									<div class="input-error" ng-show="(vm.submitted && userForm.rolePM.$invalid && vm.loginPm)">
+						   					<p ng-show="userForm.rolePM.$error.required" translate="template.error.field_kosong"></p>
+						   			</div>
+										</td>
+									
+									<td>
+										<div ng-if="loginPm">
+											<em ng-show="vm.rolePMStatus" class="text-danger">Pilih
+											Role User PM.</em>
+										</div>
+									</td>
+									<strong style="color: red" translate={{vm.errorRole}}> </strong>
+								</tr>
+
+								<tr>
+									<td align="left">
+										<div class="checkbox-inline checkbox c-checkbox needsclick">
+											<label class="needsclick"> <input type="checkbox"
+												value="" class="needsclick" ng-model="vm.loginCm"
+												name="loginCM"  required ng-blur="delValidation($event)" /> <span class="fa fa-check"></span>Login
+												CM (Contract Management)
+											</label>
+										</div>
+									</td>
+									<td>&nbsp;&nbsp;&nbsp;</td>
+									<td>
+										<div ng-class="(vm.submitted && userForm.roleCM.$invalid) ? 'border-error' : !userForm.roleCM.$invalid ? '' : 'border-success'">
+											<ui-select name="roleCM" ng-model="vm.roleCm" theme="bootstrap" ng-if="vm.loginCm"
+													style="width:250px" ng-required="true" required> <ui-select-match
+													placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+												<ui-select-choices
+													repeat="loginCM in vm.roleCmList | filter: $select.search">
+												<div ng-bind-html="loginCM.nama | highlight: $select.search"></div>
+												</ui-select-choices>
+											</ui-select>
+										</div>
+										<div class="input-error" ng-show="(vm.submitted && userForm.roleCM.$invalid && vm.loginCm)">
+						   					<p ng-show="userForm.roleCM.$error.required" translate="template.error.field_kosong"></p>
+						   				</div>
+									</td>
+									<td>
+										<div ng-if="vm.loginCm">
+											<em ng-show="vm.roleCMStatus" class="text-danger">Pilih
+												Role User CM.</em>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td> 
+									<div class="input-error" ng-show="(vm.submitted && (userForm.loginPm.$invalid || userForm.loginCM.$invalid))">
+			        					<p ng-show="userForm.loginPm.$error.required && userForm.loginCM.$error.required " translate="template.error.field_kosong"></p>
+			        				</div>
+			        				</td>
+								</tr>
+							</table>
+						</div>
+					</div> -->
+
+					<div class="form-group mb">
+						<label class="col-sm-4 control-label required">Status Login
+							
+						</label>
+						<div class="col-sm-4">
+						<div ng-class="(vm.submitted && userForm.login.$invalid) ? 'border-error' : !userForm.login.$invalid ? '' : 'border-success'" ng-required="true" required>
+							<select name="login" class="form-control" ng-model="vm.userDTO.user.terkunci"  ng-class="vm.userDTO.user.terkunci == null && vm.submitted  ? 'error-required' : ''" theme="bootstrap" ng-required="true" required >{{$select.selected.nama}}
+								<option value="" disabled selected>++ Pilih ++</option>
+								<option value="0">Aktif</option>
+								<option value="1">Terkunci</option>
+							</select>
+							</div> 
+								<div class="input-error" ng-show="(vm.submitted && userForm.login.$invalid)">
+				   					<p ng-show="userForm.login.$error.required" translate="template.error.field_kosong"></p>
+				   				</div>
+						</div>
+					</div>
+					<div class="form-group">
+					<div class="col-md-12 text-center">
+						<button type="button" ripple="" class="mr btn btn-md bg-default"
+							ng-click="back()">
+							<span
+								translate="template.button.kembali"></span>
+						</button>
+						<button type="button" ripple="" class="mr btn btn-md bg-primary"
+							ng-click="save(userForm.$valid)">
+							<span translate="template.button.simpan">
+							</span>
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

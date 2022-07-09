@@ -1,0 +1,84 @@
+<div class="modal-header">
+    <button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="cancelModal()">×</button>
+    <h3 id="myModalLabel" class="modal-title">Input Quotation</h3>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-2">RFQ Number</div>
+        <div class="col-md-4"><span ng-bind="requestQuotation.noRFQ"></span></div>
+        <div class="col-md-3">Date of Issuance</div>
+        <div class="col-md-3"><span ng-bind="requestQuotation.postDate | date:'dd/MM/yyyy'"></span></div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">Supplier Code</div>
+        <div class="col-md-4"><span ng-bind="vendorRFQ.vendor.id"></span></div>
+        <div class="col-md-3">Date of Delivery Quote</div>
+        <div class="col-md-3"><span ng-bind="requestQuotation.deliveryQuoteDate | date:'dd/MM/yyyy'"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">Supplier Name</div>
+        <div class="col-md-4"><span ng-bind="vendorRFQ.vendor.nama"></span></div>
+        <div class="col-md-3">Date of Send Quote</div>
+        <div class="col-md-3">
+						<div class="input-group">
+                    		<input type="text" datepicker-popup="dd-MM-yyyy" ng-model="vendorRFQ.postingQuote" is-open="sendQuoteDateStatus" class="form-control shadow-z1 input-sm" show-button-bar="false" readonly style="background-color:white;"/>
+                        <span class="input-group-btn">
+														<button type="button" ng-click="sendQuoteDateEvent($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+															<em class="fa fa-calendar"></em>
+														</button>
+												</span>
+                    </div>            
+        </div>
+    </div>
+    <h4>Items</h4>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th scope="col"style="text-align:left"><span>Item Code</span>
+                    </th>
+                    <th scope="col"style="text-align:left"><span>Name</span>
+                    </th>
+                    <th scope="col"style="text-align:left"><span>Qty</span>
+                    </th>
+                    <th scope="col"style="text-align:left"><span>UOM</span>
+                    </th>
+                    </th>
+                    <th scope="col"style="text-align:left"><span>Price</span>
+                    </th>
+                    <th scope="col"style="text-align:left"><span>Description</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="itemRFQ in vendorRFQ.requestQuotationItemList">
+                    <td ng-bind="itemRFQ.item.kode"></td>
+                    <td ng-bind="itemRFQ.item.nama">{{item.nama}}</td>
+                    <td>
+                        <input type="number" ng-model="itemRFQ.quantity" class="form-control shadow-z1 input-sm" />
+                    </td>
+                    <td>
+                    		<select class="form-control m-b shadow-z1 input-sm"
+											      ng-options="dataSatuan.nama for dataSatuan in satuanList track by dataSatuan.id"
+											      ng-model="itemRFQ.satuan"></select>
+                    </td>
+                    <td>
+                        <input type="number" ng-model="itemRFQ.price" class="form-control shadow-z1 input-sm">
+                    </td>
+                    <td>
+                        <textarea ng-model="itemRFQ.description" width="200" class="form-control shadow-z1 input-sm"></textarea>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <input type="file" data-buttontext="Attach" data-class-button="btn btn-default" data-classinput="form-control inline" nv-file-select="" Uploader="attachUploader" class="form-control" />
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button ng-click="okModal()" class="btn btn-primary">OK</button>
+    <button ng-click="cancelModal()" class="btn btn-warning">Cancel</button>
+</div>

@@ -1,0 +1,170 @@
+<div class="app-view-header">
+	<span
+		translate="promise.procurement.RegistrasiVendor.DataSegmentasi.judul"></span>
+</div>
+<!--START CONTROLLER-->
+<div ng-controller="RegistrasiDataSegmentasiViewController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<span ng-if="vm.toDo=='Add'"
+			translate="promise.procurement.RegistrasiVendor.DataSegmentasi.view.subjudul_tambah"></span>
+		<span ng-if="vm.toDo=='Edit'"
+			translate="promise.procurement.RegistrasiVendor.DataSegmentasi.view.subjudul_ubah"></span>
+	</h4>
+	<div class="panel panel-primary">
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-9">
+					<div align="center" ng-if="loading == true">
+						<strong><em>Loading...</em><img src="app/img/loading.gif"
+							width="20px"></strong>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label"><span
+							translate="promise.procurement.RegistrasiVendor.DataSegmentasi.view.bidang_usaha"></span>
+							<label class="text-danger">*)</label> </label>
+						<div class="col-sm-9">
+							<div class="input-group">
+								<ui-select name="bidangUsaha"
+									ng-model="vm.dataSegmentasi.bidangUsaha" theme="bootstrap"
+									ng-change="changeBidangUsaha()"> <ui-select-match
+									placeholder="Pilih Bidang Usaha ...">{{$select.selected.nama}}</ui-select-match>
+								<ui-select-choices
+									repeat="bidangUsaha in vm.bidangUsahaList | filter: $select.search"
+									style="width: 350px;font-size: 14px;">
+								<div ng-bind-html="bidangUsaha.nama | highlight: $select.search"></div>
+								</ui-select-choices> </ui-select>
+							</div>
+								<br />
+						</div>
+					</div>
+				</div>
+				<div class="col-md-10">
+					<div class="table-responsive">
+					<div align="center"><strong style="color: red" translate={{vm.errorMessageSubBidangUsaha}}></strong></div>
+						<table ng-table="vm.tableSubBidangUsaha" name="subbidangusaha"
+							class="table table-hover table-condensed table-striped bg-white">
+							<thead>
+								<tr style="font-weight: bold">
+									<th scope="col"style="width: 10%; text-align: left"><span
+										translate="template.tabel.nomor"></span></th>
+									<th scope="col"style="width: 60%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataSegmentasi.view.subbidang"></span></th>
+									<th scope="col"style="width: 10%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataSegmentasi.view.pilih"></span></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="subBidang in $data">
+									<td style="text-align: center">{{$index+1}}</td>
+									<td>{{ subBidang.nama }}</td>
+									<td>
+										<div class="radio c-radio">
+											<label style="color: green"> <input type="radio"
+												name="groupSubBidang" ng-model="subBidang.pilihSubBidang"
+												checked="subBidang.id == vm.dataSegmentasi.subBidangUsaha.id"
+												ng-value="subBidang"><span class="fa fa-circle"
+												ng-click="removelistSubbidang(subBidang)"></label>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<fieldset>
+				<div class="form-group">
+					<div class="col-md-9">
+						<div class="row">
+							<label class="col-sm-3 control-label"><span translate="promise.procurement.RegistrasiVendor.DataSegmentasi.view.asosiasi"></span>
+								<label class="text-danger">*)</label> </label>
+							<div class="col-md-7">
+								<div class="input-group">
+									<ui-select name="asosiasi"
+										ng-model="vm.dataSegmentasi.asosiasi" theme="bootstrap">
+									<ui-select-match placeholder="Pilih Asosiasi ...">{{$select.selected.nama}}</ui-select-match>
+									<ui-select-choices
+										repeat="asosiasi in vm.asosiasiList | filter: $select.search"
+										style="width: 430px;font-size: 14px;">
+									<div ng-bind-html="asosiasi.nama | highlight: $select.search"></div>
+									</ui-select-choices> </ui-select>
+								</div>
+								<strong style="color: red"
+									translate={{vm.errorMessageAssosiasi}}></strong> <br />
+							</div>
+						</div>
+						<div class="row">
+							<label class="col-sm-3 control-label"><span translate="template.tabel.nomor"></span>
+							<label class="text-danger">*)</label> </label>
+							<div class="col-sm-7">
+								<input name="nomor" type="text"
+									class="form-control shadow-z1 input-sm"
+									ng-model="vm.dataSegmentasi.nomor" maxlength="20"> <strong
+									style="color: red" translate={{vm.errorMessageNomor}}></strong>
+								<br />
+							</div>
+						</div>
+						<div class="row">
+							<label class="col-sm-3 control-label"><span
+								translate="promise.procurement.RegistrasiVendor.DataSegmentasi.view.tanggal_mulai"></span>
+								<label class="text-danger">*)</label> </label>
+							<div class="col-sm-7">
+								<div class="input-group">
+									<input name="tanggalMulai" type="text"
+										datepicker-popup="dd/MM/yyyy"
+										ng-model="vm.dataSegmentasi.tanggalMulai"
+										is-open="vm.tanggalMulaiStatus"
+										class="form-control shadow-z1 input-sm"
+										show-button-bar="false" readonly="true" required /> <span
+										class="input-group-btn">
+										<button type="button" ng-click="tanggalMulaiOpen($event)"
+											class="btn btn-default shadow-z1 input-sm " ripple="">
+											<em class="fa fa-calendar"></em>
+										</button>
+									</span>
+								</div>
+								<strong style="color: red"
+									translate={{vm.errorMessageTanggalMulai}}></strong> <br />
+							</div>
+						</div>
+						<div class="row">
+							<label class="col-sm-3 control-label"><span
+								translate="promise.procurement.RegistrasiVendor.DataSegmentasi.view.tanggal_berakhir"></span>
+								<label class="text-danger">*)</label> </label>
+							<div class="col-sm-7">
+								<div class="input-group">
+									<input name="tanggalBerakhir" type="text"
+										datepicker-popup="dd/MM/yyyy"
+										ng-model="vm.dataSegmentasi.tanggalBerakhir"
+										is-open="vm.tanggalBerakhirStatus"
+										class="form-control shadow-z1 input-sm"
+										show-button-bar="false" readonly="true" required /> <span
+										class="input-group-btn">
+										<button type="button" ng-click="tanggalBerakhirOpen($event)"
+											class="btn btn-default shadow-z1 input-sm " ripple="">
+											<em class="fa fa-calendar"></em>
+										</button>
+									</span>
+								</div>
+								<strong style="color: red" translate={{vm.errorMessageTanggalAkhir}}></strong> <br />
+							</div>
+						</div>
+					</div>
+					<div align="center">
+					<div class="form-group">
+						<div class="col-md-5 col-md-push-2 col-sm-5 col-sm-push-3">
+							<button type="button" ripple="" class="mr btn btn-sm bg-default"
+								ng-click="back()">
+								<span translate="template.button.kembali"></span>
+							</button>
+							<button ng-class="'bg-' + app.theme.name" type="button" ripple=""
+							class="mr btn btn-sm" ng-click="save()">
+								<span translate="template.button.simpan"></span>
+							</button>
+						</div>
+					</div>
+					</div>
+			</fieldset>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,41 @@
+<div class="app-view-header">	<span translate="promise.procurement.master.jabatan.judul"></span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="JabatanViewController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-tasks"></em>
+			<span ng-if="vm.toDo == 'Add'" translate="promise.procurement.master.jabatan.view.subjudul_tambah"></span>
+   		<span ng-if="vm.toDo == 'Edit'" translate="promise.procurement.master.jabatan.view.subjudul_ubah"></span>
+			<a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+					<em class="fa fa-chevron-circle-down"></em>
+			</a>
+	</h4>
+	<div class="panel-body collapse in">
+		<div class="text-center" ng-if="vm.loading == true">	<strong><em>Loading...</em><img src="app/img/loading.gif" border="0"
+				width="20px"></strong>
+		</div>
+		<form method="post" action="#" novalidate="" class="form-horizontal" ng-class="{'submitted' : vm.submitted}" name="formJabatan">
+			<div class="form-group">
+				<label for="input-id-1" class="col-sm-4 control-label required">	<span translate="promise.procurement.master.jabatan.view.nama"></span>
+				</label>
+				<div class="col-sm-4">
+					<input id="input-id-1" name="namaJabatan" promise-alphanumeric-only type="text" maxlength="120" class="form-control" ng-model="vm.jabatan.nama" required ng-blur="delValidation($event)" />
+					<div class="input-error" ng-show="(vm.submitted && formJabatan.namaJabatan.$invalid)">
+						<p ng-show="formJabatan.namaJabatan.$error.required" translate="template.error.field_kosong"></p>
+						<p ng-show="!formJabatan.namaJabatan.$error.required && formJabatan.namaJabatan.$error.namaJabatan" translate="promise.procurement.master.jabatan.error.nama_sama"></p>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-12 text-center">
+					<button type="button" ripple="" class="btn btn-secondary" ng-click="back()">	
+						<span translate="template.button.kembali"></span>
+					</button>
+					<button type="button" ripple="" class="btn btn-primary" ng-click="save(formJabatan.$valid)">	
+						<span translate="template.button.simpan"></span>
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

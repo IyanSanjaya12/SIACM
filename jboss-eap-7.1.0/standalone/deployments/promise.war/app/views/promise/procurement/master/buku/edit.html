@@ -1,0 +1,47 @@
+<div class="app-view-header">	<span>Buku</span>  <small><span>EDIT</span></small>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="BukuEditController as form">
+	<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-tasks"></em>
+			Edit Buku
+			<a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+					<em class="fa fa-chevron-circle-down"></em>
+			</a>
+	</h4>
+	<div class="panel-body collapse in">
+		<div align="center" ng-if="loading == true">	<strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong>
+		</div>
+		<form method="post" action="#" novalidate="" class="form-horizontal">
+			<fieldset>
+				<div class="form-group">
+					<label for="input-id-1" class="col-sm-2 control-label"><span>Nama
+							Buku</span> 
+					</label>
+					<div class="col-sm-5">
+						<input id="input-id-1" type="text" class="form-control" ng-model="form.namaBuku" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="input-id-2" class="col-sm-2 control-label"><span>Harga
+							Buku</span> 
+					</label>
+					<div class="col-sm-5">
+						<input id="input-id-2" type="text" class="form-control" ng-model="form.hargaBuku" />
+					</div>
+				</div>
+				<br />
+				<div align="center">
+					<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-sm" ng-click="back()">	<span class="btn-label"> <em class="fa fa-chevron-left"></em>
+						</span><span>KEMBALI</span>
+					</button>
+					<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="save()">	<span>SAVE</span>
+					</button>
+				</div>
+				<div align="left">	<strong style="background-color: yellow; color: green">{{message}}</strong>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</div>

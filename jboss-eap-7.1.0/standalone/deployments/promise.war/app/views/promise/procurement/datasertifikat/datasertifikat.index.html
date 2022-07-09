@@ -1,0 +1,53 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.RegistrasiVendor.sertifikatvendor.judul"></span>
+</div>
+
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="SertifikatVendorController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <span translate="promise.procurement.RegistrasiVendor.sertifikatvendor.subjudul"></span>
+    </h4>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-md-3" translate="promise.procurement.RegistrasiVendor.sertifikatvendor.nama_rekanan"></div>
+			<div class="col-md-6">
+				<p class="input-group">
+					<input id="input-id-1" type="text" class="form-control" ng-model=" vm.filter.nama"/>
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3" translate="promise.procurement.RegistrasiVendor.sertifikatvendor.status_sertifikat"></div>
+			<div class="col-md-6">
+				<p class="input-group">
+					<select class="form-control" ng-model="vm.filter.status">
+ 						<option value="">-- Pilih Status --</option>
+ 						<option value="0">Persetujuan Penerbitan Sertifikat</option>
+						<option value="1">Aktif</option>
+						<option value="2">Request Perpanjangan Sertifikat</option>
+						<option value="3">Ditolak</option>
+						<option value="4">Expired</option>
+					</select>
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				<p class="input-group">
+					<button class="btn btn-info btn-sm id="new-search" ng-click=" reloadData()">
+					<span translate="template.button.cari"></span>
+					</button >
+				</p>
+			</div>
+		</div>
+	
+		<div class="row form-horizontal">
+			<div class="col-md-12">
+				<div class="table-responsive">
+		        	<table datatable="" dt-options="vm.dtOptions" dt-columns="vm.dtColumns" dt-instance="vm.dtInstance" id="vm.sertifikat" class="row-border hover"></table>
+		        </div>
+		    </div>
+		</div>
+	</div>
+</div>  

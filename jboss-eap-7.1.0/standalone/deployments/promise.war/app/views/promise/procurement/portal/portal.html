@@ -1,0 +1,143 @@
+<!--  <link rel="stylesheet" href="app/views/promise/procurement/portal/portal.css"> -->
+<link rel="stylesheet" href="app/views/promise/procurement/portal/portal-css/custom-styles.css">
+
+
+<!-- <link rel="stylesheet" href="app/views/promise/procurement/portal/portal-css/stylesheet.css"> -->
+
+<div class="portal_wrapper" ng-controller="PortalController as form">
+	<div ng-show="form.loading" align="center">
+		<strong><em><img src="app/img/loading.gif" border="0" height="20px" /></em></strong>
+	</div>
+
+	<!-- Wrapper -->
+	<div class="animate_fade" ng-show="!form.loading">
+		<!--  header -->
+		<header
+			ng-include="'app/views/promise/procurement/portal/navbar.html'" >
+		</header>
+		<div id="pt-main" class="pt-perspective" style="min-height:700px">
+			<div class="pt-page pt-page-1 pt-page-current" ng-class="form.homeCss">
+				
+				<!--  banner -->
+				<!-- <section>
+					<div class="row full-width shadow-z1" style="margin-top:1px">
+						<div ng-controller="PortalCarouselController"
+							animate-enabled="true">
+							<carousel interval="myInterval">
+								<slide ng-repeat="slide in slides" active="slide.active">
+									<img ng-src="{{slide.image}}" style="margin: auto;" alt="" class="wd-wide" />
+									<div class="carousel-caption">
+										<p>{{slide.text}}</p>
+									</div>
+								</slide>
+							</carousel>
+						</div>
+					</div>
+				</section> -->
+
+				<!-- MAIN CONTENT -->
+				<!-- <div class="row promise_top_margin">
+					<div class="col-md-9 fw-boxed panel" ng-hide="form.showDetil">
+						
+						tab pencarian
+						
+						<tabset justified="true" class="portal-tabset">
+							<tab heading="Kebijakan Informasi">
+								<div ng-include="'app/views/promise/procurement/portal/content_kebijakan.html'"></div>
+							</tab>
+							<tab heading="Pengumuman Lelang">
+								<div ng-include="'app/views/promise/procurement/portal/portal.tab.lelang.html'"></div>
+							</tab>
+							<tab heading="Pengumuman Hasil Lelang">
+								<div ng-include="'app/views/promise/procurement/portal/portal.tab.hasil.html'"></div>
+							</tab>
+						</tabset>
+						<br>
+					</div>
+					
+					detil
+					<div class="col-md-9" ng-show="form.showDetil">
+						<div class="fw-boxed panel panel-danger promise_detil">
+							<div class="panel-heading">{{form.detilTitle}}</div>
+								<div class="panel-body">
+									<div ng-include="'app/views/promise/procurement/portal/content_detil.html'" style="padding-left:15px; padding-right:15px;"></div>
+								</div>
+						</div>
+					</div>
+					
+					<aside class="col-lg-3 fw-boxed" ng-include="'app/views/promise/procurement/portal/portal.tab.berita.html'"></aside>
+				
+				</div> -->
+				<div ng-include="'app/views/promise/procurement/portal/carousel.html'" ></div>
+		        <!-- <div ng-include="'app/views/promise/procurement/portal/rekanan.html'" ></div> -->
+		        <!-- <div ng-show="userRoleName && userRoleName != 'VENDOR'" ng-include="'app/views/promise/procurement/portal/katalog.html'" ></div> -->
+		        <!-- <div ng-include="'app/views/promise/procurement/portal/kebijakan.html'" ></div> -->
+		        <!-- <div ng-include="'app/views/promise/procurement/portal/berita.html'" ></div> -->
+		        <!-- <div ng-include="'app/views/promise/procurement/portal/subscribe.html'" ></div> -->
+				<div ng-include="'app/views/promise/procurement/portal/footer.html'"></div>
+			</div>
+
+			<!-- <div class="pt-page pt-page-2" ng-class="form.aboutCss">
+				<div class="row promise_top_margin" >
+					<div class="panel panel-danger">
+        				<div class="panel-heading">About</div>
+       						<div class="panel-body">
+       							<div ng-include="'app/views/promise/procurement/portal/content_about.html'"></div>
+       						</div>
+     	 				</div>
+				</div>
+				<div ng-include="'app/views/promise/procurement/portal/footer.html'"></div>
+			</div>
+			
+			<div class="pt-page pt-page-3" ng-class="form.contactCss">
+				<div class="row promise_top_margin" >
+					<div class="panel panel-danger">
+        				<div class="panel-heading">Contact</div>
+       						<div class="panel-body">
+       							<div ng-include="'app/views/promise/procurement/portal/hubungi_kami.html'"></div>
+       						</div>
+     	 				</div>
+				</div>
+				<div ng-include="'app/views/promise/procurement/portal/footer.html'"></div>
+			</div>
+			
+			<div class="pt-page pt-page-4" ng-class="form.kebijakanCss">
+				<div class="row promise_top_margin" >
+					<div class="panel panel-danger">
+        				<div class="panel-heading">Kebijakan</div>
+       						<div class="panel-body">
+       							<div ng-include="'app/views/promise/procurement/portal/policy.html'"></div>
+       						</div>
+     	 				</div>
+				</div>
+				<div ng-include="'app/views/promise/procurement/portal/footer.html'"></div>
+			</div>
+			
+			<div class="pt-page pt-page-4" ng-class="form.CatalogCss">
+				<div class="row promise_top_margin" >
+					<div class="panel panel-danger">
+        				<div class="panel-heading">Katalog</div>
+       						<div class="panel-body">
+       							<div ng-include="'app/views/promise/procurement/portal/catalog.html'"></div>
+       						</div>
+     	 				</div>
+				</div>
+				<div ng-include="'app/views/promise/procurement/portal/footer.html'"></div>
+			</div>
+			
+			<div class="pt-page pt-page-4" ng-class="form.BeritaCss">
+				<div class="row promise_top_margin" >
+					<div class="panel panel-danger">
+        				<div class="panel-heading">Berita</div>
+       						<div class="panel-body">
+       							<div ng-include="'app/views/promise/procurement/portal/news.html'"></div>
+       						</div>
+     	 				</div>
+				</div>
+				<div ng-include="'app/views/promise/procurement/portal/footer.html'"></div>
+			</div> -->
+			
+		</div>
+	</div>
+</div>
+

@@ -1,0 +1,472 @@
+<!-- START CONTROLLER -->
+<div ng-controller="PurchaseRequestVerifyController as form">
+		<div class="app-view-header">	<span>Purchase Request Verification</span>  <small><span>PR Verification</span></small>
+		</div>
+		<div class="panel panel-primary">
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+					<em class="fa fa-tasks"></em>
+					<span>Purchase Request Verification</span>
+					<a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+							<em class="fa fa-chevron-circle-down"></em>
+					</a>
+			</h4>
+			<!-- START FORM -->
+			<div class="panel-body collapse in">
+				<div class="text-center" ng-if="form.loading == true"><strong><em>Loading... <img src="app/img/loading.gif" border="0" height="20px" /></em></strong>
+				</div>
+				<form role="form" name="purchaserequest" class="form-horizontal">
+					<tabset>
+						<!--PR Details-->
+						<tab heading="PR Detail" active="tabs[0].active" ng-init="">
+							<fieldset>
+								<div class="panel panel-primary">
+									<h4 ng-class="'bg-' + app.theme.name" class="panel-heading bg-primary">
+								<span>PR Detail</span>
+							</h4>
+									<div class="panel-body">
+										<div class="row">
+											<div class="form-group">
+												<label class="col-md-3 control-label pr-detail required"><span>PR Number</span></label>
+												<div class="col-md-5">{{form.prnumber}}</div>
+											</div>
+											<div class="form-group">
+												<label class="col-md-3 control-label pr-detail required"><span>Required Date</span>
+												</label>
+												<div class="col-md-5">{{form.daterequired|date:form.format}}</div>
+											</div>
+											<div class="form-group">
+												<label class="col-md-3 control-label pr-detail required"><span>Department</span></label>
+												<div class="col-md-5">{{form.department}}</div>
+											</div>
+											<div class="form-group">
+												<label class="col-md-3 control-label pr-detail"><span>Cost Center/Budget ID</span> 
+												</label>
+												<div class="col-md-5">{{form.costcenter}}</div>
+											</div>
+											<div class="form-group">
+												<label class="col-md-3 control-label pr-detail"><span>Description</span> 
+												</label>
+												<div class="col-md-5">{{form.description}}</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12 text-center">
+										<button ng-class="'bg-' + app.theme.name" type="button" class="btn btn-primary" ng-click="tabs[1].active=true">Selanjutnya</button>
+									</div>
+								</div>
+							</fieldset>
+						</tab>
+						<!--Items-->
+						<tab heading="Items" active="tabs[1].active">
+							<fieldset>
+								<div class="panel panel-primary">
+									<h4 ng-class="'bg-' + app.theme.name" class="panel-heading bg-primary">
+								<span>Items</span>
+							</h4>
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-md-1">	<strong style="color: red">*</strong>
+											</div>
+											<div class="col-lg-4 pull-right" class="text-right">
+												<select class="form-control shadow-z1 input-sm" name="process" id="process" ng-options="option.name for option in process.availableOptions track by option.id" ng-model="process.selectedOption"></select> <strong style="color: red">{{errormessageProcess}}</strong>
+											</div>
+										</div>
+										<div class="table-responsive">
+											<table datatables class="table table-hover table-condensed table-striped bg-white">
+												<thead>
+													<tr style="font-weight: bold">
+														<th scope="col"style="width: 2%; text-align: left"><span>No</span>
+														</th>
+														<th scope="col"style="text-align: left"><span>Code</span>
+														</th>
+														<th scope="col"style="width: 25%; text-align: left"><span>Item Name</span>
+														</th>
+														<th scope="col"style="text-align: left"><span>Vendor</span>
+														</th>
+														<th scope="col"style="width: 10%; text-align: center"><span>Cost Center</span>
+														</th>
+														<th scope="col"style="width: 10%; text-align: left"><span>Qty</span>
+														</th>
+														<th scope="col"style="width: 10%; text-align: right"><span>Price</span>
+														</th>
+														<th scope="col"style="width: 5%; text-align: right"><span>Unit</span>
+														</th>
+														<th scope="col"style="width: 10%; text-align: right"><span>Total</span>
+														</th>
+														<th scope="col"style="width: 2%; text-align: left"><span>Action</span>
+														</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr ng-repeat="itemPRObject in itemPRList">
+														<td style="text-align: center">{{$index+1}}</td>
+														<td>{{ itemPRObject.kode }}</td>
+														<td><span ng-bind-html="itemPRObject.nama"></span> 
+															<br /> <span ng-bind-html="itemPRObject.deskripsi"></span>
+														</td>
+														<td>{{ itemPRObject.vendor}}</td>
+														<td>{{ itemPRObject.costcenteritem }}</td>
+														<td>{{ itemPRObject.quantity}}</td>
+														<td class="text-right">{{ itemPRObject.price | number : 2}}</td>
+														<td class="text-right">{{ itemPRObject.unit }}</td>
+														<td class="text-right">{{ itemPRObject.price*itemPRObject.quantity | number : 2}}</td>
+														<td style="width: 5%; text-align: center">
+															<button ng-click="btnReplaceItem(itemPRObject, $index)" class="btn btn-primary btn-sm btn-edit" alt="Replace"></button>
+															<button ng-click="replaceItemKatalog(itemPRObject, $index)" class="btn btn-primary btn-sm btn-search"></button>
+														</td>
+													</tr>
+												</tbody>
+												<tfoot>
+													<tr>
+														<th scope="col"colspan="8" style="text-align: right"><span>Total Estimated Cost :</span>
+														</th>
+														<th scope="col"style="text-align: right">{{ totalHPSItemPR | number : 2}}</th>
+														<th scope="col"style="text-align: center">IDR</th>
+													</tr>
+												</tfoot>
+											</table>
+										</div>
+										<div class="page-header clearfix"></div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-12 text-center">
+											<button type="button" class="btn btn-default" ng-click="tabs[0].active=true;">Kembali</button>
+											<button ng-class="'bg-' + app.theme.name" type="button" class="btn btn-primary" ng-click="tabs[2].active=validate()" ng-show="statusRemove">Selanjutnya</button>
+									</div>
+								</div>
+							</fieldset>
+						</tab>
+						<!--Shipping To-->
+						<tab heading="Shipping To" active="tabs[2].active" ng-init="">
+							<fieldset>
+								<div ng-repeat="shipTo in shippingList track by $index">
+									<div class="panel panel-primary">
+										<h4 ng-class="'bg-' + app.theme.name" class="panel-heading bg-primary">Shipping {{($index+1)}}</h4>
+										<div class="panel-body">
+											<div class="row">
+												<div class="col-md-2">	<strong>Company Name</strong>
+												</div>
+												<div class="col-md-6">{{shipTo.companyName}}</div>
+											</div>
+											<div>&nbsp;</div>
+											<div class="row">
+												<div class="col-md-2">	<strong>Full Name</strong>
+												</div>
+												<div class="col-md-6">
+													<input type="text" class="form-control shadow-z1 input-sm" ng-model="shipTo.fullName" ng-disabled="shipTo.companyAddressSelected.isNew!=true" ng-hide="true">{{shipTo.fullName}}</div>
+											</div>
+											<div class="row">
+												<div class="col-md-2">	<strong>Address</strong>
+												</div>
+												<div class="col-md-6">
+													<textarea class="form-control shadow-z1 input-sm" ng-model="shipTo.address" ng-disabled="shipTo.companyAddressSelected.isNew!=true" ng-hide="true"></textarea>{{shipTo.address}}</div>
+											</div>
+											<div class="row">
+												<div class="col-md-2">	<strong>Telephone</strong>
+												</div>
+												<div class="col-md-4">
+													<input type="text" class="form-control shadow-z1 input-sm" ng-model="shipTo.telephone" ng-disabled="shipTo.companyAddressSelected.isNew!=true" ng-hide="true">{{shipTo.telp}}</div>
+											</div>
+											<div class="row">
+												<div class="col-md-2">	<strong>Delivery Time</strong>
+												</div>
+												<div class="col-md-4">
+													<input type="text" class="form-control shadow-z1 input-sm" ng-model="shipTo.deliveryTime" ng-disabled="shipTo.companyAddressSelected.isNew!=true" ng-hide="true">{{shipTo.deliveryTime | date:'dd-MMM-yyyy'}}</div>
+											</div>
+											<br />
+											<table datatables class="table table-striped table-bordered table-hover">
+												<thead>
+													<tr style="font-weight: bold">
+														<td style="width: 35%">NAMA ITEM</td>
+														<td>JUMLAH ITEM PENGIRIMAN</td>
+														<td>JUMLAH TOTAL ITEM</td>
+														<td>HARGA SATUAN (IDR)</td>
+														<td>HARGA TOTAL (IDR)</td>
+													</tr>
+												</thead>
+												<tbody>
+													<tr ng-repeat="shippingItem in shipTo.purchaseVerificationShippingItemDTO">
+														<td>{{ shippingItem.itemName }}</td>
+														<td class="text-center"><strong class="text-primary">{{ shippingItem.quantity }}</strong>
+														</td>
+														<td class="text-center"><strong class="text-success">{{ shippingItem.quantityPRItem }}</strong>
+														</td>
+														<td class="text-right">{{ shippingItem.hargaSatuanPRItem | number:2}}</td>
+														<td class="text-right">{{ shippingItem.hargaTotalPRItem | number:2}}</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-12 text-center">
+											<button type="button" class="btn btn-default" ng-click="tabs[1].active=true;">Kembali</button>
+											<button ng-class="'bg-' + app.theme.name" type="button" class="btn btn-primary" ng-click="tabs[3].active=true;">Selanjutnya</button>
+									</div>
+								</div>
+							</fieldset>
+						</tab>
+						<!--Term & Conditions-->
+						<tab heading="Term & Conditions" active="tabs[3].active" ng-init="">
+							<fieldset>
+								<div class="panel panel-primary">
+									<h4 ng-class="'bg-' + app.theme.name" class="panel-heading bg-primary">Term & Condition</h4>
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-md-9">{{form.termandcondition}}</div>
+										</div>
+									</div>
+								</div>
+								<div class="panel panel-primary">
+									<h4 ng-class="'bg-' + app.theme.name" class="panel-heading bg-primary">Dokumen</h4>
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-md-9" ng-repeat="dokPr in form.dokPrList"> <a class="text-primary" href="{{$root.viewUploadBackendAddress}}/{{dokPr.uploadPrRealName}}" target="_blank">{{dokPr.uploadPrFileName}}</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-12 text-center">
+											<button type="button" class="btn btn-default" ng-click="tabs[2].active=true;">Kembali</button>
+											<button ng-class="'bg-' + app.theme.name" type="button" class="btn btn-primary" ng-click="tabs[4].active=true;">Selanjutnya</button>
+
+									</div>
+								</div>
+							</fieldset>
+						</tab>
+						<!--Approval-->
+						<tab heading="Approval" active="tabs[4].active">
+							<fieldset>
+								<div class="panel panel-primary">
+									<h4 ng-class="'bg-' + app.theme.name" class="panel-heading bg-primary">Approval</h4>
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-md-9">
+												<div class="text-center" ng-if="loadingApproval == true">	<strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="10px" /></strong>
+												</div>
+												<div class="row" ng-show="form.approval.selected>0">
+													<div style="vertical-align: middle;" class="row bs-wizard">
+														<div class="col-md-12">
+															<div ng-repeat="flow in form.approval.levelList | orderBy: flow.sequence" class="bs-wizard-step complete">
+																<div ng-if="flow.approval.approvalType.id == 1" class="text-center bs-wizard-stepnum" ng-bind="flow.group.nama"></div>
+																<div ng-if="flow.approval.approvalType.id == 2" class="text-center bs-wizard-stepnum" ng-bind="flow.user.namaPengguna"></div>
+																<div ng-if="flow.approval.approvalType.id == 3" class="text-center bs-wizard-stepnum" ng-bind="flow.role.nama"></div>
+																<div class="progress">
+																	<div class="progress-bar"></div>
+																</div>
+																<a href="#" class="bs-wizard-dot"></a>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="row" ng-show="form.approval.selected<1">
+													<div style="vertical-align: middle;" class="row bs-wizard">
+														<div class="col-md-12">
+															<div ng-repeat="flow in form.approval.newSelected | orderBy: flow.sequence" class="bs-wizard-step complete">
+																<div class="text-center bs-wizard-stepnum">{{flow.user.namaPengguna +' - '+flow.group.nama}}</div>
+																<div class="progress">
+																	<div class="progress-bar"></div>
+																</div>
+																<a href="#" class="bs-wizard-dot"></a>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<br />
+								<div class="text-center" ng-if="loading == true">	<strong><em>Loading... <img src="app/img/loading.gif" border="0" height="10px" /></em></strong>
+								</div>
+								<div class="text-center" ng-if="successMessage.length>0">	<strong style="color: green">{{successMessage}}</strong>
+								</div>
+								<br/>
+								<div class="text-center" ng-if="messageItemError.length>0">	<strong style="color: red">{{messageItemError}}</strong>
+								</div>
+								<br/>
+								<div class="text-center" ng-if="messageError.length>0">	<strong style="color: red">{{messageError}}</strong>
+								</div>
+								<br/>
+								<div class="text-center">
+									<button type="button" ripple="" class="btn btn-default" ng-click="tabs[2].active=true;"><span translate="">Kembali</span>
+									</button>
+									<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="btn btn-primary" ng-click="btnSimpanPR()" ng-disabled="btnDisable"><span translate="">Simpan</span>
+									</button>
+									<button type="button" ripple="" class="btn btn-default" ng-click="btnKembaliIndex()">	<span translate="">Kembali - Index</span>
+									</button>
+								</div>
+							</fieldset>
+						</tab>
+					</tabset>
+				</form>
+			</div>
+		</div>
+		<!--END FORM-->
+	</div>
+	<!-- Add Item -->
+	<script type="text/ng-template" id="/add_item.html">
+		<div class="modal-header">
+			<button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="cancel()">x</button>
+			<h3 id="myModalLabel" class="modal-title"><span>Add Item PR</span>
+			<small><span></span></small></h3>
+		</div>
+		<div class="modal-body item-pr">
+			<table border='0' style="width: 90%;">
+				<tr>
+					<td>Search Item Code/Name</td>
+					<td>
+						<ui-select ng-model="kodeMaterial.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" ng-change="setKodeMaterialSelected()">
+							<ui-select-match placeholder="Masukan Kode Material ...">{{$select.selected.kode}}</ui-select-match>
+							<ui-select-choices repeat="kodeMaterial in kodeMaterialList track by $index" refresh="refreshkodeMaterialList($select.search)" refresh-delay="0">
+								<div ng-bind-html="kodeMaterial.kode | highlight: $select.search"></div>
+								<div ng-bind-html="''+kodeMaterial.nama| highlight: $select.search"></div>
+							</ui-select-choices>
+						</ui-select>
+					</td>
+				
+				<td> &nbsp;
+					<button ng-class="'bg-'+app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="createItem()">
+						<span>Create Item</span>
+					</button>
+				</td>
+				
+				</tr>
+				<tr>
+					<td>Item Name <strong style="color:red">*</strong></td>
+					<td>
+						<input type="text" class="form-control shadow-z1 input-sm" ng-model="form.nama" disabled> <strong style="color:red">{{errormessageItemname}}</strong>
+					</td>
+					<td>
+					</td>
+				</tr>
+				<tr>
+					<td>Quantity <strong style="color:red">*</strong></td>
+					<td>
+						<div class="row">
+							<div class="col-md-4">
+								<input promise-numbers-only type="number" name="kuantitas" class="form-control shadow-z1 input-sm" ng-model="form.quantity" ng-change="calculateTotalHPS();" ng-maxlength="12" maxlength="13" ng-hide="true"><strong style="color:red">{{errormessageQuantity}}</strong> {{ form.quantity }}
+							</div>
+							<div class="col-md-1"><strong style="color:red">*</strong></div>
+							<div class="col-md-5">
+								<select ng-model="form.unit" class="form-control shadow-z1 input-sm" ng-hide="true">
+									<option ng-repeat="satuan in satuanList" value="{{satuan.nama}}">{{satuan.nama}}</option>
+								</select>{{form.unit}}
+							</div>
+							<div class="col-md-2" ng-if="errormessageUnit!=''"><strong style="color:red">{{errormessageUnit}}</strong></div>
+						</div>
+	
+					</td>
+				</tr>
+				<tr>
+					<td>Price <strong style="color:red">*</strong></td>
+					<td>
+						<div class="row">
+							<div class="col-md-8">
+								<input promise-currency-blur type="text" name="hps" class="form-control shadow-z1 input-sm" ng-model="form.price" ng-change="calculateTotalHPS();" ng-maxlength="20" ng-hide="true"><strong style="color:red">{{errormessagePrice}}</strong>{{form.price|number:2}}
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>Total</td>
+					<td>
+						<div class="row">
+							<div class="col-md-10">
+								<input promise-currency-blur disabled="" type="text" class="form-control shadow-z1 input-sm" ng-model="form.total" ng-hide="true">{{form.total|number:2}}
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>Specification</td>
+					<td>
+						<textarea ng-model="form.specification" name="keterangan" cols="30" rows="5" class="form-control" ng-maxlength="200" maxlength="201" ng-hide="true"></textarea>{{form.specification}}
+					</td>
+				</tr>
+			</table>
+			<div align="center" ng-if="loading == true">
+				<strong><em>Loading... <img src="app/img/loading.gif" border="0" height="20px"/></em></strong>
+			</div>
+			<div align="center"><strong style="color:green">{{message}}</strong></div>
+			<div class="modal-footer">
+				<button type="button" ripple="" class="mr btn btn-labeled btn-sm " ng-click="cancel()">
+					<span class="btn-label "><em class="fa fa-chevron-left "></em></span>
+					<span translate="">Tutup</span>
+				</button>
+				<button ng-class="'bg-'+app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="btnSimpanItem()">
+					<span>Simpan</span>
+				</button>
+			</div>
+	</script>
+	<!-- Item Catalog -->
+	<script type="text/ng-template" id="/add_item_catalog.html">
+		<div class="app-view-header">
+			<span translate="">Purchase Request</span>
+			<small><span translate=""></span></small>
+		</div>
+		<div>
+			<div class="panel panel-primary">
+				<h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><span>Add Item</span></h4>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-8">
+							<div class="row">
+								<div class="col-md-2">
+									Search
+								</div>
+								<div class="col-md-10">
+									<div class="input-group m-b">
+										<input type="text" class="form-control shadow-z1 input-sm" ng-model="nameSearch">
+										<span class="input-group-addon">
+																	<em class="fa fa-search"></em>
+															</span>
+									</div>
+								</div>
+							</div>
+						</div>
+	
+					</div>
+				</div>
+			</div>
+	
+			<div class="panel panel-default">
+				<div class="text-center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px"/></strong>
+				</div>
+				<table ng-table="tableItemList" class="table table-bordered table-striped text-center">
+					<tbody>
+						<tr ng-repeat="item in $data | filter : nameSearch">
+							<td data-title="'Kode'" sortable="'kode'" class="text-left">{{(item.kodeProduk)}}</td>
+							<td data-title="'Item Name'" sortable="'nama'" class="text-left">{{item.namaIND}}</td>
+							<td data-title="'Description'" sortable="'deskripsi'" class="text-left" width="30%">{{item.deskripsiIND}}</td>
+							<td data-title="'Price'" sortable="'harga'" class="text-right">{{item.harga | number:2}} {{item.mataUang.kode}}</td>
+							<td data-title="'Vendor'" sortable="'vendor.nama'" class="text-left"><strong>{{item.vendor.nama}}</strong>
+								<br/>{{item.vendor.alamat}}
+								<br/>{{item.vendor.nomorTelpon }}
+								<br/>{{item.vendor.email }}</td>
+							<td data-title="'Action'">
+								<div class="radio c-radio">
+									<label>
+										<input type="radio" name="selectedItem" ng-click="selectItem(item)" value="option{{$index}}" />
+										<span class="fa fa-circle"></span> </label>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="modal-footer">
+					<button type="button" ripple="" class="mr btn btn-labeled btn-sm " ng-click="cancel()">
+						<span translate="">Tutup</span>
+					</button>
+					<button ng-class="'bg-'+app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="btnImport()">
+						<span>Simpan</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</script>

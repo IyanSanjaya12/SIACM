@@ -1,0 +1,15 @@
+<link rel="stylesheet" href="app/views/promise/procurement/portal/portal-css/custom-styles.css">
+
+
+<link rel="stylesheet" href="app/views/promise/procurement/portal/portal-css/stylesheet.css">
+<div ng-show="form.detilTipe==1" ng-include="'app/views/promise/procurement/portal/content_detil_lelang.html'"></div>
+<div ng-show="form.detilTipe==2" ng-include="'app/views/promise/procurement/portal/content_detil_hasil.html'"></div>
+<div ng-show="form.detilTipe==3" ng-include="'app/views/promise/procurement/portal/content_detil_berita.html'"></div>
+<br>
+<br>
+<div class="row text-center">
+	<button type="button" class="mr btn btn-danger" ng-click="closeDetil()">
+		<em class="fa fa-chevron-left" style="margin-left: 3px"></em> Back
+	</button>
+</div>
+

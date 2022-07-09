@@ -1,0 +1,268 @@
+<div class="app-view-header">
+    <span>Add Request For Quotation</span>
+    <small><span>RFQ</span></small>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="RequestForQuotationAddController as form">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><span>Create RFQ</span></h4>
+    <div class="panel-body">
+        <div align="center" ng-if="loading == true">
+            <strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px"/></strong>
+        </div>
+        <form role="form" name="poForm" class="form-horizontal">
+            <tabset>
+                <!--START Information-->
+                <tab heading="Information" active="tabs[0].active" ng-init="">
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-md-5 control-label">PR Number </label>
+                                    <div class="col-md-7">
+                                        <div class="input-group">
+                                            <input type="text" ng-model="form.dataRequest.purchaseRequest.prnumber" class="form-control" ng-change="form.findPRNumber()"/>
+                                            <span class="input-group-btn">
+                                                <button type="button" ng-click="form.lookupPR()" class="btn btn-default">
+                                                    <em class="fa fa-search"></em>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                           
+                                
+                                <!-- <ui-select ng-model="form.dataRequest.purchaseRequest" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" >ng-change="form.prSelected(form.dataRequest.purchaseRequest)"
+                                    <ui-select-match placeholder="Input PR Number ...">{{form.dataRequest.purchaseRequest.prnumber}}</ui-select-match>
+                                    <ui-select-choices repeat="data in form.prNumberList track by data.id" refresh="form.findPRNumber($select.search)" refresh-delay="0">
+                                        <div ng-bind-html="data.prnumber+'<br/>'+data.description+'<br/>'+data.departement | highlight: $select.search">
+                                        </div>
+                                    </ui-select-choices>
+                                </ui-select> -->
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-md-5 control-label">Date of Issuance </label>
+                                    <div class="col-md-7">
+                                        <div class="input-group">
+                                            <input type="text" datepicker-popup="dd-MM-yyyy" ng-model="form.dataRequest.postDate" is-open="form.postDateStatus" class="form-control" show-button-bar="false" readonly/>
+                                            <span class="input-group-btn">
+                                                <button type="button" ng-click="form.postDateEvent($event)" class="btn btn-default" ripple="">
+                                                        <em class="fa fa-calendar"></em>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row p-b m-b b-b">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-md-5 control-label">RFQ Number </label>
+                                    <div class="col-md-7">
+                                        <div class="input-group">
+                                            <input type="text" ng-model="form.dataRequest.noRFQ" class="form-control">
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-default">
+                                                    Generate
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-md-5 control-label">Date of Quote Delivery </label>
+                                    <div class="col-md-7">
+                                        <div class="input-group">
+                                            <input type="text" datepicker-popup="dd-MM-yyyy" ng-model="form.dataRequest.deliveryQuoteDate" is-open="form.deliveryQuoteDateStatus" class="form-control" show-button-bar="false" readonly/>
+                                            <span class="input-group-btn">
+                                                <button type="button" ng-click="form.deliveryQuoteDateEvent($event)" class="btn btn-default" ripple="">
+                                                    <em class="fa fa-calendar"></em>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h4>Contact Person</h4>
+                        <div class="row">
+                            <div class="col-md-12">
+                                Jika supplier memiliki pertanyaan silahkan menghubungi :
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Name </label>
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="form.dataRequest.contactPersonName" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Email </label>
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="form.dataRequest.contactPersonEmail" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Phone </label>
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="form.dataRequest.contactPersonPhone" class="form-control"/>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <a class="btn btn-default btn-sm btn-addon" ng-click="form.backToIndex()">
+                                    <em class="fa fa-chevron-left"></em>
+                                    <span translate="promise.procurement.master.attribute.btn.KEMBALI"></span>
+                                </a>
+                                <a ng-class="'bg-' + app.theme.name" class="btn btn-sm btn-addon pull-right" ng-click="tabs[1].active=true;">
+                                    <em class="fa fa-chevron-right pull-right"></em>
+                                    <span>Next</span>
+                                </a>
+                            </div>
+                        </div>                        
+                    </fieldset>
+                </tab>
+                <tab heading="Items" active="tabs[1].active" ng-init="">
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table ng-table="form.tableItemList" class="table table-hover table-condensed table-striped bg-white">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col"style="text-align:left"><span>No</span></th>
+                                                <th scope="col"style="text-align:left"><span>Item Code</span>
+                                                </th>
+                                                <th scope="col"style="text-align:left"><span>Item</span>
+                                                </th>
+                                                <th scope="col"style="text-align:left"><span>Qty</span>
+                                                </th>
+                                                <th scope="col"style="text-align:left"><span>Unit</span>
+                                                </th>
+                                                <th scope="col"style="text-align:left"><span>Spesification</span>
+                                                </th>
+                                                <th scope="col"style="text-align:center"><span>Action</span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody ng-repeat="quotationItem in $data">
+                                            <tr>
+                                                <td style="text-align:center" ng-bind="$index+1"></td>
+                                                <td ng-bind="quotationItem.item.kode"></td>
+                                                <td ng-bind="quotationItem.item.itemname"></td>
+                                                <td ng-bind="quotationItem.item.quantity"></td>
+                                                <td ng-bind="quotationItem.item.unit"></td>
+                                                <td ng-bind="quotationItem.item.specification"></td>
+                                                <td width="120px" align="center">
+                                                    <button ng-click="form.deleteItem(quotationItem)">Delete</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <a class="btn btn-default btn-sm btn-addon" ng-click="tabs[0].active=true;">
+                                    <em class="fa fa-chevron-left"></em>
+                                    <span translate="promise.procurement.master.attribute.btn.KEMBALI"></span>
+                                </a>
+                                <a ng-class="'bg-' + app.theme.name" class="btn btn-sm btn-addon pull-right" ng-click="tabs[2].active=true;">
+                                    <em class="fa fa-chevron-right pull-right"></em>
+                                    <span>Next</span>
+                                </a>
+                            </div>
+                        </div>                      
+                        
+                    </fieldset>
+                </tab>
+                <tab heading="Vendor" active="tabs[2].active" ng-init="">
+                    <fieldset>
+                        <div class="row m-b pull-right">
+                            <button type="button" class="btn btn-primary btn-sm btn-addon" ng-click="form.AddVendor()">
+                                <em class="fa fa-plus"></em>
+                                <span>Add Vendors</span>
+                            </button>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table ng-table="form.tableVendorList" class="table table-hover table-condensed table-striped bg-white">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col"style="text-align:left"><span>No</span>
+                                                </th>
+                                                <th scope="col"style="text-align:left"><span>Nama Vendor</span>
+                                                </th>
+                                                <th scope="col"style="text-align:left"><span>Address</span>
+                                                </th>
+                                                <th scope="col"style="text-align:left"><span>Nomor Telp</span>
+                                                </th>
+                                                <th scope="col"style="text-align:center"><span>Action</span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody ng-repeat="quotationVendor in $data">
+                                            <tr>
+                                                <td style="text-align:center" ng-bind="$index+1"></td>
+                                                <td>{{ quotationVendor.vendor.nama }}</td>
+                                                <td>{{ quotationVendor.vendor.alamat }}</td>
+                                                <td>{{ quotationVendor.vendor.nomorTelpon }}</td>
+                                                <td align="center">
+                                                    <button ng-click="deleteVendor(quotationVendor)">Delete</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <a class="btn btn-default btn-sm btn-addon" ng-click="tabs[1].active=true;">
+                                    <em class="fa fa-chevron-left"></em>
+                                    <span translate="promise.procurement.master.attribute.btn.KEMBALI"></span>
+                                </a>
+                                <a ng-class="'bg-' + app.theme.name" class="btn btn-sm btn-addon pull-right" ng-click="tabs[3].active=true;">
+                                    <em class="fa fa-chevron-right pull-right"></em>
+                                    <span>Next</span>
+                                </a>
+                            </div>
+                        </div>
+                                             
+                    </fieldset>
+                </tab>
+                <tab heading="Term & Conditions" active="tabs[3].active">
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-md-2">
+                                Term & Conditions
+                            </div>
+                            <div class="col-md-9">
+                                <textarea ng-model="form.dataRequest.termCondition" rows="5" cols="100"></textarea>
+                            </div>                            
+                        
+                            
+                            <div class="col-md-12">
+                                <a class="btn btn-default btn-sm btn-addon" ng-click="tabs[2].active=true;">
+                                    <em class="fa fa-chevron-left"></em>
+                                    <span translate="promise.procurement.master.attribute.btn.KEMBALI"></span>
+                                </a>
+                                <a ng-class="'bg-' + app.theme.name" class="btn btn-sm btn-addon pull-right" ng-click="form.saveData()">
+                                    <em class="fa fa-save pull-right"></em>
+                                    <span>Simpan</span>
+                                </a>
+                            </div>
+                        </div>
+                    </fieldset>
+                </tab>
+            </tabset>
+        </form>
+    </div>
+</div>

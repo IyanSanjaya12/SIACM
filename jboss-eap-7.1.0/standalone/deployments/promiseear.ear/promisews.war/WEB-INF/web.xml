@@ -1,0 +1,87 @@
+<web-app>
+	<filter>
+		<filter-name>CORSFilter</filter-name>
+		<filter-class>id.co.promise.procurement.utils.CORSFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>CORSFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<servlet>
+		<servlet-name>Kaptcha</servlet-name>
+		<servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
+
+		<init-param>
+			<param-name>kaptcha.border</param-name>
+			<param-value>no</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>kaptcha.textproducer.font.color</param-name>
+			<param-value>black</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>kaptcha.textproducer.char.space</param-name>
+			<param-value>5</param-value>
+		</init-param>
+
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Kaptcha</servlet-name>
+		<url-pattern>/kaptcha.jpg</url-pattern>
+	</servlet-mapping>
+	<filter>
+	    <filter-name>imagesCache</filter-name>
+	    <filter-class>com.samaxes.filter.CacheFilter</filter-class>
+	    <init-param>
+	        <param-name>static</param-name>
+	        <param-value>true</param-value>
+	    </init-param>
+	    <init-param>
+	        <param-name>expirationTime</param-name>
+	        <param-value>2592000</param-value>
+	    </init-param>
+	</filter>
+	<filter>
+	    <filter-name>cssCache</filter-name>
+	    <filter-class>com.samaxes.filter.CacheFilter</filter-class>
+	    <init-param>
+	        <param-name>expirationTime</param-name>
+	        <param-value>604800</param-value>
+	    </init-param>
+	</filter>
+	<filter>
+	    <filter-name>jsCache</filter-name>
+	    <filter-class>com.samaxes.filter.CacheFilter</filter-class>
+	    <init-param>
+	        <param-name>private</param-name>
+	        <param-value>true</param-value>
+	    </init-param>
+	    <init-param>
+	        <param-name>expirationTime</param-name>
+	        <param-value>216000</param-value>
+	    </init-param>
+	</filter>
+	
+	<filter-mapping>
+	    <filter-name>cssCache</filter-name>
+	    <url-pattern>*.css</url-pattern>
+	</filter-mapping>
+	 
+	<filter-mapping>
+	    <filter-name>jsCache</filter-name>
+	    <url-pattern>*.js</url-pattern>
+	</filter-mapping>
+	 
+	<filter-mapping>
+	    <filter-name>imagesCache</filter-name>
+	    <url-pattern>*.png</url-pattern>
+	    <url-pattern>*.gif</url-pattern>
+	    <url-pattern>*.jpg</url-pattern>
+	    <url-pattern>*.ico</url-pattern>
+	</filter-mapping>
+	
+</web-app>

@@ -1,0 +1,81 @@
+<div class="app-view-header"> 
+    <span>Master Category</span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="masterCategoryEditCtrl as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <em class="fa fa-tasks"></em>
+        <span>Master Category</span>
+        <a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+                <em class="fa fa-chevron-circle-down"></em>
+        </a>
+    </h4>
+	<form class="form-horizontal" name="form">
+		<div class="panel-body collapse in">
+			<div class="form-group">
+				<label class="col-lg-3 control-label">Description</label>
+				<div class="col-lg-7">
+					<textarea name="description" class="form-control" ng-model="vm.category.description"></textarea>
+				</div>
+			</div>
+			<!-- <div class="form-group">
+                <label class="col-lg-3 control-label">Images</label>
+                <div class="col-lg-7">
+                    <input filestyle="" type="file" data-button-text=" Select Files " data-class-button="btn btn-default" data-icon-name="glyphicon-upload" data-class-input="form-control inline" class="form-control" />
+                </div>
+            </div> -->
+			<div class="form-group">
+				<label class="col-lg-3 control-label">Parent Category</label>
+				<div class="col-lg-7">
+					<input name="parentlabel" class="form-control" ng-model="vm.category.parentCategory.translateInd" disabled="true">
+				</div>
+			</div>
+			<!-- <div class="form-group">
+                <label class="col-lg-3 control-label">Urutan</label>
+                <div class="col-lg-7">
+                    <input name="weight" class="form-control" ng-model="data.urutan">
+                </div>
+            </div> -->
+			<div class="form-group">
+				<label class="col-lg-3 control-label">Enabled</label>
+				<div class="col-lg-2">
+					<div class="c-checkbox">
+						<label>
+							<input type="checkbox" ng-model="vm.category.flagEnabled" /> <span class="fa fa-check m-sm"></span>
+						</label>
+					</div>
+				</div>
+			</div>
+			<fieldset>
+				<h4 class="page-header no-margin">Translation</h4>
+				<div class="form-group m-t">
+					<label class="col-lg-3 control-label">Admin</label>
+					<div class="col-lg-7">
+						<input name="admin_translation" class="form-control" ng-model="vm.category.adminLabel">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-3 control-label">IND</label>
+					<div class="col-lg-7">
+						<input name="ind_translation" class="form-control" ng-model="vm.category.translateInd"> <strong style="color: red">{{messageErrorExist}}</strong>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-3 control-label">ENG</label>
+					<div class="col-lg-7">
+						<input name="eng_translation" class="form-control" ng-model="vm.category.translateEng">
+					</div>
+				</div>
+			</fieldset>
+			<div class="form-group">
+				<div class="col-12 text-center">
+					<a class="btn btn-default" ng-click="vm.kembali()"> <em class="fa fa-chevron-left"></em>
+						<span translate="promise.procurement.master.attribute.btn.KEMBALI"></span>
+					</a>
+					<a ng-class="'bg-' + app.theme.name" class="btn btn-primary" ng-click="vm.simpan()"> <span translate="promise.procurement.master.attribute.btn.SIMPAN"></span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

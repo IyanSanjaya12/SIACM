@@ -1,0 +1,86 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.master.purchaseOrder.judul"></span> <small><span>PO</span></small>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary"
+	ng-controller="PurchaseOrderController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<em class="fa fa-tasks"></em> <span><span translate="promise.procurement.master.purchaseOrder.subjudul"></span></span> <a
+			class="pull-right btn-collapse" data-toggle="collapse"
+			data-parent=".panel" href=".panel-body" aria-expanded="true"
+			aria-controls="panel-body"> <em class="fa fa-chevron-circle-down"></em>
+		</a>
+	</h4>
+	<div class="panel-body collapse in">
+		<div class="col-lg-12 p-b b-b m-b">
+			<div class="col-md-4">
+				<div class="form-group">
+					<label class="col-md-12 text-left control-label"><span translate="promise.procurement.master.purchaseOrder.filter.sortBy"></span> </label>
+					<div class="col-md-12">
+						<select name="login" class="form-control"
+							ng-model="vm.param.orderKeyword" ng-change="getListPaging()">
+							<option value="">++ Pilih ++</option>
+							<option ng-repeat="option in vm.sortDRList"
+								value="{{option.value}}">{{option.name}}</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div ng-if= "(userRole.nama=='PENGGUNADVP' || userRole.nama=='PENGGUNASPV' || userRole.nama=='PENGGUNASTAFF'
+								 || userRole.nama=='DIREKTURPENGGUNA' || userRole.nama=='PENYELENGGARAPEMILIHAN')" class="col-md-4">
+				<div class="form-group">
+					<label class="col-md-12 text-left control-label"><span translate="promise.procurement.master.purchaseOrder.filter.vendorName"></span> </label>
+					<div class="col-md-12">
+						<select name="login" class="form-control search-icon"
+							ng-model="vm.param.vendorName" ng-change="getListPaging()"
+							theme="bootstrap" ng-required="true" required>{{$select.selected.nama}}
+							<option value="" disabled selected>++ Pilih ++</option>
+							<option ng-repeat="option in vm.vendorList">{{option.nama}}</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<label class="col-md-12 text-left control-label"><span translate="promise.procurement.master.purchaseOrder.poDate"></span></label>
+				<div class="input-group">
+					<input placeholder="Start" type="text" datepicker-popup="dd/MM/yyyy"
+						max-date="endDate" ng-model="vm.param.startDate"
+						is-open="tanggalStartStatus" ng-change="getListPaging()"
+						class="form-control shadow-z1 input-sm" show-button-bar="true"
+						readonly="true" required /> <span class="input-group-btn">
+						<button type="button" ng-click="tanggalStartOpen($event)"
+							class="btn btn-default shadow-z1 input-sm " ripple="">
+							<em class="fa fa-calendar"></em>
+						</button>
+					</span>
+				</div>
+			</div>
+			<br>
+			<div class="col-md-4">
+				<div class="input-group">
+					<input placeholder="End" min-date="startDate" type="text"
+						datepicker-popup="dd/MM/yyyy" ng-change="getListPaging()"
+						ng-model="vm.param.endDate" is-open="tanggalEndStatus"
+						class="form-control shadow-z1 input-sm" show-button-bar="true"
+						readonly="true" required /> <span class="input-group-btn">
+						<button type="button" ng-click="tanggalEndOpen($event)"
+							class="btn btn-default shadow-z1 input-sm " ripple="">
+							<em class="fa fa-calendar"></em>
+						</button>
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="table-responsive">
+					<div class="col-md-12">
+						<div class="text-center" ng-if="vm.loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px"/></strong></div>
+			            <table datatable="" dt-options="vm.dtOptions" dt-columns="vm.dtColumns" class="row-border hover" ></table>
+			        </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--END CONTROLLER-->

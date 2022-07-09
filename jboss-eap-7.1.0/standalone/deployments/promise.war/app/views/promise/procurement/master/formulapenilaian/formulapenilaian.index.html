@@ -1,0 +1,59 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.master.formulapenilaian.judul"></span>
+
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="FormulaPenilaianController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<span translate="promise.procurement.master.formulapenilaian.subjudul"></span>
+	</h4>
+	<div class="panel-body">
+		<div align="right">
+		<button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled " ng-click="edit()">
+				<span class="btn-label"><em class="fa fa-plus"></em></span> 
+				<span translate="promise.procurement.master.formulapenilaian.view.ubah"></span>
+		</button>
+		</div>
+		<br />
+		<div class="col-md-12">
+			<div align="center" ng-if="vm.loading == true">
+				<strong><em>Loading...</em><img src="app/img/loading.gif" border="0"width="20px"></strong>
+			</div>
+			<table datatable="ng" class="row-border hover table-striped">
+				<thead>
+					<tr>
+						<th scope="col"style="text-align: center">
+							<span translate="promise.procurement.master.formulapenilaian.list.nomor">Nomor</span>
+						</th>
+						<th scope="col"style="text-align: center">
+							<span translate="promise.procurement.master.formulapenilaian.list.kode">Kode</span>
+						</th>
+						<th scope="col"style="text-align: center">
+							<span translate="promise.procurement.master.formulapenilaian.list.nilai">Nilai</span>
+						</th>
+						<th scope="col"style="text-align: center">
+							<span translate="promise.procurement.master.formulapenilaian.list.score">Score</span>
+						</th>
+						<th scope="col"style="text-align: center">
+							<span translate="promise.procurement.master.formulapenilaian.list.keterangan">Keterangan</span>
+						</th>
+						<th scope="col"style="text-align: center">
+							<span translate="promise.procurement.master.formulapenilaian.list.catatan">Catatan</span>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="formulapenilaian in vm.formulaPenilaianList">
+						<td style="text-align: center" ng-bind="{{ $index+1 }}"></td>
+						<td style="text-align: center" ng-bind="formulapenilaian.fPCode"></td>
+						<td style="text-align: center" ng-bind="formulaPenilaian(formulapenilaian)"></td>
+						<td style="text-align: center" ng-bind="formulapenilaian.fPPoint"></td>
+						<td style="text-align: center" ng-bind="formulapenilaian.fPDescription"></td>
+						<td style="text-align: center" ng-bind="formulapenilaian.fPNote"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<!--END CONTROLLER-->

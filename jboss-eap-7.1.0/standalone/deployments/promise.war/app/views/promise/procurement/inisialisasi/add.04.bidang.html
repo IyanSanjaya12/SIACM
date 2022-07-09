@@ -1,0 +1,79 @@
+<div class="app-view-header">
+    <span translate="">Tambah Segmentasi Vendor</span> 
+    <small><span translate="">Tambah informasi segmentasi bidang vendor yang berkaitan.</span></small>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="BidangPengadaan04Controller">
+    <div class="panel-body">
+		<div align="center" ng-show="loading"><strong><em>Loading...</em><img src="app/img/loading.gif" width="15px" border="0"/></strong></div>
+		<form name="formInisialisasi" class="form-horizontal" novalidate>
+			 <div class="form-group">
+                <label class="col-lg-3 control-label">
+					<span translate="">Bidang Usaha</span>
+                    <label class="text-danger">*)</label>
+                </label>
+                <div class="col-lg-6">
+                	<div class="input-group">
+                    	<ui-select ng-model="bidangUsaha.selected" theme="bootstrap" ng-disabled="disabled" ng-change="getSubBidangUsaha()">
+							<ui-select-match placeholder="Pilih Bidang Usaha ...">{{$select.selected.nama}}</ui-select-match>
+							<ui-select-choices repeat="bidangUsaha in bidangUsahaList">
+								<div ng-bind-html="bidangUsaha.nama | highlight: $select.search"></div>
+							</ui-select-choices>
+						</ui-select>
+                    </div>
+					<strong ng-show="bidangUsahaError" style="color:red">Bidang dan Sub Bidang Usaha belum ada yang dipilih!</strong>
+                </div>
+            </div>
+						
+			<div class="form-group">
+				<div class="col-sm-12">
+					<table ng-table="tableSubBidangUsahaList" class="table table-hover table-condensed table-striped bg-white">
+						<thead>
+							<tr style="font-weight: bold">
+								<th scope="col"style="width:2%; text-align:left">
+									<span translate="">No</span>
+                                </th>
+								<th scope="col"style="width:40%; text-align:left">
+									<span translae="">Sub Bidang</span>
+								</th>
+								<th scope="col"style="width:30%; text-align:left">
+									<span translate="">Keterangan</span>
+								</th>
+								<th scope="col"style="text-align:center">
+									<span translate="">Pilih</span>
+								</th>
+							</tr>	
+						</thead>
+						<tbody>
+							<tr ng-repeat="subBidangObj in subBidangUsahaList">
+								<td>{{ $index+1 }}</td>
+								<td>{{ subBidangObj.nama }}</td>
+								<td>{{ subBidangObj.keterangan }}</td>
+								<td>
+									<div class="checkbox c-checkbox needsclick">
+										<label class="needsclick">
+											<input type="checkbox" class="needsclick" ng-checked="checkedSubBidangUsaha.indexOf(subBidangUsaha) != -1" ng-click="togleCheckSubBidangUsaha(subBidangObj)" /><span class="fa fa-check"></span>&nbsp;
+										</label>											
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                    <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-sm" ng-click="btnBatal()">
+                        <span class="btn-label">
+						  	<em class="fa fa-chevron-left"></em>
+						  </span>
+						<span translate="">Batal</span>
+                    </button>
+                    <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="btnSimpanBidang()" ng-disabled="isProcessing">
+						<span translate="">Simpan</span>
+                    </button>
+                </div>
+            </div>
+		</form>
+	</div>
+</div>

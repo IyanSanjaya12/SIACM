@@ -1,0 +1,96 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.master.conditionalprize.judul"></span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="ConditionalPriceViewController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<span ng-if="vm.toDo=='Add'" translate="promise.procurement.master.conditionalprize.view.subjudul_tambah"></span>
+		<span ng-if="vm.toDo=='Edit'" translate="promise.procurement.master.conditionalprize.view.subjudul_ubah"></span>
+	</h4>
+	<div class="panel-body">
+		<form method="post" action="#" novalidate="" class="form-horizontal">
+			<fieldset>
+				<div class="form-group">
+					<label for="input-id-1" class="col-sm-2 control-label">
+						<span translate="promise.procurement.master.conditionalprize.view.kode"></span>
+						<strong style="color: red">*</strong>
+					</label>
+					<div class="col-sm-5">
+						<input id="input-id-1" type="text" class="form-control" ng-model="vm.conditionalPrice.kode" />
+						<strong style="color: red" translate={{vm.errorMessageKode}}></strong> 
+						<br />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="input-id-1" class="col-sm-2 control-label">
+						<span translate="promise.procurement.master.conditionalprize.view.nama"></span>
+						<strong style="color: red">*</strong>
+					</label>
+					<div class="col-sm-5">
+						<input id="input-id-1" type="text" class="form-control" ng-model="vm.conditionalPrice.nama" />
+						<strong style="color: red" translate={{vm.errorMessageNama}}></strong> 
+						<br />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="input-id-1" class="col-sm-2 control-label">
+						<span translate="promise.procurement.master.conditionalprize.view.tipe"></span>
+						<strong style="color: red">*</strong> 
+					</label>
+					<div class="col-sm-5">
+						<ui-select ng-model="vm.list.tipe" theme="bootstrap" ng-disabled="disabled"> 
+							<ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+							<ui-select-choices repeat="conditionalPrice in tipeList | propsFilter: {id: $select.search}">
+								<div ng-bind-html="conditionalPrice.nama | highlight: $select.search"></div>
+							</ui-select-choices> 
+						</ui-select>
+						<strong style="color: red" translate={{vm.errorMessageTipe}}></strong>
+					</div>
+				</div>
+				<br />
+				<div class="form-group">
+					<label for="input-id-1" class="col-sm-2 control-label">
+						<span translate="promise.procurement.master.conditionalprize.view.fungsi"></span>
+						<strong style="color: red">*</strong>
+					</label>
+					<div class="col-sm-5">
+						<ui-select ng-model="vm.list.fungsi" theme="bootstrap" ng-disabled="disabled"> 
+							<ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+							<ui-select-choices repeat="conditionalPrice in fungsiList | propsFilter: {nama: $select.search}">
+								<div ng-bind-html="conditionalPrice.nama | highlight: $select.search"></div>
+							</ui-select-choices> 
+						</ui-select>
+						<strong style="color: red" translate={{vm.errorMessageFungsi}}></strong>
+					</div>
+				</div>
+				<br />
+				<div class="form-group">
+					<label for="input-id-1" class="col-sm-2 control-label">
+						<span translate="promise.procurement.master.conditionalprize.view.persen"></span>
+						<strong style="color: red">*</strong> 
+					</label>
+					<div class="col-sm-5">
+						<ui-select ng-model="vm.list.persentasi" theme="bootstrap" ng-disabled="disabled"> 
+							<ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+							<ui-select-choices repeat="conditionalPrice in persentasiList | propsFilter: {nama: $select.search}">
+								<div ng-bind-html="conditionalPrice.nama | highlight: $select.search"></div>
+							</ui-select-choices> 
+						</ui-select>
+						<strong style="color: red" translate={{vm.errorMessagePersentasi}}></strong>
+					</div>
+				</div>
+				<br/>
+				<div class="form-group">
+					<div class="col-md-5 col-md-push-2 col-sm-5 col-sm-push-3">
+						<button type="button" ripple="" class="mr btn btn-sm bg-default" ng-click=" back()">
+							<span translate="template.button.kembali"></span>
+						</button>
+						<button type="button" ripple="" class="mr btn btn-sm bg-primary" ng-click=" save()">
+							<span translate="template.button.simpan"></span>
+						</button>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</div>

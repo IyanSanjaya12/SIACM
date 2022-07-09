@@ -1,0 +1,140 @@
+<div class="app-view-header">
+    <span translate="promise.procurement.panitia.pemasukanpenawaranview.JUDUL">Pemasukan Penawaran</span>
+    <small><span translate="promise.procurement.vendor.pemasukanpenawaranview.KETERANGAN"></span></small>
+</div>
+<!--START CONTROLLER-->
+<div ng-controller="PenawaranVendorIndependenceHargaSatuanController as form">
+    <div class="panel panel-primary">
+        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-archive">&nbsp;</em>
+            <span translate="promise.procurement.vendor.pemasukanpenawaranview.list.RINCIANKEBMATERIAL">Rincian Kebutuhan Material</span>
+        </h4>
+        <div class="panel-body">
+            <br/>
+            <div class="col-md-12">
+                <div>
+                    <div align="center" ng-if="loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover table-striped table-bordered">
+                            <thead>
+                                <tr style="background-color:#EEEEEE">
+                                    <th scope="col"style="text-align:center">No
+                                    </th>
+<!--
+                                    <th scope="col"style="text-align:left"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.NOMORPR">Nomor PR</span>
+                                    </th>
+-->
+                                    <th scope="col"style="text-align:left"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.KODEMATERIAL">Kode Material</span>
+                                    </th>
+                                    <th scope="col"style="text-align:left" width="200px"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.NAMAMATERIAL">Nama Material</span>
+                                    </th>
+                                    <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.KUANTITAS">Kuantitas</span>
+                                    </th>
+                                    <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.SATUAN">Satuan</span>
+                                    </th>
+                                    <th scope="col"style="text-align:right"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.HPS">Nilai HPS</span>
+                                    </th>
+                                    <th scope="col"style="text-align:right"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.HRGTOTALHPS">Nilai Total</span>
+                                    </th>
+                                    <th scope="col"style="text-align:left"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.KET">Keterangan</span>
+                                    </th>
+                                    <th scope="col"style="text-align:left"><span translate="promise.procurement.panitia.pemasukanpenawaran.list.AKSI">Aksi</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="mt in form.itemPengadaanMaterialByPengadaanIdList">
+                                    <td style="text-align:center">{{ $index+1 }}</td>
+<!--                                    <td style="text-align:left">{{ }}</td>-->
+                                    <td style="text-align:left">{{mt.item.kode}}</td>
+                                    <td style="text-align:left">{{mt.item.nama}}</td>
+                                    <td style="text-align:left">{{mt.kuantitas}}</td>
+                                    <td style="text-align:center">{{mt.item.satuanId.nama}}</td>
+                                    <td style="text-align:center">{{ mt.penawaranDetail.hargaSatuanOri }}</td>
+                                    <td style="text-align:center">{{ mt.penawaranDetail.hargaSatuanAfterCondition }}</td>
+                                    <td style="text-align:left">{{mt.item.deskripsi}}</td>
+                                    <td style="text-align:center">
+                                        <button type="button" class="mr btn btn-success btn-circle btn-xs" ng-click="btnDetail(mt)">
+                                            <em class="fa fa-pencil fa-lg"></em>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--END Table Ke 2 -->
+    <!--Table Ke 3 -->
+    <div class="panel panel-primary">
+        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-briefcase">&nbsp;</em><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.RINCIANJASA">Pemasukan Penawaran</span></h4>
+        <div class="panel-body">
+            <div align="center" ng-if="loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+            <br/>
+            <div class="col-md-12">
+                <div>
+                    <div align="center" ng-if="loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover table-striped table-bordered">
+                            <thead>
+                                <tr style="background-color:#EEEEEE">
+                                    <th scope="col"style="text-align:center" width="20px">No
+                                    </th>
+<!--
+                                    <th scope="col"style="text-align:left" width="200px"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.NOMORPERENCANAAN">Nomor Perencanaan</span>
+                                    </th>
+-->
+                                    <th scope="col"style="text-align:left" width="200px"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.NAMAMAJASA">Nama Jasa</span>
+                                    </th>
+                                    <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.KUANTITAS">Kuantitas</span>
+                                    </th>
+                                    <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.SATUAN">Satuan</span>
+                                    </th>
+                                    <th scope="col"style="text-align:right"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.HPS">Nilai HPS</span>
+                                    </th>
+                                    <th scope="col"style="text-align:right"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.HRGTOTALHPS">Harga Total HPS</span>
+                                    </th>
+                                    <th scope="col"style="text-align:left"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.KET">Keterangan</span>
+                                    </th>
+                                    <th scope="col"style="text-align:left"><span translate="promise.procurement.panitia.pemasukanpenawaran.list.AKSI">Aksi</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="mt in form.itemPengadaanJasaByPengadaanIdList">
+                                    <td style="text-align:center">{{ $index+1 }}</td>
+<!--                                    <td style="text-align:left">{{ }}</td>-->
+                                    <td style="text-align:left">{{mt.item.nama}}</td>
+                                    <td style="text-align:center">{{mt.kuantitas}}</td>
+                                    <td style="text-align:center">{{mt.item.satuanId.nama}}</td>
+                                    <td style="text-align:right">{{ mt.penawaranDetail.hargaSatuanOri}}</td>
+                                    <td style="text-align:right">{{ mt.penawaranDetail.hargaSatuanAfterCondition}}</td>
+                                    <td style="text-align:left">{{mt.item.deskripsi}}</td>
+                                    <td style="text-align:center">
+                                        <button type="button" class="mr btn btn-success btn-circle btn-xs" ng-click="btnDetail(mt)">
+                                            <em class="fa fa-pencil fa-lg"></em>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--END Table Ke 3 -->
+    <!--Button-->
+    <div align="center" ng-if="loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+    <div align="center">
+        <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-sm" ng-click="back()"><em class="fa fa-arrow-circle-left">&nbsp;</em>
+            <span translate="promise.procurement.vendor.pemasukanpenawaranview.btn.KEMBALI"></span>
+        </button>
+        <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-sm" ng-click="btnSimpan()">
+            <span translate="promise.procurement.vendor.pemasukanpenawaranview.btn.KIRIM"></span>&nbsp;<em class="fa fa-check"></em>
+        </button>
+    </div>
+    <!--END Button-->
+</div>
+<!--END CONTROLLER-->

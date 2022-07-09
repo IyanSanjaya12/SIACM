@@ -1,0 +1,585 @@
+<tabset class="tab-container small-tab"> <tab heading="Bahasa">
+<div class="form-group">
+	<div class="col-lg-8">
+		<div class="form-group">
+			<label class="col-lg-3 control-label"><span translate="promise.procurement.master.catalog.view.contractnumber"></span>
+			<strong style="color: red"> *</strong></label>
+			<div class="col-sm-6 no-search">
+				<!-- <select name="catalogKontrak" class="form-control"
+					ng-model="catalog.catalogKontrak"
+					ng-options="catalogKontrak.nomorKontrak for catalogKontrak in catalogKontrakListAll track by catalogKontrak.id"
+					ng-change="changeNomorKontrak()">
+					<option value="" disabled selected>++ Pilih ++</option>
+				</select> -->
+				
+				<ui-select ng-model="catalog.catalogKontrak" theme="bootstrap" reset-search-input="false" ng-change="resetData();changeNomorKontrak()" ng-if="addOrEdit ==='Add New'">
+                    <ui-select-match placeholder="Input Nomor Kontrak">{{catalog.catalogKontrak.nomorKontrak}}</ui-select-match>
+                    <ui-select-choices repeat="data in catalogKontrakListAll" refresh="findCatalogKontrak($select.search)" refresh-delay="0">
+                        <div ng-bind-html="data.nomorKontrak | highlight: $select.search" ></div>
+                    </ui-select-choices>
+                </ui-select>
+                <input name="catalogContractDetail" class="form-control"
+					placeholder="Input Nomor Kontrak.." ng-model="catalog.catalogKontrak.nomorKontrak"
+					ng-disabled="true" ng-if="addOrEdit ==='Edit'">
+				
+				
+				<strong style="color: red">{{errorNoKontrak}}</strong>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label"><span translate="promise.procurement.master.catalog.view.itemname"></span><strong
+				style="color: red"> *</strong>
+			</label>
+			<div class="col-sm-6">
+				<select name="catalogContractDetail" class="form-control"
+					ng-model="catalog.catalogContractDetail"
+					ng-options="catalogContractDetail as catalogContractDetail.item.nama + ' | ' + catalogContractDetail.itemDesc + '-' + catalogContractDetail.itemPlant for catalogContractDetail in catalogContractDetailList track by catalogContractDetail.id"
+					ng-change="changeItemCode(catalog.catalogContractDetail)" ng-if="addOrEdit==='Add New'">
+					<option value="" disabled selected>++ Pilih ++</option>
+				</select>
+				
+				<input name="catalogContractDetail" class="form-control"
+					placeholder="Nama Item.." ng-model="catalog.catalogContractDetail.item.nama"
+					ng-disabled="true" ng-if="addOrEdit ==='Edit'">
+				
+				<strong style="color: red">{{errorNamaItem}}</strong>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-lg-3 control-label"><strong><span translate="promise.procurement.master.catalog.view.itemcode"></span></strong> </label>
+			<div class="col-sm-6">
+				<input name="kodeItem" class="form-control"
+					placeholder="Kode Item.." ng-model="catalog.item.kode"
+					ng-disabled="true">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label"><strong>Item Plant</strong> </label>
+			<div class="col-sm-6">
+				<input name="plant" class="form-control"
+					placeholder="Plant Item.." ng-model="catalog.catalogContractDetail.itemPlant"
+					ng-disabled="true">
+			</div>
+		</div>
+		<!-- <div class="form-group">
+			<label class="col-lg-3 control-label"><strong>Nama Produk</strong><strong style="color: red"> *</strong></label>
+			<div class="col-sm-6">
+				<input name="namaIND" disabled class="form-control"
+					ng-model="catalog.namaIND"
+					placeholder="Nama barang yang akan diinput oleh vendor"> 
+					<strong style="color: red">{{errorNama}}</strong>
+			</div>
+		</div> -->
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-lg-2 control-label"><span translate="promise.procurement.master.catalog.view.product_desc"></span><strong style="color: red"> *</strong></label>
+	<div class="col-lg-8">
+		<!-- Wysiswyg editor-->
+		<div text-angular="" name="deskripsiIND" class="btn-group-small"
+			ng-model="catalog.deskripsiIND"
+			ng-change="validasiDeskripsi(catalog.deskripsiIND)"
+			placeholder="Deskripsi barang yang akan diinput oleh vendor"></div>
+		<strong style="color: red">{{errorDeskripsi}}</strong>
+	</div>
+</div>
+</tab> </tabset>
+
+<fieldset>
+<div class="col-lg-12">
+	<legend><span translate="promise.procurement.master.catalog.view.product_info"></span></legend>
+</div>
+<div class="col-lg-12">
+	<div class="form-group">
+		<label class="col-lg-2 control-label"><span translate="promise.procurement.master.catalog.view.product_code"></span></span><strong style="color: red"> *</strong></label>
+		<div class="col-sm-4">
+			<input type="text" name="kodeProduk"
+				class="form-control" ng-model="catalog.kodeProduk"
+				placeholder="Kode produk" value="">
+				<strong style="color: red">{{errorKodeProduct}}</strong>
+		</div>
+	</div>
+</div>
+<div class="col-lg-12" >
+	<div class="form-group">
+		<label class="col-lg-1 col-lg-push-1 control-label"><span translate="promise.procurement.master.catalog.view.price"></span> <strong style="color: red"> *</strong></label>
+		<div class="col-sm-4 col-lg-push-1">
+			<input type="text" promise-numbers-only name="harga" promise-currency-blur
+				class="form-control" ng-model="catalog.harga" ng-disabled="isDisablePrice"> <strong
+				style="color: red">{{errorHarga}}</strong>
+		</div>
+	</div>
+</div>
+<div class="col-lg-8" >
+	<div class="form-group">
+		<label class="col-lg-3 control-label"><span translate="promise.procurement.master.catalog.view.currency"></span>
+		<strong style="color: red"> *</strong></label>
+		<div class="col-sm-6 no-search">
+			<select disabled name="mataUang" class="form-control"
+				ng-model="catalog.mataUang"
+				ng-options="mataUang.nama for mataUang in mataUangList track by mataUang.id">
+				<option value="" disabled selected>++ Pilih ++</option>
+			</select>
+			<strong style="color: red">{{errorMataUang}}</strong>
+		</div>
+	</div>
+</div>
+<div class="col-lg-8">
+	<div class="form-group">
+		<label class="col-lg-3 control-label"><span translate="promise.procurement.master.catalog.view.weight"></span></label>
+		<div class="col-lg-3">
+			<input type="text" promise-numbers-only-copy name="berat"
+				class="form-control" ng-model="catalog.berat"
+				placeholder="Berat barang">
+		</div>
+		<div class="col-lg-3">
+			<select name="satuanBerat" ng-model="catalog.satuanBerat"
+				class="form-control">
+				<option value="" disabled selected>++ Pilih ++</option>
+				<option value="kg">KG</option>
+				<option value="gram">Gram</option>
+				<option value="pound">Pound</option>
+			</select>
+		</div>
+	</div>
+</div>
+<div class="col-lg-12">
+	<div class="form-group">
+		<label class="col-lg-2 control-label"><span translate="promise.procurement.master.catalog.view.unit"></span><strong style="color: red"> *</strong></label>
+		<div class="col-sm-4 no-search">
+			<select disabled name="satuan" class="form-control" ng-model="catalog.satuan"
+				ng-options="satuan.nama for satuan in satuanList track by satuan.id">
+				<option value="" disabled selected>++ Pilih ++</option>
+			</select> <strong style="color: red">{{errorSatuan}}</strong>
+		</div>
+		<!--Catalog Stock  -->
+	</div>
+</div>
+<!-- <div class="col-lg-12">
+	<div class="form-group">
+		<label class="col-lg-2 control-label"><span translate="promise.procurement.master.catalog.view.stock_minimals"></span><strong style="color: red"> *</strong></label>
+		<div class="col-sm-4">
+			<input type="text" promise-numbers-only-copy name="minimalQuantity"
+				class="form-control" ng-model="catalog.minimalQuantity"
+				placeholder="Minimal Quantity">
+				<strong style="color: red">{{errorMinimalQty}}</strong>
+		</div>
+	</div>
+</div> -->
+<!-- /*perubahan KAI 23/02/2021*/ -->
+<div class="col-lg-12">
+	<div class="form-group">
+		<label class="col-lg-2 control-label"><span translate="promise.procurement.master.catalog.view.max_order_quantity"></span></label>
+		<div class="col-sm-4">
+			<input type="text" promise-numbers-only-copy disabled name="maksimumQuantityOrder"
+				class="form-control" ng-model="catalog.catalogContractDetail.qtyMaxOrder">
+		</div>
+	</div>
+</div>
+<!-- /*perubahan KAI 01/18/2021*/ -->
+<div class="col-lg-12">
+	<div class="form-group">
+		<label class="col-lg-2 control-label"><span translate="promise.procurement.master.catalog.view.quantity_min_order"></span></label>
+		<div class="col-sm-4">
+			<input type="text" promise-numbers-only-copy name="minimumQuantityOrder"
+				class="form-control" ng-model="catalog.minimumQuantityOrder"
+				placeholder="Minimum Quantity Order">
+				<strong style="color: red">{{errorMinimalQtyOrder}}</strong>
+		</div>
+	</div>
+</div>
+<div class="col-lg-12">
+	<div class="form-group">
+		<label class="col-lg-2 control-label"><span translate="promise.procurement.master.catalog.view.quantity_max_order_transaction"></span></label>
+		<div class="col-sm-4">
+			<input type="text" promise-numbers-only-copy name="maksimumQuantityPerOrder"
+				class="form-control" ng-model="catalog.maksimumQuantityPerOrder"
+				placeholder="Maksimum Quantity Order Per Transaksi">
+				<strong style="color: red">{{errorMaksQtyOrderTransaction}}</strong>
+		</div>
+	</div>
+</div>
+<div class="col-lg-12">
+	<div class="form-group">
+		<label class="col-lg-2 control-label"><span translate="promise.procurement.master.catalog.view.quantity_max_order_day"></span></label>
+		<div class="col-sm-4">
+			<input type="text" promise-numbers-only-copy name="maksimumQuantityOrderDay"
+				class="form-control" ng-model="catalog.maksimumQuantityOrderDay"
+				placeholder="Maksimum Quantity Order Per Hari">
+				<strong style="color: red">{{errorMaksQtyDay}}</strong>
+		</div>
+	</div>
+</div>
+</fieldset>
+<br>
+<!-- <div class="col-lg-6">
+	<div class="form-group">
+		<label class="col-lg-2 control-label"><span translate="promise.procurement.master.catalog.view.stock"></span></label>
+		<div class="col-sm-4 col-lg-push-2">
+			<label ng-model="catalog.currentStock"><strong>{{catalog.currentStock}}</strong></label>
+		</div>
+		<div class="col-lg-3">
+			<button class="btn btn-info btn-sm" ng-click="popUpAddStock()"><span translate="promise.procurement.master.catalog.btn.TAMBAH"></span></button>
+		</div>
+	</div>
+</div>
+<div class="col-lg-12">
+	<div class="form-group">
+		<label class="col-lg-2 control-label"></label>
+		<div class="col-sm-4">
+			<strong></strong><font size="1">Input Angka (111) untuk menambahkan stock dan beri tanda (-) minus sebelum angka untuk mengurangi jumlah stock (-11)</font></strong>
+		</div>
+	</div>
+</div> -->
+
+<script type="text/ng-template" id="/popUpAddStock.html">
+	<div class="modal-header" ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="cancel()">×</button>
+		<h3 id="myModalLabel" class="modal-title">Add Stock</h3>
+	</div>
+	<div class="modal-body">
+		<div class="row">
+			<div class="col-lg-8">
+				<div class="table-responsive">
+					<div class="form-group">
+						<label class="col-lg-4 control-label"><strong>Quantity</strong></label>
+						<div class="col-lg-5">
+							<input type="number" name="stock" style="width:300px;" class="form-control" ng-model="catalog.quantity" placeholder="Masukkan Quantity">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-4 control-label"></label>
+						<div class="col-lg-8">
+							<br>
+							<strong style="color: red">*Masukan hanya angka, atau dahului dengan tanda "-" jika ingin mengurangi Quantity</strong>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer" style="background-color:#EEEEEE">
+		<button ng-click="cancel()" class="btn btn-warning">Cancel</button>
+		<button ng-click="simpanStok()" class="btn btn-primary">Save</button>
+	</div>
+</script>
+</div>
+</div>
+<fieldset>
+<div class="col-lg-8">
+	<legend><span translate="promise.procurement.master.catalog.view.dimensions"></span></legend>
+</div>
+<div class="col-lg-8">
+	<div class="form-group">
+		<label class="col-lg-3 control-label"><span translate="promise.procurement.master.catalog.view.length"></span></label>
+		<div class="col-lg-3">
+			<input type="text" promise-numbers-only-copy name="panjang"
+				class="form-control" ng-model="catalog.panjang"
+				placeholder="Panjang barang">
+		</div>
+		<div class="col-lg-3">
+			<select name="satuanPanjang" ng-model="catalog.satuanPanjang"
+				class="form-control">
+				<option value="" disabled selected>++ Pilih ++</option>
+				<option value="m">M</option>
+				<option value="cm">CM</option>
+				<option value="inch">INCH</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-lg-3 control-label"><span translate="promise.procurement.master.catalog.view.width"></span></label>
+		<div class="col-lg-3">
+			<input type="text" promise-numbers-only-copy name="lebar"
+				class="form-control" ng-model="catalog.lebar"
+				placeholder="Lebar barang">
+		</div>
+		<div class="col-lg-3">
+			<select name="satuanLebar" ng-model="catalog.satuanLebar"
+				class="form-control">
+				<option value="" disabled selected>++ Pilih ++</option>
+				<option value="m">M</option>
+				<option value="cm">CM</option>
+				<option value="inch">INCH</option>
+			</select>
+		</div>
+	</div>
+</div>
+<div class="col-lg-8">
+	<div class="form-group">
+		<label class="col-lg-3 control-label"><span translate="promise.procurement.master.catalog.view.height"></span></label>
+		<div class="col-lg-3">
+			<input type="text" promise-numbers-only-copy name="tinggi"
+				class="form-control" ng-model="catalog.tinggi"
+				placeholder="Tinggi barang">
+		</div>
+		<div class="col-lg-3">
+			<select name="satuanTinggi" ng-model="catalog.satuanTinggi"
+				class="form-control">
+				<option value="" disabled selected>++ Pilih ++</option>
+				<option value="m">M</option>
+				<option value="cm">CM</option>
+				<option value="inch">INCH</option>
+			</select>
+		</div>
+	</div>
+</div>
+</fieldset>
+<br>
+
+<div class="col-lg-12" ng-show="catalog.wholesaler">
+	<fieldset>
+		<legend>Price Range</legend>
+		<div class="row-clone-group">
+			<div class="row-clone"
+				ng-repeat="dv in catalog.catalogPriceRangeList">
+				<div class="col-lg-12">
+					<div class="form-group col-lg-3">
+						<label class="col-lg-12 text-left control-label dyn-label">From</label>
+						<div class="col-lg-12">
+							<input type="text" promise-numbers-only class="form-control"
+								ng-model="dv.fromPrice">
+						</div>
+					</div>
+					<div class="form-group col-lg-3">
+						<label class="col-lg-12 text-left control-label dyn-label">To</label>
+						<div class="col-lg-12">
+							<input class="form-control" ng-model="dv.toPrice">
+						</div>
+					</div>
+					<div class="form-group col-lg-6">
+						<label class="col-lg-10 text-left control-label dyn-label">Price</label>
+						<div class="col-lg-10">
+							<input type="text" promise-numbers-only class="form-control"
+								ng-model="dv.nilaiPrice">
+						</div>
+						<a class="col-sm-4 text-left control-label text-danger"
+							ng-click="deletePrice(dv)"><em class="fa fa-close"></em></a>
+					</div>
+
+				</div>
+			</div>
+			<div class="col-lg-12">
+				<div class="form-group">
+					<div class="col-lg-12">
+						<div class="col-lg-10 text-right">
+							<button class="btn btn-info btn-sm" ng-click="addPrice()">Add Value</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</fieldset><br>
+</div>
+
+<fieldset>
+	<div class="col-lg-12 m-t-lg" >
+		<legend><label class="control-label required"><span translate="promise.procurement.master.catalog.view.wholesale_price"></span></label></legend>
+		<div class="col-lg-12">
+			<div class="form-group">
+				<div class="col-lg-12">
+					<div class="col-lg-12" align="right">
+						<button class="btn btn-info btn-sm" ng-click="addDataBulkPrice()" ng-show="vm.showBtnHargaGrosir"><em
+								class="fa fa-plus"></em><span translate="promise.procurement.master.catalog.btn.TAMBAH"></span></button>
+						<br />
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-12">
+			<table class="table table-striped">
+				<thead>
+					<tr style="font-weight: bold; background-color:#EEEEEE">
+						<th scope="col">No</th>
+						<th scope="col"><span translate="promise.procurement.master.catalog.view.quantity_minimum"></span></th>
+						<th scope="col"><span translate="promise.procurement.master.catalog.view.quantity_max"></span></th>
+						<th scope="col"><span translate="promise.procurement.master.catalog.view.discount"></span> (%)</th>
+						<th scope="col"><span translate="promise.procurement.master.catalog.view.price"></span></th>
+						<th scope="col"><span translate="template.tabel.aksi"></span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="catalogBulkPrice in catalog.catalogBulkPriceList">
+						<td ng-bind="$index+1"></td>
+						<td
+							ng-if="catalogBulkPrice.isOpenForm == null || catalogBulkPrice.isOpenForm == false"
+							ng-bind="(catalogBulkPrice.minQuantity | number)"></td>
+						<td ng-if="catalogBulkPrice.isOpenForm"><input
+							promise-numbers-only-copy name="minQuantity" class="form-control"
+							ng-model="catalogBulkPrice.minQuantity"
+							ng-change="validMinQty(catalog.catalogBulkPriceList[$index].maxQuantity,catalog.catalogBulkPriceList[$index].diskon,catalog.catalogBulkPriceList[$index].minQuantity,catalog.catalogBulkPriceList[$index-1].maxQuantity)">
+						</td>
+						<td
+							ng-if="catalogBulkPrice.isOpenForm == null || catalogBulkPrice.isOpenForm == false"
+							ng-bind="catalogBulkPrice.maxQuantity"></td>
+						<td ng-if="catalogBulkPrice.isOpenForm"><input
+							promise-numbers-only-copy name="maxQuantity" class="form-control"
+							ng-model="catalogBulkPrice.maxQuantity"
+							ng-change="validMaxQty(catalog.catalogBulkPriceList[$index].maxQuantity,catalog.catalogBulkPriceList[$index].diskon,catalog.catalogBulkPriceList[$index].minQuantity,catalog.catalogBulkPriceList[$index-1].maxQuantity,catalog.catalogBulkPriceList[$index+1].minQuantity)">
+						</td>
+						<td
+							ng-if="catalogBulkPrice.isOpenForm == null || catalogBulkPrice.isOpenForm == false"
+							ng-bind="(catalogBulkPrice.diskon | number)"></td>
+						<td ng-if="catalogBulkPrice.isOpenForm"><input
+							type="number" ng-change="changeBulkPrice(catalogBulkPrice.diskon,$index)"
+							name="diskon" class="form-control"
+							ng-model="catalogBulkPrice.diskon"></td>
+
+						<td
+							ng-if="catalogBulkPrice.isOpenForm == null || catalogBulkPrice.isOpenForm == false">{{catalog.harga-((catalogBulkPrice.diskon/100)*catalog.harga) | currency:'' }}</td>
+						<td ng-if="catalogBulkPrice.isOpenForm"><input name="harga" promise-currency-blur
+							class="form-control" disabled="true" ng-model="vm.price[$index]">
+						</td>
+						<td class="action-col"><a class="view-order badge bg-primary"
+							ng-click="editDataBulkPrice(catalogBulkPrice,$index)"
+							tooltip-placement="top" tooltip="Edit"> <em
+								class="fa fa-pencil fa-lg"></em>
+						</a> <a class="view-order badge bg-danger"
+							ng-click="hapusDataBulkPrice(catalogBulkPrice)"
+							tooltip-placement="top" tooltip="Delete"> <em
+								class="fa fa-trash"></em>
+						</a></td>
+					</tr>
+				</tbody>
+			</table>
+			<br/><strong style="color: red">{{errorCatalogBulkPrice}}</strong>
+		</div>
+	</div>
+</fieldset>
+<br>
+
+<fieldset>
+	<div class="col-lg-12 m-t-lg" >
+		<legend><label class="control-label required"><span translate="promise.procurement.master.catalog.view.fee"></span></label></legend>
+		<div class="col-lg-12">
+			<div class="form-group">
+				<div class="col-lg-12">
+					<div class="col-lg-12 " align="right">
+						<button class="btn btn-info btn-sm" ng-click="addDataFee()" ng-show="vm.showBtnBiayaPengiriman"><em
+								class="fa fa-plus"></em> <span translate="promise.procurement.master.catalog.btn.TAMBAH"></span></button>
+						<br />
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-12">
+			<table class="table table-striped">
+				<thead>
+					<tr style="font-weight: bold; background-color:#EEEEEE">
+						<th scope="col">No</th>
+						<th scope="col"><span translate="promise.procurement.master.catalog.view.name"></span></th>
+						<th scope="col"><span translate="promise.procurement.master.catalog.view.qty_batch"></span></th>
+						<th scope="col"><span translate="promise.procurement.master.catalog.view.postal_fee"></span></th>
+						<!-- <th scope="col">Asuransi (%)</th> -->
+						<th scope="col"><span translate="promise.procurement.master.catalog.view.sla_time"></span></th>
+						<th scope="col"><span translate="template.tabel.aksi"></span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- <tr ng-repeat="itemOrganisasi in itemOrganisasiList"> -->
+					<tr ng-repeat="catalogFee in catalog.catalogFeeList">
+						<td ng-bind="$index+1"></td>
+						<td >
+						
+							<select name="organisasi" class="form-control"
+								ng-model="catalogFee.organisasi"
+								ng-options="organisasi.nama for organisasi in organisasiList track by organisasi.id"
+								ng-change="selectOrganisasi(catalogFee.organisasi,$index)" ng-if="catalog.catalogFeeList[$index].organisasi == null" > <!--  -->
+								<option value="" disabled selected>++ Pilih ++</option>
+							</select>
+							
+							<input type="text" name="organisasi" disabled
+								class="form-control" ng-model="catalogFee.organisasi.nama" ng-if="catalogFee.organisasi != null">
+						</td>
+							
+						<td
+							ng-if="catalogFee.isOpenForm == null || catalogFee.isOpenForm == false"
+							ng-bind="(catalogFee.quantityBatch | number)">
+						</td>
+						<td ng-if="catalogFee.isOpenForm"><input
+							type="number" name="quantityBatch" min="1"
+							class="form-control"
+							ng-model="catalogFee.quantityBatch">
+						</td>
+
+						<td
+							ng-if="catalogFee.isOpenForm == null || catalogFee.isOpenForm == false"
+							ng-bind="(catalogFee.ongkosKirim | currency:'')"></td>
+						<td ng-if="catalogFee.isOpenForm"><input
+							promise-numbers-only-copy name="ongkosKirim" class="form-control"
+							ng-model="catalogFee.ongkosKirim" promise-currency-blur></td>
+
+						<!-- <td
+							ng-if="catalogFee.isOpenForm == null || catalogFee.isOpenForm == false"
+							ng-bind="catalogFee.asuransi"></td>
+						<td ng-if="catalogFee.isOpenForm"><input
+							type="number" name="asuransi"
+							ng-change="validasiAsuransi(catalogFee.asuransi)"
+							class="form-control"
+							ng-model="catalogFee.asuransi" id="asuransi"></td> -->
+						
+						<td
+							ng-if="catalogFee.isOpenForm == null || catalogFee.isOpenForm == false"
+							ng-bind="catalogFee.slaDeliveryTime"></td>	
+						<td ng-if="catalogFee.isOpenForm"><input
+							type="number" name="slaDeliveryTime" min="0" max="100"
+							class="form-control"
+							ng-model="catalogFee.slaDeliveryTime"></td>
+
+						<td class="action-col"><a class="view-order badge bg-primary"
+							ng-click="editDataFee(catalogFee)"
+							tooltip-placement="top" tooltip="Edit" ng-if="addOrEdit ==='Edit'"> <em
+								class="fa fa-pencil fa-lg"></em>
+						</a><a class="view-order badge bg-danger"
+							ng-click="hapusDataFee(catalogFee)"
+							tooltip-placement="top" tooltip="Delete"> <em
+								class="fa fa-trash"></em>
+						</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="col-lg-12 text-center mt" style="margin-top: 32px;">
+			<a class="btn btn-default" ng-click="kembali()"> <span
+				translate="promise.procurement.master.attribute.btn.KEMBALI"></span>
+			</a> <a class="btn btn-primary" ng-click="goToCategories()"> <span
+				translate="promise.procurement.master.attribute.btn.SELANJUTNYA"></span>
+			</a>
+		</div>
+		
+		<div class="col-lg-12" >
+			<legend>Approval Log</legend>
+			<table class="table table-striped">
+				<thead>
+					<tr style="font-weight: bold; background-color:#EEEEEE">
+						<th scope="col">No</th>
+						<th scope="col"><span translate="promise.procurement.master.bookingOrder.view.approver"></span></th>
+						<th scope="col">Status</th>
+						<th scope="col"><span translate="promise.procurement.master.approvaltahapan.list.tahapan"></span></th>
+						<th scope="col"><span translate="promise.procurement.master.bookingOrder.view.note"></span></th>
+						<th scope="col"><span translate="promise.procurement.master.bookingOrder.view.approval_date"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="data in vm.approvalProccessList">
+						<td style="text-align:center" ng-bind="$index+1"></td>
+						<td style="text-align:center" ng-bind="data.user.namaPengguna"></td>
+						<td ng-bind="data.status == 2?'Rejected':data.status == 3?'Approved':'New'" style="font-weight: bold;text-align:center"></td>
+						<td style="text-align:center" ng-bind="data.approvalProcessType.tahapan.nama==null?'-':data.approvalProcessType.tahapan.nama"></td>
+						<td ng-bind="data.keterangan==null?'-':data.keterangan"></td>
+						<td style="text-align:center" ng-bind="data.updated==null?'-':data.updated | date:'dd/MM/yyyy'"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</fieldset>
+<br>
+<!-- <div class="col-lg-12">
+	<div class="text-center" style="margin-top: 30px">
+	</div>
+</div> -->

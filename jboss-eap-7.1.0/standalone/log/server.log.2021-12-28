@@ -1,0 +1,110 @@
+2021-12-28 21:06:35,274 INFO  [org.jboss.modules] (main) JBoss Modules version 1.6.0.Final-redhat-1
+2021-12-28 21:06:38,503 INFO  [org.jboss.msc] (main) JBoss MSC version 1.2.7.SP1-redhat-1
+2021-12-28 21:06:38,818 INFO  [org.jboss.as] (MSC service thread 1-8) WFLYSRV0049: JBoss EAP 7.1.0.GA (WildFly Core 3.0.10.Final-redhat-1) starting
+2021-12-28 21:06:38,822 DEBUG [org.jboss.as.config] (MSC service thread 1-8) Configured system properties:
+	awt.toolkit = sun.awt.windows.WToolkit
+	file.encoding = Cp1252
+	file.encoding.pkg = sun.io
+	file.separator = \
+	java.awt.graphicsenv = sun.awt.Win32GraphicsEnvironment
+	java.awt.headless = true
+	java.awt.printerjob = sun.awt.windows.WPrinterJob
+	java.class.path = H:\jboss-eap-7.1.0\jboss-modules.jar
+	java.class.version = 52.0
+	java.endorsed.dirs = C:\Program Files\Java\jre1.8.0_121\lib\endorsed
+	java.ext.dirs = C:\Program Files\Java\jre1.8.0_121\lib\ext;C:\Windows\Sun\Java\lib\ext
+	java.home = C:\Program Files\Java\jre1.8.0_121
+	java.io.tmpdir = C:\Users\MMI_Iyan\AppData\Local\Temp\
+	java.library.path = C:\Program Files\Java\jre1.8.0_121\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;native;C:/Program Files/Java/jre1.8.0_121/bin/server;C:/Program Files/Java/jre1.8.0_121/bin;C:/Program Files/Java/jre1.8.0_121/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files\PuTTY\;C:\Program Files\TortoiseSVN\bin;C:\Program Files\Java\jre1.8.0_311\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\MMI_Iyan\AppData\Local\Microsoft\WindowsApps;C:\Users\MMI_Iyan\AppData\Roaming\npm;H:\eclipse 2019\eclipse;;.
+	java.net.preferIPv4Stack = true
+	java.runtime.name = Java(TM) SE Runtime Environment
+	java.runtime.version = 1.8.0_121-b13
+	java.specification.name = Java Platform API Specification
+	java.specification.vendor = Oracle Corporation
+	java.specification.version = 1.8
+	java.util.logging.manager = org.jboss.logmanager.LogManager
+	java.vendor = Oracle Corporation
+	java.vendor.url = http://java.oracle.com/
+	java.vendor.url.bug = http://bugreport.sun.com/bugreport/
+	java.version = 1.8.0_121
+	java.vm.info = mixed mode
+	java.vm.name = Java HotSpot(TM) 64-Bit Server VM
+	java.vm.specification.name = Java Virtual Machine Specification
+	java.vm.specification.vendor = Oracle Corporation
+	java.vm.specification.version = 1.8
+	java.vm.vendor = Oracle Corporation
+	java.vm.version = 25.121-b13
+	javax.management.builder.initial = org.jboss.as.jmx.PluggableMBeanServerBuilder
+	javax.xml.datatype.DatatypeFactory = __redirected.__DatatypeFactory
+	javax.xml.parsers.DocumentBuilderFactory = __redirected.__DocumentBuilderFactory
+	javax.xml.parsers.SAXParserFactory = __redirected.__SAXParserFactory
+	javax.xml.stream.XMLEventFactory = __redirected.__XMLEventFactory
+	javax.xml.stream.XMLInputFactory = __redirected.__XMLInputFactory
+	javax.xml.stream.XMLOutputFactory = __redirected.__XMLOutputFactory
+	javax.xml.transform.TransformerFactory = __redirected.__TransformerFactory
+	javax.xml.validation.SchemaFactory:http://www.w3.org/2001/XMLSchema = __redirected.__SchemaFactory
+	javax.xml.xpath.XPathFactory:http://java.sun.com/jaxp/xpath/dom = __redirected.__XPathFactory
+	jboss.bind.address = localhost
+	jboss.bind.address.management = localhost
+	jboss.home.dir = H:\jboss-eap-7.1.0
+	jboss.host.name = desktop-fvdo721
+	jboss.modules.dir = H:\jboss-eap-7.1.0\modules
+	jboss.modules.system.pkgs = org.jboss.byteman
+	jboss.node.name = desktop-fvdo721
+	jboss.qualified.host.name = desktop-fvdo721
+	jboss.server.base.dir = H:\jboss-eap-7.1.0\standalone
+	jboss.server.config.dir = H:\jboss-eap-7.1.0\standalone\configuration
+	jboss.server.data.dir = H:\jboss-eap-7.1.0\standalone\data
+	jboss.server.deploy.dir = H:\jboss-eap-7.1.0\standalone\data\content
+	jboss.server.log.dir = H:\jboss-eap-7.1.0\standalone\log
+	jboss.server.name = desktop-fvdo721
+	jboss.server.persist.config = true
+	jboss.server.temp.dir = H:\jboss-eap-7.1.0\standalone\tmp
+	line.separator = 
+
+	logging.configuration = file:H:\jboss-eap-7.1.0\standalone\configuration\logging.properties
+	module.path = H:\jboss-eap-7.1.0\modules
+	org.jboss.boot.log.file = H:\jboss-eap-7.1.0\standalone\log\boot.log
+	org.jboss.logmanager.nocolor = true
+	org.jboss.resolver.warning = true
+	org.xml.sax.driver = __redirected.__XMLReaderFactory
+	os.arch = amd64
+	os.name = Windows 10
+	os.version = 10.0
+	path.separator = ;
+	program.name = JBossTools: Red Hat JBoss Enterprise Application Platform 7.1 at localhost
+	sun.arch.data.model = 64
+	sun.boot.class.path = C:\Program Files\Java\jre1.8.0_121\lib\resources.jar;C:\Program Files\Java\jre1.8.0_121\lib\rt.jar;C:\Program Files\Java\jre1.8.0_121\lib\sunrsasign.jar;C:\Program Files\Java\jre1.8.0_121\lib\jsse.jar;C:\Program Files\Java\jre1.8.0_121\lib\jce.jar;C:\Program Files\Java\jre1.8.0_121\lib\charsets.jar;C:\Program Files\Java\jre1.8.0_121\lib\jfr.jar;C:\Program Files\Java\jre1.8.0_121\classes
+	sun.boot.library.path = C:\Program Files\Java\jre1.8.0_121\bin
+	sun.cpu.endian = little
+	sun.cpu.isalist = amd64
+	sun.desktop = windows
+	sun.io.unicode.encoding = UnicodeLittle
+	sun.java.command = org.jboss.modules.Main -mp H:\jboss-eap-7.1.0\modules org.jboss.as.standalone -b localhost --server-config=standalone.xml -Djboss.server.base.dir=H:\jboss-eap-7.1.0\standalone
+	sun.java.launcher = SUN_STANDARD
+	sun.jnu.encoding = Cp1252
+	sun.management.compiler = HotSpot 64-Bit Tiered Compilers
+	sun.os.patch.level = 
+	sun.rmi.dgc.client.gcInterval = 3600000
+	sun.rmi.dgc.server.gcInterval = 3600000
+	user.country = ID
+	user.dir = H:\jboss-eap-7.1.0\bin
+	user.home = C:\Users\MMI_Iyan
+	user.language = en
+	user.name = MMI_Iyan
+	user.script = 
+	user.timezone = Asia/Bangkok
+	user.variant = 
+2021-12-28 21:06:38,825 DEBUG [org.jboss.as.config] (MSC service thread 1-8) VM Arguments: -agentlib:jdwp=transport=dt_socket,suspend=y,address=localhost:65485 -Dprogram.name=JBossTools: Red Hat JBoss Enterprise Application Platform 7.1 at localhost -Xms1303m -Xmx1303m -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256m -Dorg.jboss.resolver.warning=true -Djava.net.preferIPv4Stack=true -Dsun.rmi.dgc.client.gcInterval=3600000 -Dsun.rmi.dgc.server.gcInterval=3600000 -Djboss.modules.system.pkgs=org.jboss.byteman -Djava.awt.headless=true -Dorg.jboss.boot.log.file=H:\jboss-eap-7.1.0\standalone\log\boot.log -Dlogging.configuration=file:H:\jboss-eap-7.1.0\standalone\configuration\logging.properties -Djboss.home.dir=H:\jboss-eap-7.1.0 -Dorg.jboss.logmanager.nocolor=true -Djboss.bind.address.management=localhost -Dfile.encoding=Cp1252 
+2021-12-28 21:06:45,107 WARN  [io.undertow] (Controller Boot Thread) UT005060: Predicate exists['%{o,Content-Type}'] and regex[pattern='(?:application/javascript|text/css|text/html|text/xml|application/json)(;.*)?', value=%{o,Content-Type}, full-match=true] uses old style square braces to define predicates, which will be removed in a future release. predicate[value] should be changed to predicate(value)
+2021-12-28 21:06:45,110 WARN  [io.undertow] (Controller Boot Thread) UT005060: Predicate exists['%{o,Content-Type}'] and regex[pattern='(?:application/javascript|text/css|text/html|text/xml|application/json)(;.*)?', value=%{o,Content-Type}, full-match=true] uses old style square braces to define predicates, which will be removed in a future release. predicate[value] should be changed to predicate(value)
+2021-12-28 21:06:46,260 INFO  [org.jboss.as.controller.management-deprecated] (Controller Boot Thread) WFLYCTL0028: Attribute 'security-realm' in the resource at address '/core-service=management/management-interface=http-interface' is deprecated, and may be removed in future version. See the attribute description in the output of the read-resource-description operation to learn more about the deprecation.
+2021-12-28 21:06:46,303 INFO  [org.jboss.as.controller.management-deprecated] (ServerService Thread Pool -- 16) WFLYCTL0028: Attribute 'security-realm' in the resource at address '/subsystem=undertow/server=default-server/https-listener=https' is deprecated, and may be removed in future version. See the attribute description in the output of the read-resource-description operation to learn more about the deprecation.
+2021-12-28 21:06:46,301 INFO  [org.wildfly.security] (ServerService Thread Pool -- 8) ELY00001: WildFly Elytron version 1.1.7.Final-redhat-1
+2021-12-28 21:06:46,310 WARN  [io.undertow] (ServerService Thread Pool -- 16) UT005060: Predicate exists['%{o,Content-Type}'] and regex[pattern='(?:application/javascript|text/css|text/html|text/xml|application/json)(;.*)?', value=%{o,Content-Type}, full-match=true] uses old style square braces to define predicates, which will be removed in a future release. predicate[value] should be changed to predicate(value)
+2021-12-28 21:06:46,364 WARN  [io.undertow] (ServerService Thread Pool -- 16) UT005060: Predicate exists['%{o,Content-Type}'] and regex[pattern='(?:application/javascript|text/css|text/html|text/xml|application/json)(;.*)?', value=%{o,Content-Type}, full-match=true] uses old style square braces to define predicates, which will be removed in a future release. predicate[value] should be changed to predicate(value)
+2021-12-28 21:06:47,001 INFO  [org.jboss.as.server.deployment.scanner] (DeploymentScanner-threads - 1) WFLYDS0004: Found promise.war in deployment directory. To trigger deployment create a file called promise.war.dodeploy
+2021-12-28 21:06:47,002 INFO  [org.jboss.as.server.deployment.scanner] (DeploymentScanner-threads - 1) WFLYDS0004: Found promiseear.ear in deployment directory. To trigger deployment create a file called promiseear.ear.dodeploy
+2021-12-28 21:06:47,048 INFO  [org.jboss.as.server] (Controller Boot Thread) WFLYSRV0039: Creating http management service using socket-binding (management-http)
+2021-12-28 21:06:47,094 INFO  [org.xnio] (MSC service thread 1-3) XNIO version 3.5.4.Final-redhat-1
+2021-12-28 21:06:47,116 INFO  [org.xnio.nio] (MSC service thread 1-3) XNIO NIO Implementation Version 3.5.4.Final-redhat-1

@@ -1,0 +1,48 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.master.kriteria_teknis.judul"></span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="KriteriaTeknisViewController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<span ng-if="vm.toDo=='add'" translate="promise.procurement.master.kriteria_teknis.view.subjudul_tambah"></span>
+		<span ng-if="vm.toDo=='edit'" translate="promise.procurement.master.kriteria_teknis.view.subjudul_ubah"></span>
+	</h4>
+	<div class="panel-body">
+		<form method="post" action="#" novalidate="" class="form-horizontal">
+			<fieldset>
+				<div class="form-group">
+					<label for="input-id-1" class="col-md-2 col-sm-3 control-label">
+						<span translate="promise.procurement.master.kriteria_teknis.view.nama"></span>
+						<strong style="color: red">*</strong>
+					</label>
+					<div class="col-md-5 col-sm-6">
+						<input id="input-id-1" type="text" class="form-control" maxlength="250" ng-model="vm.kriteriaTeknis.nama" /> 
+						<strong style="color: red" translate={{vm.errorNamaKriteriaTeknis}}></strong> 
+						<br />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="input-id-2" class="col-md-2 col-sm-3 control-label">
+						<span translate="promise.procurement.master.kriteria_teknis.view.keterangan"></span>
+						<strong style="color: red">*</strong>
+					</label>
+					<div class="col-md-5 col-sm-6">
+						<input id="input-id-2" type="text" class="form-control" maxlength="250" ng-model="vm.kriteriaTeknis.keterangan" /> 
+						<strong style="color: red" translate={{vm.errorKeteranganKriteriaTeknis}}></strong> 
+						<br />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-5 col-md-push-2 col-sm-5 col-sm-push-3">
+						<button type="button" ripple="" class="mr btn btn-sm bg-default" ng-click="back()">
+							<span translate="template.button.kembali"></span>
+						</button>
+						<button type="button" ripple="" class="mr btn btn-sm bg-primary" ng-click="save()">
+							<span translate="template.button.simpan"></span>
+						</button>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</div>

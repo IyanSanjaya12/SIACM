@@ -1,0 +1,58 @@
+<!-- 
+GENERAL VIEW OF THE PROCUREMENT SYSTEM 
+---------- START CONTROLLER ----------
+-->
+
+<div class="app-view-header">
+    <span translate="promise.procurement.panitia.evaluasiteknis.JUDUL">Evaluasi Teknis</span>
+</div>
+
+<div class="panel panel-primary" ng-controller="EvaluasiTeknisController as form">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-tasks">&nbsp;</em><span translate="promise.procurement.panitia.evaluasiteknis.SUBJUDUL">Evaluasi Teknis</span></h4>
+    <div class="panel-body">
+        <br/>
+        <div class="col-md-12">
+            <div>
+                <div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px" border="0"/></strong></div>
+                <table datatable="ng" class="row-border hover table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"style="text-align:center">No
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.evaluasiteknis.list.NOMOR">Nomor</span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.evaluasiteknis.list.NAMA">Nama Pengadaan</span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.evaluasiteknis.list.POSISI">Posisi Pengadaan</span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.evaluasiteknis.list.CREATEDATE">Tanggal Buat Pengadaan</span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.evaluasiteknis.list.AKSI">Aksi</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="data in form.evaluasiTeknisList">
+                            <td style="text-align:center">{{ $index+1 }}</td>
+                            <td style="text-align:center">{{ data.nomorNotaDinas }}</td>
+                            <td style="text-align:center">{{ data.namaPengadaan }}</td>
+                            <td style="text-align:center">{{ data.tahapanPengadaan.tahapan.nama }}</td>
+                            <td style="text-align:center">{{ data.created | date:'dd/MM/yyyy'}}</td>
+                            <td style="text-align:center">
+                                <div>
+                                    <button ng-if="data.tahapanPengadaan.tahapan.id == 12" type="button" class="mr btn btn-success btn-circle btn-xs" ng-click="view(data)">
+                                        <em class="fa fa-pencil fa-lg"></em>
+                                    </button>
+                                    <button ng-if="data.tahapanPengadaan.tahapan.id != 12" type="button" class="mr btn btn-primary btn-circle btn-xs" ng-click="view(data)">
+                                        <em class="fa fa-search"></em>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END CONTROLLER-->

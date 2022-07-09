@@ -1,0 +1,28 @@
+<div class="app-view-header"> <span>Manage Catalog</span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="catalogCtrl as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <em class="fa fa-tasks"></em>
+        <span>Manage Catalog</span>
+        <a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+                <em class="fa fa-chevron-circle-down"></em>
+        </a>
+    </h4>
+	<div class="panel-body collapse in">
+		<div class="text-right">
+			<button ng-class="'bg-' + app.theme.name" class="btn btn-primary btn-add" type="button" class="mr btn btn-labeled mb 2" ng-click="vm.addData()" ng-disabled="!vm.isActive&&vm.isVendor"> <span translate="promise.procurement.master.attribute.btn.TAMBAH"></span>
+			</button>
+		</div>
+		<br/>
+		<div class="col-lg-12">
+			<div class="text-center" ng-show="loading"> <strong><em>Loading... <img src="app/img/loading.gif" border="0" height="20px"/></em></strong>
+			</div>
+			<!-- <div class="c-checkbox l-h-30 pull-right" ng-if="vm.isVendor == false">
+				<label>
+					<input type="checkbox" ng-model="vm.dataParam.contract" class="form-control" ng-click="getContract()" /> <span class="fa fa-check m-sm"></span> Contract</label>
+			</div> -->
+			<table datatable="" dt-options="vm.dtOptions" dt-columns="vm.dtColumns" dt-instance="vm.dtInstance" class="table table-striped"></table>
+		</div>
+	</div>
+</div>

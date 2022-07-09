@@ -1,0 +1,34 @@
+<div class="app-view-header"> <span translate="promise.procurement.master.harilibur.judul"></span>
+	<!-- <small><span translate="promise.procurement.master.harilibur.KETERANGAN"></span></small> -->
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="HariLiburController as vm ">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-tasks"></em>
+			<span translate="promise.procurement.master.harilibur.subjudul"></span>
+			<a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+					<em class="fa fa-chevron-circle-down"></em>
+			</a>
+	</h4>
+	<div class="panel-body collapse in">
+		<div>
+			<div class="checkbox c-checkbox needsclick col-sm-5">
+				<label class="needsclick"> <strong translate="promise.procurement.master.harilibur.view.include"></strong> 
+					<input type="checkbox" class="needsclick" ng-model="vm.isInclude" ng-change="vm.updateIsInclude()" />	<span class="fa fa-check"></span>
+				</label>
+				<br/>
+			</div>
+			<div class="text-right pr">
+				<button ng-class="'bg-' + app.theme.name" type="button" class="btn btn-primary btn-add" ng-click="add()"> <span translate="template.button.tambah"></span>
+				</button>
+			</div>
+		</div>
+		<br/>
+		<div class="col-md-12">
+			<div class="text-center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px"/></strong>
+			</div>
+			<table datatable="" dt-options="vm.dtOptions" dt-columns="vm.dtColumns" dt-instance="vm.dtInstance" class="table table-striped"></table>
+		</div>
+	</div>
+</div>
+<!--END CONTROLLER-->

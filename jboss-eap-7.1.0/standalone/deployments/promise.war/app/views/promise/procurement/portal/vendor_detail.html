@@ -1,0 +1,292 @@
+<link rel="stylesheet" href="app/views/promise/procurement/portal/portal-css/custom-styles.css">
+
+
+<div class="app-content" ng-controller="evendorPortalDetailCtrl as vm">
+	<div class="app-content-body">
+		
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-heading b-b b-light" style="background-color: #fff">
+					<div class="module-title">
+						<h3 class="no-padding">
+							{{ vendorProfile.vendor.nama }}
+							<button class="btn btn-info pull-right"
+								ng-click="addCompareVendor(vendorProfile.vendor)">
+								<em class="fa fa-check-square-o"></em>Compare
+							</button>
+						</h3>
+						<div class="img-banner">
+							<img ng-src="{{ vendorProfile.vendor.loadFile }}"
+								on-error="{{defaultImgBanner}}" style="height: 200px">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-9 p-r-0">
+			<div class="col-md-3 m-b no-padding">
+				<div class="panel panel-default">
+					<div class="panel-body no-padding">
+						<div class="user-img">
+							<div class="img-placeholder">
+								<img class="w100"
+									ng-src="{{ vendorProfile.vendor.loadFileLogo }}"
+									on-error="{{defaultImgVendor}}">
+							</div>
+							<!-- rating -->
+							<div class="ratings">
+								<div ng-init="xx" class="">
+									<rating ng-model="vendorProfile.vendor.performanceAvg"
+										readonly="true" state-on="'glyphicon-star text-warning'"
+										state-off="'glyphicon-star-empty'"></rating>
+								</div>
+							</div>
+							<!-- / rating -->
+							<ul>
+								<li><a href=""> <span
+										class="badge bg-danger pull-right">{{
+											vendorProfile.vendor.winnerCount }}</span> <em class="fa fa-credit-card">
+									</em> <span> Transaction</span>
+								</a></li>
+								<li><a href="#" ng-click="mailTo(vendorProfile.email)">
+										<em class="glyphicon glyphicon-phone-alt"> </em> <span>
+											Contact</span>
+								</a></li>
+								<li><a href=""> <span>Address</span>
+										<ul>
+											<li><pre
+													style="overflow: auto; text-align: left; white-space: pre-line">{{vendorProfile.vendor.alamat }}</pre></li>
+											<li ng-bind="vendorProfile.vendor.kota"></li>
+											<li>Telp. : {{ vendorProfile.telephone }}</li>
+											<li ng-if="vendorProfile.faksimile != 'null'")>Fax. :
+												{{ vendorProfile.faksimile }}</li>
+											<li ng-if="vendorProfile.email != 'null'")>Email : {{
+												vendorProfile.email }}</li>
+										</ul>
+								</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-9 m-b p-r-0">
+				<div class="panel panel-default">
+					<div class="panel-body" style="padding: 18px; border-top:1px solid #dee5e7">
+						<div class="user-desc" ng-model="blurCollapsed"
+							ng-class="{'full-height': blurCollapsed, '': !blurCollapsed, 'active':isdiplay}"
+							ng-if="vendorProfile.vendor.deskripsi!= null && vendorProfile.vendor.deskripsi!='null'">
+							<pre style="white-space: pre-line; text-align: left;"
+								width="100px" ng-bind-html="vendorProfile.vendor.deskripsi"></pre>
+						</div>
+						<div class="user-desc" ng-model="blurCollapsed"
+							ng-class="{'full-height': blurCollapsed, '': !blurCollapsed}"
+							ng-if="vendorProfile.vendor.deskripsi == null">
+							<p>About Supplier</p>
+						</div>
+						<div ng-show="vendorProfile.vendor.deskripsi.length > 300"
+							class="toggle-blury" ng-click="blurCollapsed=!blurCollapsed">
+							<em class="fa"
+								ng-class="{'fa-chevron-up': blurCollapsed, 'fa-chevron-down': !blurCollapsed}"></em>
+						</div>
+						<div class="user-desc-alt">
+							<div class="row">
+								<span class="col-sm-2">Member since :</span> <span
+									class="col-sm-3"
+									ng-bind="vendorProfile.vendor.created | date:'dd MMM yyyy'"></span>
+
+								<!-- <span class="col-lg-3 col-xs-6">Year Established :<span ng-bind="vendorProfile.updated | date:'dd MM yyyy'"></span></span> -->
+
+
+								<span class="col-sm-2">Employees :</span> <span class="col-sm-1"
+									ng-bind="vendorProfile.jumlahKaryawan"></span>
+
+								<!-- <span class="col-sm-2">Revenue :</span>
+			                        <span class="col-sm-3" >above $ 50.000</span> -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Tab Produk dari Vendor -->
+			<div class="col-md-12 pr0 no-padding">
+				<tabset class="tab-container"> <tab heading="Product">
+				<div class="module-loop">
+					<wrap-owlcarousel class="owl-carousel"
+						data-options="{
+				                    		items:{{ panjangData }}, 
+				                    		margin:10, 
+				                    		autoplay:true, 
+				                    		autoplayHoverPause:true, 
+				                    		autoplaySpeed:1000, 
+				                    		dots:true, 
+				                    		loop:true }">
+					<div wrap-owlcarousel-item="" ng-repeat="ctl in catalogList"
+						class="row_items">
+						<div class="item">
+							<div class="item-inner">
+								<div class="images-container">
+									<a class="product-image"
+										ui-sref="appportal.productDetail({dataCatalog: ctl})">
+										<img ng-src="{{ctl.catalogImageList[0].loadFile}}"
+										alt="{{catalog.namaIND}}" on-error="{{defaultImgProduct}}" />
+									</a>
+								</div>
+								<div class="des-container">
+									<h2 class="product-name">
+										<a class="product"
+											ui-sref="appportal.productDetail({dataCatalog: ctl})">{{
+											ctl.namaIND }}</a>
+									</h2>
+									<div class="price-box box-special">
+										<p class="special-price">
+											<span class="price"
+												ng-bind="(ctl.harga | currency:'')+' '+ctl.mataUang.kode"></span>
+										</p>
+										<p class="old-price">
+											<span class="price"></span>
+										</p>
+									</div>
+									<div class="ratings">
+										<div ng-init="xx" class="">
+											<rating ng-model="ctl.rating" readonly="true"
+												state-on="'glyphicon-star text-warning'"
+												state-off="'glyphicon-star-empty'"></rating>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					</wrap-owlcarousel>
+				</div>
+				</tab> <!--                 <tab heading="Certification"></tab> --> </tabset>
+			</div>
+			<!-- End Tab Produk Vendor -->
+
+		</div>
+		<div class="col-md-3 col-sm-12 right-supplier">
+			<div class="product-layout product-grid">
+				<div class="product-thumb">
+					<h3 class="product-title-header b-b">
+						<em class="m-r-sm fa fa-tasks"> </em> Other Supplier
+					</h3>
+
+					<div class="vendor-inner"
+						ng-repeat="vendor in vendorListDTO.vendorList">
+						<div class="images-container">
+							<a class="product-image"
+								ui-sref="appportal.procurement-catalog-vendor-detail({dataVendor: vendor})">
+								<img ng-src="{{vendor.loadLogoImage}}" alt="{{vendor.nama}}"
+								on-error="{{defaultImgVendor}}" />
+							</a>
+						</div>
+						<!--images-container-->
+
+
+						<div class="product-name-alt">
+							<h4 class="product-name">
+								<a
+									ui-sref="appportal.procurement-catalog-vendor-detail({dataVendor: vendor})"
+									ng-bind="vendor.nama"></a>
+							</h4>
+							<div class="supplier-desc-text">
+								<span ng-if="vendor.alamat != 'null'">{{vendor.alamat}} ,</span>
+								<span ng-if="vendor.kota != 'null'">{{vendor.kota}} </span>
+							</div>
+						</div>
+						<div class="des-detail text-left">
+							<div class="supplier-desc">
+								<div class="supplier-desc-text">
+									<span>Rating : </span>
+									<!-- rating -->
+									<div class="ratings">
+										<span ng-init="xx" class="">
+											<rating ng-model="vendor.performanceAvgFloor" readonly="true"
+												state-on="'glyphicon-star text-warning'"
+												state-off="'glyphicon-star-empty'"></rating>
+										</span>
+									</div>
+									<!-- / rating -->
+								</div>
+								<div class="supplier-desc-text">
+									<span>Transaksi : </span><span ng-bind="vendor.winnerCount"></span>
+								</div>
+							</div>
+							<div class="cart-wrapper" style="text-align:center; margin-top:10px; margin-bottom:5px">
+								<a class="btn btn-xs btn-info btn-addon"
+									ui-sref="appportal.procurement-catalog-vendor-detail({dataVendor: vendor})"><em
+									class="fa fa-eye"></em>View</a> <a
+									class="btn btn-xs btn-success btn-addon"
+									ng-click="addCompareVendor(vendor)"><em
+									class="fa fa-check-square-o"></em>Compare</a>
+							</div>
+						</div>
+					</div>
+					<!-- item-inner -->
+
+				</div>
+
+				<div class="text-right">
+					<pagination first-text="<<" previous-text="<" next-text=">"
+						last-text=">>" total-items="vm.pagingTotalBaris"
+						ng-model="vm.pagingHalamanKe" max-size="vm.pagingMaxBaris"
+						boundary-links="true" class="pagination-sm"
+						ng-change="pageChanged()"></pagination>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+</div>
+<!-- END row-->
+
+<!----------------------- MODAL MAIL COMPOSE --------------------------------->
+<script type="text/ng-template" id="/mail.compose.html">
+	<div class="app-view-header">
+        <h3 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        	<span><em class="fa fa-envelope"></em>&nbsp;&nbsp;Compose Email</span>
+    	</h3>
+    </div>
+	<div class="mb-mail-compose">
+	   <div class="clearfix mb">
+	      <div class="pull-left">
+	         <button type="button" ng-class="{'active':mailCC}" ng-click="mailCC = !mailCC" class="btn btn-default btn-sm" ng-model="mailCC"><em class="fa fa-users"></em>&nbsp;&nbsp;CC</button>
+	      </div>
+	   </div>
+	   <div class="panel panel-default">
+	      <div class="panel-body">
+	         <form role="form-horizontal" method="post">
+	            <div class="input-group form-group">
+	               <span class="input-group-addon text-sm">To:</span>
+	               <input type="text" class="form-control" disabled ng-model="emailTujuan" />
+	            </div>
+	            <div ng-show="mailCC" name="emailCC" class="input-group form-group">
+	               <span class="input-group-addon text-sm">CC:</span>
+	               <input type="text" class="form-control" ng-model="emailCC" />
+	            </div>
+	            <div class="input-group form-group">
+	               <span class="input-group-addon text-sm">Subject:</span>
+	               <input type="text" ng-model="emailSubject" class="form-control" />
+	            </div>
+	            <div class="mb-editor">
+	               <!-- Wysiswyg editor-->
+	               <div text-angular="" name="emailIsi" ng-model="emailIsi" name="wysiswyg-editor" ta-toolbar="[['h1','h2','h3'],['bold','italics', 'underline'],['quote'],['ul','ol'],['insertImage','insertLink']]" class="btn-group-small">
+				   </div>
+	               
+				   <p ng-show="emailIsiError" style="color:red">Harus Diisi!</p>
+	            </div>
+	         </form>
+	      </div>
+	      <div class="form-group">
+	       &nbsp;&nbsp; <a href="#" class="btn btn-success btn-addon" ng-click="btnBatal()"><em class="fa fa-angle-double-left"></em>Close</a>
+	        <a href="#" class="btn btn-primary btn-addon" ng-click="btnKirim()"><em class="fa fa-paper-plane"></em>Send</a>
+	     </div>
+	     <br/>
+	   </div>
+	</div>
+</script>

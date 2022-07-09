@@ -1,0 +1,89 @@
+<div class="app-view-header">
+    <span>History Negosiasi</span>
+</div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+
+<div ng-controller="NegosiasiTotalDetailHistoryController as form">
+
+    <form name="myform" class="form-validate form-horizontal" role="form" novalidate>
+
+        <div class="panel panel-primary">
+            <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<em class="fa fa-group">&nbsp;</em> <span>Data Negosiasi Harga</span>
+			</h4>
+            <div ng-show="loading" align="center">
+                <strong><em>Loading... <img src="app/img/loading.gif" border="0"
+						height="20px" /></em></strong>
+            </div>
+            <div ng-show="!loading" class="panel-body">
+                <div class="row">
+                    <div class="col-xs-12">
+
+                        <div class="table-responsive">
+                            <table class="table table-hover table-condensed table-striped bg-white">
+                                <thead>
+                                    <tr style="font-weight: bold">
+                                        <th scope="col"style="width: 5%; text-align: center; vertical-align: top"><span>NO</span></th>
+                                        <th scope="col"style="text-align: left; vertical-align: top"><span>NAMA</span></th>
+                                        <th scope="col"style="text-align: right; vertical-align: top"><span>PRICE NEGO ORIGINAL</span></th>
+                                        <th scope="col"style="text-align: right; vertical-align: top"><span>PRICE NEGO (Rp.)</span></th>
+                                        <th scope="col"style="text-align: center; vertical-align: top"><span>DESCRIPTION</span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="vendorNegosiasi in form.vendorPriceHistoryList">
+
+                                        <td style="text-align: center; vertical-align: top">{{$index+1}}</td>
+                                        <td style="text-align: left; vertical-align: top">{{vendorNegosiasi.vendor.nama}}</td>
+
+                                        <!-- VENDOR -->
+                                        <td ng-show="vendorNegosiasi.isVendor==1" style="text-align: right; vertical-align: top">
+                                            {{vendorNegosiasi.nilaiPenawaranAfterCondition | currency:vendorNegosiasi.mataUang.kode+" "}}
+                                        </td>
+                                        <td ng-show="vendorNegosiasi.isVendor==1" style="text-align: right; vertical-align: top">
+                                            {{(vendorNegosiasi.nilaiPenawaranAfterCondition *  vendorNegosiasi.kursPengadaan.nilai) | currency:"IDR "}}
+                                        </td>
+                                        <!-- END VENDOR -->
+
+                                        <!-- PANITIA -->
+                                        <td ng-show="vendorNegosiasi.isPanitia==1" style="text-align: right; vertical-align: top">
+                                            <span>
+                                                {{(vendorNegosiasi.nilaiPenawaranAfterCondition) |currency:vendorNegosiasi.mataUang.kode+" "}}
+                                            </span>
+                                        </td>
+                                        <td ng-show="vendorNegosiasi.isPanitia==1" style="text-align: right; vertical-align: top">
+                                            <span>
+                                                {{(vendorNegosiasi.nilaiPenawaranAfterCondition *  vendorNegosiasi.kursPengadaan.nilai) | currency:"IDR "}}
+                                            </span>
+                                        </td>
+                                        <!-- END PANITIA -->
+
+                                        <td style="text-align: center; vertical-align: top">
+                                            <span ng-if="vendorNegosiasi.isPanitia==1" ng-hide="vendorNegosiasi.isDeal==1" ><strong>Price offer from buyer</strong></span>                            
+                                            <span ng-if="vendorNegosiasi.isVendor==1" ng-hide="vendorNegosiasi.isDeal==1" class="text-primary"><strong>Price offer from vendor</strong></span>
+                                            <span ng-if="vendorNegosiasi.isDeal==1"  ng-hide="vendorNegosiasi.isPanitia==1"  class="text-primary"><strong> Last offer from vendor </strong></span>
+                                            
+                                            <span ng-if="vendorNegosiasi.isDeal==1"  ng-hide="vendorNegosiasi.isPanitia==0"   class="text-primary"><strong> Last offer from buyer </strong></span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <br>
+                <div align="right" styile="">
+                    <button ripple="" class="btn btn-primary btn-sm pull-left bg-primary" ng-click="back()" ng-class="'bg-' + app.theme.name">
+                        <span class=""><em class="fa fa-chevron-left"></em></span>&nbsp;&nbsp;<font color="white"><span  class="ng-scope">Back</span></font>
+                        <span class="ripple"></span>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </form>
+</div>

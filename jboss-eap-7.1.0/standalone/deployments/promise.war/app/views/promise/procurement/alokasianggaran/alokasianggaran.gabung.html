@@ -1,0 +1,137 @@
+<!--
+SPESIFIC VIEW OF THE FIRST DETAIL EVALUASI TEKNIS MENU
+------------- START CONTROLLER -------------
+-->
+
+<div class="app-view-header">
+    <span translate="promise.procurement.panitia.alokasianggaran.gabung.JUDUL"></span>
+</div>
+
+<div ng-controller="AlokasiAnggaranGabungController as form">
+    <form method="post" action="#" novalidate="" class="form-horizontal">
+        <div class="panel panel-primary">
+            <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-tasks">&nbsp;</em><span translate="promise.procurement.panitia.alokasianggaran.gabung.search.JUDUL"></span></h4>
+            <div class="panel-body">
+                <div class="col-md-12 form-horizontal">
+                    <div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px" border="0"/></strong>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label col-md-4"><span translate="general.type"></span></label>
+                            <div class="col-md-8">
+                                <ui-select ng-model="form.data.jenisAnggaran" theme="bootstrap">
+                                    <ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+                                    <ui-select-choices repeat="object in jenisList | propsFilter: {id: $select.search}">
+                                        <div ng-bind-html="object.nama | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="control-label col-md-4"><span translate="general.no"></span></label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" ng-model="form.data.nomor">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="control-label col-md-4"><span translate="general.year"></span></label>
+                            <div class="col-md-8">
+                                <input type="number" class="form-control" ng-model="form.data.tahun">
+                            </div>
+                        </div>
+                    </div>
+         
+
+                    <div class="col-md-2">
+                        <a ng-class="'bg-' + app.theme.name" class="btn btn-addon" ng-click="search()">
+                            <em class="fa fa-search"></em>
+                            <span translate="general.search"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+                <em class="fa fa-tasks">&nbsp;</em>
+                <span translate="proc.allocation_title">Alokasi Anggaran</span>
+                
+                
+                    
+                
+                
+            </h4>
+            <div class="panel-body">
+	            <div align="right">
+	            	<button type="button" ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled mb 2"  ng-click="gabungAnggaran()">
+                         <span class="btn-label"><em class="fa fa-plus"></em></span>
+                        <span translate="general.add"></span>
+                    </button>
+	            </div>
+	            
+                <div class="col-md-12">
+                    <div>
+                        <div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px" border="0"/></strong></div>
+                        <table datatable="ng" class="row-border hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col"style="text-align:center">No
+                                    </th>
+                                    <th scope="col"style="text-align:center"><span translate="general.type"></span>
+                                    </th>
+                                    <th scope="col"style="text-align:center"><span translate="general.year"></span>
+                                    </th>
+                                    <th scope="col"style="text-align:center"><span translate="general.periode"></span>
+                                    </th>
+                                    <th scope="col"style="text-align:center"><span translate="general.date"></span>
+                                    </th>
+                                    <th scope="col"style="text-align:center"><span translate="general.no"></span>
+                                    </th>
+                                    <th scope="col"style="text-align:center"><span translate="general.amount"></span>
+                                    </th>
+                                    <th scope="col"style="text-align:center"><span translate="proc.budget_remain"></span>
+                                    </th>
+                                    <th scope="col"style="text-align:center"><span translate="general.status"></span>
+                                    </th>
+                                    <th scope="col"style="text-align:center"><span translate="general.action"></span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="data in form.list">
+                                    <td style="text-align:center">{{ $index+1 }}</td>
+                                    <td style="text-align:center">{{ data.jenisAnggaran.nama }}</td>
+                                    <td style="text-align:center">{{ data.tahunAnggaran }}</td>
+                                    <td style="text-align:center">{{ data.periodeAnggaran.nama }}</td>
+                                    <td style="text-align:center">{{ data.tanggalDraft | date:"dd/MM/yyyy"}}</td>
+                                    <td style="text-align:center">{{ data.nomorDraft }}</td>
+                                    <td style="text-align:center">{{ data.jumlah | number : 2 }}</td>
+                                    <td style="text-align:center">{{ data.sisaAnggaran | number : 2 }}</td>
+                                    <td style="text-align:center"><span ng-if=data.status!=1>Belum digunakan</span><span ng-if=data.status==1>Sudah digunakan</span></td>
+                                    <td style="text-align:center">
+                                        <div class="checkbox c-checkbox needsclick">
+                                                    <label class="needsclick">
+                                                        <input type="checkbox" ng-show="data.status==1" value="" ng-model="data.statusCheck" class="needsclick" ng-click="checkedAlokasiAnggaran(data)" />
+                                                        <span class="fa fa-check"></span></label>
+                                                </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div align="center">
+            <a class="btn btn-default btn-sm btn-addon" ng-click="back()">
+                <em class="fa fa-chevron-left"></em>
+                <span translate="general.back"></span>
+            </a>
+        </div>
+    </form>
+</div>
+<!--END CONTROLLER-->

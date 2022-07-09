@@ -1,0 +1,128 @@
+<project basedir="." default="build" name="Promise EAR">
+
+	<!-- Directory Dev Tebet -->
+	<available property="jbossdir" value="/opt/promise/jboss-eap-7.1/modules" file="/opt/promise/jboss-eap-7.1/modules" type="dir" />
+	<!-- Directory Dev Pelindo -->
+	<!-- <available property="jbossdir" value="/var/www/html/jboss/modules" file="/var/www/html/jboss/modules" type="dir" /> -->
+	<available property="promiseearlib" value="lib" file="lib" type="dir" />
+
+	<!-- Property Declarations-->
+	<property name="debuglevel" value="source,lines,vars" />
+	<property name="target" value="1.7" />
+	<property name="source" value="1.7" />
+	<property name="builddir" value="build" />
+	<property name="outputartifacts" value="out" />
+
+	<property name="web.name" value="promisews" />
+	<property name="web.projectpath" value="../promisews" />
+	<property name="web.src" value="${web.projectpath}/src" />
+	<property name="web.builddir" value="${builddir}/web" />
+	<property name="web.builddir.classes" value="${web.builddir}/WEB-INF/classes" />
+
+	<property name="ejb.name" value="promiseejb" />
+	<property name="ejb.projectpath" value="../promiseejb" />
+	<property name="ejb.src" value="${ejb.projectpath}/ejbModule" />
+	<property name="ejb.builddir" value="${builddir}/ejb" />
+	<property name="ejb.builddir.classes" value="${ejb.builddir}/classes" />
+
+	<property name="ear.name" value="promiseear" />
+	<property name="ear.dir" value="." />
+
+	<!--  Main Targets -->
+	<target name="build" depends="create-ear">
+	</target>
+
+	<target name="clean-build">
+		<antcall target="clean" />
+		<antcall target="build" />
+	</target>
+
+	<target name="clean">
+		<delete dir="${builddir}" />
+		<delete dir="${outputartifacts}" />
+	</target>
+
+	<target name="init">
+		<mkdir dir="${outputartifacts}" />
+	</target>
+
+	<!-- EJB App -->
+	<target name="init-ejb" depends="init">
+		<mkdir dir="${ejb.builddir}" />
+		<copy includeemptydirs="false" todir="${ejb.builddir.classes}">
+			<fileset dir="${ejb.src}">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+	</target>
+	<target name="build-ejb" depends="init-ejb">
+		<javac debug="true" debuglevel="${debuglevel}" destdir="${ejb.builddir.classes}" includeantruntime="false" source="${source}" target="${target}">
+			<src path="${ejb.src}" />
+			<classpath>
+				<fileset dir="${jbossdir}">
+					<include name="**/*.jar" />
+				</fileset>
+				<fileset dir="${outputartifacts}">
+					<include name="**/*.jar" />
+				</fileset>
+				<fileset dir="${promiseearlib}">
+					<include name="**/*.jar" />
+				</fileset>
+
+			</classpath>
+		</javac>
+	</target>
+
+	<!-- WEB -->
+	<target name="init-web" depends="init">
+		<mkdir dir="${web.builddir.classes}" />
+		<copy includeemptydirs="false" todir="${web.builddir}">
+			<fileset dir="${web.projectpath}/WebContent">
+			</fileset>
+		</copy>
+		<copy includeemptydirs="false" todir="${web.builddir.classes}">
+			<fileset dir="${web.src}">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target depends="init-web,create-ejb" name="build-web">
+		<javac debug="true" debuglevel="${debuglevel}" destdir="${web.builddir.classes}" includeantruntime="false" source="${source}" target="${target}">
+			<src path="${web.src}" />
+			<classpath>
+				<fileset dir="${jbossdir}">
+					<include name="**/*.jar" />
+				</fileset>
+				<fileset dir="out/">
+					<include name="**/*.jar" />
+				</fileset>
+				<fileset dir="${promiseearlib}">
+					<include name="**/*.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+
+	<!-- CREATE ARCHIVES -->
+	<target name="create-web" depends="build-web">
+		<war destfile="${outputartifacts}/${web.name}.war" basedir="${web.builddir}" webxml="${web.projectpath}/WebContent/WEB-INF/web.xml" />
+	</target>
+
+	<target name="create-ejb" depends="build-ejb">
+		<jar destfile="${outputartifacts}/${ejb.name}.jar" basedir="${ejb.builddir.classes}" includes="**/*">
+			<manifest>
+				<attribute name="Class-Path" value="${ejbclient.name}.jar" />
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="create-ear" depends="create-web,create-ejb">
+		<ear destfile="${outputartifacts}/${ear.name}.ear" appxml="${ear.dir}/META-INF/application.xml">
+			<zipfileset dir="${ear.dir}/lib" prefix="lib">
+				<include name="*.jar" />
+			</zipfileset>
+			<fileset dir="${outputartifacts}" includes="*.jar,*.war" />
+		</ear>
+	</target>
+</project>

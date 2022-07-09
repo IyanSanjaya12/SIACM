@@ -1,0 +1,140 @@
+<div class="app-view-header">
+	<span>Add Item From Master</span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="AddItemFromMasterController as form">
+	<div class="panel-body">
+
+		<form name="formAddItemMaster" class="form-horizontal" novalidate>
+			<div class="form-group" align="center" ng-show="loading">
+				<strong><em>Loading...</em></strong><img src="app/img/loading.gif" border="0" width="20px" />
+			</div>
+			<div class="form-group">
+				<label class="col-lg-3 control-label"><span >Item Code</span>
+					<label class="text-danger">*)</label>
+				</label>
+				<div class="col-sm-20">
+					<div class="row">
+						<div class="col-sm-12 col-lg-5	">
+							<div class="input-group">
+								<ui-select ng-model="kodeMaterial.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" ng-change="setKodeMaterialSelected()">
+									<ui-select-match placeholder="Masukan Kode Material ...">{{$select.selected.kode}}</ui-select-match>
+									<ui-select-choices repeat="kodeMaterial in kodeMaterialList track by $index" refresh="refreshkodeMaterialList($select.search)" refresh-delay="0">
+										<div ng-bind-html="kodeMaterial.kode | highlight: $select.search"></div>
+										<div ng-bind-html="''+kodeMaterial.nama| highlight: $select.search"></div>
+									</ui-select-choices>
+								</ui-select>
+								<span class="input-group-btn">
+            						<button type="button" ng-class="'bg-' + app.theme.name" class="btn btn-primary shadow-z1 input-sm" ripple=""><em class="fa fa-search"></em></button>
+         						</span>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-lg-3 control-label"><span >Item Name</span>
+					<label class="text-danger">&nbsp;&nbsp;&nbsp;&nbsp;</label>
+				</label>
+				<div class="col-lg-6">
+					<input  type="text" class="form-control shadow-z1 input-sm" ng-model="form.itemname">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-lg-3 control-label"><span >Vendor Name</span>
+					<label class="text-danger">&nbsp;&nbsp;&nbsp;&nbsp;</label>
+				</label>
+				<div class="col-lg-6">
+					<input  type="text" class="form-control shadow-z1 input-sm" ng-model="form.vendorname">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-lg-3 control-label"><span>Quantity</span>
+					<label class="text-danger">*)</label>
+				</label>
+				<div class="col-lg-6">
+					<input promise-numbers-only type="number" name="kuantitas" class="form-control shadow-z1 input-sm" ng-model="form.quantity" ng-change="calculateTotalHPS();" ng-maxlength="12" maxlength="13">
+                </div>
+			</div>
+			<div class="form-group">
+				<label class="col-lg-3 control-label"><span>Unit</span>
+					<label class="text-danger">&nbsp;&nbsp;&nbsp;&nbsp;</label>
+				</label>
+				<div class="col-lg-6">
+					<input  type="text" class="form-control shadow-z1 input-sm" ng-model="form.unit">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-lg-3 control-label"><span>Price</span>
+					<label class="text-danger">*)</label>
+				</label>
+				<div class="col-lg-20">
+					<div class="row">
+						<div class="col-lg-10 col-lg-3">
+							<div class="input-group">
+								<input promise-currency-blur type="text" name="hps" class="form-control shadow-z1 input-sm" ng-model="form.price" ng-change="calculateTotalHPS();" ng-maxlength="20" oninput="if(value.length>21)value=value.slice(0,21)">
+                           </div>
+						</div>
+						<div class="col-lg-20">
+							<div class="row">
+								<div class="col-lg-2">
+									<ui-select ng-model="mataUang.selected" theme="bootstrap" ng-disabled="disabled" ng-change="calculateTotalHPS()">
+										<ui-select-match placeholder="++ Currency ++">{{$select.selected.nama}}</ui-select-match>
+										<ui-select-choices repeat="mataUang in mataUangList | propsFilter: {id: $select.search}">
+											<div ng-bind-html="mataUang.nama | highlight: $select.search"></div>
+										</ui-select-choices>
+									</ui-select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-lg-3 control-label"><span>Total</span>
+					<label class="text-danger">&nbsp;&nbsp;&nbsp;&nbsp;</label>
+				</label>
+				<div class="col-lg-20">
+					<div class="row">
+						<div class="col-lg-3">
+							<input disabled="" type="text" class="form-control shadow-z1 input-sm" ng-model="form.total">
+						</div>
+						<div class="col-md-5 col-xs-12">
+							<label class="control-label"><code>{{mataUang.selected.kode}} : {{mataUang.selected.nama}}</code>
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+            <div class="form-group">
+				<label class="col-lg-3 control-label"><span >Specification</span>
+					<label class="text-danger">&nbsp;&nbsp;&nbsp;&nbsp;</label>
+				</label>
+				<div class="col-lg-6">
+					<textarea ng-model="form.specification" name="keterangan" cols="30" rows="5" class="form-control" ng-maxlength="200" maxlength="201"></textarea>
+               </div>
+			</div>
+			<div class="form-group">
+				<label class="col-lg-3 control-label"><span>Attach File</span>
+					<label class="text-danger">&nbsp;&nbsp;&nbsp;&nbsp;</label>
+				</label>
+				<div class="col-lg-6">
+					<input type="text" class="form-control shadow-z1 input-sm" ng-model="form.pathfile">
+				</div>
+			</div>
+			<fieldset></fieldset>
+			<div class="form-group">
+				<div class="col-lg-offset-2 col-lg-10">
+					<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-sm" ng-click="form.back()">
+						<span class="btn-label">
+						  	<em class="fa fa-chevron-left"></em>
+						  </span><span translate="promise.procurement.inisialisasi.tambahbumn.BATAL"></span>
+					</button>
+					<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="btnSimpanMaterial()" ng-disabled='formInisialisasi.$invalid'><span translate="promise.procurement.master.metodepenyampaiandokumenpengadaan.tambah.SIMPAN"></span>
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

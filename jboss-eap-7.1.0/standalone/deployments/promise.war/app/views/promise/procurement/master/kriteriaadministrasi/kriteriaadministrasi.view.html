@@ -1,0 +1,60 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.master.kriteriaadministrasi.judul">Kriteria
+		Administrasi</span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary"
+	ng-controller="KriteriaAdministrasiViewController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<span ng-if="vm.toDo=='Add'"
+			translate="promise.procurement.master.kriteriaadministrasi.view.subjudul_tambah"></span>
+		<span ng-if="vm.toDo=='Edit'"
+			translate="promise.procurement.master.kriteriaadministrasi.view.subjudul_ubah"></span>
+	</h4>
+	<div class="panel-body">
+		<div align="center" ng-if="loading == true">
+			<strong><em>Loading...</em></strong>
+		</div>
+		<form method="post" action="#" novalidate="" class="form-horizontal">
+			<fieldset>
+				<div class="form-group">
+					<label for="input-id-1" class="col-md-2 col-sm-3 control-label"><span
+						translate="promise.procurement.master.kriteriaadministrasi.view.nama"></span>
+						<strong style="color: red">*</strong> </label>
+					<div class="col-md-5 col-sm-6">
+						<input id="input-id-1" promise-alphanumeric-only type="text"
+							class="form-control" ng-model="vm.kriteriaAdministrasi.nama" />
+						<strong style="color: red" translate={{vm.errorMessageNama}}>
+						</strong> <br />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="input-id-2" class="col-md-2 col-sm-3 control-label">
+						<span translate="promise.procurement.master.kriteriaadministrasi.view.keterangan"></span>
+						<strong style="color: red">*</strong>
+					</label>
+					<div class="col-md-5 col-sm-6">
+						<input id="input-id-2" type="text" promise-alphanumeric-only
+							class="form-control" maxlength="250"
+							ng-model="vm.kriteriaAdministrasi.keterangan" /> <strong
+							style="color: red" translate={{vm.errorMessageKeterangan}}>
+						</strong> <br />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-5 col-md-push-2 col-sm-5 col-sm-push-3">
+						<button type="button" ripple="" class="mr btn btn-sm bg-default"
+							ng-click="back()">
+							<span translate="template.button.kembali"></span>
+						</button>
+						<button type="button" ripple="" class="mr btn btn-sm bg-primary"
+							ng-click="save()">
+							<span translate="template.button.simpan"> </span>
+						</button>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</div>

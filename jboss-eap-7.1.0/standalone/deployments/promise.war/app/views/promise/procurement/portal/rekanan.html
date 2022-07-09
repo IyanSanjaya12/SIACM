@@ -1,0 +1,17 @@
+          <div class="row" ng-show="userRoleName && userRoleName == 'PENYEDIA'">
+            <div class="row-bg text-center">
+                <span class="font-blue m-r-lg title-m-w100"><strong></strong></span>
+                <a href='{{$root.backendAddress}}/file/viewTemplate/USER MANUAL.pdf' class="btn btn-rounded btn-blue m-r-lg">Petunjuk</a>
+                <!-- ng-click="downloadFile(fileAdmin.file)" class="mr btn btn-success" href="src/main/webapp/app/assets/UserManual.pdf"-->
+            </div>
+        </div>
+        <div class="row bg-blue" ng-show="userRoleName && userRoleName != 'PENYEDIA'">
+            <div class="row-bg text-center">
+                <span class="font-white m-r-lg title-m-w100"><strong></strong></span>
+                <a href='{{$root.backendAddress}}/file/viewTemplate/USER MANUAL PENYEDIA.pdf' class="btn btn-rounded btn-white-full">Petunjuk</a>
+                <!-- ng-click="downloadFile(fileAdmin.file)" class="mr btn btn-success" href="src/main/webapp/app/assets/User_Manual.pdf"-->
+            </div>
+        </div>
+        
+        
+        

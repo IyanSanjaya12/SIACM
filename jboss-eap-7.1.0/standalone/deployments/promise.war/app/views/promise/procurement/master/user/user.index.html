@@ -1,0 +1,56 @@
+<div class="app-view-header"> <span translate="promise.procurement.master.user.judul">Item Type</span>
+	<small><span translate="promise.procurement.master.user.keterangan"></span></small>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="UserIndexController as vm ">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-tasks"></em>
+			<span translate="promise.procurement.master.user.subjudul"></span>
+			<a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+					<em class="fa fa-chevron-circle-down"></em>
+			</a>
+	</h4>
+	<div class="panel-body collapse in">
+		<div class="col-md-12">
+			<div align="center" ng-if="vm.loading == true"> <strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px" /></strong>
+			</div>
+			<table datatable="ng" class="row-border hover table-striped">
+				<thead>
+					<tr>
+						<th scope="col"><span translate="template.tabel.nomor">Nomor</span>
+						</th>
+						<th scope="col"><span translate="promise.procurement.master.user.list.nama"></span>
+						</th>
+						<th scope="col"><span translate="promise.procurement.master.user.list.departemen">Departemen</span>
+						</th>
+						<th scope="col"><span translate="promise.procurement.master.user.list.role_user"></span>
+						</th>
+						<th scope="col"><span translate="promise.procurement.master.user.list.status">Status</span>
+						</th>
+						<th scope="col"><span translate="template.tabel.aksi">Aksi</span>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="userDTO in vm.userListDTO">
+						<td class="text-center" ng-bind="{{ $index+1 }}"></td>
+						<td ng-bind="userDTO.user.namaPengguna"></td>
+						<td ng-bind="userDTO.roleUser[0].organisasi.nama"></td>
+						<td ng-bind="userDTO.roleUserString"></td>
+						<td class="text-center"> <span ng-if="userDTO.user.terkunci==0">Aktif</span>
+							<span ng-if="userDTO.user.terkunci!=0">Terkunci</span>
+						</td>
+						<td class="text-center">
+							<div>
+								<button type="button" ng-class="'bg-' + app.theme.name" class="btn btn-primary btn-sm btn-edit" ng-click="edit(userDTO)"></button>
+								<button type="button" class="btn btn-danger btn-sm btn-delete" ng-click="del(userDTO)" ng-hide="userDTO.roleId==2||userDTO.roleId==10"></button>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+</div>
+<!--END CONTROLLER-->

@@ -1,0 +1,29 @@
+<div class="app-view-header">Purchase Request Consolidation
+	<!-- <small ng-bind="app.name + ' - ' + app.description"></small> -->
+</div>
+
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="PurchaseRequestConsolidationController as form">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <span >Purchase Request Consolidation</span>
+    </h4>
+	<div class="panel-body">
+		<div class="row form-horizontal">
+			<div class="col-md-12">
+				<div class="table-responsive">
+		        	<table id="DataTables_Table_0" datatable="" dt-options="form.dtOptions" dt-columns="form.dtColumns" dt-instance="dtInstance" class="row-border hover"></table>
+		        </div>
+		    </div>
+		</div>
+		<fieldset>
+			<div class="form-group">
+				<label for="input-id-1" class="col-sm-2 control-label"><span></span></label>
+				<div class="col-sm-5">
+					<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="btn btn-info btn-sm btn-addon" ng-click="form.joinPRAfterChecked()">
+						<em class="glyphicon glyphicon-floppy-save"></em> <span>Join PR</span>
+					</button>
+				</div>
+			</div>
+		</fieldset>
+	</div>
+</div>  

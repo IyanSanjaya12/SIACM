@@ -1,0 +1,61 @@
+<div class="app-view-header">
+		<!-- <span translate="promise.procurement.master.aksi.judul"></span> -->
+	</div>
+	<div ng-controller="AksiViewController as vm" class="panel panel-primary">
+		<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<em class="fa fa-tasks"></em>
+				<span ng-if="vm.toDo=='Add'" translate="promise.procurement.master.aksi.view.subjudul_tambah"></span>
+				<span ng-if="vm.toDo=='Edit'" translate="promise.procurement.master.aksi.view.subjudul_ubah"></span>
+				<a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+					<em class="fa fa-chevron-circle-down"></em>
+				</a>
+			</h4>
+		<div class="panel-body collapse in">
+			<div class="text-center" ng-if="vm.loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong>
+			</div>
+			<form action="#" name="formAksi" class="form-validate form-horizontal" ng-class="{'submitted' : vm.submitted}">
+				<div class="form-group">
+					<label class="col-sm-4 control-label">	<span translate="promise.procurement.master.aksi.view.ispublic"></span>
+					</label>
+					<div class="col-sm-4">
+						<div class="checkbox c-checkbox c-checkbox-rounded">
+							<label>
+								<input id="inlineradio10" type="checkbox" ng-model="vm.aksi.isPublic" ng-checked="vm.aksi.isPublic == true" />	<span class="fa fa-check"></span>
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label required">	<span translate="promise.procurement.master.aksi.view.path"></span>
+					</label>
+					<div class="col-sm-4">
+						<input type="text" ng-model="vm.aksi.path" class="form-control" name="path" maxlength="120" required ng-blur="delValidation($event)" />
+						<div class="input-error" ng-show="(vm.submitted && formAksi.path.$invalid)">
+							<p ng-show="formAksi.path.$error.required" translate="template.error.field_kosong"></p>
+						</div>
+						</strong>
+						<br />
+					</div>
+				</div>
+				<!-- </div> -->
+				<div class="form-group">
+					<!-- <div class="col-md-5 col-md-push-2 col-sm-5 col-sm-push-3">
+									<button type="button" ripple="" class="mr btn btn-sm bg-default" ng-click=" back()">
+										<span translate="template.button.kembali"></span>
+									</button>
+								<button type="button" ripple="" class="mr btn btn-sm bg-primary"ng-click=" save()">
+									<span translate="template.button.simpan"></span>
+								</button>
+							</div>
+						</div> -->
+					<div class="form-group">
+						<div class="col-md-12 text-center">
+							<button type="button" ripple="" class="btn btn-secondary" ng-click="back()">	<span translate="template.button.kembali"></span>
+							</button>
+							<button type="button" ripple="" class="btn btn-primary" ng-click="save(formAksi.$valid)">	<span translate="template.button.simpan"></span>
+							</button>
+						</div>
+					</div>
+			</form>
+			</div>
+		</div>

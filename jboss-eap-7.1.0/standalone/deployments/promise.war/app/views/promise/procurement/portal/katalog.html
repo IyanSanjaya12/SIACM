@@ -1,0 +1,50 @@
+        <div class="row bg-white">
+            <div class="container">
+                <div class="row-bg text-center p-lg m-b-lg" id="katalog">
+                    <h1 class="header-title">Katalog</h1>
+                </div>
+                <div class="row-bg text-center p-lg m-t-lg">                
+                    <div class="block-content-2">
+                        <div class="block-item" ng-repeat="category in categoryList">
+                            <a class="block-click" ng-click="changeCategoryPortal(category);" ng-show="!isCatOpen">
+                                <span ng-bind="category.translateInd"></span>
+                                <img ng-if="category == category0" class="img-cat" src="app/assets/images/barang.jpg">
+                                <img ng-if="category == category1" class="img-cat" src="app/assets/images/jasa.jpg">
+                            </a>
+                            <div class="hidden-content" ng-show="isCatOpen">
+                                <h4>
+                                    <span ng-bind="category.translateInd"></span>
+                                    <a class="btn-close-cat" ng-click="isCatOpen = !isCatOpen"><em class="icon-cross"></em></a>
+                                </h4>
+                                <ul>
+                                    <li ng-repeat="sub1category in category.categoryChildList">
+                                        <a ng-click="changeCategoryPortal(sub1category);">
+                                            </span><span ng-bind="sub1category.translateInd"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- <div class="block-item">
+                            <a class="block-click" ng-click="isCatOpen2 = !isCatOpen2" ng-show="!isCatOpen2">
+                                <span ng-bind="category.translateInd"></span>
+                                <img class="img-cat" src="app/assets/images/Image_Jasa.png">
+                            </a>
+                            <div class="hidden-content" ng-show="isCatOpen2">
+                                <h4>
+                                    <span ng-bind="category.translateInd"></span>
+                                    <a class="btn-close-cat" ng-click="isCatOpen2 = !isCatOpen2"><em class="icon-cross"></em></a>
+                                </h4>
+                                <ul data-id="1" class="pt_ver_menu">
+                                    <li ng-repeat="sub1category in category.categoryChildList  | limitTo : 4">
+                                        <a ng-click="changeCategory(sub1category);changeCategory(sub1category);">
+                                            </span><span ng-bind="sub1category.translateInd"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>

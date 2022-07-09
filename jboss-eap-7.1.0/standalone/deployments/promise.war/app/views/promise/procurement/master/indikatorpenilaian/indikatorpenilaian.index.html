@@ -1,0 +1,69 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.master.indikator_penilaian.judul"></span>
+	<!-- <small><span translate="promise.procurement.master.indikator_penilaian.keterangan"></span></small> -->
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="IndikatorPenilaianController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<span translate="promise.procurement.master.indikator_penilaian.subjudul"></span>
+	</h4>
+	<div class="panel-body">
+		<div align="right">
+			<button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled " ng-click="add()">
+				<span class="btn-label"><em class="fa fa-plus"></em></span>
+				<span translate="template.button.tambah"></span>
+			</button>
+		</div>
+		<br />
+		<div class="col-md-12">
+			<div align="center" ng-if="vm.loading == true">
+				<strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px"></strong>
+			</div>
+			<table datatable="ng" class="row-border hover table-striped">
+				<thead>
+					<tr>
+						<th scope="col"style="text-align: center">
+							<span translate="template.tabel.nomor">Nomor</span>
+						</th>
+						<th scope="col"style="text-align: center">
+							<span translate="promise.procurement.master.indikator_penilaian.list.kode">Kode</span>
+						</th>
+						<th scope="col"style="text-align: center">
+							<span translate="promise.procurement.master.indikator_penilaian.list.aspek_kerja">Aspek Kerja</span>
+						</th>
+						<th scope="col"style="text-align: center">
+							<span translate="promise.procurement.master.indikator_penilaian.list.indikator">Indikator</span>
+						</th>
+						<th scope="col"style="text-align: center">
+							<span translate="promise.procurement.master.indikator_penilaian.list.bobot">Bobot</span>
+						</th>
+						<th scope="col"style="text-align: center ; width:57px;">
+							<span translate="template.tabel.aksi">Aksi</span>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="indikatorPenilaian in vm.indikatorPenilaianList">
+						<td style="text-align: center" ng-bind="{{ $index+1 }}"></td>
+						<td style="text-align: left" ng-bind="indikatorPenilaian.iPCode"></td>
+						<td style="text-align: left" ng-bind="indikatorPenilaian.iPAspekKerja"></td>
+						<td style="text-align: left" ng-bind="indikatorPenilaian.iPIndikator"></td>
+						<td style="text-align: center" ng-bind="indikatorPenilaian.iPBobot + '%'"></td>
+						<td style="text-align: center">
+							<div>
+								<button ng-if="indikatorPenilaian.iPId > 0" type="button" ng-class="'bg-' + app.theme.name" class="mr btn btn-xs"
+								 ng-click="edit(indikatorPenilaian)">
+									<em class="fa fa-pencil fa-lg"></em>
+								</button>
+								<button ng-if="indikatorPenilaian.iPId > 0" type="button" class="mr btn btn-danger btn-xs" ng-click="del(indikatorPenilaian.iPId)">
+									<em class="fa fa-trash fa-lg"></em>
+								</button>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<!--END CONTROLLER-->

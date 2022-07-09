@@ -1,0 +1,1353 @@
+<div class="app-view-header">Daftar Vendor</div>
+<toaster-container
+	toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<div ng-controller="DaftarVendorDetailController as vm">
+	<div class="panel panel-primary">
+		<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-folder-open">&nbsp;</em> <span
+				translate="promise.procurement.RegistrasiVendor.SubJudul"></span>
+		</h4>
+		<div ng-show="vm.loading" align="center">
+			<strong><em>Loading... <img src="app/img/loading.gif" border="0"
+					height="20px" /></em></strong>
+		</div>
+		<div ng-show="!vm.loading" class="panel-body">
+			<tabset justified="true"> <!-------------------------------------------------- DATA LOGIN --------------------------------------------------------------->
+			<style>
+a.ng-binding {
+	display: block;
+	min-height: 56px;
+}
+</style>
+			<tab heading="DATA LOGIN"
+				active="vm.tabActiveStatus.tabDataLogin.active">
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-12">
+						<form method="post" action="#" novalidate=""
+							class="form-horizontal">
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-2 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.data_login.nama_pengguna"></span>
+									</label>
+									<div class="col-sm-5">
+										<input ng-disabled="true" name="namaPengguna" type="text"
+											class="form-control input-sm" ng-model="vm.namaPengguna">
+
+										<br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.data_login.user_id"></span>
+									</label>
+									<div class="col-sm-5">
+										<input ng-disabled="true" name="userId" type="text"
+											class="form-control input-sm" ng-model="vm.userId" /> <br />
+									</div>
+									<div class="col-sm-3"></div>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+			</tab> <!-------------------------------------------------- DATA PERUSAHAAN ---------------------------------------------------------->
+			<tab heading="DATA PERUSAHAAN"
+				active="vm.tabActiveStatus.tabDataPerusahaan.active"> <!-- 			<tab heading="DATA PERUSAHAAN" active="form.tabActiveStatus.tabDataPerusahaan.active"> -->
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<span
+					translate="promise.procurement.RegistrasiVendor.DataPerusahaan.FormDataPerusahaan"></span>
+			</h4>
+			<div align="center" ng-if="loading == true">
+				<strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-12">
+						<form method="post" action="#" novalidate=""
+							class="form-horizontal">
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-2 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.PKPNonPKP"></span>
+									</label>
+									<div class="col-sm-9">
+										<label> <input ng-disabled="true" type="radio"
+											value="1" ng-model="vm.pilihPKP.name" ng-click="pilihPKP()">
+											PKP
+										</label> <label> <input ng-disabled="true" type="radio"
+											value="2" ng-model="vm.pilihPKP.name" ng-click="pilihPKP()">
+											Non PKP
+										</label> <br />
+									</div>
+								</div>
+								<div class="form-group" ng-show="vm.pilihPKP.name == 1">
+									<label class="col-sm-2 control-label"> </label>
+									<div class="col-sm-5">
+										<input ng-disabled="true" name="nomorPKP" type="text"
+											class="form-control input-sm" ng-model="vm.nomorPKP"
+											ng-disabled="vm.disabled"> <br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.title"></span>
+									</label>
+									<div class="col-sm-5">
+										<input ng-disabled="true" name="titleVendor" type="text"
+											class="form-control input-sm" ng-model="vm.titleVendor">
+										<br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.kualifikasi"></span>
+									</label>
+									<!-- <div class="col-sm-5">
+                                                <ui-select name="kualifikasiVendor" ng-disabled="true" ng-model="vm.kualifikasiVendor" theme="bootstrap">
+                                                    <ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+                                                    <ui-select-choices repeat="kualifikasiVendor in vm.kualifikasiVendorList | filter: $select.search">
+                                                        <div ng-bind-html="kualifikasiVendor.nama | highlight: $select.search"></div>
+                                                    </ui-select-choices>
+                                                </ui-select>
+
+                                                <br/>
+                                            </div> -->
+									<div class="col-sm-5">
+										<input ng-disabled="true" name="kualifikasiVendor.nama"
+											type="text" class="form-control input-sm"
+											ng-model="vm.kualifikasiVendor.nama"> <br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.mendaftardiunit"></span>
+									</label>
+									<div class="col-sm-5">
+										<input ng-disabled="true" name="mendaftardiunit" type="text"
+											class="form-control input-sm" ng-model="vm.mendaftardiunit">
+
+										<br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.area_bisnis"></span>
+									</label>
+									<div class="col-sm-5">
+										<input ng-disabled="true" name="businessArea" type="text"
+											class="form-control input-sm" ng-model="vm.businessArea">
+
+										<br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.NamaPerusahaan"></span>
+									</label>
+									<div class="col-sm-5">
+										<input ng-disabled="true" name="NamaPerusahaan" type="text"
+											class="form-control input-sm" ng-model="vm.NamaPerusahaan">
+
+										<br />
+									</div>
+									<div class="col-sm-2">
+										<input ng-disabled="true" name="jenisPerusahaan" type="text"
+											class="form-control input-sm" ng-model="vm.jenisPerusahaan">
+										<br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.NPWPPerusahaan"></span>
+									</label>
+									<div class="col-sm-5">
+										<input ng-disabled="true" name="NPWPPerusahaan" type="text"
+											class="form-control input-sm" ng-model="vm.NPWPPerusahaan">
+										<br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.namaNPWP"></span>
+									</label>
+									<div class="col-sm-5">
+										<input ng-disabled="true" name="namaNPWP" type="text"
+											class="form-control input-sm" ng-model="vm.namaNPWP">
+										<br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.alamatNPWP"></span>
+									</label>
+									<div class="col-sm-5">
+										<input ng-disabled="true" name="alamatNPWP" type="text"
+											class="form-control input-sm" ng-model="vm.alamatNPWP">
+										<br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.provinsiNPWP"></span>
+									</label>
+									<div class="col-sm-5">
+										<input ng-disabled="true" name="provinsiNPWP" type="text"
+											class="form-control input-sm" ng-model="vm.provinsiNPWP">
+										<br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.kotaNPWP"></span>
+									</label>
+									<div class="col-sm-5">
+										<input ng-disabled="true" name="kotaNPWP" type="text"
+											class="form-control input-sm" ng-model="vm.kotaNPWP">
+										<br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.NamaSingkatan"></span>
+									</label>
+									<div class="col-sm-5">
+										<input ng-disabled="true" name="NamaSingkatan" type="text"
+											class="form-control input-sm" ng-model="vm.NamaSingkatan">
+
+										<br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.JumlahKaryawan"></span>
+									</label>
+									<div class="col-sm-5">
+										<input ng-disabled="true" name="jumlahKaryawan" type="text"
+											class="form-control input-sm" ng-model="vm.jumlahKaryawan">
+
+										<br />
+									</div>
+								</div>
+								<div class="form-group" ng-show="vm.titleVendor == 'Company'">
+									<label class="col-sm-2 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.nomorAktaPendirian"></span>
+									</label>
+									<div class="col-sm-5">
+										<input ng-disabled="true" name="noAktaPendirian" type="text"
+											class="form-control input-sm" ng-model="vm.noAktaPendirian">
+										<br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.TanggalBerdiri"></span>
+									</label>
+									<div class="col-sm-5">
+										<input ng-disabled="true" name="tanggalBerdiri" type="text"
+											class="form-control input-sm"
+											datepicker-popup="{{vm.format}}" ng-model="vm.tanggalBerdiri">
+										<br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.VendorComment"></span>
+									</label>
+									<div class="col-sm-5">
+										<textarea ng-disabled="true" name="deskripsi"
+											ng-model="vm.deskripsi" cols="30" rows="5"
+											class="form-control"></textarea>
+										<br />
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<span
+					translate="promise.procurement.RegistrasiVendor.DataPerusahaan.FormAlamatPerusahaan"></span>
+			</h4>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-12">
+						<form method="post" action="#" novalidate=""
+							class="form-horizontal">
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-2 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.AlamatPerusahaan"></span>
+									</label>
+									<div class="col-sm-5">
+										<textarea ng-disabled="true" name="alamatPerusahaan"
+											ng-model="vm.alamatPerusahaan" cols="30" rows="5"
+											class="form-control"></textarea>
+										<br />
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-12">
+										<div class="form-group">
+											<label class="col-sm-2 control-label"><span
+												translate="promise.procurement.RegistrasiVendor.DataPerusahaan.provinsi"></span>
+											</label>
+											<div class="col-sm-5">
+												<input ng-disabled="true" name="provinsiPerusahaan"
+													type="text" class="form-control input-sm"
+													ng-model="vm.provinsiPerusahaan">
+											</div>
+										</div>
+										<br />
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-12">
+										<div class="form-group">
+											<label class="col-sm-2 control-label"><span
+												translate="promise.procurement.RegistrasiVendor.DataPerusahaan.kota"></span>
+											</label>
+											<div class="col-sm-5">
+												<input ng-disabled="true" name="kotaPerusahaan" type="text"
+													class="form-control input-sm" ng-model="vm.kotaPerusahaan">
+
+											</div>
+										</div>
+										<br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label"> </label>
+									<div class="col-sm-12">
+										<div class="form-group">
+											<label class="col-sm-2 control-label"><span
+												translate="promise.procurement.RegistrasiVendor.DataPerusahaan.pobox"></span>
+											</label>
+											<div class="col-sm-5">
+												<input ng-disabled="true" type="text"
+													class="form-control input-sm" ng-model="vm.poboxPerusahaan">
+											</div>
+										</div>
+										<br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label"> </label>
+									<div class="col-sm-12">
+										<div class="form-group">
+											<label class="col-sm-2 control-label"><span
+												translate="promise.procurement.RegistrasiVendor.DataPerusahaan.kodepos"></span>
+											</label>
+											<div class="col-sm-5">
+												<input ng-disabled="true" name="kodeposPerusahaan"
+													type="text" class="form-control input-sm"
+													ng-model="vm.kodeposPerusahaan">
+											</div>
+										</div>
+										<br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.TeleponPerusahaan"></span>
+									</label>
+									<div class="col-sm-2">
+										<input ng-disabled="true" name="TeleponPerusahaan" type="text"
+											class="form-control input-sm" ng-model="vm.TeleponPerusahaan">
+
+
+									</div>
+									<label class="col-sm-1 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.NoFax"></span>
+									</label>
+									<div class="col-sm-2">
+										<input ng-disabled="true" type="text"
+											class="form-control input-sm" ng-model="vm.NoFaxPerusahaan">
+									</div>
+								</div>
+								<br />
+								<div class="form-group">
+									<label class="col-sm-2 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.Email"></span>
+									</label>
+									<div class="col-sm-5">
+										<input ng-disabled="true" name="EmailPerusahaan" type="text"
+											class="form-control input-sm" ng-model="vm.EmailPerusahaan">
+
+										<br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.Website"></span>
+									</label>
+									<div class="col-sm-5">
+										<input ng-disabled="true" type="text"
+											class="form-control input-sm" ng-model="vm.WebsitePerusahaan">
+										<br />
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<span
+					translate="promise.procurement.RegistrasiVendor.DataPerusahaan.FormContactPerson"></span>
+			</h4>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-12">
+						<form method="post" action="#" novalidate=""
+							class="form-horizontal">
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-2 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.NamaContactPerson"></span>
+									</label>
+									<div class="col-sm-5">
+										<input ng-disabled="true" name="NamaContactPerson" type="text"
+											class="form-control input-sm" ng-model="vm.NamaContactPerson">
+
+										<br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.NoHPContactPerson"></span>
+									</label>
+									<div class="col-sm-5">
+										<input ng-disabled="true" name="NoHPContactPerson" type="text"
+											class="form-control input-sm" ng-model="vm.NoHPContactPerson">
+
+										<br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.EmailContactPerson"></span>
+									</label>
+									<div class="col-sm-5">
+										<input ng-disabled="true" name="EmailContactPerson"
+											type="text" class="form-control input-sm"
+											ng-model="vm.EmailContactPerson"> <br />
+									</div>
+								</div>
+								<div class="form-group" ng-hide="vm.titleVendor == 'Company'">
+									<label class="col-sm-2 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.NoKTPContactPerson"></span>
+									</label>
+									<div class="col-sm-5">
+										<input ng-disabled="true" name="NoKTPContactPerson"
+											type="text" class="form-control input-sm"
+											ng-model="vm.NoKTPContactPerson"> <br />
+									</div>
+								</div>
+								<div class="form-group" ng-hide="vm.titleVendor == 'Company'">
+									<label class="col-sm-2 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.no_kk"></span>
+									</label>
+									<div class="col-sm-5">
+										<input ng-disabled="true" name="noKK" type="text"
+											class="form-control input-sm" ng-model="vm.noKK"> <br />
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<span
+					translate="promise.procurement.RegistrasiVendor.DataPerusahaan.FormDataPenanggungJawab"></span>
+			</h4>
+
+			<div class="panel-body">
+				<div class="col-xs-12">
+					<div class="table-responsive">
+						<table
+							class="table table-hover table-condensed table-striped bg-white">
+							<thead>
+								<tr style="font-weight: bold">
+									<th scope="col"style="width: 40%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.NamaPenanggungJawab"></span>
+									</th>
+									<th scope="col"style="width: 20%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.JabatanPenanggungJawab"></span>
+									</th>
+									<th scope="col"style="width: 20%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.EmailPenanggungJawab"></span>
+									</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="penanggungJawab in vm.penanggungJawabList">
+									<!-- <td>
+                                                editable username (text with validation)
+                                                <span editable-text="penanggungJawab.nama" e-name="nama" e-form="rowform" onbeforesave="checkName($data, penanggungJawab.id)" e-required="" ng-bind="penanggungJawab.nama || &apos;empty&apos;"></span>
+                                            </td>
+                                            <td>
+                                                <span editable-select="penanggungJawab.jabatan" e-name="penanggungJawab.jabatan" onbeforesave="checkJabatan($data, penanggungJawab.id)" e-form="rowform" e-ng-options="g as g.nama for g in jabatanPenanggungJawabList" ng-bind="showJabatan(penanggungJawab)"></span>
+                                            </td>
+                                            <td>
+                                                editable username (text with validation)
+                                                <span editable-text="penanggungJawab.email" e-name="email" e-form="rowform" onbeforesave="checkEmail($data, penanggungJawab.id)" e-required="" ng-bind="penanggungJawab.email || &apos;empty&apos;"></span>
+                                            </td> -->
+									<td style="text-align: left" ng-bind="penanggungJawab.nama"></td>
+									<td style="text-align: left"
+										ng-bind="penanggungJawab.jabatan.nama"></td>
+									<td style="text-align: left" ng-bind="penanggungJawab.email"></td>
+								</tr>
+							</tbody>
+						</table>
+						<br>
+					</div>
+				</div>
+			</div>
+			<br />
+			</tab> <!-------------------------------------------------- DATA BANK ---------------------------------------------------------------->
+			<tab heading="DATA BANK"
+				active="vm.tabActiveStatus.tabDataBank.active"> <!-- <tab heading="DATA BANK" active="form.tabActiveStatus.tabDataBank.active"> -->
+
+			<div align="center" ng-if="loading == true">
+				<strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong>
+			</div>
+			<div class="panel-body">
+				<div class="col-xs-12">
+					<div class="table-responsive table-bordered">
+						<table ng-table="vm.dataBankTable"
+							class="table table-hover table-striped ">
+							<thead>
+								<tr style="font-weight: bold">
+									<th scope="col"style="width: 5%; text-align: left"><span
+										translate="template.tabel.nomor"></span></th>
+									<th scope="col"style="width: 30%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataBank.NamaBank"></span>
+									</th>
+									<th scope="col"style="width: 20%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataBank.NomorAccount"></span>
+									</th>
+									<th scope="col"style="width: 30%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataBank.NamaPemegangAccount"></span>
+									</th>
+									<th scope="col"style="width: 10%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataBank.MataUang"></span>
+									</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="dataBank in $data">
+									<td style="text-align: center">{{$index+1}}</td>
+									<td ng-bind="dataBank.namaBank"></td>
+									<td ng-bind="dataBank.nomorRekening"></td>
+									<td ng-bind="dataBank.namaNasabah"></td>
+									<td ng-bind="dataBank.mataUang.nama"></td>
+
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<br />
+			<div class="form-group">
+				<div class="col-lg-offset-2 col-lg-10"></div>
+			</div>
+			<br />
+			</tab> <!-------------------------------------------------- DATA SEGMENTASI ---------------------------------------------------------->
+			<tab heading="DATA SEGMENTASI"
+				active="vm.tabActiveStatus.tabDataSegmentasi"> <!--     	<tab heading="DATA SEGMENTASI" active="vm.tabActiveStatus.tabDataSegmentasi"> -->
+			<div align="center" ng-if="loading == true">
+				<strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong>
+			</div>
+			<div class="panel-body">
+				<div class="table-responsive table-bordered">
+					<table ng-table="vm.tableSegmentasiVendor"
+						class="table table-hover table-striped ">
+						<thead>
+							<tr style="font-weight: bold">
+								<th scope="col"style="width: 5%; text-align: left"><span
+									translate="template.tabel.nomor"></span></th>
+								<th scope="col"style="width: 20%; text-align: left"><span
+									translate="promise.procurement.RegistrasiVendor.DataSegmentasi.bidang_usaha"></span>
+								</th>
+								<th scope="col"style="width: 20%; text-align: left"><span
+									translate="promise.procurement.RegistrasiVendor.DataSegmentasi.subbidang"></span>
+								</th>
+								<th scope="col"style="width: 10%; text-align: left"><span
+									translate="promise.procurement.RegistrasiVendor.DataSegmentasi.asosiasi"></span>
+								</th>
+								<th scope="col"style="width: 10%; text-align: left"><span
+									translate="template.tabel.nomor"></span>
+								</th>
+								<th scope="col"style="width: 15%; text-align: left"><span
+									translate="promise.procurement.RegistrasiVendor.DataSegmentasi.tanggal_mulai"></span>
+								</th>
+								<th scope="col"style="width: 15%; text-align: left"><span
+									translate="promise.procurement.RegistrasiVendor.DataSegmentasi.tanggal_berakhir"></span>
+								</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="dataSegmentasi in $data">
+								<td style="text-align: center">{{$index+1}}</td>
+								<td ng-bind="dataSegmentasi.subBidangUsaha.bidangUsaha.nama"></td>
+								<td ng-bind="dataSegmentasi.subBidangUsaha.nama"></td>
+								<!-- <td ng-bind="dataSegmentasi.asosiasi.nama"></td> -->
+								<td ng-bind="dataSegmentasi.asosiasi"></td>
+								<td ng-bind="dataSegmentasi.nomor"></td>
+								<td ng-bind="dataSegmentasi.tanggalMulai | date:'dd/MM/yyyy'"></td>
+								<td ng-bind="dataSegmentasi.tanggalBerakhir | date:'dd/MM/yyyy'"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<br />
+			<div class="form-group">
+				<div class="col-lg-offset-2 col-lg-10"></div>
+			</div>
+			<br />
+			</tab> <!-------------------------------------------------- DATA DOKUMEN ------------------------------------------------------------->
+			<tab heading="DATA DOKUMEN"
+				active="vm.tabActiveStatus.tabDataDokumen"> <!-- <tab heading="DATA DOKUMEN" active="form.tabActiveStatus.tabDataDokumen" >			 -->
+			<div class="panel-body">
+				<div class="col-sm-12">
+					<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+						<span
+							translate="promise.procurement.RegistrasiVendor.DataDokumen.FormDataDokumen"></span>
+					</h4>
+				</div>
+				<div align="center" ng-if="loading == true">
+					<strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong>
+				</div>
+				<div class="col-sm-12">
+					<div class="table-responsive">
+						<table
+							class="table table-hover table-condensed table-striped bg-white">
+							<thead>
+								<tr style="font-weight: bold">
+									<th scope="col"style="width: 25%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataDokumen.Subject"></span>
+									</th>
+									<th scope="col"style="width: 20%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataDokumen.NamaDokumen"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataDokumen.TanggalTerbit"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataDokumen.TanggalBerakhir"></span>
+									</th>
+									<th scope="col"style="width: 25%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataDokumen.UploadFile"></span>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td colspan="5">
+										<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+											<span
+												translate="promise.procurement.RegistrasiVendor.DataDokumen.SubJudul1"></span>
+										</h4>
+									</td>
+								</tr>
+								<tr>
+									<td><span
+										translate="promise.procurement.RegistrasiVendor.DataDokumen.VendorRegistrasiForm"></span></td>
+									<td ng-bind="vm.dataDokRegForm.namaDokumen"></td>
+									<td>
+										<div class="input-group"
+											ng-bind="vm.dataDokRegForm.tanggalTerbit | date:'dd/MM/yyyy'"></div>
+									</td>
+									<td>
+										<div class="input-group"
+											ng-bind="vm.dataDokRegForm.tanggalBerakhir | date:'dd/MM/yyyy'"></div>
+									</td>
+									<td>
+										<div class="input-group"
+											ng-if="vm.dataDokRegForm.pathFile != undefined">
+											<span title="download file">{{vm.dataDokRegForm.pathFile}}
+												&nbsp;<a href="{{ vm.downloadFile1 }}"><em
+													class="fa fa-cloud-download"></em></a>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td><span
+										translate="promise.procurement.RegistrasiVendor.DataDokumen.SalinanAktePendirian"></span></td>
+									<td ng-bind="vm.dataDokAkte.namaDokumen"></td>
+									<td>
+										<div class="input-group"
+											ng-bind="vm.dataDokAkte.tanggalTerbit | date:'dd/MM/yyyy'"></div>
+									</td>
+									<td>
+										<div class="input-group"
+											ng-bind="vm.dataDokAkte.tanggalBerakhir | date:'dd/MM/yyyy'"></div>
+									</td>
+									<td>
+										<div class="input-group"
+											ng-if="vm.dataDokAkte.pathFile != undefined">
+											<span title="download file">{{vm.dataDokAkte.pathFile}}
+												&nbsp;<a href="{{ vm.downloadFile2 }}"><em
+													class="fa fa-cloud-download"></em></a>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td><span
+										translate="promise.procurement.RegistrasiVendor.DataDokumen.SuratKeteranganBebas"></span>
+										<div></div>
+										<button  class="mr btn bg-default btn-xs" ng-click ="openHistorySKB()"><u>History</u></button></td>
+									<td ng-bind="vm.dataDokSKB.namaDokumen"></td>
+									<td>
+										<div class="input-group"
+											ng-bind="vm.dataDokSKB.tanggalTerbit | date:'dd/MM/yyyy'"></div>
+									</td>
+									<td>
+										<div class="input-group"
+											ng-bind="vm.dataDokSKB.tanggalBerakhir | date:'dd/MM/yyyy'"></div>
+									</td>
+									<td>
+										<div class="input-group"
+											ng-if="vm.dataDokSKB.pathFile != undefined">
+											<span title="download file">{{vm.dataDokSKB.pathFile}}
+												&nbsp;<a href="{{ vm.downloadFile11 }}"><em
+													class="fa fa-cloud-download"></em></a>
+										</div>
+									</td>
+								</tr>
+								<tr ng-hide="vm.titleVendor == 'Mr' || vm.titleVendor == 'Mrs'">
+									<td><span
+										translate="promise.procurement.RegistrasiVendor.DataDokumen.SalinanTandaDaftar"></span>
+										<br /></td>
+									<td ng-bind="vm.dataDokSalinan.namaDokumen"></td>
+									<td>
+										<div class="input-group"
+											ng-bind="vm.dataDokSalinan.tanggalTerbit | date:'dd/MM/yyyy'"></div>
+									</td>
+									<td>
+										<div class="input-group"
+											ng-bind="vm.dataDokSalinan.tanggalBerakhir | date:'dd/MM/yyyy'">
+										</div>
+									</td>
+									<td>
+										<div class="input-group"
+											ng-if="vm.dataDokSalinan.pathFile != undefined">
+											<span title="download file">{{vm.dataDokSalinan.pathFile}}
+												&nbsp;<a href="{{ vm.downloadFile3 }}"><em
+													class="fa fa-cloud-download"></em></a>
+										</div>
+									</td>
+								</tr>
+								<tr ng-hide="vm.titleVendor == 'Mr' || vm.titleVendor == 'Mrs'">
+									<td><span
+										translate="promise.procurement.RegistrasiVendor.DataDokumen.SalinanSuratIjinUsaha"></span></td>
+									<td ng-bind="vm.dataDokSiup.namaDokumen"></td>
+									<td>
+										<div class="input-group"
+											ng-bind="vm.dataDokSiup.tanggalTerbit | date:'dd/MM/yyyy'"></div>
+									</td>
+									<td>
+										<div class="input-group"
+											ng-bind="vm.dataDokSiup.tanggalBerakhir | date:'dd/MM/yyyy'"></div>
+									</td>
+									<td>
+										<div class="input-group"
+											ng-if="vm.dataDokSiup.pathFile != undefined">
+											<span title="download file">{{vm.dataDokSiup.pathFile}}
+												&nbsp;<a href="{{ vm.downloadFile4 }}"><em
+													class="fa fa-cloud-download"></em></a>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td align="left">
+										<div align="left" class="col-md-4">
+											<label>IS PKS</label>
+										</div>
+										<div class="col-md-2">
+											<div class="checkbox c-checkbox needsclick">
+												<label class="needsclick"> <input type="checkbox"
+													onclick="return false;" ng-checked="vm.isPKS" /><span
+													class="fa fa-check"></span>
+												</label>
+											</div>
+										</div>
+									</td>
+									<td></td> <td></td> <td></td> <td></td> 
+								</tr>
+								<tr ng-show="vm.isPKS == 1">
+									<td><span
+										translate="promise.procurement.RegistrasiVendor.DataDokumen.dokumenPKS"></span></td>
+									<td ng-bind="vm.dataDokPKS.namaDokumen"></td>
+									<td>
+										<div class="input-group"
+											ng-bind="vm.dataDokPKS.tanggalTerbit | date:'dd/MM/yyyy'"></div>
+									</td>
+									<td>
+										<div class="input-group"
+											ng-bind="vm.dataDokPKS.tanggalBerakhir | date:'dd/MM/yyyy'"></div>
+									</td>
+									<td>
+										<div class="input-group"
+											ng-if="vm.dataDokPKS.pathFile != undefined">
+											<span title="download file">{{vm.dataDokPKS.pathFile}}
+												&nbsp;<a href="{{ vm.downloadFile5 }}"><em
+													class="fa fa-cloud-download"></em></a>
+										</div>
+									</td>
+								</tr>
+								<tr ng-hide="vm.isPKS == 1">
+									<td><span
+										translate="promise.procurement.RegistrasiVendor.DataDokumen.dokumenSPR"></span></td>
+									<td ng-bind="vm.dataDokSPR.namaDokumen"></td>
+									<td>
+										<div class="input-group"
+											ng-bind="vm.dataDokSPR.tanggalTerbit | date:'dd/MM/yyyy'"></div>
+									</td>
+									<td>
+										<div class="input-group"
+											ng-bind="vm.dataDokSPR.tanggalBerakhir | date:'dd/MM/yyyy'"></div>
+									</td>
+									<td>
+										<div class="input-group"
+											ng-if="vm.dataDokSPR.pathFile != undefined">
+											<span title="download file">{{vm.dataDokSPR.pathFile}}
+												&nbsp;<a href="{{ vm.downloadFile6 }}"><em
+													class="fa fa-cloud-download"></em></a>
+										</div>
+									</td>
+								</tr>
+								<tr
+									ng-hide="(vm.isPKS == 1) || (vm.isPKS == 0  && vm.titleVendor == 'Company')">
+									<td><span
+										translate="promise.procurement.RegistrasiVendor.DataDokumen.dokumenSPB"></span></td>
+									<td ng-bind="vm.dataDokSPB.namaDokumen"></td>
+									<td>
+										<div class="input-group"
+											ng-bind="vm.dataDokSPB.tanggalTerbit | date:'dd/MM/yyyy'"></div>
+									</td>
+									<td>
+										<div class="input-group"
+											ng-bind="vm.dataDokSPB.tanggalBerakhir | date:'dd/MM/yyyy'"></div>
+									</td>
+									<td>
+										<div class="input-group"
+											ng-if="vm.dataDokSPB.pathFile != undefined">
+											<span title="download file">{{vm.dataDokSPB.pathFile}}
+												&nbsp;<a href="{{ vm.downloadFile7 }}"><em
+													class="fa fa-cloud-download"></em></a>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="5">
+										<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+											<span
+												translate="promise.procurement.RegistrasiVendor.DataDokumen.SubJudul3"></span>
+										</h4>
+									</td>
+								</tr>
+								<tr>
+									<td><span
+										translate="promise.procurement.RegistrasiVendor.DataDokumen.BuktiFisikPerusahaan"></span>
+									</td>
+									<td ng-bind="vm.dataDokBuktiFisik.namaDokumen"></td>
+									<td>
+										<div class="input-group"
+											ng-bind="vm.dataDokBuktiFisik.tanggalTerbit | date:'dd/MM/yyyy'"></div>
+									</td>
+									<td>
+										<div class="input-group"
+											ng-bind="vm.dataDokBuktiFisik.tanggalBerakhir | date:'dd/MM/yyyy'"></div>
+									</td>
+									<td>
+										<div class="input-group"
+											ng-if="vm.dataDokBuktiFisik.pathFile != undefined">
+											<span title="download file">{{vm.dataDokBuktiFisik.pathFile}}
+												&nbsp;<a href="{{ vm.downloadFile8 }}"><em
+													class="fa fa-cloud-download"></em></a>
+											</span>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td><span
+										translate="promise.procurement.RegistrasiVendor.DataDokumen.DokumenQuality"></span></td>
+									<td ng-bind="vm.dataDokQuality.namaDokumen"></td>
+									<td>
+										<div class="input-group"
+											ng-bind="vm.dataDokQuality.tanggalTerbit | date:'dd/MM/yyyy'">
+										</div>
+									</td>
+									<td>
+										<div class="input-group"
+											ng-bind="vm.dataDokQuality.tanggalBerakhir | date:'dd/MM/yyyy'"></div>
+									</td>
+									<td>
+										<div class="input-group"
+											ng-if="vm.dataDokQuality.pathFile != undefined">
+											<span title="download file">{{vm.dataDokQuality.pathFile}}
+												&nbsp;<a href="{{ vm.downloadFile9 }}"><em
+													class="fa fa-cloud-download"></em></a>
+											</span>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td><span
+										translate="promise.procurement.RegistrasiVendor.DataDokumen.DokumenTeknik"></span>
+										<br /></td>
+									<td ng-bind="vm.dataDokTeknik.namaDokumen"></td>
+									<td>
+										<div class="input-group"
+											ng-bind="vm.dataDokTeknik.tanggalTerbit | date:'dd/MM/yyyy'"></div>
+									</td>
+									<td>
+										<div class="input-group"
+											ng-bind="vm.dataDokTeknik.tanggalBerakhir | date:'dd/MM/yyyy'"></div>
+									</td>
+									<td>
+										<div class="input-group"
+											ng-if="vm.dataDokTeknik.pathFile != undefined">
+											<span title="download file">{{vm.dataDokTeknik.pathFile}}
+												&nbsp;<a href="{{ vm.downloadFile10 }}"><em
+													class="fa fa-cloud-download"></em></a>
+											</span>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="5">
+										<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+											<span
+												translate="promise.procurement.RegistrasiVendor.DataDokumen.SubJudul4"></span>
+										</h4>
+									</td>
+								</tr>
+								<tr ng-hide="vm.titleVendor == 'Mr' || vm.titleVendor == 'Mrs'">
+									<td><span
+										translate="promise.procurement.RegistrasiVendor.DataDokumen.NamaDokumen"></span>
+										<br /></td>
+									<td ng-bind="vm.dataDokSKD.namaDokumen"></td>
+									<td>
+										<div class="input-group"
+											ng-bind="vm.dataDokSKD.tanggalTerbit | date:'dd/MM/yyyy'"></div>
+									</td>
+									<td>
+										<div class="input-group"
+											ng-bind="vm.dataDokSKD.tanggalBerakhir | date:'dd/MM/yyyy'"></div>
+									</td>
+									<td>
+										<div class="input-group"
+											ng-if="vm.dataDokSKD.pathFile != undefined">
+											<span title="download file">{{vm.dataDokSKD.pathFile}}
+												&nbsp;<a href="{{ vm.downloadFile11 }}"><em
+													class="fa fa-cloud-download"></em></a>
+											</span>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<br>
+					</div>
+				</div>
+				<br />
+				<div class="form-group">
+					<div class="col-lg-offset-2 col-lg-10"></div>
+				</div>
+				<br />
+			</div>
+			</tab> <!-------------------------------------------------- DATA PERALATAN ----------------------------------------------------------->
+			<tab heading="DATA PERALATAN"
+				active="vm.tabActiveStatus.tabPeralatan"> <!--     	<tab heading="PERALATAN" active="form.tabActiveStatus.tabPeralatan"> -->
+
+			<div align="center" ng-if="loading == true">
+				<strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong>
+			</div>
+			<div class="panel-body">
+				<div class="table-responsive table-bordered">
+					<table ng-table="vm.tablePeralatanVendor"
+						class="table table-hover table-striped ">
+						<thead>
+							<tr style="font-weight: bold">
+								<th scope="col"style="width: 5%; text-align: left"><span
+									translate="template.tabel.nomor"></span></th>
+								<th scope="col"style="width: 10%; text-align: left"><span
+									translate="promise.procurement.RegistrasiVendor.Peralatan.Jenis"></span>
+								</th>
+								<th scope="col"style="width: 10%; text-align: left"><span
+									translate="promise.procurement.RegistrasiVendor.Peralatan.Jumlah"></span>
+								</th>
+								<th scope="col"style="width: 10%; text-align: left"><span
+									translate="promise.procurement.RegistrasiVendor.Peralatan.Kapasitas"></span>
+								</th>
+								<th scope="col"style="width: 10%; text-align: left"><span
+									translate="promise.procurement.RegistrasiVendor.Peralatan.MerkTipe"></span>
+								</th>
+								<th scope="col"style="width: 10%; text-align: left"><span
+									translate="promise.procurement.RegistrasiVendor.Peralatan.TahunPembuatan"></span>
+								</th>
+								<th scope="col"style="width: 10%; text-align: left"><span
+									translate="promise.procurement.RegistrasiVendor.Peralatan.Kondisi"></span>
+								</th>
+								<th scope="col"style="width: 10%; text-align: left"><span
+									translate="promise.procurement.RegistrasiVendor.Peralatan.Lokasi"></span>
+								</th>
+								<th scope="col"style="width: 10%; text-align: left"><span
+									translate="promise.procurement.RegistrasiVendor.Peralatan.BuktiKepemilikan"></span>
+								</th>
+								<th scope="col"style="width: 10%; text-align: left"><span
+									translate="promise.procurement.RegistrasiVendor.Peralatan.DokumenBuktiKepemilikan"></span>
+								</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="dataPeralatan in $data">
+								<td style="text-align: center">{{$index+1}}</td>
+								<td ng-bind="dataPeralatan.jenis"></td>
+								<td ng-bind="dataPeralatan.jumlah"></td>
+								<td ng-bind="dataPeralatan.kapasitas"></td>
+								<td ng-bind="dataPeralatan.merk"></td>
+								<td ng-bind="dataPeralatan.tahunPembuatan"></td>
+								<td ng-bind="dataPeralatan.kondisi.nama"></td>
+								<td ng-bind="dataPeralatan.lokasi"></td>
+								<td ng-bind="dataPeralatan.buktiKepemilikan.nama"></td>
+								<td><a
+									ng-href="{{viewUploadBackendAddress+'/'+dataPeralatan.fileNameBuktiKepemilikan}}"
+									target="_blank"
+									ng-bind="dataPeralatan.fileNameBuktiKepemilikan"></a></td>
+
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<br />
+			<div class="form-group">
+				<div class="col-lg-offset-2 col-lg-10"></div>
+			</div>
+			<br />
+			</tab> <!-------------------------------------------------- DATA KEUANGAN ------------------------------------------------------------>
+			<tab heading="DATA KEUANGAN"
+				active="vm.tabActiveStatus.tabDataKeuangan"> <!--     	<tab heading="DATA KEUANGAN" active="form.tabActiveStatus.tabDataKeuangan"> -->
+
+			<div align="center" ng-if="loading == true">
+				<strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong>
+			</div>
+			<div class="panel-body">
+				<div class="table-responsive table-bordered">
+					<table ng-table="vm.tableKeuanganVendor"
+						class="table table-hover table-striped ">
+						<thead>
+							<tr style="font-weight: bold">
+								<th scope="col"style="width: 5%; text-align: center"><span
+									translate="template.tabel.nomor"></span></th>
+								<th scope="col"style="width: 10%; text-align: center"><span
+									translate="promise.procurement.RegistrasiVendor.DataKeuangan.list.tahun_keuangan"></span>
+								</th>
+								<th scope="col"style="width: 10%; text-align: center"><span
+									translate="promise.procurement.RegistrasiVendor.DataKeuangan.list.kas"></span>
+								</th>
+								<th scope="col"style="width: 10%; text-align: center"><span
+									translate="promise.procurement.RegistrasiVendor.DataKeuangan.list.total_aktiva"></span>
+								</th>
+								<th scope="col"style="width: 10%; text-align: center"><span
+									translate="promise.procurement.RegistrasiVendor.DataKeuangan.list.total_kewajiban"></span>
+								</th>
+								<th scope="col"style="width: 10%; text-align: center"><span
+									translate="promise.procurement.RegistrasiVendor.DataKeuangan.list.rugi_laba"></span>
+								</th>
+								<th scope="col"style="width: 10%; text-align: center"><span
+									translate="promise.procurement.RegistrasiVendor.DataKeuangan.list.aktiva_lancar"></span>
+								</th>
+								<th scope="col"style="width: 10%; text-align: center"><span
+									translate="promise.procurement.RegistrasiVendor.DataKeuangan.list.hutang_lancar"></span>
+								</th>
+								<th scope="col"style="width: 10%; text-align: center"><span
+									translate="promise.procurement.RegistrasiVendor.DataKeuangan.list.rasio_likuiditas"></span>
+								</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="dataKeuangan in $data">
+								<td style="text-align: center">{{$index+1}}</td>
+								<td style="text-align: center"
+									ng-bind="dataKeuangan.tahunKeuangan"></td>
+								<td style="text-align: right"
+									ng-bind="dataKeuangan.kas | number : 2"></td>
+								<td style="text-align: right"
+									ng-bind="dataKeuangan.totalAktiva | number : 2"></td>
+								<td style="text-align: right"
+									ng-bind="dataKeuangan.totalHutangJangkaPendek + dataKeuangan.hutangJangkaPanjang | number : 2"></td>
+								<td style="text-align: right"
+									ng-bind="dataKeuangan.kekayaanBersih | number : 2"></td>
+								<td style="text-align: right"
+									ng-bind="dataKeuangan.totalAktivaLancar | number : 2"></td>
+								<td style="text-align: right"
+									ng-bind="dataKeuangan.totalHutangJangkaPendek | number : 2"></td>
+								<td style="text-align: right"
+									ng-bind="dataKeuangan.totalAktivaLancar / dataKeuangan.totalHutangJangkaPendek | number : 2"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<br />
+			<div class="form-group">
+				<div class="col-lg-offset-2 col-lg-10"></div>
+			</div>
+			<br />
+			</tab> <!-------------------------------------------------- DATA PENGALAMAN ---------------------------------------------------------->
+			<tab heading="DATA PENGALAMAN"
+				active="vm.tabActiveStatus.tabDataPengalaman"> <!--     	<tab heading="DATA PENGALAMAN" active="form.tabActiveStatus.tabDataPengalaman"> -->
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<span
+					translate="promise.procurement.RegistrasiVendor.datapengalaman.judul1"></span>
+			</h4>
+			<div align="center" ng-if="loading == true">
+				<strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong>
+			</div>
+			<div class="col-lg-9">
+				<!--
+                        <div class="checkbox c-checkbox needsclick">
+                            <label class="needsclick">
+                                <input ng-model="pengalamanStatus" type="checkbox" class="needsclick" /><span class="fa fa-check"></span>Tanpa Pengalaman
+                            </label>
+                        </div>
+-->
+			</div>
+			<h4 class="page-header clearfix">
+				<div class="pull-right"></div>
+			</h4>
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<span
+					translate="promise.procurement.RegistrasiVendor.datapengalaman.judul2"></span>
+			</h4>
+			<div class="panel-body">
+				<div class="col-sm-12">
+					<div class="table-responsive">
+						<table ng-table="vm.tablePengalamanPekerjaan"
+							class="table table-hover table-condensed table-striped bg-white">
+							<thead>
+								<tr style="font-weight: bold">
+									<th scope="col"style="width: 5%; text-align: left"><span
+										translate="template.tabel.nomor"></span></th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.datapengalaman.nama"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.datapengalaman.alamat"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.datapengalaman.bidang_usaha"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.datapengalaman.mulai_kerjasama"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.datapengalaman.nilai_kontrak"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.datapengalaman.bukti_kerjasama"></span>
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="dataPengalamanPekerjaan in $data">
+									<td style="text-align: center">{{$index+1}}</td>
+									<td ng-bind="dataPengalamanPekerjaan.namaPekerjaan"></td>
+									<td ng-bind="dataPengalamanPekerjaan.lokasiPekerjaan"></td>
+									<td ng-bind="dataPengalamanPekerjaan.bidangUsaha"></td>
+									<td
+										ng-bind="dataPengalamanPekerjaan.mulaiKerjasama | date:'dd/MM/yyyy'"></td>
+									<td ng-bind="dataPengalamanPekerjaan.nilaiKontrak | number : 2"></td>
+									<td><a
+										ng-href="{{viewUploadBackendAddress+'/'+dataPengalamanPekerjaan.fileName}}"
+										target="_blank" ng-bind="dataPengalamanPekerjaan.fileName"></a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<h4 class="page-header clearfix">
+				<div class="pull-right"></div>
+			</h4>
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<span
+					translate="promise.procurement.RegistrasiVendor.datapengalaman.judul3"></span>
+			</h4>
+			<div class="panel-body">
+				<div class="col-sm-12">
+					<div class="table-responsive">
+						<table ng-table="vm.tableDataMitra"
+							class="table table-hover table-condensed table-striped bg-white">
+							<thead>
+								<tr style="font-weight: bold">
+									<th scope="col"style="width: 5%; text-align: left"><span
+										translate="template.tabel.nomor"></span></th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.datapengalaman.nama"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.datapengalaman.alamat"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.datapengalaman.bidang_usaha"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.datapengalaman.mulai_kerjasama"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.datapengalaman.nilai_kontrak"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.datapengalaman.bukti_kerjasama"></span>
+									</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="dataMitra in $data">
+									<td style="text-align: center">{{$index+1}}</td>
+									<td ng-bind="dataMitra.namaPekerjaan"></td>
+									<td ng-bind="dataMitra.lokasiPekerjaan"></td>
+									<td ng-bind="dataMitra.bidangUsaha"></td>
+									<td ng-bind="dataMitra.mulaiKerjasama | date:'dd/MM/yyyy'"></td>
+									<td ng-bind="dataMitra.nilaiKontrak | number : 2"></td>
+									<td><a
+										ng-href="{{viewUploadBackendAddress+'/'+dataMitra.fileName}}"
+										target="_blank" ng-bind="dataMitra.fileName"></a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<h4 class="page-header clearfix">
+				<div class="pull-right"></div>
+			</h4>
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<span
+					translate="promise.procurement.RegistrasiVendor.datapengalaman.judul4"></span>
+			</h4>
+			<div class="panel-body">
+				<div class="col-sm-12">
+					<div class="table-responsive">
+						<table ng-table="vm.tableWorkingProgress"
+							class="table table-hover table-condensed table-striped bg-white">
+							<thead>
+								<tr style="font-weight: bold">
+									<th scope="col"style="width: 5%; text-align: left"><span
+										translate="template.tabel.nomor"></span></th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.datapengalaman.nama"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.datapengalaman.alamat"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.datapengalaman.bidang_usaha"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.datapengalaman.mulai_kerjasama"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.datapengalaman.nilai_kontrak"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.datapengalaman.bukti_kerjasama"></span>
+									</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="dataProgress in $data">
+									<td style="text-align: center">{{$index+1}}</td>
+									<td ng-bind="dataProgress.namaPekerjaan"></td>
+									<td ng-bind="dataProgress.lokasiPekerjaan"></td>
+									<td ng-bind="dataProgress.bidangUsaha"></td>
+									<td ng-bind="dataProgress.mulaiKerjasama | date:'dd/MM/yyyy'"></td>
+									<td ng-bind="dataProgress.nilaiKontrak | number : 2"></td>
+									<td><a
+										ng-href="{{viewUploadBackendAddress+'/'+dataProgress.fileName}}"
+										target="_blank" ng-bind="dataProgress.fileName"></a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<br />
+			<div class="form-group">
+				<div class="col-lg-offset-2 col-lg-10"></div>
+			</div>
+			<br />
+			</tab> </tabset>
+		</div>
+	</div>
+	<!--END CONTROLLER-->
+	
+	<script type="text/ng-template" id="SKBHistoryView.html">
+    <div class="modal-header">
+        <h3 class="modal-title"><span translate="promise.procurement.RegistrasiVendor.DataDokumen.HistorySKB"></span></h3>
+    </div>
+    <div class="modal-body form-horizontal">
+        <div align="center" ng-if="loading == true">
+            <strong><em>Loading... <img src="app/img/loading.gif" border="0" height="20px"/></em></strong>
+        </div>
+        <table datatable="ng" class="row-border hover table-striped">
+            <thead>
+                <tr>
+                    
+                    <th scope="col"style="text-align:center"><span translate="template.tabel.nomor"></span>
+                    </th>
+                    <th scope="col"style="text-align:center"><span translate="promise.procurement.RegistrasiVendor.DataDokumen.NomorDokumen"></span>
+                    </th>
+                    <th scope="col"style="text-align:center"><span translate="promise.procurement.RegistrasiVendor.DataDokumen.Subject"></span>
+                    </th>
+                    <th scope="col"style="text-align:center"><span translate="promise.procurement.RegistrasiVendor.DataDokumen.TanggalTerbit"></span>
+                    </th>
+                    <th scope="col"style="text-align:center"><span translate="promise.procurement.RegistrasiVendor.DataDokumen.TanggalBerakhir"></span>
+                    </th>
+					<th scope="col"style="text-align:center"><span translate="promise.procurement.RegistrasiVendor.DataDokumen.NamaDokumen"></span>
+                    </th>
+					<th scope="col"style="text-align:center"><span>Download</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="SKB in SKBHistoryList">
+                    <td style="text-align:centor;width=5px">{{ ($index + 1) }}</td>
+                    <td style="text-align:left">{{ SKB.namaDokumen }}</td>
+                    <td style="text-align:left">{{ SKB.subject }}</td>
+                    <td style="text-align:left">{{ SKB.tanggalTerbit | date:'dd/MM/yyyy' }}</td>
+					<td style="text-align:left">{{ SKB.tanggalBerakhir | date:'dd/MM/yyyy' }}</td>
+                    <td style="text-align:left">{{ SKB.pathFile}}
+                    </td>
+                    <td style="text-align:center">
+                        <a href="{{ downloadLink+SKB.fileName }}"><i
+						class="fa fa-cloud-download"></em></a>
+						</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="modal-footer text-center">
+            <button class="btn btn-warning" type="button" ng-click="closeModal()">Batal</button>
+        </div>
+    </div>
+</script>

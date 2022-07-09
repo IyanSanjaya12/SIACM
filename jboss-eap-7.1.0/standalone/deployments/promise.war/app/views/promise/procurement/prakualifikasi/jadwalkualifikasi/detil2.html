@@ -1,0 +1,132 @@
+<div class="app-view-header">
+    <span translate="promise.procurement.panitia.jadwalkualifikasi.JUDUL"></span>
+    <small><span translate="promise.procurement.panitia.jadwalkualifikasi.KETERANGAN"></span></small>
+</div>
+<!--START CONTROLLER-->
+<div ng-controller="JadwalKualifikasiDetil2Controller as form">
+    <promise-view-data-pengadaan pengadaan-id=pengadaan.id></promise-view-data-pengadaan>
+    <!-- Panel 4 -->
+    <div class="panel panel-primary">
+        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-calendar">&nbsp;</em>
+			Jadwal Pengadaan	
+		</h4>
+        <div class="panel-body">
+            <div align="center" ng-if="loadingJadwalPengadaan == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px" border="0"/></strong>
+            </div>
+            <div class="row" ng-repeat="jadwalPengadaan in jadwalPengadaanList">
+                <!-- Pengumuman/Undangan Pengadaan -->
+                <div class="col-md-4">
+                    <strong>{{ jadwalPengadaan.tahapanPengadaan.tahapan.nama }}</strong>
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-2">
+                            Tanggal Awal
+                        </div>
+                        <div class="col-md-4">
+                            <p class="input-group">
+                                <input type="text" datepicker-popup="{{form.format}}" ng-model="jadwalPengadaan.tglAwal" is-open="jadwalPengadaan.tglAwalOpened" max-date="form.maxDate" datepicker-options="form.dateOptions" date-disabled="form.disabled(date, mode)" close-text="Close" class="form-control shadow-z1 input-sm" readonly="" style="background-color:white;"/>
+                                <span class="input-group-btn">
+								<button type="button" ng-click="tglAwalOpen($event,$index)" class="btn btn-default shadow-z1 input-sm " ripple="">
+													<em class="fa fa-calendar"></em>
+								</button>
+								</span>
+                            </p>
+                            <div style="color:red" ng-show="jadwalPengadaan.errorTglAwal">{{jadwalPengadaan.tglAwalMsg}}</div>
+                        </div>
+                        <div class="col-md-2">
+                            Waktu Awal
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="number" ng-model="jadwalPengadaan.waktuJamAwal" class="form-control input-sm" ngMaxlength="2" min="0" max="23" /><span style="color:red" ng-show="jadwalPengadaan.errorWaktuJamAwal">nilai Minimal 0 dan Maksimal 23</span>
+
+                                    <!--                                        <strong style="color:red" ng-if="formJadwalPengadaan.waktuJamAwalPengumuman.$valid==false">Input salah nilai Minimal 0 dan Maksimal 23</strong>-->
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="number" ng-model="jadwalPengadaan.waktuMenitAwal" class="form-control input-sm" ngMaxlength="2" min="0" max="59" /><span style="color:red" ng-show="jadwalPengadaan.errorWaktuMenitAwal">nilai Minimal 0 dan Maksimal 59</span>
+                                    <!--                                        <strong style="color:red" ng-if="formJadwalPengadaan.waktuMenitAwalPengumuman.$valid==false">Input salah nilai Minimal 0 dan Maksimal 59</strong>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            Tanggal Akhir
+                        </div>
+                        <div class="col-md-4">
+                            <p class="input-group">
+                   <input type="text" datepicker-popup="{{form.format}}" ng-model="jadwalPengadaan.tglAkhir" is-open="jadwalPengadaan.tglAkhirOpened" max-date="form.maxDate" datepicker-options="form.dateOptions" date-disabled="form.disabled(date, mode)" close-text="Close" class="form-control shadow-z1 input-sm" readonly="" style="background-color:white;"/>
+                                <span class="input-group-btn">
+								<button type="button" ng-click="tglAkhirOpen($event,$index)" class="btn btn-default shadow-z1 input-sm " ripple="">
+													<em class="fa fa-calendar"></em>
+								</button>
+								</span>
+                            </p>
+                            <div style="color:red" ng-show="jadwalPengadaan.errorTglAkhir">{{jadwalPengadaan.tglAkhirMsg}}</div>
+                        </div>
+                        <div class="col-md-2">
+                            Waktu Akhir
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="number" ng-model="jadwalPengadaan.waktuJamAkhir" class="form-control input-sm" ngMaxlength="2" min="0" max="23" />
+                                    <div style="color:red" ng-show="jadwalPengadaan.errorWaktuJamAkhir">nilai Minimal 0 dan Maksimal 24</div>
+                                    <!--                                        <strong style="color:red" ng-if="formJadwalPengadaan.waktuJamAkhirPengumuman.$valid==false">Input salah nilai Minimal 0 dan Maksimal 23</strong>-->
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="number" ng-model="jadwalPengadaan.waktuMenitAkhir" class="form-control input-sm" ngMaxlength="2" min="0" max="60" />
+                                    <div style="color:red" ng-show="jadwalPengadaan.errorWaktuMenitAkhir">nilai Minimal 0 dan Maksimal 59</div>
+                                    <!--                                        <strong style="color:red" ng-if="formJadwalPengadaan.waktuMenitAkhirPengumuman.$valid==false">Input salah nilai Minimal 0 dan Maksimal 59</strong>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-if="jadwalPengadaan.noUndangan==true">
+                        <div class="col-md-2">No Undangan</div>
+                        <div class="col-md-5">
+                            <input type="text" class="form-control shadow-z1 input-sm" ng-model="jadwalPengadaan.noUndangan" />
+                        </div>
+                    </div>
+                    <span ng-if="statusJadwal==true">
+						<div class="row" ng-if="jadwalPengadaan.lokasiStatus==true">
+							<div class="col-md-2">Lokasi</div>
+							<div class="col-md-8">
+								<input type="text" class="form-control shadow-z1 input-sm" ng-model="jadwalPengadaan.lokasi" />
+							</div>
+						</div>
+                        </span>
+                    <span ng-if="statusJadwal==false">
+						<div class="row" ng-if="jadwalPengadaan.lokasiStatus==true">
+							<div class="col-md-2">Lokasi</div>
+							<div class="col-md-8">
+								<input type="text" class="form-control shadow-z1 input-sm" ng-model="jadwalPengadaan.lokasi" />
+							</div>
+						</div>
+                        </span>
+                    <div class="row">
+                        <p>
+                            <hr/>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div align="center">
+        <strong style="color:red">{{ messageError }}</strong>
+
+        <strong ng-if="btnDaftarPengadaanStatus==false" style="color:green">Selamat Anda sudah terdaftar</strong>
+        <br/>
+
+        <button ng-class="'bg-' + app.theme.name" ng-click="btnKembali()" class="btn btn-sm pull-center" ripple="">
+            <span class=""><em class="fa fa-chevron-left"></em></span>&nbsp;&nbsp;<font color="white"><span translate="promise.procurement.panitia.jadwalkualifikasi.detil.KEMBALI"></span></font>
+        </button>
+        <button ng-class="'bg-' + app.theme.name" ng-click="btnTest()" class="btn btn-sm pull-center" ripple="">
+            <span class=""><em class="fa fa-sign-in"></em></span>&nbsp;&nbsp;<font color="white"><span ng-if="statusJadwal==false">Simpan</span><span ng-if="statusJadwal==true">Ubah</span></font>
+        </button>
+    </div>
+</div>

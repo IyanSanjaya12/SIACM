@@ -1,0 +1,150 @@
+<div ng-controller="SanggahanPrakualifikasiDetilController as form">
+    <div class="app-view-header">
+        <span translate="">Sanggahan Prakualifikasi</span>
+    </div>
+    <div class="panel panel-primary">
+        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-tasks">&nbsp;</em><span translate="">Data Pengadaan</span></h4>
+        <div class="panel-body">
+            <div ng-show="!isLoading" class="table-responsive">
+                <table ng-show="!isLoading" id="table-ext-1" class="table table-bordered table-hover" width="100%">
+                    <tbody>
+                        <tr>
+                            <td style="text-align:left;vertical-align:top" width="40%">Nama Pengadaan</td>
+                            <td style="text-align:left;vertical-align:top" width="60%" ng-bind="pengadaan.namaPengadaan"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left;vertical-align:top">Jenis Pengadaan / Kategori Pengadaan</td>
+                            <td style="text-align:left;vertical-align:top" ng-bind="pengadaan.jenisPengadaan.nama"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left;vertical-align:top">Metode Pengadaan</td>
+                            <td style="text-align:left;vertical-align:top" ng-bind="pengadaan.metodePengadaan.nama"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left;vertical-align:top">Kualifikasi Pengadaan</td>
+                            <td style="text-align:left;vertical-align:top" ng-bind="pengadaan.kualifikasiPengadaan.nama"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left;vertical-align:top">Metode Penawaran Harga</td>
+                            <td style="text-align:left;vertical-align:top" ng-bind="pengadaan.metodePenawaranHarga.nama"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left;vertical-align:top">Sistem Evaluasi Penawaran Harga</td>
+                            <td style="text-align:left;vertical-align:top" ng-bind="pengadaan.sistemEvaluasiPenawaran.nama"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left;vertical-align:top">Kualifikasi Penyedia Barang/Jasa</td>
+                            <td style="text-align:left;vertical-align:top" ng-bind="pengadaan.kualifikasiVendor.nama"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left;vertical-align:top">Bidang - Sub Bidang Usaha</td>
+                            <td style="text-align:left;vertical-align:top">
+                                <div ng-repeat="bd in bidangUsahaList">
+                                    <li style="margin-left:12px" ng-bind="bd.subBidangUsaha.bidangUsaha.nama"></li>
+                                    <ul class="fa fa-long-arrow-right" ng-bind="bd.subBidangUsaha.nama">
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left;vertical-align:top">Keterangan Pengadaan</td>
+                            <td style="text-align:left;vertical-align:top" ng-bind="pengadaan.keterangan"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-primary">
+        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-tasks">&nbsp;</em><span translate="">Data Penyedia Barang/Jasa</span></h4>
+        <div class="panel-body">
+            <div class="col-md-12">
+                <div align="center" ng-if="loadingHasilKualifikasi == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px" border="0"/></strong>
+                </div>
+                <table datatable="ng" class="row-border hover table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"style="text-align:left">NO</th>
+                            <th scope="col"style="text-align:left"><span translate="">Nama Penyedia Barang/Jasa</span></th>
+                            <th scope="col"style="text-align:left"><span translate="">Telepon</span></th>
+                            <th scope="col"style="text-align:left"><span translate="">Alamat</span></th>
+                            <th scope="col"style="text-align:left"><span translate="">Status</span></tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="hasilKualifikasi in hasilKualifikasiList">
+                            <td style="text-align:center;width=5px">{{ ($index + 1) }}</td>
+                            <td style="text-align:left">{{ hasilKualifikasi.vendor.nama }}</td>
+                            <td style="text-align:left">{{ hasilKualifikasi.vendor.nomorTelpon }}</td>
+                            <td style="text-align:left">{{ hasilKualifikasi.vendor.alamat }}</td>
+                            <td style="text-align:left">{{ hasilKualifikasi.statusMemenuhi==true? 'Memenuhi' : 'Tidak Memenuhi' }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-primary">
+        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-tasks">&nbsp;</em><span translate="">Keterangan Sanggahan</span></h4>
+        <div class="panel-body">
+            <div class="col-sm-12">
+                <div class="col-sm-4">Status Sanggahan</div>
+                <div class="col-sm-8">
+                    <div class="col-sm-12">
+                        <div class="radio-inline c-radio">
+                            <label>
+                                <input id="inlineradio1" type="radio" name="statusSanggahan" ng-model="statusSanggahan" value="1"/>
+                                <span class="fa fa-circle"></span>Diterima</label>
+                        </div>
+                        <div class="radio-inline c-radio">
+                            <label>
+                                <input id="inlineradio2" type="radio" name="statusSanggahan" ng-model="statusSanggahan" value="2"/>
+                                <span class="fa fa-circle"></span>Ditolak</label>
+                        </div>
+                        <div class="radio-inline c-radio">
+                            <label>
+                                <input id="inlineradio3" type="radio" name="statusSanggahan" ng-model="statusSanggahan" value="0"  checked="checked" />
+                                <span class="fa fa-circle"></span>Tidak Ada</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-4">Tanggal Sanggahan</div>
+                <div class="col-sm-8">
+                    <div class="col-md-4">
+                        <p class="input-group">
+                            <input type="text" datepicker-popup="{{form.format}}" ng-model="form.tanggalSanggahan" is-open="form.tanggalSanggahanOpened" max-date="form.maxDate" datepicker-options="form.dateOptions" date-disabled="form.disabled(date, mode)" close-text="Close" class="form-control shadow-z1 input-sm" readonly="" style="background-color:white;" />
+                            <span class="input-group-btn">
+								<button type="button" ng-click="form.tanggalSanggahanOpen($event,$index)" class="btn btn-default shadow-z1 input-sm " ripple="">
+													<em class="fa fa-calendar"></em>
+								</button>
+								</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-4">Keterangan</div>
+                <div class="col-sm-8">
+                    <textarea rows="4" cols="50" class="form-control input-sm" id="" ng-model="keterangan" maxlength="250">
+                    </textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div align="center">
+        <div ng-show="statusSimpan"><strong style="color:green">{{ messageSimpan }}</strong></div>
+        <div align="center" ng-if="loadingSimpanSanggahan == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px" border="0"/></strong>
+                </div>
+        <button ng-class="'bg-' + app.theme.name" ng-click="btnKembali()" class="btn btn-sm pull-center" ripple="">
+            <span class=""><em class="fa fa-chevron-left"></em></span>&nbsp;&nbsp;<font color="white"><span translate="">Kembali</span></font>
+        </button>
+        <button ng-class="'bg-' + app.theme.name" ng-click="btnSimpan()" class="btn btn-sm pull-center" ripple="">
+            <span class=""><em class="fa fa-sign-in"></em></span>&nbsp;&nbsp;<font color="white"><span>Simpan</span></font>
+        </button>
+    </div>
+</div>

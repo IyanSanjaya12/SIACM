@@ -1,0 +1,292 @@
+<!--
+SPESIFIC VIEW OF THE KRITERIA KUALIFIKASI MENU FROM PRAKUALIFIKASI MODULE
+---------------------- START CONTROLLER ---------------------------------
+-->
+
+<div class="app-view-header">
+    <span translate="promise.procurement.panitia.kriteriakualifikasi.JUDUL"></span>
+</div>
+<toaster-container toaster-options="{'position-class': 'toast-top-center', 'close-button':true}"></toaster-container>
+
+<div ng-controller="KriteriaKualifikasiViewJasaController as form">
+    <form method="" action="" novalidate="" class="form-horizontal">
+        <div id="kriteriaKualifikasi">
+            <promise-view-data-pengadaan pengadaan-id=pengadaanId></promise-view-data-pengadaan>
+            
+<!-------------------------------------------------------------------- Table Ke 4 --------------------------------------------------------------------------->
+            <div class="panel panel-primary">
+                <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-wrench">&nbsp;</em><span translate="promise.procurement.panitia.kriteriakualifikasi.view.daftarkriteriaadmin.JUDUL"></span></h4>
+                <div class="pull-right">
+        				<button ng-class="'bg-' + app.theme.name" ng-click="addDataKriteria()" class="btn btn-primary btn-sm" ng-show="detilPengadaan.tahapanPengadaan.tahapan.id==1008">
+               				<span class=""><em class="fa fa-plus"></em></span>									
+							<span translate="promise.procurement.panitia.kriteriakualifikasi.view.btn.TAMBAH">Tambah</span>
+            			</button>                                                
+        			</div>
+                <div class="panel-body">
+                    <br/>
+                    <div class="col-md-12">
+                        <div>
+                            <div class="table-responsive" style="overflow:visible">
+                                <table ng-table="kriteriaKualifikasiTable" class="table table-hover table-condensed table-striped bg-white">
+                                    <thead>
+                                    	<tr style="font-weight: bold">
+                                            <th scope="col"style="width:5%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.kriteriakualifikasi.view.daftarkriteriaadmin.NO"></span>
+                                            </th>
+                                            <th scope="col"style="width:25%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.kriteriakualifikasi.view.daftarkriteriaadmin.NAMAKRITERIA"></span>
+                                            </th>
+                                            <th scope="col"style="width:20%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.kriteriakualifikasi.view.daftarkriteriaadmin.DESKRIPSI"></span>
+                                            </th>
+                                            <th scope="col"style="width:25%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.kriteriakualifikasi.view.daftarkriteriaadmin.AKSI"></span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                       					<tr ng-repeat="dataKriteria in $data">
+                       						<td style="text-align:center">{{$index+1}}</td>
+                    	    				<td>{{ dataKriteria.nama }}</td>
+                          					<td>{{ dataKriteria.keterangan }}</td>
+                           					<td style="white-space: nowrap; text-align:center">
+                            					<button ng-click="deleteDataKriteria($index, dataKriteria)" title="Delete" class="btn btn-sm btn-danger" ng-disabled="detilPengadaan.tahapanPengadaan.tahapan.id>1008">
+                               						<em class="fa fa-trash"></em>
+                              					</button>
+                           					</td>
+                       					</tr>
+                       				</tbody>
+                              	</table>
+                        	</div>
+                   		</div>
+               		</div>
+                             
+             	</div>
+       		</div>
+
+<!-------------------------------------------------------------------- Table Ke 5 --------------------------------------------------------------------------->
+			<div class="panel panel-primary">
+                <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-money">&nbsp;</em><span translate="promise.procurement.panitia.kriteriakualifikasi.view.daftarkriteriakeuangan.JUDUL"></span></h4>
+                <div class="panel-body">
+                    <br/>
+                    <div class="col-md-12">
+                        <div>
+                            <div class="table-responsive" style="overflow:visible">
+                                <table class="table table-hover table-condensed table-striped bg-white">
+                                    <thead>
+                                    	<tr style="font-weight: bold">
+                                            <th scope="col"style="width:5%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.kriteriakualifikasi.view.daftarkriteriakeuangan.NO"></span>
+                                            </th>
+                                            <th scope="col"style="width:55%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.kriteriakualifikasi.view.daftarkriteriakeuangan.NAMAKRITERIA"></span>
+                                            </th>
+                                            <th scope="col"style="width:25%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.kriteriakualifikasi.view.daftarkriteriakeuangan.BOBOT"></span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                       					<tr>
+                       						<td style="text-align:center">1</td>
+                    	    				<td style="text-align:center"><span translate="promise.procurement.panitia.kriteriakualifikasi.view.daftarkriteriakeuangan.FAKTORLIKUIDITAS"></span></td>
+                    	    				<td style="white-space: nowrap; text-align:center">
+                            					<input type="text" name="FL" ng-model="form.dataKriteriaKeuangan.faktorLikuiditas" ng-blur="cekNilaiFL(form.dataKriteriaKeuangan.faktorLikuiditas)" ng-disabled="detilPengadaan.tahapanPengadaan.tahapan.id>1008" style="text-align:center; vertical-align:middle; width:100px"/>
+                           					</td>
+                       					</tr>
+                       					<tr>
+                       						<td style="text-align:center">2</td>
+                    	    				<td style="text-align:center"><span translate="promise.procurement.panitia.kriteriakualifikasi.view.daftarkriteriakeuangan.FAKTORPERPUTARANMODAL"></span></td>
+                    	    				<td style="white-space: nowrap; text-align:center">
+                            					<input type="text" name="FM" ng-model="form.dataKriteriaKeuangan.faktorModal" ng-blur="cekNilaiFM(form.dataKriteriaKeuangan.faktorModal)" ng-disabled="detilPengadaan.tahapanPengadaan.tahapan.id>1008" style="text-align:center; vertical-align:middle; width:100px"/>
+                           					</td>
+                       					</tr>
+                       					<tr>
+                       						<td style="text-align:center">3</td>
+                    	    				<td style="text-align:center"><span translate="promise.procurement.panitia.kriteriakualifikasi.view.daftarkriteriakeuangan.BESARAMBANG"></span></td>
+                    	    				<td style="white-space: nowrap; text-align:center">
+                            					<input type="text" name="BA" ng-model="form.dataKriteriaKeuangan.besarAmbang" ng-blur="cekNilaiBA(form.dataKriteriaKeuangan.besarAmbang)" ng-disabled="detilPengadaan.tahapanPengadaan.tahapan.id>1008" style="text-align:center; vertical-align:middle; width:100px"/>
+                           					</td>
+                       					</tr>
+                       				</tbody>
+                              	</table>
+                        	</div>
+                   		</div>
+               		</div>
+                             
+             	</div>
+       		</div>			
+   
+<!-------------------------------------------------------------------- Table Ke 6 --------------------------------------------------------------------------->                 
+       		<div class="panel panel-primary">
+            	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-wrench">&nbsp;</em><span translate="promise.procurement.panitia.kriteriakualifikasi.view.daftarkriteriateknis.JUDUL"></span></h4>
+          	
+          		<div class="panel-body">
+                    <br/>
+                    <div class="col-md-12">
+                        <div>
+                            <div class="table-responsive" style="overflow:visible">
+                                <table class="table table-hover table-condensed table-striped bg-white">
+                                    <thead>
+                                    	<tr style="font-weight: bold">
+                                            <th scope="col"style="width:5%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.kriteriakualifikasi.view.daftarkriteriateknis.NO"></span>
+                                            </th>
+                                            <th scope="col"style="width:55%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.kriteriakualifikasi.view.daftarkriteriateknis.NAMAKRITERIA"></span>
+                                            </th>
+                                            <th scope="col"style="width:25%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.kriteriakualifikasi.view.daftarkriteriateknis.NILAI"></span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                       					<tr >
+                       						<td style="text-align:center">1</td>
+                    	    				<td style="text-align:center"><span translate="promise.procurement.panitia.kriteriakualifikasi.view.daftarkriteriateknis.ITEM1"></span></td>
+                          					<td style="text-align:center">
+                          						<div class="radio c-radio">
+                									<label style="color:purple" ng-repeat="konst in kriteriaKualifikasiTeknisList">
+                    									<input ng-disabled="detilPengadaan.tahapanPengadaan.tahapan.id>1008" type="radio" name="optionsRadios" ng-model="konst.pilih" ng-value="konst" ng-click="checkSummary(konst)" /><span class="fa fa-circle"></span>{{ konst.kode }} &nbsp;&nbsp;&nbsp;
+                    								</label>
+            									</div>
+                          					</td>
+                       					</tr>
+                       					<tr >
+                       						<td style="text-align:center">2</td>
+                    	    				<td style="text-align:center"><span translate="promise.procurement.panitia.kriteriakualifikasi.view.daftarkriteriateknis.ITEM2"></span></td>
+                          					<td style="text-align:center">
+                          						<input type="number" name="item2" ng-model="tambahanDataKriteriaTeknis.nilaiTertinggiBidangPekerjaan" ng-blur="cekNilai(tambahanDataKriteriaTeknis.nilaiTertinggiBidangPekerjaan)" ng-change="totalNilai()" ng-disabled="detilPengadaan.tahapanPengadaan.tahapan.id>1008" style="text-align:center; vertical-align:middle; width:100px"/>
+                          					</td>
+                       					</tr>
+                       					<tr >
+                       						<td style="text-align:center">3</td>
+                    	    				<td style="text-align:center"><span translate="promise.procurement.panitia.kriteriakualifikasi.view.daftarkriteriateknis.ITEM3"></span></td>
+                          					<td style="text-align:center">
+                          						<input type="number" name="item3" ng-model="tambahanDataKriteriaTeknis.nilaiKontrak" ng-blur="cekNilai(tambahanDataKriteriaTeknis.nilaiKontrak)" ng-change="totalNilai()" ng-disabled="detilPengadaan.tahapanPengadaan.tahapan.id>1008" style="text-align:center; vertical-align:middle; width:100px"/>
+                          					</td>
+                       					</tr>
+                       					<tr >
+                       						<td style="text-align:center">4</td>
+                    	    				<td style="text-align:center"><span translate="promise.procurement.panitia.kriteriakualifikasi.view.daftarkriteriateknis.ITEM4"></span></td>
+                          					<td style="text-align:center">
+                          						<input type="number" name="item4" ng-model="tambahanDataKriteriaTeknis.nilaiStatusPenyedia" ng-blur="cekNilai(tambahanDataKriteriaTeknis.nilaiStatusPenyedia)" ng-change="totalNilai()" ng-disabled="detilPengadaan.tahapanPengadaan.tahapan.id>1008" style="text-align:center; vertical-align:middle; width:100px"/>
+                          					</td>
+                       					</tr>
+                       					<tr >
+                       						<td style="text-align:center">5</td>
+                    	    				<td style="text-align:center"><span translate="promise.procurement.panitia.kriteriakualifikasi.view.daftarkriteriateknis.ITEM5"></span></td>
+                          					<td style="text-align:center">
+                          						<input type="number" name="item5" ng-model="tambahanDataKriteriaTeknis.nilaiPersonil" ng-blur="cekNilai(tambahanDataKriteriaTeknis.nilaiPersonil)" ng-change="totalNilai()" ng-disabled="detilPengadaan.tahapanPengadaan.tahapan.id>1008" style="text-align:center; vertical-align:middle; width:100px"/>
+                          					</td>
+                       					</tr>
+                       					<tr >
+                       						<td style="text-align:center">6</td>
+                    	    				<td style="text-align:center"><span translate="promise.procurement.panitia.kriteriakualifikasi.view.daftarkriteriateknis.ITEM6"></span></td>
+                          					<td style="text-align:center">
+                          						<input type="number" name="item6" ng-model="tambahanDataKriteriaTeknis.nilaiPeralatan" ng-blur="cekNilai(tambahanDataKriteriaTeknis.nilaiPeralatan)" ng-change="totalNilai()" ng-disabled="detilPengadaan.tahapanPengadaan.tahapan.id>1008" style="text-align:center; vertical-align:middle; width:100px"/>
+                          					</td>
+                       					</tr>
+                       					<tr >
+                       						<td style="text-align:center">7</td>
+                    	    				<td style="text-align:center"><span translate="promise.procurement.panitia.kriteriakualifikasi.view.daftarkriteriateknis.ITEM7"></span></td>
+                          					<td style="text-align:center">
+                          						<input type="number" name="item7" ng-model="tambahanDataKriteriaTeknis.nilaiMutu" ng-blur="cekNilai(tambahanDataKriteriaTeknis.nilaiMutu)" ng-change="totalNilai()" ng-disabled="detilPengadaan.tahapanPengadaan.tahapan.id>1008" style="text-align:center; vertical-align:middle; width:100px"/>
+                          					</td>
+                       					</tr>
+                       					<tr >
+                       						<td style="text-align:center"></td>
+                    	    				<td style="text-align:left"><span translate="promise.procurement.panitia.kriteriakualifikasi.view.daftarkriteriateknis.JUMLAHNILAI"></span></td>
+                          					<td style="text-align:center">
+                          						<input type="number" ng-model="jumlahNilai" style="text-align:center; vertical-align:middle; width:100px" ng-disabled="true"/>
+                          					</td>
+                       					</tr>
+                       					<tr >
+                       						<td style="text-align:center"></td>
+                    	    				<td style="text-align:left"><span translate="promise.procurement.panitia.kriteriakualifikasi.view.daftarkriteriateknis.NILAIAMBANG"></span></td>
+                          					<td style="text-align:center">
+                          						<input type="number" name="nilaiAmbang" ng-model="tambahanDataKriteriaTeknis.nilaiAmbang" ng-blur="cekNilaiAmbang(tambahanDataKriteriaTeknis.nilaiAmbang)" ng-disabled="detilPengadaan.tahapanPengadaan.tahapan.id>1008" style="text-align:center; vertical-align:middle; width:100px"/>
+                          					</td>
+                       					</tr>
+                       				</tbody>
+                              	</table>
+                        	</div>
+                   		</div>
+              		</div>
+       			</div>
+            </div>
+                    
+   		</div>
+   		
+   		<div align="center">
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="back()"><em class="fa fa-arrow-circle-left">&nbsp;</em>
+                <span translate="promise.procurement.panitia.kriteriakualifikasi.view.btn.KEMBALI"></span>
+            </button>
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="printDiv('kriteriaKualifikasi')" ng-show="detilPengadaan.tahapanPengadaan.tahapan.id>1008"><em class="fa fa-print">&nbsp;</em>
+                <span translate="promise.procurement.panitia.kriteriakualifikasi.view.btn.PRINT"></span>
+            </button>
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="simpan()" ng-show="detilPengadaan.tahapanPengadaan.tahapan.id==1008" >
+                <span translate="promise.procurement.panitia.kriteriakualifikasi.view.btn.SIMPAN"></span>&nbsp;<em class="fa fa-check"></em>
+            </button>
+        </div>
+        <br>
+  	</form>
+</div>
+
+<!-------------------------------------------------- MODAL ALERT FOR DELETE --------------------------------------------------->
+<script type="text/ng-template" id="/alertModal.html">
+	<div class="modal-header">
+    	<button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="cancel()">×</button>
+        <h3 class="modal-title">Hapus Data</h3>
+    </div>
+    <div class="modal-body">
+    	Anda yakin ingin menghapus item <strong>{{ nameData }}</strong>
+    </div>
+    <div class="modal-footer">
+    	<button ng-click="ok()" class="btn btn-primary">OK</button>
+        <button ng-click="cancel()" class="btn btn-warning">Cancel</button>
+    </div>
+</script>
+
+<!-------------------------------------------------- MODAL DATA KRITERIA KUALIFIKASI ------------------------------------------>
+<script type="text/ng-template" id="/masterKriteriaKualifikasiAdmin.html">
+<div class="app-view-header"></div>
+<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+	<span translate="promise.procurement.panitia.kriteriakualifikasi.view.daftarkriteriaadmin.JUDULMODAL"></span>
+</h4>
+<div class="panel panel-primary">
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-md-12">
+        		<div>
+					<div align="center" ng-if="loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+            		<div class="table-responsive">
+                  		<table datatable="ng" class="table table-bordered table-hover table-striped table-bordered">
+                        	<thead>
+                            	<tr>
+                                	<th scope="col"style="text-align:left" width="50px"><center>No</center></th>
+                                	<th scope="col"style="text-align:left" width="500px"><center><span translate="promise.procurement.panitia.kriteriakualifikasi.view.daftarkriteriaadmin.NAMAKRITERIA">Nama Kriteria Administrasi</span>
+                            		</center></th>
+                             	</tr>
+                         	</thead>
+                        	<tbody>
+                           		<tr ng-repeat = "ka in masterKriteriaKualifikasiAdminList">
+                            		<td style="text-align:center">
+                                 		<div class="checkbox c-checkbox c-checkbox-rounded">
+                                     		<label>
+                                        		<input type="checkbox" name="ka.nama" ng-model="ka.active" ng-change="changeAdminCheck(ka, active)"/><span class="fa fa-check"></span></label>
+                                     	</div>
+                                 	</td>
+                               		<td style="text-align:center">{{ka.nama}}</td>
+                             	</tr>
+                       		</tbody>
+                		</table>
+						<div class="form-group">
+							<div class="col-lg-offset-2 col-lg-10">
+            					<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="btnBatal()">
+                        			<span class="btn-label"><em class="fa fa-chevron-left"></em></span>
+                            		<span translate="promise.procurement.RegistrasiVendor.kembali"></span>
+                        		</button>
+                        		<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="btnSimpan()" >
+                          			<span translate="promise.procurement.RegistrasiVendor.simpan"></span>
+                           			<span class="btn-label btn-label-right"><em class="fa fa-chevron-right"></em></span>
+                        		</button>
+               				</div>
+          				</div>
+       				</div>
+       			</div>
+      		</div>
+		</div>
+	</div>
+</div>
+</script>

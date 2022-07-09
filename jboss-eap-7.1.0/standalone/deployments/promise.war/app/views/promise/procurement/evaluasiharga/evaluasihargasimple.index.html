@@ -1,0 +1,60 @@
+<!-- 
+GENERAL VIEW OF THE PROCUREMENT SYSTEM 
+---------- START CONTROLLER ----------
+-->
+
+<div class="app-view-header">
+    <span translate="promise.procurement.panitia.evaluasiharga.JUDUL">Evaluasi Harga</span> 
+</div>
+<toaster-container toaster-options="{'position-class': 'toast-top-center', 'close-button':true}"></toaster-container>
+<div class="panel panel-primary" ng-controller="EvaluasiHargaSimpleController as form">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-tasks">&nbsp;</em><span translate="promise.procurement.panitia.evaluasiharga.SUBJUDUL">Evaluasi Harga</span></h4>
+    <div class="panel-body">
+        <br/>
+        <div class="col-md-12">
+            <div>
+				<div align="center" ng-if="loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+                <table datatable="ng" class="row-border hover table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"style="text-align:center">No
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.kriteriaevaluasi.list.NOMOR">Nomor</span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.kriteriaevaluasi.list.NAMA">Nama Pengadaan</span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.kriteriaevaluasi.list.POSISI">Posisi Pengadaan</span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.kriteriaevaluasi.list.CREATEDATE">Tanggal Buat Pengadaan</span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.kriteriaevaluasi.list.AKSI">Aksi</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="pp in pengadaanList">
+                            <td style="text-align:center">{{ $index+1 }}</td>
+                            <td style="text-align:center">{{ pp.nomorNotaDinas }}</td>
+                            <td style="text-align:center">{{ pp.namaPengadaan }}</td>
+                            <td style="text-align:center">{{ pp.tahapanPengadaan.tahapan.nama }}</td>
+                            <td style="text-align:center">{{ pp.created | date:'dd/MM/yyyy'}}</td>
+                            <td style="text-align:center">
+								
+									<div>
+										<button ng-if="pp.tahapanPengadaan.tahapan.id == 14000001" type="button" class="mr btn btn-success btn-circle btn-xs" ng-click="edit(pp)">
+											<em  class="fa fa-pencil fa-lg"></em>
+										</button>									
+										<button ng-if="pp.tahapanPengadaan.tahapan.id != 14000001" type="button" class="mr btn btn-primary btn-circle btn-xs" ng-click="view(pp)">
+											<em  class="fa fa-search"></em>
+										</button>
+									</div>
+								
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END CONTROLLER-->

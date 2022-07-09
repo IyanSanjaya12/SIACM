@@ -1,0 +1,10 @@
+"{\"WFLYCTL0080: Failed services\" => {\"jboss.persistenceunit.\\\"promiseear.ear/promiseejb.jar#promisePU\\\"\" => \"javax.persistence.PersistenceException: [PersistenceUnit: promisePU] Unable to build Hibernate SessionFactory
+    Caused by: javax.persistence.PersistenceException: [PersistenceUnit: promisePU] Unable to build Hibernate SessionFactory
+    Caused by: org.hibernate.exception.GenericJDBCException: Unable to open JDBC Connection for DDL execution
+    Caused by: java.sql.SQLException: javax.resource.ResourceException: IJ000453: Unable to get managed connection for java:jboss/promiseAllDS
+    Caused by: javax.resource.ResourceException: IJ000453: Unable to get managed connection for java:jboss/promiseAllDS
+    Caused by: javax.resource.ResourceException: IJ031084: Unable to create connection
+    Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+    Caused by: java.net.ConnectException: Connection refused: connect\"}}"

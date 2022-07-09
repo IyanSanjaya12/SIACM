@@ -1,0 +1,4 @@
+[{"nomorVendor":"V001", "namaVendor":"PT. Mitra Mandiri Informatika", "email":"admin@mmi-pt.com", "statusSaatIni":"Sudah Dinilai", "tanggalPenilaian":"2016-08-31", "rata2NilaiKontrak":450000000},
+	{"nomorVendor":"V002", "namaVendor":"PT. Jaya Abadi", "email":"admin@jayaabadi.com", "statusSaatIni":"Sudah Dinilai", "tanggalPenilaian":"2016-08-31", "rata2NilaiKontrak":700000000},
+	{"nomorVendor":"V003", "namaVendor":"PT. Metro Teknologi", "email":"admin@netroteknologi.com", "statusSaatIni":"Belum", "tanggalPenilaian":"", "rata2NilaiKontrak":250000000},
+	{"nomorVendor":"V004", "namaVendor":"PT. Siaga Data", "email":"admin@siagadata.com", "statusSaatIni":"Belum", "tanggalPenilaian":"", "rata2NilaiKontrak":100000000}]

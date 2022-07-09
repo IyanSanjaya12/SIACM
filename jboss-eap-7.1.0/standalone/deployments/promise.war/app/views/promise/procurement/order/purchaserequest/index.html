@@ -1,0 +1,122 @@
+<div class="app-view-header">
+    <span>Purchase Request</span>
+    <small><span>PR</span></small>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="PurchaseRequestController as form">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><span >Purchase Request Status</span></h4>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <a href="#/app/promise/procurement/order/purchaserequest" ng-click="getOnStatus('All')"><span>All <strong>({{allData}})</strong></span></a>
+                    </div>
+                    <div class="col-lg-4">
+                        <a href="#/app/promise/procurement/order/purchaserequest" ng-click="getOnStatus('On Process')"><span>On Process<strong>({{form.prOnProgress}})</strong></span></a>
+                    </div>
+                    <div class="col-lg-4">
+                        <a href="#/app/promise/procurement/order/purchaserequest" ng-click="getOnStatus('Received')"><span>Received <strong>({{form.prReceived}})</strong></span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div align="right">
+                    <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled" ng-click="form.add()">
+                        <span class="btn-label"><em class="fa fa-plus"></em></span>
+                        <span>Add New PR</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2">
+                <strong>PR Number</strong>
+            </div>
+            <div class="col-lg-3">
+                <input type="text" class="form-control shadow-z1 input-sm" ng-model="searchPRNumber" ng-change="getSearchPo()">
+            </div>
+            <div class="col-lg-3"></div>
+            <div class="col-lg-1">
+                Sort By
+            </div>
+            <div class="col-lg-3 pull-right">
+                <select class="form-control m-b shadow-z1 input-sm" ng-model="sortBy" ng-change="getSortPO()">
+                    <option ng-repeat="option in sortList" value="{{option.sort}}">{{option.name}}</option>
+                </select>
+            </div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-md-12">
+                <div align="center" ng-if="loading == true">
+                    <strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px"/></strong>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col"style="text-align:center"><span>PR Number</span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span>Department</span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span>Total Cost (IDR)</span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span>Required Date</span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span>Post Date</span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span>Next Approval</span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span>Action</span>
+                            </th>
+                            </tr>
+                       </thead>
+                       <tbody ng-repeat="pr in purchaseRequestList.listPurchaseRequestDTOs |orderBy:pr.index  | filter:searchPONumber">
+                       		<tr>
+                            <td style="text-align:left">
+                                {{ pr.prnumber }}
+                                <br/>
+                                <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled" ng-click="initDetil = getDetil(pr);">{{ (initDetil==true?'Hide Detail':'Show Detail') }}</button>
+                            </td>
+                            <td>{{ pr.department }}</td>
+                            <td style="text-align:right">{{ pr.totalcost | number : 2 }}</td>
+                            <td style="text-align:center">{{ pr.daterequired | date:'dd-MMM-yyyy' }}</td>
+                            <td style="text-align:center">{{ pr.postdate | date:'dd-MMM-yyyy' }}</td>
+                            <td>{{ pr.nextapproval }}</td>
+                            <td style="white-space: nowrap; text-align:center">
+                            	<button ripple="" ng-click="form.buttonEdit(pr)" title="Edit" class="btn btn-sm btn-success">
+                                   <em class="fa fa-pencil fa-lg"></em>
+                                </button>
+                                <button ripple="" ng-click="form.del(pr)" title="Delete" class="btn btn-sm btn-danger">
+                                   <em class="fa fa-trash"></em>
+                                </button>
+                            </td>
+                        	</tr>
+                            <tr id="info_{{pr.id}}" style="display:none">
+                                <td id="cell_info_{{pr.id}}" colspan="7"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div align="right">
+            <span ng-repeat="page in pageList"><button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-xs" ng-click="getPage(($index+1))">{{($index+1)}}</button></span>
+        </div>
+    </div>
+</div>
+<!--END CONTROLLER-->
+<script type="text/ng-template" id="/deletePurchaseRequest.html">
+    <div class="modal-header" ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="cancel()">×</button>
+        <h3 id="myModalLabel" class="modal-title"><em class="fa fa-trash-o"></em>Delete Purchase Request</h3>
+    </div>
+    <div class="modal-body">
+        <strong>Delete Purchase Request..???</strong>
+    </div>
+    <div class="modal-footer" style="background-color:#EEEEEE">
+        <button ng-click="ok()" class="btn btn-primary">OK</button>
+        <button ng-click="cancel()" class="btn btn-warning">Cancel</button>
+    </div>
+</script>

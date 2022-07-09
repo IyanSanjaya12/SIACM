@@ -1,0 +1,171 @@
+<div class="app-view-header">
+    <span>Booking Order</span>
+</div>
+<div class="panel panel-primary" ng-controller="SalesOrderVendorIndexController as vm">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">Booking Order (BO)</h4>
+    <div class="panel-body">
+        <div align="right">
+        </div>
+        <br/>
+        <div class="col-md-12">
+            <div>
+                <div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px"/></strong>
+                </div>
+                <table datatable="ng" class="row-border hover table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"style="text-align:center">Nomor
+                            </th>
+                            <th scope="col"style="text-align:center">No Booking Order (BO)
+                            </th>
+                            <th scope="col"style="text-align:center">Tanggal
+                            </th>
+                            <th scope="col"style="text-align:center">Buyer
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="template.tabel.aksi">Aksi</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="po in vm.poList"> <!--  -->
+                            <td style="text-align:center">{{ $index+1 }}</td>
+                            <td style="text-align:center">{{ po.soNumber }}</td>     
+                             <td style="text-align:center">{{ po.salesOrder.created | date:'dd/MM/yyyy'}}</td>                      
+                            <td style="text-align:center">{{ po.buyer }}</td>
+                            <td style="text-align:center">
+                                <div>
+                                	<a class="view-order badge bg-primary" ng-click="vm.view(po)" tooltip-placement="top" tooltip="View">
+                                   	 	<em class="glyphicon glyphicon-eye-open"></em>
+                                	</a>
+                                	
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+    <script type="text/ng-template" id="viewpo.html">
+<div class="app-view-header">
+        <button class="close" ng-click="cancel()"><em class="fa fa-close"></em></button>
+</div>    
+ <div class="panel panel-primary">
+	<div class="panel-body">
+		<div class="row">
+
+			<div class="col-md-1"></div>
+			<div class="col-md-10"  style="align:center">
+				<div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong></div>
+    				<fieldset>
+    
+    						<div class="row">
+	    						<div class="form-group">
+	    							<div class="col-sm-3 control-label">
+										<img src="app/img/logo/astrainternasional2.png" alt="Image" 
+											class="center-block img-rounded" />
+	    								<!--<label><strong>Astra</strong></label>-->
+										<label>Jl. Mayor Raya No. 8, Sunter II</label>
+										<label>Jakarta Utara 14330, Indonesia</label>
+				
+	    							</div>
+									<div class="col-sm-2 control-label"></div>
+	    							
+	    							<div class="col-sm-5 control-label">
+	    								<label><strong><h2>Booking Order</h2><strong></label><br/>
+	    								<label><strong>{{boNumber}}<strong></label>
+	    							</div>
+
+									<div class="col-sm-3 control-label"></div>
+								</div>
+							</div><br/><br/>
+
+
+							<div class="row">
+	    						<div class="form-group">
+
+									<div class="col-sm-3 control-label">
+	    								<label><strong>Vendor :</strong></label><br/>
+	    								<label>{{po.catalog.vendor.nama}}</label><br/>
+										<label>{{po.catalog.vendor.alamat}}</label><br/>
+										<label>{{po.catalog.vendor.Alamat}}</label>
+	    							</div>
+
+	    							<div class="col-sm-3 control-label">
+	    								<label><strong>Bill To :</strong></label><br/>
+	    								<label>{{po.salesOrder.billToName}}</label><br/>
+										<label>{{po.salesOrder.billToAddress}}</label><br/>
+										<label>{{po.salesOrder.billToTelp}}</label>
+	    							</div>
+
+									<div class="col-sm-3 control-label"></div>
+
+									<div class="col-sm-3 control-label">
+	    								<label><strong>Ship To :</strong></label><br/>
+	    								<label>{{po.salesOrder.shipToName}}</label><br/>
+										<label>{{po.salesOrder.shipToAddress}}</label><br/>
+										<label>{{po.salesOrder.shipToTelp}}</label>
+	    							</div>
+
+								</div>
+							</div>
+                            <div class="row">
+                                    <div class="table-responsive">
+                                        <table datatables class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" >
+                                           <thead>
+                                                <tr style="font-weight: bold">
+                                                   <th scope="col"style="width: 2%; text-align: center"><span>No</span></th>
+                                                    <th scope="col"style="width: 15%; text-align: center"><span>ID Produk</span></th>
+                                                    <th scope="col"style="width: 20%; text-align: center"><span>Description</span></th>
+                                                    <th scope="col"style="width: 5%; text-align: center"><span>Qty</span></th>
+                                                    <th scope="col"style="width: 25%; text-align: center"><span>Price</span></th>
+                                                    <th scope="col"style="width: 25%; text-align: center"><span>Sub Total</span></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+												  <tr ng-repeat="cat in catalogList">
+													<td style="text-align:center">{{ $index+1 }}</td>
+	                            					<td style="text-align:center">{{ cat.catalog.kodeProduk }}</td>                           
+						                            <td style="text-align:center">{{ cat.catalog.namaIND }}</td>
+	                    					        <td style="text-align:center">{{ cat.qty }}</td>
+	                    					        <td style="text-align:center">{{ cat.harga | currency:'' }} {{cat.catalog.mataUang.kode}}</td>
+	                            					<td style="text-align:center">{{((cat.qty * cat.harga) | currency:'')}} {{cat.catalog.mataUang.kode}} </td>
+												</tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+
+                                                    <th scope="col"colspan="4" style="text-align: right"><span>GRAND TOTAL</span></th>
+                                                    <th scope="col"style="text-align: center">IDR</th>
+                                                    <th scope="col"style="text-align: right">{{ grandTotal | currency:'' }} IDR</th>
+
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                     </div>
+                               	 <div class="page-header clearfix"></div>
+                                <!-- END TABEL -->
+                            </div>
+                            <div class="row">
+
+								<div class="form-group">
+									<div class="col-sm-8" >
+										 <button ng-class="'bg-'+app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-sm " ng-click="cancel()">
+											<span class="btn-label "><em class="fa fa-chevron-left "></em></span>
+											<span translate="">Kembali</span>
+										</button>																			
+									</div>
+								</div>
+							</div>
+                            
+                        </fieldset>
+    
+   				 </div>		            
+			</div>
+		</div>
+	</div>
+</script>
+    

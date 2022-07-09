@@ -1,0 +1,56 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.master.alasanblacklist.judul"></span>
+</div>
+<div class="panel panel-primary" ng-controller="AlasanBlacklistViewController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-tasks"></em>
+			<span ng-if="vm.toDo == 'Add'" translate="promise.procurement.master.alasanblacklist.view.subjudul_tambah"></span>
+			<span ng-if="vm.toDo == 'Edit'" translate="promise.procurement.master.alasanblacklist.view.subjudul_ubah"></span>
+			<a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+					<em class="fa fa-chevron-circle-down"></em>
+			</a>
+	</h4>
+	<div class="panel-body collapse in">
+		<form method="post" name="input" action="#" novalidate="" class="form-horizontal">
+			<fieldset>
+				<div class="form-group">
+					<label for="input-id-1" class="col-sm-2 control-label required">
+						<span translate="promise.procurement.master.alasanblacklist.judul"></span>
+					</label>
+					<div class="col-sm-5">
+						<textarea rows="4" cols="50" class="form-control input-sm" id="" ng-model="vm.alasanBlacklist.alasanBlacklistKeterangan" maxlength="500"></textarea>
+						<strong style="color: red" translate={{vm.errorMessageAlasanBlacklist}}></strong> <br />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="input-id-1" class="col-sm-2 control-label required">
+						<span translate="promise.procurement.master.alasanblacklist.list.jangka_waktu"></span>
+					</label>
+					<div class="col-sm-2">
+						<input id="input-id-1" type="number" maxlength="3" class="form-control" ng-model="vm.alasanBlacklist.alasanBlacklistJmlWaktu"/>
+						<strong style="color: red" translate={{vm.errorMessageJumlahWaktuAlasanBlacklist}}></strong> <br />
+					</div>
+					<div class="col-sm-2">
+						<select class="form-control " ng-model="vm.alasanBlacklist.alasanBlacklistJkWaktu">
+							<option value="D">Hari</option>
+							<option value="M">Bulan</option>
+							<option value="Y">Tahun</option>
+						</select>
+						<strong style="color: red" translate={{vm.errorMessageJangkaWaktuAlasanBlacklist}}></strong> <br />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-5 col-md-push-2 col-sm-5 col-sm-push-3">
+						<button type="button" ripple="" class="mr btn btn-sm bg-default" ng-click="back()">
+							<span translate="template.button.kembali"></span>
+						</button>
+						<button type="button" ripple="" class="mr btn btn-sm bg-primary" ng-click="save()">
+							<span translate="template.button.simpan"></span>
+						</button>
+						<br />
+					</div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</div>

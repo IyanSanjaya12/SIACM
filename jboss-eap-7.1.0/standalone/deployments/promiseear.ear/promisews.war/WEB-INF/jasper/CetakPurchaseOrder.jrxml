@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CetakPurchaseOrder.jrxml" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9b16c32b-0e64-4ceb-b0d4-3b27c7d7b24f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="279"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="purchaseOrderId" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="reportImagePath" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT DISTINCT
+	pr.*,
+	po.*,
+	poItem.*,
+	prItem.*,
+	prItem.ADDRESS_BOOK_ID AS ALAMAT_ID,
+	item.*,
+	satuan.Nama AS namaS,
+	ctlg.NAME_IND AS nameInd,
+	v.ALAMAT AS alamatV,
+	v.NOMOR_TELEPON AS telpV,
+	ab.FULL_NAME AS fullNameAB,
+	ab.STREET_ADDRESS,
+	ab.TELEPHONE,
+	( po.PURCHASE_ORDER_DATE + INTERVAL pr.SLA_DELIVERY_TIME DAY ) AS perkiraanTiba,
+	poItem.TOTAL_UNIT_PRICES AS total_Tamp,
+	( SELECT org.NAMA FROM CATALOG.T1_ORGANISASI org WHERE org.ORGANISASI_ID = pr.ORGANISASI_ID ) AS ORG_NAME
+FROM
+	CATALOG.T3_PURCHASE_REQUEST pr
+	JOIN CATALOG.T3_PURCHASE_ORDER po ON po.PURCHASE_REQUEST_ID = pr.PURCHASE_REQUEST_ID
+	JOIN CATALOG.T4_PURCHASE_ORDER_ITEM poItem ON poItem.PURCHASE_ORDER_ID = po.PURCHASE_ORDER_ID
+	JOIN CATALOG.T2_VENDOR v ON v.VENDOR_ID = poItem.VENDOR_ID
+	JOIN CATALOG.T2_ITEM item ON item.ITEM_ID = poItem.ITEM_ID
+	JOIN CATALOG.T1_SATUAN satuan ON satuan.SATUAN_ID = item.SATUAN_ID
+	JOIN CATALOG.T4_PR_ITEM prItem ON prItem.PURCHASE_REQUEST_ITEM_ID = poItem.PURCHASE_REQUEST_ITEM_ID
+	JOIN CATALOG.T1_ADDRESS_BOOK ab ON ab.ADDRESS_BOOK_ID = prItem.ADDRESS_BOOK_ID
+	JOIN CATALOG.T3_CATALOG ctlg ON ctlg.CATALOG_ID = prItem.CATALOG_ID
+WHERE
+	po.ISDELETE = 0
+	AND prItem.ISDELETE = 0
+	AND po.PURCHASE_ORDER_ID = $P{purchaseOrderId}
+	GROUP BY prItem.ADDRESS_BOOK_ID]]>
+	</queryString>
+	<field name="PURCHASE_REQUEST_ID" class="java.lang.Integer"/>
+	<field name="ALAMAT" class="java.lang.String"/>
+	<field name="APPROVED_DATE" class="java.sql.Timestamp"/>
+	<field name="BO_NUMBER" class="java.lang.String"/>
+	<field name="COST_CENTER" class="java.lang.String"/>
+	<field name="CREATED" class="java.sql.Timestamp"/>
+	<field name="DATEREQUIRED" class="java.sql.Timestamp"/>
+	<field name="DELETED" class="java.sql.Timestamp"/>
+	<field name="DEPARTMENT" class="java.lang.String"/>
+	<field name="DESCRIPTION" class="java.lang.String"/>
+	<field name="INTERFACING_NOTES" class="java.lang.String"/>
+	<field name="ISDELETE" class="java.lang.Integer"/>
+	<field name="IS_JOIN" class="java.lang.Integer"/>
+	<field name="LINK_LAMPIRAN_KONTRAK" class="java.lang.String"/>
+	<field name="LINK_LAMPIRAN_PR" class="java.lang.String"/>
+	<field name="NEXT_APPROVAL" class="java.lang.String"/>
+	<field name="POSTDATE" class="java.sql.Timestamp"/>
+	<field name="PR_ID_EBS" class="java.lang.Integer"/>
+	<field name="PR_NUMBER_SAP" class="java.lang.String"/>
+	<field name="PROCUREMENT_PROCESS" class="java.lang.String"/>
+	<field name="PUSPEL_CODE" class="java.lang.String"/>
+	<field name="REQUESTOR_USER_ID" class="java.lang.Integer"/>
+	<field name="SLA_DELIVERY_TIME" class="java.lang.Integer"/>
+	<field name="STATUS" class="java.lang.Integer"/>
+	<field name="STATUS_EBS" class="java.lang.String"/>
+	<field name="TERM_AND_CONDITION" class="java.lang.String"/>
+	<field name="TOTAL_COST_AFTER_APPROVE" class="java.lang.String"/>
+	<field name="TOTAL_HARGA" class="java.lang.Double"/>
+	<field name="TOTAL_HARGA_ASURANSI" class="java.lang.Double"/>
+	<field name="TOTAL_HARGA_DISCOUNT" class="java.lang.Double"/>
+	<field name="TOTAL_HARGA_ONGKIR" class="java.lang.Double"/>
+	<field name="UPDATED" class="java.sql.Timestamp"/>
+	<field name="USERID" class="java.lang.Integer"/>
+	<field name="VERIFIED_DATE" class="java.sql.Timestamp"/>
+	<field name="ADDRESS_BOOK_ID" class="java.lang.Integer"/>
+	<field name="ORG_APPROVAL_PATH_ID" class="java.lang.Integer"/>
+	<field name="ORGANISASI_ID" class="java.lang.Integer"/>
+	<field name="GV_ATTACHMENT" class="java.lang.String"/>
+	<field name="GV_DOCTYPE" class="java.lang.String"/>
+	<field name="GV_HEADERNOTE" class="java.lang.String"/>
+	<field name="GV_INTERMSOF" class="java.lang.String"/>
+	<field name="REQUISITIONER" class="java.lang.String"/>
+	<field name="TESTRUN" class="java.lang.String"/>
+	<field name="PURCH_ORG_ID" class="java.lang.Integer"/>
+	<field name="PURCHASE_ORDER_ID" class="java.lang.Integer"/>
+	<field name="ADDRESS_LABEL" class="java.lang.String"/>
+	<field name="CREATE_DATE" class="java.sql.Timestamp"/>
+	<field name="DELIVERY_TIME" class="java.sql.Timestamp"/>
+	<field name="DISCOUNT" class="java.lang.Double"/>
+	<field name="DOWN_PAYMENT" class="java.lang.Double"/>
+	<field name="FULL_NAME" class="java.lang.String"/>
+	<field name="KOMEN" class="java.lang.String"/>
+	<field name="KONTRAK_FK" class="java.lang.Integer"/>
+	<field name="NOTES" class="java.lang.String"/>
+	<field name="PO_ID_EBS" class="java.lang.Integer"/>
+	<field name="PO_NUMBER_SAP" class="java.lang.String"/>
+	<field name="PURCHASE_ORDER_DATE" class="java.sql.Timestamp"/>
+	<field name="RATING" class="java.lang.Integer"/>
+	<field name="RATING_DATE" class="java.sql.Timestamp"/>
+	<field name="STATUS_PROSES" class="java.lang.Integer"/>
+	<field name="STREET_ADDRESS" class="java.lang.String"/>
+	<field name="PO_NUMBER_EBS" class="java.lang.String"/>
+	<field name="SUB_TOTAL" class="java.lang.Double"/>
+	<field name="SYNC_STATUS" class="java.lang.Integer"/>
+	<field name="TAX" class="java.lang.Double"/>
+	<field name="TELEPHONE_1" class="java.lang.String"/>
+	<field name="TERMIN_FK" class="java.lang.Integer"/>
+	<field name="TOTAL_COST" class="java.lang.Double"/>
+	<field name="VENDOR_NAME" class="java.lang.String"/>
+	<field name="MATA_UANG_ID" class="java.lang.Integer"/>
+	<field name="PENGADAAN_ID" class="java.lang.Integer"/>
+	<field name="TERM_AND_CONDITION_ID" class="java.lang.Integer"/>
+	<field name="PURCHASE_ORDER_ITEM_ID" class="java.lang.Integer"/>
+	<field name="ITEM_NAME" class="java.lang.String"/>
+	<field name="QUANTITY_PURCHASE_REQUEST" class="java.lang.Double"/>
+	<field name="QUANTITY_SEND" class="java.lang.Double"/>
+	<field name="TOTAL_UNIT_PRICES" class="java.lang.Double"/>
+	<field name="UNIT_PRICE" class="java.lang.Double"/>
+	<field name="ITEM_ID" class="java.lang.Integer"/>
+	<field name="PURCHASE_REQUEST_ITEM_ID" class="java.lang.Integer"/>
+	<field name="SHIPPING_TO_ID" class="java.lang.Integer"/>
+	<field name="VENDOR_ID" class="java.lang.Integer"/>
+	<field name="TAX_CODE" class="java.lang.String"/>
+	<field name="ASURANSI" class="java.lang.Double"/>
+	<field name="KODE" class="java.lang.String"/>
+	<field name="NORMAL_PRICE" class="java.lang.Double"/>
+	<field name="ONGKOS_KIRIM" class="java.lang.Double"/>
+	<field name="PATH" class="java.lang.String"/>
+	<field name="PRICE" class="java.lang.Double"/>
+	<field name="PRICE_JOIN" class="java.lang.Double"/>
+	<field name="QTY_JOIN" class="java.lang.Double"/>
+	<field name="QUANTITY" class="java.lang.Double"/>
+	<field name="QUANTITY_BALANCE" class="java.lang.Double"/>
+	<field name="SPECIFICATION" class="java.lang.String"/>
+	<field name="TOTAL" class="java.lang.Double"/>
+	<field name="UNIT" class="java.lang.String"/>
+	<field name="VENDORNAME" class="java.lang.String"/>
+	<field name="CATALOG_ID" class="java.lang.Integer"/>
+	<field name="PR_JOIN_ID" class="java.lang.Integer"/>
+	<field name="ACCTASSCAT" class="java.lang.String"/>
+	<field name="PREQ_NAME" class="java.lang.String"/>
+	<field name="COSTCENTER_SAP_ID" class="java.lang.Integer"/>
+	<field name="GL_ACCOUNT_SAP_ID" class="java.lang.Integer"/>
+	<field name="PUR_GROUP_SAP_ID" class="java.lang.Integer"/>
+	<field name="STORE_LOC_SAP_ID" class="java.lang.Integer"/>
+	<field name="ALAMAT_ID" class="java.lang.Integer"/>
+	<field name="DESKRIPSI" class="java.lang.String"/>
+	<field name="ITEM_ID_EBS" class="java.lang.String"/>
+	<field name="ITEM_KODE_EBS" class="java.lang.String"/>
+	<field name="NAMA" class="java.lang.String"/>
+	<field name="SOURCE" class="java.lang.String"/>
+	<field name="ITEM_GROUP_ID" class="java.lang.Integer"/>
+	<field name="ITEM_TYPE_ID" class="java.lang.Integer"/>
+	<field name="SATUAN_ID" class="java.lang.Integer"/>
+	<field name="namaS" class="java.lang.String"/>
+	<field name="nameInd" class="java.lang.String"/>
+	<field name="alamatV" class="java.lang.String"/>
+	<field name="telpV" class="java.lang.String"/>
+	<field name="fullNameAB" class="java.lang.String"/>
+	<field name="TELEPHONE" class="java.lang.String"/>
+	<field name="perkiraanTiba" class="java.sql.Timestamp"/>
+	<field name="total_Tamp" class="java.lang.Double"/>
+	<field name="ORG_NAME" class="java.lang.String"/>
+	<variable name="total" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{TOTAL_UNIT_PRICES}]]></variableExpression>
+	</variable>
+	<variable name="ppn" class="java.lang.Double">
+		<variableExpression><![CDATA[(Integer.valueOf($F{total_Tamp}.intValue())+Integer.valueOf($F{ONGKOS_KIRIM}.intValue()))*0.1]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="grandTotal" class="java.lang.Integer">
+		<variableExpression><![CDATA[(Integer.valueOf($F{total_Tamp}.intValue()))+(Integer.valueOf($F{ONGKOS_KIRIM}.intValue()))+(Integer.valueOf($V{ppn}.intValue()))]]></variableExpression>
+	</variable>
+	<variable name="subTotal" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{TOTAL_HARGA_ONGKIR}.intValue()+$V{total}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="750" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="154" width="274" height="114" uuid="8a7df584-ff14-421f-b5ed-c3c48fa2ccd7"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="175" y="125" width="76" height="20" uuid="e7e449cf-b0d6-46f9-92aa-cc4f212dba7e"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Tanggal PO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="105" y="0" width="449" height="20" uuid="257e70a0-4b52-4bbe-b83f-51d04ba2af7e"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PT. KERETA API INDONESIA (PERSERO)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="65" width="555" height="29" uuid="cce7fc61-eadb-419b-b050-d1e60b7eaf40"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Purchase Order]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="197" y="105" width="54" height="20" uuid="a815d042-360b-4adb-bb0b-0f893dbe352b"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[No. PO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="105" y="20" width="448" height="20" uuid="4268a48d-302d-4496-bdd0-0c0eb102aecc"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ORG_NAME}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="0" y="0" width="100" height="50" uuid="cf0d354c-5e8b-45ed-b9d1-6b41547b2e47"/>
+				<imageExpression><![CDATA[$P{reportImagePath}+"logoKai.png"]]></imageExpression>
+			</image>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="251" y="124" width="188" height="20" uuid="8b28576c-ad64-46a5-9ac6-d9b8419fed4e"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd MMMM yyyy",new java.util.Locale("id")).format($F{PURCHASE_ORDER_DATE})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="251" y="105" width="181" height="20" uuid="dc5ddfba-a142-4c30-9fb9-00a69d5e8f25"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PO_NUMBER_SAP}==null?'-':$F{PO_NUMBER_SAP}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="274" y="154" width="281" height="114" uuid="d21e9859-e714-4033-92a3-239a573ef4e1"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="18" y="238" width="52" height="20" uuid="a8c04991-8c22-4712-8830-aa1aa5316f13"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Telp/Fax.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="316" y="188" width="225" height="20" uuid="1911d73d-eaa5-42a5-b844-2e7d1b293d14"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fullNameAB}==null?"-":$F{fullNameAB}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="295" y="188" width="83" height="20" uuid="d6815a12-fc0b-4fdc-bd81-22edc0d1396b"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[IPC]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="70" y="238" width="182" height="20" uuid="0f91872b-16a9-4f82-91f0-087ca603ca7e"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telpV}==null?"-":$F{telpV}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="345" y="238" width="196" height="20" uuid="c474f03a-0d1c-45fb-9022-a1f9ed062bf4"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TELEPHONE} == null ? "-" : $F{TELEPHONE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="295" y="164" width="100" height="20" uuid="bae8243e-1599-4200-b0ba-63e926add6d0"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Kirim ke: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="295" y="208" width="246" height="30" uuid="3722ba71-fadc-4368-ae11-f6b572d746ca"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{STREET_ADDRESS}==null?"-":$F{STREET_ADDRESS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="18" y="188" width="234" height="20" uuid="e459f668-6758-4356-91c8-a24d8ec1962d"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VENDOR_NAME}==null?" ":$F{VENDOR_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="18" y="208" width="234" height="30" uuid="4e146b19-f4ad-4efa-97eb-1824763276e9"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{alamatV}==null?" ":$F{alamatV}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="295" y="238" width="52" height="20" uuid="ddbf5083-e219-4ce8-b83a-9dda5a21c128"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Telp/Fax.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="18" y="164" width="100" height="20" uuid="c0d8cf87-a531-4103-85e9-5f54b82fb048"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Penyedia:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="5" y="683" width="231" height="56" uuid="fcb106eb-eeba-4ae3-bca6-6f3fff2b7980"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DESCRIPTION}==null?"-":$F{DESCRIPTION}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="643" width="118" height="20" uuid="9fa8a933-8af0-4895-a3aa-1d78230362d9"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Tanggal Perkiraan Tiba:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="4" y="663" width="232" height="56" uuid="0a31bbf7-fda8-4c45-bad8-d212bbfa365c"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DESCRIPTION}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="3" y="663" width="233" height="76" uuid="2d3e8030-0953-48ba-bc6d-7f3b71187677"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="5" y="663" width="41" height="20" uuid="4503cb11-ab61-48ba-bc3e-877b6e3958c3"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Catatan :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="120" y="643" width="152" height="20" uuid="dd7e7ed0-389e-4d45-b27d-d62953c3bef1"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd MMMMM yyyy").format($F{perkiraanTiba})]]></textFieldExpression>
+			</textField>
+			<frame>
+				<reportElement x="1" y="283" width="555" height="262" uuid="f4a266ff-3af3-4aa5-bb03-b8913ace3705"/>
+				<subreport>
+					<reportElement x="2" y="0" width="552" height="262" uuid="12519ce7-5f2a-472a-8bd8-1bdf46ef7ed5"/>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="purchaseOrderId">
+						<subreportParameterExpression><![CDATA[$P{purchaseOrderId}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="addressBookId">
+						<subreportParameterExpression><![CDATA[$F{ALAMAT_ID}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "CetakPurchaseOrder_subreport1.jasper"]]></subreportExpression>
+				</subreport>
+			</frame>
+		</band>
+	</detail>
+</jasperReport>

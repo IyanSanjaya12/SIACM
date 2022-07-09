@@ -1,0 +1,60 @@
+<div class="app-view-header">	<span translate="promise.procurement.master.subbidangusaha.judul"></span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="SubBidangUsahaViewController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-tasks"></em>
+			<span ng-if="vm.toDo=='add'" translate="promise.procurement.master.subbidangusaha.view.subjudul_tambah"></span>
+		<span ng-if="vm.toDo=='edit'" translate="promise.procurement.master.subbidangusaha.view.subjudul_ubah"></span>
+			<a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+					<em class="fa fa-chevron-circle-down"></em>
+			</a>
+	</h4>
+	<div class="panel-body collapse in">
+		<div class="text-center" ng-if="loading == true">	<strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong>
+		</div>
+		<form method="post" action="#" novalidate="" class="form-horizontal" ng-class="{'submitted' : vm.submitted}" name="formSubBidangUsaha">
+			<div class="form-group">
+				<label for="input-id-1" class="col-sm-4 control-label required">	<span translate="promise.procurement.master.subbidangusaha.view.nama"></span>
+				</label>
+				<div class="col-sm-4">
+					<input id="input-id-1" promise-alphanumeric-only type="text" class="form-control" ng-model="vm.subBidangUsaha.nama" name="namaSubBidangUsaha" maxlength="120" required ng-blur="delValidation($event)" />
+					<!-- <strong style="color: red" translate={{vm.errorNamaSubBidangUsaha}} ></strong>
+						<br /> -->
+					<div class="input-error" ng-show="(vm.submitted && formSubBidangUsaha.namaSubBidangUsaha.$invalid)">
+						<p ng-show="formSubBidangUsaha.namaSubBidangUsaha.$error.required" translate="template.error.field_kosong"></p>
+						<p ng-show="!formSubBidangUsaha.namaSubBidangUsaha.$error.required && formSubBidangUsaha.namaSubBidangUsaha.$error.namaSubBidangUsaha" translate="promise.procurement.master.itemtype.error.nama_sama"></p>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-sm-4 control-label required">	<span translate="promise.procurement.master.subbidangusaha.view.bidangusaha"></span>
+				</label>
+				<div class="col-sm-4">
+					<div ng-class="(vm.submitted && formSubBidangUsaha.bidangUsaha.$invalid) ? 'border-error' : !formSubBidangUsaha.bidangUsaha.$invalid ? '' : 'border-success'">
+						<ui-select ng-model="vm.subBidangUsaha.bidangUsaha" theme="bootstrap" name="bidangUsaha" ng-required="true" required>
+							<ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+							<ui-select-choices repeat="bidangUsaha in vm.bidangUsahaList | filter: $select.search">
+								<div ng-bind-html="bidangUsaha.nama | highlight: $select.search"></div>
+							</ui-select-choices>
+						</ui-select>
+					</div>
+					<div class="input-error" ng-show="(vm.submitted && formSubBidangUsaha.bidangUsaha.$invalid)">
+						<p ng-show="formSubBidangUsaha.bidangUsaha.$error.required" translate="template.error.field_kosong"></p>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-12 text-center">
+					<button type="button" ripple="" class="btn btn-secondary" ng-click="back()">	
+						<span translate="template.button.kembali"></span>
+					</button>
+					<button type="button" ripple="" class="btn btn-primary" ng-click="save(formSubBidangUsaha.$valid)">	
+						<span translate="template.button.simpan">
+							</span>
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

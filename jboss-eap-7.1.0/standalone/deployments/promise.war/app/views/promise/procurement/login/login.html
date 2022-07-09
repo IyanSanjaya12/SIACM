@@ -1,0 +1,43 @@
+
+ <link rel="stylesheet" href="app/views/promise/procurement/portal/custom-styles.css">       
+        <div ng-include="'app/views/home/carousel.html'" ></div>
+        
+        <div class="login-bg">
+            <div class="login-form" ng-controller="LoginController as form">
+                <form  name="formLogin" role="form" class="form-validate mb-lg">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group has-feedback mb">
+								<input id="email" type="email" name="email" ng-model="form.email" placeholder="Email Anda" autocomplete="off" class="form-control" required="" />
+								<span class="fa fa-envelope form-control-feedback text-muted"></span>
+							</div>
+							<br/>
+							<div class="form-group has-feedback">
+								<input id="password" type="password" name="password" ng-model="form.password" placeholder="Password Anda" class="form-control" required="" />
+								<span class="fa fa-lock form-control-feedback text-muted"></span>
+							</div>
+							<div class="form-group">
+								<div class="checkbox c-checkbox pull-left mt0">
+									<label>
+										<input type="checkbox" value="" ng-model="form.rememberMe"/>
+										<span class="fa fa-check"></span>Remember me</label>
+								</div>
+							</div>
+                        </div>
+						<div class="col-md-6">
+							<button type="submit" class="btn btn-block btn-info mb" ng-click="(formLogin.$valid)?btnLogin():messageError=true">Login</button>
+							<p class="text-muted mb0">Belum punya Account User?</p>
+							<a ui-sref="page.promiseregister" class="btn btn-block btn-default">
+								<strong>Registrasi Vendor</strong>
+							</a>
+                            <div align="right" style="padding-top:50px"><a ui-sref="page.recover" class="text-muted">Lupa Password Anda?</a></div>
+						</div>
+                        
+					</div>
+					<div class="text-center mt"><a ui-sref="page.portal" class="text-muted">Home</a></div>
+				</form>
+            </div>
+        </div>
+    </div>
+</div>
+

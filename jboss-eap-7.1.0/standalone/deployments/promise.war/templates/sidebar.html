@@ -1,0 +1,429 @@
+<!-- START Sidebar-->
+<div class="sidebar-wrapper">
+    <div ui-sidebar="" class="sidebar">
+        <div class="sidebar-nav">
+            <ul class="nav">
+                <!-- Iterates over all sidebar items-->
+                <li class="nav-heading">
+                    <span translate="sidebar.heading.HEADER" class="text-muted">Main Navigation</span>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="app.dashboard" title="Dashboard" ripple="">
+                        <em class="sidebar-item-icon icon-pie-graph"></em>
+                        <div class="label pull-right label-success">4</div>
+                        <span translate="sidebar.nav.DASHBOARD">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <hr/>
+                </li>
+                <li ng-class="{active:$state.includes('app.ui')}">
+                    <a href="" title="Panitia" ripple="">
+                        <em class="sidebar-item-icon icon-head"></em>
+                        <em class="sidebar-item-caret fa pull-right fa-angle-right"></em>
+                        <span>Proses Pengadaan</span>
+                    </a>
+                    <ul class="nav sidebar-subnav">
+                        <li class="sidebar-subnav-header">
+                            <a><em class="sidebar-item-icon fa fa-angle-right"></em>Proses Pengadaan</a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-inisialisasi" title="Pengadaan" ripple="">
+                                <em class="sidebar-item-icon icon-paper"></em>
+                                <span translate="sidebar.nav.promise.PENGADAAN">Pengadaan BUMN</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-inisialisasi-smb" title="Pengadaan" ripple="">
+                                <em class="sidebar-item-icon icon-paper"></em>
+                                <span>Pengadaan Private Sektor</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-jadwalpengadaan" title="Pengadaan" ripple="">
+                                <em class="sidebar-item-icon fa fa-calendar"></em>
+                                <span translate="sidebar.nav.promise.JADWALPENGADAAN">Jadwal Pengadaan</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-panitia-pengambilandokumen" title="Buttons" ripple="">
+                                <em class="sidebar-item-icon icon-content-left"></em>
+                                <span>Pengambilan Dokumen</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-panitia-kriteriaEvaluasi" title="Buttons" ripple="">
+                                <em class="sidebar-item-icon icon-content-right"></em>
+                                <span>Kriteria Evaluasi</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-panitia-penjelasan" title="Buttons" ripple="">
+                                <em class="sidebar-item-icon icon-volume"></em>
+                                <span>Penjelasan</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-panitia-pemasukanPenawaran" title="Buttons" ripple="">
+                                <em class="sidebar-item-icon icon-upload"></em>
+                                <span>Pemasukan Penawaran</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-panitia-pembukaanPenawaran" title="Buttons" ripple="">
+                                <em class="sidebar-item-icon icon-maximize"></em>
+                                <span>Pembukaan Penawaran</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-panitia-evaluasiAdministrasi" title="Buttons" ripple="">
+                                <em class="sidebar-item-icon icon-square-check"></em>
+                                <span>Evaluasi Administrasi</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-panitia-evaluasiteknis" title="Buttons" ripple="">
+                                <em class="sidebar-item-icon icon-check"></em>
+                                <span>Evaluasi Teknis</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-panitia-evaluasiharga-auction" title="Buttons" ripple="">
+                                <em class="sidebar-item-icon icon-umbrella"></em>
+                                <span>Evaluasi Harga Auction</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-panitia-evaluasiharga-bidding" title="Buttons" ripple="">
+                                <em class="sidebar-item-icon icon-volume"></em>
+                                <span>Evaluasi Harga Bidding</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-panitia-negosiasi" title="Buttons" ripple="">
+                                <em class="sidebar-item-icon icon-upload"></em>
+                                <span>Negosiasi</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-panitia-penetapanpemenang" title="Buttons" ripple="">
+                                <em class="sidebar-item-icon icon-target"></em>
+                                <span>Penetapan Pemenang</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+				
+				<li ng-class="{active:$state.includes('app.ui')}">
+					<a href="" title="Manajemen SPK" ripple="">
+						<em class="sidebar-item-icon icon-paper-stack"></em>
+						<em class="sidebar-item-caret fa pull-right fa-angle-right"></em>
+						<span>Manajemen SPK</span>
+					</a>
+					<ul class="nav sidebar-subnav">
+						<li class="sidebar-subnav-header">
+							<a><em class="sidebar-item-icon icon-paper"></em>Manajemen SPK</a>
+						</li>
+						<li ui-sref-active="active">
+							<a ui-sref="app.promise.procurement-panitia-spk" title="Pembuatan SPK" ripple="">
+								<em class="sidebar-item-icon icon-clipboard"></em>
+								<span translate="">Pembuatan SPK</span>
+							</a>
+						</li>
+						<li ui-sref-active="active">
+							<a ui-sref="app.promise.procurement-panitia-spk-index" title="Lihat Data Kontrak" ripple="">
+								<em class="sidebar-item-icon icon-paper"></em>
+								<span translate="">Monitoring SPK</span>
+							</a>
+						</li>
+					</ul>
+
+                </li>
+				<!--
+                <li ng-class="{active:$state.includes('app.ui')}">
+					<a href="" title="Manajemen Kontrak" ripple="">
+						<em class="sidebar-item-icon icon-head"></em>
+						<em class="sidebar-item-caret fa pull-right fa-angle-right"></em>
+						<span>Manajemen Kontrak</span>
+					</a>
+					<ul class="nav sidebar-subnav">
+						<li class="sidebar-subnav-header">
+							<a><em class="sidebar-item-icon fa fa-angle-right"></em>Manajemen Kontrak</a>
+						</li>
+						<li ui-sref-active="active">
+							<a ui-sref="app.promise.procurement-manajemenkontrak-viewdatapengadaan" title="Pembuatan Kontrak" ripple="">
+								<em class="sidebar-item-icon icon-paper"></em>
+								<span translate="">Pembuatan Kontrak</span>
+							</a>
+						</li>
+						<li ui-sref-active="active">
+							<a ui-sref="app.promise.procurement-manajemenkontrak-indexdatakontrak" title="Lihat Data Kontrak" ripple="">
+								<em class="sidebar-item-icon icon-paper"></em>
+								<span translate="">Lihat Data Kontrak</span>
+							</a>
+						</li>
+					</ul>
+
+                </li> -->
+                <li>
+                    <hr/>
+                </li>
+                <li ng-class="{active:$state.includes('app.ui')}">
+                    <a href="" title="Master" ripple="">
+                        <em class="sidebar-item-icon icon-server"></em>
+                        <em class="sidebar-item-caret fa pull-right fa-angle-right"></em>
+                        <span>Master Data</span>
+                    </a>
+                    <ul class="nav sidebar-subnav">
+                        <li class="sidebar-subnav-header">
+                            <a>
+                                <em class="sidebar-item-icon fa fa-angle-right"></em>Master Data</a>
+                        </li>
+						
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-itemtype" title="Tipe Item" ripple="">
+								<em class="sidebar-item-icon fa fa-tags"></em>
+                                <span>Tipe Item</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-itemgroup" title="Item Group" ripple="">
+                                <em class="sidebar-item-icon fa fa-tags"></em>
+                                <span>Item Group</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-item" title="Item" ripple="">
+                                <em class="sidebar-item-icon fa fa-info-circle"></em>
+                                <span>Item</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-bidangusaha" title="Bidang Usaha" ripple="">
+                                <em class="sidebar-item-icon fa fa-tasks"></em>
+                                <span translate="sidebar.nav.promise.BIDANGUSAHA">Bidang Usaha</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-subbidangusaha" title="Sub Bidang Usaha" ripple="">
+                                <em class="sidebar-item-icon fa fa-bitbucket"></em>
+                                <span translate="sidebar.nav.promise.SUBBIDANGUSAHA"></span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-kriteriaAdministrasi" title="Kriteria Administrasi" ripple="">
+                                <em class="sidebar-item-icon"></em>
+                                <span translate="sidebar.nav.promise.KRITERIAADMINISTRASI">Kriteria Administrasi</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-kriteriaTeknis" title="Kriteria Teknis" ripple="">
+                                <em class="sidebar-item-icon"></em>
+                                <span translate="sidebar.nav.promise.KRITERIATEKNIS">Kriteria Teknis</span>
+                            </a>
+                        </li>		
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-user" title="User" ripple="">
+                                <em class="sidebar-item-icon fa fa-male"></em>
+                                <span translate="sidebar.nav.promise.USER"></span>
+                            </a>
+                        </li>				
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-pelaksanapengadaan" title="Organisasi" ripple="">
+                                <em class="sidebar-item-icon fa fa-users"></em>
+                                <span translate="sidebar.nav.promise.PELAKSANAPENGADAAN"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li ng-class="{active:$state.includes('app.ui')}">
+                    <a href="" title="Master" ripple="">
+                        <em class="sidebar-item-icon icon-cog"></em>
+                        <em class="sidebar-item-caret fa pull-right fa-angle-right"></em>
+                        <span>Setting</span>
+                    </a>
+                    <ul class="nav sidebar-subnav">
+                        <li class="sidebar-subnav-header">
+                            <a>
+                                <em class="sidebar-item-icon fa fa-angle-right"></em>Setting</a>
+                        </li>
+						<li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-organisasi" title="Organisasi" ripple="">
+                                <em class="sidebar-item-icon fa fa-users"></em>
+                                <span translate="sidebar.nav.promise.ORGANISASI">Organisasi</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-tahapan" title="Tahapan" ripple="">
+                                <em class="sidebar-item-icon"></em>
+                                <span translate="sidebar.nav.promise.TAHAPAN"></span>
+                            </a>
+                        </li>		
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-kondisipengadaan" title="Kondisi Pengadaan" ripple="">
+                                <em class="sidebar-item-icon fa fa-bookmark"></em>
+                                <span translate="sidebar.nav.promise.KONDISIPENGADAAN"></span>
+                            </a>
+                        </li>                        
+                        
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-alurpengadaan" title="Alur Pengadaan" ripple="">
+                                <em class="sidebar-item-icon fa fa-location-arrow"></em>
+                                <span translate="sidebar.nav.promise.ALURPENGADAAN">Alur Pengadaan</span>
+                            </a>
+                        </li>										
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-registrasijadwaltahapanpengadaan" title="Registrasi Jadwal Tahapan Pengadaan" ripple="">
+                                <em class="sidebar-item-icon fa fa-table"></em>
+                                <span translate="sidebar.nav.promise.REGJADWALTP"></span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-kategoripengadaan" title="Kategori Pengadaan" ripple="">
+                                <em class="sidebar-item-icon fa fa-stack-exchange"></em>
+                                <span translate="sidebar.nav.promise.KATEGORIPENGADAAN"></span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-terminkontrak" title="Termin Kontrak" ripple="">
+                                <em class="sidebar-item-icon fa fa-tumblr-square"></em>
+                                <span translate="sidebar.nav.promise.TERMINKONTRAK"></span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-vendorrequirement" title="Vendor Requirement" ripple="">
+                                <em class="sidebar-item-icon fa fa-chevron-circle-down"></em>
+                                <span translate="sidebar.nav.promise.VENDORREQUIREMENT"></span>
+                            </a>
+                        </li>						
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-emailnotification" title="Email Notification" ripple="">
+                                <em class="sidebar-item-icon icon-mail"></em>
+                                <span translate="sidebar.nav.promise.EMAILNOTIF">Email Notification</span>
+                            </a>
+                        </li>					
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-emailsmtp" title="Email Notification" ripple="">
+                                <em class="sidebar-item-icon icon-mail"></em>
+                                Email SMTP Server
+                            </a>
+                        </li>						
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-conditionalprize" title="Conditional Prize" ripple="">
+                                <em class="sidebar-item-icon"></em>
+                                <span translate="sidebar.nav.promise.PRIZE"></span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-jabatan" title="Jabatan" ripple="">
+                                <em class="sidebar-item-icon"></em>
+                                <span translate="sidebar.nav.promise.JABATAN">Jabatan</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-jenispajak" title="Jenis Pajak" ripple="">
+                                <em class="sidebar-item-icon"></em>
+                                <span translate="sidebar.nav.promise.JENISPAJAK"></span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-jenispenawaran" title="Jenis Penawaran" ripple="">
+                                <em class="sidebar-item-icon"></em>
+                                <span translate="sidebar.nav.promise.JENISPENAWARAN"></span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-jenisPengadaan" title="Jenis Pengadaan" ripple="">
+                                <em class="sidebar-item-icon"></em>
+                                <span translate="sidebar.nav.promise.JENISPENGADAAN">Jenis Pengadaan</span>
+                            </a>
+                        </li>
+						<li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-kualifikasipengadaan" title="Kualifikasi Pengadaan" ripple="">
+                                <em class="sidebar-item-icon"></em>
+                                <span translate="sidebar.nav.promise.KUALIFIKASIPENGADAAN"></span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-kualifikasivendor" title="Kualifikasi Vendor" ripple="">
+                                <em class="sidebar-item-icon"></em>
+                                <span translate="sidebar.nav.promise.KUALIFIKASIVENDOR"></span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-metodepenawaranharga" title="Metode Penawaran Harga" ripple="">
+                                <em class="sidebar-item-icon"></em>
+                                <span translate="sidebar.nav.promise.METODEPENAWARANHARGA"></span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-metodePengadaan" title="Metode Pengadaan" ripple="">
+                                <em class="sidebar-item-icon"></em>
+                                <span translate="sidebar.nav.promise.METODEPENGADAAN">Metode Pengadaan</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-pembuatkeputusan" title="Pembuat Keputusan" ripple="">
+                                <em class="sidebar-item-icon"></em>
+                                <span translate="sidebar.nav.promise.PEMBUATKEPUTUSAN"></span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-metodePenyampaianDokumenPengadaan" title="Metode Penyampaian Dokumen Pengadaan" ripple="">
+                                <em class="sidebar-item-icon"></em>
+                                <span translate="sidebar.nav.promise.MPDP">Metode Penyampaian Dokumen Pengadaan</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-sistemevaluasipenawaran" title="Sistem Evaluasi Penawaran" ripple="">
+                                <em class="sidebar-item-icon"></em>
+                                <span translate="sidebar.nav.promise.SISTEMEVALUASIPENAWARAN"></span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-satuan" title="Satuan" ripple="">
+                                <em class="sidebar-item-icon"></em>
+                                <span translate="sidebar.nav.promise.SATUAN">Satuan</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-matauang" title="Mata Uang" ripple="">
+                                <em class="sidebar-item-icon"></em>
+                                <span translate="sidebar.nav.promise.MATAUANG"></span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-aksi" title="Aksi" ripple="">
+                                <em class="sidebar-item-icon"></em>
+                                <span translate="sidebar.nav.promise.AKSI"></span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-menu" title="Menu" ripple="">
+                                <em class="sidebar-item-icon"></em>
+                                <span translate="sidebar.nav.promise.MENU"></span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-menuaksi" title="Menu" ripple="">
+                                <em class="sidebar-item-icon"></em>
+                                <span translate="sidebar.nav.promise.MENUAKSI"></span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.promise.procurement-master-rolemenu" title="Role Menu" ripple="">
+                                <em class="sidebar-item-icon"></em>
+                                <span translate="sidebar.nav.promise.ROLEMENU"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <hr/>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- END Sidebar-->

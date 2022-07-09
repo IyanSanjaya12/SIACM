@@ -1,0 +1,1479 @@
+<div class="app-view-header">Approval Vendor</div>
+<toaster-container
+	toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<div ng-controller="ApprovalViewUnblacklistVendorController as form">
+	<div class="panel panel-primary">
+		<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-folder-open">&nbsp;</em> <span
+				translate="promise.procurement.RegistrasiVendor.SubJudul"></span>
+			
+		</h4>
+		<div ng-show="form.loading" align="center">
+			<strong><em>Loading... <img src="app/img/loading.gif" border="0"
+					height="20px" alt="" /></em></strong>
+		</div>
+		<div ng-show="!form.loading" class="panel-body">
+			<tabset justified="true"> <!-------------------------------------------------- DATA LOGIN --------------------------------------------------------------->
+			<tab heading="DATA LOGIN"
+				active="form.tabActiveStatus.tabDataLogin.active">
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-7">
+
+						<form method="post" action="#" novalidate=""
+							class="form-horizontal">
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-3 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.data_login.nama_pengguna"></span>
+										<label class="text-danger">*)</label> </label>
+									<div class="col-sm-5">
+										<input ng-disabled="true" name="namaPengguna" type="text"
+											class="form-control input-sm" ng-model="form.namaPengguna">
+
+										<br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.data_login.user_id"></span>
+										<label class="text-danger">*)</label> </label>
+									<div class="col-sm-5">
+										<input ng-disabled="true" name="userId" type="text"
+											class="form-control input-sm" ng-model="form.userId" /> <br />
+									</div>
+									<div class="col-sm-3"></div>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+			</tab> <!-------------------------------------------------- DATA PERUSAHAAN ---------------------------------------------------------->
+			<tab heading="DATA PERUSAHAAN"
+				active="form.tabActiveStatus.tabDataPerusahaan.active">
+
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<span
+					translate="promise.procurement.RegistrasiVendor.DataPerusahaan.FormDataPerusahaan"></span>
+			</h4>
+			<div align="center" ng-if="loading == true">
+				<strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"
+					alt=""></strong>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-7">
+						<form method="post" action="#" novalidate=""
+							class="form-horizontal">
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-3 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.PKPNonPKP"></span>
+										<label class="text-danger">*)</label> </label>
+									<div class="col-sm-9">
+										<label> <input ng-disabled="true" type="radio"
+											value="1" ng-model="form.pilihPKP.name" ng-click="pilihPKP()">
+											PKP
+										</label> <label> <input ng-disabled="true" type="radio"
+											value="2" ng-model="form.pilihPKP.name" ng-click="pilihPKP()">
+											Non PKP
+										</label> <br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label"> </label>
+									<div class="col-sm-5">
+										<input ng-disabled="true" name="nomorPKP" type="text"
+											class="form-control input-sm" ng-model="form.nomorPKP"
+											ng-disabled="form.disabled"> <br />
+									</div>
+									<div class="col-sm-3"></div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.kualifikasi"></span>
+										<label class="text-danger">*)</label> </label>
+									<div class="col-sm-5">
+										<ui-select name="kualifikasiVendor" ng-disabled="true"
+											ng-model="form.kualifikasiVendor" theme="bootstrap">
+										<ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+										<ui-select-choices
+											repeat="kualifikasiVendor in kualifikasiVendorList | filter: $select.search">
+										<div
+											ng-bind-html="kualifikasiVendor.nama | highlight: $select.search"></div>
+										</ui-select-choices> </ui-select>
+
+										<br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.mendaftardiunit"></span>
+										<label class="text-danger">*)</label> </label>
+									<div class="col-sm-5">
+										<input ng-disabled="true" name="mendaftardiunit" type="text"
+											class="form-control input-sm" ng-model="form.mendaftardiunit">
+
+										<br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.NamaPerusahaan"></span>
+										<label class="text-danger">*)</label> </label>
+									<div class="col-sm-5">
+										<input ng-disabled="true" name="NamaPerusahaan" type="text"
+											class="form-control input-sm" ng-model="form.NamaPerusahaan">
+
+										<br />
+									</div>
+									<div class="col-sm-3">
+										<input ng-disabled="true" name="jenisPerusahaan" type="text"
+											class="form-control input-sm" ng-model="form.jenisPerusahaan">
+										<br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.NPWPPerusahaan"></span>
+										<label class="text-danger">{{ form.labelMandatori }}</label> </label>
+									<div class="col-sm-5">
+										<input ng-disabled="true" name="NPWPPerusahaan" type="text"
+											class="form-control input-sm" ng-model="form.NPWPPerusahaan">
+
+										<br />
+									</div>
+									<div class="col-sm-3"></div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.NamaSingkatan"></span>
+										<label class="text-danger">*)</label> </label>
+									<div class="col-sm-5">
+										<input ng-disabled="true" name="NamaSingkatan" type="text"
+											class="form-control input-sm" ng-model="form.NamaSingkatan">
+
+										<br />
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<span
+					translate="promise.procurement.RegistrasiVendor.DataPerusahaan.FormAlamatPerusahaan"></span>
+			</h4>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-7">
+						<form method="post" action="#" novalidate=""
+							class="form-horizontal">
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-3 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.AlamatPerusahaan"></span>
+										<label class="text-danger">*)</label> </label>
+									<div class="col-sm-7">
+										<textarea ng-disabled="true" name="alamatPerusahaan"
+											ng-model="form.alamatPerusahaan" cols="30" rows="5"
+											class="form-control"></textarea>
+
+										<br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label"> </label>
+									<div class="col-sm-9">
+										<div class="form-group">
+											<label class="col-sm-3"><span
+												translate="promise.procurement.RegistrasiVendor.DataPerusahaan.provinsi"></span>
+												<label class="text-danger">*)</label> </label>
+											<div class="col-sm-6">
+												<input ng-disabled="true" name="provinsiPerusahaan"
+													type="text" class="form-control input-sm"
+													ng-model="form.provinsiPerusahaan">
+											</div>
+										</div>
+										<br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label"> </label>
+									<div class="col-sm-9">
+										<div class="form-group">
+											<label class="col-sm-3"><span
+												translate="promise.procurement.RegistrasiVendor.DataPerusahaan.kota"></span>
+												<label class="text-danger">*)</label> </label>
+											<div class="col-sm-6">
+												<input ng-disabled="true" name="kotaPerusahaan" type="text"
+													class="form-control input-sm"
+													ng-model="form.kotaPerusahaan">
+
+											</div>
+										</div>
+										<br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label"> </label>
+									<div class="col-sm-9">
+										<div class="form-group">
+											<label class="col-sm-3"><span
+												translate="promise.procurement.RegistrasiVendor.DataPerusahaan.pobox"></span>
+												<label class="text-danger"></label> </label>
+											<div class="col-sm-6">
+												<input ng-disabled="true" type="text"
+													class="form-control input-sm"
+													ng-model="form.poboxPerusahaan">
+											</div>
+										</div>
+										<br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label"> </label>
+									<div class="col-sm-9">
+										<div class="form-group">
+											<label class="col-sm-3"><span
+												translate="promise.procurement.RegistrasiVendor.DataPerusahaan.kodepos"></span>
+												<label class="text-danger"></label> </label>
+											<div class="col-sm-6">
+												<input ng-disabled="true" name="kodeposPerusahaan"
+													type="text" class="form-control input-sm"
+													ng-model="form.kodeposPerusahaan">
+											</div>
+										</div>
+										<br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.TeleponPerusahaan"></span>
+										<label class="text-danger">*)</label> </label>
+									<div class="col-sm-3">
+										<input ng-disabled="true" name="TeleponPerusahaan" type="text"
+											class="form-control input-sm"
+											ng-model="form.TeleponPerusahaan"> <br />
+									</div>
+									<label class="col-sm-2 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.NoFax"></span>
+									</label>
+									<div class="col-sm-2">
+										<input ng-disabled="true" type="text"
+											class="form-control input-sm" ng-model="form.NoFaxPerusahaan">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.Email"></span>
+										<label class="text-danger">*)</label> </label>
+									<div class="col-sm-7">
+										<input ng-disabled="true" name="EmailPerusahaan" type="text"
+											class="form-control input-sm" ng-model="form.EmailPerusahaan">
+
+										<br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.Website"></span>
+										<label class="text-danger"></label> </label>
+									<div class="col-sm-7">
+										<input ng-disabled="true" type="text"
+											class="form-control input-sm"
+											ng-model="form.WebsitePerusahaan"> <br />
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<span
+					translate="promise.procurement.RegistrasiVendor.DataPerusahaan.FormContactPerson"></span>
+			</h4>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-7">
+						<form method="post" action="#" novalidate=""
+							class="form-horizontal">
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-3 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.NamaContactPerson"></span>
+										<label class="text-danger">*)</label> </label>
+									<div class="col-sm-7">
+										<input ng-disabled="true" name="NamaContactPerson" type="text"
+											class="form-control input-sm"
+											ng-model="form.NamaContactPerson"> <br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.NoHPContactPerson"></span>
+										<label class="text-danger">*)</label> </label>
+									<div class="col-sm-7">
+										<input ng-disabled="true" name="NoHPContactPerson" type="text"
+											class="form-control input-sm"
+											ng-model="form.NoHPContactPerson"> <br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.EmailContactPerson"></span>
+										<label class="text-danger">*)</label> </label>
+									<div class="col-sm-7">
+										<input ng-disabled="true" name="EmailContactPerson"
+											type="text" class="form-control input-sm"
+											ng-model="form.EmailContactPerson"> <br />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.NoKTPContactPerson"></span>
+										<label class="text-danger">*)</label> </label>
+									<div class="col-sm-7">
+										<input ng-disabled="true" name="NoKTPContactPerson"
+											type="text" class="form-control input-sm"
+											ng-model="form.NoKTPContactPerson"> <br />
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<span
+					translate="promise.procurement.RegistrasiVendor.DataPerusahaan.FormDataPenanggungJawab"></span>
+			</h4>
+
+			<div class="panel-body">
+				<div class="col-xs-12">
+					<div class="table-responsive">
+						<table
+							class="table table-hover table-condensed table-striped bg-white">
+							<thead>
+								<tr style="font-weight: bold">
+									<th scope="col"style="width: 40%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.NamaPenanggungJawab"></span>
+									</th>
+									<th scope="col"style="width: 20%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.JabatanPenanggungJawab"></span>
+									</th>
+									<th scope="col"style="width: 20%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataPerusahaan.EmailPenanggungJawab"></span>
+									</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="penanggungJawab in form.penanggungJawabList">
+									<td><span editable-text="penanggungJawab.nama"
+										e-name="nama" e-form="rowform"
+										onbeforesave="checkName($data, penanggungJawab.id)"
+										e-required="">{{ penanggungJawab.nama ||
+											&apos;empty&apos; }}</span></td>
+									<td><span editable-select="penanggungJawab.jabatan"
+										e-name="penanggungJawab.jabatan"
+										onbeforesave="checkJabatan($data, penanggungJawab.id)"
+										e-form="rowform"
+										e-ng-options="g as g.nama for g in jabatanPenanggungJawabList">{{
+											showJabatan(penanggungJawab) }}</span></td>
+									<td><span editable-text="penanggungJawab.email"
+										e-name="email" e-form="rowform"
+										onbeforesave="checkEmail($data, penanggungJawab.id)"
+										e-required="">{{ penanggungJawab.email ||
+											&apos;empty&apos; }}</span></td>
+
+								</tr>
+							</tbody>
+						</table>
+						<br>
+					</div>
+				</div>
+			</div>
+			<br />
+			<div class="form-group">
+				<div class="col-lg-offset-2 col-lg-10"></div>
+			</div>
+
+			<br />
+			</tab> <!-------------------------------------------------- DATA BANK ---------------------------------------------------------------->
+			<tab heading="DATA BANK"
+				active="form.tabActiveStatus.tabDataBank.active">
+
+			<h4 class="page-header clearfix">
+				<div class="pull-right"></div>
+			</h4>
+			<div align="center" ng-if="loading == true">
+				<strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"
+					alt=""></strong>
+			</div>
+			<div class="panel-body">
+				<div class="col-xs-12">
+					<div class="table-responsive">
+						<table ng-table="dataBankTable"
+							class="table table-hover table-condensed table-striped bg-white">
+							<thead>
+								<tr style="font-weight: bold">
+									<th scope="col"style="width: 5%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataBank.No"></span>
+									</th>
+									<th scope="col"style="width: 30%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataBank.NamaBank"></span>
+									</th>
+									<th scope="col"style="width: 20%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataBank.NomorAccount"></span>
+									</th>
+									<th scope="col"style="width: 30%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataBank.NamaPemegangAccount"></span>
+									</th>
+									<th scope="col"style="width: 10%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataBank.MataUang"></span>
+									</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="dataBank in $data">
+									<td style="text-align: center">{{$index+1}}</td>
+									<td>{{ dataBank.namaBank }}</td>
+									<td>{{ dataBank.nomorRekening }}</td>
+									<td>{{ dataBank.namaNasabah }}</td>
+									<td>{{ dataBank.mataUang.nama }}</td>
+
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<br />
+			<div class="form-group">
+				<div class="col-lg-offset-2 col-lg-10"></div>
+			</div>
+			<br />
+			</tab> <!-------------------------------------------------- DATA SEGMENTASI ---------------------------------------------------------->
+			<tab heading="DATA SEGMENTASI"
+				active="form.tabActiveStatus.tabDataSegmentasi"> <!--     	<tab heading="DATA SEGMENTASI" active="form.tabActiveStatus.tabDataSegmentasi"> -->
+			<h4 class="page-header clearfix"></h4>
+			<div align="center" ng-if="loading == true">
+				<strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"
+					alt=""></strong>
+			</div>
+			<div class="panel-body">
+				<div class="col-xs-12">
+					<div class="table-responsive">
+						<table ng-table="tableSegmentasiVendor"
+							class="table table-hover table-condensed table-striped bg-white">
+							<thead>
+								<tr style="font-weight: bold">
+									<th scope="col"style="width: 5%; text-align: left"><span
+										translate="template.tabel.nomor"></span>
+									</th>
+									<th scope="col"style="width: 20%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataSegmentasi.bidang_usaha"></span>
+									</th>
+									<th scope="col"style="width: 20%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataSegmentasi.subbidang"></span>
+									</th>
+									<th scope="col"style="width: 10%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataSegmentasi.asosiasi"></span>
+									</th>
+									<th scope="col"style="width: 10%; text-align: left"><span
+										translate="template.tabel.nomor"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataSegmentasi.tanggal_mulai"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataSegmentasi.tanggal_berakhir"></span>
+									</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="dataSegmentasi in $data">
+									<td style="text-align: center">{{$index+1}}</td>
+									<td>{{ dataSegmentasi.subBidangUsaha.bidangUsaha.nama }}</td>
+									<td>{{ dataSegmentasi.subBidangUsaha.nama }}</td>
+									<td>{{ dataSegmentasi.asosiasi.nama }}</td>
+									<td>{{ dataSegmentasi.nomor }}</td>
+									<td>{{ dataSegmentasi.tanggalMulai | date:"dd/MM/yyyy" }}</td>
+									<td>{{ dataSegmentasi.tanggalBerakhir | date:"dd/MM/yyyy"
+										}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<br />
+			<div class="form-group">
+				<div class="col-lg-offset-2 col-lg-10"></div>
+			</div>
+			<br />
+			</tab> <!-------------------------------------------------- DATA DOKUMEN ------------------------------------------------------------->
+			<tab heading="DATA DOKUMEN"
+				active="form.tabActiveStatus.tabDataDokumen">
+
+			<div class="panel-body">
+				<div class="col-sm-12">
+					<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+						<span
+							translate="promise.procurement.RegistrasiVendor.DataDokumen.FormDataDokumen"></span>
+					</h4>
+				</div>
+				<div align="center" ng-if="loading == true">
+					<strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"
+						alt=""></strong>
+				</div>
+				<div class="col-sm-12">
+					<div class="table-responsive">
+						<table
+							class="table table-hover table-condensed table-striped bg-white">
+							<thead>
+								<tr style="font-weight: bold">
+									<th scope="col"style="width: 20%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataDokumen.Subject"></span>
+									</th>
+									<th scope="col"style="width: 20%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataDokumen.NomorDokumen"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataDokumen.TanggalTerbit"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataDokumen.TanggalBerakhir"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataDokumen.UploadFile"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataDokumen.Checklist"></span>
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td colspan="6">
+										<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+											<span
+												translate="promise.procurement.RegistrasiVendor.DataDokumen.SubJudul1"></span>
+										</h4>
+									</td>
+								</tr>
+								<tr>
+									<td><span
+										translate="promise.procurement.RegistrasiVendor.DataDokumen.VendorRegistrasiForm"></span></td>
+									<td><input ng-disabled="true" type="text"
+										class="form-control input-sm"
+										ng-model="dataDokRegForm.namaDokumen"></td>
+									<td>
+										<div class="input-group">
+											<input ng-disabled="true" type="text"
+												datepicker-popup="dd/MM/yyyy"
+												ng-model="dataDokRegForm.tanggalTerbit"
+												class="form-control input-sm" show-button-bar="false" />
+										</div>
+									</td>
+									<td>
+										<div class="input-group">
+											<input ng-disabled="true" type="text"
+												datepicker-popup="dd/MM/yyyy"
+												ng-model="dataDokRegForm.tanggalBerakhir"
+												class="form-control input-sm" show-button-bar="false" />
+										</div>
+									</td>
+									<td>
+										<a ng-href="{{viewUploadBackendAddress+'/'+dataDokRegForm.fileName}}" target="_blank">{{dataDokRegForm.fileName}}</a>
+										<!--<div class="input-group"><input ng-disabled="true" type="text"
+												datepicker-popup="dd/MM/yyyy"
+												ng-model="dataDokRegForm.fileName"
+												class="form-control input-sm" show-button-bar="false" />
+										</div>-->
+									</td>
+									<td>
+										<select ng-change="form.ceklistCheck()" disabled class="form-control" ng-model="form.dokumenRegistrasiVendorList[0].statusCeklist">
+											<option value="0">Not Ok</option>
+											<option value="1">Ok</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td><span
+										translate="promise.procurement.RegistrasiVendor.DataDokumen.SalinanAktePendirian"></span></td>
+									<td><input ng-disabled="true" type="text"
+										class="form-control input-sm"
+										ng-model="dataDokAkte.namaDokumen"></td>
+									<td>
+										<div class="input-group">
+											<input ng-disabled="true" type="text"
+												datepicker-popup="dd/MM/yyyy"
+												ng-model="dataDokAkte.tanggalTerbit"
+												class="form-control input-sm" show-button-bar="false" />
+										</div>
+									</td>
+									<td>
+										<div class="input-group">
+											<input ng-disabled="true" type="text"
+												datepicker-popup="dd/MM/yyyy"
+												ng-model="dataDokAkte.tanggalBerakhir"
+												class="form-control input-sm" show-button-bar="false" />
+										</div>
+									</td>
+									<td>
+										<a ng-href="{{viewUploadBackendAddress+'/'+dataDokAkte.fileName}}" target="_blank">{{dataDokAkte.fileName}}</a>
+									
+										<!--<div class="input-group">
+											<input ng-disabled="true" type="text"
+												datepicker-popup="dd/MM/yyyy"
+												ng-model="dataDokAkte.fileName"
+												class="form-control input-sm" show-button-bar="false" />
+										</div>-->
+									</td>
+									<td>
+										<select ng-change="form.ceklistCheck()" disabled class="form-control" ng-model="form.dokumenRegistrasiVendorList[1].statusCeklist">
+											<option value="0">Not Ok</option>
+											<option value="1">Ok</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td><span
+										translate="promise.procurement.RegistrasiVendor.DataDokumen.SalinanTandaDaftar">*)</span>
+										<p ng-show="form.SalinanTandaDaftarError" style="color: red">Salinan
+											Tanda Daftar Harus Berdukomen</p> <br /></td>
+									<td><input ng-disabled="true" type="text"
+										class="form-control input-sm"
+										ng-model="dataDokSalinan.namaDokumen"></td>
+									<td>
+										<div class="input-group">
+											<input ng-disabled="true" type="text"
+												datepicker-popup="dd/MM/yyyy"
+												ng-model="dataDokSalinan.tanggalTerbit"
+												class="form-control input-sm" show-button-bar="false" />
+										</div>
+									</td>
+									<td>
+										<div class="input-group">
+											<input ng-disabled="true" type="text"
+												datepicker-popup="dd/MM/yyyy"
+												ng-model="dataDokSalinan.tanggalBerakhir"
+												class="form-control input-sm" show-button-bar="false" />
+										</div>
+									</td>
+									<td>
+										<a ng-href="{{viewUploadBackendAddress+'/'+dataDokSalinan.fileName}}" target="_blank">{{dataDokSalinan.fileName}}</a>
+										<!--<div class="input-group">
+											<input ng-disabled="true" type="text"
+												datepicker-popup="dd/MM/yyyy"
+												ng-model="dataDokSalinan.fileName"
+												class="form-control input-sm" show-button-bar="false" />
+										</div>-->
+									</td>
+									<td>
+										<select ng-change="form.ceklistCheck()" disabled class="form-control" ng-model="form.dokumenRegistrasiVendorList[2].statusCeklist">
+											<option value="0">Not Ok</option>
+											<option value="1">Ok</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td><span
+										translate="promise.procurement.RegistrasiVendor.DataDokumen.SalinanSuratIjinUsaha"></span></td>
+									<td><input ng-disabled="true" type="text"
+										class="form-control input-sm"
+										ng-model="dataDokSiup.namaDokumen"></td>
+									<td>
+										<div class="input-group">
+											<input ng-disabled="true" type="text" datepicker-popup="dd/MM/yyyy"
+												ng-model="dataDokSiup.tanggalTerbit"
+												class="form-control input-sm" show-button-bar="false" />
+										</div>
+									</td>
+									<td>
+										<div class="input-group">
+											<input ng-disabled="true" type="text"
+												datepicker-popup="dd/MM/yyyy"
+												ng-model="dataDokSiup.tanggalBerakhir"
+												class="form-control input-sm" show-button-bar="false" />
+										</div>
+									</td>
+									<td>
+										<a ng-href="{{viewUploadBackendAddress+'/'+dataDokSiup.fileName}}" target="_blank">{{dataDokSiup.fileName}}</a>
+										<!--<div class="input-group">
+											<input ng-disabled="true" type="text"
+												datepicker-popup="dd/MM/yyyy"
+												ng-model="dataDokSiup.fileName"
+												class="form-control input-sm" show-button-bar="false" />
+										</div>-->
+									</td>
+									<td>
+										<select ng-change="form.ceklistCheck()" disabled class="form-control" ng-model="form.dokumenRegistrasiVendorList[3].statusCeklist">
+											<option value="0">Not Ok</option>
+											<option value="1">Ok</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="6">
+										<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+											<span
+												translate="promise.procurement.RegistrasiVendor.DataDokumen.SubJudul2"></span>
+										</h4>
+									</td>
+								</tr>
+								<tr>
+									<td><span
+										translate="promise.procurement.RegistrasiVendor.DataDokumen.BuktiFisikPerusahaan">*)</span>
+										<p ng-show="form.buktiFisikPerusahaanError" style="color: red">Bukti
+											Fisik Perusahaan Harus Berdukomen</p> <br /></td>
+									<td><input ng-disabled="true" type="text"
+										class="form-control input-sm"
+										ng-model="dataDokBuktiFisik.namaDokumen"></td>
+									<td>
+										<div class="input-group">
+											<input ng-disabled="true" type="text"
+												datepicker-popup="dd/MM/yyyy"
+												ng-model="dataDokBuktiFisik.tanggalTerbit"
+												class="form-control input-sm" show-button-bar="false" />
+										</div>
+									</td>
+									<td>
+										<div class="input-group">
+											<input ng-disabled="true" type="text"
+												datepicker-popup="dd/MM/yyyy"
+												ng-model="dataDokBuktiFisik.tanggalBerakhir"
+												class="form-control input-sm" show-button-bar="false" />
+										</div>
+									</td>
+									<td>
+										<a ng-href="{{viewUploadBackendAddress+'/'+dataDokBuktiFisik.fileName}}" target="_blank">{{dataDokBuktiFisik.fileName}}</a>
+										<!--<div class="input-group">
+											<input ng-disabled="true" type="text"
+												datepicker-popup="dd/MM/yyyy"
+												ng-model="dataDokBuktiFisik.fileName"
+												class="form-control input-sm" show-button-bar="false" />
+										</div>-->
+									</td>
+									<td>
+										<select ng-change="form.ceklistCheck()" disabled class="form-control" ng-model="form.dokumenRegistrasiVendorList[4].statusCeklist">
+											<option value="0">Not Ok</option>
+											<option value="1">Ok</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="6">
+										<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+											<span
+												translate="promise.procurement.RegistrasiVendor.DataDokumen.SubJudul3"></span>
+										</h4>
+									</td>
+								</tr>
+								<tr>
+									<td><span
+										translate="promise.procurement.RegistrasiVendor.DataDokumen.DokumenQuality"></span></td>
+									<td><input ng-disabled="true" type="text"
+										class="form-control input-sm"
+										ng-model="dataDokQuality.namaDokumen"></td>
+									<td>
+										<div class="input-group">
+											<input ng-disabled="true" type="text"
+												datepicker-popup="dd/MM/yyyy"
+												ng-model="dataDokQuality.tanggalTerbit"
+												class="form-control input-sm" show-button-bar="false" />
+										</div>
+									</td>
+									<td>
+										<div class="input-group">
+											<input ng-disabled="true" type="text"
+												datepicker-popup="dd/MM/yyyy"
+												ng-model="dataDokQuality.tanggalBerakhir"
+												class="form-control input-sm" show-button-bar="false" />
+										</div>
+									</td>
+									<td>
+										<a ng-href="{{viewUploadBackendAddress+'/'+dataDokQuality.fileName}}" target="_blank">{{dataDokQuality.fileName}}</a>
+										<!--<div class="input-group">
+											<input ng-disabled="true" type="text"
+												datepicker-popup="dd/MM/yyyy"
+												ng-model="dataDokQuality.fileName"
+												class="form-control input-sm" show-button-bar="false" />
+										</div>-->
+									</td>
+									<td>
+										<select ng-change="form.ceklistCheck()" disabled class="form-control" ng-model="form.dokumenRegistrasiVendorList[5].statusCeklist">
+											<option value="0">Not Ok</option>
+											<option value="1">Ok</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td><span
+										translate="promise.procurement.RegistrasiVendor.DataDokumen.DokumenTeknik"></span>
+										<p ng-show="form.DokumenTeknikError" style="color: red">Dokumen
+											Teknik Harus Berdukomen</p> <br /></td>
+									<td><input ng-disabled="true" type="text"
+										class="form-control input-sm"
+										ng-model="dataDokTeknik.namaDokumen"></td>
+									<td>
+										<div class="input-group">
+											<input ng-disabled="true" type="text"
+												datepicker-popup="dd/MM/yyyy"
+												ng-model="dataDokTeknik.tanggalTerbit"
+												class="form-control input-sm" show-button-bar="false" />
+										</div>
+									</td>
+									<td>
+										<div class="input-group">
+											<input ng-disabled="true" type="text"
+												datepicker-popup="dd/MM/yyyy"
+												ng-model="dataDokTeknik.tanggalBerakhir"
+												class="form-control input-sm" show-button-bar="false" />
+										</div>
+									</td>
+									<td>
+										<a ng-href="{{viewUploadBackendAddress+'/'+dataDokTeknik.fileName}}" target="_blank">{{dataDokTeknik.fileName}}</a>
+										<!--<div class="input-group">
+											<input ng-disabled="true" type="text"
+												datepicker-popup="dd/MM/yyyy"
+												ng-model="dataDokTeknik.fileName"
+												class="form-control input-sm" show-button-bar="false" />
+										</div>-->
+									</td>
+									<td>
+										<select ng-change="form.ceklistCheck()" disabled class="form-control" ng-model="form.dokumenRegistrasiVendorList[6].statusCeklist">
+											<option value="0">Not Ok</option>
+											<option value="1">Ok</option>
+										</select>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<br>
+					</div>
+				</div>
+				<br />
+				<div class="form-group">
+					<div class="col-lg-offset-2 col-lg-10"></div>
+				</div>
+				<br />
+			</div>
+			</tab> <!-------------------------------------------------- DATA PERALATAN ----------------------------------------------------------->
+			<tab heading="DATA PERALATAN" active="form.tabActiveStatus.tabPeralatan">
+
+			<h4 class="page-header clearfix">
+				<div class="pull-right"></div>
+			</h4>
+			<div align="center" ng-if="loading == true">
+				<strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"
+					alt=""></strong>
+			</div>
+			<div class="panel-body">
+				<div class="col-xs-12">
+					<div class="table-responsive">
+						<table ng-table="tablePeralatanVendor"
+							class="table table-hover table-condensed table-striped bg-white">
+							<thead>
+								<tr style="font-weight: bold">
+									<th scope="col"style="width: 5%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.Peralatan.No"></span>
+									</th>
+									<th scope="col"style="width: 10%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.Peralatan.Jenis"></span>
+									</th>
+									<th scope="col"style="width: 10%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.Peralatan.Jumlah"></span>
+									</th>
+									<th scope="col"style="width: 10%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.Peralatan.Kapasitas"></span>
+									</th>
+									<th scope="col"style="width: 10%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.Peralatan.MerkTipe"></span>
+									</th>
+									<th scope="col"style="width: 10%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.Peralatan.TahunPembuatan"></span>
+									</th>
+									<th scope="col"style="width: 10%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.Peralatan.Kondisi"></span>
+									</th>
+									<th scope="col"style="width: 10%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.Peralatan.Lokasi"></span>
+									</th>
+									<th scope="col"style="width: 10%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.Peralatan.BuktiKepemilikan"></span>
+									</th>
+									<th scope="col"style="width: 10%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.Peralatan.DokumenBuktiKepemilikan"></span>
+									</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="dataPeralatan in $data">
+									<td style="text-align: center">{{$index+1}}</td>
+									<td>{{ dataPeralatan.jenis }}</td>
+									<td>{{ dataPeralatan.jumlah }}</td>
+									<td>{{ dataPeralatan.kapasitas }}</td>
+									<td>{{ dataPeralatan.merk }}</td>
+									<td>{{ dataPeralatan.tahunPembuatan }}</td>
+									<td>{{ dataPeralatan.kondisi.nama }}</td>
+									<td>{{ dataPeralatan.lokasi }}</td>
+									<td>{{ dataPeralatan.buktiKepemilikan.nama }}</td>
+									<td><a ng-href="{{viewUploadBackendAddress+'/'+dataPeralatan.fileNameBuktiKepemilikan }}" target="_blank">{{dataPeralatan.fileNameBuktiKepemilikan }}</a></td>
+
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<br />
+			<div class="form-group">
+				<div class="col-lg-offset-2 col-lg-10"></div>
+			</div>
+			<br />
+			</tab> <!-------------------------------------------------- DATA KEUANGAN ------------------------------------------------------------>
+			<tab heading="DATA KEUANGAN"
+				active="form.tabActiveStatus.tabDataKeuangan">
+
+			<h4 class="page-header clearfix">
+				<div class="pull-right"></div>
+			</h4>
+			<div align="center" ng-if="loading == true">
+				<strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"
+					alt=""></strong>
+			</div>
+			<div class="panel-body">
+				<div class="col-xs-12">
+					<div class="table-responsive">
+						<table ng-table="tableKeuanganVendor"
+							class="table table-hover table-condensed table-striped bg-white">
+							<thead>
+								<tr style="font-weight: bold">
+									<th scope="col"style="width: 5%; text-align: center"><span
+										translate="template.tabel.nomor"></span>
+									</th>
+									<th scope="col"style="width: 10%; text-align: center"><span
+										translate="promise.procurement.RegistrasiVendor.DataKeuangan.list.tahun_keuangan"></span>
+									</th>
+									<th scope="col"style="width: 10%; text-align: center"><span
+										translate="promise.procurement.RegistrasiVendor.DataKeuangan.list.kas"></span>
+									</th>
+									<th scope="col"style="width: 10%; text-align: center"><span
+										translate="promise.procurement.RegistrasiVendor.DataKeuangan.list.total_aktiva"></span>
+									</th>
+									<th scope="col"style="width: 10%; text-align: center"><span
+										translate="promise.procurement.RegistrasiVendor.DataKeuangan.list.total_kewajiban"></span>
+									</th>
+									<th scope="col"style="width: 10%; text-align: center"><span
+										translate="promise.procurement.RegistrasiVendor.DataKeuangan.list.rugi_laba"></span>
+									</th>
+									<th scope="col"style="width: 10%; text-align: center"><span
+										translate="promise.procurement.RegistrasiVendor.DataKeuangan.list.aktiva_lancar"></span>
+									</th>
+									<th scope="col"style="width: 10%; text-align: center"><span
+										translate="promise.procurement.RegistrasiVendor.DataKeuangan.list.hutang_lancar"></span>
+									</th>
+									<th scope="col"style="width: 10%; text-align: center"><span
+										translate="promise.procurement.RegistrasiVendor.DataKeuangan.list.rasio_likuiditas"></span>
+									</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="dataKeuangan in $data">
+									<td style="text-align: center">{{$index+1}}</td>
+									<td style="text-align: center">{{
+										dataKeuangan.tahunKeuangan }}</td>
+									<td style="text-align: right">{{ dataKeuangan.kas | number
+										: 2 }}</td>
+									<td style="text-align: right">{{ dataKeuangan.totalAktiva
+										| number : 2 }}</td>
+									<td style="text-align: right">{{
+										dataKeuangan.totalHutangJangkaPendek +
+										dataKeuangan.hutangJangkaPanjang | number : 2 }}</td>
+									<td style="text-align: right">{{
+										dataKeuangan.kekayaanBersih | number : 2 }}</td>
+									<td style="text-align: right">{{
+										dataKeuangan.totalAktivaLancar | number : 2 }}</td>
+									<td style="text-align: right">{{
+										dataKeuangan.totalHutangJangkaPendek | number : 2 }}</td>
+									<td style="text-align: right">{{
+										dataKeuangan.totalAktivaLancar /
+										dataKeuangan.totalHutangJangkaPendek | number : 2 }}</td>
+									<td></td>
+
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<br />
+			<div class="form-group">
+				<div class="col-lg-offset-2 col-lg-10"></div>
+			</div>
+			<br />
+			</tab> <!-------------------------------------------------- DATA PENGALAMAN ---------------------------------------------------------->
+			<tab heading="DATA PENGALAMAN"
+				active="form.tabActiveStatus.tabDataPengalaman">
+
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<span
+					translate="promise.procurement.RegistrasiVendor.datapengalaman.judul1"></span>
+			</h4>
+			<div align="center" ng-if="loading == true">
+				<strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"
+					alt=""></strong>
+			</div>
+<!--
+			<div class="col-lg-9">
+				<div class="checkbox c-checkbox needsclick">
+					<label class="needsclick"> <input
+						ng-model="pengalamanStatus" type="checkbox" class="needsclick" /><span
+						class="fa fa-check"></span>Tanpa Pengalaman
+					</label>
+				</div>
+			</div>
+-->
+			<h4 class="page-header clearfix">
+				<div class="pull-right"></div>
+			</h4>
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<span
+					translate="promise.procurement.RegistrasiVendor.datapengalaman.judul2"></span>
+			</h4>
+			<div class="panel-body">
+				<div class="col-sm-12">
+					<div class="table-responsive">
+						<table ng-table="tablePengalamanPekerjaan"
+							class="table table-hover table-condensed table-striped bg-white">
+							<thead>
+								<tr style="font-weight: bold">
+									<th scope="col"style="width: 5%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataPengalaman.No"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataPengalaman.Nama"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataPengalaman.Alamat"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataPengalaman.BidangUsaha"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataPengalaman.MulaiKerjasama"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataPengalaman.NilaiKontrak"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataPengalaman.BuktiKerjasama"></span>
+									</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="dataPengalamanPekerjaan in $data">
+									<td style="text-align: center">{{$index+1}}</td>
+									<td>{{ dataPengalamanPekerjaan.namaPekerjaan }}</td>
+									<td>{{ dataPengalamanPekerjaan.lokasiPekerjaan }}</td>
+									<td>{{ dataPengalamanPekerjaan.bidangUsaha}}</td>
+									<td>{{ dataPengalamanPekerjaan.mulaiKerjasama |
+										date:"dd/MM/yyyy" }}</td>
+									<td>{{ dataPengalamanPekerjaan.nilaiKontrak | number : 2
+										}}</td>
+									<td><a ng-href="{{viewUploadBackendAddress+'/'+dataPengalamanPekerjaan.fileName }}" target="_blank">{{dataPengalamanPekerjaan.fileName }}</a></td>
+									<td></td>
+
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<h4 class="page-header clearfix">
+				<div class="pull-right"></div>
+			</h4>
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<span
+					translate="promise.procurement.RegistrasiVendor.datapengalaman.judul3"></span>
+			</h4>
+			<div class="panel-body">
+				<div class="col-sm-12">
+					<div class="table-responsive">
+						<table ng-table="tableDataMitra"
+							class="table table-hover table-condensed table-striped bg-white">
+							<thead>
+								<tr style="font-weight: bold">
+									<th scope="col"style="width: 5%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataPengalaman.No"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataPengalaman.Nama"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataPengalaman.Alamat"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataPengalaman.BidangUsaha"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataPengalaman.MulaiKerjasama"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataPengalaman.NilaiKontrak"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataPengalaman.BuktiKerjasama"></span>
+									</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="dataMitra in $data">
+									<td style="text-align: center">{{$index+1}}</td>
+									<td>{{ dataMitra.namaPekerjaan }}</td>
+									<td>{{ dataMitra.lokasiPekerjaan }}</td>
+									<td>{{ dataMitra.bidangUsaha }}</td>
+									<td>{{ dataMitra.mulaiKerjasama | date:"dd/MM/yyyy" }}</td>
+									<td>{{ dataMitra.nilaiKontrak | number : 2 }}</td>
+									<td> <a ng-href="{{viewUploadBackendAddress+'/'+dataMitra.fileName }}" target="_blank">{{dataMitra.fileName }}</a></td>
+									<td></td>
+
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<h4 class="page-header clearfix">
+				<div class="pull-right"></div>
+			</h4>
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<span
+					translate="promise.procurement.RegistrasiVendor.datapengalaman.judul4"></span>
+			</h4>
+			<div class="panel-body">
+				<div class="col-sm-12">
+					<div class="table-responsive">
+						<table ng-table="tableWorkingProgress"
+							class="table table-hover table-condensed table-striped bg-white">
+							<thead>
+								<tr style="font-weight: bold">
+									<th scope="col"style="width: 5%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataPengalaman.No"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataPengalaman.Nama"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataPengalaman.Alamat"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataPengalaman.BidangUsaha"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataPengalaman.MulaiKerjasama"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataPengalaman.NilaiKontrak"></span>
+									</th>
+									<th scope="col"style="width: 15%; text-align: left"><span
+										translate="promise.procurement.RegistrasiVendor.DataPengalaman.BuktiKerjasama"></span>
+									</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="dataProgress in $data">
+									<td style="text-align: center">{{$index+1}}</td>
+									<td>{{ dataProgress.namaPekerjaan }}</td>
+									<td>{{ dataProgress.lokasiPekerjaan }}</td>
+									<td>{{ dataProgress.bidangUsaha }}</td>
+									<td>{{ dataProgress.mulaiKerjasama | date:"dd/MM/yyyy" }}</td>
+									<td>{{ dataProgress.nilaiKontrak | number : 2 }}</td>
+									<td> <a ng-href="{{viewUploadBackendAddress+'/'+dataProgress.fileName}}" target="_blank">{{dataProgress.fileName}}</a></td>
+									<td></td>
+
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<br />
+			<div class="form-group">
+				<div class="col-lg-offset-2 col-lg-10"></div>
+			</div>
+			<br />
+			</tab> </tabset>
+		</div>
+		<div
+			ng-include="'app/views/promise/procurement/vendor/regvendor.footer.html'"></div>
+	</div>
+	<!--END CONTROLLER-->
+
+    
+    
+	<div class="panel panel-primary" ng-if="form.blacklist == true">
+		<div class="">
+			<form autocomplete="off">
+				<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			    	<em class="fa fa-tasks">&nbsp;</em>
+			    	<span translate="">Blacklist Vendor</span>
+			    </h4>
+				<div class="panel-body">					
+					<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+						<em class="fa fa-tasks">&nbsp;</em>
+						<span translate="">Daftar Pelanggaran</span>
+					</h4> 
+					<div class="table-responsive">
+						<table class="table table-striped">
+				 			<thead>
+								<tr>
+									<th scope="col"style="text-align:center">
+										<span translate="">No</span>
+									</th>
+									<th scope="col"style="text-align:center">
+										<span translate="">Jenis Pelanggaran</span>
+									</th>
+									<th scope="col"style="text-align:center">
+										<span translate="">Rekomendasi Durasi Blacklist</span>
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="ab in form.blacklistVendorDtl.blacklistVendorDetailList">
+									<td style="text-align: center" ng-bind="$index+1"></td>
+									<td ng-bind="ab.alasanBlacklist.alasanBlacklistKeterangan"></td>
+									<td style="text-align: center">
+										<span ng-bind="ab.alasanBlacklist.alasanBlacklistJmlWaktu"></span>&nbsp;
+										<span ng-if="ab.alasanBlacklist.alasanBlacklistJkWaktu == 'D'">Hari</span>
+										<span ng-if="ab.alasanBlacklist.alasanBlacklistJkWaktu == 'M'">Bulan</span>
+										<span ng-if="ab.alasanBlacklist.alasanBlacklistJkWaktu == 'Y'">Tahun</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<br/>
+					<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+						<em class="fa fa-tasks">&nbsp;</em>
+						<span translate="">Keterangan Blacklist</span>
+					</h4>
+					<div class="row">
+						<div class="col-md-3">Durasi Blacklist</div>
+						<div class="col-md-9">
+								<div class="row">
+									<div class="col-md-2">
+										<input readonly="readonly" id="input-id-1" type="number" maxlength="3" class="form-control" ng-model="form.blacklistVendorDtl.blacklistVendor.blacklistVendorJmlWaktu"/>
+									</div>
+									<div class="col-md-3">
+										<select disabled="disabled" class="form-control " ng-model="form.blacklistVendorDtl.blacklistVendor.blacklistVendorJkWaktu">
+											<option value="D">Hari</option>
+											<option value="M">Bulan</option>
+											<option value="Y">Tahun</option>
+										</select>
+									</div>
+								</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3">Catatan Blacklist</div>
+						<div class="col-md-9">
+							<p class="input-group col-md-10">
+								<textarea readonly="readonly" class="form-control shadow-z1 input-sm" ng-model="form.blacklistVendorDtl.blacklistVendor.blacklistVendorKeterangan" maxlength="255" rows="4"></textarea>
+							</p>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-3">Catatan Untuk Vendor</div>
+						<div class="col-md-9">
+							<p class="input-group col-md-10">
+								<textarea readonly="readonly" class="form-control shadow-z1 input-sm" ng-model="form.blacklistVendorDtl.blacklistVendor.blacklistVendorKeteranganVnd" maxlength="255" rows="4"></textarea>
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3">File</div>
+						<div class="col-md-9"> 
+							<div class="table-responsive">
+								<table class="table table-striped">
+									<tbody>
+										<tr ng-repeat="ab in form.blacklistVendorDtl.blacklistVendorFileList">
+											<td>
+												<a ng-click="form.viewFile(ab.blacklistFile)"><span ng-bind="ab.blacklistFile"></span></a>
+											</td> 
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<br/>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	
+	<div class="panel panel-primary" ng-if="form.unblacklist == true">
+		<div class="">
+			<form autocomplete="off">
+				<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			    	<em class="fa fa-tasks">&nbsp;</em>
+			    	<span translate="">Unblacklist Vendor</span>
+			    </h4>
+				<div class="panel-body">		 
+					<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+						<em class="fa fa-tasks">&nbsp;</em>
+						<span translate="">Keterangan Unblacklist</span>
+					</h4> 
+					<div class="row">
+						<div class="col-md-3">Catatan Unblacklist</div>
+						<div class="col-md-9">
+							<p class="input-group col-md-10">
+								<textarea readonly="readonly" class="form-control shadow-z1 input-sm" ng-model="form.unblacklistVendorDtl.unblacklistVendor.unblacklistVendorKeterangan" maxlength="255" rows="4"></textarea>
+							</p>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-3">Catatan Untuk Vendor</div>
+						<div class="col-md-9">
+							<p class="input-group col-md-10">
+								<textarea readonly="readonly" class="form-control shadow-z1 input-sm" ng-model="form.unblacklistVendorDtl.unblacklistVendor.unblacklistVendorKeteranganVnd" maxlength="255" rows="4"></textarea>
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3">File</div>
+						<div class="col-md-9"> 
+							<div class="table-responsive">
+								<table class="table table-striped">
+									<tbody>
+										<tr ng-repeat="ab in form.unblacklistVendorDtl.unblacklistVendorFileList">
+											<td>
+												<a ng-click="form.viewFile(ab.blacklistFile)"><span ng-bind="ab.unblacklistFile"></span></a>
+											</td> 
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<br/>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div class="panel panel-primary" ng-if="form.showapproval == true">
+		<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-tasks">&nbsp;</em>Approval vendor <span ng-if="form.vendorProfileBean.vendor.statusPerpanjangan == 1">- Perpanjangan Sertifikat</span>
+		</h4>
+		<div ng-show="form.loading" align="center">
+			<strong><em>Loading... <img src="app/img/loading.gif" border="0"
+					height="20px" alt="" /></em></strong>
+		</div>
+		<div ng-show="!form.loading" class="panel-body">
+			<form name="myform" class="form-validate form-horizontal" role="form" novalidate action="">
+				<div class="row">
+					<div class="form-group">
+                        <div class="bs-wizard no-margin">
+                            <div class="col-md-6 col-md-push-4">
+                                <div ng-repeat="flow in form.levelList | orderBy: flow.sequence" class="bs-wizard-step {{(flow.status==3?'complete':'')}}">
+                                    <div ng-if="flow.approvalLevel.approval.approvalType.id == 1" class="text-center bs-wizard-stepnum" ng-bind="flow.approvalLevel.group.nama">123</div>
+                                    <div ng-if="flow.approvalLevel.approval.approvalType.id == 2" class="text-center bs-wizard-stepnum" ng-bind="flow.approvalLevel.user.namaPengguna">321</div>
+                                    <div ng-if="flow.approvalLevel.approval.approvalType.id == 3" class="text-center bs-wizard-stepnum" ng-bind="flow.approvalLevel.role.nama">11</div>
+                                    <div class="progress">
+                                        <div class="progress-bar"></div>
+                                    </div>
+                                    <a href="#" class="bs-wizard-dot"></a>
+                                    <div class="text-center">{{($index+1)}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+				<div class="row">
+					<div class="col-md-12" style="text-align:center">
+						<h3>Approve this Request</h3>
+                         		<span>This Request Needs Your Approval</span>
+					</div>
+				</div>
+				<br/>
+				<div class="row">
+					<div class="col-md-12" style="text-align:center">
+                          	<a class="btn btn-success" ng-click="btnSimpan(3)">Approve</a>
+                          	<a class="btn btn-warning" ng-click="btnSimpan(4)">Hold</a>
+                          	<a class="btn btn-danger" ng-click="btnSimpan(2)">Reject</a>
+					</div>				
+				</div>
+				<br/>
+				<br/>
+				<div class="row">
+					<div class="col-md-4 col-md-push-4">
+						<label><span>Note</span><strong style="color: red">*</strong> </label>
+						<textarea rows="6" cols="50" class="form-control input-sm shadow-z1" id="" ng-model="form.note">
+                          	</textarea>
+                          	<strong style="color:red">{{errorNoteMessage}}</strong>
+					</div>		
+				</div>
+			</form>
+			<h3>Approval Log</h3>
+			<div class="table-responsive">
+				<table class="table standard table-striped table-bordered">
+					<thead>
+						<tr>
+							<th scope="col">No</th>
+							<th scope="col">Approver</th>
+							<th scope="col">Approval Status</th>
+							<th scope="col">Note</th>
+							<th scope="col">Approval Date</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="data in statusList">
+							<td>{{($index+1)}}</td>
+							<td>
+								<span ng-if="data.approvalLevel.approval.approvalType.id == 1" ng-bind="data.user.namaPengguna"></span>
+					            <span ng-if="data.approvalLevel.approval.approvalType.id == 2" ng-bind="data.user.namaPengguna"></span>
+					            <span ng-if="data.approvalLevel.approval.approvalType.id == 3" ng-bind="data.user.namaPengguna"></span>
+							</td>
+							<td> 
+								<span ng-if="data.status == 4" style="color: #fad733" class="text-bold">Hold</span>
+								<span ng-if="data.status == 3" style="color: #00a65a" class="text-bold">Approved</span>
+								<span ng-if="data.status == 2" style="color: #AA2200" class="text-bold">Reject</span>
+								<span ng-if="data.status == 1" style="color: #3f51b5" class="text-bold">Approval</span>
+							</td>
+							<td style="word-wrap: break-word; max-width: 200px;">{{data.keterangan}}</td>
+							<td>{{data.updated | date:'dd-MMM-yyyy'}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<br>
+			<div ng-show="loadingSaving" align="right">
+				<strong><em>Saving... <img src="app/img/loading.gif" border="0"
+						height="20px" alt="" /></em></strong>
+			</div>
+			<div align="center" ng-show="!form.loading">
+				<button  ng-class="'bg-' + app.theme.name" ng-click="gotoIndex()"
+					class="btn btn-primary btn-sm pull-center" ripple="">
+					<span class=""><em class="fa fa-chevron-left"></em></span>&nbsp;&nbsp;<font
+						color="white">KEMBALI</font>
+				</button>
+			</div>
+		</div>
+	</div>

@@ -1,0 +1,441 @@
+<tabset class="tab-container small-tab"> 
+	<tab heading="Bahasa">
+		<div class="form-group">
+			<div class="col-lg-12">
+				<div class="form-group">
+					<label class="col-lg-2 control-label"><span translate="promise.procurement.master.catalog.view.contractnumber"></span></label>
+					<div class="col-sm-5 no-search">
+						<input name="catalogKontrak" disabled class="form-control" ng-model="catalog.catalogKontrak.nomorKontrak" >
+					</div>
+					<!-- <div class="col-sm-5 no-search" >
+						<input name="itemName" disabled class="form-control" style="color: red;" ng-model="catalogHistory.catalogKontrak.nomorKontrak">
+					</div> -->
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2 control-label"><span translate="promise.procurement.master.catalog.view.itemname"></span></label>
+					<div class="col-sm-5">
+						<input name="itemName" disabled class="form-control" ng-model="catalog.item.nama">
+					</div>
+					<!-- <div class="col-sm-5 no-search" ng-show="vm.item">
+						<input name="itemName" disabled class="form-control" style="color: red;" ng-model="catalogHistory.item.nama">
+					</div> -->
+				</div>
+		
+				<div class="form-group">
+					<label class="col-lg-2 control-label"><strong><span translate="promise.procurement.master.catalog.view.itemcode"></span></strong> </label>
+					<div class="col-sm-5">
+						<input name="kodeItem" class="form-control" ng-model="catalog.item.kode" ng-disabled="true">
+					</div>
+					<!-- <div class="col-sm-5 no-search" ng-show="vm.item">
+						<input name="kodeItem" disabled class="form-control" style="color: red;" ng-model="catalogHistory.item.kode">
+					</div> -->
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2 control-label"><strong>Item Plant</strong> </label>
+					<div class="col-sm-5">
+						<input name="kodeItem" class="form-control" ng-model="catalog.catalogContractDetail.itemPlant" ng-disabled="true">
+					</div>
+					<!-- <div class="col-sm-5 no-search" ng-show="vm.item">
+						<input name="kodeItem" disabled class="form-control" style="color: red;" ng-model="catalogHistory.item.kode">
+					</div> -->
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2 control-label"><strong>Nama</strong></label>
+					<div class="col-sm-5">
+						<input name="namaIND" disabled class="form-control" ng-model="catalog.namaIND" placeholder="Nama barang yang akan diinput oleh vendor"> 
+					</div>
+					<div class="col-sm-5 no-search" ng-show="vm.namaIND">
+						<input ng-show="catalogHistory.namaIND != catalog.namaIND && vm.todo != 'add'" name="kodeItem" disabled class="form-control" style="color: red;" ng-model="catalogHistory.namaIND">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-2 control-label"><span translate="promise.procurement.master.catalog.view.product_desc"></span> </label>
+			<div class="col-lg-8">
+				<!-- Wysiswyg editor-->
+				<div text-angular="" ta-disabled="true" name="deskripsiIND" class="btn-group-small"
+					ng-model="catalog.deskripsiIND"
+					placeholder="Deskripsi barang yang akan diinput oleh vendor"></div>
+					
+				<div text-angular="" ta-disabled="true" name="deskripsiIND" class="btn-group-small"
+					ng-model="catalogHistory.deskripsiIND" style="background-color gray;color: red;" ng-show="catalogHistory.deskripsiIND != catalog.deskripsiIND && vm.todo != 'add'"></div>
+			</div>
+			
+		</div>
+	</tab> 
+</tabset>
+
+<fieldset>
+<div class="col-lg-12">
+	<legend><span translate="promise.procurement.master.catalog.view.product_info"></span></legend>
+</div>
+<div class="col-lg-12">
+	<div class="form-group">
+		<label class="col-lg-2 control-label"><span translate="promise.procurement.master.catalog.view.product_code"></span></label>
+		<div class="col-sm-4">
+			<input type="text" name="kodeProduk" disabled
+				class="form-control" ng-model="catalog.kodeProduk"
+				placeholder="Kode produk">
+		</div>
+		<div class="col-sm-4">
+			<input type="text" name="kodeProduk" disabled class="form-control" ng-show="catalogHistory.kodeProduk != catalog.kodeProduk && vm.todo != 'add'" style="color: red;" ng-model="catalogHistory.kodeProduk" >
+		</div>
+	</div>
+</div>
+<div class="col-lg-12" >
+	<div class="form-group">
+		<label class="col-lg-1 col-lg-push-1 control-label"><span translate="promise.procurement.master.catalog.view.price"></span> </label>
+		<div class="col-sm-4 col-lg-push-1">
+			<input type="text" disabled promise-numbers-only name="harga" promise-currency-blur
+				class="form-control" ng-model="catalog.harga">
+		</div>
+		<div class="col-sm-4 col-lg-push-1">
+			<input type="text" disabled promise-numbers-only name="harga" style="color: red;" promise-currency-blur
+				class="form-control" ng-model="catalogHistory.harga" style="color: red;" ng-show="catalogHistory.harga != catalog.harga && vm.todo != 'add'">
+		</div>
+	</div>
+</div>
+<div class="col-lg-12" >
+	<div class="form-group">
+		<label class="col-lg-2 control-label"><span translate="promise.procurement.master.catalog.view.currency"></span></label>
+		<div class="col-sm-4 no-search">
+			<select disabled name="mataUang" class="form-control"
+				ng-model="catalog.mataUang"
+				ng-options="mataUang.nama for mataUang in mataUangList track by mataUang.id">
+			</select>
+		</div>
+		<!-- <div ng-show="vm.mataUang" class="col-sm-4 no-search">
+			<select style="color: red;" disabled name="mataUang" class="form-control"
+				ng-model="catalogHistory.mataUang"
+				ng-options="mataUang.nama for mataUang in mataUangList track by mataUang.id">
+			</select>
+		</div> -->
+	</div>
+</div>
+<div class="col-lg-8">
+	<div class="form-group">
+		<label class="col-lg-3 control-label"><span translate="promise.procurement.master.catalog.view.weight"></span></label>
+		<div class="col-lg-3">
+			<input type="text" disabled promise-numbers-only-copy name="berat"
+				class="form-control" ng-model="catalog.berat"
+				placeholder="Berat barang">
+		</div>
+		<div class="col-lg-3">
+			<select name="satuanBerat" disabled ng-model="catalog.satuanBerat"
+				class="form-control">
+				<option value="" disabled selected>++ Pilih ++</option>
+				<option value="kg">KG</option>
+				<option value="gram">Gram</option>
+				<option value="pound">Pound</option>
+			</select>
+		</div>
+		<div class="col-lg-3">
+			<input type="text" disabled promise-numbers-only-copy name="berat"
+				class="form-control" style="color: red;" 
+				ng-show="(catalogHistory.berat != catalog.berat || catalogHistory.satuanBerat != catalog.satuanBerat) && vm.todo != 'add'" 
+				value="{{catalogHistory.berat }} {{catalogHistory.satuanBerat | uppercase}}">
+		</div>
+	</div>
+</div>
+<div class="col-lg-12">
+	<div class="form-group">
+		<label class="col-lg-2 control-label"><span translate="promise.procurement.master.catalog.view.unit"></span></label>
+		<div class="col-sm-4 no-search">
+			<select name="satuan" disabled class="form-control" ng-model="catalog.satuan"
+				ng-options="satuan.nama for satuan in satuanList track by satuan.id">
+				<option value="" disabled selected>++ Pilih ++</option>
+			</select> 
+		</div>
+		<!-- <div ng-show="vm.uom" class="col-sm-4 no-search">
+			<select style="color: red;" name="satuan" disabled class="form-control" ng-model="catalogHistory.satuan"
+				ng-options="satuan.nama for satuan in satuanList track by satuan.id">
+				<option value="" disabled selected>++ Pilih ++</option>
+			</select> 
+		</div> -->
+		<!--Catalog Stock  -->
+	</div>
+</div>
+<!-- <div class="col-lg-12">
+	<div class="form-group">
+		<label class="col-lg-2 control-label"><span translate="promise.procurement.master.catalog.view.stock_minimals"></span></label>
+		<div class="col-sm-4">
+			<input type="text" disabled promise-numbers-only-copy name="minimalQuantity"
+				class="form-control" ng-model="catalog.minimalQuantity"
+				placeholder="Minimal Quantity">
+		</div>
+		<div class="col-sm-4">
+			<input type="text" disabled promise-numbers-only-copy name="minimalQuantity"
+				class="form-control" ng-model="catalogHistory.minimalQuantity" ng-show="catalog.minimalQuantity != catalogHistory.minimalQuantity && vm.todo != 'add'" style="color: red;">
+		</div>
+	</div>
+</div> -->
+<!-- /*perubahan KAI 01/18/2021*/ -->
+<div class="col-lg-12">
+	<div class="form-group">
+		<label class="col-lg-2 control-label"><span translate="promise.procurement.master.catalog.view.quantity_min_order"></span></label>
+		<div class="col-sm-4">
+			<input type="text" disabled promise-numbers-only-copy name="minimumQuantityOrder"
+				class="form-control" ng-model="catalog.minimumQuantityOrder"
+				placeholder="Minimum Quantity Order">
+		</div>
+		<div class="col-sm-4">
+			<input type="text" disabled promise-numbers-only-copy name="minimumQuantityOrder"
+				class="form-control" ng-model="catalogHistory.minimumQuantityOrder" ng-show="catalog.minimumQuantityOrder != catalogHistory.minimumQuantityOrder && vm.todo != 'add'" style="color: red;">
+		</div>
+	</div>
+</div>
+
+<div class="col-lg-12">
+	<div class="form-group">
+		<label class="col-lg-2 control-label"><span translate="promise.procurement.master.catalog.view.quantity_max_order_transaction"></span></label>
+		<div class="col-sm-4">
+			<input type="text" disabled promise-numbers-only-copy name="maksimumQuantityPerOrder"
+				class="form-control" ng-model="catalog.maksimumQuantityPerOrder" 
+				placeholder="Maksimum Quantity Order Per Transaksi">
+		</div>
+		<div class="col-sm-4">
+			<input type="text" disabled promise-numbers-only-copy name="maksimumQuantityPerOrder"
+				class="form-control" ng-model="catalogHistory.maksimumQuantityPerOrder" ng-show="catalog.maksimumQuantityPerOrder != catalogHistory.maksimumQuantityPerOrder && vm.todo != 'add'" style="color: red;">
+		</div>
+	</div>
+</div>
+<div class="col-lg-12">
+	<div class="form-group">
+		<label class="col-lg-2 control-label"><span translate="promise.procurement.master.catalog.view.quantity_max_order_day"></span></label>
+		<div class="col-sm-4">
+			<input type="text" disabled promise-numbers-only-copy name="maksimumQuantityOrderDay"
+				class="form-control" ng-model="catalog.maksimumQuantityOrderDay" 
+				placeholder="Maksimum Quantity Order Per Hari">
+		</div>
+		<div class="col-sm-4">
+			<input type="text" disabled promise-numbers-only-copy name="maksimumQuantityOrderDay"
+				class="form-control" ng-model="catalogHistory.maksimumQuantityOrderDay" ng-show="catalog.maksimumQuantityOrderDay != catalogHistory.maksimumQuantityOrderDay && vm.todo != 'add'" style="color: red;">
+		</div>
+	</div>
+</div>
+</fieldset><br>
+<!-- <div class="col-lg-6">
+	<div class="form-group">
+		<label class="col-lg-2 control-label"><span translate="promise.procurement.master.catalog.view.stock"></span></label>
+		<div class="col-sm-4 col-lg-push-2">
+			<label class="col-lg-2 control-label">{{ catalog.currentStock }}</label>
+		</div>
+		<div class="col-sm-4 col-lg-push-2">
+			<label class="col-lg-2 control-label" style="color: red;" 
+			ng-show="catalogHistory.currentStock != catalog.currentStock && vm.todo != 'add'">{{ catalogHistory.currentStock }}</label>
+		</div>
+	</div>
+</div> -->
+
+<fieldset>
+<div class="col-lg-8">
+	<legend><span translate="promise.procurement.master.catalog.view.dimensions"></span></legend>
+</div>
+<div class="col-lg-8">
+	<div class="form-group">
+		<label class="col-lg-3 control-label"><span translate="promise.procurement.master.catalog.view.length"></span></label>
+		<div class="col-lg-3">
+			<input type="text" disabled promise-numbers-only-copy name="panjang"
+				class="form-control" ng-model="catalog.panjang"
+				placeholder="Panjang barang">
+		</div>
+		<div class="col-lg-3">
+			<select name="satuanPanjang" disabled ng-model="catalog.satuanPanjang"
+				class="form-control">
+				<option value="" disabled selected>++ Pilih ++</option>
+				<option value="m">M</option>
+				<option value="cm">CM</option>
+				<option value="inch">INCH</option>
+			</select>
+		</div>
+		<div class="col-lg-3">
+			<input type="text" disabled promise-numbers-only-copy name="panjang" 
+			ng-show="(catalogHistory.panjang != catalog.panjang || catalogHistory.satuanPanjang != catalogHistory.satuanPanjang) && vm.todo != 'add'"
+			class="form-control" style="color: red;" value="{{catalogHistory.panjang}}  {{catalogHistory.satuanPanjang | uppercase}}" >
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-lg-3 control-label"><span translate="promise.procurement.master.catalog.view.width"></span></label>
+		<div class="col-lg-3">
+			<input type="text" promise-numbers-only-copy disabled name="lebar"
+				class="form-control" ng-model="catalog.lebar"
+				placeholder="Lebar barang">
+		</div>
+		<div class="col-lg-3">
+			<select name="satuanLebar" disabled ng-model="catalog.satuanLebar"
+				class="form-control">
+				<option value="" disabled selected>++ Pilih ++</option>
+				<option value="m">M</option>
+				<option value="cm">CM</option>
+				<option value="inch">INCH</option>
+			</select>
+		</div>
+		<div class="col-lg-3">
+			<input type="text" promise-numbers-only-copy disabled name="lebar" 
+			ng-show="(catalogHistory.lebar != catalog.lebar || catalogHistory.satuanLebar != catalog.satuanLebar) && vm.todo != 'add'"
+			class="form-control" style="color: red;" value="{{catalogHistory.lebar}}  {{catalogHistory.satuanLebar | uppercase}}" >
+		</div>
+	</div>
+</div>
+<div class="col-lg-8">
+	<div class="form-group">
+		<label class="col-lg-3 control-label"><span translate="promise.procurement.master.catalog.view.height"></span></label>
+		<div class="col-lg-3">
+			<input type="text" disabled promise-numbers-only-copy name="tinggi"
+				class="form-control" ng-model="catalog.tinggi"
+				placeholder="Tinggi barang">
+		</div>
+		<div class="col-lg-3">
+			<select name="satuanTinggi" disabled ng-model="catalog.satuanTinggi"
+				class="form-control">
+				<option value="" disabled selected>++ Pilih ++</option>
+				<option value="m">M</option>
+				<option value="cm">CM</option>
+				<option value="inch">INCH</option>
+			</select>
+		</div>
+		<div class="col-lg-3">
+			<input type="text" disabled promise-numbers-only-copy name="tinggi" 
+			ng-show="(catalog.tinggi != catalogHistory.tinggi || catalog.satuanTinggi != catalogHistory.satuanTinggi) && vm.todo != 'add'"
+			class="form-control" style="color: red;" value="{{catalogHistory.tinggi}}  {{catalogHistory.satuanTinggi | uppercase}}" >
+		</div>
+	</div>
+</div>
+</fieldset><br>
+
+<fieldset>
+	<div class="col-lg-12 m-t-lg" >
+		<legend><span translate="promise.procurement.master.catalog.view.wholesale_price"></span></legend>
+		<div class="col-lg-12">
+			<!-- /* perubahan KAI 17/12/2020 [21100]*/ -->
+			<table class="table table-striped">
+				<thead>
+					<tr style="font-weight: bold; background-color:#EEEEEE">
+						<th scope="col">No</th>
+						<th scope="col"><span translate="promise.procurement.master.catalog.view.quantity_minimum"></span></th>
+						<th scope="col"><span translate="promise.procurement.master.catalog.view.quantity_max"></span></th>
+						<th scope="col"><span translate="promise.procurement.master.catalog.view.discount"></span> (%)</th>
+						<th scope="col"><span translate="promise.procurement.master.catalog.view.price"></span></th>
+						<th scope="col"style="font-style: italic;"><span translate="promise.procurement.master.catalog.view.quantity_minimum"> (New)</span></th>
+						<th scope="col"style="font-style: italic;"><span translate="promise.procurement.master.catalog.view.quantity_max"></span> (New)</th>
+						<th scope="col"style="font-style: italic;"><span translate="promise.procurement.master.catalog.view.discount"></span> (%) (New)</th>
+						<th scope="col"style="font-style: italic;"><span translate="promise.procurement.master.catalog.view.price"></span> (New)</th>
+						<th scope="col"style="font-style: italic;"><span translate="promise.procurement.master.catalog.list.Aksi"></span></th>
+					</tr>
+				</thead>
+				<tbody>
+					
+					<tr ng-repeat="catalogBulkPrice in catalog.catalogBulkPriceList">
+						<td ng-bind="$index+1"></td>
+						<td ng-bind="(catalogBulkPrice.minQuantity | number)" align="right"></td>
+						<td ng-bind="catalogBulkPrice.maxQuantity" align="right"></td>
+						<td ng-bind="(catalogBulkPrice.diskon | number)" align="right"></td>
+						<td ng-if="catalogBulkPrice.id != null" align="right">{{catalog.harga-((catalogBulkPrice.diskon/100)*catalog.harga) | currency:'' }}</td>
+						<td ng-if="catalogBulkPrice.id == null" align="right"> </td>
+						<td
+							ng-bind="catalogBulkPrice.catalogBulkPriceHistory.minQuantity != catalogBulkPrice.minQuantity?(catalogBulkPrice.catalogBulkPriceHistory.minQuantity | number):' '" align="right"  style="font-style: italic; color:red;"></td>
+						<td
+							ng-bind="catalogBulkPrice.catalogBulkPriceHistory.maxQuantity != catalogBulkPrice.maxQuantity?catalogBulkPrice.catalogBulkPriceHistory.maxQuantity:' '" align="right"  style="font-style: italic; color:red;"></td>
+						<td
+							ng-bind="catalogBulkPrice.catalogBulkPriceHistory.diskon != catalogBulkPrice.diskon?(catalogBulkPrice.catalogBulkPriceHistory.diskon | number):' '" align="right" style="font-style: italic; color:red;"></td>
+						<td
+							ng-if="catalogBulkPrice.catalogBulkPriceHistory.id != null && catalogBulkPrice.catalogBulkPriceHistory.diskon != catalogBulkPrice.diskon" 
+							align="right"  style="font-style: italic;color:red;">{{catalog.harga-((catalogBulkPrice.catalogBulkPriceHistory.diskon/100)*catalog.harga) | currency:'' }}</td>
+						<td
+							ng-if="catalogBulkPrice.catalogBulkPriceHistory.id == null && catalogBulkPrice.catalogBulkPriceHistory.diskon == catalogBulkPrice.diskon" 
+							align="right"  style="font-style: italic;color:red;">  </td>
+						<td
+							ng-if="catalogBulkPrice.catalogBulkPriceHistory.action != null 
+							&& (catalogBulkPrice.catalogBulkPriceHistory.diskon != catalogBulkPrice.diskon
+							|| catalogBulkPrice.catalogBulkPriceHistory.maxQuantity != catalogBulkPrice.maxQuantity
+							|| catalogBulkPrice.catalogBulkPriceHistory.minQuantity != catalogBulkPrice.minQuantity)"
+							ng-bind="(catalogBulkPrice.catalogBulkPriceHistory.action)" align="right" style="font-style: italic; color:red;"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</fieldset><br>
+
+<fieldset>
+	<div class="col-lg-12 m-t-lg" >
+		<legend>Ongkos Kirim</legend>
+		<div class="col-lg-12">
+		<!-- /* perubahan KAI 17/12/2020 [21100]*/ -->
+			<table class="table table-striped">
+				<thead>
+					<tr style="font-weight: bold; background-color:#EEEEEE">
+						<th scope="col">No</th>
+						<th scope="col"><span translate="promise.procurement.master.catalog.view.name"></span></th>
+						<th scope="col"><span translate="promise.procurement.master.catalog.view.qty_batch"></span></th>
+						<th scope="col"><span translate="promise.procurement.master.catalog.view.postal_fee"></span></th>
+						<th scope="col">Asuransi (%)</th>
+						<th scope="col"><span translate="promise.procurement.master.catalog.view.sla_time"></span></th>
+						<th scope="col"style="font-style: italic;"><span translate="promise.procurement.master.catalog.view.qty_batch"></span> (New)</th>
+						<th scope="col"style="font-style: italic;"><span translate="promise.procurement.master.catalog.view.postal_fee"></span> (New)</th>
+						<th scope="col"style="font-style: italic;">Asuransi (%) (New)</th>
+						<th scope="col"style="font-style: italic;"><span translate="promise.procurement.master.catalog.view.sla_time"></span> (New)</th>
+						<th scope="col"style="font-style: italic;"><span translate="promise.procurement.master.catalog.list.Aksi"></span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="catalogFee in catalog.catalogFeeList">
+						<td ng-bind="$index+1"></td>
+						
+						<td ng-if="catalogFee.id == null && catalogFee.catalogFeeHistory != null" style="font-style: italic; color:red;" ng-bind="catalogFee.catalogFeeHistory.organisasi.nama"></td>
+						<td ng-if="catalogFee.id != null" ng-bind="catalogFee.organisasi.nama"></td>
+						
+						<td ng-bind="(catalogFee.quantityBatch | number)" align="right"></td>
+
+						<td ng-bind="(catalogFee.ongkosKirim | currency:'')" align="right"></td>
+
+						<td ng-bind="catalogFee.asuransi" align="right"></td>
+							
+						<td ng-bind="catalogFee.slaDeliveryTime" align="right"></td>
+							
+						<td
+							style="font-style: italic; color:red;"
+							ng-bind="catalogFee.catalogFeeHistory.quantityBatch != catalogFee.quantityBatch?(catalogFee.catalogFeeHistory.quantityBatch | number):' '" align="right">
+						</td>
+
+						<td
+							style="font-style: italic; color:red;"
+							ng-bind="catalogFee.catalogFeeHistory.ongkosKirim != catalogFee.ongkosKirim?(catalogFee.catalogFeeHistory.ongkosKirim | currency:''):' '" align="right"></td>
+
+						<td
+							style="font-style: italic; color:red;"
+							ng-bind="catalogFee.catalogFeeHistory.asuransi != catalogFee.asuransi?catalogFee.catalogFeeHistory.asuransi : ' '" align="right"></td>
+							
+						<td
+							style="font-style: italic; color:red;"
+							ng-bind="catalogFee.catalogFeeHistory.slaDeliveryTime != catalogFee.slaDeliveryTime?catalogFee.catalogFeeHistory.slaDeliveryTime:' '" align="right"></td>
+							
+						<td
+							style="font-style: italic; color:red;"
+							ng-if="catalogFee.catalogFeeHistory.action != null &&
+							(catalogFee.catalogFeeHistory.slaDeliveryTime != catalogFee.slaDeliveryTime ||
+							catalogFee.catalogFeeHistory.asuransi != catalogFee.asuransi || 
+							catalogFee.catalogFeeHistory.ongkosKirim != catalogFee.ongkosKirim ||
+							catalogFee.catalogFeeHistory.quantityBatch != catalogFee.quantityBatch || catalogFee.catalogFeeHistory.action=='DELETE') "
+							ng-bind="catalogFee.catalogFeeHistory.action" align="center"></td>	
+
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<div class="col-lg-12 text-center mt" style="margin-top: 32px;">
+			<a class="btn btn-default" ng-click="kembali()"> <span
+				translate="promise.procurement.master.attribute.btn.KEMBALI"></span>
+			</a> <a class="btn btn-primary" ng-click="goToCategories()"> <span
+				translate="promise.procurement.master.attribute.btn.SELANJUTNYA"></span>
+			</a>
+		</div>
+	</div>
+</fieldset><br>
+<!-- <div class="col-lg-12">
+	<div class="text-center" style="margin-top: 30px">
+	</div>
+</div> -->

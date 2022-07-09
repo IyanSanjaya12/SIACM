@@ -1,0 +1,16 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.panitia.jadwalpengadaan.JUDUL"></span>
+	<small><span translate="promise.procurement.panitia.jadwalpengadaan.KETERANGAN"></span></small>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="JadwalPengadaanController as form">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-tasks">&nbsp;</em><span translate="promise.procurement.panitia.jadwalpengadaan.SUBJUDUL"></span></h4>
+	<div class="panel-body">
+        <div class="row form-horizontal">
+            <div class="col-md-12">
+                <table datatable="" dt-options="form.dtOptions" dt-columns="form.dtColumns" dt-instance="form.dtInstance" id="pengadanIndex" class="row-border hover"></table>
+            </div>
+        </div>
+	</div>
+</div>
+<!--END CONTROLLER-->

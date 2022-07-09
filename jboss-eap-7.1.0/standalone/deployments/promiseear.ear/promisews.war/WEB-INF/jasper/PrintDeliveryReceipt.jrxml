@@ -1,0 +1,768 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PrintDeliveryReceipt" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7aa92dc4-5d97-494c-87fd-8ac8e726eac5">
+	<property name="ireport.zoom" value="1.126972201352367"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="217"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="drId" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[$P{SUBREPORT_DIR}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="reportImagePath" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+	dr.*,
+	po.*,
+	pr.*,
+	poi.*,
+	i.*,
+	v.ALAMAT AS alamat_vendor,
+	v.KOTA AS kota_vendor,
+	v.PROVINSI AS provinsi_vendor,
+	v.NOMOR_TELEPON AS telepon_vendor,
+	ctlg.NAME_IND AS nameInd,
+	s.NAMA AS satuan,
+	ab.FULL_NAME AS nama_penerima,
+	ab.STREET_ADDRESS AS alamat_penerima,
+	ab.TELEPHONE AS telephone_penerima,
+	u.*,
+	po.PURCHASE_ORDER_DATE + TO_NUMBER( pr.SLA_DELIVERY_TIME ) AS perkiraanTiba,
+	po.PURCHASE_ORDER_DATE AS tanggalpo,
+	( SELECT DISTINCT drd.QUANTITY FROM CATALOG.T6_DR_DETAIL drd WHERE drd.DELIVERY_RECEIVED_ID = dr.DELIVERY_RECEIVED_ID ) AS QTY
+FROM
+	T3_PURCHASE_REQUEST pr
+	JOIN T3_PURCHASE_ORDER po ON po.PURCHASE_REQUEST_ID = pr.PURCHASE_REQUEST_ID
+	JOIN T5_DELIVERY_RECEIVED dr ON dr.PURCHASE_ORDER_ID = po.PURCHASE_ORDER_ID
+	JOIN T4_PURCHASE_ORDER_ITEM poi ON poi.PURCHASE_ORDER_ID = po.PURCHASE_ORDER_ID
+	JOIN T2_ITEM i ON i.ITEM_ID = poi.ITEM_ID
+	JOIN T2_VENDOR v ON v.VENDOR_ID = poi.VENDOR_ID
+	JOIN CATALOG.T3_CATALOG ctlg ON ctlg.ITEM_ID = i.ITEM_ID
+	JOIN T1_SATUAN s ON s.SATUAN_ID = i.SATUAN_ID
+	JOIN T1_ADDRESS_BOOK ab ON ab.ADDRESS_BOOK_ID = pr.ADDRESS_BOOK_ID
+	JOIN T1_USER u ON u.USER_ID = dr.USERID
+WHERE
+	dr.ISDELETE = 0
+	AND dr.DELIVERY_RECEIVED_ID = $P{drId}]]>
+	</queryString>
+	<field name="DELIVERY_RECEIVED_ID" class="java.math.BigDecimal"/>
+	<field name="DATE_RECEIVED" class="java.sql.Timestamp"/>
+	<field name="ISDELETE" class="java.math.BigDecimal"/>
+	<field name="ISFINISH" class="java.math.BigDecimal"/>
+	<field name="PURCHASE_ORDER_ID" class="java.math.BigDecimal"/>
+	<field name="TOTAL_RECEIPT_AMOUNT" class="java.math.BigDecimal"/>
+	<field name="DELIVERY_RECEIPT_NUM" class="java.lang.String"/>
+	<field name="USERID" class="java.math.BigDecimal"/>
+	<field name="CREATED" class="oracle.sql.TIMESTAMP"/>
+	<field name="UPDATED" class="oracle.sql.TIMESTAMP"/>
+	<field name="DELETED" class="oracle.sql.TIMESTAMP"/>
+	<field name="DESCRIPTION" class="java.lang.String"/>
+	<field name="REQUESTOR_USER_ID" class="java.math.BigDecimal"/>
+	<field name="DELIVERY_ORDER_NUM" class="java.lang.String"/>
+	<field name="DELIVERY_ORDER_DATE" class="java.sql.Timestamp"/>
+	<field name="ADDRESS_LABEL" class="java.lang.String"/>
+	<field name="APPROVED_DATE" class="oracle.sql.TIMESTAMP"/>
+	<field name="CREATE_DATE" class="oracle.sql.TIMESTAMP"/>
+	<field name="DEPARTMENT" class="java.lang.String"/>
+	<field name="DISCOUNT" class="java.math.BigDecimal"/>
+	<field name="DOWN_PAYMENT" class="java.math.BigDecimal"/>
+	<field name="FULL_NAME" class="java.lang.String"/>
+	<field name="KONTRAK_FK" class="java.math.BigDecimal"/>
+	<field name="NEXT_APPROVAL" class="java.lang.String"/>
+	<field name="NOTES" class="oracle.sql.CLOB"/>
+	<field name="KOMEN" class="java.lang.String"/>
+	<field name="PURCHASE_ORDER_DATE" class="java.sql.Timestamp"/>
+	<field name="STATUS" class="java.lang.String"/>
+	<field name="STATUS_PROSES" class="java.math.BigDecimal"/>
+	<field name="STREET_ADDRESS" class="java.lang.String"/>
+	<field name="SUB_TOTAL" class="java.math.BigDecimal"/>
+	<field name="SYNC_STATUS" class="java.math.BigDecimal"/>
+	<field name="TAX" class="java.math.BigDecimal"/>
+	<field name="TELEPHONE_1" class="java.lang.String"/>
+	<field name="TERMIN_FK" class="java.math.BigDecimal"/>
+	<field name="TOTAL_COST" class="java.math.BigDecimal"/>
+	<field name="ADDRESS_BOOK_ID" class="java.math.BigDecimal"/>
+	<field name="MATA_UANG_ID" class="java.math.BigDecimal"/>
+	<field name="PENGADAAN_ID" class="java.math.BigDecimal"/>
+	<field name="PURCHASE_REQUEST_ID" class="java.math.BigDecimal"/>
+	<field name="TERM_AND_CONDITION_ID" class="java.math.BigDecimal"/>
+	<field name="VENDOR_NAME" class="java.lang.String"/>
+	<field name="DELIVERY_TIME" class="java.sql.Timestamp"/>
+	<field name="RATING" class="java.math.BigDecimal"/>
+	<field name="PO_NUMBER_EBS" class="java.lang.String"/>
+	<field name="PO_ID_EBS" class="java.math.BigDecimal"/>
+	<field name="STATUS_EBS" class="java.lang.String"/>
+	<field name="RATING_DATE" class="java.sql.Timestamp"/>
+	<field name="COST_CENTER" class="java.lang.String"/>
+	<field name="DATEREQUIRED" class="oracle.sql.TIMESTAMP"/>
+	<field name="IS_JOIN" class="java.math.BigDecimal"/>
+	<field name="POSTDATE" class="oracle.sql.TIMESTAMP"/>
+	<field name="PR_NUMBER_EBS" class="java.lang.String"/>
+	<field name="PROCUREMENT_PROCESS" class="java.lang.String"/>
+	<field name="TERM_AND_CONDITION" class="java.lang.String"/>
+	<field name="TOTAL_COST_AFTER_APPROVE" class="java.lang.String"/>
+	<field name="TOTAL_HARGA" class="java.math.BigDecimal"/>
+	<field name="VERIFIED_DATE" class="oracle.sql.TIMESTAMP"/>
+	<field name="ORGANISASI_ID" class="java.math.BigDecimal"/>
+	<field name="BO_NUMBER" class="java.lang.String"/>
+	<field name="ALAMAT" class="java.lang.String"/>
+	<field name="TOTAL_HARGA_DISCOUNT" class="java.math.BigDecimal"/>
+	<field name="TOTAL_HARGA_ONGKIR" class="java.math.BigDecimal"/>
+	<field name="TOTAL_HARGA_ASURANSI" class="java.math.BigDecimal"/>
+	<field name="PR_ID_EBS" class="java.math.BigDecimal"/>
+	<field name="ORG_APPROVAL_PATH_ID" class="java.math.BigDecimal"/>
+	<field name="LINK_LAMPIRAN_PR" class="java.lang.String"/>
+	<field name="LINK_LAMPIRAN_KONTRAK" class="java.lang.String"/>
+	<field name="SLA_DELIVERY_TIME" class="java.math.BigDecimal"/>
+	<field name="PURCHASE_ORDER_ITEM_ID" class="java.math.BigDecimal"/>
+	<field name="ITEM_NAME" class="java.lang.String"/>
+	<field name="QUANTITY_PURCHASE_REQUEST" class="java.math.BigDecimal"/>
+	<field name="QUANTITY_SEND" class="java.math.BigDecimal"/>
+	<field name="TOTAL_UNIT_PRICES" class="java.math.BigDecimal"/>
+	<field name="UNIT_PRICE" class="java.math.BigDecimal"/>
+	<field name="ITEM_ID" class="java.math.BigDecimal"/>
+	<field name="PURCHASE_REQUEST_ITEM_ID" class="java.math.BigDecimal"/>
+	<field name="SHIPPING_TO_ID" class="java.math.BigDecimal"/>
+	<field name="VENDOR_ID" class="java.math.BigDecimal"/>
+	<field name="DESKRIPSI" class="java.lang.String"/>
+	<field name="ITEM_KODE_EBS" class="java.lang.String"/>
+	<field name="NAMA" class="java.lang.String"/>
+	<field name="SOURCE" class="java.lang.String"/>
+	<field name="ITEM_GROUP_ID" class="java.math.BigDecimal"/>
+	<field name="ITEM_TYPE_ID" class="java.math.BigDecimal"/>
+	<field name="SATUAN_ID" class="java.math.BigDecimal"/>
+	<field name="ITEM_ID_EBS" class="java.lang.String"/>
+	<field name="ALAMAT_VENDOR" class="java.lang.String"/>
+	<field name="KOTA_VENDOR" class="java.lang.String"/>
+	<field name="PROVINSI_VENDOR" class="java.lang.String"/>
+	<field name="TELEPON_VENDOR" class="java.lang.String"/>
+	<field name="NAMEIND" class="java.lang.String"/>
+	<field name="SATUAN" class="java.lang.String"/>
+	<field name="NAMA_PENERIMA" class="java.lang.String"/>
+	<field name="ALAMAT_PENERIMA" class="java.lang.String"/>
+	<field name="TELEPHONE_PENERIMA" class="java.lang.String"/>
+	<field name="USER_ID" class="java.math.BigDecimal"/>
+	<field name="BLACKLIST" class="java.math.BigDecimal"/>
+	<field name="EMAIL" class="java.lang.String"/>
+	<field name="LOGIN_TIME" class="oracle.sql.TIMESTAMP"/>
+	<field name="NAMA_PENGGUNA" class="java.lang.String"/>
+	<field name="PASSWORD" class="java.lang.String"/>
+	<field name="REJECT" class="java.math.BigDecimal"/>
+	<field name="TERKUNCI" class="java.math.BigDecimal"/>
+	<field name="USERNAME" class="java.lang.String"/>
+	<field name="LAST_GENERATE_PASSWORD" class="oracle.sql.TIMESTAMP"/>
+	<field name="JABATAN_ID" class="java.math.BigDecimal"/>
+	<field name="ID_USER_EOFFICE" class="java.lang.String"/>
+	<field name="ID_PERUSAHAAN" class="java.math.BigDecimal"/>
+	<field name="FLAG_LOGIN_EBS" class="java.math.BigDecimal"/>
+	<field name="PERKIRAANTIBA" class="java.sql.Timestamp"/>
+	<field name="TANGGALPO" class="oracle.sql.TIMESTAMP"/>
+	<field name="QTY" class="java.math.BigDecimal"/>
+	<variable name="total" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{TOTAL_UNIT_PRICES}]]></variableExpression>
+	</variable>
+	<group name="total">
+		<groupExpression><![CDATA[$V{PAGE_NUMBER}]]></groupExpression>
+		<groupFooter>
+			<band height="95">
+				<staticText>
+					<reportElement x="359" y="4" width="83" height="20" uuid="6ad8a295-1c2c-4c0a-aa2d-edc33336b942"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="11"/>
+					</textElement>
+					<text><![CDATA[Total]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="449" y="19" width="105" height="20" uuid="994122f4-51da-41de-a49a-3a988df483fd"/>
+					<box topPadding="1" leftPadding="1">
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" size="11"/>
+					</textElement>
+					<textFieldExpression><![CDATA[msg("{0,number,#,##0.00}", ($F{TOTAL_HARGA_ONGKIR}))]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="449" y="39" width="105" height="20" uuid="e7b0c553-522f-45d4-aa86-9b7721eb3c9d"/>
+					<box topPadding="1" leftPadding="1">
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" size="11"/>
+					</textElement>
+					<textFieldExpression><![CDATA[msg("{0,number,#,##0.00}", (((($V{total}.doubleValue())+($F{TOTAL_HARGA_ONGKIR}.doubleValue()))*10)/100))]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="449" y="59" width="105" height="20" uuid="6772b95c-6cec-42bb-b669-3e09b1da759a"/>
+					<box topPadding="1" leftPadding="1">
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" size="11"/>
+					</textElement>
+					<textFieldExpression><![CDATA[msg("{0,number,#,##0.00}", (($V{total}.doubleValue())+($F{TOTAL_HARGA_ONGKIR}.doubleValue())+(((($V{total}.doubleValue())+($F{TOTAL_HARGA_ONGKIR}.doubleValue()))*10)/100)))]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="359" y="63" width="83" height="20" uuid="d808ba7d-2c62-4670-8f49-66a7b30c053a"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="11"/>
+					</textElement>
+					<text><![CDATA[Grand Total]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="359" y="23" width="83" height="20" uuid="4eb0ef12-3283-4d26-ac01-3d788351be49"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="11"/>
+					</textElement>
+					<text><![CDATA[Ongkos Kirim]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="359" y="43" width="83" height="20" uuid="454d6bef-85d7-4850-9ed3-201bdc7b7a25"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="11"/>
+					</textElement>
+					<text><![CDATA[PPN]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="449" y="-1" width="105" height="20" uuid="8116b0f0-d39f-424d-81ab-666fe2ad707d"/>
+					<box topPadding="1" leftPadding="1">
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" size="11"/>
+					</textElement>
+					<textFieldExpression><![CDATA[msg("{0,number,#,##0.00}", ($V{total}))]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="127" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="67" width="189" height="13" uuid="cc4cef77-6282-4c1d-923c-5e58c3d1e9aa"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[Jln. Pasoso No.1, Tj. Priok, Jakarta Utara, ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="79" width="189" height="13" uuid="b3024af1-395b-4ba2-bb19-fefbf7aac389"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[DKI Jakarta 14310.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="92" width="189" height="13" uuid="45b258db-1696-47c8-9bb7-d9bcd6f27fa1"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[(021) 4301080]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="105" width="189" height="13" forecolor="#0033FF" uuid="7cdb1b54-d697-400a-8465-06c073cfe5ef"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[https://www.indonesiaport.co.id/]]></text>
+			</staticText>
+			<image>
+				<reportElement x="2" y="0" width="161" height="61" uuid="f8447c7e-a452-4711-802d-3c8a3aa4ed6e"/>
+				<imageExpression><![CDATA[$P{reportImagePath} + "logo.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="76" splitType="Stretch">
+			<staticText>
+				<reportElement x="189" y="0" width="177" height="28" uuid="8518261e-5e23-4ffc-bea1-d261a695351b"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Delivery Receipt]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="187" y="28" width="87" height="20" uuid="7652083f-2736-4401-bfa3-2a0269161787"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[No. DR:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="163" y="47" width="111" height="20" uuid="08eae8c2-f045-4467-b2e5-98bb86188bae"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[Tanggal DR:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="280" y="28" width="90" height="20" uuid="fd30d84d-988b-4c59-9cb3-1511e0c96622"/>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DELIVERY_RECEIPT_NUM}]]></textFieldExpression>
+			</textField>
+			<textField pattern="d/M/yyyy" isBlankWhenNull="true">
+				<reportElement x="280" y="47" width="128" height="20" uuid="5e236748-820c-4df8-8fc7-6bfb339ddc55"/>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd MMMMM yyyy").format($F{DELIVERY_TIME})]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="223" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="138" width="115" height="20" uuid="464dd456-0324-4db2-89eb-56cd02924632"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Berdasarkan PO No.   :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="158" width="115" height="20" uuid="be41bb1f-9dde-4378-bfc3-dcdd48f437ce"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Tanggal PO                 :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="187" width="26" height="36" uuid="25bea237-1e6c-4a4f-9dfb-752e3afc024c"/>
+				<box topPadding="1" leftPadding="1">
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="187" width="83" height="36" uuid="d0997b7d-f9f1-4825-a05c-7e41956fffc3"/>
+				<box topPadding="1" leftPadding="1">
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Item]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="109" y="187" width="61" height="36" uuid="dca9406f-43b7-4894-92ac-aca51acd518c"/>
+				<box topPadding="1" leftPadding="1">
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Kode]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="170" y="187" width="64" height="36" uuid="0d5ea1cb-145d-423b-8b1b-201ce5398a79"/>
+				<box topPadding="1" leftPadding="1">
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Satuan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="234" y="187" width="61" height="36" uuid="08e175c1-06bd-43dc-ba9e-1dd2ae5ab686"/>
+				<box topPadding="1" leftPadding="1">
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Jumlah Dipesan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="295" y="187" width="59" height="36" uuid="92215aa8-84cb-47a6-add7-178d890294bf"/>
+				<box topPadding="1" leftPadding="1">
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Jumlah Diterima]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="354" y="187" width="95" height="36" uuid="7c9aaae3-7b3c-458a-b187-b781bfcc5475"/>
+				<box topPadding="1" leftPadding="1">
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Harga (IDR)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="449" y="187" width="105" height="36" uuid="20ef3393-bff2-462b-bdd3-dda58322de9e"/>
+				<box topPadding="1" leftPadding="1">
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Jumlah (IDR)]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="115" y="138" width="100" height="20" uuid="c3d3c1e6-f179-4856-8f88-6f29148463f2"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PO_NUMBER_EBS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="294" y="138" width="153" height="20" uuid="68d690cc-7477-46b1-858c-c1e03dcae970"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Berdasarkan Surat Jalan No. :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="294" y="158" width="153" height="20" uuid="882a735f-1a7c-4ac5-9c51-3e33ddb98eb0"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Tanggal Surat Jalan               :]]></text>
+			</staticText>
+			<textField pattern="d/M/yyyy" isBlankWhenNull="true">
+				<reportElement x="447" y="158" width="108" height="20" uuid="033231fe-ebd5-49d0-ae38-bb4c297944e9"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd MMMMM yyyy").format($F{DELIVERY_ORDER_DATE})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="447" y="138" width="108" height="20" uuid="123ab337-aa8f-429d-8662-77683c57cfae"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DELIVERY_ORDER_NUM}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="2" y="1" width="276" height="125" uuid="0818d6c5-c763-4531-88ed-7121fe2aac6b"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="278" y="1" width="276" height="125" uuid="46f30c26-e1dd-4b1d-830e-a3a47569f761"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="9" y="1" width="100" height="20" uuid="2a92a3f3-af46-40c1-8baf-b3ff3cf716de"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Penyedia:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="285" y="1" width="100" height="20" uuid="06ff7138-3abc-40aa-bfd2-849ee667ac91"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Penerima:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="9" y="28" width="267" height="20" uuid="8cbd4085-1234-4a74-9a6a-7377034c3c28"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VENDOR_NAME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement x="285" y="28" width="269" height="20" uuid="8ed06765-e9cd-4195-a219-65f9ef91e678"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NAMA_PENERIMA}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="9" y="48" width="267" height="36" uuid="b3a255cb-46e2-4726-80b6-2bcd02095aaa"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ALAMAT_VENDOR}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="285" y="48" width="269" height="36" uuid="ae2a8294-36de-4117-926f-59f08330e517"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ALAMAT_PENERIMA}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="9" y="82" width="126" height="20" uuid="85a9c1e3-b9dc-452c-9879-d395056dc74c"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KOTA_VENDOR}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="69" y="104" width="207" height="20" uuid="dcc8d90f-46c1-43ee-a530-0353fee4cae5"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TELEPON_VENDOR}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="135" y="82" width="141" height="20" uuid="157a7103-8526-42c7-89aa-13c1b4d18c1f"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PROVINSI_VENDOR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="9" y="104" width="60" height="20" uuid="de3e59f9-bb21-4eba-8939-28c49153fcbd"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Telp/Fax :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="285" y="84" width="60" height="20" uuid="60b8f6e1-e6b9-4db9-bd01-69b15bba3660"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Telp/Fax :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="345" y="84" width="209" height="20" uuid="52b168d3-e411-4122-9d7d-921e0711f351"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TELEPHONE_PENERIMA}]]></textFieldExpression>
+			</textField>
+			<textField pattern="d/M/yyyy" isBlankWhenNull="true">
+				<reportElement x="115" y="158" width="119" height="20" uuid="d51501aa-2a35-458f-931c-d6ec7c8dc948"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd MMMMM yyyy").format($F{PURCHASE_ORDER_DATE})]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="36" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="26" height="35" uuid="c3cdb620-1b2f-4a27-aae1-6353604451bb"/>
+				<box topPadding="1" leftPadding="1">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="26" y="0" width="83" height="35" uuid="070f751b-9d55-47f8-b11c-f206a52988b1"/>
+				<box topPadding="1" leftPadding="1">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NAMEIND} != null ? $F{NAMEIND} : "-"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="170" y="0" width="64" height="35" uuid="2b583d09-7cab-452b-8d54-4ff2adddbb61"/>
+				<box topPadding="1" leftPadding="1">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SATUAN}  != null ? $F{SATUAN} : "-"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="234" y="0" width="61" height="35" uuid="549a6b54-9c7d-48e5-a63d-50dfba2cda41"/>
+				<box topPadding="1" leftPadding="1">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{QUANTITY_PURCHASE_REQUEST} != null ? $F{QUANTITY_PURCHASE_REQUEST} : "-"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="295" y="0" width="59" height="35" uuid="1f7ddbb1-3217-483e-96c9-ba5bddac6d0e"/>
+				<box topPadding="1" leftPadding="1">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{QTY} != null ? $F{QTY} : "-"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="354" y="0" width="95" height="35" uuid="2daed524-671d-4ec4-8053-124345416f2b"/>
+				<box topPadding="1" leftPadding="1">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[msg("{0,number,#,##0.00}", ($F{UNIT_PRICE}))]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="449" y="0" width="105" height="35" uuid="6316d635-5b5d-4c82-ad9e-dce472b9191c"/>
+				<box topPadding="1" leftPadding="1">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[msg("{0,number,#,##0.00}", ($F{TOTAL_UNIT_PRICES}))]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="109" y="0" width="61" height="35" uuid="0214a987-1b66-42f1-b00e-77937d757e28"/>
+				<box topPadding="1" leftPadding="1">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ITEM_KODE_EBS} != null ? $F{ITEM_KODE_EBS} : "-"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="121" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="6" width="137" height="16" uuid="486a69ab-d99f-40c3-8a69-2a5802f15a67"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Tanggal Perkiraan Tiba :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="22" width="137" height="16" uuid="53f3c04f-c39f-4f57-b4a8-f751d5c96979"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Tanggal Diterima            :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="38" width="137" height="16" uuid="d520db48-6d6f-4e55-b9af-6f83cb7aa32c"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Diterima Oleh                 :]]></text>
+			</staticText>
+			<textField pattern="d/M/yyyy" isBlankWhenNull="true">
+				<reportElement x="147" y="6" width="213" height="16" uuid="76b4cc38-12e8-41c1-bbb0-822b8bf1efb2"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd MMMMM yyyy").format($F{PERKIRAANTIBA})]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" pattern="d/M/yyyy" isBlankWhenNull="true">
+				<reportElement x="147" y="22" width="213" height="16" uuid="21b67543-2743-4a85-bdec-982ab18f7fe0"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd MMMMM yyyy").format($F{DATE_RECEIVED})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="147" y="38" width="213" height="16" uuid="0aa96f25-7d9d-4514-b224-a4638435379e"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NAMA_PENGGUNA}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="0" y="61" width="252" height="53" uuid="2a80e2c3-33e0-4b0d-a391-167ff59d7e34"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="2" y="62" width="133" height="20" uuid="0c7a64d9-1699-417a-a5c2-246fd130c323"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Catatan Pemeriksa :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="2" y="82" width="250" height="26" uuid="2fddcf47-a40c-4392-b4c0-004a1dc84fd2"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DESCRIPTION}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<summary>
+		<band height="21" splitType="Stretch"/>
+	</summary>
+</jasperReport>

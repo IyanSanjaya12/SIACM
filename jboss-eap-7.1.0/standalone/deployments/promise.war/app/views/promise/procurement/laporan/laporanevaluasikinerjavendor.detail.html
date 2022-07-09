@@ -1,0 +1,151 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.master.reportDetailEvaluasiKinerjaVendor.judul"></span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary"
+	ng-controller="LaporanDetailEvaluasiKinerjaVendorController as vm ">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<em class="fa fa-tasks"></em> <span translate="promise.procurement.master.reportDetailEvaluasiKinerjaVendor.judul"></span> <a
+			class="pull-right btn-collapse" data-toggle="collapse"
+			data-parent=".panel" href=".panel-body" aria-expanded="true"
+			aria-controls="panel-body"> <em class="fa fa-chevron-circle-down"></em>
+		</a>
+	</h4>
+
+	<div class="col-lg-12 p-b b-b m-b">
+
+		<div class="col-md-2">
+			<div class="form-group">
+				<label class="col-md-12 text-left control-label">Periode </label>
+				<div class="col-md-12">
+					<select name="login" class="form-control" ng-model="vm.param.periode"
+						ng-change="evaluasiKinerjaVendorList()" theme="bootstrap"
+						ng-required="true" required>{{$select.selected.nama}}
+						<option value="0" selected>++ Pilih ++</option>
+						<option ng-repeat="option in vm.sortPeriode"
+							value="{{option.value}}">{{option.name}}</option>
+					</select>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-3">
+			<div class="form-group">
+				<label class="col-md-12 text-left control-label">No Pr/Po</label>
+				<div class="col-md-12">
+					<div class="search-icon">
+						<input class="form-control" placeholder="Search..." type="text"
+							ng-model="vm.param.search" ng-change="evaluasiKinerjaVendorList()">
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+<div class="panel-body collapse in">
+	<div class="text-right pr">
+			<button ng-class="'bg-' + app.theme.name" type="button"
+				class="btn btn-primary btn-add" ng-click="downLoad()">
+				<span translate="Export"></span>
+			</button>			
+		</div>
+		
+		<div class="col-md-12 table-responsive">
+			<div align="center" ng-if="vm.loading == true">
+				<strong><em>Loading...</em><img src="app/img/loading.gif" border="0"
+					width="20px" /></strong>
+			</div>
+			<table class="table table-striped table-bordered table-hover">
+				<thead>
+					<tr>
+						<th scope="col"><span translate="template.tabel.nomor"></span></th>
+						<th scope="col"><span
+							translate="promise.procurement.master.reportDetailEvaluasiKinerjaVendor.list.noBo"></span>
+						</th>
+						<th scope="col"><span
+							translate="promise.procurement.master.reportDetailEvaluasiKinerjaVendor.list.poNumber"></span>
+						</th>
+						<th scope="col"><span
+							translate="promise.procurement.master.reportDetailEvaluasiKinerjaVendor.list.prnumber"></span>
+						</th>
+						<th scope="col"><span
+							translate="promise.procurement.master.reportDetailEvaluasiKinerjaVendor.list.vendorName"></span>
+						</th>
+						<th scope="col"><span
+							translate="promise.procurement.master.reportDetailEvaluasiKinerjaVendor.list.tanggalOrder"></span>
+						</th>
+						<th scope="col"><span
+							translate="promise.procurement.master.reportDetailEvaluasiKinerjaVendor.list.tanggalDeliveryReceipt"></span>
+						</th>
+						<th scope="col"><span
+							translate="promise.procurement.master.reportDetailEvaluasiKinerjaVendor.list.rating"></span>
+						</th>
+						<th scope="col"><span
+							translate="promise.procurement.master.reportDetailEvaluasiKinerjaVendor.list.value"></span>
+						</th>
+						<th scope="col"><span
+							translate="promise.procurement.master.reportDetailEvaluasiKinerjaVendor.list.komen"></span>
+						</th>						
+					</tr>
+					<tr ng-hide="vm.dataList.length">
+						<td style="text-align: center" colspan="10"> No Data Available In Table</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="laporanEvaluasiKinerjaVendorDTO in vm.dataList">
+						<td style="text-align: center">{{ ((vm.param.pageNo -1) *
+							vm.param.pageSize ) + $index+1 }}</td>
+						<td style="text-align: left">{{laporanEvaluasiKinerjaVendorDTO.boNumber}}</td>
+						<td style="text-align: left">{{laporanEvaluasiKinerjaVendorDTO.poNumberEbs}}</td>
+						<td style="text-align: left">{{laporanEvaluasiKinerjaVendorDTO.prNumber}}</td>
+						<td style="text-align: left">{{laporanEvaluasiKinerjaVendorDTO.vendorName}}</td>
+						<td style="text-align: left">{{laporanEvaluasiKinerjaVendorDTO.approvedDate | date:"dd/MM/yyyy"}}</td>
+						<td style="text-align: left">{{laporanEvaluasiKinerjaVendorDTO.dateReceived | date:"dd/MM/yyyy"}}</td>
+						<td style="text-align: left">
+						<span ng-if =laporanEvaluasiKinerjaVendorDTO.rating==null class="label label-warning" translate="promise.procurement.master.reportDetailEvaluasiKinerjaVendor.list.nilai"></span>
+						<span ng-if =laporanEvaluasiKinerjaVendorDTO.rating!=null>{{laporanEvaluasiKinerjaVendorDTO.rating | number : 2}}</span>
+						</td>
+						<td style="text-align: left">
+						<span ng-if =laporanEvaluasiKinerjaVendorDTO.rating==null class="label label-warning" translate="promise.procurement.master.reportDetailEvaluasiKinerjaVendor.list.nilai"></span>
+						<span ng-if =laporanEvaluasiKinerjaVendorDTO.rating==1 translate="promise.procurement.master.reportDetailEvaluasiKinerjaVendor.list.satu"></span>
+						<span ng-if =laporanEvaluasiKinerjaVendorDTO.rating==2 translate="promise.procurement.master.reportDetailEvaluasiKinerjaVendor.list.dua"></span>
+						<span ng-if =laporanEvaluasiKinerjaVendorDTO.rating==3 translate="promise.procurement.master.reportDetailEvaluasiKinerjaVendor.list.tiga"></span>
+						<span ng-if =laporanEvaluasiKinerjaVendorDTO.rating==4 translate="promise.procurement.master.reportDetailEvaluasiKinerjaVendor.list.empat"></span>
+						<span ng-if =laporanEvaluasiKinerjaVendorDTO.rating==5 translate="promise.procurement.master.reportDetailEvaluasiKinerjaVendor.list.lima"></span>
+						</td>
+						<td style="text-align: left">
+						<span ng-if =laporanEvaluasiKinerjaVendorDTO.komen==null class="label label-warning" translate="promise.procurement.master.reportDetailEvaluasiKinerjaVendor.list.teks"></span>
+						<span ng-if =laporanEvaluasiKinerjaVendorDTO.komen!=null>{{laporanEvaluasiKinerjaVendorDTO.komen}}</span>
+						
+						</td>	
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div ng-show="!vm.dataList.length" class="col-md-12 text-center">No Data</div>
+		<div class="page-option col-md-2">
+			<span class="page-opt-text">Show :</span> <a class="page-opt-num"
+				ng-click="pageChanged(5)">5</a> <a class="page-opt-num"
+				ng-click="pageChanged(10)">10</a> <a class="page-opt-num"
+				ng-click="pageChanged(25)">25</a>
+		</div>
+		<div class="text-right">
+			<pagination first-text="<<" previous-text="<" next-text=">"
+				last-text=">>" items-per-page="vm.param.pageSize"
+				total-items="vm.totalItems" ng-model="vm.param.pageNo"
+				max-size="vm.param.pageSize" boundary-links="true"
+				class="pagination-sm" ng-click="setPage()"></pagination>
+		</div>
+		<div class="form-group">
+				<div class="col-md-12 text-center">
+					<button type="button" ripple="" class="btn btn-secondary" ng-click="back()">
+						<span translate="template.button.kembali"></span>
+					</button>
+					<br />
+				</div>
+			</div>
+			
+	</div>
+</div>
+<!--END CONTROLLER-->

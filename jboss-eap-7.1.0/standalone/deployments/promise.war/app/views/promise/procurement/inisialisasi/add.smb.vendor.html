@@ -1,0 +1,76 @@
+<div class="app-view-header">
+	<span translate="">Undang Vendor</span>
+	<small><span translate="">Undang Vendor yang mengikuti pengadaan ini.</span></small>
+</div>
+
+<div class="panel panel-primary" ng-controller="UndangVendorPengadaanSMBController as form">
+	<div class="panel-body">
+		<form name="formInisialisasi" class="form-horizontal" novalidate>
+			<div class="form-group" align="right">
+				<label class="col-lg-7 control-label">
+					<span translate="">Cari Nama Vendor</span>
+				</label>
+				<div class="col-md-5">
+					<input type="text" ng-model="namaVendor" ng-change="searchVendor()" class="form-control shadow-z1 input-sm" />
+				</div>
+			</div>
+			<div class="form-group" align="center" ng-if="loading==true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="15px" border="0"/></strong></div>
+			<div class="form-group">
+				<div class="col-sm-12">
+					<table class="table table-hover table-condensed table-striped bg-white">
+						<thead>
+							<tr style="font-weight: bold">
+								<th scope="col"style="width:100px; text-align:left">
+									<span translate="">No</span>
+								</th>
+								<th scope="col"style="text-align:left">
+									<span translae="">Nama Vendor</span>
+								</th>
+								<th scope="col"style="text-align:left">
+									<span translate="">Alamat</span>
+								</th>
+								<th scope="col"style="width:200px;text-align:left">
+									<span translate="">Telp</span>
+								</th>
+								<th scope="col"style="text-align:center">
+									<span translate="">Action</span>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="vendorObj in vendorList">
+								<td>{{ $index+1 }}</td>
+								<td>{{ vendorObj.nama }}</td>
+								<td>{{ vendorObj.alamat }}</td>
+								<td>{{ vendorObj.noTelp }}</td>
+								<td>
+									<div class="checkbox c-checkbox needsclick">
+										<label class="needsclick">
+											<input type="checkbox" class="needsclick" ng-checked="checkedVendor.indexOf(vendorObj) != -1" ng-click="togleCheckVendor(vendorObj)" /><span class="fa fa-check"></span>&nbsp;
+										</label>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="form-group" ng-if="vendorDuplicateError == true">
+				<div class="col-lg-12" align="center"><strong style="color:red">Vendor sudah dipilih!</strong></div>
+			</div>
+			<div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                    <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-sm" ng-click="btnBatal()">
+                        <span class="btn-label">
+						  	<em class="fa fa-chevron-left"></em>
+						  </span>
+						<span translate="">Batal</span>
+                    </button>
+                    <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="btnSimpanVendor()" ng-disabled="isProcessing">
+						<span translate="">Simpan</span>
+                    </button>
+                </div>
+            </div>
+		</form>
+	</div>
+</div>

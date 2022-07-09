@@ -1,0 +1,158 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://promise.co.id/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="PurchaseRequest" targetNamespace="http://promise.co.id/wsdl">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://promise.co.id/wsdl" elementFormDefault="unqualified" targetNamespace="http://promise.co.id/wsdl" version="1.0">
+
+  <xs:element name="getListByPurchaseRequest" type="tns:getListByPurchaseRequest"/>
+
+  <xs:element name="getListByPurchaseRequestResponse" type="tns:getListByPurchaseRequestResponse"/>
+
+  <xs:complexType name="getListByPurchaseRequest">
+    <xs:sequence>
+      <xs:element name="purchaseRequestId" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getListByPurchaseRequestResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:uploadPurchaseRequest"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="uploadPurchaseRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:int"/>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"/>
+      <xs:element minOccurs="0" name="purchaseRequest" type="tns:purchaseRequest"/>
+      <xs:element minOccurs="0" name="uploadPRFileSize" type="xs:long"/>
+      <xs:element minOccurs="0" name="uploadPrFileName" type="xs:string"/>
+      <xs:element minOccurs="0" name="uploadPrRealName" type="xs:string"/>
+      <xs:element minOccurs="0" name="userId" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="purchaseRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="approvedDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="boNumber" type="xs:string"/>
+      <xs:element minOccurs="0" name="costcenter" type="xs:string"/>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="daterequired" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="department" type="xs:string"/>
+      <xs:element minOccurs="0" name="description" type="xs:string"/>
+      <xs:element minOccurs="0" name="gvAttachment" type="xs:string"/>
+      <xs:element minOccurs="0" name="gvDoctype" type="xs:string"/>
+      <xs:element minOccurs="0" name="gvHeadnote" type="xs:string"/>
+      <xs:element minOccurs="0" name="gvIntermsoft" type="xs:string"/>
+      <xs:element minOccurs="0" name="gvRequisitioner" type="xs:string"/>
+      <xs:element minOccurs="0" name="gvTestRun" type="xs:string"/>
+      <xs:element minOccurs="0" name="id" type="xs:int"/>
+      <xs:element minOccurs="0" name="interfacingNotes" type="xs:string"/>
+      <xs:element minOccurs="0" name="isAvailable" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"/>
+      <xs:element minOccurs="0" name="isJoin" type="xs:int"/>
+      <xs:element minOccurs="0" name="linkLampiranKontrak" type="xs:string"/>
+      <xs:element minOccurs="0" name="linkLampiranPr" type="xs:string"/>
+      <xs:element minOccurs="0" name="nextapproval" type="xs:string"/>
+      <xs:element minOccurs="0" name="orgApprovalPath" type="tns:orgApprovalPath"/>
+      <xs:element minOccurs="0" name="organisasi" type="tns:organisasi"/>
+      <xs:element minOccurs="0" name="postdate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="prIdEbs" type="xs:int"/>
+      <xs:element minOccurs="0" name="prnumber" type="xs:string"/>
+      <xs:element minOccurs="0" name="procurementprocess" type="xs:string"/>
+      <xs:element minOccurs="0" name="purchOrg" type="tns:purchOrg"/>
+      <xs:element minOccurs="0" name="puspelCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="requestorUserId" type="xs:int"/>
+      <xs:element minOccurs="0" name="rootParent" type="xs:int"/>
+      <xs:element minOccurs="0" name="status" type="xs:int"/>
+      <xs:element minOccurs="0" name="statusEbs" type="xs:string"/>
+      <xs:element minOccurs="0" name="termandcondition" type="xs:string"/>
+      <xs:element minOccurs="0" name="totalCostAfterApprove" type="xs:string"/>
+      <xs:element minOccurs="0" name="totalHarga" type="xs:double"/>
+      <xs:element minOccurs="0" name="totalHargaAsuransi" type="xs:double"/>
+      <xs:element minOccurs="0" name="totalHargaDiscount" type="xs:double"/>
+      <xs:element minOccurs="0" name="totalHargaOngkir" type="xs:double"/>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="userId" type="xs:int"/>
+      <xs:element minOccurs="0" name="verifiedDate" type="xs:dateTime"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="orgApprovalPath">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="approvalPathId" type="xs:int"/>
+      <xs:element minOccurs="0" name="approvalPathName" type="xs:string"/>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="id" type="xs:int"/>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"/>
+      <xs:element minOccurs="0" name="organisasi" type="tns:organisasi"/>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="userId" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="organisasi">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="code" type="xs:string"/>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="id" type="xs:int"/>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"/>
+      <xs:element minOccurs="0" name="nama" type="xs:string"/>
+      <xs:element minOccurs="0" name="parentId" type="xs:int"/>
+      <xs:element minOccurs="0" name="tipe" type="xs:string"/>
+      <xs:element minOccurs="0" name="unitIdEoffice" type="xs:int"/>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="userId" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="purchOrg">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="code" type="xs:string"/>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="id" type="xs:int"/>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"/>
+      <xs:element minOccurs="0" name="organisasi" type="tns:organisasi"/>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="userId" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getListByPurchaseRequest">
+    <wsdl:part element="tns:getListByPurchaseRequest" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getListByPurchaseRequestResponse">
+    <wsdl:part element="tns:getListByPurchaseRequestResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="UploadPurchaseRequestWSDLImpl">
+    <wsdl:operation name="getListByPurchaseRequest">
+      <wsdl:input message="tns:getListByPurchaseRequest" name="getListByPurchaseRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:getListByPurchaseRequestResponse" name="getListByPurchaseRequestResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PurchaseRequestSoapBinding" type="tns:UploadPurchaseRequestWSDLImpl">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getListByPurchaseRequest">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getListByPurchaseRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getListByPurchaseRequestResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PurchaseRequest">
+    <wsdl:port binding="tns:PurchaseRequestSoapBinding" name="UploadPurchaseRequestWSDLServicesPort">
+      <soap:address location="http://localhost:8082/promisews/PurchaseRequest/UploadPurchaseRequestWSDLServices"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

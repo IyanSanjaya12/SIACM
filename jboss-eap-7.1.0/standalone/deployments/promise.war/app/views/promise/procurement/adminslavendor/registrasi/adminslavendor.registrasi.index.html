@@ -1,0 +1,23 @@
+<div class="app-view-header">
+<span translate="promise.procurement.manajemenvendor.slaregistrasivendor.judul"></span>
+	
+</div>
+
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="AdminSLARegistrasiVendorController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+	<span translate="promise.procurement.manajemenvendor.slaregistrasivendor.subjudul"></span>
+        
+    </h4>
+	<div class="panel-body">
+		 
+	
+		<div class="row form-horizontal">
+			<div class="col-md-12">
+				<div class="table-responsive">
+		        	<table datatable="" dt-options="vm.dtOptions" dt-columns="vm.dtColumns" dt-instance="vm.dtInstance" id="vm.slaVendorRegistrasi" class="row-border hover"></table>
+		        </div>
+		    </div>
+		</div>
+	</div>
+</div>  

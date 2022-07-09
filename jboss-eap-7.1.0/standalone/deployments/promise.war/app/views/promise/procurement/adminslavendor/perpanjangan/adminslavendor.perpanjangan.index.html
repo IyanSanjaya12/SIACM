@@ -1,0 +1,23 @@
+<div class="app-view-header">
+	<span>Vendor Management</span>
+</div>
+
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="AdminSLAPerpanjanganVendorController as form">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<em class="fa fa-tasks"></em>
+		<span >Data Admin SLA Vendor Perpanjangan Sertifikat</span>
+		<a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+			<em class="fa fa-chevron-circle-down"></em>
+		</a>
+	</h4>
+	<div class="panel-body collapse in">
+		<div class="row form-horizontal">
+			<div class="col-md-12">
+				<div class="table-responsive">
+		        	<table datatable="" dt-options="form.dtOptions" dt-columns="form.dtColumns" dt-instance="form.dtInstance" id="form.slaVendorPerpanjangan" class="row-border hover"></table>
+		        </div>
+		    </div>
+		</div>
+	</div>
+</div>  

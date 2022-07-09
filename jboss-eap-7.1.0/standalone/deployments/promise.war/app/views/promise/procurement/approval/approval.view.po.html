@@ -1,0 +1,271 @@
+<div class="app-view-header">
+    Approval View
+</div>
+
+<div class="panel panel-primary" ng-controller="ApprovalViewPOController as form">
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <em class="fa fa-tasks">&nbsp;</em>
+        Approval View
+    </h4>
+    <div class="panel-body">
+        <div align="center" ng-if="form.loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px" border="0"/></strong></div>
+        <h1 ng-bind='"PO Number - " + form.purchaseOrder.poNumber'></h1>
+
+        <div class="form-horizontal">
+            <div class="col-md-6">
+                <div class="row">
+                    <label class="col-lg-4">PO Date</label>
+                    <div class="col-lg-8 form-group" ng-bind="form.purchaseOrder.purchaseOrderDate == null ? '' : form.purchaseOrder.purchaseOrderDate | date:'yyyy-MM-dd'"></div>
+                </div>
+                <div class="row">
+                    <label class="col-lg-4">Vendor</label>
+                    <div class="col-lg-8 form-group" ng-bind="form.purchaseOrderItemList[0].vendor.nama"></div>
+                </div>
+                <div class="row">
+                    <label class="col-lg-4">&nbsp;</label>
+                    <div class="col-lg-8 form-group" ng-bind="form.purchaseOrderItemList[0].vendor.alamat"></div>
+                </div>
+                <div class="row">
+                    <label class="col-lg-4">Bill To</label>
+                    <div class="col-lg-8 form-group" ng-bind="form.purchaseOrder.addressBook.organisasi.nama"></div>
+                </div>
+                <div class="row">
+                    <label class="col-lg-4">&nbsp;</label>
+                    <div class="col-lg-8 form-group" ng-bind="form.purchaseOrder.addressBook.streetAddress"></div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="form-group">
+                        <div class="bs-wizard no-margin">
+                            <div style="vertical-align: middle;" class="row bs-wizard">
+                                <div class="col-md-12">
+                                    <div ng-repeat="flow in form.levelList | orderBy: flow.sequence" class="bs-wizard-step {{(flow.status==3?'complete':'')}}">
+                                        <div ng-if="flow.approvalLevel.approval.approvalType.id == 1" class="text-center bs-wizard-stepnum" ng-bind="flow.approvalLevel.group.nama">123</div>
+                                        <div ng-if="flow.approvalLevel.approval.approvalType.id == 2" class="text-center bs-wizard-stepnum" ng-bind="flow.approvalLevel.user.namaPengguna">321</div>
+                                        <div ng-if="flow.approvalLevel.approval.approvalType.id == 3" class="text-center bs-wizard-stepnum" ng-bind="flow.approvalLevel.role.nama">11</div>
+
+                                        <!-- jika new approval-->
+                                        <div ng-if="flow.approvalLevel==null" class="text-center bs-wizard-stepnum" ng-bind="flow.user.namaPengguna"></div>
+
+                                        <div class="progress">
+                                            <div class="progress-bar"></div>
+                                        </div>
+                                        <a href="#" class="bs-wizard-dot"></a>
+                                        <div class="text-center" ng-bind="$index+1"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="text-center">
+                        <h3>Approve this Request</h3>
+                        <span>This Request Needs Your Approval</span>
+                    </div>
+
+                </div>
+                <div class="row">
+
+                    <div class="form-group text-center">
+                        <a class="btn btn-success" ng-click="form.btnSimpan(3)">Approve</a>
+                        <a class="btn btn-warning" ng-click="form.btnSimpan(4)">Hold</a>
+                        <a class="btn btn-danger" ng-click="form.btnSimpan(2)">Reject</a>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Note</label>
+                        <div class="col-lg-10">                     
+							<textarea  class="form-control shadow-z1 input-sm"  ng-model="form.note" style="margin: 0px; width: 350px; height: 125px;"></textarea>
+							<strong style="color:red">{{errorNoteMessage}}</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <h3>Product Items</h3>
+        <div class="table-responsive">
+            <table class="table standard table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col"align="center">No</th>
+                        <th scope="col"align="center">Item</th>
+                        <th scope="col"align="center">Quantity</th>
+                        <th scope="col"align="center">Unit</th>
+                        <th scope="col"align="center">Unit Price</th>
+                        <th scope="col"align="center">Prices IDR</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="data in form.purchaseOrderItemList">
+                        <td align="center" ng-bind="$index+1"></td>
+                        <td ng-bind="data.item.nama"></td>
+                        <td align="center" ng-bind="data.quantitySend"></td>
+                        <td align="center">Unit</td>
+                        <td align="right" ng-bind="data.unitPrice|number:2"></td>
+                        <td align="right" ng-bind="data.totalUnitPrices|number:2"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" align="right"><strong>Sub Total</strong></td>
+                        <td colspan="2" align="right"><strong ng-bind="form.purchaseOrder.subTotal|number:2"></strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Approval Log</h3>
+        <div class="table-responsive">
+            <table class="table standard table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Approver</th>
+                        <th scope="col">Approval Status</th>
+                        <th scope="col">Note</th>
+                        <th scope="col">Approval Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="data in statusList">
+                        <td>{{($index+1)}}</td>
+                        <td>
+                            <span ng-if="data.approvalLevel.approval.approvalType.id == 1" ng-bind="data.user.namaPengguna"></span>
+                            <span ng-if="data.approvalLevel.approval.approvalType.id == 2" ng-bind="data.user.namaPengguna"></span>
+                            <span ng-if="data.approvalLevel.approval.approvalType.id == 3" ng-bind="data.user.namaPengguna"></span>
+				            <span ng-if="data.approvalLevel == null" ng-bind="data.user.namaPengguna"></span>
+                        </td>
+                        <td>
+                            <span ng-if="data.status == 4" style="color: #fad733" class="text-bold">Hold</span>
+                            <span ng-if="data.status == 3" style="color: #00a65a" class="text-bold">Approved</span>
+                            <span ng-if="data.status == 2" style="color: #AA2200" class="text-bold">Reject</span>
+                            <span ng-if="data.status == 1" style="color: #3f51b5" class="text-bold">Approval</span>
+                        </td>
+                        <td style="word-wrap: break-word; max-width: 200px;">{{data.keterangan}}</td>
+                        <td>{{data.updated | date:'dd-MMM-yyyy'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- <div class="form-horizontal">
+			<div class="col-md-6">
+			
+			</div>
+			<div class="col-md-6">
+				<div class="row">
+					<div class="col-md-12"><h3>Payment Term</h3></div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<label class="col-lg-4">DP</label>
+						<div class="col-lg-8 form-group">5%</div> 
+					</div>
+					<div class="col-md-6">
+						<label class="col-lg-4">Discount</label>
+						<div class="col-lg-8 form-group">5%</div> 
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<label class="col-lg-4">Termin</label>
+						<div class="col-lg-8 form-group" ng-bind="form.purchaseOrderTermList.length"></div>  
+					</div>
+					<div class="col-md-6">
+						<label class="col-lg-4">Tax</label>
+						<div class="col-lg-8 form-group">5%</div> 
+					</div>
+				</div> 
+				<div class="row" ng-repeat="data in form.purchaseOrderTermList">
+					<div class="col-md-6">
+						<label class="col-lg-6" ng-bind="data.termandcondition.termAndConditionType"></label>
+						<div class="col-lg-6 form-group" ng-bind="data.poTermValue|number:2"></div>  
+					</div>
+					<div class="col-md-6">&nbsp;</div>
+				</div>
+			</div>
+		</div> -->
+    </div>
+</div>
+<!-- Item Catalog -->
+<script type="text/ng-template" id="/info_coa.html">
+    <div class="modal-header" ng-class="'bg-'+(dataItem.costAvailable==true?'success':'danger')">
+        <button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="cancel()">X</button>
+        <h3 id="myModalLabel" class="modal-title"><span>Saldo Cost Center {{coa.nomorDraft}} {{message}}</span>
+	</div>
+	<div class="modal-body">
+				<div class="row">
+					<div class="col-lg-4">
+						<strong>Account Code</strong>
+					</div>
+					<div class="col-lg-1">:</div>
+					<div class="col-lg-7">
+						{{coa.nomorDraft}}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-4">
+						<strong>Account Name</strong>
+					</div>
+					<div class="col-lg-1">:</div>
+					<div class="col-lg-7">
+						{{coa.accountName}}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-4">
+						<strong>Start Budget</strong>
+					</div>
+					<div class="col-lg-1">:</div>
+					<div class="col-lg-6" align="right">
+						<strong class="text-primary">{{coa.jumlah | number:2 }}</strong>
+					</div>
+					<div class="col-lg-1  pull-right">{{coa.mataUang.kode}}</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-4">
+						<strong>Booked Budget</strong>
+					</div>
+					<div class="col-lg-1">:</div>
+					<div class="col-lg-6"  align="right">
+						<strong class="text-warning">{{coa.bookingAnggaran | number:2 }}</strong>
+					</div>					
+					<div class="col-lg-1 pull-right">{{coa.mataUang.kode}}</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-4">
+						<strong>Used Budget</strong>
+					</div>
+					<div class="col-lg-1">:</div>
+					<div class="col-lg-6"  align="right">
+						<strong class="text-danger">{{ (coa.jumlah - coa.sisaAnggaran) | number:2 }}</strong>
+					</div>
+					<div class="col-lg-1">{{coa.mataUang.kode}}</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-4">
+						<strong>Available Budget</strong>
+					</div>
+					<div class="col-lg-1">:</div>
+					<div class="col-lg-6"  align="right">
+						<strong class="text-success">{{coa.sisaAnggaran | number:2 }}</strong>
+					</div>
+					<div class="col-lg-1  pull-right">{{coa.mataUang.kode}}</div>
+				</div>
+		<div class="pull-right">
+<button ng-class="'bg-warning'" type="button" ripple="" class="mr btn btn-labeled btn-sm " ng-click="cancel()">
+						<span class="btn-label "><em class="fa fa-chevron-left "></em></span>
+						<span translate="">Close</span>
+					</button>
+		</div>
+	</div>
+		
+	<div class="modal-footer">
+			
+	</div>
+
+</script>

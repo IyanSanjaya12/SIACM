@@ -1,0 +1,28 @@
+[{
+    "id": 1,
+    "nomor": "001/P/BJ/2015",
+    "tanggal": "2015-01-10",
+    "nama":"Pengadaan Server x86 IBM",
+    "tahapan":"Pengadaan Baru",
+    "kualifikasi":"Semua",
+    "metode":"Pelelangan",
+    "jenis":"Pengadaan Barang"
+}, {
+    "id": 2,
+    "nomor": "002/P/BJ/2015",
+    "tanggal": "2015-04-10",
+    "nama":"Pengadaan UPS 1000Watt",
+    "tahapan":"Persetujuan",
+    "kualifikasi":"Besar",
+    "metode":"Pelelangan",
+    "jenis":"Pengadaan Barang"
+}, {
+    "id": 3,
+    "nomor": "005/P/BJ/2015",
+    "tanggal": "2015-07-15",
+    "nama":"Pengadaan Laptop Software Developer",
+    "tahapan":"Pembuatan Kontrak",
+    "kualifikasi":"Kecil",
+    "metode":"Penunjukan",
+    "jenis":"Pengadaan Barang"
+}]

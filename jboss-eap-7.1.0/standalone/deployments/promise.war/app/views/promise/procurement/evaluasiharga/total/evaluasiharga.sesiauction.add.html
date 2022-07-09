@@ -1,0 +1,226 @@
+<!--
+SPESIFIC VIEW OF THE AUCTION SESSION MENU
+----------- START CONTROLLER ------------
+-->
+
+<div class="app-view-header">
+    <span translate="promise.procurement.panitia.evaluasiharga.JUDUL">Evaluasi Harga</span> 
+    <small><span translate="promise.procurement.panitia.evaluasiharga.view.TOTAL"></span></small>
+</div>
+
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<div ng-controller="SesiAuctionViewController as form">
+<form name="myForm" method="post" action="#" novalidate="" class="form-horizontal">
+    
+<!----------------------------------------------- Table Ke 1 ----------------------------------------------->
+<div class="panel panel-primary">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-tasks">&nbsp;</em><span translate="promise.procurement.panitia.evaluasiharga.SUBJUDUL">Data Evaluasi Harga</span></h4>
+    <div class="panel-body">
+    <br/>
+        <div class="col-md-12">
+            <div>
+                <div align="center" ng-if="loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+                <div class="table-responsive">
+                    <table id="table-ext-1" class="table table-bordered table-hover" width="100%">
+                        <tbody>
+                            <tr>
+                                <td style="text-align:left" width="40%">Nama Pengadaan</td>
+                                <td style="text-align:left" width="60%">{{ detilPengadaan.namaPengadaan }}</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left">Jenis Pengadaan / Kategori Pengadaan</td>
+                                <td style="text-align:left">{{ detilPengadaan.jenisPengadaan.nama }}</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left">Metode Pengadaan</td>
+                                <td style="text-align:left">{{ detilPengadaan.metodePengadaan.nama }}</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left">Kualifikasi Pengadaan</td>
+                                <td style="text-align:left">{{ detilPengadaan.kualifikasiPengadaan.nama }}</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left">Metode Penawaran Harga</td>
+                                <td style="text-align:left">{{ detilPengadaan.metodePenawaranHarga.nama }}</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left">Sistem Evaluasi Penawaran Harga</td>
+                                <td style="text-align:left">{{ detilPengadaan.sistemEvaluasiPenawaran.nama }}</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left">Mata Uang</td>
+                                <td style="text-align:left">{{ detilPengadaan.mataUang.kode }}</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left">Kualifikasi Penyedia Barang/Jasa</td>
+                                <td style="text-align:left">{{ detilPengadaan.kualifikasiPenyediaBarangJasa }}</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left">Bidang - Sub Bidang Usaha</td>
+                                <td style="text-align:left">
+                                    <div align="center" ng-if="loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+                                    <div ng-repeat="bd in subBidangUsahaByPengadaanIdList">
+                                        <li>{{bd.subBidangUsaha.bidangUsaha.nama}}</li>
+                                        <ul class="fa fa-long-arrow-right">{{bd.subBidangUsaha.nama}}</ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left">Keterangan Pengadaan</td>
+                                <td style="text-align:left">{{ detilPengadaan.keterangan }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+<!----------------------------------------------- Table Ke 2 ----------------------------------------------->
+<div class="panel panel-primary">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-bullhorn">&nbsp;</em><span translate="promise.procurement.panitia.evaluasiharga.view.SESIAUCTION">Sesi Auction</span></h4>
+    <div class="panel-body">
+    <br/>
+        <div class="col-md-12">
+            <div>
+                <div align="center" ng-if="loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+                <div class="table-responsive">
+                    <table id="table-ext-1" class="table table-bordered table-hover" width="100%">
+                        <tbody>
+                            <tr>
+                                <td style="text-align:left" width="30%"><span translate="promise.procurement.panitia.evaluasiharga.view.NOSESI">Nomor Sesi</span></td>
+                                <td style="text-align:left" width="70%">
+                                    <div class="col-lg-6">{{noSesiAuction}}</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left" width="30%"><span translate="promise.procurement.panitia.evaluasiharga.view.TANGGALSESIAWAL">Tanggal/Jam Awal</span></td>
+                                <td style="text-align:left" width="70%">
+                                    <div class="row col-lg-8">
+                                    <div class="col-sm-10 col-lg-6">
+                                        <div class="input-group">
+                                            <input type="text" name="date_awal" datepicker-popup="{{format}}" ng-model="tanggalSesiAwal" is-open="tanggalAwalSesiOpened" min-date="false" max-date="false" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" class="form-control shadow-z1 input-sm" ng-change="" readonly="true" required />
+                                            <span class="input-group-btn">
+											<button type="button" ng-click="tanggalAwalSesiOpen($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+												<em class="fa fa-calendar"></em>
+											</button>
+										</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-10 col-lg-4">
+                                        <input type="time" name="input_awal" id="awalSessionTime" ng-model="awalSessionTime" placeholder="HH:mm" ng-blur="validasiTimeAwal()" required />
+                                    </div>
+                                </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left" width="30%"><span translate="promise.procurement.panitia.evaluasiharga.view.TANGGALSESIAKHIR">Tanggal/Jam Akhir</span></td>
+                                <td style="text-align:left" width="70%">
+                                    <div class="row col-lg-8">
+                                    <div class="col-sm-10 col-lg-6">
+                                        <div class="input-group">
+                                            <input type="text" name="date_akhir" datepicker-popup="{{format}}" ng-model="tanggalSesiAkhir" is-open="tanggalAkhirSesiOpened" min-date="false" max-date="false" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" class="form-control shadow-z1 input-sm" ng-change="" readonly="true" required />
+                                            <span class="input-group-btn">
+                                                <button type="button" ng-click="tanggalAkhirSesiOpen($event)" class="btn btn-default shadow-z1 input-sm " ripple=""><em class="fa fa-calendar"></em>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-10 col-lg-4">
+                                        <input type="time" id="akhirSessionTime" name="input_akhir" ng-model="akhirSessionTime"
+       placeholder="HH:mm" ng-blur="validasiTimeAkhir()" required />
+                                    </div>
+                                </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left" width="30%"><span translate="promise.procurement.panitia.evaluasiharga.view.HARGAAWAL">Harga Awal</span></td>
+                                <td style="text-align:left" width="70%">
+                                    <div class="col-lg-6">{{hargaAwal | number :2}} {{ mataUang }}</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left" width="30%"><span translate="promise.procurement.panitia.evaluasiharga.view.SELISIHPENAWARAN">Selisih Penawaran</span></td>
+                                <td style="text-align:left" width="70%">
+                                    <div class="col-lg-5">
+                                        <input type="text" name="selisih_penawaran" ng-model="selisihPenawaran" ng-blur="validasiSelisihHPS()" class="form-control shadow-z1 input-sm" format="number"> 
+                                    </div>
+                                    <div class="col-lg-1">
+                                        {{ mataUang }}
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left" width="30%"><span translate="promise.procurement.panitia.evaluasiharga.view.KETERANGAN">Keterangan</span></td>
+                                <td style="text-align:left" width="70%">
+                                    <div class="col-lg-6">
+                                        <textarea name="keterangan" ng-model="keterangan" rows="5" cols="30" wrap="soft" class="form-control"></textarea>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!----------------------------------------------- Table Ke 3 ----------------------------------------------->
+<div class="panel panel-primary">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-camera-retro">&nbsp;</em><span translate="promise.procurement.panitia.evaluasiharga.view.PESERTAAUCTION">Peserta Auction</span></h4>
+    <div class="panel-body">
+        <div align="center">
+            <strong class="text-warning" style="color: red">{{messageWarningValidate}}</strong>
+        </div>
+        <div class="col-md-12">
+            <div align="center" ng-if="loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+            <div class="table-responsive">
+                <table  class="table table-bordered table-hover table-striped table-bordered">
+                    <thead>
+                        <tr style="background-color:#EEEEEE">
+                            <th scope="col"style="text-align:center" width="50px"><span translate="promise.procurement.panitia.evaluasiharga.view.NOMOR">Nomor</span>
+                            </th>
+                            <th scope="col"style="text-align:center" width="500px"><span translate="promise.procurement.panitia.evaluasiharga.view.NAMAPENYEDIA">Nama Penyedia Barang/Jasa</span>
+                            </th>
+                            <th scope="col"style="text-align:center" width="500px"><span translate="promise.procurement.panitia.evaluasiharga.view.IKUTAUCTION">Ikut Auction</span>
+                            </th>
+                            <th scope="col"style="text-align:center" width="500px"><span translate="promise.procurement.panitia.evaluasiharga.view.TELEPON">Telepon</span>
+                            </th>
+                            <th scope="col"style="text-align:center" width="500px"><span translate="promise.procurement.panitia.evaluasiharga.view.ALAMAT">Alamat</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat = "dp in dataPenyediaList">
+                            <td style="text-align:center">{{ $index+1 }}</td>
+                            <td style="text-align:left">{{dp.suratPenawaran.vendor.nama}}</td>
+                            <td style="text-align:center">
+                                <div class="checkbox c-checkbox c-checkbox-rounded">
+                                    <label><input type="checkbox" ng-model="ikut" ng-change="pesertaAuction(dp.suratPenawaran.vendor, ikut)"/><span class="fa fa-check"></span></label>
+                                </div>
+                            </td>
+                            <td style="text-align:center">{{dp.suratPenawaran.vendor.nomorTelpon}}</td>
+                            <td style="text-align:left">{{dp.suratPenawaran.vendor.alamat}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    <br/>
+    </div>
+</div>
+        
+
+<div align="center">
+    <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="back()"><em class="fa fa-arrow-circle-left">&nbsp;</em>
+        <span translate="promise.procurement.panitia.evaluasiharga.btn.BATAL"></span>
+    </button>
+    <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="validasiInput()">
+        <span translate="promise.procurement.panitia.evaluasiharga.btn.SIMPAN"></span>&nbsp;<em class="fa fa-sign-in"></em>
+    </button>    
+</div>
+<br></form>
+</div>

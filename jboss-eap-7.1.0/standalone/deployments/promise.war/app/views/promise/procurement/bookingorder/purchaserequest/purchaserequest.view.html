@@ -1,0 +1,263 @@
+
+
+<!--START CONTROLLER-->
+
+    
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-12">
+					<div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong></div>
+			        	<form method="post" action="#" novalidate="" class="form-horizontal">		                
+			            	<fieldset>
+								<div class="form-group">
+					            	<label class="col-sm-4 control-label"><span translate="promise.procurement.master.bookingOrder.contractCatalog"></span><strong style="color: red"> *</strong></label>
+					        		<div class="col-sm-4 control-label" >
+				               			<textarea  class="form-control shadow-z1 input-sm" ng-model="vm.nomorKontrakList" rows="3" cols="5">
+				               			</textarea>	
+				               			<strong style="color: red">{{errormessageLinkLampiranKontrak}}</strong>		
+					        		</div>
+								</div>
+				            	
+			            	<!-- sampai sini -->
+								<h5 class="form-group" align="left">
+					            	<label class="col-sm-3 control-label">Header</label>
+								</h5>
+			                	<!-- <hr/> -->
+			                	<div class="form-group">
+									<label class="col-sm-4 control-label"><span translate="promise.procurement.master.bookingOrder.view.doc_type"></span><strong style="color: red"> *</strong></label>
+									<div class="col-sm-4">
+										<select class="form-control" ng-model="vm.gvDoctype" id="docType" name="docType" >
+											<option value="" disabled selected>++ Pilih ++</option>
+											<option value="ZPR1">ZPR1</option>
+										</select><strong style="color: red">{{errormessageDoctype}}</strong>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-4 control-label"><span translate="promise.procurement.master.bookingOrder.view.headernote"></span><strong style="color: red">*</strong></label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control"
+											ng-model="vm.gvHeadnote"
+											id="gvHeadnote" name="gvHeadnote" >
+											<strong style="color: red">{{errormessageheadnote}}</strong>
+									</div>
+								</div>
+								
+								<!-- <div class="form-group">
+									<label class="col-sm-4 control-label"><span translate="promise.procurement.master.bookingOrder.view.intermsof"></span></label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control"
+											ng-model="vm.gvIntermsoft"
+											id="gvIntermsoft" name="gvIntermsoft" >
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-sm-4 control-label"><span translate="promise.procurement.master.bookingOrder.view.attachment"></span></label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control"
+											ng-model="vm.gvAttachment"
+											id="gvAttachment" name="gvAttachment" >
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-sm-4 control-label"><span translate="promise.procurement.master.bookingOrder.view.requisitioner"></span></label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control"
+											ng-model="vm.gvRequisitioner"
+											id="gvRequisitioner" name="gvRequisitioner" >
+									</div>
+								</div> -->
+								
+								<div class="form-group">
+					            	<label class="col-sm-4 control-label"><span translate="promise.procurement.master.bookingOrder.view.cost_center"></span><strong style="color: red">*</strong></label>
+					                <div class="col-sm-4">
+	                                     <table>
+		                                    <tr> 
+		                                    	<td style="width:100%;"> <input disabled type="text" class="form-control shadow-z1 input-sm" ng-model="vm.costCenter" > </td>
+		                                    	<td>  <button type="button" ng-class="'bg-' + app.theme.name" class="btn btn-primary btn-sm btn-search" ng-click="popUpCostCenter()"> </button></td>
+		                                    </tr>
+		                                  </table>
+	                                    <strong style="color: red">{{errormessageCostCenter}}</strong>
+					        		</div>
+								</div>
+								
+								
+								
+								
+								<div class="form-group">
+					            	<label class="col-sm-4 control-label"><span translate="promise.procurement.master.bookingOrder.view.pur_group"></span><strong style="color: red">*</strong></label>
+					                <div class="col-sm-4">
+					                	<ui-select  ng-model="vm.purGroup" theme="bootstrap" >
+											<ui-select-match placeholder="">{{$select.selected.code}}</ui-select-match>
+	                                            <ui-select-choices repeat="purGroup in purGroupList | filter: $select.search">
+	                                                <div ng-bind-html="purGroup.code| highlight: $select.search"></div>
+	                                            </ui-select-choices>
+	                                    </ui-select><strong style="color: red">{{errormessagePurGroup}}</strong>
+					        		</div>
+								</div>
+								
+								<div class="form-group">
+					            	<label class="col-sm-4 control-label"><span translate="promise.procurement.master.bookingOrder.view.store_loc"></span><strong style="color: red">*</strong></label>
+					                <div class="col-sm-4">
+					                	<ui-select  ng-model="vm.storeLoc" theme="bootstrap" >
+											<ui-select-match placeholder="">{{$select.selected.code}}</ui-select-match>
+	                                            <ui-select-choices repeat="storeLoc in storeLocList | filter: $select.search">
+	                                                <div ng-bind-html="storeLoc.code| highlight: $select.search"></div>
+	                                            </ui-select-choices>
+	                                    </ui-select><strong style="color: red">{{errormessageStoreLoc}}</strong>
+					        		</div>
+								</div>
+								
+								<div class="form-group">
+					            	<label class="col-sm-4 control-label"><span translate="promise.procurement.master.bookingOrder.view.purch_org"></span><strong style="color: red">*</strong></label>
+					                <div class="col-sm-4">
+					                	<ui-select  ng-model="vm.purchOrg" theme="bootstrap" >
+											<ui-select-match placeholder="">{{$select.selected.code}}</ui-select-match>
+	                                            <ui-select-choices repeat="purchOrg in purchOrgList | filter: $select.search">
+	                                                <div ng-bind-html="purchOrg.code| highlight: $select.search"></div>
+	                                            </ui-select-choices>
+	                                    </ui-select><strong style="color: red">{{errormessagePurchOrg}}</strong>
+					        		</div>
+								</div>
+								
+								<div class="form-group">
+					            	<label class="col-sm-4 control-label"><span translate="promise.procurement.master.bookingOrder.view.acctasscat"></span></label>
+					                <div class="col-sm-4">
+					                	<ui-select  ng-model="vm.acctasscat" theme="bootstrap" >
+											<ui-select-match placeholder="">{{$select.selected.code}}</ui-select-match>
+	                                            <ui-select-choices repeat="acctasscat in acctasscatList | filter: $select.search">
+	                                                <div ng-bind-html="acctasscat.code| highlight: $select.search"></div>
+	                                            </ui-select-choices>
+	                                    </ui-select>
+					        		</div>
+								</div>
+								 <div class="form-group">
+					            	<label class="col-sm-4 control-label"><span translate="promise.procurement.master.bookingOrder.view.prNumber"></span><strong style="color: red">*</strong></label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control shadow-z1 input-sm" ng-model="vm.boNumber" disabled="disabled">
+										<strong style="color: red">{{errorboNumber}}</strong></span>
+									</div>
+								</div>
+								<div class="form-group">
+					            	<label class="col-sm-4 control-label"><span translate="promise.procurement.master.bookingOrder.view.vendor_name"></span></label>
+					                <div class="col-sm-4">
+					                	<input type="text" class="form-control shadow-z1 input-sm" height="200px" ng-model="salesOrder.vendor.nama" disabled="disabled">
+					        		</div>
+								</div>
+			                    </fieldset>
+			            		<hr style="position:relative;margin-top:0px;">
+							</form>
+			            </div>		
+			            
+			            <br>
+						<div class="col-sm-12">
+							<div class="table-responsive">
+								<hr style="position:relative;margin-bottom:0px;">
+							   	<table datatables class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" >
+							    	<thead>
+							           <tr style="font-weight: bold">
+							
+							               <th scope="col"style="width: 2%; text-align: center"><span translate="promise.procurement.master.bookingOrder.list.no"></span></th>
+							               <th scope="col"style="width: 15%; text-align: center"><span translate="promise.procurement.master.bookingOrder.list.item_code"></span></th>
+							               <th scope="col"style="width: 20%; text-align: center"><span translate="promise.procurement.master.bookingOrder.list.item_decription"></span></th>
+							               <th scope="col"style="width: 15%; text-align: center"><span translate="promise.procurement.master.bookingOrder.list.quantity"></span></th>
+							               <th scope="col"style="width: 10%; text-align: center"><span translate="promise.procurement.master.bookingOrder.list.discount"></span></th>
+							               <th scope="col"style="width: 10%; text-align: center"><span translate="promise.procurement.master.bookingOrder.list.ppn"></span></th>
+							               <th scope="col"style="width: 10%; text-align: center"><span translate="promise.procurement.master.bookingOrder.list.price"></span></th>
+							               <th scope="col"style="width: 10%; text-align: center"><span translate="promise.procurement.master.bookingOrder.list.price"></span>(Nett)</th>
+							               <th scope="col"style="width: 10%; text-align: center"><span translate="promise.procurement.master.bookingOrder.list.price_with_discount"></span></th>
+							               <th scope="col"style="width: 15%; text-align: center"><span translate="promise.procurement.master.bookingOrder.list.total"></span></th>
+							
+							            </tr>
+							         </thead>
+							         <tbody>
+										<tr ng-repeat="catObj in salesOrder.listCatalog">
+											<td style="text-align:center">{{ $index+1 }}</td>
+											<td style="text-align:center">{{ catObj.item.kode }}</td>                       
+											<td style="text-align:center">{{ catObj.namaIND}}</td>
+											<td style="text-align:center">{{ catObj.qtyCartItem }}  {{ catObj.satuan.nama }}</td>
+											<td style="text-align:center">{{ vm.tempBulkPriceDiskon[$index]}} %</td>
+											<td style="text-align:center">{{ catObj.catalogKontrak.isPpn == 1?10:0 }}</td>
+											<td style="text-align:right" >{{ catObj.harga | currency:'' }}</td>
+											<td style="text-align:right" >{{ vm.priceIncludePPN[$index] | currency:'' }}</td>
+											<td style="text-align:right" >{{ catObj.harga-((vm.tempBulkPriceDiskon[$index]/100)*catObj.harga) | currency:'' }}</td>
+											<td style="text-align:right" >{{(catObj.qtyCartItem * catObj.harga)-((vm.tempBulkPriceDiskon[$index]/100)*(catObj.qtyCartItem * catObj.harga)) | currency:''}} </td>
+										</tr>
+							          </tbody>
+							      </table>
+                        	</div>
+							<div class="col-sm-12">	
+								<div class="col-md-12" style="text-align: right;">
+									<font size="2">) <span translate="promise.procurement.master.bookingOrder.view.noteTotalHarga"></span></font>
+								</div>
+						  	</div>						
+						</div>
+				</div>
+			</div>
+			<br/>
+			<div class="form-group">
+			
+			<div class="col-lg-12 text-center mt" style="margin-top: 32px;">
+				<a class="btn btn-primary" ng-click="goToShipping()"> <span
+					translate="promise.procurement.master.attribute.btn.SELANJUTNYA"></span>
+				</a>
+			</div>
+			<br><br>
+			</div>
+<!--END CONTROLLER-->
+
+<script type="text/ng-template" id="/popUpGLAccount.html">
+	<div class="modal-header" ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="cancel()">×</button>
+		<h3 id="myModalLabel" class="modal-title">GL Account</h3>
+	</div>
+	<div class="modal-body">
+	
+	<div class="panel-body collapse in">
+
+		<div class="col-md-12">
+			<div class="text-center" ng-if="vm.loading == true">
+				<strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0" /></em></strong>
+			</div>
+
+			<table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance" class="table table-striped"></table>
+
+		</div>
+	</div>
+
+
+
+	</div>
+	<div class="modal-footer" style="background-color:#EEEEEE">
+		<button ng-click="cancel()" class="btn btn-warning">Back</button>
+	</div>
+</script>
+
+<script type="text/ng-template" id="/popUpCostCenter.html">
+	<div class="modal-header" ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="cancel()">×</button>
+		<h3 id="myModalLabel" class="modal-title">Cost Center</h3>
+	</div>
+	<div class="modal-body">
+	
+	<div class="panel-body collapse in">
+
+		<div class="col-md-12">
+			<div class="text-center" ng-if="vm.loading == true">
+				<strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0" /></em></strong>
+			</div>
+
+			<table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance" class="table table-striped"></table>
+
+		</div>
+	</div>
+
+
+
+	</div>
+	<div class="modal-footer" style="background-color:#EEEEEE">
+		<button ng-click="cancel()" class="btn btn-warning">Back</button>
+	</div>
+</script>
+

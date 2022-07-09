@@ -1,0 +1,113 @@
+<!--
+SPESIFIC VIEW OF THE FIRST DETAIL EVALUASI TEKNIS MENU
+------------- START CONTROLLER -------------
+-->
+
+<div class="app-view-header">
+    <span translate="promise.procurement.panitia.evaluasiteknis.kriteriateknis.JUDUL">Kriteria Teknis</span>
+</div>
+
+<div ng-controller="EvaluasiTeknisTotalSistemGugurController as form">
+    <form method="post" action="#" novalidate="" class="form-horizontal">
+
+        <!--Table Ke 1 -->
+        <div class="panel panel-primary">
+            <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-tasks">&nbsp;</em><span translate="promise.procurement.panitia.evaluasiteknis.kriteriateknis.DATAVENDOR">Data Vendor</span></h4>
+            <div class="panel-body">
+                <br/>
+                <div class="col-md-12">
+                    <div>
+                        <div align="center" ng-if="loading == true"><strong><em>Loading...</em></strong></div>
+                        <div class="table-responsive">
+                            <table id="table-ext-1" class="table table-bordered table-hover" width="100%">
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align:left" width="40%">Nama Penyedia Barang/Jasa</td>
+                                        <td style="text-align:left" width="60%">{{ kriteriaTeknisData.nama }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left">Alamat</td>
+                                        <td style="text-align:left">{{ kriteriaTeknisData.alamat }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left">Telepon</td>
+                                        <td style="text-align:left">{{kriteriaTeknisData.nomorTelpon }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left">Email</td>
+                                        <td style="text-align:left">{{ kriteriaTeknisData.email }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Table Ke 2 -->
+        <div class="panel panel-primary">
+            <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-archive">&nbsp;</em><span translate="promise.procurement.panitia.evaluasiteknis.kriteriateknis.PENILAIANKRITERIATEKNIS">Penilaian Kriteria Teknis</span></h4>
+            <div class="panel-body">
+                <br/>
+                <div class="col-md-12">
+                    <div>
+                        <div align="center" ng-if="loading == true"><strong><em>Loading...</em></strong></div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover table-striped table-bordered">
+                                <thead>
+                                    <tr style="background-color:#EEEEEE">
+                                        <th scope="col"style="text-align:center" width="100px"><span translate="promise.procurement.panitia.evaluasiteknis.kriteriateknis.NO">No</span>
+                                        </th>
+                                        <th scope="col"style="text-align:center" width="700px"><span translate="promise.procurement.panitia.evaluasiteknis.kriteriateknis.NAMA">Nama Kriteria</span>
+                                        </th>
+                                        <th scope="col"style="text-align:left" width="1100px"><span translate="promise.procurement.panitia.evaluasiteknis.kriteriateknis.KETERANGAN">Keterangan</span>
+                                        </th>
+                                        <th scope="col"style="text-align:center" width="100px"><span translate="promise.procurement.panitia.evaluasiteknis.kriteriateknis.STATUS">Status</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="mt in kriteriaTeknisByPengadaanList">
+                                        <td style="text-align:center">{{$index+1}}</td>
+                                        <td style="text-align:center">{{mt.nama}}</td>
+                                        <td style="text-align:left"></td>
+                                        <td style="text-align:center">
+                                            <div class="checkbox c-checkbox needsclick">
+                                                <label class="needsclick">
+                                                    <input type="checkbox" value="" class="needsclick" />
+                                                    <span class="fa fa-check"></span></label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--END Table Ke 2 -->
+
+        <p><strong>Dari Hasil Evaluasi Administrasi, Vendor {{kriteriaTeknisData.nama}} dinyatakan</strong></p>
+        <div class="radio c-radio">
+            <label style="color:green">
+                <input type="radio" name="optionsRadios" ng-model="opt" value="100" checked="" /><span class="fa fa-circle"></span>Lulus (100)</label>
+        </div>
+        <div class="radio c-radio">
+            <label style="color:red">
+                <input type="radio" name="optionsRadios" ng-model="opt" value="0" /><span class="fa fa-circle"></span>Tidak Lulus (0)</label>
+        </div>
+
+        <div align="center">
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="back()"><em class="fa fa-arrow-circle-left">&nbsp;</em>
+                <span translate="promise.procurement.panitia.evaluasiteknis.btn.KEMBALI"></span>
+            </button>
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="save(opt)" ng-disabled="!opt">
+                <span translate="promise.procurement.panitia.evaluasiteknis.btn.SIMPAN"></span>&nbsp;<em class="fa fa-check"></em>
+            </button>
+        </div>
+        <br>
+    </form>
+</div>
+<!--END CONTROLLER-->

@@ -1,0 +1,168 @@
+<div class="app-view-header">KPI Monitoring
+    <!-- <small ng-bind="app.name + ' - ' + app.description"></small> -->
+</div>
+<div ng-controller="KPIMonitoringController" class="panel panel-primary">
+    <!-- START dashboard content-->
+
+    <div class="panel-body">
+        <h1>Filter</h1>
+        <div class="row">
+            <div class="col-md-1">
+                Departement
+            </div>
+            <div class="col-md-3">
+                <select class="form-control" ng-model="pencarian.departementId">
+                    <option value="0">All</option>
+                    <option ng-repeat="option in departementList" value="{{option.id}}">{{option.nama}}</option>
+                </select>
+            </div>
+            <div class="col-md-1">
+                Date One
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control" ng-model="pencarian.dateOne" datepicker-popup="{{format}}" datepicker-options="dateOptions" date-disabled="disabled(date,mode)" is-open="openedDateOne" ng-focus="openDateOne($event)" ng-required="true" close-text="Close" max-date="today" />
+            </div>
+            <div class="col-md-1">
+                Date Two
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control" ng-model="pencarian.dateTwo" datepicker-popup="{{format}}" datepicker-options="dateOptions" date-disabled="disabled(date,mode)" is-open="openedDateTwo" ng-focus="openDateTwo($event)" ng-required="true" close-text="Close" min-date="pencarian.dateOne" />
+            </div>
+            <div class="col-md-2">
+                <button class="form-control btn-success" ng-click="getSearchAndSort(pencarian)">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-3 col-xs-6">
+                        <div ripple="" class="panel panel-default">
+                            <div class="panel-body bg-success">
+                                <div class="text-right text-sm">Planned Budget</div>
+                                <h4 class="text-thin mt">{{plannedBudget | number:2 }} <small>IDR</small></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-3 col-xs-6">
+                        <div ripple="" class="panel panel-default">
+                            <div class="panel-body bg-info">
+                                <div class="text-right text-sm text-muted">Available Budget</div>
+                                <h4 class="text-thin mt">{{availableBudget | number:2 }} <small>IDR</small></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-3 col-xs-6">
+                        <div ripple="" class="panel panel-default">
+                            <div class="panel-body bg-danger">
+                                <div class="text-right text-sm text-muted">Used Budget</div>
+                                <h4 class="text-thin mt">{{usedBudget | number:2 }} <small>IDR</small></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-3 col-xs-6">
+                        <div ripple="" class="panel panel-default">
+                            <div class="panel-body bg-purple">
+                                <div class="text-right text-sm text-muted">Booked Budget</div>
+                                <h4 class="text-thin mt">{{bookedBudget | number:2 }} <small>IDR</small></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--chart-->
+    <div class="panel-body">
+        <div class="row">
+            <!-- chart donat-->
+            <div class="col-lg-5">
+                <h3>Saving</h3>
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <div easypiechart="" options="pieOptions1" percent="piePercent1" class="easypie" >
+                            <span>{{ piePercent1 | number:2}} %</span>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tr>
+                                    <td align="left"><strong>Jumlah Pengadaan</strong> </td>
+                                    <td colspan="2">{{jmlPengadaan}}</td>
+                                </tr>
+                                <tr>
+                                    <td align="left"><strong>Jumlah Harga Perkiraan(HPS)</strong></td>
+                                    <td align="right"><strong class="text-primary">{{jmlHPS|number:2}}</strong></td>
+                                    <td>IDR</td>
+                                </tr>
+                                <tr>
+                                    <td align="left"><strong>Jumlah Harga Perolehan(Kontrak)</strong></td>
+                                    <td align="right"><strong class="text-info">{{jmlPerolehan|number:2}}</strong></td>
+                                    <td>IDR</td>
+                                </tr>
+                                <tr>
+                                    <td align="left"><strong>Jumlah Saving</strong></td>
+                                    <td align="right"><strong class="text-success">{{(jmlHPS-jmlPerolehan)|number:2}}</strong></td>
+                                    <td>IDR</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Lead Time</h3>
+                <div class="row text-center">
+                    <div class="col-md-11">
+                        <div easypiechart="" options="pieOptions2" percent="piePercent2" class="easypie">
+                            <!-- <span>{{ (jumlahHari/slaJumlahHari) *100 | number:2 }} %</span> -->
+                            <span>0%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- chart batang-->
+            <div class="col-lg-7">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="panel-title">Number of Procurement</div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="indicator show">
+                            <span class="spinner"></span>
+                        </div>
+                        <fusioncharts width="100%" type="column3d" datasource="{{procurementDS}}">
+                        </fusioncharts>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="panel-title">Procurement Report</div>
+                    </div>
+                    <div class="panel-body">
+                        <table export-csv="csv" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Departement</th>
+                                    <th scope="col">On Progress</th>
+                                    <th scope="col">Pending</th>
+                                    <th scope="col">Done</th>
+                                    <th scope="col">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody ng-repeat="data in procurementreport">
+                                <tr>
+                                    <td ng-bind="data.departementName"></td>
+                                    <td ng-bind="data.onProgress"></td>
+                                    <td ng-bind="data.pending"></td>
+                                    <td ng-bind="data.done"></td>
+                                    <td ng-bind="data.total"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

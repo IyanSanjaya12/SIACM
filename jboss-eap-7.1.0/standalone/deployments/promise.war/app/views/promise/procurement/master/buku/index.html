@@ -1,0 +1,57 @@
+<div class="app-view-header"> <span>Buku</span>
+	<small><span>Buku</span></small>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="BukuController as form ">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <em class="fa fa-tasks"></em>
+        <span>Data Buku</span>
+        <a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+            <em class="fa fa-chevron-circle-down"></em>
+        </a>
+    </h4>
+	<div class="panel-body collapse in">
+		<div align="right">
+			<button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="add()"> <span class="btn-label"><em class="fa fa-plus"></em></span>
+				<span>TAMBAH</span>
+			</button>
+		</div>
+		<br />
+		<div class="col-md-12">
+			<div>
+				<div align="center" ng-if="form.loading == true"><strong><em>Loading...</em></strong>
+				</div>
+				<table datatable="ng" class="row-border hover table-striped">
+					<thead>
+						<tr>
+							<th scope="col"style="text-align:center"><span>NOMOR</span>
+							</th>
+							<th scope="col"style="text-align:center"><span>NAMA BUKU</span>
+							</th>
+							<th scope="col"style="text-align:center"><span>HARGA BUKU</span>
+							</th>
+							<th scope="col"style="text-align:center"><span>AKSI</span>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in form.bukuList">
+							<td style="text-align:center">{{ $index+1 }}</td>
+							<td>{{ item.namaBuku }}</td>
+							<td>{{ item.hargaBuku }}</td>
+							<td style="text-align:center">
+								<div>
+									<button ng-if="item.id > 2" type="button" ng-class="'bg-' + app.theme.name" class="mr btn btn-xs" ng-click="edit(item)"> <em class="fa fa-pencil fa-lg"></em>
+									</button>
+									<button ng-if="item.id > 2" type="button" class="mr btn btn-danger btn-xs" ng-click="del(item.id)"> <em class="fa fa-trash fa-lg"></em>
+									</button>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<!--END CONTROLLER-->

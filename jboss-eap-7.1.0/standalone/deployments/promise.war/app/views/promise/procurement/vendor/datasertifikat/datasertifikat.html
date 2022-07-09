@@ -1,0 +1,93 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.RegistrasiVendor.DataSertifikat.SubJudul"></span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="DataSertifikatController as form">
+	<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+
+	<div class="panel-body">
+		<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		   	<em class="fa fa-tasks">&nbsp;</em>
+		   	<span translate="promise.procurement.RegistrasiVendor.DataSertifikat.SubJudul"></span>
+		</h4>
+		<div class="container-fluid ng-scope">
+			<fieldset>
+				<div class="form-group">
+					<label for="input-id-1" class="col-sm-2 control-label"><span translate="promise.procurement.RegistrasiVendor.DataSertifikat.NomorSertifikat"></span></label>
+					<div class="col-sm-5" ng-bind="form.dataSertifikat.nomor"></div>
+				</div>
+			</fieldset> 
+			<fieldset>
+				<div class="form-group">
+					<label for="input-id-1" class="col-sm-2 control-label"><span translate="promise.procurement.RegistrasiVendor.DataSertifikat.TanggalAwal"></span></label>
+					<div class="col-sm-5" ng-bind="form.dataSertifikat.tanggalMulai | date:'yyyy-MM-dd'"></div>
+				</div>
+			</fieldset> 
+			<fieldset>
+				<div class="form-group">
+					<label for="input-id-1" class="col-sm-2 control-label"><span translate="promise.procurement.RegistrasiVendor.DataSertifikat.TanggalAkhir"></span></label>
+					<div class="col-sm-5" ng-bind="form.dataSertifikat.tanggalBerakhir | date:'yyyy-MM-dd'"></div>
+				</div>
+			</fieldset>  
+			<fieldset>
+				<div class="form-group">
+					<label for="input-id-1" class="col-sm-2 control-label"><span translate="promise.procurement.RegistrasiVendor.DataSertifikat.Status"></span></label>
+					<div class="col-sm-5">
+						<div ng-switch on="form.dataSertifikat.status">
+							<div ng-switch-when="0">Persetujuan Penerbitan Sertifikat</div>
+							<div ng-switch-when="1"><font color="green">Aktif</font></div>
+							<div ng-switch-when="2"><font color="blue">Persetujuan Perpanjangan Sertifikat</font></div>
+							<div ng-switch-when="3"><font color="red">Persetujuan Perpanjangan Sertifikat Ditolak</font></div>
+							<div ng-switch-when="4"><font color="red">Sertifikat Expired</font></div>
+							<div ng-switch-when="5"><font color="orange">Persetujuan Perpanjangan Sertifikat Sedang Di Hold</font></div>
+							<div ng-switch-default>Persetujuan Penerbitan Sertifikat</div>
+						</div>
+					</div>
+				</div>
+			</fieldset>  
+			<fieldset ng-if="form.dataSertifikat.id != null">
+				<div class="form-group">
+					<label for="input-id-1" class="col-sm-2 control-label"><span></span></label>
+					<div class="col-sm-5">
+						<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="form.printSertifikat()">
+							<span translate="promise.procurement.RegistrasiVendor.DataSertifikat.CetakSertifikat"></span>
+						</button>
+						<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="form.perpanjangSertifikat()" ng-if="form.dataSertifikat.mustUpdate == true  && form.viewFormSertifikat == false">
+							<span translate="promise.procurement.RegistrasiVendor.DataSertifikat.PerpanjangSertifikat"></span>
+						</button>
+						<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="form.batalPerpanjangSertifikat()" ng-if="form.dataSertifikat.mustUpdate == true  && form.viewFormSertifikat == true">
+							<span translate="promise.procurement.RegistrasiVendor.DataSertifikat.BatalPerpanjangSertifikat"></span>
+						</button>
+					</div>
+				</div>
+			</fieldset>
+			
+			<div ng-if="form.dataSertifikat.mustUpdate == true && form.viewFormSertifikat == true">
+				<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+					<em class="fa fa-tasks">&nbsp;</em>
+					<span translate="promise.procurement.RegistrasiVendor.DataSertifikat.FormPermintaanPerpanjangan"></span>
+				</h4>
+				<div class="row">
+					<div class="col-md-4">				
+						<div class="form-group has-feedback">
+							<img ng-src="{{form.image[0].src}}"  height="50" width="200" />
+							<img src="app/img/reload.png" style="cursor: pointer; cursor: hand" width="30" border="0" ng-click="form.refreshKaptcha()" />
+						</div>
+						<div class="form-group has-feedback">
+							<input id="captcha" type="text" name="captcha" ng-model="form.dataSertifikat.captcha" placeholder="Kaptcha" class="form-control" required=""  maxlength="5"/> 
+							<span class="fa fa-pencil-square-o form-control-feedback text-muted"></span>
+						</div>
+						<div class="form-group has-feedback">
+							<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="form.prosesPerpanjangSertifikat()">
+								<span translate="promise.procurement.RegistrasiVendor.DataSertifikat.PermintaanPerpanjangan"></span>
+							</button>
+						</div>
+					</div>
+					<div class="col-md-6">
+					
+					</div>
+				</div>
+			</div>	
+		</div>
+	</div>
+</div>

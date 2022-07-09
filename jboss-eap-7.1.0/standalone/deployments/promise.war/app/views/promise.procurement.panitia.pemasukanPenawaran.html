@@ -1,0 +1,53 @@
+<div class="app-view-header">
+    <span translate="promise.procurement.panitia.pemasukanpenawaran.JUDUL">Pemasukan Penawaran</span> 
+    <small><span translate="promise.procurement.panitia.pemasukanpenawaran.KETERANGAN"></span></small>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="PemasukanPenawaranController as form">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><span translate="promise.procurement.panitia.pemasukanpenawaran.SUBJUDUL">Pemasukan Penawaran</span></h4>
+    <div class="panel-body">
+        <br/>
+        <div class="col-md-12">
+            <div>
+				<div align="center" ng-if="form.loading == true"><strong><em>Loading...</em></strong></div>
+                <table datatable="#" class="row-border hover table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.pemasukanpenawaran.list.NOMOR">Nomor</span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.pemasukanpenawaran.list.NAMA">Metode Pengadaan</span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.pemasukanpenawaran.list.POSISI">Metode Pengadaan</span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.pemasukanpenawaran.list.CREATEDATE">Metode Pengadaan</span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.pemasukanpenawaran.list.AKSI">Aksi</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr >
+                            <td style="text-align:center">10000011</td>
+                            <td style="text-align:center">Pengadaan 1000 meja kursi smesco</td>
+                            <td style="text-align:center">Persetujuan Pengadaan</td>
+                            <td style="text-align:center">10 Agustus 2014</td>
+                            <td style="text-align:center">
+								
+									<div>
+										<button  type="button" ng-class="'bg-' + app.theme.name" class="mr btn btn-xs" ng-click="form.view()">
+											<em class="fa fa-folder-o"></em>
+										</button>									
+										<button  type="button" class="mr btn btn-primary btn-xs" ng-click="form.del(jp.id)">
+											<em class="fa fa-pencil-square"></em>
+										</button>
+									</div>
+								
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END CONTROLLER-->

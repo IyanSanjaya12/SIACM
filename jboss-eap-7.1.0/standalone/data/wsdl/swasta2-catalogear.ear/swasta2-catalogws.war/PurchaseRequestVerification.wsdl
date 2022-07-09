@@ -1,0 +1,984 @@
+<?xml version="1.0" ?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://promise.co.id/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="PurchaseRequestVerification" targetNamespace="http://promise.co.id/wsdl">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://promise.co.id/wsdl" elementFormDefault="unqualified" targetNamespace="http://promise.co.id/wsdl" version="1.0">
+
+  <xs:element name="findShippingByPR" type="tns:findShippingByPR"></xs:element>
+
+  <xs:element name="findShippingByPRResponse" type="tns:findShippingByPRResponse"></xs:element>
+
+  <xs:element name="updatePurchaseRequestItem" type="tns:updatePurchaseRequestItem"></xs:element>
+
+  <xs:element name="updatePurchaseRequestItemResponse" type="tns:updatePurchaseRequestItemResponse"></xs:element>
+
+  <xs:element name="updatePurchaseRequestStatus" type="tns:updatePurchaseRequestStatus"></xs:element>
+
+  <xs:element name="updatePurchaseRequestStatusResponse" type="tns:updatePurchaseRequestStatusResponse"></xs:element>
+
+  <xs:complexType name="updatePurchaseRequestItem">
+    <xs:sequence>
+      <xs:element name="pritemid" type="xs:int"></xs:element>
+      <xs:element name="itemId" type="xs:int"></xs:element>
+      <xs:element name="vendorId" type="xs:int"></xs:element>
+      <xs:element name="isFromCatalog" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="Authorization" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="updatePurchaseRequestItemResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:purchaseRequestItem"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="purchaseRequestItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="costcenter" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="grandTotal" type="xs:double"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="item" type="tns:item"></xs:element>
+      <xs:element minOccurs="0" name="itemname" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="kode" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="mataUang" type="tns:mataUang"></xs:element>
+      <xs:element minOccurs="0" name="path" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="price" type="xs:double"></xs:element>
+      <xs:element minOccurs="0" name="priceafterjoin" type="xs:double"></xs:element>
+      <xs:element minOccurs="0" name="purchaserequest" type="tns:purchaseRequest"></xs:element>
+      <xs:element minOccurs="0" name="purchaserequestjoin" type="tns:purchaseRequest"></xs:element>
+      <xs:element minOccurs="0" name="qtyafterjoin" type="xs:double"></xs:element>
+      <xs:element minOccurs="0" name="quantity" type="xs:double"></xs:element>
+      <xs:element minOccurs="0" name="quantitybalance" type="xs:double"></xs:element>
+      <xs:element minOccurs="0" name="specification" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="status" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="total" type="xs:double"></xs:element>
+      <xs:element minOccurs="0" name="unit" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="vendor" type="tns:vendor"></xs:element>
+      <xs:element minOccurs="0" name="vendorname" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="item">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deskripsi" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="itemGroupId" type="tns:itemGroup"></xs:element>
+      <xs:element minOccurs="0" name="itemType" type="tns:itemType"></xs:element>
+      <xs:element minOccurs="0" name="kode" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="nama" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="satuanId" type="tns:satuan"></xs:element>
+      <xs:element minOccurs="0" name="source" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="itemGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deskripsi" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="nama" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="parentId" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="itemType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="nama" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="satuan">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="nama" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="mataUang">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="kode" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="kurs" type="xs:double"></xs:element>
+      <xs:element minOccurs="0" name="nama" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="purchaseRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="afco" type="tns:afco"></xs:element>
+      <xs:element minOccurs="0" name="costcenter" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="daterequired" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="department" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="description" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isJoin" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="nextapproval" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="postdate" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="prnumber" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="procurementprocess" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="status" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="termandcondition" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="totalCostAfterApprove" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="totalcost" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="afco">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="companyName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="name" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="organisasi" type="tns:organisasi"></xs:element>
+      <xs:element minOccurs="0" name="singkatan" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="organisasi">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="nama" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="parentId" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="vendor">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="afco" type="tns:organisasi"></xs:element>
+      <xs:element minOccurs="0" name="alamat" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="backgroundImage" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="backgroundImageSize" type="xs:string"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="catalogList" nillable="true" type="tns:catalog"></xs:element>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deskripsi" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="email" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="emailRequestor" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="guidNo" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isPKS" type="xs:int"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="kontrakList" nillable="true" type="tns:kontrak"></xs:element>
+      <xs:element minOccurs="0" name="kota" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="logoImage" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="logoImageSize" type="xs:string"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="mainProductCategoryList" nillable="true" type="tns:category"></xs:element>
+      <xs:element minOccurs="0" name="nama" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="nomorTelpon" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="npwp" type="xs:string"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="paramDataTable" nillable="true" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="penanggungJawab" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="pengadaanCount" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="pengadaanRunningCount" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="performanceAvg" type="xs:double"></xs:element>
+      <xs:element minOccurs="0" name="performanceDate" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="provinsi" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="rating" type="xs:int"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="segmentasiVendor" nillable="true" type="tns:segmentasiVendor"></xs:element>
+      <xs:element minOccurs="0" name="status" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="statusBlacklist" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="statusPerpanjangan" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="statusUnblacklist" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="tglRegistrasi" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element name="user" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="vendorComment" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="winnerCount" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="catalog">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="approvalStatus" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="attributeGroup" type="tns:attributeGroup"></xs:element>
+      <xs:element minOccurs="0" name="berat" type="xs:float"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="catalogAttributeList" nillable="true" type="tns:catalogAttribute"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="catalogCategoryList" nillable="true" type="tns:catalogCategory"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="catalogImageList" nillable="true" type="tns:catalogImage"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="catalogKontrakList" nillable="true" type="tns:catalogKontrak"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="catalogLocationList" nillable="true" type="tns:catalogLocation"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="catalogPriceRangeList" nillable="true" type="tns:catalogPriceRange"></xs:element>
+      <xs:element minOccurs="0" name="categoryId" type="xs:int"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="categoryList" nillable="true" type="tns:category"></xs:element>
+      <xs:element minOccurs="0" name="deskripsiENG" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="deskripsiIND" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="fixContract" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="harga" type="xs:double"></xs:element>
+      <xs:element minOccurs="0" name="harga_eproc" type="xs:double"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isVendor" type="xs:boolean"></xs:element>
+      <xs:element minOccurs="0" name="item" type="tns:item"></xs:element>
+      <xs:element minOccurs="0" name="itemType" type="tns:itemType"></xs:element>
+      <xs:element minOccurs="0" name="kodeItem" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="kodeProduk" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="kodeProdukPanitia" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="lebar" type="xs:float"></xs:element>
+      <xs:element minOccurs="0" name="mataUang" type="tns:mataUang"></xs:element>
+      <xs:element minOccurs="0" name="namaENG" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="namaIND" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="noPengadaan" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="panjang" type="xs:float"></xs:element>
+      <xs:element minOccurs="0" name="productType" type="tns:productType"></xs:element>
+      <xs:element minOccurs="0" name="rating" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="ratingComment" type="xs:string"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="requestDirectPOList" nillable="true" type="tns:requestDirectPO"></xs:element>
+      <xs:element minOccurs="0" name="satuan" type="tns:satuan"></xs:element>
+      <xs:element minOccurs="0" name="satuanBerat" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="satuanLebar" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="satuanPanjang" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="satuanTinggi" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="status" type="xs:boolean"></xs:element>
+      <xs:element minOccurs="0" name="stockNonKontrak" type="xs:double"></xs:element>
+      <xs:element minOccurs="0" name="tinggi" type="xs:float"></xs:element>
+      <xs:element minOccurs="0" name="user" type="tns:user"></xs:element>
+      <xs:element minOccurs="0" name="vendor" type="tns:vendor"></xs:element>
+      <xs:element minOccurs="0" name="vendorProfile" type="tns:vendorProfile"></xs:element>
+      <xs:element minOccurs="0" name="wholesaler" type="xs:boolean"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="attributeGroup">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="attributePanelGroupList" nillable="true" type="tns:attributePanelGroup"></xs:element>
+      <xs:element minOccurs="0" name="description" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="flagEnabled" type="xs:boolean"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="name" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="attributePanelGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="attribute" type="tns:attribute"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="attributeList" nillable="true" type="tns:attribute"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="name" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="tglStatOpen" type="xs:boolean"></xs:element>
+      <xs:element minOccurs="0" name="urutan" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="value" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="attribute">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="attributeOptionList" nillable="true" type="tns:attributeOption"></xs:element>
+      <xs:element minOccurs="0" name="configurable" type="xs:boolean"></xs:element>
+      <xs:element minOccurs="0" name="flagEnabled" type="xs:boolean"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="inputType" type="tns:inputType"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="name" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="required" type="xs:boolean"></xs:element>
+      <xs:element minOccurs="0" name="searchable" type="xs:boolean"></xs:element>
+      <xs:element minOccurs="0" name="sortable" type="xs:boolean"></xs:element>
+      <xs:element minOccurs="0" name="translateEng" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="translateInd" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="unique" type="xs:boolean"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="attributeOption">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="name" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="value" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="inputType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="description" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="name" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="catalogAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="attributePanelGroup" type="tns:attributePanelGroup"></xs:element>
+      <xs:element minOccurs="0" name="catalog" type="tns:catalog"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="nilai" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="catalogCategory">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="catalog" type="tns:catalog"></xs:element>
+      <xs:element minOccurs="0" name="category" type="tns:category"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="category">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="adminLabel" type="xs:string"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="categoryChildList" nillable="true" type="tns:category"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="categoryParentList" nillable="true" type="tns:category"></xs:element>
+      <xs:element minOccurs="0" name="description" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="flagEnabled" type="xs:boolean"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="parentCategory" type="tns:category"></xs:element>
+      <xs:element minOccurs="0" name="translateEng" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="translateInd" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="value" type="xs:boolean"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="catalogImage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="catalog" type="tns:catalog"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="imagesFileName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="imagesFileSize" type="xs:long"></xs:element>
+      <xs:element minOccurs="0" name="imagesRealName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="status" type="xs:boolean"></xs:element>
+      <xs:element minOccurs="0" name="urutanPesanan" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="catalogKontrak">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="catalog" type="tns:catalog"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isOpenForm" type="xs:boolean"></xs:element>
+      <xs:element minOccurs="0" name="nomorKontrak" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="stock" type="xs:double"></xs:element>
+      <xs:element minOccurs="0" name="tglAkhirKontrak" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="tglAwalKontrak" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="tglStatOpen" type="xs:boolean"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="catalogLocation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="catalog" type="tns:catalog"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="minimalOrder" type="xs:float"></xs:element>
+      <xs:element minOccurs="0" name="officeAddress" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="outStock" type="xs:float"></xs:element>
+      <xs:element minOccurs="0" name="quantityNotify" type="xs:float"></xs:element>
+      <xs:element minOccurs="0" name="stockProduct" type="xs:float"></xs:element>
+      <xs:element minOccurs="0" name="supplyAbility" type="xs:float"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="catalogPriceRange">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="catalog" type="tns:catalog"></xs:element>
+      <xs:element minOccurs="0" name="fromPrice" type="xs:double"></xs:element>
+      <xs:element minOccurs="0" name="harga" type="xs:double"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="toPrice" type="xs:double"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="productType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="nama" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="requestDirectPO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="catalogId" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="companyCodeId" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="directPoApprovalId" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="directPoDate" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="directPoNumber" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDirectPo" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDisable" type="xs:boolean"></xs:element>
+      <xs:element minOccurs="0" name="itemNumber" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="materialGroup" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="materialNumber" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="plant" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="prLine" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="prLineFk" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="prNumber" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="quantity" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="requestDate" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="requestor" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="shortText" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="statusVendor" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="storage" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="unitOrder" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="vendorId" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="user">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="blacklist" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="email" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="loginTime" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="namaPengguna" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="password" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="reject" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="terkunci" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="username" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="vendorProfile">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="alamat" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="alamatNPWP" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="bussinessArea" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="email" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="emailContactPerson" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="faksimile" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="hpContactPerson" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="jenisPajakPerusahaan" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="jumlahKaryawan" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="kodePos" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="kota" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="kotaNPWP" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="ktpContactPerson" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="kualifikasiVendor" type="tns:kualifikasiVendor"></xs:element>
+      <xs:element minOccurs="0" name="namaContactPerson" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="namaNPWP" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="namaPerusahaan" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="namaSingkatan" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="noAktaPendirian" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="noKK" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="nomorPKP" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="npwpPerusahaan" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="poBox" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="provinsi" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="provinsiNPWP" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="tanggalBerdiri" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="telephone" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="tipePerusahaan" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="title" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="unitTerdaftar" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="vendor" type="tns:vendor"></xs:element>
+      <xs:element minOccurs="0" name="website" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="kualifikasiVendor">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="nama" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="kontrak">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="mataUang" type="tns:mataUang"></xs:element>
+      <xs:element minOccurs="0" name="namaJaminanPelaksana" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="nilai" type="xs:double"></xs:element>
+      <xs:element minOccurs="0" name="nilaiJaminanPelaksana" type="xs:double"></xs:element>
+      <xs:element minOccurs="0" name="nilaiKursUSD" type="xs:double"></xs:element>
+      <xs:element minOccurs="0" name="nilaiPerforma" type="xs:double"></xs:element>
+      <xs:element minOccurs="0" name="nomor" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="nomorKeputusanSuratPenawaran" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="nomorSuratPenawaran" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="organisasi" type="tns:organisasi"></xs:element>
+      <xs:element minOccurs="0" name="pengadaan" type="tns:pengadaan"></xs:element>
+      <xs:element minOccurs="0" name="pinalty" type="xs:double"></xs:element>
+      <xs:element minOccurs="0" name="pinaltyType" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="statusKontrak" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="tglBatasJaminan" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="tglBatasPengiriman" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="tglKeputusanSuratPenawaran" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="tglMulaiKontrak" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="tglSPK" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="tglSelesaiKontrak" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="tglSuratPenawaran" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="user" type="tns:user"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="vendor" type="tns:vendor"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="pengadaan">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="alurPengadaan" type="tns:alurPengadaan"></xs:element>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="jenisPenawaran" type="tns:jenisPenawaran"></xs:element>
+      <xs:element minOccurs="0" name="jenisPengadaan" type="tns:jenisPengadaan"></xs:element>
+      <xs:element minOccurs="0" name="jumlahHariSla" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="keterangan" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="kualifikasiPengadaan" type="tns:kualifikasiPengadaan"></xs:element>
+      <xs:element minOccurs="0" name="kualifikasiVendor" type="tns:kualifikasiVendor"></xs:element>
+      <xs:element minOccurs="0" name="mataUang" type="tns:mataUang"></xs:element>
+      <xs:element minOccurs="0" name="metodePenawaranHarga" type="tns:metodePenawaranHarga"></xs:element>
+      <xs:element minOccurs="0" name="metodePengadaan" type="tns:metodePengadaan"></xs:element>
+      <xs:element minOccurs="0" name="metodePenyampaianDokumenPengadaan" type="tns:metodePenyampaianDokumenPengadaan"></xs:element>
+      <xs:element minOccurs="0" name="namaPengadaan" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="nomorIzinPrinsip" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="nomorNotaDinas" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="panitia" type="tns:panitia"></xs:element>
+      <xs:element minOccurs="0" name="parentId" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="pp" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="ppk" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="prosentasePajakJasa" type="xs:double"></xs:element>
+      <xs:element minOccurs="0" name="prosentasePajakMaterial" type="xs:double"></xs:element>
+      <xs:element minOccurs="0" name="sistemEvaluasiPenawaran" type="tns:sistemEvaluasiPenawaran"></xs:element>
+      <xs:element minOccurs="0" name="tahapanPengadaan" type="tns:tahapanPengadaan"></xs:element>
+      <xs:element minOccurs="0" name="tanggalIzinPrinsip" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="tanggalNotaDinas" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="alurPengadaan">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="kondisiPengadaan" type="tns:kondisiPengadaan"></xs:element>
+      <xs:element minOccurs="0" name="nama" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="kondisiPengadaan">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="jenisPenawaran" type="tns:jenisPenawaran"></xs:element>
+      <xs:element minOccurs="0" name="jenisPengadaan" type="tns:jenisPengadaan"></xs:element>
+      <xs:element minOccurs="0" name="kualifikasiVendor" type="tns:kualifikasiVendor"></xs:element>
+      <xs:element minOccurs="0" name="metodePenawaranHarga" type="tns:metodePenawaranHarga"></xs:element>
+      <xs:element minOccurs="0" name="metodePengadaan" type="tns:metodePengadaan"></xs:element>
+      <xs:element minOccurs="0" name="metodePenyampaianDokumenPengadaan" type="tns:metodePenyampaianDokumenPengadaan"></xs:element>
+      <xs:element minOccurs="0" name="sistemEvaluasiPenawaran" type="tns:sistemEvaluasiPenawaran"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="vendorRequirement" type="tns:vendorRequirement"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="jenisPenawaran">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="nama" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="jenisPengadaan">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="constant" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="nama" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="metodePenawaranHarga">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="nama" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="metodePengadaan">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="nama" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="metodePenyampaianDokumenPengadaan">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="nama" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="sistemEvaluasiPenawaran">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="nama" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="vendorRequirement">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="mataUang" type="tns:mataUang"></xs:element>
+      <xs:element minOccurs="0" name="minimalPengalaman" type="xs:double"></xs:element>
+      <xs:element minOccurs="0" name="nilaiKontrak" type="xs:double"></xs:element>
+      <xs:element minOccurs="0" name="pengadaan" type="tns:pengadaan"></xs:element>
+      <xs:element name="tahunPengalamanAkhir" type="xs:int"></xs:element>
+      <xs:element name="tahunPengalamanMulai" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="kualifikasiPengadaan">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="nama" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="panitia">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="berlakuMulai" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="berlakuSelesai" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="cabang" type="tns:organisasi"></xs:element>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="divisi" type="tns:organisasi"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="tahapanPengadaan">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="alurPengadaan" type="tns:alurPengadaan"></xs:element>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="kode" type="xs:string"></xs:element>
+      <xs:element name="squence" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="tahapan" type="tns:tahapan"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="tahapan">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="nama" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="segmentasiVendor">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="asosiasi" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="email" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="jabatan" type="tns:jabatan"></xs:element>
+      <xs:element minOccurs="0" name="nomor" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="subBidangUsaha" type="tns:subBidangUsaha"></xs:element>
+      <xs:element minOccurs="0" name="tanggalBerakhir" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="tanggalMulai" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="totalRow" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="vendor" type="tns:vendor"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="jabatan">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="nama" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="subBidangUsaha">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bidangUsaha" type="tns:bidangUsaha"></xs:element>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="nama" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="bidangUsaha">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="bidangUsahaChildList" nillable="true" type="tns:bidangUsaha"></xs:element>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="nama" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="parentId" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findShippingByPR">
+    <xs:sequence>
+      <xs:element name="prid" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findShippingByPRResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:purchaseVerificationShippingDTO"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="purchaseVerificationShippingDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="address" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="companyName" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="deliveryTime" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="fullName" type="xs:string"></xs:element>
+      <xs:element name="group" type="xs:int"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="purchaseVerificationShippingItemDTO" nillable="true" type="tns:purchaseVerificationShippingItemDTO"></xs:element>
+      <xs:element minOccurs="0" name="telp" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="purchaseVerificationShippingItemDTO">
+    <xs:sequence>
+      <xs:element name="hargaSatuanPRItem" type="xs:double"></xs:element>
+      <xs:element name="hargaTotalPRItem" type="xs:double"></xs:element>
+      <xs:element minOccurs="0" name="itemName" type="xs:string"></xs:element>
+      <xs:element name="purchaseRequestItemId" type="xs:int"></xs:element>
+      <xs:element name="quantity" type="xs:double"></xs:element>
+      <xs:element name="quantityPRItem" type="xs:double"></xs:element>
+      <xs:element name="shippingGroup" type="xs:int"></xs:element>
+      <xs:element name="shippingToPRId" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="updatePurchaseRequestStatus">
+    <xs:sequence>
+      <xs:element name="prId" type="xs:int"></xs:element>
+      <xs:element name="processId" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="Authorization" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="updatePurchaseRequestStatusResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:purchaseRequest"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="findShippingByPRResponse">
+    <wsdl:part element="tns:findShippingByPRResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updatePurchaseRequestItemResponse">
+    <wsdl:part element="tns:updatePurchaseRequestItemResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findShippingByPR">
+    <wsdl:part element="tns:findShippingByPR" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updatePurchaseRequestItem">
+    <wsdl:part element="tns:updatePurchaseRequestItem" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updatePurchaseRequestStatusResponse">
+    <wsdl:part element="tns:updatePurchaseRequestStatusResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updatePurchaseRequestStatus">
+    <wsdl:part element="tns:updatePurchaseRequestStatus" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="PurchaseRequestVerificationWSDLImpl">
+    <wsdl:operation name="updatePurchaseRequestItem">
+      <wsdl:input message="tns:updatePurchaseRequestItem" name="updatePurchaseRequestItem">
+    </wsdl:input>
+      <wsdl:output message="tns:updatePurchaseRequestItemResponse" name="updatePurchaseRequestItemResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findShippingByPR">
+      <wsdl:input message="tns:findShippingByPR" name="findShippingByPR">
+    </wsdl:input>
+      <wsdl:output message="tns:findShippingByPRResponse" name="findShippingByPRResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updatePurchaseRequestStatus">
+      <wsdl:input message="tns:updatePurchaseRequestStatus" name="updatePurchaseRequestStatus">
+    </wsdl:input>
+      <wsdl:output message="tns:updatePurchaseRequestStatusResponse" name="updatePurchaseRequestStatusResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PurchaseRequestVerificationSoapBinding" type="tns:PurchaseRequestVerificationWSDLImpl">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="updatePurchaseRequestItem">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="updatePurchaseRequestItem">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="updatePurchaseRequestItemResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findShippingByPR">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="findShippingByPR">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="findShippingByPRResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updatePurchaseRequestStatus">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="updatePurchaseRequestStatus">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="updatePurchaseRequestStatusResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PurchaseRequestVerification">
+    <wsdl:port binding="tns:PurchaseRequestVerificationSoapBinding" name="PurchaseRequestVerificationWSDLServicesPort">
+      <soap:address location="http://localhost:8082/swasta2-catalogws/PurchaseRequestVerification/PurchaseRequestVerificationWSDLServices"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

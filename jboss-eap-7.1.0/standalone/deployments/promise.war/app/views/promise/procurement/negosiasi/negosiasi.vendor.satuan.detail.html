@@ -1,0 +1,281 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.panitia.negosiasi.JUDUL"></span>&nbsp;Satuan
+</div>
+<toaster-container
+	toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<div ng-controller="NegosiasiVendorSatuanDetailController as form">
+	<promise-view-data-pengadaan pengadaan-id=pengadaanId hide-item></promise-view-data-pengadaan>
+	
+		
+		
+		<div class="panel panel-primary">
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<em class="fa fa-group">&nbsp;</em> <span>Rincian Kebutuhan
+					Material</span>
+			</h4>
+			<div ng-show="loading" align="center">
+				<strong><em>Loading... <img src="app/img/loading.gif" border="0"
+						height="20px" /></em></strong>
+			</div>
+			<div ng-show="!loading" class="panel-body">
+				<div class="row">
+					<div class="col-xs-12"> 
+						<div class="table-responsive">
+							<table
+								class="table table-hover table-condensed table-striped bg-white">
+								<thead>
+									<tr style="font-weight: bold">
+										<th scope="col"style="text-align: center; vertical-align: top"><span>NOMOR PERENCANAAN</span></th>
+										<th scope="col"style="text-align: center; vertical-align: top"><span>KODE MATERIAL</span></th>
+										<th scope="col"style="text-align: center; vertical-align: top"><span>NAMA MATERIAL</span></th>
+										<th scope="col"style="text-align: center; vertical-align: top"><span>KUANTITAS</span></th>
+										<th scope="col"style="text-align: center; vertical-align: top"><span>SATUAN</span></th>
+										<th scope="col"width="25%" style="text-align: right;  vertical-align: top"><span>UNIT PRICE</span></th>
+										<!-- <th scope="col"width="13%" style="text-align: right;  vertical-align: top"><span>CONDITINAL ITEM</span></th> -->
+										<th scope="col"width="15%" style="text-align: right;  vertical-align: top"><span>TOTAL</span></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr	ng-repeat="negosiasiDetail in form.negosiasiDetailMaterialList">
+
+										<td style="text-align: center; vertical-align: top">{{$index+1}}</td>
+										<td style="text-align: center; vertical-align: top">{{negosiasiDetail.itemPengadaan.item.kode}}</td>
+										<td style="text-align: center; vertical-align: top">{{negosiasiDetail.itemPengadaan.item.nama}}</td>
+										<td style="text-align: center; vertical-align: top">{{negosiasiDetail.itemPengadaan.kuantitas}}</td>
+										<td style="text-align: center; vertical-align: top">{{negosiasiDetail.itemPengadaan.item.satuanId.nama}}</td>
+										<td style="text-align: right;  vertical-align: top">
+											<input ng-disabled="!CPReady || loadingSaving || isLastOffer" promise-currency-blur ng-change="hitung()"  type="text" style="text-align: right;  name="negosiasiDetail.hargaSatuanOri" class="form-control input-sm" id=""
+											ng-model="negosiasiDetail.hargaSatuanOri"/>
+										</td>
+										<!-- <td style="text-align: right;  vertical-align: top">
+											{{negosiasiDetail.itemCP | currency: form.kursPengadaan.mataUang.kode+" "}}
+										</td> -->
+										<td style="text-align: right;  vertical-align: top">
+											{{negosiasiDetail.hargaTotalAfterCondition | currency: form.kursPengadaan.mataUang.kode+" "}}
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+		<div class="panel panel-primary">
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<em class="fa fa-group">&nbsp;</em> <span>Rincian Kebutuhan
+					Jasa</span>
+			</h4>
+			<div ng-show="loading" align="center">
+				<strong><em>Loading... <img src="app/img/loading.gif" border="0"
+						height="20px" /></em></strong>
+			</div>
+			<div ng-show="!loading" class="panel-body">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="table-responsive">
+							<table
+								class="table table-hover table-condensed table-striped bg-white">
+								<thead>
+									<tr style="font-weight: bold">
+										<th scope="col"style="text-align: center; vertical-align: top"><span>NOMOR PERENCANAAN</span></th>
+										<th scope="col"style="text-align: center; vertical-align: top"><span>KODE JASA</span></th>
+										<th scope="col"style="text-align: center; vertical-align: top"><span>NAMA JASA</span></th>
+										<th scope="col"style="text-align: center; vertical-align: top"><span>KUANTITAS</span></th>
+										<th scope="col"style="text-align: center; vertical-align: top"><span>SATUAN</span></th>
+										<th scope="col"width="25%" style="text-align: right; vertical-align: top"><span>UNIT PRICE</span></th>
+										<!-- <th scope="col"width="13%" style="text-align: right; vertical-align: top"><span>CONDITINAL ITEM</span></th> -->
+										<th scope="col"width="15%" style="text-align: right; vertical-align: top"><span>TOTAL</span></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="negosiasiDetail in form.negosiasiDetailJasaList">
+										<td style="text-align: center; vertical-align: top">{{$index+1}}</td>
+										<td style="text-align: center; vertical-align: top">{{negosiasiDetail.itemPengadaan.item.kode}}</td>
+										<td style="text-align: center; vertical-align: top">{{negosiasiDetail.itemPengadaan.item.nama}}</td>
+										<td style="text-align: center; vertical-align: top">{{negosiasiDetail.itemPengadaan.kuantitas}}</td>
+										<td style="text-align: center; vertical-align: top">{{negosiasiDetail.itemPengadaan.item.satuanId.nama}}</td>
+										<td style="text-align: right; vertical-align: top">
+											
+											<input ng-disabled="!CPReady || loadingSaving || isLastOffer" promise-currency-blur  ng-change="hitung()" type="text" style="text-align: right;  name="negosiasiDetail.hargaSatuanOri " class="form-control input-sm" id=""
+											ng-model="negosiasiDetail.hargaSatuanOri"/>
+										</td>
+										<!-- <td style="text-align: right; vertical-align: top">
+											{{negosiasiDetail.itemCP | currency: form.kursPengadaan.mataUang.kode+" "}}
+										</td> -->
+										<td style="text-align: right; vertical-align: top">
+											{{negosiasiDetail.hargaTotalAfterCondition | currency: form.kursPengadaan.mataUang.kode+" "}}
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+			
+		<div ng-show="!loading" class="panel panel-primary">
+			<!-- <div class="row">
+				<div class="col-xs-12" >
+					<div class="table-responsive" style="height:30px; margin-top:10px;">
+						<div class="col-xs-10 text-right"  >
+							<strong>CONDITIONAL HEADER</strong>
+						</div>
+						<div class="col-xs-2 text-right" >
+							<strong>{{(form.headerCP)  | currency: form.kursPengadaan.mataUang.kode+" "}}</strong>
+						</div>
+					</div>
+				</div>
+			</div> -->
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="table-responsive" style="height:30px">
+						<div class="col-xs-10 text-right" >
+							<strong>TOTAL</strong>
+						</div>
+						<div class="col-xs-2 text-right" >
+							<strong>{{(form.hargaTotalAfterCondition)  | currency: form.kursPengadaan.mataUang.kode+" "}}</strong>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+				
+				
+		<!-- DATA PENAWARAN DARI PANITIA -->
+	   <div id="negosiasiLastFromPanitia"  class="panel panel-primary">
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<em class="fa fa-group">&nbsp;</em> <span>Data Negosiasi Harga</span>
+			</h4>
+			<div ng-show="loading" align="center">
+				<strong><em>Loading... <img src="app/img/loading.gif" border="0" height="20px" /></em></strong>
+			</div>
+			<div ng-show="loadingNegosiasiLastFromPanitia" align="center">
+				<strong><em>Loading... <img src="app/img/loading.gif" border="0" height="20px" /></em></strong>
+			</div>
+			<div ng-show="!loading && !loadingNegosiasiLastFromPanitia" class="panel-body">
+		   		<div class="row">
+					<div class="col-xs-12 text-center">
+					    Price Negotiation From Buyer:&nbsp;
+					    <strong>{{(form.negosiasiLastFromPanitia.nilaiPenawaranAfterCondition)  | currency: "IDR "}}</strong>
+					</div>
+				</div>
+			</div>
+		</div>
+ 			
+ 			
+ 		
+ 	<!-- ITEM PRICE CONDITION -->
+		<div class="panel panel-primary">
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<em class="fa fa-group">&nbsp;</em> <span>Item Conditional Price</span>
+			</h4>
+			<div ng-show="loading" align="center">
+				<strong><em>Loading... <img src="app/img/loading.gif" border="0" height="20px" /></em></strong>
+			</div>
+			<div ng-show="!loading" class="panel-body">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="table-responsive">
+ 						   <table class="table table-bordered table-hover bg-white">
+						      <tr style="font-weight: bold">
+						         <td style="width:45%">CONDITIONAL PRICE</td>
+						         <td style="width:45%">ITEM CODE</td>
+						         <td style="width:45%">AMOUNT</td>
+						         <td style="width:10%">AKSI</td>
+						      </tr>
+						      <tr ng-repeat="cp in form.itemConditionList">
+						         <td>
+						            <span editable-select="cp.conditionalPrice" onbeforesave="checkBeforeSaveItemCP_ConditionalPrice($data)"  e-name="cp.conditionalPrice"  e-form="rowform" e-ng-options="s as s.nama for s in masterItemCP track by s.id">{{ showItemCP(cp) }}</span>
+						         </td>
+						         <td>
+						            <span editable-select="cp.itemPengadaan" onbeforesave="checkBeforeSaveItemCP_ItemPengadaan($data)" e-name="cp.itemPengadaan" e-form="rowform" e-ng-options="s as s.item.kode for s in itemPengadaanList track by s.id">{{ showItemPengadaan(cp) }}</span>
+						         </td>
+						          <td>
+						            <span editable-text="cp.nilai" onbeforesave="checkBeforeSaveItemCP_Amount($data)" e-name="cp.nilai" e-form="rowform"  >{{ cp.nilai || &apos;empty&apos; }}</span>
+						         </td>
+						         <td style="white-space: nowrap">
+						            <!-- form-->
+						            <form editable-form="" name="rowform"  shown="inserted == cp" onaftersave="saveItemCP(cp)" ng-show="rowform.$visible"  class="form-buttons form-inline">
+						               <button type="submit" ng-disabled="rowform.$waiting" title="Save" class="btn btn-sm bg-primary">
+						                  <em class="fa fa-save"></em>
+						               </button>
+						               <button type="button" ng-disabled="rowform.$waiting" ng-click="cancelItem(rowform, $index,cp)" title="Cancel" class="btn btn-sm btn-default">
+						                  <em class="fa fa-times"></em>
+						               </button>
+						            </form>
+						            <div ng-show="!rowform.$visible" class="buttons">
+						               <button ng-click="editItem(rowform)" ng-disabled="!CPReady" title="Edit" class="btn btn-sm bg-primary">
+						                  <em class="fa fa-pencil fa-lg"></em>
+						               </button>
+						               <button ng-click="removeItemCP($index)" ng-disabled="!CPReady"  title="Delete" class="btn btn-sm btn-danger">
+						                  <em class="fa fa-trash"></em>
+						               </button>
+						            </div>
+						         </td>
+						      </tr>
+						   </table>
+						   <br>
+  							<!-- button add -->
+							<div class="pull-left">
+								<button ng-disabled="!CPReady || loadingSaving || isLastOffer" style="margin-right: 5px" ng-class="'bg-' + app.theme.name" ng-click="addItemCP()" class="btn btn-primary btn-sm pull-left bg-primary" ripple="" title="Tambah">
+			           		 	  	<span class=""><em class="fa fa-plus"></em></span>&nbsp;&nbsp;<font color="white"><span class="ng-scope">ADD</span></font>
+			         				<span class="ripple"></span>
+			         			 <span class="ripple"></span></button>
+							</div>
+						 </div>
+  					 </div>
+  				 </div>
+  			 </div>
+ 		  </div>
+   		<!-- END ITEM PRICE CONDITION -->
+   	
+   	
+   	
+   		
+ 		
+ 		
+ 		<!-- BUTTON -->
+		<div class="panel panel-primary">
+			<div ng-show="loadingSaving" align="center">
+				<strong><em>Sending price to buyer... <img src="app/img/loading.gif" border="0" height="20px" /></em></strong>
+			</div>
+			<div ng-show="!loading" align="center">
+	              <div align="right" >
+	          			 <button ng-disabled="loadingSaving" ripple="" class="btn btn-primary btn-sm pull-left bg-primary" ng-click="gotoIndex()" ng-class="'bg-' + app.theme.name" style="margin-right: 5px">
+	           		 	  	<span class=""><em class="fa fa-chevron-left"></em></span>&nbsp;&nbsp;<font color="white"><span  class="ng-scope">BACK</span></font>
+	         				<span class="ripple"></span>
+	         			 </button>
+	         			 
+	         			 <button ng-disabled="!CPReady || loadingSaving || isLastOffer" ripple="" class="btn btn-primary btn-sm pull-left bg-primary" ng-click="sendLastOffer()" ng-class="'bg-' + app.theme.name" style="margin-right: 5px">
+            		 		<span  class="ng-scope"><font color="white">LAST OFFER</font>&nbsp;&nbsp;<span class=""><em class="fa fa-sign-in"></em></span>
+          				  
+          			 	</button>
+          			 	
+          			 	<button ng-disabled="!CPReady || loadingSaving || isLastOffer" ripple="" class="btn btn-primary btn-sm pull-left bg-primary" ng-click="sendPriceToBuyer()" ng-class="'bg-' + app.theme.name" style="margin-right: 5px">
+            		 		<span  class="ng-scope"><font color="white">SEND PRICE TO BUYER</font>&nbsp;&nbsp;<span class=""><em class="fa fa-sign-in"></em></span>
+          				  	
+          			 	</button>
+          			 	
+          			 	<button ng-disabled="loadingSaving" ripple="" class="btn btn-primary btn-sm pull-left bg-primary" ng-click="refreshPage()" ng-class="'bg-' + app.theme.name" style="margin-right: 5px">
+            		 		<span class=""><em class="fa fa-refresh"></em></span>&nbsp;&nbsp;<font color="white"><span  class="ng-scope">REFRESH</span></font>
+	         				<span class="ripple"></span>
+          			 	</button>
+          			 	
+          			 	<button  ng-disabled="loadingSaving" ripple="" class="btn btn-primary btn-sm pull-left bg-primary" ng-click="showHistory()" ng-class="'bg-' + app.theme.name" style="margin-right: 5px">
+            		 		<span class=""><em class="fa icon-paper-stack"></em></span>&nbsp;&nbsp;<font color="white"><span  class="ng-scope">HISTORY</span></font>
+	         				<span class="ripple"></span>
+          			 	</button>
+            		</div>
+			</div>
+		</div>
+		<br>
+		<br>
+		<br>
+</div>
+

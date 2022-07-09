@@ -1,0 +1,49 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.panitia.SeleksiPendaftaran.Index.Judul"></span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="SeleksiPendaftaranIndexController as form">
+    <div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px"></strong></div>
+	<div class="panel panel-primary" >
+		<div class="panel-body">
+	        <div class="col-xs-12">
+	            <div class="table-responsive">
+	                <table datatable="ng" class="row-border hover table-striped">
+					<thead>
+						<tr>
+							<th scope="col"><span translate="promise.procurement.panitia.SeleksiPendaftaran.Index.No"></span></th>
+							<th scope="col"><span translate="promise.procurement.panitia.SeleksiPendaftaran.Index.Nomor"></span></th>
+							<th scope="col"><span translate="promise.procurement.panitia.SeleksiPendaftaran.Index.Tanggal"></span></th>
+							<th scope="col"><span translate="promise.procurement.panitia.SeleksiPendaftaran.Index.Nama"></span></th>
+							<th scope="col"><span translate="promise.procurement.panitia.SeleksiPendaftaran.Index.Kualifikasi"></span></th>
+							<th scope="col"><span translate="promise.procurement.panitia.SeleksiPendaftaran.Index.Jenis"></span></th>
+							<th scope="col"><span translate="promise.procurement.panitia.SeleksiPendaftaran.Index.Metode"></span></th>
+							<th scope="col"><span translate="promise.procurement.panitia.SeleksiPendaftaran.Index.Aksi"></span></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="pengadaan in form.pengadaanList">
+							<td>{{ $index+1 }}</td>
+							<td>{{ pengadaan.nomorNotaDinas }}</td>
+							<td>{{ pengadaan.tanggalNotaDinas | date:"dd/MM/yyyy" }}</td>
+							<td>{{ pengadaan.namaPengadaan }}</td>
+							<td>{{ pengadaan.kualifikasiPengadaan.nama }}</td>
+							<td>{{ pengadaan.jenisPengadaan.nama }}</td>
+							<td>{{ pengadaan.metodePengadaan.nama }}</td>
+                            <td style="white-space: nowrap; text-align:center">
+                                <div>
+								    <button type="button" class="mr btn btn-success btn-circle btn-xs" ng-click="form.buttonViewDetail(pengadaan)">		
+                                            <em  class="fa fa-pencil fa-lg"></em>                                            
+									</button>	
+								</div>
+
+                            </td>
+						</tr>
+					</tbody>
+				</table>
+	            </div>
+	        </div>
+	    </div>
+    </div>
+</div>
+<!--END CONTROLLER-->

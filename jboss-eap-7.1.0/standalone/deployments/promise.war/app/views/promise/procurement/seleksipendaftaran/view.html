@@ -1,0 +1,317 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.panitia.SeleksiPendaftaran.View.Judul"></span>
+</div>
+<!--START CONTROLLER-->
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<div ng-controller="SeleksiPendaftaranViewController as form">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<em class="fa fa-table">&nbsp;</em>
+		<span translate="promise.procurement.panitia.SeleksiPendaftaran.View.FormDataPengadaan.Judul"></span>
+	</h4>
+	<div class="panel panel-primary" >
+		<div class="panel-body">
+        	<div class="col-lg-12">
+            	<div class="table-responsive">
+					<table class="table table-bordered table-hover" width="100%">
+                    	<tbody>
+                        	<tr>
+		                    	<td style="text-align:left; width: 30%"><span translate="promise.procurement.panitia.SeleksiPendaftaran.View.FormDataPengadaan.NamaPengadaan"></span></td>
+								<td style="text-align:left; width:70%;">{{form.dataPengadaan.namaPengadaan}}</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><span translate="promise.procurement.panitia.SeleksiPendaftaran.View.FormDataPengadaan.JenisPengadaan"></span></td>
+		                    	<td>{{form.dataPengadaan.jenisPengadaan.nama}}</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><span translate="promise.procurement.panitia.SeleksiPendaftaran.View.FormDataPengadaan.MetodePengadaan"></span></td>
+		                    	<td>{{form.dataPengadaan.metodePengadaan.nama}}</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><span translate="promise.procurement.panitia.SeleksiPendaftaran.View.FormDataPengadaan.KualifikasiPengadaan"></span></td>
+		                    	<td>{{form.dataPengadaan.kualifikasiPengadaan.nama}}</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><span translate="promise.procurement.panitia.SeleksiPendaftaran.View.FormDataPengadaan.MetodePenawaranHarga"></span></td>
+		                    	<td>{{form.dataPengadaan.metodePenawaranHarga.nama}}</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><span translate="promise.procurement.panitia.SeleksiPendaftaran.View.FormDataPengadaan.SistemEvaluasiPenawaranHarga"></span></td>
+		                    	<td>{{form.dataPengadaan.sistemEvaluasiPenawaran.nama}}</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><span translate="promise.procurement.panitia.SeleksiPendaftaran.View.FormDataPengadaan.MataUang"></span></td>
+		                    	<td>{{form.dataPengadaan.mataUang.nama}}</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><span translate="promise.procurement.panitia.SeleksiPendaftaran.View.FormDataPengadaan.KualifikasiVendor"></span></td>
+		                    	<td>{{form.dataPengadaan.kualifikasiVendor.nama}}</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><span translate="promise.procurement.panitia.SeleksiPendaftaran.View.FormDataPengadaan.BidangSubBidangUsaha"></span></td>
+		                    	<td>		                    		
+	                                <div ng-repeat="dataSubBidangusaha in form.dataPengadaan.subBidangUsahaList">
+	                                    <li>{{dataSubBidangusaha.subBidangUsaha.bidangUsaha.nama}}</li>
+	                                    <ul class="fa fa-long-arrow-right">
+	                                        {{dataSubBidangusaha.subBidangUsaha.nama}}
+	                                    </ul>
+	                                </div>
+		                    	</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><span translate="promise.procurement.panitia.SeleksiPendaftaran.View.FormDataPengadaan.KeteranganPengadaan"></span></td>
+		                    	<td>{{form.dataPengadaan.keterangan}}</td>
+		                    </tr>
+						</tbody>
+					</table>
+				</div>
+            </div>
+		</div>
+	</div>
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<em class="fa fa-table">&nbsp;</em>
+		<span translate="promise.procurement.panitia.SeleksiPendaftaran.View.RincianKebutuhanMaterial.Judul"></span>
+	</h4>
+	<div class="panel panel-primary" >
+		<div class="panel-body">
+	        <div class="col-xs-12">
+	            <div class="table-responsive">
+	                <table ng-table="form.tableMaterialPengadaan" class="table table-hover table-condensed table-striped bg-white">
+	                    <thead>
+	                        <tr style="font-weight: bold">
+	                            <th scope="col"style="width:5%;"><span translate="promise.procurement.panitia.SeleksiPendaftaran.View.RincianKebutuhanMaterial.No"></span></th>
+	                            <th scope="col"style="width:10%;"><span translate="promise.procurement.panitia.SeleksiPendaftaran.View.RincianKebutuhanMaterial.KodeMaterial"></span></th>
+	                            <th scope="col"style="width:30%;"><span translate="promise.procurement.panitia.SeleksiPendaftaran.View.RincianKebutuhanMaterial.NamaMaterial"></span></th>
+	                            <th scope="col"style="width:5%;"><span translate="promise.procurement.panitia.SeleksiPendaftaran.View.RincianKebutuhanMaterial.Kuantitas"></span></th>
+	                            <th scope="col"style="width:5%;"><span translate="promise.procurement.panitia.SeleksiPendaftaran.View.RincianKebutuhanMaterial.Satuan"></span></th>
+	                            <th scope="col"style="width:10%;"><span translate="promise.procurement.panitia.SeleksiPendaftaran.View.RincianKebutuhanMaterial.HPS"></span></th>
+	                            <th scope="col"style="width:10%;"><span translate="promise.procurement.panitia.SeleksiPendaftaran.View.RincianKebutuhanMaterial.TotalHPS"></span></th>
+	                            <th scope="col"style="width:25%;"><span translate="promise.procurement.panitia.SeleksiPendaftaran.View.RincianKebutuhanMaterial.Keterangan"></span></th>
+	                        </tr>
+	                    </thead>
+	                    <tbody>
+	                        <tr ng-repeat="dataMaterial in $data">
+	                            <td>{{$index+1}}</td>
+	                            <td>{{ dataMaterial.item.kode }}</td>
+	                            <td>{{ dataMaterial.item.nama }}</td>
+	                            <td>{{ dataMaterial.kuantitas | number }}</td>
+	                            <td>{{ dataMaterial.item.satuanId.nama }}</td>
+	                            <td>{{ dataMaterial.nilaiHPS | number: 2 }}</td>
+	                            <td>{{ dataMaterial.totalHPS | number: 2 }}</td>
+	                            <td>{{ dataMaterial.item.deskripsi }}</td>
+	                        </tr>
+	                    </tbody>
+	                </table>
+	            </div>
+	        </div>
+	    </div>
+    </div>
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<em class="fa fa-table">&nbsp;</em>
+		<span translate="promise.procurement.panitia.SeleksiPendaftaran.View.RincianKebutuhanJasa.Judul"></span>
+	</h4>
+	<div class="panel panel-primary" >
+		<div class="panel-body">
+	        <div class="col-xs-12">
+	            <div class="table-responsive">
+	                <table ng-table="form.tableJasaPengadaan" class="table table-hover table-condensed table-striped bg-white">
+	                    <thead>
+	                        <tr style="font-weight: bold">
+	                            <th scope="col"style="width:5%;"><span translate="promise.procurement.panitia.SeleksiPendaftaran.View.RincianKebutuhanJasa.No"></span></th>
+	                            <th scope="col"style="width:30%;"><span translate="promise.procurement.panitia.SeleksiPendaftaran.View.RincianKebutuhanJasa.NamaJasa"></span></th>
+	                            <th scope="col"style="width:10%;"><span translate="promise.procurement.panitia.SeleksiPendaftaran.View.RincianKebutuhanJasa.KodeJasa"></span></th>
+	                            <th scope="col"style="width:5%;"><span translate="promise.procurement.panitia.SeleksiPendaftaran.View.RincianKebutuhanJasa.Jumlah"></span></th>
+	                            <th scope="col"style="width:5%;"><span translate="promise.procurement.panitia.SeleksiPendaftaran.View.RincianKebutuhanJasa.Satuan"></span></th>
+	                            <th scope="col"style="width:10%;"><span translate="promise.procurement.panitia.SeleksiPendaftaran.View.RincianKebutuhanJasa.HPS"></span></th>
+	                            <th scope="col"style="width:10%;"><span translate="promise.procurement.panitia.SeleksiPendaftaran.View.RincianKebutuhanJasa.TotalHPS"></span></th>
+	                            <th scope="col"style="width:25%;"><span translate="promise.procurement.panitia.SeleksiPendaftaran.View.RincianKebutuhanJasa.Keterangan"></span></th>
+	                        </tr>
+	                    </thead>
+	                    <tbody>
+	                        <tr ng-repeat="dataJasa in $data">
+	                            <td>{{$index+1}}</td>
+	                            <td>{{ dataJasa.item.nama }}</td>
+	                            <td>{{ dataJasa.item.kode }}</td>
+	                            <td>{{ dataJasa.kuantitas | number }}</td>
+	                            <td>{{ dataJasa.item.satuanId.nama }}</td>
+	                            <td>{{ dataJasa.nilaiHPS | number: 2 }}</td>
+	                            <td>{{ dataJasa.totalHPS | number: 2 }}</td>
+	                            <td>{{ dataJasa.item.deskripsi }}</td>
+	                        </tr>
+	                    </tbody>
+	                </table>
+	            </div>
+	        </div>
+	    </div>
+    </div>
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<em class="fa fa-table">&nbsp;</em>
+		<span translate="promise.procurement.panitia.SeleksiPendaftaran.View.DaftarRekananTerseleksi.Judul"></span>
+	</h4>
+	<div class="panel panel-primary" >
+		<div class="panel-body">
+	        <div class="col-xs-12">
+	            <div class="table-responsive">
+	                <table ng-table="form.tableVendor" class="table table-hover table-condensed table-striped bg-white">
+	                    <thead>
+	                        <tr style="font-weight: bold">
+	                            <th scope="col"style="width:5%;"><span translate="promise.procurement.panitia.SeleksiPendaftaran.View.DaftarRekananTerseleksi.No"></span></th>
+	                            <th scope="col"style="width:25%;"><span translate="promise.procurement.panitia.SeleksiPendaftaran.View.DaftarRekananTerseleksi.NamaVendor"></span></th>
+	                            <th scope="col"style="width:10%;"><span translate="promise.procurement.panitia.SeleksiPendaftaran.View.DaftarRekananTerseleksi.TanggalDaftar"></span></th>
+	                            <th scope="col"style="width:20%;"><span translate="promise.procurement.panitia.SeleksiPendaftaran.View.DaftarRekananTerseleksi.Telepon"></span></th>
+	                            <th scope="col"style="width:25%;"><span translate="promise.procurement.panitia.SeleksiPendaftaran.View.DaftarRekananTerseleksi.Alamat"></span></th>
+	                            <th scope="col"style="width:10%;"><span translate="promise.procurement.panitia.SeleksiPendaftaran.View.DaftarRekananTerseleksi.Status"></span></th>
+	                            <th scope="col"style="width:5%;"><span translate="promise.procurement.panitia.SeleksiPendaftaran.View.DaftarRekananTerseleksi.Proses"></span></th>
+	                        </tr>
+	                    </thead>
+	                    <tbody>
+	                        <tr ng-repeat="dataVendor in $data">
+	                            <td>{{$index+1}}</td>
+	                            <td>{{ dataVendor.vendor.nama }}</td>
+	                            <td>{{ dataVendor.tanggalDaftar | date:'dd/MM/yyyy' }}</td>
+	                            <td>{{ dataVendor.vendor.nomorTelpon }}</td>
+	                            <td>{{ dataVendor.vendor.Alamat }}</td>
+	                            <td style="text-align:center">{{ dataVendor.status }}</td>
+	                            <td style="white-space: nowrap; text-align:center">
+	                                <div>
+									    <button type="button" class="mr btn btn-success btn-circle btn-xs" ng-click="form.buttonViewVendor(dataVendor)">		
+	                                            <em  class="fa fa-pencil fa-lg"></em>                                            
+										</button>	
+									</div>	
+	                            </td>
+	                        </tr>
+	                    </tbody>
+	                </table>
+	            </div>
+	        </div>
+	    </div>
+    </div>
+    <div align="center">
+        <button ng-class="'bg-' + app.theme.name" ng-click="form.btnKembali()" class="btn btn-sm pull-center" ripple="">
+            <span class=""><em class="fa fa-chevron-left"></em></span>&nbsp;&nbsp;<font color="white">
+            <span translate="promise.procurement.panitia.SeleksiPendaftaran.View.ButtonKembali"></span></font>
+        </button>
+		<button ng-class="'bg-' + app.theme.name" ng-click="form.btnSimpan()" class="btn btn-primary btn-sm pull-center" ripple="">
+        	<span class=""><em class="fa fa-sign-in"></em></span>
+        	&nbsp;&nbsp;
+        	<font color="white"><span translate="promise.procurement.panitia.SeleksiPendaftaran.View.ButtonSimpan"></span></font>
+        </button>
+    </div>
+</div>
+<script type="text/ng-template" id="/modalDataVendor.html">
+<div class="app-view-header"  align="center">
+	<h4 class="panel-heading">
+		<span translate="promise.procurement.panitia.SeleksiPendaftaran.ModalSeleksiPendaftaran.Judul"></span>
+	</h4>
+</div>
+<div class="panel panel-primary">
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-md-12">
+				<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+					<span translate="promise.procurement.panitia.SeleksiPendaftaran.ModalSeleksiPendaftaran.DaftarDokumenVendor.Judul"></span>
+				</h4>
+			</div>
+			<div class="col-md-12">
+	    		<div class="table-responsive">
+	        	<table ng-table="tableDokumenVendor" class="table table-hover table-condensed table-striped bg-white">
+	            	<thead>
+	                	<tr style="font-weight: bold">
+	                    	<th scope="col"style="width:5%;"><span translate="promise.procurement.panitia.SeleksiPendaftaran.ModalSeleksiPendaftaran.DaftarDokumenVendor.No"></span></th>
+	                        <th scope="col"style="width:75%;"><span translate="promise.procurement.panitia.SeleksiPendaftaran.ModalSeleksiPendaftaran.DaftarDokumenVendor.NamaDokumen"></span></th>
+	                        <th scope="col"style="width:20%;"><span translate="promise.procurement.panitia.SeleksiPendaftaran.ModalSeleksiPendaftaran.DaftarDokumenVendor.TanggalBerakhir"></span></th>
+	                    </tr>
+	                </thead>
+	                <tbody>
+	                    <tr ng-repeat="dataDokumen in $data">
+	                    	<td>{{$index+1}}</td>
+	                        <td>{{ dataDokumen.namaDokumen }}</td>
+	                        <td>{{ dataDokumen.tanggalBerakhir | date:'dd/MM/yyyy' }}</td>
+	                    </tr>
+	                </tbody>
+	            </table>
+	        	</div>
+			</div>
+			<div class="col-md-12">
+				&nbsp;<br/>
+			<div/>
+			<div class="col-md-12">
+				<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+					<span translate="promise.procurement.panitia.SeleksiPendaftaran.ModalSeleksiPendaftaran.Pengalaman.Judul"></span>
+				</h4>
+			</div>
+			<div class="col-md-12">
+	    		<div class="table-responsive">
+				<table ng-table="tablePengalamanVendor" class="table table-hover table-condensed table-striped bg-white">
+	            	<thead>
+	                	<tr style="font-weight: bold">
+	                    	<th scope="col"style="width:5%;"><span translate="promise.procurement.panitia.SeleksiPendaftaran.ModalSeleksiPendaftaran.Pengalaman.No"></span></th>
+	                        <th scope="col"style="width:15%;"><span translate="promise.procurement.panitia.SeleksiPendaftaran.ModalSeleksiPendaftaran.Pengalaman.NamaPekerjaan"></span></th>
+	                        <th scope="col"style="width:15%;"><span translate="promise.procurement.panitia.SeleksiPendaftaran.ModalSeleksiPendaftaran.Pengalaman.LokasiPekerjaan"></span></th>
+	                        <th scope="col"style="width:15%;"><span translate="promise.procurement.panitia.SeleksiPendaftaran.ModalSeleksiPendaftaran.Pengalaman.Bidang"></span></th>
+	                        <th scope="col"style="width:15%;"><span translate="promise.procurement.panitia.SeleksiPendaftaran.ModalSeleksiPendaftaran.Pengalaman.SubBidang"></span></th>
+	                        <th scope="col"style="width:5%;"><span translate="promise.procurement.panitia.SeleksiPendaftaran.ModalSeleksiPendaftaran.Pengalaman.MulaiKerjasama"></span></th>
+	                        <th scope="col"style="width:15%;"><span translate="promise.procurement.panitia.SeleksiPendaftaran.ModalSeleksiPendaftaran.Pengalaman.NilaiKontrak"></span></th>
+	                        <th scope="col"style="width:15%;"><span translate="promise.procurement.panitia.SeleksiPendaftaran.ModalSeleksiPendaftaran.Pengalaman.Dokumen"></span></th>
+	                    </tr>
+	                </thead>
+	                <tbody>
+	                    <tr ng-repeat="dataPengalaman in $data">
+	                    	<td>{{$index+1}}</td>
+	                        <td>{{ dataPengalaman.namaPekerjaan }}</td>
+	                        <td>{{ dataPengalaman.lokasiPekerjaan }}</td>
+	                        <td>{{ dataPengalaman.bidangUsaha }}</td>
+	                        <td>{{ dataPengalaman.bidangUsaha }}</td>
+	                        <td>{{ dataPengalaman.mulaiKerjasama | date:'dd/MM/yyyy' }}</td>
+	                        <td>{{ dataPengalaman.nilaiKontrak | number:2 }}</td>
+	                        <td>{{ dataPengalaman.fileName }}</td>
+	                    </tr>
+	                </tbody>
+	            </table>
+				</div>
+			</div>
+			<div class="col-md-12">
+				&nbsp;<br/>
+			<div/>
+			<div class="col-md-12">
+				<label><span translate="promise.procurement.panitia.SeleksiPendaftaran.ModalSeleksiPendaftaran.TextLine"></span></label>
+			</div>
+			<div class="col-md-12">
+				<div class="row">
+					<label class="col-sm-1 control-label"></label>
+					<div class="col-md-7">
+						<label>
+							<input type="radio" value="LULUS" ng-model="pilihStatus.status">
+							LULUS
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="row">
+					<label class="col-sm-1 control-label"></label>
+					<div class="col-md-8">
+						<label>
+							<input type="radio" value="TIDAK LULUS" ng-model="pilihStatus.status">
+							TIDAK LULUS
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12">
+				&nbsp;<br/><br/>
+			</div>
+			<div class="col-md-12" align="center">
+				<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-sm" ng-click="cancel()">
+					<span class="btn-label">
+						<em class="fa fa-chevron-left"></em>
+					</span>
+					<span translate="promise.procurement.panitia.SeleksiPendaftaran.View.ButtonKembali"></span>
+				</button>
+				<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="simpanData()">
+					<span translate="promise.procurement.panitia.SeleksiPendaftaran.View.ButtonSimpan"></span>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+</script>

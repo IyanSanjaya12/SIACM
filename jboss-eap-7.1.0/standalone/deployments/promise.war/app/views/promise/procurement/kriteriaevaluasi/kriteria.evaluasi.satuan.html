@@ -1,0 +1,227 @@
+<!--
+SPESIFIC VIEW OF THE FIRST DETAIL KRITERIA EVALUASI MENU
+------------- START CONTROLLER -------------
+-->
+
+<div class="app-view-header">
+    <span translate="promise.procurement.panitia.kriteriaevaluasi.JUDUL">Kriteria Evaluasi</span>
+    <small><span translate="promise.procurement.panitia.kriteriaevaluasi.SATUAN"></span></small>
+</div>
+
+<div ng-controller="KriteriaEvaluasiViewSatuanController as form">
+    <form method="post" action="#" novalidate="" class="form-horizontal">
+        <div class="panel panel-primary">
+            <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-tasks">&nbsp;</em><span
+                    translate="promise.procurement.panitia.kriteriaevaluasi.SUBJUDUL">Kriteria Evaluasi</span></h4>
+            <div class="panel-body">
+                <br />
+                <div class="col-md-12">
+                    <div>
+                        <div align="center" ng-if="form.loading == true"><strong><em>Loading...</em></strong></div>
+                        <div class="table-responsive">
+                            <table id="table-ext-1" class="table table-bordered table-hover" width="100%">
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align:left" width="40%">Nama Pengadaan</td>
+                                        <td style="text-align:left" width="60%">{{ detilPengadaan.namaPengadaan }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left">Jenis Pengadaan / Kategori Pengadaan</td>
+                                        <td style="text-align:left">{{ detilPengadaan.jenisPengadaan.nama }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left">Metode Pengadaan</td>
+                                        <td style="text-align:left">{{ detilPengadaan.metodePengadaan.nama }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left">Kualifikasi Pengadaan</td>
+                                        <td style="text-align:left">{{ detilPengadaan.kualifikasiPengadaan.nama }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left">Metode Penawaran Harga</td>
+                                        <td style="text-align:left">{{ detilPengadaan.metodePenawaranHarga.nama }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left">Sistem Evaluasi Penawaran Harga</td>
+                                        <td style="text-align:left">{{ detilPengadaan.sistemEvaluasiPenawaran.nama }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left">Mata Uang</td>
+                                        <td style="text-align:left">{{ detilPengadaan.mataUang.kode }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left">Kualifikasi Penyedia Barang/Jasa</td>
+                                        <td style="text-align:left">{{ detilPengadaan.kualifikasiPenyediaBarangJasa }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left">Bidang - Sub Bidang Usaha</td>
+                                        <td style="text-align:left">
+                                            <div ng-repeat="bd in form.subBidangUsahaByPengadaanIdList">
+                                                <li>{{bd.subBidangUsaha.bidangUsaha.nama}}</li>
+                                                <ul class="fa fa-long-arrow-right">
+                                                    {{bd.subBidangUsaha.nama}}
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left">Keterangan Pengadaan</td>
+                                        <td style="text-align:left">{{ detilPengadaan.keterangan }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Table Ke 2 -->
+        <div class="panel panel-primary">
+            <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-archive">&nbsp;</em><span
+                    translate="promise.procurement.panitia.kriteriaevaluasi.view.RINCIANKEBMATERIAL">Rincian Kebutuhan
+                    Material</span></h4>
+            <div class="panel-body">
+                <br />
+                <div class="col-md-12">
+                    <div>
+                        <div align="center" ng-if="form.loading == true"><strong><em>Loading...</em></strong></div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover table-striped table-bordered">
+                                <thead>
+                                    <tr style="background-color:#EEEEEE">
+                                        <th scope="col"style="text-align:left" width="500px"><span translate="promise.procurement.panitia.kriteriaevaluasi.view.NOMORPERENCANAAN">Nomor
+                                                Perencana</span>
+                                        </th>
+                                        <th scope="col"style="text-align:left" width="500px"><span translate="promise.procurement.panitia.kriteriaevaluasi.view.KODEMATERIAL">Kode
+                                                Material</span>
+                                        </th>
+                                        <th scope="col"style="text-align:left" width="500px"><span translate="promise.procurement.panitia.kriteriaevaluasi.view.NAMAMATERIAL">Nama
+                                                Material</span>
+                                        </th>
+                                        <th scope="col"style="text-align:left" width="500px"><span translate="promise.procurement.panitia.kriteriaevaluasi.view.KUANTITAS">Kuantitas</span>
+                                        </th>
+                                        <th scope="col"style="text-align:left" width="500px"><span translate="promise.procurement.panitia.kriteriaevaluasi.view.SATUAN">Satuan</span>
+                                        </th>
+                                        <th scope="col"style="text-align:left" width="500px"><span translate="promise.procurement.panitia.kriteriaevaluasi.view.HPS">HPS</span>
+                                        </th>
+                                        <th scope="col"style="text-align:left" width="500px"><span translate="promise.procurement.panitia.kriteriaevaluasi.view.HRGTOTALHPS">Harga
+                                                Total HPS</span>
+                                        </th>
+                                        <th scope="col"style="text-align:left" width="500px"><span translate="promise.procurement.panitia.kriteriaevaluasi.view.KET">Keterangan</span>
+                                        </th>
+                                        <th scope="col"style="text-align:center" width="500px"><span translate="promise.procurement.panitia.kriteriaevaluasi.list.AKSI">Aksi</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="mt in form.itemPengadaanMaterialByPengadaanIdList">
+                                        <td style="text-align:left">{{($index+1)}}</td>
+                                        <td style="text-align:left">{{mt.item.kode}}</td>
+                                        <td style="text-align:left">{{mt.item.nama}}</td>
+                                        <td style="text-align:left">{{mt.kuantitas}}</td>
+                                        <td style="text-align:left">{{mt.item.satuanId.nama}}</td>
+                                        <td style="text-align:right">{{(mt.nilaiHPS | number:2)+" "+mt.mataUang.kode}}</td>
+                                        <td style="text-align:right">{{(mt.totalHPS| number:2)+" "+mt.mataUang.kode}}</td>
+                                        <td style="text-align:left">{{mt.item.deskripsi}}</td>
+                                        <td style="text-align:center">
+                                            <div>
+                                                <button type="button" ng-class="'bg-' + app.theme.name" class="mr btn btn-xs"
+                                                    ng-click="form.addKriteria(mt)" ng-if="form.adaListAdmin">
+                                                    <em class="fa fa-pencil fa-lg"></em>
+                                                </button>
+                                                <button type="button" class="mr btn btn-primary btn-xs" ng-click="form.viewKriteria(mt)">
+                                                    <em class="fa fa-folder-open"></em>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--END Table Ke 2 -->
+
+        <!--Table Ke 3 -->
+        <div class="panel panel-primary">
+            <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-briefcase">&nbsp;</em><span
+                    translate="promise.procurement.panitia.kriteriaevaluasi.view.RINCIANJASA">Rincian Kebutuhan Jasa</span></h4>
+            <div class="panel-body">
+                <br />
+                <div class="col-md-12">
+                    <div>
+                        <div align="center" ng-if="form.loading == true"><strong><em>Loading...</em></strong></div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover table-striped table-bordered">
+                                <thead>
+                                    <tr style="background-color:#EEEEEE">
+                                        <th scope="col"style="text-align:left" width="500px"><span translate="promise.procurement.panitia.kriteriaevaluasi.view.NOMORPERENCANAAN">Nomor
+                                                Perencanaan</span>
+                                        </th>
+                                        <th scope="col"style="text-align:left" width="500px"><span translate="promise.procurement.panitia.kriteriaevaluasi.view.NAMAMATERIAL">Nama
+                                                Material</span>
+                                        </th>
+                                        <th scope="col"style="text-align:left" width="500px"><span translate="promise.procurement.panitia.kriteriaevaluasi.view.KUANTITAS">Kuantitas</span>
+                                        </th>
+                                        <th scope="col"style="text-align:left" width="500px"><span translate="promise.procurement.panitia.kriteriaevaluasi.view.SATUAN">Satuan</span>
+                                        </th>
+                                        <th scope="col"style="text-align:left" width="500px"><span translate="promise.procurement.panitia.kriteriaevaluasi.view.JUMLAH">Jumlah</span>
+                                        </th>
+                                        <th scope="col"style="text-align:left" width="500px"><span translate="promise.procurement.panitia.kriteriaevaluasi.view.HPS">HPS</span>
+                                        </th>
+                                        <th scope="col"style="text-align:left" width="500px"><span translate="promise.procurement.panitia.kriteriaevaluasi.view.HRGTOTALHPS">Harga
+                                                Total HPS</span>
+                                        </th>
+                                        <th scope="col"style="text-align:left" width="500px"><span translate="promise.procurement.panitia.kriteriaevaluasi.view.KET">Keterangan</span>
+                                        </th>
+                                        <th scope="col"style="text-align:center" width="500px"><span translate="promise.procurement.panitia.kriteriaevaluasi.list.AKSI">Aksi</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="mt in form.itemPengadaanJasaByPengadaanIdList">
+                                        <td style="text-align:left">{{($index+1)}}</td>
+                                        <td style="text-align:left">{{mt.item.nama}}</td>
+                                        <td style="text-align:left">{{mt.kuantitas}}</td>
+                                        <td style="text-align:left">{{mt.item.satuanId.nama}}</td>
+                                        <td style="text-align:left">jumlah</td>
+                                        <td style="text-align:right">{{(mt.nilaiHPS |number:2) +' '+mt.mataUang.kode}}</td>
+                                        <td style="text-align:right">{{(mt.totalHPS |number:2) +' '+mt.mataUang.kode}}</td>
+                                        <td style="text-align:left">{{mt.item.deskripsi}}</td>
+                                        <td style="text-align:center">
+                                            <div>
+                                                <button type="button" ng-class="'bg-' + app.theme.name" class="mr btn btn-xs"
+                                                    ng-click="form.addKriteria(mt)" ng-if="form.adaListAdmin">
+                                                    <em class="fa fa-pencil fa-lg"></em>
+                                                </button>
+                                                <button type="button" class="mr btn btn-primary btn-xs" ng-click="form.viewKriteria(mt)">
+                                                    <em class="fa fa-folder-open"></em>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--END Table Ke 3 -->
+
+        <div align="right">
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="form.back()"><em
+                    class="fa fa-arrow-circle-left">&nbsp;</em>
+                <span translate="promise.procurement.panitia.kriteriaevaluasi.btn.KEMBALI"></span>
+            </button>
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="saveData()">
+                <span translate="promise.procurement.panitia.kriteriaevaluasi.btn.KIRIM"></span>&nbsp;<em class="fa fa-check"></em>
+            </button>
+        </div>
+        <br>
+    </form>
+</div>
+<!--END CONTROLLER-->

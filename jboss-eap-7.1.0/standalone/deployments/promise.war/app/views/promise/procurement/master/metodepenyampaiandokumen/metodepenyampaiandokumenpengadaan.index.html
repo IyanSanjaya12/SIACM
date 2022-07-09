@@ -1,0 +1,56 @@
+<div class="app-view-header">
+    <span translate="promise.procurement.master.metode_penyampaian_dokumen_pengadaan.judul"></span>
+    <!--     <small><span translate="promise.procurement.master.metodepenyampaiandokumenpengadaan.KETERANGAN"></span></small> -->
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="MetodePenyampaianDokumenPengadaanController as vm">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <span translate="promise.procurement.master.metode_penyampaian_dokumen_pengadaan.subjudul"></span>
+    </h4>
+    <div class="panel-body">
+        <div align="right">
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled" ng-click="add()">
+                <span class="btn-label"><em class="fa fa-plus"></em></span>
+                <span translate="template.button.tambah"></span>
+            </button>
+        </div>
+        <br />
+        <div class="col-md-12">
+            <div align="center" ng-if="vm.loading == true">
+                <strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px" /></strong>
+            </div>
+            <table datatable="ng" class="row-border hover table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col"style="text-align:center"><span translate="template.tabel.nomor"></span>
+                        </th>
+                        <th scope="col"style="text-align:center"><span translate="promise.procurement.master.metode_penyampaian_dokumen_pengadaan.list.nama"></span>
+                        </th>
+                        <th scope="col"style="text-align:center"><span translate="template.tabel.aksi"></span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="metodePenyampaianDokumenPengadaan in vm.metodePenyampaianDokumenPengadaan">
+                        <td style="text-align:center">{{ $index+1 }}</td>
+                        <td ng-bind="metodePenyampaianDokumenPengadaan.nama"></td>
+                        <td style="text-align:center">
+
+                            <div>
+                                <button ng-if="metodePenyampaianDokumenPengadaan.id > 3" type="button" ng-class="'bg-' + app.theme.name"
+                                    class="mr btn btn-xs" ng-click="edit(metodePenyampaianDokumenPengadaan)">
+                                    <em class="fa fa-pencil fa-lg"></em>
+                                </button>
+                                <button ng-if="metodePenyampaianDokumenPengadaan.id > 3" type="button" class="mr btn btn-danger btn-xs"
+                                    ng-click="del(metodePenyampaianDokumenPengadaan.id)">
+                                    <em class="fa fa-trash fa-lg"></em>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!--END CONTROLLER-->

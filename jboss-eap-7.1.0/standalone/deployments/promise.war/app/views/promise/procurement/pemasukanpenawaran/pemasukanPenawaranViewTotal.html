@@ -1,0 +1,72 @@
+<div class="app-view-header">
+    <span translate="promise.procurement.panitia.pemasukanpenawaranview.JUDUL">Pemasukan Penawaran</span>
+    <small><span translate="promise.procurement.panitia.pemasukanpenawaranview.KETERANGAN"></span></small>
+</div>
+<!--START CONTROLLER-->
+<div ng-controller="PemasukanPenawaranViewTotalController as form">
+    <div id="pemasukanPenawaran">
+        <promise-view-data-pengadaan pengadaan-id=pengadaanId></promise-view-data-pengadaan>
+        
+        <!--Table Ke 4 -->
+        <div class="panel panel-primary">
+            <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-group">&nbsp;</em><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.DATAPENYEDIABRGJASA">Pemasukan Penawaran</span></h4>
+            <div class="panel-body">
+                <br/>
+                <div class="col-md-12">
+                    <div>
+                        <div class="loading" align="center" ng-if="loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover table-striped table-bordered">
+                                <thead>
+                                    <tr style="background-color:#EEEEEE">
+                                        <th scope="col"style="text-align:center" width="20px">No
+                                        </th>
+                                        <th scope="col"style="text-align:left" width="350px"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.NMPENYEDIABRGJASA"></span>
+                                        </th>
+                                        <th scope="col"style="text-align:left"><span translate="promise.procurement.panitia.pengambilandokumen.view.vendor.TGLDAFTAR"></span>
+                                        </th>
+                                        <th scope="col"style="text-align:left"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.TGLBATAS"></span>
+                                        </th>
+                                        <th scope="col"style="text-align:left"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.PENAWARANTELP"></span>
+                                        </th>
+                                        <th scope="col"style="text-align:left"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.ALAMAT"></span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="mt in form.suratPenawaranByPengadaanList">
+                                        <td style="text-align:center">{{ $index+1 }}</td>
+                                        <td style="text-align:left">{{mt.vendor.nama}}</td>
+                                        <td style="text-align:left">{{(mt.tanggalAwal | date:'dd-MM-yyyy')}}</td>
+                                        <td style="text-align:left">{{(mt.tanggalBatas | date:'dd-MM-yyyy')}}</td>
+                                        <td style="text-align:left">{{mt.vendor.nomorTelpon}}</td>
+                                        <td style="text-align:left">{{mt.vendor.alamat}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--END Table Ke 4 -->
+    <div align="center" ng-show="statusSimpan"><strong style="color:green">Simpan Berhasil.</strong></div>
+    <div align="center" ng-if="loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+    <div align="center">
+        <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-sm" ng-click="back()" ng-show="btnSimpan"><em class="fa fa-arrow-circle-left">&nbsp;</em>
+            <span translate="promise.procurement.panitia.pemasukanpenawaranview.btn.KEMBALI"></span>
+        </button>
+        <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-sm" ng-click="printDiv('pemasukanPenawaran')" ng-show="view==true && detilPengadaan.tahapanPengadaan.tahapan.id>9"><em class="fa fa-print">&nbsp;</em>
+            <span translate="promise.procurement.panitia.pengambilandokumen.view.btn.PRINT"></span>
+        </button>
+        <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-sm" ng-click="back()" ng-disabled="isProcessing" ng-show="backStatus"><em class="fa fa-arrow-circle-left">&nbsp;</em>
+            <span translate="promise.procurement.panitia.pemasukanpenawaranview.btn.KEMBALI"></span>
+        </button>
+        <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-sm" ng-click="btnSimpan()" ng-if="detilPengadaan.tahapanPengadaan.tahapan.id == 9 || detilPengadaan.tahapanPengadaan.tahapan.id==10170200 || detilPengadaan.tahapanPengadaan.tahapan.id==10170300" ng-disabled="isProcessing" ng-show="btnSimpan">
+            <span translate="promise.procurement.panitia.pemasukanpenawaranview.btn.SIMPAN"></span>&nbsp;<em class="fa fa-check"></em>
+        </button>
+    </div>
+    <br>
+</div>
+<!--END CONTROLLER-->

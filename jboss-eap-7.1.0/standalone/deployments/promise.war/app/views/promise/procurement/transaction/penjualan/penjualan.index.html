@@ -1,0 +1,50 @@
+<div class="app-view-header">
+	<span translate="penjualan.judul"></span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="PenjualanIndexController as vm ">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <em class="fa fa-tasks"></em>
+        <span translate="penjualan.judul"></span>
+        <a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+            <em class="fa fa-chevron-circle-down"></em>
+        </a>
+    </h4>
+	<div class="panel-body collapse in">
+		<div class="text-right pr">
+			<button ng-class="'bg-' + app.theme.name" type="button" class="btn btn-primary btn-add" ng-click="add()"> 
+				<span translate="penjualan.list.tambah"></span>
+			</button>
+		</div>
+		<br />
+		<div class="col-md-12">
+			<div class="text-center" ng-if="vm.loading == true"> <strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px" /></strong>
+			</div>
+			<table datatable="ng" class="row-border hover table-striped">
+				<thead>
+					<tr>
+						<th scope="col"> <span translate="penjualan.list.nomor"></span></th>
+						<th scope="col"> <span translate="penjualan.list.nofaktur"></span></th>
+						<th scope="col"> <span translate="penjualan.list.tglpenjualan"></span></th>
+						<th scope="col"> <span translate="penjualan.list.nopolisi"></span></th>
+						<th scope="col" style="text-align:right"> <span translate="penjualan.list.total"></span></th>
+						<th scope="col"> <span translate="penjualan.list.aksi"></span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="penjualan in vm.penjualanList">
+						<td class="text-center">{{ $index+1 }}</td>
+						<td style="text-align:center" ng-bind="penjualan.noFaktur"></td>
+						<td style="text-align:center" ng-bind="penjualan.tanggal | date:'dd/MM/yyyy'"></td>
+						<td style="text-align:center" ng-bind="penjualan.pelanggan.noPolisi"></td>
+						<td style="text-align:right" ng-bind="(penjualan.hargaSetelahDiskon | currency : '')"></td>
+						<td style="text-align:center">
+							<button type="button" ng-class="'bg-' + app.theme.name" class="btn btn-primary btn-sm fa fa-search" ng-click="edit(penjualan)"></button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<!--END CONTROLLER-->

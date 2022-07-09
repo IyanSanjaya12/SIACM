@@ -1,0 +1,110 @@
+<link rel="stylesheet" href="app/views/promise/procurement/portal/portal-css/custom-styles.css">
+
+
+<link rel="stylesheet" href="app/views/promise/procurement/portal/portal-css/stylesheet.css">.css">
+<div class="detilPengumuman">
+    <div class="row text-left ">
+        <h3>
+			<strong>{{form.detil.pengadaan.namaPengadaan}}</strong>
+		</h3> {{form.detil.tglMulai|date:'dd MMM yyyy'}}
+        <h3>
+			<strong>{{form.detil.pengadaan.panitia.cabang.nama}}</strong>
+		</h3> {{form.detil.pengadaan.panitia.divisi.nama}}
+    </div>
+    <br>
+    <div class="row text-center ">
+        <h2>
+			PENGUMUMAN PELELANGAN UMUM ( Pasca Kualifikasi )<br>Metoda
+			Penyampaian Dokumen : {{form.detil.pengadaan.metodePenyampaianDokumenPengadaan.nama}}<br>No. : {{form.detil.pengadaan.nomorNotaDinas}}
+		</h2>
+    </div>
+    <br>
+    <br>
+    <ol>
+        <li>{{form.detil.pengadaan.panitia.cabang.nama}}, {{form.detil.pengadaan.panitia.divisi.nama}} mengundang Penyedia Barang dan Jasa, untuk mengikuti PELELANGAN UMUM ( Pasca Kualifikasi ) di {{form.detil.pengadaan.panitia.cabang.nama}}, {{form.detil.pengadaan.panitia.divisi.nama}} yang dibiayai dengan Anggaran Perusahaan Tahun {{form.detil.pengadaan.tanggalNotaDinas|date:'yyyy'}}</li>
+        <br>
+        <div style="margin-left: -16px">
+            <div class="row">
+                <div class="col-md-4">Nama Pekerjaan</div>
+                <div class="col-md-1">:</div>
+                <div class="col-md-7">{{form.detil.pengadaan.namaPengadaan}}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">Keterangan/Syarat Khusus</div>
+                <div class="col-md-1">:</div>
+                <div class="col-md-7">{{(form.detil.pengadaan.keterangan==null?'':form.detil.pengadaan.keterangan)}}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">Perkiraan Nilai Pekerjaan</div>
+                <div class="col-md-1">:</div>
+                <div class="col-md-7">{{form.detil.pengadaan.nilaiHPS==0?'-':form.detil.pengadaan.nilaiHPS|number:2}} IDR</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">Sumber Dana</div>
+                <div class="col-md-1">:</div>
+                <div class="col-md-7">{{form.detil.pengadaan.panitia.cabang.nama}}</div>
+            </div>
+        </div>
+        <br>
+        <li>Pendaftaran dan pengambilan dokumen pekerjaan</li>
+        <br>
+        <div style="margin-left: -16px">
+            <div class="row">
+                <div class="col-md-4">{{form.detil.pengadaan.panitia.cabang.nama}}</div>
+                <div class="col-md-1">:</div>
+                <div class="col-md-7">{{form.detil.pengadaan.panitia.divisi.nama}} </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">Alamat</div>
+                <div class="col-md-1">:</div>
+                <div class="col-md-7">{{form.detil.afcoAddress.addressLabel+', '+form.detil.afcoAddress.streetAddress+', '+form.detil.afcoAddress.district+', '+form.detil.afcoAddress.subDistrict+', '+form.detil.afcoAddress.city+'  '+form.detil.afcoAddress.postalCode}} Telp. {{form.detil.afcoAddress.telephone1}}, Fax. {{form.detil.afcoAddress.fax}}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">Tanggal</div>
+                <div class="col-md-1">:</div>
+                <div class="col-md-7">{{form.detil.tglMulai|date:'dd-MM-yyyy'}} s/d {{form.detil.tglSelesai|date:'dd-MM-yyyy'}} </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">Waktu</div>
+                <div class="col-md-1">:</div>
+                <div class="col-md-7">{{form.detil.tglMulai|date:'hh:mm'}} WIB s/d {{form.detil.tglSelesai|date:'hh:mm'}} WIB</div>
+            </div>
+        </div>
+        <br>
+        <li>Penyedia Barang dan Jasa , dalam Bidang Usaha(<span style="font-style: italic" ng-repeat="bu in form.detil.bidangUsaha">{{bu.nama}}</span>) dan Sub Bidang Usaha(<span style="font-style: italic" ng-repeat="subBU in form.detil.subBidangUsaha">{{subBU.subBidangUsaha.nama}}</span>), serta Golongan usaha Tidak Dikualifikasikan, yang berminat dapat mendaftarkan ke alamat tersebut.
+        </li>
+        <li>Penyedia Barang dan Jasa yang diwakilkan wajib membawa surat kuasa dari pimpinan perusahaan.</li>
+        <li>Bila dikemudian hari PELELANGAN UMUM ( Pasca Kualifikasi ) ini dibatalkan, Penyedia Barang dan Jasa tidak dapat menuntut ganti rugi dalam bentuk apapun kepada Panitia Pengadaan Barang dan Jasa.</li>
+        <li>Untuk hal-hal yang belum jelas dapat ditanyakan pada Panitia Pengadaan Barang dan Jasa, sesuai alamat yang tertera di atas.</li>
+    </ol>
+
+</div>
+
+<br>
+
+
+<style>
+    .detilPengumuman {
+        font-size: 14px;
+    }
+    
+    .detilPengumuman h1 {
+        font-size: 19px;
+    }
+    
+    .detilPengumuman h2 {
+        font-size: 17px;
+    }
+    
+    .detilPengumuman h3 {
+        font-size: 15px;
+    }
+    
+    .detilPengumuman h4 {
+        font-size: 13px;
+    }
+    
+    .detilPengumuman .tab {
+        margin-left: 120px;
+    }
+</style>

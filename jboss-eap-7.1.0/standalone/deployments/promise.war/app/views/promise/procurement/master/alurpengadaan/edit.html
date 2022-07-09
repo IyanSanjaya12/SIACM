@@ -1,0 +1,88 @@
+<div class="app-view-header">	
+	<span translate="promise.procurement.master.alurpengadaan.JUDUL"></span>
+	<small>
+		<span translate="promise.procurement.master.alurpengadaan.tambah.UBAH"></span>
+	</small>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="AlurPengadaanUbahController as form">
+	<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-tasks"></em>
+			<span translate="promise.procurement.master.alurpengadaan.tambah.UBAH"></span>
+			<a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+					<em class="fa fa-chevron-circle-down"></em>
+			</a>
+	</h4>
+	<div class="panel-body collapse in">
+		<div align="center" ng-if="loading == true">	<strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong>
+		</div>
+		<form method="post" action="#" novalidate="" class="form-horizontal">
+			<fieldset>
+				<div class="form-group">
+					<div class="col-sm-3"><span translate="promise.procurement.master.alurpengadaan.tambah.NAMA"></span>
+					</div>
+					<div class="col-sm-5">
+						<input id="input-id-1" type="text" class="form-control" ng-model="form.alurPengadaan.nama" />
+						<br />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-3">Kondisi Pengadaan</div>
+					<div class="col-sm-8">
+						<ui-select ng-model="form.alurPengadaan.kondisiPengadaan" theme="bootstrap" ng-disabled="disabled">
+							<ui-select-match placeholder="++ Pilih ++">{{($select.selected.jenisPengadaan.nama + ', ' + $select.selected.metodePengadaan.nama + ', ' + $select.selected.metodePenawaranHarga.nama + ', ' + $select.selected.jenisPenawaran.nama + ', ' + $select.selected.sistemEvaluasiPenawaran.nama + ', ' + $select.selected.metodePenyampaianDokumenPengadaan.nama)}}</ui-select-match>
+							<ui-select-choices repeat="kondisiPengadaan in form.kondisiPengadaanList | propsFilter: {id: $select.search}">
+								<div ng-bind-html="(kondisiPengadaan.jenisPengadaan.nama + ', ' + kondisiPengadaan.metodePengadaan.nama + ', ' + kondisiPengadaan.metodePenawaranHarga.nama + ', ' + kondisiPengadaan.jenisPenawaran.nama + ', ' + kondisiPengadaan.sistemEvaluasiPenawaran.nama + ', ' + kondisiPengadaan.metodePenyampaianDokumenPengadaan.nama)  | highlight: $select.search"></div>
+							</ui-select-choices>
+						</ui-select>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-3">Tahapan Pengadaan</div>
+					<div class="col-sm-9">
+						<p>( Pindahkan Tahapan Pengadaan dari <strong>List Tahapan</strong> ke <strong>Alur Tahapan</strong> dan sebaliknya. )</p>
+						<div class="rows">
+							<div class="col-md-6" id="my-basket" class="list-group" ad-drop="true" ad-drop-over="form.onDragOver($data, $dragElement, $dropElement, $event);" ad-drop-leave="form.onDragLeave($data, $dragElement, $dropElement, $event)" ad-drop-end="form.onDrop($data, $dragElement, $dropElement, $event, 1);">
+								<!-- ========== Usage Drop ========== -->
+								<ul>
+									<li class="list-group-item active">Alur Tahapan</li>
+									<li class="list-group-item" ad-drag="true" ad-drag-data="tahapan" ad-drag-begin="form.onDragStart($data, $dragElement, $event);" ad-drag-end="form.onDragEnd($data, $dragElement, $lastDropElement, $event);" ng-repeat="tahapan in form.models.tahapanPengadaanList"> <span>
+						            <span class="glyphicon glyphicon-thumbs-up"></span>
+										<span ng-bind="($index+1) + '. ' +tahapan.nama"></span> </span>
+									</li>
+									<li class="list-group-item" ng-hide="form.models.tahapanPengadaanList.length"> <span>Pindahkan kesini</span>
+									</li>
+								</ul>
+							</div>
+							<div class="col-md-6">
+								<ul id="car-list" class="list-group">
+									<li class="list-group-item active">List Tahapan</li>
+									<!-- ========== Usage Drag ========== -->
+									<li class="list-group-item" ad-drop="true" ad-drop-over="form.onDragOver($data, $dragElement, $dropElement, $event);" ad-drop-leave="form.onDragLeave($data, $dragElement, $dropElement, $event)" ad-drop-end="form.onDrop($data, $dragElement, $dropElement, $event, 2);" ad-drag="true" ad-drag-data="tahapan" ad-drag-begin="form.onDragStart($data, $dragElement, $event);" ad-drag-end="form.onDragEnd($data, $dragElement, $lastDropElement, $event);" ng-repeat="tahapan in form.models.tahapanList"> <span>
+						            <span class="glyphicon glyphicon-th"></span>
+										<span ng-bind="tahapan.nama"></span> </span>
+									</li>
+									<li class="list-group-item" ng-hide="form.models.tahapanList.length"> <span>Pindahkan kesini</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-3"></div>
+					<div class="col-sm-8">
+						<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-sm" ng-click="form.kembali()">	<span class="btn-label"> <em class="fa fa-chevron-left"></em>
+							</span><span translate="promise.procurement.master.itemtype.tambah.KEMBALI"></span>
+						</button>
+						<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="form.simpan()">	<span translate="promise.procurement.master.itemtype.tambah.SIMPAN"></span>
+						</button>
+					</div>
+				</div>
+				<div align="left">	<strong style="background-color: yellow; color: green">{{message}}</strong>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</div>

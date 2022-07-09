@@ -1,0 +1,57 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.panitia.RekapPengadaan.Detail.Judul"></span>
+</div>
+<!--START CONTROLLER-->
+<div ng-controller="RekapPengadaanDetailController as form">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<em class="fa fa-tasks">&nbsp;</em>
+		<span translate="promise.procurement.panitia.RekapPengadaan.Detail.Judul"></span>
+	</h4>
+    <div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px"></strong></div>
+	<div class="panel panel-primary" >
+		<div class="panel-body">
+	        <div class="col-xs-12">
+	            <div class="table-responsive">
+	                <table ng-table="tableDataPengadaan" class="table table-hover table-condensed table-striped bg-white">
+	                    <thead>
+	                        <tr style="font-weight: bold">
+	                            <th scope="col"style="width:5%; text-align:left"><span translate="promise.procurement.panitia.RekapPengadaan.Detail.No"></span></th>
+	                            <th scope="col"style="width:15%; text-align:left"><span translate="promise.procurement.panitia.RekapPengadaan.Detail.TglPembuatanLelang"></span></th>
+	                            <th scope="col"style="width:15%; text-align:left"><span translate="promise.procurement.panitia.RekapPengadaan.Detail.NoPengadaan"></span></th>
+	                            <th scope="col"style="width:15%; text-align:left"><span translate="promise.procurement.panitia.RekapPengadaan.Detail.NamaPengadaan"></span></th>
+	                            <th scope="col"style="width:15%; text-align:left"><span translate="promise.procurement.panitia.RekapPengadaan.Detail.NoSPK"></span></th>
+	                            <th scope="col"style="width:15%; text-align:left"><span translate="promise.procurement.panitia.RekapPengadaan.Detail.Kualifikasi"></span></th>
+	                            <th scope="col"style="width:15%; text-align:center"><span translate="promise.procurement.panitia.RekapPengadaan.Detail.NilaiHPS"></span></th>
+	                            <th scope="col"style="width:5%; text-align:left"><span translate="promise.procurement.panitia.RekapPengadaan.Detail.Aksi"></span></th>
+	                        </tr>
+	                    </thead>
+	                    <tbody>
+	                        <tr ng-repeat="dataPengadaan in $data">
+	                            <td style="text-align: center">{{ ($index+1)}}</td>
+	                            <td>{{ dataPengadaan.tanggalNotaDinas | date: 'dd/MM/yyyy' }}</td>
+	                            <td>{{ dataPengadaan.nomorNotaDinas }}</td>
+	                            <td>{{ dataPengadaan.namaPengadaan }}</td>
+	                            <td>{{ dataPengadaan.nospk }}</td>
+	                            <td>{{ dataPengadaan.kualifikasiPengadaan.nama }}</td>
+	                            <td style="text-align: right">{{ dataPengadaan.nilaiHPS | number: 2 }}</td>
+	                            <td style="white-space: nowrap; text-align:center">
+	                                <div>
+									    <button type="button" class="mr btn btn-success btn-circle btn-xs" ng-click="form.buttonView(dataPengadaan)">		
+	                                            <em  class="fa fa-search"></em>                                            
+										</button>
+									</div>
+	                            </td>
+	                        </tr>
+	                    </tbody>
+	                    <tfoot>
+	                    	<tr>
+                            	<th scope="col"colspan="6" style="text-align: right"><span translate="promise.procurement.inisialisasi.tambahbumn.TBLTOTALHRG"></span></th>
+								<th scope="col"style="text-align: right">{{ form.totalNilaiHPSPengadaan| number : 2 }}</th>
+                            </tr>
+	                    </tfoot>
+	                </table>
+	            </div>
+	        </div>
+	    </div>
+    </div>
+</div>

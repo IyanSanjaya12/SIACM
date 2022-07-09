@@ -1,0 +1,96 @@
+<div class="app-view-header">
+    <span translate="promise.procurement.application.generatenumber.JUDUL"></span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="GeneratePrNumberController as vm">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><span translate="promise.procurement.application.generatenumber.SUBJUDUL"></span></h4>
+    <div class="panel-body">
+        <br/>
+        <div class="col-md-12">
+            <div>
+                <div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px"/></strong>
+                </div>
+                <form method="post" name="input" action="#" novalidate="" class="form-horizontal">
+		            <fieldset>
+		                <div class="form-group">
+		                    <label class="col-sm-2 control-label" style="text-align:left"><span translate="promise.procurement.application.generatenumber.view.PRNUMBERFORMAT">PRNUMBERFORMAT</span></label>
+		                    <div class="col-sm-5">
+		                        <input type="text" class="form-control shadow-z1 input-sm" ng-model="vm.simpanIndexPr.format" placeholder="[DEPT]/[DATE]/[MONTH]/[YEAR]/[INC]"/>
+		                        <br/>
+		                    </div>
+		                    <strong style="color: red">{{messagePrError}}</strong>
+		                </div>
+		                <div class="form-group">
+		                    <label class="col-sm-2 control-label" style="text-align:left"><span translate="promise.procurement.application.generatenumber.view.PONUMBERFORMAT">PONUMBERFORMAT</span></label>
+		                    <div class="col-sm-5">
+		                        <input type="text" class="form-control shadow-z1 input-sm" ng-model="vm.simpanIndexPo.format" placeholder="[DEPT]/[DATE]/[MONTH]/[YEAR]/[INC]"/>
+		                        <br/>
+		                    </div>
+		                    <strong style="color: red">{{messagePoError}}</strong>
+		                </div>
+		                <div class="form-group">
+		                    <label class="col-sm-2 control-label" style="text-align:left"><span translate="promise.procurement.application.generatenumber.view.COANUMBERFORMAT">COANUMBERFORMAT</span></label>
+		                    <div class="col-sm-5">
+		                        <input type="text" class="form-control shadow-z1 input-sm" ng-model="vm.simpanIndexCoa.format" placeholder="[DEPT]/[DATE]/[MONTH]/[YEAR]/[INC]"/>
+		                        <br/>
+		                    </div>
+		                    <strong style="color: red">{{messageCoaError}}</strong>
+		                </div>
+		                <div class="form-group">
+		                    <label class="col-sm-2 control-label" style="text-align:left"><span translate="promise.procurement.application.generatenumber.view.PRJOINUMBERFORMAT">PRJOINNUMBERFORMAT</span></label>
+		                    <div class="col-sm-5">
+		                        <input type="text" class="form-control shadow-z1 input-sm" ng-model="vm.simpanIndexPrJoin.format" placeholder="[DEPT]/[DATE]/[MONTH]/[YEAR]/[INC]"/>
+		                        <br/>
+		                    </div>
+		                    <strong style="color: red">{{messagePrJoinError}}</strong>
+		                </div>
+		                
+		                 <div class="form-group">
+		                    <label class="col-sm-2 control-label" style="text-align:left"><span translate="promise.procurement.application.generatenumber.view.CONUMBERFORMAT">CONUMBERFORMAT</span></label>
+		                    <div class="col-sm-5">
+		                        <input type="text" class="form-control shadow-z1 input-sm" ng-model="vm.simpanIndexCO.format" placeholder="[DEPT]/[DATE]/[MONTH]/[YEAR]/[INC]"/>
+		                        <br/>
+		                    </div>
+		                    <strong style="color: red">{{messageCOError}}</strong>
+		                </div>
+		                
+		                 <div class="form-group">
+		                    <label class="col-sm-2 control-label" style="text-align:left"><span translate="promise.procurement.application.generatenumber.view.PANUMBERFORMAT">Format Nomor Pengadaan</span></label>
+		                    <div class="col-sm-5">
+		                        <input type="text" class="form-control shadow-z1 input-sm" ng-model="vm.simpanIndexPengadaan.format" placeholder="[DEPT]/[DATE]/[MONTH]/[YEAR]/[INC]"/>
+		                        <br/>
+		                    </div>
+		                    <strong style="color: red">{{messagePengadaanError}}</strong>
+		                </div>
+
+		                <div class="form-group">
+		                	<label class="col-sm-2 control-label"><span translate="promise.procurement.application.generatenumber.view.AVAILABLETOKEN">AVAILABLETOKENT</span></label>
+		                    <div class="col-sm-3">
+		                        <em><span>DEPT : Departemen PR dibuat </span><br/>
+								<span>YEAR : Tahun PR dibuat (2 Digit)</span><br/>
+								
+								<span>MONTH : Bulan PR dibuat</span></em>
+								<br>
+		                    </div>
+		                    <div class="col-sm-5">
+								<em><span>LONG_YEAR : Tahun PR dibuat (4 Digit)</span><br/>
+								<span>DATE : Tanggal PR dibuat</span><br/>
+								<span>INC : Auto Increment Number, akan direset menjadi 1 setiap pergantian tahun</span></em>
+								<br>
+		                    </div>
+		                    <div class="col-sm-8" align="center">
+		                    	<span><strong style="color: green">{{successMessage}}</strong></span>
+		                    	<br>
+		                    </div>
+		                </div>
+		                <div align="center" class="col-sm-8">
+		                    <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="vm.save()" ng-disabled="isDisabled"><span translate="promise.procurement.application.generatenumber.view.SIMPAN">Simpan</span></button>
+		                </div>
+		            </fieldset>
+		        </form>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!--END CONTROLLER-->

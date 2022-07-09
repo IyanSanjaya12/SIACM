@@ -1,0 +1,50 @@
+<div ng-controller="WebServiceManagerAddController as form" class="container-fluid">
+    <div class="panel panel-primary">
+        <form action="#" name="formEn" class="form-validate form-horizontal">
+            <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+            <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-tasks"></em> <span translate="promise.procurement.master.webservicemanager.JUDUL"></span></h4>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label for="input-id-1" class="col-sm-2 control-label"><span translate="">Public</span></label>
+                    <div class="col-sm-5">
+                        <div class="checkbox c-checkbox c-checkbox-rounded">
+                            <label>
+                                <input id="inlineradio10" type="checkbox" ng-model="form.isPublic" ng-checked="form.isPublic == true" />
+                                <span class="fa fa-check"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="input-id-1" class="col-sm-2 control-label"><span translate="">Services</span></label>
+                    <div class="col-sm-6">
+                        <input id="input-id-1" type="text" ng-model="form.services" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="input-id-1" class="col-sm-2 control-label"><span translate="">Function</span></label>
+                    <div class="col-sm-6">
+                        <input id="input-id-1" type="text" ng-model="form.function" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="input-id-1" class="col-sm-2 control-label"><span translate="promise.procurement.master.aksi.list.PATH">Path</span></label>
+                    <div class="col-sm-6">
+                        <input id="input-id-1" type="text" ng-model="form.path" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer text-center">
+                <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-sm" ng-click="back()">
+                    <span class="btn-label">
+						  	<em class="fa fa-chevron-left"></em>
+						  </span><span translate="promise.procurement.master.aksi.tambah.KEMBALI"></span>
+                </button>
+                <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-sm" ng-click="save()" ng-disabled="isSaved">
+                    <span translate="promise.procurement.master.aksi.tambah.SIMPAN"></span><span class="btn-label btn-label-right"><em class="fa fa-save"></em></span>
+                </button>
+
+            </div>
+        </form>
+    </div>
+</div>

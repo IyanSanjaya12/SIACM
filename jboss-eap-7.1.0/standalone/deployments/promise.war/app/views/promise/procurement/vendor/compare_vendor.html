@@ -1,0 +1,189 @@
+<div class="app-view-header">Compare Vendor</div>
+<!-- START row-->
+<div class="row" ng-controller="rateCtrl">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="priceComparison" class="clearfix">
+                            <!-- Start #cmpTable -->
+                            <div id="cmpTable">
+
+                                <!-- Start .cmpWrap -->
+                                <div class="cmpWrap clearfix">
+
+                                    <!-- Start .cmpLabel -->
+                                    <div class="cmpLabel col-md-2">
+                                        <div class="labelGroup">
+                                            <h3>Vendor Compare</h3>
+                                            <ul>
+                                                <li>Address</li>
+                                                <li>Responsible</li>
+                                                <li>Phone</li>
+                                                <li>Email</li>
+                                                <li>Menang Pengadaan</li>
+                                                <li>Ikut Pengadaan</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- End .cmpLabel -->
+
+                                    <!-- Start .cmpMain -->
+                                    <div class="cmpMain col-md-10">
+                                        <div class="cmpPlan col-md-4" ng-repeat="vendor in vendorList">
+                                            <div class="planInner">
+                                                <div class="planTitle">
+                                                    <h3 class="bg-primary">
+                                                        {{vendor.nama}}
+                                                        <a class="badge" tooltip-placement="top" tooltip="Delete" ng-click="removeCompareVendorInView(vendor)">
+                                                            <em class="fa fa-times"></em>
+                                                        </a>
+                                                    </h3>
+                                                </div>
+                                                <div class="planPrice">
+                                                    <div class="cmpImg">
+                                                    	<div ng-if="vendor.logoImage == null">
+															<img class="img-rounded thumb96" ng-src="app/img/user/01.jpg" alt="{{vendor.nama}}">
+														</div>
+														<div ng-if="vendor.logoImage != null">
+															<img class="img-rounded thumb96" ng-src="{{vendor.loadLogoImage}}" alt="{{vendor.nama}}">
+														</div>
+                                                    </div>
+                                                    <div class="cmpImgDet">
+                                                        <!-- rating -->
+                                                        <div class="rating small">
+                                                            <div ng-init="xx = 3" class="text-lg">
+                                                                <rating ng-model="vendor.performanceAvgFloor"  max="5" readonly="true"
+																state-on="'glyphicon-star text-warning'"
+																state-off="'glyphicon-star-empty'"></rating>
+                                                            </div>
+                                                        </div>
+                                                        <!-- / rating -->
+                                                        <!-- <div class="shipFrom">
+															<strong>Main Product : </strong> <a
+																ng-repeat="cat in vendor.mainProductCategoryList"
+																class="label label-primary m-r-xs">{{cat.description}}</a>
+														</div> -->
+                                                    </div>
+                                                    
+                                                     <div class="cmpBtnCon">
+                                                        
+                                                            <a ng-click="mailTo(vendor.email)" class="btn btn-sm btn-primary btn-addon"><em
+															class="glyphicon glyphicon-phone-alt"></em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact Supplier</a>
+                                                       
+                                                    </div>
+                                                </div>
+                                                <div class="planFeature">
+                                                    <ul>
+                                                        <li class="empty"></li>
+                                                        <li ng-bind="vendor.alamat"></li>
+                                                        <li ng-bind="vendor.penanggungJawab"></li>
+                                                        <li ng-bind="vendor.nomorTelpon"></li>
+                                                        <li ng-bind="vendor.email"></li>
+                                                        <li ng-bind="vendor.winnerCount"></li>
+                                                        <li ng-bind="vendor.pengadaanCount"></li>                                                        
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End .cmpMain -->
+
+                                </div>
+                                <!-- End .cmpWrap -->
+
+                            </div>
+                            <!-- End #cmpTable -->
+                            <center>
+                    <button type="button" class="btn btn-primary btn-sm btn-addon" ng-click="a()">
+                         <em class="fa fa-chevron-left"></em>Kembali
+                    </button>
+                </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END row-->
+
+<script type="text/ng-template" id="rate.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Rate Vendor/Product</h3>
+    </div>
+    <div class="modal-body form-horizontal">
+        <div class="row">
+            <div class="form-group m-t">
+                <label class="col-lg-3 control-label">Rate</label>
+                <div class="col-lg-7">
+                    <!-- rating -->
+                    <div ng-controller="MyRating" class="rating">
+                        <div ng-init="xx = 3" class="text-lg">
+                            <rating ng-model="xx" readonly="false" state-on="'glyphicon-star text-warning'" state-off="'glyphicon-star-empty'"></rating>
+                        </div>
+                    </div>
+                    <!-- / rating -->
+                </div>
+            </div>
+            <div class="form-group m-t">
+                <label class="col-lg-3 control-label">Comment</label>
+                <div class="col-lg-7">
+                    <textarea class="form-control"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer text-center">
+        <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
+
+
+<!----------------------- MODAL MAIL COMPOSE --------------------------------->
+<script type="text/ng-template" id="/mail.compose.compare.html">
+	<div class="app-view-header">
+        <h3 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        	<span><em class="fa fa-envelope"></em>&nbsp;&nbsp;Compose Email</span>
+    	</h3>
+    </div>
+	<div class="mb-mail-compose">
+	   <div class="clearfix mb">
+	      <div class="pull-left">
+	         <button type="button" ng-class="{'active':mailCC}" ng-click="mailCC = !mailCC" class="btn btn-default btn-sm" ng-model="mailCC"><em class="fa fa-users"></em>&nbsp;&nbsp;CC</button>
+	      </div>
+	   </div>
+	   <div class="panel panel-default">
+	      <div class="panel-body">
+	         <form role="form-horizontal" method="post">
+	            <div class="input-group form-group">
+	               <span class="input-group-addon text-sm">To:</span>
+	               <input type="text" class="form-control" disabled ng-model="emailTujuan" />
+	            </div>
+	            <div ng-show="mailCC" name="emailCC" class="input-group form-group">
+	               <span class="input-group-addon text-sm">CC:</span>
+	               <input type="text" class="form-control" ng-model="emailCC" />
+	            </div>
+	            <div class="input-group form-group">
+	               <span class="input-group-addon text-sm">Subject:</span>
+	               <input type="text" ng-model="emailSubject" class="form-control" />
+	            </div>
+	            <div class="mb-editor">
+	               <!-- Wysiswyg editor-->
+	               <div text-angular="" name="emailIsi" ng-model="emailIsi" name="wysiswyg-editor" ta-toolbar="[['h1','h2','h3'],['bold','italics', 'underline'],['quote'],['ul','ol'],['insertImage','insertLink']]" class="btn-group-small">
+				   </div>
+	               
+				   <p ng-show="emailIsiError" style="color:red">Harus Diisi!</p>
+	            </div>
+	         </form>
+	      </div>
+	      <div class="form-group">
+	       &nbsp;&nbsp; <a href="#" class="btn btn-success btn-addon" ng-click="btnBatal()"><em class="fa fa-angle-double-left"></em>Close</a>
+	        <a href="#" class="btn btn-primary btn-addon" ng-click="btnKirim()"><em class="fa fa-paper-plane"></em>Send</a>
+	     </div>
+	     <br/>
+	   </div>
+	</div>
+</script>

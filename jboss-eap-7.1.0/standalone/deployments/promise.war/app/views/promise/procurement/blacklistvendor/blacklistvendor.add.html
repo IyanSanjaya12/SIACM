@@ -1,0 +1,419 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.manajemenvendor.blacklistvendor.judul">
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary"
+	ng-controller="BlacklistAddController as vm">
+	<toaster-container
+		toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+
+	<div class="panel-body">
+		<div class="container-fluid ng-scope">
+			<form autocomplete="off">
+				<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+					<span
+						translate="promise.procurement.manajemenvendor.blacklistvendor.judul"></span>
+				</h4>
+				<div class="panel-body">
+					<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+						<span
+							translate="promise.procurement.manajemenvendor.blacklistvendor.view.subjudul_vendor"></span>
+					</h4>
+					<div class="row">
+						<div class="col-md-3">
+							<span
+								translate="promise.procurement.manajemenvendor.blacklistvendor.view.kode_vendor"></span>&nbsp;<font
+								color="red">*)</font>
+						</div>
+						<div class="col-md-9">
+							<p class="input-group col-md-6">
+								<input readonly="readonly" id="input-id-1" type="text"
+									class="form-control"
+									ng-model="vm.blacklistVendorDtl.blacklistVendor.vendor.id" />
+								<input readonly="readonly" id="input-id-1" type="hidden"
+									class="form-control"
+									ng-model="vm.blacklistVendorDtl.blacklistVendor.vendor.id" />
+								<span class="input-group-btn">
+									<button ng-class="'bg-' + app.theme.name" type="button"
+										class="mr btn btn-labeled"
+										ng-click=" findVendor()">
+										<span class="btn-label"><em class="fa fa-search"></em></span> <span
+											translate="promise.procurement.manajemenvendor.blacklistvendor.view.cari_vendor"></span>
+									</button>
+								</span>
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3">
+							<span
+								translate="promise.procurement.manajemenvendor.blacklistvendor.view.nama_vendor"></span>&nbsp;<font
+								color="red">*)</font>
+						</div>
+						<div class="col-md-9">
+							<p class="input-group col-md-10">
+								<input readonly="readonly" id="input-id-1" type="text"
+									class="form-control"
+									ng-model="vm.blacklistVendorDtl.blacklistVendor.vendor.nama" />
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3">
+							<span
+								translate="promise.procurement.manajemenvendor.blacklistvendor.view.npwp_vendor"></span>&nbsp;<font
+								color="red">*)</font>
+						</div>
+						<div class="col-md-9">
+							<p class="input-group col-md-6">
+								<input readonly="readonly" id="input-id-1" type="text"
+									class="form-control"
+									ng-model="vm.blacklistVendorDtl.blacklistVendor.vendor.npwp" />
+							</p>
+							<strong style="color: red"
+								translate={{vm.errorMessageDataVendor}}></strong>
+						</div>
+					</div>
+
+					<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+						<span
+							translate="promise.procurement.manajemenvendor.blacklistvendor.view.daftar_pelanggaran"></span>
+					</h4>
+					<div align="right">
+						<button ng-class="'bg-' + app.theme.name" type="button"
+							class="mr btn btn-labeled" ng-click=" addAlasan()">
+							<span class="btn-label"><em class="fa fa-plus"></em></span> <span
+								translate="template.button.tambah"></span>
+						</button>
+					</div>
+					<div class="table-responsive">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th scope="col"style="text-align: center"><span
+										translate="template.tabel.nomor"></span></th>
+									<th scope="col"style="text-align: center"><span
+										translate="promise.procurement.manajemenvendor.blacklistvendor.view.jenis_pelanggaran"></span>
+									</th>
+									<th scope="col"style="text-align: center"><span
+										translate="promise.procurement.manajemenvendor.blacklistvendor.view.rekomendasi_durasi"></span>
+									</th>
+									<th scope="col"style="text-align: center"><span
+										translate="template.tabel.aksi"></span></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="ab in vm.alasanBlacklistList">
+									<td style="text-align: center" ng-bind="$index+1"></td>
+									<td ng-bind="ab.alasanBlacklistKeterangan"></td>
+									<td style="text-align: center"><span
+										ng-bind="ab.alasanBlacklistJmlWaktu"></span>&nbsp; <span
+										ng-if="ab.alasanBlacklistJkWaktu == 'D'"
+										translate="promise.procurement.manajemenvendor.blacklistvendor.view.hari"></span>
+										<span ng-if="ab.alasanBlacklistJkWaktu == 'M'"
+										translate="promise.procurement.manajemenvendor.blacklistvendor.view.bulan"></span>
+										<span ng-if="ab.alasanBlacklistJkWaktu == 'Y'"
+										translate="promise.procurement.manajemenvendor.blacklistvendor.view.tahun"></span>
+									</td>
+									<td style="text-align: center">
+										<div>
+											<button type="button" class="mr btn btn-danger btn-xs"
+												ng-click=" del(ab.alasanBlacklistId)">
+												<em class="fa fa-trash fa-lg"></em>
+											</button>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div style="text-align: center">
+						<strong style="color: red" translate={{vm.errorMessageAlasanBlacklist}}></strong>
+					</div>
+					<br />
+					<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+						<span
+							translate="promise.procurement.manajemenvendor.blacklistvendor.view.keterangan_blacklist"></span>
+					</h4>
+					<div class="row">
+						<div class="col-md-3">
+							<span
+								translate="promise.procurement.manajemenvendor.blacklistvendor.view.durasi_blacklist"></span>&nbsp;<font
+								color="red">*)</font>
+						</div>
+						<div class="col-md-9">
+							<p class="input-group col-md-8">
+							<div class="row">
+								<div class="col-md-2">
+									<input id="input-id-1" type="text" promise-numbers-only-copy
+										maxlength="3" class="form-control"
+										ng-model="vm.blacklistVendorDtl.blacklistVendor.blacklistVendorJmlWaktu" />
+								</div>
+								<div class="col-md-3">
+									<select class="form-control "
+										ng-model="vm.blacklistVendorDtl.blacklistVendor.blacklistVendorJkWaktu">
+										<option value="D"
+											translate="promise.procurement.manajemenvendor.blacklistvendor.view.hari"></option>
+										<option value="M"
+											translate="promise.procurement.manajemenvendor.blacklistvendor.view.bulan"></option>
+										<option value="Y"
+											translate="promise.procurement.manajemenvendor.blacklistvendor.view.tahun"></option>
+									</select>
+								</div>
+							</div>
+								<strong style="color: red" translate={{vm.errorMessageWaktu}}></strong><br>  
+								<strong style="color: red" translate={{vm.errorMessageJangkaWaktu}}></strong>
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3">
+							<span translate="promise.procurement.manajemenvendor.blacklistvendor.view.catatan_blacklist"></span>&nbsp;<font
+								color="red">*)</font>
+						</div>
+						<div class="col-md-9">
+							<p class="input-group col-md-10">
+								<textarea class="form-control shadow-z1 input-sm"
+									ng-model="vm.blacklistVendorDtl.blacklistVendor.blacklistVendorKeterangan"
+									maxlength="255" rows="4"></textarea>
+									<strong style="color: red" translate={{vm.errorMessageCatatan}}></strong>
+							</p>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-3">
+							<span
+								translate="promise.procurement.manajemenvendor.blacklistvendor.view.catatan_untuk_vendor"></span>&nbsp;<font
+								color="red">*)</font>
+						</div>
+						<div class="col-md-9">
+							<p class="input-group col-md-10">
+								<textarea class="form-control shadow-z1 input-sm"
+									ng-model="vm.blacklistVendorDtl.blacklistVendor.blacklistVendorKeteranganVnd"
+									maxlength="255" rows="4"></textarea>
+									<strong style="color: red" translate={{vm.errorMessageCatatanVendor}}></strong>
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3"
+							translate="promise.procurement.manajemenvendor.blacklistvendor.view.berkas">
+							&nbsp;<font color="red">*)</font>
+						</div>
+						<div class="col-md-9">
+							<p class="input-group col-md-10">
+								<input type="file" data-button-text="Multi file Upload"
+									data-class-button="btn btn-default"
+									data-class-input="form-control inline" nv-file-select
+									uploader="uploader" class="form-control" /><br />
+							</p>
+							<strong style="color: red" translate={{vm.errorMessageFileBlacklist}}></strong>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-3"></div>
+						<div class="col-md-9">
+							<h3>
+								<em translate="promise.procurement.manajemenvendor.blacklistvendor.view.upload_dokumen"></em>
+							</h3>
+							<h4
+								translate="promise.procurement.manajemenvendor.blacklistvendor.view.antrian"></h4>
+							<p>
+								<em translate="promise.procurement.manajemenvendor.blacklistvendor.view.panjang_antrian"></em>
+								: {{ uploader.queue.length }}
+							</p>
+
+							<table class="table">
+								<thead>
+									<tr>
+										<th scope="col"width="50%" translate="template.tabel.nama"></th>
+										<th scope="col"ng-show="uploader.isHTML5"
+											translate="promise.procurement.manajemenvendor.blacklistvendor.view.ukuran"></th>
+										<th scope="col"ng-show="uploader.isHTML5"
+											translate="promise.procurement.manajemenvendor.blacklistvendor.view.progress"></th>
+										<th scope="col">Status</th>
+										<th scope="col"translate="template.tabel.aksi"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="item in uploader.queue ">
+										<td><strong>{{ item.file.name }}</strong>
+											<div ng-show="uploader.isHTML5"
+												ng-thumb="{ file: item._file, height: 100 }"></div></td>
+										<td ng-show="uploader.isHTML5" nowrap>{{
+											item.file.size/1024/1024|number:2 }} MB</td>
+										<td ng-show="uploader.isHTML5">
+											<div class="progress" style="margin-bottom: 0;">
+												<div class="progress-bar" role="progressbar"
+													ng-style="{ 'width': item.progress + '%' }"></div>
+											</div>
+										</td>
+										<td class="text-center"><span ng-show="item.isSuccess"><em
+												class="glyphicon glyphicon-ok"></em></span> <span
+											ng-show="item.isCancel"><em
+												class="glyphicon glyphicon-ban-circle"></em></span> <span
+											ng-show="item.isError" ng-if="item.file.name==item.file.name"><em
+												class="glyphicon glyphicon-remove"></em></span></td>
+										<td nowrap>
+											<button type="button" class="btn btn-danger btn-xs"
+												ng-click="item.remove()">
+												<span class="glyphicon glyphicon-trash"></span> Remove
+											</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<div>
+								<div>
+									<p
+										translate="promise.procurement.manajemenvendor.blacklistvendor.view.progress_antrian"></p>
+									<div class="progress" style="">
+										<div class="progress-bar" role="progressbar"
+											ng-style="{ 'width': uploader.progress + '%' }"></div>
+									</div>
+								</div>
+								<button type="button" class="btn btn-success btn-s"
+									ng-click="uploader.uploadAll()"
+									ng-disabled="!uploader.getNotUploadedItems().length">
+									<span class="glyphicon glyphicon-upload"></span> Upload all
+								</button>
+								<button type="button" class="btn btn-danger btn-s"
+									ng-click="uploader.clearQueue()"
+									ng-disabled="!uploader.queue.length">
+									<span class="glyphicon glyphicon-trash"></span> Remove all
+								</button>
+								<strong style="color:red" translate={{vm.errorMessageFile}}></strong>
+							</div>
+						</div>
+					</div>
+					<br />
+					<div class="row">
+						<div class="col-md-3"></div>
+						<div class="col-md-9">
+							<div class="col-sm-5">
+								<button type="button" ripple="" class="mr btn btn-sm bg-default"
+									ng-click=" back()">
+									<span translate="template.button.kembali"></span>
+								</button>
+								<button ng-class="'bg-' + app.theme.name" type="button"
+									ripple="" class="mr btn btn-sm" ng-click=" save()">
+									<span translate="template.button.simpan"></span>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script type="text/ng-template" id="/findVendor.html">
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+   	<div class="modal-header">
+        <button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="modalCancel()">×</button>
+    	<h3 id="myModalLabel" class="modal-title" translate="promise.procurement.manajemenvendor.blacklistvendor.view.view_modal.judul">Daftar Vendor</h3>
+    </div>
+    <div class="modal-body form-horizontal">
+		<div class="col-md-12">
+			<div>
+				<div align="center" ng-if="form.loading == true">
+					<strong><em>Loading...</em><img src="app/img/loading.gif" border="0"
+						width="20px"></strong>
+				</div>
+				<div class="table-responsive">
+					<table datatable="ng" class="row-border hover table-striped">
+						<thead>
+							<tr>
+								<th scope="col"style="text-align: center"><span translate="template.tabel.nomor"></span></th>
+								<th scope="col"style="text-align: center"><span translate="promise.procurement.manajemenvendor.blacklistvendor.view.view_modal.id_vendor"></span></th>
+								<th scope="col"style="text-align: center"><span translate="promise.procurement.manajemenvendor.blacklistvendor.view.view_modal.nama_vendor"></span></th>
+								<th scope="col"style="text-align: center"><span translate="promise.procurement.manajemenvendor.blacklistvendor.view.view_modal.npwp"></span></th>
+								<th scope="col"style="text-align: center"><span translate="template.tabel.aksi"></span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="fp in vendorList">
+								<td style="text-align: center" ng-bind="{{ $index+1 }}"></td>
+								<td style="text-align: center" ng-bind="fp.id"></td> 
+								<td style="text-align: center" ng-bind="fp.nama"></td> 
+								<td style="text-align: center" ng-bind="fp.npwp"></td> 
+								<td style="text-align: center">
+									<div>
+										<button type="button" ng-class="'bg-' + app.theme.name" class="mr btn btn-xs" ng-click="getData(fp)">
+											<em class="fa fa-pencil fa-lg"></em>
+										</button>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<br/>
+		<div class="modal-footer">
+     		<button ng-click="modalCancel()" class="btn btn-warning">
+			<span translate="template.button.tutup"></span>
+			</button>
+    	</div>
+	</div> 
+</script>
+<script type="text/ng-template" id="/findAlasanBlacklist.html">
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+   	<div class="modal-header">
+        <button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="modalCancel()">×</button>
+    	<h3 id="myModalLabel" class="modal-title" translate="promise.procurement.manajemenvendor.blacklistvendor.view.view_modal.judul_alasan"></h3>
+    </div>
+    <div class="modal-body form-horizontal">
+		<div class="col-md-12">
+			<div>
+				<div align="center" ng-if="form.loading == true">
+					<strong><em>Loading...</em><img src="app/img/loading.gif" border="0"
+						width="20px"></strong>
+				</div>
+				<div class="table-responsive">
+					<table datatable="ng" class="row-border hover table-striped">
+						<thead>
+							<tr>
+								<th scope="col"style="text-align: center"><span translate="template.tabel.nomor"></span></th>
+								<th scope="col"style="text-align: center"><span translate="promise.procurement.manajemenvendor.blacklistvendor.view.view_modal.keterangan"></span></th>
+								<th scope="col"style="text-align: center"><span translate="promise.procurement.manajemenvendor.blacklistvendor.view.view_modal.rekomendasi_jangka_waktu"></span></th>
+								<th scope="col"style="text-align: center"><span translate="template.tabel.aksi"></span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="ab in alasanBlacklistList">
+								<td style="text-align: center" ng-bind="{{ $index+1 }}"></td>
+								<td ng-bind="ab.alasanBlacklistKeterangan"></td>
+								<td style="text-align: center">
+									<span ng-bind="ab.alasanBlacklistJmlWaktu"></span>&nbsp;
+									<span ng-if="ab.alasanBlacklistJkWaktu == 'D'">Hari</span>
+									<span ng-if="ab.alasanBlacklistJkWaktu == 'M'">Bulan</span>
+									<span ng-if="ab.alasanBlacklistJkWaktu == 'Y'">Tahun</span>
+								</td>
+								<td style="text-align: center">
+									<div class="c-checkbox">
+                                    	<label>
+                                        	<input ng-checked="ab.selected == '1' ? true : false" id="inlineCheckbox1" ng-model="ab.selected" type="checkbox" ng-true-value="'1'" ng-false-value="''" ng-change="getData()"/> 
+                                        	<span class="fa fa-check no-margin"></span>
+                                        </label>
+                                    </div> 
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<br/>
+		<div class="modal-footer">
+     		<button ng-click="modalCancel()" class="btn btn-warning">
+				<span translate="template.button.tutup"></span>
+			</button>
+    	</div>
+	</div> 
+</script>

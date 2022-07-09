@@ -1,0 +1,67 @@
+<div class="app-view-header">
+	<span
+		translate="promise.procurement.RegistrasiVendor.sertifikatvendor.judul"></span>
+</div>
+
+<!--START CONTROLLER-->
+<div class="panel panel-primary"
+	ng-controller="SertifikatVendorViewController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<span
+			translate="promise.procurement.RegistrasiVendor.sertifikatvendor.subjudul"></span>
+	</h4>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-md-3">
+				<span
+					translate="promise.procurement.RegistrasiVendor.sertifikatvendor.view.nama_rekanan">
+				</span>
+			</div>
+			<div class="col-md-6">
+				<p class="input-group" ng-bind="vm.vendor.nama"></p>
+			</div>
+		</div>
+		<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<span
+				translate="promise.procurement.RegistrasiVendor.sertifikatvendor.view.subjudul"></span>
+		</h4>
+		<div class="table-responsive">
+			<table datatable="ng" class="row-border hover table-striped">
+				<thead>
+					<tr>
+						<th scope="col"style="text-align: center"><span
+							translate="template.tabel.nomor"></span></th>
+						<th scope="col"style="text-align: center"><span
+							translate="promise.procurement.RegistrasiVendor.sertifikatvendor.view.nomor_sertifikat"></span></th>
+						<th scope="col"style="text-align: center"><span
+							translate="promise.procurement.RegistrasiVendor.sertifikatvendor.view.tanggal_mulai"></span></th>
+						<th scope="col"style="text-align: center"><span
+							translate="promise.procurement.RegistrasiVendor.sertifikatvendor.view.tanggal_berakhir"></span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="riwayatVendor in vm.vendorSertifikatList">
+						<td style="text-align: center" ng-bind="{{ $index+1 }}"></td>
+						<td style="text-align: center" ng-bind="riwayatVendor.nomor"></td>
+						<td style="text-align: center"
+							ng-bind="riwayatVendor.tanggalMulai | date:'yyyy-MM-dd'"></td>
+						<td style="text-align: center"
+							ng-bind="riwayatVendor.tanggalBerakhir | date:'yyyy-MM-dd'"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<fieldset>
+			<div class="form-group">
+				<label for="input-id-1" class="col-sm-2 control-label"><span></span></label>
+				<div class="col-md-5 col-md-push-2 col-sm-5 col-sm-push-3">
+					<button type="button" ripple="" class="mr btn btn-sm bg-default"
+						ng-click=" back()">
+						<span translate="template.button.kembali"></span>
+					</button>
+				</div>
+			</div>
+		</fieldset>
+	</div>
+</div>

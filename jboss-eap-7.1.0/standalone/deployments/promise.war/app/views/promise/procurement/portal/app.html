@@ -1,0 +1,26 @@
+        <div class="portal_wrapper">
+            <!-- Wrapper -->
+            <div class="animate_fade">
+                <!--  header -->
+                <header ng-include="'app/views/promise/procurement/portal/navbar.html'" ></header>
+                <!-- <div class="b-t b-b m-t-70" data-ng-include=" 'app/views/promise/procurement/portal/breadcrumb.html' "></div> -->
+                <div class="b-t b-b m-t-70">
+                	<ui-breadcrumbs ng-hide="categoryTreeActive" displayname-property="data.displayName" abstract-proxy-property="data.proxy" template-url="app/views/promise/procurement/portal/breadcrumb.html"></ui-breadcrumbs>
+                	<div class="no-shadow" ng-show="categoryTreeActive">
+			            <ul class="breadcrumb" >
+			                <li class=""><a ui-sref="page.portal"><em class="fa fa-home"></em> Home </a></li>
+			                <li class=""> Katalog </li>
+			                <li class="text-strong" ng-repeat="categoryTree in categoryListTree">
+	                        	<span ng-bind="categoryTree.translateInd"></span>
+			                </li>
+			            </ul>
+			        </div>
+                </div>
+                <div class="container text-center ng-hide-animate" ng-show="stateIsLoading">
+                    <div class="col-md-12"><em class="fa fa-spin fa-spinner"></em></div>
+                </div>
+                <div class="m-t-lg p-h-lg" ui-view ng-hide="stateIsLoading">
+                </div>
+                <div ng-include="'app/views/promise/procurement/portal/footer.html'"></div>
+            </div>
+        </div>

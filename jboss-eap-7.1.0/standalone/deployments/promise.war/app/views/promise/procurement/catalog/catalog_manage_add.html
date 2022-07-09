@@ -1,0 +1,25 @@
+<div class="app-view-header"> 
+    <span>Manage Catalog</span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="catalogAddCtrl as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <em class="fa fa-tasks"></em>
+        <span>{{addOrEdit}} Product </span><span> {{waitingApproval}} </span>
+        <a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+                <em class="fa fa-chevron-circle-down"></em>
+        </a>
+    </h4>
+	<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+	 <form class="form-horizontal" name="formManageCatalog">
+		<div class="panel-body collapse in">
+            <input type="hidden" ng-model="catalog.itemType" />
+            <div class="clear-fix"></div>
+            <tabset>
+                <tab active="pane.active" ng-repeat="pane in panes" disabled = "{{pane.disabled}}" heading="{{pane.heading}}" >
+                    <div class="form-group" ng-include="pane.include" ></div>
+                </tab>
+            </tabset>
+		</div>
+	</form>
+</div>

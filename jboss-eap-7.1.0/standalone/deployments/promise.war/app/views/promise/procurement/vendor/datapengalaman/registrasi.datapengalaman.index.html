@@ -1,0 +1,223 @@
+<!--
+SPESIFIC VIEW EDIT OF THE DATA PENGALAMAN MENU
+--------------- START CONTROLLER -------------
+-->
+
+<div class="app-view-header">
+    <span translate="">SETTING VENDOR</span> 
+    <small><span translate="promise.procurement.RegistrasiVendor.edit"></span></small>
+	&nbsp;<small><span translate="" style="color:green; font: italic bold 12px Georgia, serif"></span></small>
+</div>
+<toaster-container toaster-options="{'position-class': 'toast-top-center', 'close-button':true}"></toaster-container>
+
+<div ng-controller="RegistrasiDataPengalamanController as vm">
+
+
+
+<!------------------------------------------------------------ START CONTROLLER ---------------------------------------------------------------------->
+<div class="panel panel-primary">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><span
+				translate="{{vm.subjudul}}">Data
+				Perusahaan</span>
+		</h4>
+	
+	<div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong></div>
+	<div class="col-lg-9">
+   		<div class="checkbox c-checkbox needsclick">
+        	<label class="needsclick">
+            	<input ng-model="tanpaPengalaman" type="checkbox" class="needsclick"  ng-click="checked(tanpaPengalaman)"/><span class="fa fa-check"></span>
+            	<text translate="promise.procurement.RegistrasiVendor.datapengalaman.tanpa_pengalaman"></text>
+          	</label>
+      	</div>
+    </div>
+	<h4 class="page-header clearfix">
+  		<div class="pull-right" ng-hide="tanpaPengalaman">
+       		<button ng-disabled="vm.disable==true" ng-class="'bg-' + app.theme.name" ng-click="add('PELANGGAN')" class="btn btn-primary btn-sm">
+               	<span class=""><em class="fa fa-plus"></em></span>									
+				<span translate="promise.procurement.RegistrasiVendor.datapengalaman.view.subjudul_tambah_pelanggan"></span>
+         	</button>                                                
+      	</div>
+       	</h4>
+		<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		   	<span translate="promise.procurement.RegistrasiVendor.datapengalaman.judul2"></span>
+		</h4>
+		<div class="panel-body">
+      		<div class="col-sm-12">
+            	<div class="table-responsive">
+                	<table ng-table="tablePengalamanPekerjaan" class="table table-hover table-condensed table-striped bg-white">
+                    	<thead>
+                        	<tr style="font-weight: bold">
+                            	<th scope="col"style="width:5%; text-align:center"><span translate="template.tabel.nomor"></span>
+                                </th>
+                                <th scope="col"style="width:15%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.datapengalaman.nama"></span>
+                                </th>
+                                <th scope="col"style="width:15%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.datapengalaman.alamat"></span>
+                                </th>
+                                <th scope="col"style="width:15%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.datapengalaman.bidang_usaha"></span>
+                                </th>
+                                <th scope="col"style="width:15%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.datapengalaman.mulai_kerjasama"></span>
+                                </th>
+                                <th scope="col"style="width:15%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.datapengalaman.nilai_kontrak"></span>
+                                </th>
+                                <th scope="col"style="width:15%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.datapengalaman.bukti_kerjasama"></span>
+                                </th>
+                                <th scope="col"style="width:5%; text-align:center"><span translate="template.tabel.aksi"></span>
+                                </th>
+                          	</tr>
+                      	</thead>
+                        <tbody>
+                        	<tr ng-repeat="dataPengalaman in $data">
+                            	<td style="text-align:center">{{$index+1}}</td>
+                                <td ng-bind="dataPengalaman.namaPekerjaan"></td>
+                                <td ng-bind="dataPengalaman.lokasiPekerjaan"></td>
+                                <td ng-bind="dataPengalaman.bidangUsaha.nama "></td>
+                                <td ng-bind="dataPengalaman.mulaiKerjasama | date:'dd/MM/yyyy'"></td>
+                                <td>{{dataPengalaman.nilaiKontrak | number : 2}}{{dataPengalaman.mataUang.kode }}</td>
+                                <td ng-bind="dataPengalaman.pathFile"></td>
+                                
+                                <td >
+                                <span style="white-space: nowrap; text-align:center" ng-hide="tanpaPengalaman">
+                                	<button ng-disabled="vm.disable==true" ng-click="edit(dataPengalaman)" title="Edit" class="btn btn-sm btn-success btn-xs">
+                                    	<em class="fa fa-pencil fa-lg"></em>
+                                  	</button>
+                                    <button ng-disabled="vm.disable==true" ng-click="del(dataPengalaman)"  title="Delete" class="btn btn-sm btn-danger btn-xs">
+                                    	<em class="fa fa-trash fa-lg"></em>
+                                   	</button>
+                                </span>
+                             	</td>
+                         	</tr>
+                     	</tbody>
+                  	</table>
+             	</div>
+         	</div>
+      	</div>
+		<h4 class="page-header clearfix">
+        	<div class="pull-right" ng-hide="tanpaPengalaman">
+            	<button ng-disabled="vm.disable==true" ng-class="'bg-' + app.theme.name" ng-click="add('MITRA')" class="btn btn-primary btn-sm">
+                  	<span class=""><em class="fa fa-plus"></em></span>									
+					<span translate="promise.procurement.RegistrasiVendor.datapengalaman.view.subjudul_tambah_mitra"></span>
+                </button>                                                
+         	</div>
+      	</h4>
+		<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		   	<span translate="promise.procurement.RegistrasiVendor.datapengalaman.judul3"></span>
+		</h4>
+		<div class="panel-body">
+       		<div class="col-sm-12">
+            	<div class="table-responsive">
+                	<table ng-table="tableDataMitra" class="row-border hover table-striped">
+                    	<thead>
+                        	<tr >
+                            	<th scope="col"style="width:5%; text-align:center"><span translate="template.tabel.nomor"></span>
+                                </th>
+                                <th scope="col"style="width:15%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.datapengalaman.nama"></span>
+                                </th>
+                                <th scope="col"style="width:15%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.datapengalaman.alamat"></span>
+                                </th>
+                                <th scope="col"style="width:15%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.datapengalaman.bidang_usaha"></span>
+                                </th>
+                                <th scope="col"style="width:15%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.datapengalaman.mulai_kerjasama"></span>
+                                </th>
+                                <th scope="col"style="width:15%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.datapengalaman.nilai_kontrak"></span>
+                                </th>
+                                <th scope="col"style="width:15%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.datapengalaman.bukti_kerjasama"></span>
+                                </th>
+                                <th scope="col"style="width:5%; text-align:center"><span translate="template.tabel.aksi"></span>
+                                </th>
+                          	</tr>
+                     	</thead>
+                        <tbody>
+                        	<tr ng-repeat="dataPengalaman in $data">
+                            	<td style="text-align:center">{{$index+1}}</td>
+                                <td ng-bind="dataPengalaman.namaPekerjaan"></td>
+                                <td ng-bind="dataPengalaman.lokasiPekerjaan"></td>
+                                <td ng-bind="dataPengalaman.bidangUsaha.nama"></td>
+                                <td ng-bind="dataPengalaman.mulaiKerjasama | date:'dd/MM/yyyy' "></td>
+                                <td > {{ dataPengalaman.nilaiKontrak | number : 2 }} {{ dataPengalaman .mataUang.kode }}</td>
+                                <td ng-bind="dataPengalaman.pathFile"></td>
+                                
+                                <td >
+                                 <span style="white-space: nowrap; text-align:center" ng-hide="tanpaPengalaman">
+                                	<button ng-disabled="vm.disable==true" ng-click="edit(dataPengalaman)" title="Edit" class="btn btn-sm btn-success btn-xs">
+                                    	<em class="fa fa-pencil fa-lg"></em>
+                                  	</button>
+                                 	<button ng-disabled="vm.disable==true" ng-click="del(dataPengalaman)"  title="Delete" class="btn btn-sm btn-danger btn-xs">
+                                    	<em class="fa fa-trash fa-lg"></em>
+                                  	</button>
+                                  </span>
+                              	</td>
+                        	</tr>
+                    	</tbody>
+                  	</table>
+              	</div>
+         	</div>
+      	</div>
+      	<h4 class="page-header clearfix">
+        	<div class="pull-right" ng-hide="tanpaPengalaman">
+            	<button ng-disabled="vm.disable==true" ng-class="'bg-' + app.theme.name" ng-click="add('INPROGRESS')" class="btn btn-primary btn-sm">
+                   	<span class=""><em class="fa fa-plus"></em></span>									
+					<span translate="promise.procurement.RegistrasiVendor.datapengalaman.view.subjudul_tambah_inprogress"></span>
+                </button>                                                
+          	</div>
+      	</h4>
+		<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		   	<span translate="promise.procurement.RegistrasiVendor.datapengalaman.judul4"></span>
+		</h4>
+		<div class="panel-body">
+       		<div class="col-sm-12">
+          		<div class="table-responsive">
+                	<table ng-table="tableWorkingProgress" class="table table-hover table-condensed table-striped bg-white">
+                    	<thead>
+                        	<tr style="font-weight: bold">
+                            	<th scope="col"style="width:5%; text-align:center"><span translate="template.tabel.nomor"></span>
+                                </th>
+                               <th scope="col"style="width:15%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.datapengalaman.nama"></span>
+                                </th>
+                                <th scope="col"style="width:15%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.datapengalaman.alamat"></span>
+                                </th>
+                                <th scope="col"style="width:15%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.datapengalaman.bidang_usaha"></span>
+                                </th>
+                                <th scope="col"style="width:15%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.datapengalaman.mulai_kerjasama"></span>
+                                </th>
+                                <th scope="col"style="width:15%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.datapengalaman.nilai_kontrak"></span>
+                                </th>
+                                <th scope="col"style="width:15%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.datapengalaman.bukti_kerjasama"></span>
+                                </th>
+                                <th scope="col"style="width:5%; text-align:center"><span translate="template.tabel.aksi"></span>
+                                </th>
+                          	</tr>
+                      	</thead>
+                       	<tbody>
+                        	<tr ng-repeat="dataPengalaman in $data">
+                            	<td style="text-align:center">{{$index+1}}</td>
+                                <td ng-bind="dataPengalaman.namaPekerjaan"></td>
+                                <td ng-bind="dataPengalaman.lokasiPekerjaan"></td>
+                                <td ng-bind="dataPengalaman.bidangUsaha.nama"></td>
+                                <td ng-bind="dataPengalaman.mulaiKerjasama | date:'dd/MM/yyyy'"></td>
+                                <td >{{ dataPengalaman.nilaiKontrak | number : 2 }} {{ dataPengalaman.mataUang.kode }}</td>
+                                <td ng-bind="dataPengalaman.pathFile"></td>
+                                
+                                <td>
+                                 <span style="white-space: nowrap; text-align:center" ng-hide="tanpaPengalaman">
+                                	<button ng-disabled="vm.disable==true" ng-click="edit(dataPengalaman)" title="Edit" class="btn btn-sm btn-success btn-xs">
+                                    	<em class="fa fa-pencil fa-lg"></em>
+                                  	</button>
+                                   	<button ng-disabled="vm.disable==true" ng-click="del(dataPengalaman)" title="Delete" class="btn btn-sm btn-danger btn-xs">
+                                    	<em class="fa fa-trash fa-lg"></em>
+                                  	</button>
+                                  </span>
+                              	</td>
+                          	</tr>
+                     	</tbody>
+                	</table>
+              	</div>
+         	</div>
+      	</div>
+</div>
+<br/>
+<div align="center">
+		    <button ng-disabled="vm.disable==true || vm.valid==false" ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm bg-primary" ng-click="approval()">
+		       	<span translate="template.button.send_approval"></span>
+		    </button>
+		</div>
+</div>

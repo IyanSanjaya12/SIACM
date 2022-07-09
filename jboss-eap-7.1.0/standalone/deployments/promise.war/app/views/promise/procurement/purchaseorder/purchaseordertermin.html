@@ -1,0 +1,68 @@
+<fieldset>
+		<div class="row">
+			<div class="col-md-2">Payment</div>
+			<div class="col-md-3">
+				<select class="form-control m-b shadow-z1 input-sm" ng-model="form.purchaseOrderTerm.termandcondition.id" disabled="disabled">
+					<option ng-value="{{term.id}}" ng-repeat="term in form.termList" ng-bind="term.termAndConditionType" ng-selected="form.purchaseOrderTerm.termandcondition.id == term.id"></option>
+				</select>
+			</div>
+			<!--  <div ng-if="form.purchaseOrder.mataUang == null"> -->
+			<!-- <div class="col-md-1 pull-left" ng-bind="(form.purchaseOrderTerm.poTermType==2?'IDR':'%')"> </div> -->
+			<!-- </div> -->
+			<!-- <div class="col-md-2"> -->
+			<!-- <select class="form-control m-b shadow-z1 input-sm" ng-model="form.purchaseOrderTerm.poTermType" disabled="disabled"> -->
+			<!--  	<option ng-value="1" ng-selected="form.purchaseOrderTerm.poTermType == 1"></option> -->
+			<!-- Percentage -->
+			<!--  	<option ng-value="2" ng-selected="form.purchaseOrderTerm.poTermType == 2"></option> -->
+			<!-- Value -->
+			<!--  	</select> -->
+			<!--  </div> -->
+		</div>
+		<div class="row">
+			<div class="col-md-2 pull-left"></div>
+			<div class="col-md-3">
+				<input ng-readonly="true" id="input-id-1" type="text" promise-currency-blur class="form-control input-sm text-right" ng-model="form.purchaseOrder.subTotal">
+			</div>
+			<div ng-if="form.purchaseOrder.mataUang != null">
+				<div class="col-md-1 pull-left" ng-bind="(form.purchaseOrderTerm.poTermType==2?form.purchaseOrder.mataUang.kode:'%')"></div>
+			</div>
+		</div>
+		<!-- currency to IDR -->
+		<div class="row">
+			<div class="col-md-2 pull-left"></div>
+			<div class="col-md-3">
+				<input ng-readonly="true" id="input-id-1" type="text" promise-currency-blur class="form-control input-sm text-right" ng-model="form.termValue">
+			</div>
+			<div ng-if="form.purchaseOrder.mataUang != null">
+				<div class="col-md-1 pull-left" ng-bind="'IDR'"></div>
+			</div>
+		</div>
+		<br/>
+		<div class="row">
+			<div class="col-md-2 pull-left">Notes</div>
+			<div class="col-md-10">
+				<textarea ng-model="form.purchaseOrder.notes" tyle="max-width: none;" class="form-control"></textarea>
+			</div>
+		</div>
+		<br/>
+		<!-- <div class="row pull-left">
+			<div class="col-md-2">
+				<button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled" ng-click="tabs[1].active=true;">Back</button>
+			</div>
+		</div>
+		<div class="row pull-right">
+			<div class="col-md-2">
+				<button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled" ng-click="tabs[3].active=true;">Next</button>
+			</div>
+		</div> -->
+	</fieldset>
+	<div class="row">
+			<div class="col-12 text-center">
+				<a class="btn btn-default" ng-click="tabs[1].active=true;">
+					<span translate="promise.procurement.master.attribute.btn.KEMBALI"></span>
+				</a>
+				<a ng-class="'bg-' + app.theme.name" class="btn btn-primary" ng-click="tabs[3].active=true;"> 
+					<span translate="promise.procurement.master.attribute.btn.SELANJUTNYA"></span>
+				</a>
+			</div>
+		</div>

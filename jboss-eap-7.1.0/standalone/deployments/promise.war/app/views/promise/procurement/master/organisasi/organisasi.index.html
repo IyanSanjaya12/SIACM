@@ -1,0 +1,64 @@
+<div class="app-view-header">	<span translate="promise.procurement.master.organisasi.judul">Organisasi</span>
+</div>
+<div class="panel panel-primary">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-tasks"></em>
+			<span translate="promise.procurement.master.organisasi.subjudul">Data Struktur Organisasi</span>
+			<a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+					<em class="fa fa-chevron-circle-down"></em>
+			</a>
+	</h4>
+	<div class="panel-body collapse in" ng-controller="OrganisasiController as vm" class="container-fluid">
+		<div class="row">
+			<div class="form-group">
+				<label for="input-id-1" class="col-sm-2 control-label" translate="promise.procurement.master.organisasi.list.pilihan">Anda Memilih</label>
+				<div class="col-sm-6" ng-show="vm.statusEdit==false">	<code ng-bind="output"></code>
+				</div>
+				<div class="col-sm-6" ng-show="vm.statusEdit">
+					<input id="input-id-1" type="text" promise-organisasi class="form-control" ng-model="vm.organisasi.nama" />	<strong style="color: red" translate={{vm.errorNamaOrganisasi}}></strong>
+					<input id="input-id-1" type="hidden" ng-model="vm.organisasi.id" />
+					<input id="input-id-1" type="hidden" ng-model="vm.organisasi.parentId" />
+				</div>
+				<div class="col-sm-1" ng-show="vm.statusEdit==false">
+					<button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-sm" ng-click="vm.statusEdit=true">	<span translate="template.button.ubah">Edit</span>
+					</button>
+				</div>
+				<div class="col-sm-1" ng-show="vm.statusEdit==false">
+					<button type="button" class="mr btn btn-sm bg-danger" ng-click="del()">	<span translate="template.button.hapus">Hapus</span>
+					</button>
+				</div>
+				<div class="col-sm-1" ng-show="vm.statusEdit">
+					<button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-sm" ng-click="save()">	<span translate="template.button.simpan">Simpan</span>
+					</button>
+				</div>
+				<div class="col-sm-1" ng-show="vm.statusEdit">
+					<button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-sm" ng-click="cancel()">	<span translate="template.button.batal">Batal</span>
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-8">
+				<div class="well wd-wide">	<span ng-if="doing_async"><strong><em>Loading...</em><img src="app/img/loading.gif" width="15px" border="0"/></strong></span>
+					<div align="center" ng-show="loading"><strong><em>Loading...</em><img src="app/img/loading.gif" width="15px" border="0"/></strong>
+					</div>
+					<abn-tree tree-data="my_data" tree-control="my_tree" on-select="my_tree_handler(branch)" expand-level="2" initial-selection="Granny Smith"></abn-tree>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<h5>Tree Control API:</h5>
+				<br/>
+				<div class="btn-group btn-group-justified mb"><a ng-click="my_tree.select_first_branch()" class="btn btn-default btn-sm mb">First Branch</a><a ng-click="try_adding_a_branch()" class="btn btn-default btn-sm">Add Branch</a>
+				</div>
+				<div class="btn-group btn-group-justified mb"><a ng-click="my_tree.select_next_sibling()" class="btn btn-default btn-sm">Next Sibling</a><a ng-click="my_tree.select_prev_sibling()" class="btn btn-default btn-sm">Prev Sibling</a>
+				</div>
+				<div class="btn-group btn-group-justified mb"><a ng-click="my_tree.select_next_branch()" class="btn btn-default btn-sm">Next Branch</a><a ng-click="my_tree.select_prev_branch()" class="btn btn-default btn-sm">Prev Branch</a>
+				</div>
+				<div class="btn-group btn-group-justified mb"><a ng-click="my_tree.expand_branch()" class="btn btn-default btn-sm">Expand</a><a ng-click="my_tree.select_parent_branch()" class="btn btn-default btn-sm mb">Parent</a>
+				</div>
+				<div class="btn-group btn-group-justified mb"><a ng-click="my_tree.expand_all()" class="btn btn-default btn-sm">Expand All</a><a ng-click="my_tree.collapse_all()" class="btn btn-default btn-sm">Collapse All</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

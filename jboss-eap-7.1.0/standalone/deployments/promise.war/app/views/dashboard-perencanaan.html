@@ -1,0 +1,110 @@
+<div class="app-view-header">Dashboard Perencanaan
+    <!-- <small ng-bind="app.name + ' - ' + app.description"></small> -->
+</div>
+<div ng-controller="DashboardPerencanaanController as vm" class="row">
+       <!-- START dashboard content-->
+    <div class="col-lg-11">
+        <!-- START Tabbed panel-->
+        <div class="panel panel-default">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="p pv-xxl">
+                        <ul class="list-table text-center">
+                        	<li class="small-box bg-primary">
+                                <div class="icon" style="font-size:75px">
+                                  <em class="fa fa-money text-muted"></em>
+                                </div>
+                                <div class="inner">
+                                  <h1 class="text-right text-thin mt">{{vm.prApprovalProcess}}</h1>
+                                  <p class="text-right">Approval Proses</p>
+                                </div>
+                                <div ripple="" ng-click="goTo(3)" class="clickable small-box-footer">
+                                  More info <em class="fa fa-arrow-circle-right"></em>
+                                </div>
+                            </li>
+                            <li class="small-box bg-info">
+                                <div class="icon" style="font-size:75px">
+                                  <em class="fa fa-tasks text-muted"></em>
+                                </div>
+                                <div class="inner">
+                                  <h1 class="text-right text-thin mt">{{vm.needVerification}}</h1>
+                                  <p class="text-right">Butuh Diverifikasi</p>
+                                </div>
+                                <div ripple="" ng-click="goTo(8)" class="clickable small-box-footer">
+                                  More info <em class="fa fa-arrow-circle-right"></em>
+                                </div>
+                            </li>
+                            <li class="small-box bg-amber">
+                                <div class="icon" style="font-size:75px">
+                                  <em class="fa text-muted"></em>
+                                </div>
+                                <div class="inner">
+                                  <h1 class="text-right text-thin mt">{{vm.prProcurementProcess}}</h1>
+                                  <p class="text-right">Proses Procurement</p>
+                                </div>
+                                <div ripple="" ng-click="goTo(7)" class="clickable small-box-footer">
+                                  More info <em class="fa fa-arrow-circle-right"></em>
+                                </div>
+                            </li>
+                            <li ng-class="'small-box bg-warning'">
+                                <div class="icon" style="font-size:75px">
+                                  <em class="fa fa-gear text-muted"></em>
+                                </div>
+                                <div class="inner">
+                                  <h1 class="text-right text-thin mt">{{vm.prOnProgress}}</h1>
+                                  <p class="text-right">On Proses</p>
+                                </div>
+                                <div ripple="" ng-click="goTo(5)" class="clickable small-box-footer">
+                                  More info <em class="fa fa-arrow-circle-right"></em>
+                                </div>
+                            </li>
+                            <li class="small-box bg-gray">
+                                <div class="icon" style="font-size:75px">
+                                  <em class="fa fa-file-o text-muted"></em>
+                                </div>
+                                <div class="inner">
+                                  <h1 class="text-right text-thin mt">{{vm.prReceived}}</h1>
+                                  <p class="text-right">Diterima</p>
+                                </div>
+                                <div ripple="" ng-click="goTo(6)" class="clickable small-box-footer">
+                                  More info <em class="fa fa-arrow-circle-right"></em>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-9">
+        <div class="panel panel-primary">
+            <div ng-class="'bg-'+ app.theme.name" >
+                
+                <div ripple="" ng-click="changeGraph('minggu')" class="btn pull-right text-thin ">Minggu</div>
+                <div ripple="" ng-click="changeGraph('bulan')" class="btn pull-right text-thin ">Bulan</div>
+                <div  ripple="" ng-click="changeGraph('tahun')" class="btn  pull-right text-thin ">Tahun</div>
+                
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-body text-center">
+                <div class="center" fusioncharts width="600" height="400" type="mscolumn3d" chart="{{attrs}}" categories="{{categories}}" dataset="{{dataset}}">
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- END Tabbed panel-->
+        <!-- START Responsive table-->
+        
+    <aside class="col-lg-2">
+         <div ng-class="'small-box bg-' + app.theme.name">
+                <div class="inner">
+                  <h1 class="text-thin mt">{{ countApproval }}</h1>
+                  <div class="text-right text-muted">Approval</div>
+                </div>
+                <div ripple="" ng-click="go('/app/promise/procurement/approval')" class="clickable small-box-footer">
+                  More info <em class="fa fa-arrow-circle-right"></em>
+                </div>
+        </div>
+    </aside>   
+</div>

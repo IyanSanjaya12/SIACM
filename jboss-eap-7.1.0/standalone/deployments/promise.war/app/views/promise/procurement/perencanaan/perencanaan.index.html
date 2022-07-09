@@ -1,0 +1,54 @@
+<div class="app-view-header">
+    <span translate="promise.procurement.panitia.perencanaan.JUDUL">Rincian Item Pengadaan</span>
+    <small><span translate="promise.procurement.panitia.perencanaan.KETERANGAN"></span></small>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="PerencanaanController as form">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-tasks">&nbsp;</em><span translate="promise.procurement.panitia.perencanaan.SUBJUDUL">Rincian Item Pengadaan</span></h4>
+    <div class="panel-body">
+        <br/>
+        <div class="col-md-12">
+            <div>
+                <div align="center" ng-if="loading == true"><strong><em>Loading... <img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+                <table datatable="ng" class="row-border hover table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"style="text-align:center">No
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.perencanaan.list.TAHUN">Tahun</span>
+                            </th>
+                            <!--<th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.perencanaan.list.PERIODE">Priode</span>
+                            </th>-->
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.perencanaan.list.TANGGAL">Tanggal</span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.perencanaan.list.NOANGGARAN">Nomor Anggaran</span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.perencanaan.list.JUMLAH">Jumlah</span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.perencanaan.list.AKSI">Aksi</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="pr in form.perencanaanList">
+                            <td style="text-align:center">{{ $index+1 }}</td>
+                            <td style="text-align:center">{{ pr.tahunAnggaran}}</td>
+                            <!--<td style="text-align:center">ok</td>-->
+                            <td style="text-align:center">{{ pr.tanggalDraft | date:'dd/MM/yyyy'}}</td>
+                            <td style="text-align:center">{{pr.nomorDraft}}</td>
+                            <td style="text-align:center">{{ pr.jumlah | currency:pr.mataUang.kode+" "}}</td>
+                            <td style="text-align:center">
+                                <div>
+                                    <button type="button" class="mr btn btn-success btn-circle btn-xs" ng-click="form.btnDetil(pr)">
+                                        <em class="fa fa-pencil fa-lg"></em>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END CONTROLLER-->

@@ -1,0 +1,66 @@
+<div class="app-view-header"> <span>Edit Purchase Order</span>
+	<small><span>PO</span></small>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="PurchaseOrderEditController as form">
+	<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <em class="fa fa-tasks"></em>
+        <span>Edit Purchase Order</span>
+        <a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+                <em class="fa fa-chevron-circle-down"></em>
+        </a>
+	</h4>
+	<div class="panel-body collapse in">
+		<div align="center" ng-if="loading == true"> <strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px"/></strong>
+		</div>
+		<form role="form" name="poForm" class="form-horizontal row-clone-group" autocomplete="off">
+			<tabset>
+				<!--START Billing To-->
+				<tab heading="Billing To" active="tabs[0].active" ng-init="">
+					<div ng-include="'app/views/promise/procurement/purchaseorder/purchaseorderbilling.html'"></div>
+				</tab>
+				<!--Shipping To-->
+				<tab heading="Shipping To" active="tabs[1].active" ng-init="">
+					<div ng-include="'app/views/promise/procurement/purchaseorder/purchaseordershipping.html'"></div>
+				</tab>
+				<!--Term & Conditions-->
+				<tab heading="Payment" active="tabs[2].active" ng-init="">
+					<div ng-include="'app/views/promise/procurement/purchaseorder/purchaseordertermin.html'"></div>
+				</tab>
+				<!--Approval-->
+				<tab heading="Approval" active="tabs[3].active" ng-init="">
+					<div ng-include="'app/views/promise/procurement/purchaseorder/purchaseorderapproval.html'"></div>
+				</tab>
+				<!--Summary-->
+				<tab heading="Summary" active="tabs[4].active" ng-init="">
+					<div ng-include="'app/views/promise/procurement/purchaseorder/purchaseordersummary.html'"></div>
+					<div align="center" ng-if="loading == true"> <strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px"/></strong>
+					</div>
+					<div align="center" ng-show="statusSimpan"><strong style="color : green">Purchase Order Berhasil Disimpan</strong>
+					</div>
+					<!-- <div class="form-group">
+                        <div class="col-lg-offset-4 col-lg-10">
+                           <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="form.btnKembaliIndex()" ng-disabled="form.isProcessing" ng-show="form.btnKembaliIndex">
+                                <span translate="">Kembali - Index</span>
+                            </button> <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="form.simpan()" ng-disabled="form.isProcessing" ng-hide="form.statusSimpan">
+                                <span translate="">Simpan</span>
+                            </button>                                
+                        </div>
+                    </div> -->
+					<br/>
+					<div class="row">
+						<div class="col-12 text-center">
+							<a class="btn btn-default" ng-click="tabs[3].active=true;"> <span translate="promise.procurement.master.attribute.btn.KEMBALI"></span>
+							</a>
+							<a ng-class="'bg-' + app.theme.name" class="btn btn-primary" ng-disabled="isProcessing" ng-hide="statusSimpan" ng-click="form.simpan()" ng-disabled="form.isProcessing" ng-hide="form.statusSimpan"> <span translate="promise.procurement.master.attribute.btn.SIMPAN"></span>
+							</a>
+							<a ng-class="'bg-' + app.theme.name" class="btn btn-default" ng-disabled="isProcessing" ng-show="statusSimpan" ng-click="btnKembaliIndex()"> <span>Kembali - Index</span>
+							</a>
+						</div>
+					</div>
+				</tab>
+			</tabset>
+		</form>
+	</div>
+</div>

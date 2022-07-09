@@ -1,0 +1,25 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.manajemenvendor.rekaphistoryvendor.judul"></span>
+</div>
+
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="RekapHistoryVendorIndexControllerController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <span translate="promise.procurement.manajemenvendor.rekaphistoryvendor.subjudul"></span>
+    </h4>
+	<div class="panel-body">
+		
+		<div class="row form-horizontal">
+			<div class="col-md-12" style="margin-bottom: 20px">
+	        	<button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-sm" ng-click="exportExcel()">
+	                <span>Export Excel</span>
+	            </button>    
+	        </div>
+			<div class="col-md-12">
+				<div class="table-responsive">
+		        	<table id="rekapHistoryVendor" datatable="" dt-options="vm.dtOptions" dt-columns="vm.dtColumns" class="row-border hover"></table>
+		        </div>
+		    </div>
+		</div>
+	</div>
+</div>  

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SubBookingOrder" pageWidth="555" pageHeight="555" orientation="Landscape" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="70080aa8-0193-4669-8dff-b3a0ce9ea2d7">
+	<property name="ireport.zoom" value="1.3310000000000026"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="SALES_ORDER_ID" class="java.lang.String"/>
+	<parameter name="VENDOR_ID" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+	v.NAMA as NAMAVENDOR,
+	v.ALAMAT AS ALAMATVENDOR,
+	v.NOMOR_TELEPON AS NOMORTLPVENDOR,
+	v.NPWP AS NPWPVENDOR,
+	soi.SO_NUMBER,so.BILL_TO_NAME, so.BILL_TO_ADDRESS,so.BILL_TO_TELP, so.SHIP_TO_ADDRESS, so.SHIP_TO_NAME, so.SHIP_TO_TELP,
+	soi.HARGA, c.NAME_IND, c.DESKRIPSI_IND,soi.QUANTITY,c.KODE_PRODUK,
+
+	soi.CREATED,
+	S.NAMA AS NAMASATUAN,
+soi.QUANTITY * soi.HARGA AS SUBTOTAL
+
+FROM
+	promise_t4_sales_order_item soi
+LEFT JOIN promise_t3_sales_order so on so.SALES_ORDER_ID = soi.SALES_ORDER_ID
+left join promise_t3_catalog c on c.CATALOG_ID = soi.CATALOG_ID
+LEFT JOIN promise_t1_satuan S ON S.SATUAN_ID = C.SATUAN_ID
+LEFT JOIN promise_t2_vendor v on c.VENDOR_ID = v.VENDOR_ID
+where v.VENDOR_ID = $P{VENDOR_ID} and so.SALES_ORDER_ID = $P{SALES_ORDER_ID}]]>
+	</queryString>
+	<field name="NAMAVENDOR" class="java.lang.String"/>
+	<field name="ALAMATVENDOR" class="java.lang.String"/>
+	<field name="NOMORTLPVENDOR" class="java.lang.String"/>
+	<field name="NPWPVENDOR" class="java.lang.String"/>
+	<field name="SO_NUMBER" class="java.lang.String"/>
+	<field name="BILL_TO_NAME" class="java.lang.String"/>
+	<field name="BILL_TO_ADDRESS" class="java.lang.String"/>
+	<field name="BILL_TO_TELP" class="java.lang.String"/>
+	<field name="SHIP_TO_ADDRESS" class="java.lang.String"/>
+	<field name="SHIP_TO_NAME" class="java.lang.String"/>
+	<field name="SHIP_TO_TELP" class="java.lang.String"/>
+	<field name="HARGA" class="java.lang.Double"/>
+	<field name="NAME_IND" class="java.lang.String"/>
+	<field name="DESKRIPSI_IND" class="java.lang.String"/>
+	<field name="QUANTITY" class="java.lang.Integer"/>
+	<field name="KODE_PRODUK" class="java.lang.String"/>
+	<field name="CREATED" class="java.lang.String"/>
+	<field name="NAMASATUAN" class="java.lang.String"/>
+	<field name="SUBTOTAL" class="java.lang.Double"/>
+	<variable name="GranTotal" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{SUBTOTAL}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<frame>
+				<reportElement x="0" y="0" width="39" height="20" backcolor="#000000" uuid="af8fff84-c7c6-4fd0-94f6-c31b183a88c1"/>
+				<box topPadding="0" leftPadding="0">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textField>
+					<reportElement x="7" y="1" width="27" height="18" uuid="d33c93aa-ecf0-4978-8903-8c0c7b0b2fb6"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement x="39" y="0" width="98" height="20" backcolor="#000000" uuid="5c187bed-c904-4e1b-8aaa-0d915fe5739d"/>
+				<box topPadding="0" leftPadding="0">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textField>
+					<reportElement positionType="Float" x="4" y="3" width="83" height="17" uuid="0747f3c2-e040-46d3-b7b5-c83f8836d7da"/>
+					<textElement markup="html">
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{KODE_PRODUK}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement x="431" y="0" width="124" height="20" backcolor="#000000" uuid="ccefe0e0-0784-4f71-8f6c-132151b542bb"/>
+				<box topPadding="0" leftPadding="0">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textField>
+					<reportElement x="26" y="2" width="93" height="16" uuid="59b3ecf2-fe80-4ddf-82a0-93bd517c2851"/>
+					<textElement textAlignment="Right">
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new DecimalFormat("#,##0").format($F{SUBTOTAL}.doubleValue()).replace(",", "x").replace(".", ",").replace("x", ".")]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="10" y="2" width="18" height="16" backcolor="#FF0000" uuid="850c85f3-fef4-4e2b-8478-768e2143adb0"/>
+					<textElement textAlignment="Justified">
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Rp."]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement x="258" y="0" width="52" height="20" backcolor="#000000" uuid="485f207f-ab6e-4adb-94d7-c6c7d923f760"/>
+				<box topPadding="0" leftPadding="0">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textField>
+					<reportElement x="0" y="2" width="18" height="18" uuid="618fab95-cc08-40d0-a040-b00d72b303da"/>
+					<textElement textAlignment="Right">
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{QUANTITY}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="20" y="2" width="28" height="18" uuid="a2f65da9-a893-4367-b1ad-348dc5febe47"/>
+					<textElement textAlignment="Center">
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{NAMASATUAN}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement x="310" y="0" width="121" height="20" backcolor="#000000" uuid="38d5ca1c-5136-481c-8a62-74c877edb71a"/>
+				<box topPadding="0" leftPadding="0">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textField>
+					<reportElement x="30" y="2" width="81" height="16" uuid="b3f88fab-0a91-477e-bc24-d1a2058911eb"/>
+					<textElement textAlignment="Right">
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{HARGA}==null?"":new DecimalFormat("#,##0").format($F{HARGA}.doubleValue()).replace(",", "x").replace(".", ",").replace("x", ".")]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="13" y="2" width="18" height="16" backcolor="#FF0000" uuid="60383ff1-5480-4851-a728-7b05ce36a836"/>
+					<textElement textAlignment="Justified">
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Rp."]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement x="137" y="0" width="121" height="20" backcolor="#000000" uuid="86288b90-dba6-474d-b93e-386a19966fa5"/>
+				<box topPadding="0" leftPadding="0">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textField pattern="">
+					<reportElement positionType="Float" x="5" y="3" width="98" height="15" uuid="456a16d8-1bd0-489e-bfbd-5f61d0b668ff"/>
+					<textElement markup="html">
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{NAME_IND}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="50">
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="18" y="17" width="169" height="16" uuid="ba97266c-8b99-43b4-b9e6-d2ca90bc6af1"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Booking Order ini tidak berlaku sebagai Purchase Order"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="344" y="2" width="78" height="16" backcolor="#FF0000" uuid="c1d63bf8-fc5a-4a7b-a4e9-77cac83d1cc2"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Grand Total"]]></textFieldExpression>
+			</textField>
+			<frame>
+				<reportElement x="431" y="1" width="124" height="20" backcolor="#000000" uuid="5bf345f2-4898-4abd-994e-f08e2cdafe45"/>
+				<box topPadding="0" leftPadding="0">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textField>
+					<reportElement x="27" y="1" width="92" height="16" uuid="0371225e-ba50-4598-b2d8-636a2d7f7f8b"/>
+					<textElement textAlignment="Right">
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{GranTotal}==null?"":new DecimalFormat("#,##0").format($V{GranTotal}.doubleValue()).replace(",", "x").replace(".", ",").replace("x", ".")]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="11" y="1" width="18" height="16" backcolor="#FF0000" uuid="a5984f10-5844-4403-ab81-925c7e61c6c3"/>
+					<textElement textAlignment="Justified">
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Rp."]]></textFieldExpression>
+				</textField>
+			</frame>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="0" y="2" width="169" height="14" uuid="fa237762-e936-4f42-9515-b1b1107d58b6"/>
+				<textElement textAlignment="Justified" verticalAlignment="Bottom">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Note : Harga sudah termasuk PPN"]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+</jasperReport>

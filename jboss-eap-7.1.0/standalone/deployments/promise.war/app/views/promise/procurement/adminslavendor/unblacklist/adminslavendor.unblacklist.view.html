@@ -1,0 +1,67 @@
+<div class="app-view-header">
+	<span>Vendor Management</span>
+
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="AdminSLAUnblacklistVendorViewController as form">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<span>Admin SLA Vendor Unblacklist Detail</span>
+	</h4>
+	<div class="panel-body">
+		<div class="col-md-12">
+			<div>
+				<div class="row">
+					<div class="col-md-3">Nama Vendor</div>
+					<div class="col-md-6">
+						: <span ng-bind="form.slaAdminVendor.vendor.nama"></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">Nama Proses</div>
+					<div class="col-md-6">
+						: <span ng-bind="form.slaAdminVendor.slaVendor.namaProses"></span>
+					</div>
+				</div>
+				<div class="table-responsive">
+					<table class="table table-striped"> 
+						<thead>
+							<tr>
+								<th scope="col"style="text-align: center"><span>No.</span></th>
+								<th scope="col"style="text-align: center"><span>Tahapan</span></th>
+								<th scope="col"style="text-align: center"><span>Tanggal Awal</span></th>
+								<th scope="col"style="text-align: center"><span>Tanggal Akhir</span></th>
+								<th scope="col"style="text-align: center"><span>SLA</span></th>
+								<th scope="col"style="text-align: center"><span>Tanggal Realisasi</span></th> 
+								<th scope="col"style="text-align: center"><span>Jumlah Hari</span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="fp in form.slaAdminVendorDetailList">
+								<td style="text-align: center" ng-bind="{{index+1}}"></td>
+								<td style="text-align: center" ng-bind="fp.slaVendorProses.tahapan"></td> 
+								<td style="text-align:center" ng-bind="fp.tglAwal  == null ? '' : fp.tglAwal | date:'yyyy-MM-dd'"></td>
+								<td style="text-align:center" ng-bind="fp.tglAkhir  == null ? '' : fp.tglAkhir | date:'yyyy-MM-dd'"></td>
+								<td style="text-align: center" ng-bind="fp.slaVendorProses.jmlHari"></td> 
+								<td style="text-align:center" ng-bind="fp.tglRealisasi  == null ? '' : fp.tglRealisasi | date:'yyyy-MM-dd'"></td>
+								<td style="text-align: center" ng-bind="fp.jmlHariRealisasi"></td> 
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div align="right">			
+           <div class="form-group">
+				<label for="input-id-1" class="col-sm-2 control-label"><span></span></label>
+				<div class="col-sm-5">
+					<button ng-class="'bg-' + app.theme.name" type="button" ripple=""
+						class="mr btn btn-labeled btn-sm" ng-click="form.back()">
+						<span class="btn-label"> <em class="fa fa-chevron-left"></em>
+						</span><span>Kembali</span>
+					</button>
+				</div>
+			</div>
+        </div>
+	</div>
+</div>
+<!--END CONTROLLER-->

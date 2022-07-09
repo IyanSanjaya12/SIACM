@@ -1,0 +1,119 @@
+<div class="app-view-header">	<span translate="promise.procurement.master.item.judul"></span>
+	<!-- <small><span translate="promise.procurement.master.item.tambah.UBAH"></span></small> -->
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="ItemViewController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<em class="fa fa-tasks"></em>
+		<span ng-if="vm.toDo == 'Add'"
+			translate="promise.procurement.master.item.view.subjudul_tambah"></span>
+		<span ng-if="vm.toDo == 'Edit'"
+			translate="promise.procurement.master.item.view.subjudul_ubah"></span>
+		<a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+				<em class="fa fa-chevron-circle-down"></em>
+		</a>
+	</h4>
+	<div class="panel-body collapse in">
+		<div align="center" ng-if="loading == true">	<strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong>
+		</div>
+		<form method="post" action="#" novalidate="" class="form-horizontal" ng-class="{'submitted' : vm.submitted}" name="formItem">
+			<div class="form-group">
+				<label class="col-sm-4 control-label required"><span translate="promise.procurement.master.item.view.nama"></span> 
+				</label>
+				<div class="col-sm-4">
+					<input id="input-id-1" maxlength="120" promise-alphanumeric-only type="text" class="form-control" ng-model="vm.item.nama" ng-click="klikSearch=false" /> <strong style="color: red" translate={{vm.errorNamaItem}}></strong> 
+					<br />
+					<br />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="input-id-1" class="col-sm-4 control-label required"><span translate="promise.procurement.master.item.list.kode"></span> 
+				</label>
+				<div class="col-sm-4">
+					<input id="input-id-1" maxlength="120" promise-alphanumeric-only type="text" class="form-control" ng-model="vm.item.kode" ng-click="klikSearch=false" /> <strong style="color: red" translate={{vm.errorKodeItem}}></strong> 
+					<br />
+					<br />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-sm-4 control-label required"><span translate="promise.procurement.master.item.list.satuan"></span>
+				</label>
+				<div class="row">
+					<div class="col-sm-4" ng-click="klikSearch=false">
+						<ui-select ng-model="vm.item.satuanId" theme="bootstrap" ng-disabled="disabled">
+							<ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+							<ui-select-choices repeat="satuan in vm.satuanList | filter: $select.search">
+								<div ng-bind-html="satuan.nama | highlight: $select.search"></div>
+							</ui-select-choices>
+						</ui-select>	<strong style="color: red" translate={{vm.errorSatuanIdItem}}></strong>
+						<br />
+					</div>
+				</div>
+			</div>
+			<br />
+			<div class="form-group">
+				<label for="" class="col-sm-4 control-label required"><span translate="promise.procurement.master.item.list.tipe_item"></span>
+				</label>
+				<div class="row">
+					<div class="col-sm-4" ng-click="klikSearch=false">
+						<ui-select ng-model="vm.item.itemType" theme="bootstrap" ng-disabled="disabled">
+							<ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+							<ui-select-choices repeat="itemType in vm.tipeItemList | filter: $select.search">
+								<div ng-bind-html="itemType.nama | highlight: $select.search"></div>
+							</ui-select-choices>
+						</ui-select>	<strong style="color: red" translate={{vm.errorItemTipeItem}}></strong>
+						<br />
+					</div>
+				</div>
+			</div>
+			<br />
+			<div class="form-group">
+				<label for="" class="col-sm-4 control-label required"><span translate="promise.procurement.master.item.list.grup_item"></span>
+				</label>
+				<div class="col-sm-4">
+					<input type="text" ng-model="vm.itemGroupNama" class="form-control" readonly style="background-color: white;" ng-click="klikSearch=true" ripple="" tooltip="Pilih di Menu Tree !!!" tooltip-trigger="focus" tooltip-placement="right" />
+					<input id="input-id-1" type="hidden" ng-model="vm.itemGroupId" /> <strong style="color: red" translate={{vm.errorItemGroupItem}}></strong> 
+					<br />
+				</div>
+			</div>
+			<br />
+			<div class="form-group">
+				<label for="input-id-1" class="col-sm-4 control-label"><span translate="promise.procurement.master.item.list.deskripsi"></span>
+				</label>
+				<div class="col-sm-4">
+					<textarea cols="30" rows="5" class="form-control" ng-model="vm.item.deskripsi" ng-click="klikSearch=false"></textarea>
+					<br />
+					<button type="button" ripple="" class="mr btn btn-sm bg-default" ng-click="back()">	<span translate="template.button.kembali"></span>
+					</button>
+					<button type="button" ripple="" class="mr btn btn-sm bg-primary" ng-click="save(formItem.$valid)">	<span translate="template.button.simpan"></span>
+					</button>
+				</div>
+			</div>
+			<div align="left">	<strong style="background-color: yellow; color: green">{{message}}</strong>
+			</div>
+		</form>
+		<div class="row">
+			<div ng-show="klikSearch" class="col-md-5 container-fh">
+				<div chained-animation="fadeInDown" class="col-md-12">
+					<div class="row pv">	<span class="mt"><font size="2"><strong>&nbsp;&nbsp;&nbsp;&nbsp;Tree
+										Control API :</strong></font></span>
+					</div>
+					<div class="btn-group btn-group-justified mb">	<a ng-click="my_tree.select_first_branch()" class="btn btn-default btn-sm mb">First Branch</a><a ng-click="my_tree.expand_branch()" class="btn btn-default btn-sm">Expand</a>
+					</div>
+					<div class="btn-group btn-group-justified mb">	<a ng-click="my_tree.expand_all()" class="btn btn-default btn-sm">Expand
+								All</a><a ng-click="my_tree.collapse_all()" class="btn btn-default btn-sm">Collapse All</a>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div chained-animation="fadeInUp" class="well wd-wide" style="background-color: #F0F8FF;">	<span ng-if="doing_async"><strong><em>Loading...</em><img
+									src="app/img/loading.gif" width="15px" border="0" /></strong></span>
+						<div align="center" ng-show="loading">	<strong><em>Loading...</em><img src="app/img/loading.gif"
+									width="15px" border="0" /></strong>
+						</div>
+						<abn-tree tree-data="my_data" tree-control="my_tree" on-select="my_tree_handler(branch)" expand-level="2" initial-selection="Granny Smith"></abn-tree>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

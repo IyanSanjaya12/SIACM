@@ -1,0 +1,80 @@
+<br>
+<div class="panel panel-danger" id="panelPortlet2">
+    <div class="panel-heading portlet-handler ui-sortable-handle">Pencarian Pengumuman Pengadaan</div>
+    <div class="panel-body">
+
+        <!-- form -->
+
+        <form role="form" role="form">
+            <div class="row">
+                <div class="form-group col-md-8">
+                    <label for="email"><strong>Kata kunci pencarian</strong></label>
+                    <input type="text" class="form-control" id="pengadaanKeyword" ng-model="form.pengadaanKeyword">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-7">
+                    <label><strong>Tanggal pengumuman</strong></label>
+                    <div class="input-group">
+                        <span class="input-group-addon">Dari</span>
+                        <input type="text" name="tanggalFrom" ng-click="form.pengadaanTanggalFromOpen($event)" datepicker-popup="{{form.format}}" ng-model="form.pengadaanTanggalFrom" is-open="form.pengadaanTanggalFromOpened" min-date="false" max-date="false" datepicker-options="form.dateOptions" date-disabled="form.disabled(form.date, form.mode)" close-text="Close" class="form-control input-sm" readonly="true" required />
+                        <span class="input-group-btn">
+								<button type="button" ng-click="form.pengadaanTanggalFromOpen($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+                                    <em class="fa fa-calendar"></em>
+								</button>
+						</span>
+                        <span class="input-group-addon">s/d</span>
+                        <input type="text" name="tanggalTo" ng-click="form.pengadaanTanggalToOpen($event)" datepicker-popup="{{form.format}}" ng-model="form.pengadaanTanggalTo" is-open="form.pengadaanTanggalToOpened" min-date="false" max-date="false" datepicker-options="form.dateOptions" date-disabled="form.disabled(form.date, form.mode)" close-text="Close" class="form-control input-sm" readonly="true" required />
+                        <span class="input-group-btn">
+								<button type="button" ng-click="form.pengadaanTanggalToOpen($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+                                    <em class="fa fa-calendar"></em>
+								</button>
+						</span>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="inputPassword3"><strong>Unit</strong></label>
+                    <select name="form.PengadaanOrganisasi" ng-model="form.pengadaanOrganisasi" ng-options="organisasi.nama for organisasi in form.organisasiList track by organisasi.id" class="form-control m-b input-sm"></select>
+                </div>
+                <div class="form-group col-md-1" style="margin-top: 24px">
+                    <button type="button" ng-click="pengadaanSearch();" class="btn btn-default"><em class="fa fa-search" style="margin-left:3px"></em></button>
+                </div>
+
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+<div class="panel panel-danger" id="panelPortlet2">
+    <div class="panel-heading portlet-handler ui-sortable-handle">Data Pengumuman Pengadaan</div>
+    <div class="panel-body">
+        <table datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="row-border hover" >
+            <thead>
+                <tr>
+                    <th scope="col"style="text-align: center">No</th>
+                    <th scope="col"style="text-align: center">Tanggal Pengumuman</th>
+                    <th scope="col"style="text-align: center">Unit</th>
+                    <th scope="col"style="text-align: center">Nama Pengadaan</th>
+                    <th scope="col"style="text-align: center">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="pp in form.pengumumanList[1]">
+                    <td style="text-align: center" ng-bind="$index+1"></td>
+                    <td style="text-align: center" ng-bind="( pp.tglMulai | date:'dd-MM-yyyy') +' - '+ ( pp.tglSelesai | date:'dd-MM-yyyy') "></td>
+                    <td style="text-align: left">{{pp.pengadaan.panitia.divisi.nama}}</td>
+                    <td style="text-align: left">{{pp.pengadaan.namaPengadaan}}</td>
+                    <td style="text-align: center">
+                        <button type="button" class="mr btn btn-danger btn-circle btn-xs" ng-click="detilPengadaan(pp);">
+                            <em class="fa fa-search"></em>
+                        </button>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,459 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.panitia.RekapPengadaan.View.Judul"></span>
+</div>
+<!--START CONTROLLER-->
+<div ng-controller="RekapPengadaanViewController as form">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<em class="fa fa-table">&nbsp;</em>
+		<span translate="promise.procurement.panitia.RekapPengadaan.View.Anggaran.Judul"></span>
+	</h4>
+	<div class="panel panel-primary" >
+		<div class="panel-body">
+        	<div class="col-lg-12">
+            	<div class="table-responsive">
+					<table class="table table-bordered table-hover" width="100%">
+                    	<tbody>
+                        	<tr>
+		                    	<td style="text-align:left; width: 30%"><span translate="promise.procurement.panitia.RekapPengadaan.View.Anggaran.TahunAnggaran"></span></td>
+								<td style="text-align:left; width:70%;">{{form.dataPengadaan.anggaranPengadaan.alokasiAnggaran.tahunAnggaran}}</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><span translate="promise.procurement.panitia.RekapPengadaan.View.Anggaran.Periode"></span></td>
+		                    	<td>{{form.dataPengadaan.anggaranPengadaan.alokasiAnggaran.periodeAnggaran.nama}}</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><span translate="promise.procurement.panitia.RekapPengadaan.View.Anggaran.JenisAnggaran"></span></td>
+		                    	<td>{{form.dataPengadaan.anggaranPengadaan.alokasiAnggaran.jenisAnggaran.nama}}</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><span translate="promise.procurement.panitia.RekapPengadaan.View.Anggaran.Bidang"></span></td>
+		                    	<td>{{form.dataPengadaan.anggaranPengadaan.alokasiAnggaran.biroPengadaan.nama}}</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><span translate="promise.procurement.panitia.RekapPengadaan.View.Anggaran.NomorAnggaran"></span></td>
+		                    	<td>{{form.dataPengadaan.anggaranPengadaan.alokasiAnggaran.nomorDraft}}</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><span translate="promise.procurement.panitia.RekapPengadaan.View.Anggaran.JumlahAnggaran"></span></td>
+		                    	<td>{{form.dataPengadaan.anggaranPengadaan.jumlah | number: 2}}</td>
+		                    </tr>
+						</tbody>
+					</table>
+				</div>
+            </div>
+		</div>
+	</div>
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<em class="fa fa-table">&nbsp;</em>
+		<span translate="promise.procurement.panitia.RekapPengadaan.View.DataPengadaan.Judul"></span>
+	</h4>
+	<div class="panel panel-primary" >
+		<div class="panel-body">
+        	<div class="col-lg-12">
+            	<div class="table-responsive">
+					<table class="table table-bordered table-hover" width="100%">
+                    	<tbody>
+                        	<tr>
+		                    	<td style="text-align:left; width:30%;"><span translate="promise.procurement.panitia.RekapPengadaan.View.DataPengadaan.MetodePengadaan"></span></td>
+								<td style="text-align:left; width:70%;">{{form.dataPengadaan.metodePengadaan.nama}}</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><span translate="promise.procurement.panitia.RekapPengadaan.View.DataPengadaan.NoIjinPrinsip"></span></td>
+		                    	<td>{{form.dataPengadaan.nomorIzinPrinsip}}</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><span translate="promise.procurement.panitia.RekapPengadaan.View.DataPengadaan.TanggalIjinPrinsip"></span></td>
+		                    	<td>{{form.dataPengadaan.tanggalIzinPrinsip | date:'dd/MM/yyyy'}}</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><span translate="promise.procurement.panitia.RekapPengadaan.View.DataPengadaan.KualifikasiPenyediaBarangJasa"></span></td>
+		                    	<td>{{form.dataPengadaan.kualifikasiVendor.nama}}</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><span translate="promise.procurement.panitia.RekapPengadaan.View.DataPengadaan.BidangSubBidangUsaha"></span></td>
+		                    	<!-- <td ng-show="$index>0"></td>
+		                    	<td>{{dataSubBidangusaha.subBidangUsaha.bidangUsaha.nama}} - {{dataSubBidangusaha.subBidangUsaha.nama}}</td> -->
+		                    	<td>		                    		
+	                                <div ng-repeat="dataSubBidangusaha in form.dataPengadaan.subBidangUsahaList">
+	                                    <li>{{dataSubBidangusaha.subBidangUsaha.bidangUsaha.nama}}</li>
+	                                    <ul class="fa fa-long-arrow-right">
+	                                        {{dataSubBidangusaha.subBidangUsaha.nama}}
+	                                    </ul>
+	                                </div>
+		                    	</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><span translate="promise.procurement.panitia.RekapPengadaan.View.DataPengadaan.NoDokumenPengadaan"></span></td>
+		                    	<td>{{form.dataPengadaan.nomorNotaDinas}}</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><span translate="promise.procurement.panitia.RekapPengadaan.View.DataPengadaan.TanggalDokumenPengadaan"></span></td>
+		                    	<td>{{form.dataPengadaan.tanggalNotaDinas | date:'dd/MM/yyyy'}}</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><span translate="promise.procurement.panitia.RekapPengadaan.View.DataPengadaan.NamaPengadaan"></span></td>
+		                    	<td>{{form.dataPengadaan.namaPengadaan}}</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><span translate="promise.procurement.panitia.RekapPengadaan.View.DataPengadaan.KeteranganTambahan"></span></td>
+		                    	<td>{{form.dataPengadaan.keterangan}}</td>
+		                    </tr>
+						</tbody>
+					</table>
+				</div>
+            </div>
+		</div>
+	</div>
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<em class="fa fa-table">&nbsp;</em>
+		<span translate="promise.procurement.panitia.RekapPengadaan.View.VendorPengadaan.Judul"></span>
+	</h4>
+	<div class="panel panel-primary" >
+		<div class="panel-body">
+	        <div class="col-lg-12">
+	            <div class="table-responsive">
+	                <table ng-table="form.tableDataVendor" class="table table-hover table-condensed table-striped bg-white">
+	                    <thead>
+	                        <tr style="font-weight: bold">
+	                            <th scope="col"style="width:5%; text-align:left"><span translate="promise.procurement.panitia.RekapPengadaan.View.VendorPengadaan.No"></span></th>
+	                            <th scope="col"style="width:20%; text-align:left"><span translate="promise.procurement.panitia.RekapPengadaan.View.VendorPengadaan.Kode"></span></th>
+	                            <th scope="col"style="width:30%; text-align:left"><span translate="promise.procurement.panitia.RekapPengadaan.View.VendorPengadaan.NamaVendor"></span></th>
+	                            <th scope="col"style="width:20%; text-align:left"><span translate="promise.procurement.panitia.RekapPengadaan.View.VendorPengadaan.NoTelepon"></span></th>
+	                            <th scope="col"style="width:25%; text-align:left"><span translate="promise.procurement.panitia.RekapPengadaan.View.VendorPengadaan.Alamat"></span></th>
+	                        </tr>
+	                    </thead>
+	                    <tbody>
+	                        <tr ng-repeat="dataVendor in $data">
+	                            <td>{{ $index + 1 }}</td>
+	                            <td>{{ dataVendor.vendor.id | number }}</td>
+	                            <td>{{ dataVendor.vendor.nama }}</td>
+	                            <td>{{ dataVendor.vendor.nomorTelpon }}</td>
+	                            <td>{{ dataVendor.vendor.Alamat }}</td>
+	                        </tr>
+	                    </tbody>
+	                </table>
+	            </div>
+	        </div>
+	    </div>
+    </div>
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<em class="fa fa-table">&nbsp;</em>
+		<span translate="promise.procurement.panitia.RekapPengadaan.View.JadwalPrakualifikasi.Judul"></span>
+	</h4>
+	<div class="panel panel-primary" >
+		<div class="panel-body">
+	        <div class="col-lg-12">
+	            <div class="table-responsive">
+	                <table class="table table-hover table-condensed table-striped bg-white">
+	                	<tr>
+	                		<td colspan="2"><span translate="promise.procurement.panitia.RekapPengadaan.View.JadwalPrakualifikasi.PengambilanDokumenPrakualifikasi"></span></td>
+	                	</tr>
+	                	<tr>
+	                		<td style="text-align:left; width:30%"><span translate="promise.procurement.panitia.RekapPengadaan.View.JadwalPrakualifikasi.TanggalPengambilan"></span></td>
+	                		<td style="text-align:left; width:70%">-</td>
+	                	</tr>
+	                	<tr>
+	                		<td><span translate="promise.procurement.panitia.RekapPengadaan.View.JadwalPrakualifikasi.LokasiPengambilan"></span></td>
+	                		<td>-</td>
+	                	</tr>
+	                	<tr>
+	                		<td colspan="2"><span translate="promise.procurement.panitia.RekapPengadaan.View.JadwalPrakualifikasi.PemasukanDokumenPrakualifikasi"></span></td>
+	                	</tr>
+	                	<tr>
+	                		<td><span translate="promise.procurement.panitia.RekapPengadaan.View.JadwalPrakualifikasi.TanggalPemasukan"></span></td>
+	                		<td>-</td>
+	                	</tr>
+	                	<tr>
+	                		<td><span translate="promise.procurement.panitia.RekapPengadaan.View.JadwalPrakualifikasi.LokasiPemasukan"></span></td>
+	                		<td>-</td>
+	                	</tr>
+	                	<tr>
+	                		<td colspan="2"><span translate="promise.procurement.panitia.RekapPengadaan.View.JadwalPrakualifikasi.EvaluasiPrakualifikasi"></span></td>
+	                	</tr>
+	                	<tr>
+	                		<td><span translate="promise.procurement.panitia.RekapPengadaan.View.JadwalPrakualifikasi.TanggalEvaluasi"></span></td>
+	                		<td>-</td>
+	                	</tr>
+	                	<tr>
+	                		<td colspan="2"><span translate="promise.procurement.panitia.RekapPengadaan.View.JadwalPrakualifikasi.PengumumanHasilPrakualifikasi"></span></td>
+	                	</tr>
+	                	<tr>
+	                		<td><span translate="promise.procurement.panitia.RekapPengadaan.View.JadwalPrakualifikasi.TanggalPengumuman"></span></td>
+	                	</tr>
+	                </table>
+	            </div>
+	        </div>
+	    </div>
+    </div>
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<em class="fa fa-table">&nbsp;</em>
+		<span translate="promise.procurement.panitia.RekapPengadaan.View.ProsesPrakualifikasi.Judul"></span>
+	</h4>
+	<div class="panel panel-primary" >
+		<div class="panel-body">
+	        <div class="col-xs-12">
+	            <div class="table-responsive">
+	                <table ng-table="tableProsesPrakualifikasi" class="table table-hover table-condensed table-striped bg-white">
+	                    <thead>
+	                        <tr style="font-weight: bold">
+	                            <th scope="col"style="width:5%;"><span translate="promise.procurement.panitia.RekapPengadaan.View.ProsesPrakualifikasi.No"></span></th>
+	                            <th scope="col"style="width:25%;"><span translate="promise.procurement.panitia.RekapPengadaan.View.ProsesPrakualifikasi.NamaVendor"></span></th>
+	                            <th scope="col"style="width:15%;"><span translate="promise.procurement.panitia.RekapPengadaan.View.ProsesPrakualifikasi.TanggalPengirimanDokumen"></span></th>
+	                            <th scope="col"style="width:10%;"><span translate="promise.procurement.panitia.RekapPengadaan.View.ProsesPrakualifikasi.Selesai"></span></th>
+	                            <th scope="col"style="width:45%;"><span translate="promise.procurement.panitia.RekapPengadaan.View.ProsesPrakualifikasi.Keterangan"></span></th>
+	                        </tr>
+	                    </thead>
+	                    <tbody>
+	                        <tr ng-repeat="dataVendor in $data">
+	                            <td>{{$index+1}}</td>
+	                            <td>{{ usulanPemenang.vendor.nama }}</td>
+	                            <td>{{ usulanPemenang.evaluasiTeknis | number: 2 }}</td>
+	                            <td>{{ usulanPemenang.evaluasiHarga | number: 2 }}</td>
+	                            <td>{{ usulanPemenang.evaluasiHarga | number: 2 }}</td>
+	                        </tr>
+	                    </tbody>
+	                </table>
+	            </div>
+	        </div>
+	    </div>
+    </div>
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<em class="fa fa-table">&nbsp;</em>
+		<span translate="promise.procurement.panitia.RekapPengadaan.View.JadwalPengadaanBidding.Judul"></span>
+	</h4>
+	<div class="panel panel-primary" >
+		<div class="panel-body">
+	        <div class="col-lg-12">
+	            <div class="table-responsive">
+	                <table ng-repeat="jadwalPengadaan in form.dataPengadaan.jadwalPengadaanList" class="table table-hover table-condensed table-striped bg-white">
+	                	<tr>
+	                		<td colspan="2">{{jadwalPengadaan.tahapanPengadaan.tahapan.nama}}</td>
+	                	</tr>
+	                	<tr>
+	                		<td style="text-align:left; width:30%"><span translate="promise.procurement.panitia.RekapPengadaan.View.JadwalPengadaanBidding.Tanggal"></span></td>
+	                		<td style="text-align:left; width:70%">{{jadwalPengadaan.tglAwal | date:'dd/MM/yyyy'}} {{jadwalPengadaan.waktuAwal | date:'HH:mm:ss'}} - {{jadwalPengadaan.tglAkhir | date:'dd/MM/yyyy'}} {{jadwalPengadaan.waktuAkhir | date:'HH:mm:ss'}}</td>
+	                	</tr>
+	                	<tr ng-show="jadwalPengadaan.statusLokasi==true">
+	                		<td><span translate="promise.procurement.panitia.RekapPengadaan.View.JadwalPengadaanBidding.Lokasi"></span></td>
+	                		<td>{{jadwalPengadaan.lokasi}}</td>
+	                	</tr>
+	                </table>
+	            </div>
+	        </div>
+	    </div>
+    </div>
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<em class="fa fa-table">&nbsp;</em>
+		<span translate="promise.procurement.panitia.RekapPengadaan.View.ProsesPengadaanbidding.Judul"></span>
+	</h4>
+	<div class="panel panel-primary" >
+		<div class="panel-body">
+	        <div class="col-xs-12">
+	            <div class="table-responsive">
+	                <table ng-table="form.tableProsesPengadaan" class="table table-hover table-condensed table-striped bg-white">
+	                    <thead>
+	                        <tr style="font-weight: bold">
+	                            <th scope="col"style="width:5%;text-align:left;"><span translate="promise.procurement.panitia.RekapPengadaan.View.ProsesPengadaanbidding.No"></span></th>
+	                            <th scope="col"style="width:35%;text-align:left;"><span translate="promise.procurement.panitia.RekapPengadaan.View.ProsesPengadaanbidding.NamaVendor"></span></th>
+	                            <th scope="col"style="width:5%;"><span translate="promise.procurement.panitia.RekapPengadaan.View.ProsesPengadaanbidding.AmbilDokumen"></span></th>
+	                            <th scope="col"style="width:5%;"><span translate="promise.procurement.panitia.RekapPengadaan.View.ProsesPengadaanbidding.HadirPenjelasan"></span></th>
+	                            <th scope="col"style="width:5%;"><span translate="promise.procurement.panitia.RekapPengadaan.View.ProsesPengadaanbidding.PemasukanPenawaran"></span></th>
+	                            <th scope="col"style="width:5%;"><span translate="promise.procurement.panitia.RekapPengadaan.View.ProsesPengadaanbidding.HadirPembukaan"></span></th>
+	                            <th scope="col"style="width:5%;"><span translate="promise.procurement.panitia.RekapPengadaan.View.ProsesPengadaanbidding.EvaluasiAdmin"></span></th>
+	                            <th scope="col"style="width:5%;"><span translate="promise.procurement.panitia.RekapPengadaan.View.ProsesPengadaanbidding.EvaluasiTeknis"></span></th>
+	                            <th scope="col"style="width:15%;"><span translate="promise.procurement.panitia.RekapPengadaan.View.ProsesPengadaanbidding.HargaPenawaran"></span></th>
+	                            <th scope="col"style="width:15%;" ng-show="form.dataPengadaan.metodePenawaranHarga.id == 1"><span translate="promise.procurement.panitia.RekapPengadaan.View.ProsesPengadaanbidding.HargaNegosiasi"></span></th>
+	                        </tr>
+	                    </thead>
+	                    <tbody>
+	                        <tr ng-repeat="dataProsesPengadaan in $data">
+	                            <td>{{$index+1}}</td>
+	                            <td>{{ dataProsesPengadaan.vendor.nama }}</td>
+	                            <td style="text-align:center">{{ dataProsesPengadaan.statusPengambilanDokumen }}</td>
+	                            <td style="text-align:center">{{ dataProsesPengadaan.statusPenjelasan }}</td>
+	                            <td style="text-align:center">{{ dataProsesPengadaan.statusPemasukan }}</td>
+	                            <td style="text-align:center">{{ dataProsesPengadaan.statusPembukaan }}</td>
+	                            <td style="text-align:center">{{ dataProsesPengadaan.evaluasiAdmin | number: 2 }}</td>
+	                            <td style="text-align:center">{{ dataProsesPengadaan.evaluasiTeknis | number: 2 }}</td>
+	                            <td style="text-align:center">{{ dataProsesPengadaan.evaluasiHarga | number: 2 }}</td>
+	                            <td style="text-align:center" ng-show="form.dataPengadaan.metodePenawaranHarga.id == 1">{{ dataProsesPengadaan.hargaNegosiasi | number: 2 }}</td>
+	                        </tr>
+	                    </tbody>
+	                </table>
+	            </div>
+	        </div>
+	    </div>
+    </div>
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<em class="fa fa-table">&nbsp;</em>
+		<span translate="promise.procurement.panitia.RekapPengadaan.View.HasilPengadaan.Judul"></span>
+	</h4>
+	<div class="panel panel-primary" >
+		<div class="panel-body">
+	        <div class="col-xs-12">
+	            <div class="table-responsive">
+	                <table class="table table-hover table-condensed table-striped bg-white">
+	                	<tr>
+	                		<td style="text-align:left; width:30%;"><span translate="promise.procurement.panitia.RekapPengadaan.View.HasilPengadaan.NomorBeritaAcara"></span></td>
+	                		<td style="text-align:left; width:70%;">{{jadwalPengadaan.tglAwal | date:'dd/MM/yyyy'}} {{jadwalPengadaan.waktuAwal | date:'HH:mm:ss'}} - {{jadwalPengadaan.tglAkhir | date:'dd/MM/yyyy'}} {{jadwalPengadaan.waktuAkhir | date:'HH:mm:ss'}}</td>
+	                	</tr>
+	                	<tr>
+	                		<td><span translate="promise.procurement.panitia.RekapPengadaan.View.HasilPengadaan.TanggalBeritaAcara"></span></td>
+	                		<td>{{jadwalPengadaan.lokasi}}</td>
+	                	</tr>
+	                	<tr>
+	                		<td><span translate="promise.procurement.panitia.RekapPengadaan.View.HasilPengadaan.vendorPemenang"></span></td>
+	                		<td>{{jadwalPengadaan.lokasi}}</td>
+	                	</tr>
+	                </table>
+	            </div>
+	        </div>
+	    </div>
+    </div>
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<em class="fa fa-table">&nbsp;</em>
+		<span translate="promise.procurement.panitia.RekapPengadaan.View.RincianKebutuhanMaterial.Judul"></span>
+	</h4>
+	<div class="panel panel-primary" >
+		<div class="panel-body">
+	        <div class="col-xs-12">
+	            <div class="table-responsive">
+	                <table ng-table="form.tableMaterialPengadaan" class="table table-hover table-condensed table-striped bg-white">
+	                    <thead>
+	                        <tr style="font-weight: bold">
+	                            <th scope="col"style="width:5%;"><span translate="promise.procurement.panitia.RekapPengadaan.View.RincianKebutuhanMaterial.No"></span></th>
+	                            <th scope="col"style="width:10%;"><span translate="promise.procurement.panitia.RekapPengadaan.View.RincianKebutuhanMaterial.KodeMaterial"></span></th>
+	                            <th scope="col"style="width:30%;"><span translate="promise.procurement.panitia.RekapPengadaan.View.RincianKebutuhanMaterial.NamaMaterial"></span></th>
+	                            <th scope="col"style="width:5%;"><span translate="promise.procurement.panitia.RekapPengadaan.View.RincianKebutuhanMaterial.Kuantitas"></span></th>
+	                            <th scope="col"style="width:5%;"><span translate="promise.procurement.panitia.RekapPengadaan.View.RincianKebutuhanMaterial.Satuan"></span></th>
+	                            <th scope="col"style="width:10%;"><span translate="promise.procurement.panitia.RekapPengadaan.View.RincianKebutuhanMaterial.HPS"></span></th>
+	                            <th scope="col"style="width:10%;"><span translate="promise.procurement.panitia.RekapPengadaan.View.RincianKebutuhanMaterial.TotalHPS"></span></th>
+	                            <th scope="col"style="width:10%;"><span translate="promise.procurement.panitia.RekapPengadaan.View.RincianKebutuhanMaterial.HargaPerolehan"></span></th>
+	                            <th scope="col"style="width:10%;"><span translate="promise.procurement.panitia.RekapPengadaan.View.RincianKebutuhanMaterial.TotalHargaPerolehan"></span></th>
+	                        </tr>
+	                    </thead>
+	                    <tbody>
+	                        <tr ng-repeat="dataMaterial in $data">
+	                            <td>{{$index+1}}</td>
+	                            <td>{{ dataMaterial.item.kode }}</td>
+	                            <td>{{ dataMaterial.item.nama }}</td>
+	                            <td>{{ dataMaterial.kuantitas | number }}</td>
+	                            <td>{{ dataMaterial.item.satuanId.nama }}</td>
+	                            <td>{{ dataMaterial.nilaiHPS | number: 2 }}</td>
+	                            <td>{{ dataMaterial.totalHPS | number: 2 }}</td>
+	                            <td>{{ dataMaterial.nilaiHPS | number: 2 }}</td>
+	                            <td>{{ dataMaterial.totalHPS | number: 2 }}</td>
+	                        </tr>
+	                    </tbody>
+	                    <tfoot>
+	                    	<tr>
+                            	<th scope="col"colspan="6" style="text-align: right"><span translate="promise.procurement.panitia.RekapPengadaan.View.RincianKebutuhanMaterial.TotalKebutuhanMaterial"></span></th>
+								<th scope="col"style="text-align: right">{{ form.dataPengadaan.totalNilaiMaterial | number : 2 }}</th>
+                            </tr>
+                            <tr>
+                            	<th scope="col"colspan="6" style="text-align: right"></th>
+								<th scope="col"style="text-align: right"></th>
+                            	<th scope="col"style="text-align: right"></th>
+								<th scope="col"style="text-align: right"></th>
+                            </tr>
+                            <tr>
+                            	<th scope="col"colspan="6" style="text-align: right"><span translate="promise.procurement.panitia.RekapPengadaan.View.SubTotalHPS"></span></th>
+								<th scope="col"style="text-align: right">{{ form.dataPengadaan.totalNilaiMaterial | number : 2 }}</th>
+                            	<th scope="col"style="text-align: right"><span translate="promise.procurement.panitia.RekapPengadaan.View.SubTotalPerolehan"></span></th>
+								<th scope="col"style="text-align: right">{{ form.dataPengadaan.totalNilaiMaterial | number : 2 }}</th>
+                            </tr>
+                            <tr>
+                            	<th scope="col"colspan="6" style="text-align: right"><span translate="promise.procurement.panitia.RekapPengadaan.View.PPN"></span>{{form.dataPengadaan.prosentasePajakMaterial | number:2}} %</th>
+								<th scope="col"style="text-align: right">{{ form.dataPengadaan.nilaiPPNMaterial | number : 2 }}</th>
+                            	<th scope="col"style="text-align: right"><span translate="promise.procurement.panitia.RekapPengadaan.View.PPN"></span>{{form.dataPengadaan.prosentasePajakMaterial | number:2}} %</th>
+								<th scope="col"style="text-align: right">{{ form.dataPengadaan.totalNilaiMaterial | number : 2 }}</th>
+                            </tr>
+                            <tr>
+                            	<th scope="col"colspan="6" style="text-align: right"><span translate="promise.procurement.panitia.RekapPengadaan.View.TotalHPS"></span></th>
+								<th scope="col"style="text-align: right">{{ form.dataPengadaan.totalNilaiMaterialAfterPPN | number : 2 }}</th>
+                            	<th scope="col"style="text-align: right"><span translate="promise.procurement.panitia.RekapPengadaan.View.TotalPerolehan"></span></th>
+								<th scope="col"style="text-align: right">{{ form.dataPengadaan.totalNilaiMaterial | number : 2 }}</th>
+                            </tr>
+	                    </tfoot>
+	                </table>
+	            </div>
+	        </div>
+	    </div>
+    </div>
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<em class="fa fa-table">&nbsp;</em>
+		<span translate="promise.procurement.panitia.RekapPengadaan.View.RincianKebutuhanJasa.Judul"></span>
+	</h4>
+	<div class="panel panel-primary" >
+		<div class="panel-body">
+	        <div class="col-xs-12">
+	            <div class="table-responsive">
+	                <table ng-table="form.tableJasaPengadaan" class="table table-hover table-condensed table-striped bg-white">
+	                    <thead>
+	                        <tr style="font-weight: bold">
+	                            <th scope="col"style="width:5%;"><span translate="promise.procurement.panitia.RekapPengadaan.View.RincianKebutuhanJasa.No"></span></th>
+	                            <th scope="col"style="width:30%;"><span translate="promise.procurement.panitia.RekapPengadaan.View.RincianKebutuhanJasa.NamaJasa"></span></th>
+	                            <th scope="col"style="width:10%;"><span translate="promise.procurement.panitia.RekapPengadaan.View.RincianKebutuhanJasa.KodeJasa"></span></th>
+	                            <th scope="col"style="width:5%;"><span translate="promise.procurement.panitia.RekapPengadaan.View.RincianKebutuhanJasa.Jumlah"></span></th>
+	                            <th scope="col"style="width:5%;"><span translate="promise.procurement.panitia.RekapPengadaan.View.RincianKebutuhanJasa.Satuan"></span></th>
+	                            <th scope="col"style="width:10%;"><span translate="promise.procurement.panitia.RekapPengadaan.View.RincianKebutuhanJasa.HPS"></span></th>
+	                            <th scope="col"style="width:10%;"><span translate="promise.procurement.panitia.RekapPengadaan.View.RincianKebutuhanJasa.TotalHPS"></span></th>
+	                            <th scope="col"style="width:10%;"><span translate="promise.procurement.panitia.RekapPengadaan.View.RincianKebutuhanJasa.HargaPerolehan"></span></th>
+	                            <th scope="col"style="width:10%;"><span translate="promise.procurement.panitia.RekapPengadaan.View.RincianKebutuhanJasa.TotalHargaPerolehan"></span></th>
+	                        </tr>
+	                    </thead>
+	                    <tbody>
+	                        <tr ng-repeat="dataJasa in $data">
+	                            <td>{{$index+1}}</td>
+	                            <td>{{ dataJasa.item.nama }}</td>
+	                            <td>{{ dataJasa.item.kode }}</td>
+	                            <td>{{ dataJasa.kuantitas | number }}</td>
+	                            <td>{{ dataJasa.item.satuanId.nama }}</td>
+	                            <td>{{ dataJasa.nilaiHPS | number: 2 }}</td>
+	                            <td>{{ dataJasa.totalHPS | number: 2 }}</td>
+	                            <td>{{ dataJasa.nilaiHPS | number: 2 }}</td>
+	                            <td>{{ dataJasa.totalHPS | number: 2 }}</td>
+	                        </tr>
+	                    </tbody>
+	                    <tfoot>
+	                    	<tr>
+                            	<th scope="col"colspan="6" style="text-align: right"><span translate="promise.procurement.panitia.RekapPengadaan.View.RincianKebutuhanJasa.TotalKebutuhanJasa"></span></th>
+								<th scope="col"style="text-align: right">{{ form.dataPengadaan.totalNilaiJasa | number : 2 }}</th>
+                            </tr>
+                            <tr>
+                            	<th scope="col"colspan="6" style="text-align: right"></th>
+								<th scope="col"style="text-align: right"></th>
+                            	<th scope="col"style="text-align: right"></th>
+								<th scope="col"style="text-align: right"></th>
+                            </tr>
+                            <tr>
+                            	<th scope="col"colspan="6" style="text-align: right"><span translate="promise.procurement.panitia.RekapPengadaan.View.SubTotalHPS"></span></th>
+								<th scope="col"style="text-align: right">{{ form.dataPengadaan.totalNilaiJasa | number : 2 }}</th>
+                            	<th scope="col"style="text-align: right"><span translate="promise.procurement.panitia.RekapPengadaan.View.SubTotalPerolehan"></span></th>
+								<th scope="col"style="text-align: right">{{ form.dataPengadaan.totalNilaiJasa | number : 2 }}</th>
+                            </tr>
+                            <tr>
+                            	<th scope="col"colspan="6" style="text-align: right"><span translate="promise.procurement.panitia.RekapPengadaan.View.PPN"></span>{{form.dataPengadaan.prosentasePajakJasa | number:2}} %</th>
+								<th scope="col"style="text-align: right">{{ form.dataPengadaan.nilaiPPNJasa | number : 2 }}</th>
+                            	<th scope="col"style="text-align: right"><span translate="promise.procurement.panitia.RekapPengadaan.View.PPN"></span>{{form.dataPengadaan.prosentasePajakJasa | number:2}} %</th>
+								<th scope="col"style="text-align: right">{{ form.dataPengadaan.nilaiPPNJasa | number : 2 }}</th>
+                            </tr>
+                            <tr>
+                            	<th scope="col"colspan="6" style="text-align: right"><span translate="promise.procurement.panitia.RekapPengadaan.View.TotalHPS"></span></th>
+								<th scope="col"style="text-align: right">{{ form.dataPengadaan.totalNilaiJasaAfterPPN | number : 2 }}</th>
+                            	<th scope="col"style="text-align: right"><span translate="promise.procurement.panitia.RekapPengadaan.View.TotalPerolehan"></span></th>
+								<th scope="col"style="text-align: right">{{ form.dataPengadaan.totalNilaiJasaAfterPPN | number : 2 }}</th>
+                            </tr>
+	                    </tfoot>
+	                </table>
+	            </div>
+	        </div>
+	    </div>
+    </div>
+    <div align="center">
+        <button ng-class="'bg-' + app.theme.name" ng-click="form.btnKembali()" class="btn btn-sm pull-center" ripple="">
+            <span class=""><em class="fa fa-chevron-left"></em></span>&nbsp;&nbsp;<font color="white">
+            <span translate="promise.procurement.panitia.RekapPengadaan.View.ButtonKembali"></span></font>
+        </button>
+    </div>
+</div>

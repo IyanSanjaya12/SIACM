@@ -1,0 +1,305 @@
+<div class="app-view-header">
+	Approval View
+</div>
+
+<div class="panel panel-primary" ng-controller="ApprovalViewPRController as form">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <em class="fa fa-tasks">&nbsp;</em>
+        Approval View
+    </h4>
+	<div class="panel-body">
+		<div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px" border="0"/></strong></div>
+		<h1>PR - {{form.purchaseRequest.prnumber}}</h1>
+
+		<div class="form-horizontal">
+			<div class="col-md-6">
+				<div class="row">
+					<label class="col-lg-4 control-label">Department</label>
+					<div class="col-lg-8 form-group">
+						<label class="control-label">{{form.purchaseRequest.department}} - {{form.purchaseRequest.organisasi.nama}}</label>
+					</div>
+				</div>
+				<div class="row">
+					<label class="col-lg-4 control-label">Cost Center / Budget ID</label>
+					<div class="col-lg-8 form-group">
+						<label class="control-label">{{form.purchaseRequest.costcenter}}</label>
+					</div>
+				</div>
+				<div class="row">
+					<label class="col-lg-4 control-label">Description</label>
+					<div class="col-lg-8 form-group">
+						<label class="control-label">{{form.purchaseRequest.description}}</label>
+					</div>
+				</div>
+				<div class="row">
+					<label class="col-lg-4 control-label">Date Required</label>
+					<div class="col-lg-8 form-group">
+						<label class="control-label">{{form.purchaseRequest.daterequired | date:'dd MMMM yyyy' }}</label>
+					</div>
+				</div>
+<!-- 				<div class="row">
+					<label class="col-lg-4 control-label">Procurement Process</label>
+					<div class="col-lg-8 form-group">
+						<label class="control-label">{{ (typeof(form.purchaseRequest.procurementprocess) === typeof('undefined')?'-':form.purchaseRequest.procurementprocess )}}</label>
+					</div>
+				</div> -->
+			</div>
+
+			<div class="col-md-6">
+				<div class="row">
+					<div class="form-group">
+						<div class="bs-wizard no-margin">
+
+							<div class="col-md-12">
+								<div ng-repeat="flow in form.levelList | orderBy: flow.sequence" class="bs-wizard-step {{(flow.status==3?'complete':'')}}">
+									<div ng-if="flow.approvalLevel.approval.approvalType.id == 1" class="text-center bs-wizard-stepnum" ng-bind="flow.approvalLevel.group.nama">123</div>
+				                    <div ng-if="flow.approvalLevel.approval.approvalType.id == 2" class="text-center bs-wizard-stepnum" ng-bind="flow.approvalLevel.user.namaPengguna">321</div>
+				                    <div ng-if="flow.approvalLevel.approval.approvalType.id == 3" class="text-center bs-wizard-stepnum" ng-bind="flow.approvalLevel.role.nama">11</div>
+                                    <!-- jika new approval-->
+                                    <div ng-if="flow.approvalLevel==null" class="text-center bs-wizard-stepnum" ng-bind="flow.user.namaPengguna"></div>
+
+									<div class="progress">
+										<div class="progress-bar"></div>
+									</div>
+									<a href="#" class="bs-wizard-dot"></a>
+									<div class="text-center">{{($index+1)}}</div>
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="text-center">
+						<h3>Approve this Request</h3>
+						<span>This Request Needs Your Approval</span>
+					</div>
+
+				</div>
+				<div class="row">
+
+					<div class="form-group text-center">
+						<a class="btn btn-success" ng-click="btnSimpan(3)">Approve</a>
+						<a class="btn btn-warning" ng-click="btnSimpan(4)">Hold</a>
+						<a class="btn btn-danger" ng-click="btnSimpan(2)">Reject</a>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 control-label">Note</label>
+						<div class="col-lg-10">                      
+							<textarea  class="form-control shadow-z1 input-sm"  ng-model="form.note" style="margin: 0px; width: 350px; height: 125px;"></textarea>
+							<strong style="color:red">{{errorNoteMessage}}</strong>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+		<h3>Items</h3>
+		<div class="table-responsive">
+			<table class="table standard table-striped">
+				<thead>
+					<tr>
+						<th scope="col">No</th>
+						<th scope="col">Item</th>
+						<th scope="col">Vendor</th>
+						<th scope="col">Cost Center</th>
+						<th scope="col">Qty</th>
+						<th scope="col">Price</th>
+						<th scope="col">Unit</th>
+						<th scope="col">Sub Total</th>
+						<th scope="col">Spec</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="data in form.purchaseRequestItemList">
+						<td>{{($index+1)}}</td>
+						<td>{{data.itemname}}</td>
+						<td>{{data.vendorname}}</td>
+						<td>
+							<a class="btn" ng-click="btnInfoCoa(data)">
+								{{data.costcenter}}
+								<em class="fa fa-dot-circle-o text-danger" ng-show="data.costAvailable==false"></em>
+								<em class="fa fa-dot-circle-o text-success" ng-show="data.costAvailable==true"></em>
+                            </a>
+						</td>
+						<td>{{data.quantity}}</td>
+						<td align="right">{{data.price|number:2}}</td>
+						<td>{{data.unit}}</td>
+						<td align="right" ng-init="form.totalPRItem=form.totalPRItem+data.total;">{{data.total|number:2}}</td>
+						<td><a class="view-order badge bg-primary" tooltip-placement="top" tooltip="View Specs" ng-click="viewSpek(data.id)"> <em class="fa fa-search"></em></a></td>
+					</tr>
+					<tr>
+						<td colspan="7" align="right"><strong>Total</strong></td>
+						<td colspan="2" align="right"><strong>{{form.totalPRItem|number:2}} </strong></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<h3>Term & Conditions</h3>
+		<div>
+			{{ form.purchaseRequest.termandcondition }}
+		</div>
+		<h3>Dokumen Purchase Request</h3>
+		<div class="form-group">
+			<div ng-repeat="dokumen in form.dokumenPr">
+				<span title="download file"><a href="{{dokumen.downloadFile}}" target="_blank" download><li>{{dokumen.fileName}}</li></a></span>
+			</div>
+		</div>
+		
+		<h3>Approval Log</h3>
+		<div class="table-responsive">
+			<table class="table standard table-striped table-bordered">
+				<thead>
+					<tr>
+						<th scope="col">No</th>
+						<th scope="col">Approver</th>
+						<th scope="col">Approval Status</th>
+						<th scope="col">Note</th>
+						<th scope="col">Approval Date</th>
+					</tr>
+				</thead>
+				<tbody>
+                    
+					<tr ng-repeat="data in statusList">
+						<td>{{($index+1)}}</td>
+						<td>
+							<span ng-if="data.approvalLevel.approval.approvalType.id == 1" ng-bind="data.user.namaPengguna"></span>
+				            <span ng-if="data.approvalLevel.approval.approvalType.id == 2" ng-bind="data.user.namaPengguna"></span>
+				            <span ng-if="data.approvalLevel.approval.approvalType.id == 3" ng-bind="data.user.namaPengguna"></span>
+				            <span ng-if="data.approvalLevel == null" ng-bind="data.user.namaPengguna"></span>
+						</td>
+						<td> 
+							<span ng-if="data.status == 4" style="color: #fad733" class="text-bold">Hold</span>
+							<span ng-if="data.status == 3" style="color: #00a65a" class="text-bold">Approved</span>
+							<span ng-if="data.status == 2" style="color: #AA2200" class="text-bold">Reject</span>
+							<span ng-if="data.status == 1" style="color: #3f51b5" class="text-bold">Approval</span>
+						</td>
+						<td style="word-wrap: break-word; max-width: 200px;">{{data.keterangan}}</td>
+						<td>{{data.updated | date:'dd-MMM-yyyy'}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<!-- Item Catalog -->
+<script type="text/ng-template" id="/info_coa.html">
+	<div class="modal-header" ng-class="'bg-'+(dataItem.costAvailable==true?'success':'danger')">
+		<button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="cancel()">X</button>
+		<h3 id="myModalLabel" class="modal-title"><span>Saldo Cost Center {{coa.nomorDraft}} {{message}}</span>
+	</div>
+	<div class="modal-body">
+		<div class="row">
+			<div class="col-lg-4">
+				<strong>Account Code</strong>
+			</div>
+			<div class="col-lg-1">:</div>
+			<div class="col-lg-7">
+				{{coa.nomorDraft}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-4">
+				<strong>Account Name</strong>
+			</div>
+			<div class="col-lg-1">:</div>
+			<div class="col-lg-7">
+				{{coa.accountName}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-4">
+				<strong>Start Budget</strong>
+			</div>
+			<div class="col-lg-1">:</div>
+			<div class="col-lg-6" align="right">
+				<strong class="text-primary">{{coa.jumlah | number:2 }}</strong>
+			</div>
+			<div class="col-lg-1  pull-right">{{coa.mataUang.kode}}</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-4">
+				<strong>Booked Budget</strong>
+			</div>
+			<div class="col-lg-1">:</div>
+			<div class="col-lg-6"  align="right">
+				<strong class="text-warning">{{coa.bookingAnggaran | number:2 }}</strong>
+			</div>					
+			<div class="col-lg-1 pull-right">{{coa.mataUang.kode}}</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-4">
+				<strong>Used Budget</strong>
+			</div>
+			<div class="col-lg-1">:</div>
+			<div class="col-lg-6"  align="right">
+				<strong class="text-danger">{{ (coa.jumlah - coa.sisaAnggaran) | number:2 }}</strong>
+			</div>
+			<div class="col-lg-1">{{coa.mataUang.kode}}</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-4">
+				<strong>Available Budget</strong>
+			</div>
+			<div class="col-lg-1">:</div>
+			<div class="col-lg-6"  align="right">
+				<strong class="text-success">{{coa.sisaAnggaran | number:2 }}</strong>
+			</div>
+			<div class="col-lg-1  pull-right">{{coa.mataUang.kode}}</div>
+		</div>
+		<!-- <br/>
+		<div class="row>
+			<div class="col-lg-6">
+				<button ng-class="'bg-warning'" type="button" ripple="" class="col-lg-push-9 mr btn btn-labeled btn-sm " ng-click="cancel()">
+					<span class="btn-label "><em class="fa fa-chevron-left "></em></span>
+					<span translate="">Close</span>
+				</button>
+			</div>
+		</div> -->
+	</div>
+	<div class="modal-footer">
+		<button ng-click="cancel()" class="btn btn-primary">Close</button>
+	</div>
+
+
+</script>
+
+<!-- aksi view spec -->
+<script type="text/ng-template" id="/viewSpec.html">
+			<div class="modal-header">
+				<h4 id="myModalLabel" class="modal-title">{{dataitem.itemname}}</h3></div>
+			<div class="modal-body">
+				<div class="form-group">
+					<div>
+						<div class="col-sm-6"><strong>Quantity : {{dataitem.quantity}}</strong></div>
+						<div class="col-sm-6"><strong>Price : {{dataitem.price | number : 2 }}</strong></div>
+					</div>
+				</div>
+				<br>
+				<div class="form-group">
+					<div>
+						<div class="col-sm-12"><strong>Specification</strong></div>
+					</div>
+					<div>
+						<div class="col-sm-12">{{dataitem.specification}}</div>
+					</div>
+				</div>
+				<br><br>
+				<div class="form-group">
+					<div>
+						<div class="col-sm-12"><strong>File Support</strong></div>
+					</div>
+					<div>
+						<div class="col-sm-12"> <a style="color:#0000EE" href="{{ downloadFile + dataitem.path }}" ng-bind="dataitem.path"></a></div>
+					</div>
+				</div>
+			</div>
+			<br><br>
+			<div class="modal-footer">
+				<button ng-click="ok()" class="btn btn-primary">OK</button>
+			</div>
+</script>

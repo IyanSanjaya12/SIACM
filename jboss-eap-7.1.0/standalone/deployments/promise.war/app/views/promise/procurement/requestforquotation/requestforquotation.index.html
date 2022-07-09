@@ -1,0 +1,128 @@
+<div class="app-view-header">
+    <span>Requeset For Quotation</span>
+    <small><span>RFQ</span></small>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="RequestForQuotationController as form">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><span >Request For Quotation Status</span>
+      
+        
+    </h4>
+    <div class="panel-body">
+    <div align="right">
+    	      <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled mb 2" ng-click="form.addRFQ()">
+                <span class="btn-label"> <em class="fa fa-plus"></em> </span>
+                <span translate="promise.procurement.master.attribute.btn.TAMBAH"> </span>
+            </button>
+    	 </div>
+        <div class="row p-b b-b m-b">
+            <div class="col-lg-4">
+                <a href="#" ><span>All <strong>({{form.rfqAllData}})</strong></span></a>
+            </div>
+            <div class="col-lg-4">
+                <a href="#"><span>On Process <strong>({{form.rfqOnProcess}})</strong></span></a>
+            </div>
+            <div class="col-lg-4">
+                <a href="#"><span>Received <strong>({{form.rfqOnReceived}})</strong></span></a>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="col-md-3 text-left control-label">Search </label>
+                    <div class="col-md-5">
+                        <div class="search-icon">
+                            <input class="form-control" placeholder="Search..." type="text" ng-model="form.searchRFQ">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="col-md-offset-3 col-md-4 control-label">Sort by </label>
+                    <div class="col-md-5">
+                        <select class="form-control" chosen="" width="'100%'" ng-change="form.getSortRFQ()"
+                            ng-options="option.name for option in sortRFQList track by option.value"
+                            ng-model="form.sortRFQ"></select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 m-t">
+                <div align="center" ng-if="loading == true">
+                    <strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px"/></strong>
+                </div>
+                <div class="table-responsive">
+                    <table class="table standard table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col"style="text-align:left"><span>RFQ Number</span></th>
+                                <th scope="col"style="text-align:left"><span>PR Number</span></th>
+                                <th scope="col"style="text-align:left"><span>Delivery Quote</span></th>
+                                <th scope="col"style="text-align:left"><span>Post Date</span></th>
+                                <th scope="col"style="text-align:left"><span>Status</span></th>
+                                <th scope="col"style="text-align:left"><span>Action</span></th>
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="rfq in form.requestQuotationList">
+                            <tr>
+                                <td style="text-align:left" >
+                                		<div>
+                                				<span ng-bind="rfq.noRFQ"></span>
+		                                    <br/>
+		                                    <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled" ng-click="rfq.showDetail = !rfq.showDetail;" >Show Detil</button>
+                                		</div>
+                                </td>
+                                <td ng-bind="rfq.purchaseRequest.prnumber"></td>
+                                <td ng-bind="rfq.deliveryQuoteDate | date:'dd/MM/yyyy'"></td>
+                                <td ng-bind="rfq.postDate | date:'dd/MM/yyyy'">{{  }}</td>
+                                <td ng-bind="rfq.requestQuotationStatus"></td>
+                                <td>
+                                    <button ng-click="form.priceComparison(rfq)">View Comparation</button>
+                                    <button ng-click="form.editRFQ(rfq)">Edit</button>
+                                    <button ng-click="form.deleteRFQ(rfq)">Delete</button>
+                                </td>
+                            </tr>
+                            <tr ng-show="rfq.showDetail">
+                                <td colspan="6">
+                                		<div class="table-responsive">
+                                				<table class="table table-striped table-bordered table-hover">
+                                						<thead>
+                                								<tr>
+                                										<th scope="col"style="width:20%; text-align:center"><span>Supplier Code</span></th>
+                                										<th scope="col"style="width:20%; text-align:center"><span>Supplier Name</span></th>
+                                										<th scope="col"style="width:20%; text-align:center"><span>Doc Attachment</span></th>
+                                										<th scope="col"style="width:20%; text-align:center"><span>Status</span></th>
+                                										<th scope="col"style="width:20%; text-align:center"><span>Action</span></th>
+                                								</tr>
+                                						</thead>
+                                						<tbody ng-repeat="vendorRFQ in rfq.requestQuotationVendorList">
+                                								<tr>
+                                										<td style="text-align:left" ng-bind="vendorRFQ.vendor.id"></td>
+                                										<td style="text-align:left" ng-bind="vendorRFQ.vendor.nama"></td>
+                                										<td style="text-align:left" ng-bind="vendorRFQ.fileName"></td>
+                                										<td style="text-align:left" ng-bind="vendorRFQ.requestQuotationStatus"></td>
+                                										<td style="text-align:left"><button ng-click="form.inputQuotation(rfq, vendorRFQ)">Input Quotation</button></td>
+                                								</tr>
+                                						</tbody>
+                                				</table>
+                                		</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="page-option col-md-2">
+                	<span class="page-opt-text">Show :</span>
+                    <a class="page-opt-num" ng-click="pageChanged(5)">5</a>
+                    <a class="page-opt-num" ng-click="pageChanged(10)">10</a>
+                    <a class="page-opt-num" ng-click="pageChanged(25)">25</a>
+                </div>
+                <div class="text-right">
+                	<pagination first-text="<<" previous-text="<" next-text=">" last-text=">>" items-per-page="maxRecord" total-items="totalItems" ng-model="currentPage" max-size="maxSize" boundary-links="true" class="pagination-sm" ng-click="setPage(currentPage)"></pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

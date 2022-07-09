@@ -1,0 +1,253 @@
+<div class="app-view-header">
+    <span>Purchase Request</span>
+    <small><span >Edit PR</span></small>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="PurchaseRequestEditController as form">
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    <!-- START FORM -->
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-12">
+                <div align="center" ng-if="form.loading == true">
+                    <strong><em>Loading... <img src="app/img/loading.gif" border="0" height="20px"/></em></strong>
+                </div>
+                <form role="form" name="purchaserequest" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"><span>PR Number</span>
+                        </label>
+                        <div class="col-lg-6">
+                            <input type="text" name="prnumber" class="form-control shadow-z1 input-sm" id="" ng-model="form.dataPurchaseRequest.prnumber" ng-maxlength="30" maxlength="31" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"><span>Date Required</span>
+                        </label>
+                        <div class="col-sm-20">
+                            <div class="row">
+                                <div class="col-sm-10 col-lg-3">
+                                    <div class="input-group">
+                                        <input type="text" datepicker-popup="dd-MM-yyyy" ng-model="form.dataPurchaseRequest.daterequired" is-open="form.dokumenTanggalOpened" min-date="form.minDate" max-date="false" datepicker-options="form.dateOptions" date-disabled="form.disabled(form.date, form.mode)" close-text="Close" class="form-control shadow-z1 input-sm" ng-change="updateDokumenTanggal()" readonly style="background-color:white;" />
+                                        <span class="input-group-btn">
+															<button type="button" ng-click="dokumenTanggalOpen($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+																<em class="fa fa-calendar"></em>
+															</button>
+										</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"><span>Department</span>
+                        </label>
+                        <div class="col-lg-6">
+                            <input type="text" name="department" class="form-control shadow-z1 input-sm" ng-model="form.dataPurchaseRequest.department" ng-change="updateDepartment()" ng-maxlength="50" maxlength="51">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"><span>Cost Center/Budget ID</span>
+                        </label>
+                        <div class="col-lg-6">
+                            <input type="text" name="costcenter" class="form-control shadow-z1 input-sm" id="" ng-model="form.dataPurchaseRequest.costcenter" ng-change="updateCostCenter()" ng-maxlength="50" ng-pattern="/^[a-zA-Z,.'-\s]*$/" maxlength="51">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"><span>Procurement Process</span>
+                        </label>
+                        <div class="col-sm-20">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <ui-select ng-model="form.dataPurchaseRequest.procurementprocess" theme="bootstrap" ng-change="updateProcurementProcess()" ng-disabled="disabled">
+                                        <ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+                                        <ui-select-choices repeat="procurementprocess in procurementProcessList | propsFilter: {nama: $select.search}">
+                                            <div ng-bind-html="procurementprocess.nama | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"><span>Description</span>
+                        </label>
+                        <div class="col-lg-6">
+                            <input type="text" name="description" class="form-control shadow-z1 input-sm" id="" ng-model="form.dataPurchaseRequest.description" ng-change="updateDescription()" ng-maxlength="50" ng-pattern="/^[a-zA-Z,.'-\s]*$/">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"><span>Term & Conditions</span>
+                        </label>
+                        <div class="col-lg-6">
+                            <input type="text" name="termandconditions" class="form-control shadow-z1 input-sm" id="" ng-model="form.termconditionstring" ng-change="updateTermAndCondition()" ng-maxlength="50" ng-pattern="/^[a-zA-Z,.'-\s]*$/">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"><span>Approval</span>
+                        </label>
+                        <div class="col-lg-6">
+                            <input type="text" name="approval" class="form-control shadow-z1 input-sm" id="" ng-model="form.dataPurchaseRequest.nextapproval" ng-change="updateApproval()" ng-maxlength="50" ng-pattern="/^[a-zA-Z,.'-\s]*$/">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"><span>Item's</span></label>
+
+                        <div class="col-lg-12">
+                            <h4 class="page-header clearfix">
+                                            <strong><span >Item Table</span></strong>
+                                            <div class="pull-right">
+                                                <button ng-class="'bg-' + app.theme.name" ng-click="modalsTambah()" class="btn btn-primary btn-sm" >
+                                                	<span class=""><em class="fa fa-plus"></em></span>									
+													<span >Add Item</span>
+                                            	</button>                                                
+                                            </div>
+                                        </h4>
+                            <div class="panel-body">
+                                <div class="col-xs-12">
+                                    <div class="table-responsive">
+                                        <table ng-table="form.tableMaterialList" class="table table-hover table-condensed table-striped bg-white">
+                                            <thead>
+                                                <tr style="font-weight: bold">
+                                                    <th scope="col"style="width:2%; text-align:left"><span>No</span></th>
+                                                    <th scope="col"style="width:10%; text-align:left"><span>Item Name</span></th>
+                                                    <th scope="col"style="width:30%; text-align:left"><span>Vendor</span></th>
+                                                    <th scope="col"style="width:8%; text-align:left"><span>Qty</span></th>
+                                                    <th scope="col"style="width:10%; text-align:left"><span>Price</span></th>
+                                                    <th scope="col"style="width:15%; text-align:right"><span>Unit</span></th>
+                                                    <th scope="col"style="width:10%; text-align:right"><span>Cost Center</span></th>
+                                                    <th scope="col"style="width:15%; text-align:left"><span>Total</span></th>
+                                                    <th scope="col"style="width:2%; text-align:left"><span>Action</span></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="materialObj in materialList">
+                                                    <td style="text-align:center">{{$index+1}}</td>
+                                                    <td>{{ materialObj.itemname}}</td>
+                                                    <td>{{ materialObj.vendorname}}</td>
+                                                    <td>{{ materialObj.quantity }}</td>
+                                                    <td>{{ materialObj.price | number : 2}}</td>
+                                                    <td align="right">{{ materialObj.unit }}</td>
+                                                    <td>
+                                                        <input type="text" class="form-control shadow-z1 input-sm" ng-model="form.dataPurchaseRequest.costcenteritem">
+                                                    </td>
+                                                    <td align="right">{{ materialObj.price*materialObj.quantity | number : 2}}</td>
+                                                    <td style="white-space: nowrap; text-align:center">
+                                                        <button ripple="" ng-click="editMaterial($index)" title="Edit" class="btn btn-sm btn-success">
+                                                            <em class="fa fa-pencil fa-lg"></em>
+                                                        </button>
+                                                        <button ripple="" ng-click="removeMaterial(materialObj)" title="Delete" class="btn btn-sm btn-danger">
+                                                            <em class="fa fa-trash"></em>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                 <tr>
+                                                    <th scope="col"colspan="8" style="text-align: right"><span>Total Estimated Cost :</span>
+                                                    </th>
+                                                    <th scope="col"style="text-align: right" >{{ form.dataPurchaseRequest.subtotal | number : 2 }}</th>
+                                                    <th scope="col"style="text-align: center">IDR</th>
+                                                    <th scope="col"></th>
+                                                    </tr>
+                                             </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- END TABEL -->
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="btnUpdatePurchaseRequest()" ng-show="btnUpdatePrStatus">
+                                <span translate="">Simpan</span>
+                            </button>
+                            <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="btnKembali()">
+                                <span translate="">Kembali - Index</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--END FORM-->
+</div>
+<script type="text/ng-template" id="/tambah.html">
+    <div class="modal-header">
+        <button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="cancel()">× </button>
+        <h3 id="myModalLabel" class="modal-title"><span>Add Item PR</span>
+    <small><span></span></small></h3>
+    </div>
+    <div class="modal-body">
+		<table border='0' style="width: 550px;">
+			<tr>
+			<td>Item Code</td>
+			<td><ui-select ng-model="kodeMaterial.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" ng-change="setKodeMaterialSelected()">
+				<ui-select-match placeholder="Masukan Kode Material ...">{{$select.selected.kode}}</ui-select-match>
+				<ui-select-choices repeat="kodeMaterial in kodeMaterialList track by $index" refresh="refreshkodeMaterialList($select.search)" refresh-delay="0">
+				<div ng-bind-html="kodeMaterial.kode | highlight: $select.search"></div>
+				<div ng-bind-html="''+kodeMaterial.nama| highlight: $select.search"></div>
+				</ui-select-choices>
+				</ui-select>
+			</td>
+			</tr>
+			<tr>
+			<td>Item Name</td>
+			<td><input  type="text" class="form-control shadow-z1 input-sm" ng-model="form.itemname"></td>
+			</tr>
+			<tr>
+			<td>Vendor Name</td>
+			<td><input  type="text" class="form-control shadow-z1 input-sm" ng-model="form.vendorname"></td>
+			</tr>
+			<tr>
+			<td>Quantity</td>
+			<td><input promise-numbers-only type="number" name="kuantitas" class="form-control shadow-z1 input-sm" ng-model="form.quantity" ng-change="calculateTotalHPS();" ng-maxlength="12" maxlength="13"></td>
+			</tr>
+			<tr>
+			<td>Unit</td>
+			<td><input  type="text" class="form-control shadow-z1 input-sm" ng-model="form.unit"></td>
+			</tr>
+			<tr>
+			<td>Price</td>
+			<td><input promise-currency-blur type="text" name="hps" class="form-control shadow-z1 input-sm" ng-model="form.price" ng-change="calculateTotalHPS();" ng-maxlength="20"></td>
+			</tr>
+			<tr>
+			<td>Total</td>
+			<td><input disabled="" type="text" class="form-control shadow-z1 input-sm" ng-model="form.total">&nbsp;&nbsp;
+			</tr>
+			<tr>
+			<td>Specification</td>
+			<td><textarea ng-model="form.specification" name="keterangan" cols="30" rows="5" class="form-control" ng-maxlength="200" maxlength="201"></textarea></td>
+			</tr>
+			<tr>
+			<td>Attach File</td>
+			<td><input type="text" class="form-control shadow-z1 input-sm" ng-model="form.pathfile"></td>
+			</tr>				
+		</table>     
+
+    <div class="modal-footer">
+        <button ng-class="'bg-'+app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-sm " ng-click="cancel()">
+            <span class="btn-label "><em class="fa fa-chevron-left "></em></span>
+            <span translate="">Tutup</span>
+        </button>
+        <button ng-class="'bg-'+app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="btnSimpanMaterial()">
+            <span >Simpan</span>
+        </button>
+    </div>
+</script>
+<script type="text/ng-template" id="/alertTable2.html">
+            <div class="modal-header" ng-class="'bg-' + app.theme.name" class="panel-heading">
+                <button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="cancel()">×</button>
+                <h3 id="myModalLabel" class="modal-title">Hapus Item Purchase Request</h3>
+            </div>
+            <div class="modal-body">
+                Anda yakin ingin menghapus item <strong>{{ materialName }}</strong>
+            </div>
+            <div class="modal-footer">
+                <button ng-click="ok()" class="btn btn-primary">OK</button>
+                <button ng-click="cancel()" class="btn btn-warning">Cancel</button>
+            </div>
+</script>

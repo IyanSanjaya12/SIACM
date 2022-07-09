@@ -1,0 +1,245 @@
+<div class="app-view-header">Payment Monitoring
+    <!-- <small ng-bind="app.name + ' - ' + app.description"></small> -->
+</div>
+
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="GeneralCtrl">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><span >Payment Monitoring</span></h4>
+    <div class="panel-body">
+        <div class="row form-horizontal">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="col-md-3 text-left control-label">PO Number </label>
+                    <div class="col-md-5">
+                        <div class="search-icon">
+                            <input class="form-control" placeholder="Search..." type="text">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-12 table-responsive">
+                <table class="table standard table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">PO Number</th>
+                            <th scope="col">Purchased by</th>
+                            <th scope="col">Vendor</th>
+                            <th scope="col">PO Date</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <a>
+                                    123
+                                </a>
+                                <br>
+                                <span ng-model="row1Collapsed" ng-click="row1Collapsed = !row1Collapsed" class="label label-primary pointer">{{row1Collapsed == true ? "Hide" : "Show"}} Detail</span>
+                            </td>
+
+                            <td>Admin</td>
+                            <td>PT. Eventus</td>
+                            <td>05 Augustus 2016</td>
+                            <td>Complete</td>
+                            <td>
+                                <a ng-click="openModal('modal.html', 'lg')" class="btn btn-xs btn-success" tooltip-placement="top" tooltip="Show Payment">
+                                    Show Payment
+                                </a>
+                                <a ui-sref="" class="btn btn-xs btn-primary" tooltip-placement="top" tooltip="Show Invoice">
+                                    Show Invoice
+                                </a>
+                            </td>
+                        </tr>
+                        <tr ng-show="row1Collapsed">
+                            <td colspan="7">
+                                <table class="table table-sm table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Item</th>
+                                            <th scope="col"class="bg-success text-white">Pass</th>
+                                            <th scope="col"class="bg-danger text-white">Failed</th>
+                                            <th scope="col">Received</th>
+                                            <th scope="col">Unit Price</th>
+                                            <th scope="col">Total</th>
+                                        </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                            <td>Laptop DELL Inspiron N4050</td>
+                                            <td>15</td>
+                                            <td class="number">0</td>
+                                            <td>15/15</td>
+                                            <td class="number">6.000.000</td>
+                                            <td class="number">90.000.000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Laptop LENOVO</td>
+                                            <td>10</td>
+                                            <td class="number">0</td>
+                                            <td>10/10</td>
+                                            <td class="number">6.000.000</td>
+                                            <td class="number">60.000.000</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a>
+                                    7891011
+                                </a>
+                                <br>
+                                <span ng-click="row2Collapsed = !row2Collapsed" class="label label-primary pointer" ng-model="row2Collapsed">{{row2Collapsed == true ? "Hide" : "Show"}} Detail</span>
+                            </td>
+
+                            <td>Maulana</td>
+                            <td>PT. Global</td>
+                            <td>23 Augustus 2016</td>
+                            <td>On Progress</td>
+                            <td>
+                                <a ng-click="openModal()" class="btn btn-xs btn-success" tooltip-placement="top" tooltip="Show Payment">
+                                    Show Payment
+                                </a>
+                                <a ui-sref="" class="btn btn-xs btn-primary" tooltip-placement="top" tooltip="Show Invoice">
+                                    Show Invoice
+                                </a>
+                            </td>
+                        </tr>
+                        <tr ng-show="row2Collapsed">
+                            <td colspan="7">
+                                <table class="table table-sm table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Item</th>
+                                            <th scope="col"class="bg-success text-white">Pass</th>
+                                            <th scope="col"class="bg-danger text-white">Failed</th>
+                                            <th scope="col">Received</th>
+                                            <th scope="col">Unit Price</th>
+                                            <th scope="col">Total</th>
+                                        </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                            <td>Laptop DELL Inspiron N4050</td>
+                                            <td>15</td>
+                                            <td class="number">0</td>
+                                            <td>15/15</td>
+                                            <td class="number">6.000.000</td>
+                                            <td class="number">90.000.000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Laptop LENOVO</td>
+                                            <td>10</td>
+                                            <td class="number">0</td>
+                                            <td>10/10</td>
+                                            <td class="number">6.000.000</td>
+                                            <td class="number">60.000.000</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        
+                                                                
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END CONTROLLER-->
+
+<script type="text/ng-template" id="modal.html">
+    <div class="modal-header">
+        <button class="close" ng-click="cancel()"><em class="fa fa-close"></em></button>
+        <h4 class="modal-title">Payment Monitoring</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row form-horizontal">
+            <div class="col-md-12">
+                <div class="pull-left bg-primary">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label class="col-lg-5 text-left control-label">PO Number</label>
+                            <label class="col-lg-7 text-left control-label">123456</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-5 text-left control-label">PO Date</label>
+                            <label class="col-lg-7 text-left control-label">12-02-2016</label>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Vendor</label>
+                            <div class="col-lg-9">
+                                <div class="col-lg-12 text-strong p-t">PT. Global Integrasi Data</div>
+                                <div class="col-lg-12">Gedung Sona Topas, Jl. Jend. Sudirman Kav. 26 Jakarta Selatan</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h4>Items List</h4>
+
+        <table class="table table-sm table-striped standard">
+            <thead>
+                <tr>
+                    <th scope="col">Item</th>
+                    <th scope="col">Qty</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Unit</th>
+                    <th scope="col">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Laptop DELL Inspiron N4050</td>
+                    <td>5/10</td>
+                    <td class="number">4.000.000,-</td>
+                    <td>piece</td>
+                    <td class="number">20.000.000,-</td>
+                </tr>
+                <tr>
+                    <td>Laptop LENOVO</td>
+                    <td>6/10</td>
+                    <td class="number">5.000.000,-</td>
+                    <td>piece</td>
+                    <td class="number">30.000.000,-</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="row form-horizontal">
+            <div class="col-md-12">
+                <div class="pull-left w100 bg-primary">
+                    <div class="col-md-12">
+                        <div class="form-group no-margin">
+                            <label class="col-lg-4 text-left control-label">Sub Total</label>
+                            <label class="col-lg-6 control-label">50.000.000,-</label>
+                        </div>
+                        <div class="form-group no-margin">
+                            <label class="col-lg-4 text-left control-label">Pinalty</label>
+                            <label class="col-lg-6 control-label">5.000.000,-</label>
+                            <label class="col-lg-2 control-label">(late)</label>
+                        </div>
+                        <div class="form-group no-margin">
+                            <label class="col-lg-4 text-left control-label">PPn</label>
+                            <label class="col-lg-6 control-label">4.500.000,-</label>
+                        </div>
+                        <div class="form-group">
+                            <h4 class="col-lg-4 text-left control-label">Total Amount</h4>
+                            <h4 class="col-lg-6 control-label">49.500.000,-</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</script>

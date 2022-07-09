@@ -1,0 +1,3 @@
+[{"nomorKontrak":"001/K/2016", "tanggalKontrak":"2016-12-26", "paketPekerjaan":"Pengadaan Komputer Server", "tanggalPenilaian":"2016-12-28", "nilai":4.20, "nilaiStatus":"Baik"},
+{"nomorKontrak":"002/K/2016", "tanggalKontrak":"2016-12-26", "paketPekerjaan":"Pengadaan Komputer Desktop Programmer", "tanggalPenilaian":"2016-12-28", "nilai":4.50, "nilaiStatus":"Baik"},
+{"nomorKontrak":"001/K/2016", "tanggalKontrak":"2016-12-01", "paketPekerjaan":"Pengadaan Komputer Laptop", "tanggalPenilaian":"2016-12-22", "nilai":4.90, "nilaiStatus":"Baik"}]

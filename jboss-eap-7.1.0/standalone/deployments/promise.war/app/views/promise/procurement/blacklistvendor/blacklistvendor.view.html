@@ -1,0 +1,271 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.manajemenvendor.blacklistvendor.judul">
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="BlacklistViewController as vm">
+	<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+
+	<div class="panel-body">
+		<div class="container-fluid ng-scope">
+			<form autocomplete="off">
+				<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			    	<span translate="promise.procurement.manajemenvendor.blacklistvendor.judul"></span>
+			    </h4>
+				<div class="panel-body">
+					<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+						<span translate="promise.procurement.manajemenvendor.blacklistvendor.view.subjudul_vendor"></span>
+					</h4>
+					<div class="row">
+						<div class="col-md-3" translate="promise.procurement.manajemenvendor.blacklistvendor.view.kode_vendor"></div>
+						<div class="col-md-9">				
+							<p class="input-group col-md-6">
+								<input readonly="readonly" id="input-id-1" type="text" class="form-control" ng-model="vm.blacklistVendorDtl.blacklistVendor.vendor.id"/>
+								<input readonly="readonly" id="input-id-1" type="hidden" class="form-control" ng-model="vm.blacklistVendorDtl.blacklistVendor.vendor.id"/>
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3" translate="promise.procurement.manajemenvendor.blacklistvendor.view.nama_vendor"></div>
+						<div class="col-md-9">
+							<p class="input-group col-md-10">
+								<input readonly="readonly" id="input-id-1" type="text" class="form-control" ng-model="vm.blacklistVendorDtl.blacklistVendor.vendor.nama"/>
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3" translate="promise.procurement.manajemenvendor.blacklistvendor.view.npwp_vendor"></div>
+						<div class="col-md-9">
+							<p class="input-group col-md-6">
+								<input readonly="readonly" id="input-id-1" type="text" class="form-control" ng-model="vm.blacklistVendorDtl.blacklistVendor.vendor.npwp"/>
+							</p>
+						</div>
+					</div>
+					
+					<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+						<span translate="promise.procurement.manajemenvendor.blacklistvendor.view.daftar_pelanggaran"></span>
+					</h4>
+					<div class="table-responsive">
+						<table class="table table-striped">
+				 			<thead>
+								<tr>
+									<th scope="col"style="text-align:center">
+										<span translate="template.tabel.nomor"></span>
+									</th>
+									<th scope="col"style="text-align:center">
+										<span translate="promise.procurement.manajemenvendor.blacklistvendor.view.jenis_pelanggaran"></span>
+									</th>
+									<th scope="col"style="text-align:center">
+										<span translate="promise.procurement.manajemenvendor.blacklistvendor.view.rekomendasi_durasi"></span>
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="ab in form.blacklistVendorDtl.blacklistVendorDetailList">
+									<td style="text-align: center" ng-bind="$index+1"></td>
+									<td ng-bind="ab.alasanBlacklist.alasanBlacklistKeterangan"></td>
+									<td style="text-align: center">
+										<span ng-bind="ab.alasanBlacklist.alasanBlacklistJmlWaktu"></span>&nbsp;
+										<span ng-if="ab.alasanBlacklist.alasanBlacklistJkWaktu == 'D'" translate="promise.procurement.manajemenvendor.blacklistvendor.view.hari"></span>
+										<span ng-if="ab.alasanBlacklist.alasanBlacklistJkWaktu == 'M'" translate="promise.procurement.manajemenvendor.blacklistvendor.view.bulan"></span>
+										<span ng-if="ab.alasanBlacklist.alasanBlacklistJkWaktu == 'Y'" translate="promise.procurement.manajemenvendor.blacklistvendor.view.tahun"></span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<br/>
+					<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+						<span translate="promise.procurement.manajemenvendor.blacklistvendor.view.keterangan_blacklist"></span>
+					</h4>
+					<div class="row">
+						<div class="col-md-3" translate="promise.procurement.manajemenvendor.blacklistvendor.view.durasi_blacklist"></div>
+						<div class="col-md-9">
+							<p class="input-group col-md-8">
+								<div class="row">
+									<div class="col-md-2">
+										<input readonly="readonly" id="input-id-1" type="number" maxlength="3" class="form-control" ng-model="vm.blacklistVendorDtl.blacklistVendor.blacklistVendorJmlWaktu"/>
+									</div>
+									<div class="col-md-3">
+										<select disabled="disabled" class="form-control " ng-model="vm.blacklistVendorDtl.blacklistVendor.blacklistVendorJkWaktu">
+											<option value="D" translate="promise.procurement.manajemenvendor.blacklistvendor.view.hari"></option>
+											<option value="M" translate="promise.procurement.manajemenvendor.blacklistvendor.view.bulan"></option>
+											<option value="Y" translate="promise.procurement.manajemenvendor.blacklistvendor.view.tahun"></option>
+										</select>
+									</div>
+								</div>
+							</p>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-3" translate="promise.procurement.manajemenvendor.blacklistvendor.view.tanggal_mulai_blacklist"></div>
+						<div class="col-md-9">				
+							<p class="input-group col-md-6">
+								<input readonly="readonly" id="input-id-1" type="text" class="form-control" ng-value="vm.blacklistVendorDtl.blacklistVendor.blacklistVendorTglAwal | date:'yyyy-MM-dd'"/>
+							</p>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-3" translate="promise.procurement.manajemenvendor.blacklistvendor.view.tanggal_akhir_blacklist"></div>
+						<div class="col-md-9">				
+							<p class="input-group col-md-6">
+								<input readonly="readonly" id="input-id-1" type="text" class="form-control" ng-value="vm.blacklistVendorDtl.blacklistVendor.blacklistVendorTglAkhir | date:'yyyy-MM-dd'"/>
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3" translate="promise.procurement.manajemenvendor.blacklistvendor.view.catatan_blacklist"></div>
+						<div class="col-md-9">
+							<p class="input-group col-md-10">
+								<textarea readonly="readonly" class="form-control shadow-z1 input-sm" ng-model="vm.blacklistVendorDtl.blacklistVendor.blacklistVendorKeterangan " maxlength="255" rows="4"></textarea>
+							</p>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-3" translate="promise.procurement.manajemenvendor.blacklistvendor.view.catatan_untuk_vendor"></div>
+						<div class="col-md-9">
+							<p class="input-group col-md-10">
+								<textarea readonly="readonly" class="form-control shadow-z1 input-sm" ng-model="vm.blacklistVendorDtl.blacklistVendor.blacklistVendorKeteranganVnd" maxlength="255" rows="4"></textarea>
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3" translate="promise.procurement.manajemenvendor.blacklistvendor.view.berkas"></div>
+						<div class="col-md-9"> 
+							<div class="table-responsive">
+								<table class="table table-striped">
+									<tbody>
+										<tr ng-repeat="ab in vm.blacklistVendorDtl.blacklistVendorFileList">
+											<td>
+												<a ng-click=" viewFile(ab.blacklistFile)"><span ng-bind="ab.blacklistFile"></span></a>
+											</td> 
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<br/>
+						</div>
+					</div>
+				</div>
+				<h4 ng-class="'bg-' + app.theme.name" class="panel-heading" ng-if="vm.unblacklist == true">
+			    	<span translate="promise.procurement.manajemenvendor.blacklistvendor.view.unblacklist_vendor"></span>
+			    </h4>
+				<div class="panel-body">
+					<br/>
+					<div class="row" ng-if="vm.unblacklist == true"> 
+						<div class="col-md-3" translate="promise.procurement.manajemenvendor.blacklistvendor.view.catatan_unblacklist">&nbsp;<font color="red">*)</font></div>
+						<div class="col-md-9">
+							<p class="input-group col-md-10">
+								<textarea class="form-control shadow-z1 input-sm" ng-model="vm.unblacklistVendorDtl.unblacklistVendor.unblacklistVendorKeterangan" maxlength="255" rows="4"></textarea>
+								<input readonly="readonly" id="input-id-1" type="hidden" class="form-control" ng-model="vm.unblacklistVendorDtl.unblacklistVendor.vendor.id"/>
+							</p>
+							<strong style="color: red" translate={{vm.errorMessageCatatan}}></strong>
+						</div>
+					</div>
+					
+					<div class="row" ng-if="vm.unblacklist == true">
+						<div class="col-md-3" translate="promise.procurement.manajemenvendor.blacklistvendor.view.catatan_untuk_vendor">&nbsp;<font color="red">*)</font></div>
+						<div class="col-md-9">
+							<p class="input-group col-md-10">
+								<textarea class="form-control shadow-z1 input-sm" ng-model="vm.unblacklistVendorDtl.unblacklistVendor.unblacklistVendorKeteranganVnd" maxlength="255" rows="4"></textarea>
+							</p>
+							<strong style="color: red" translate={{vm.errorMessageCatatanVendor}}></strong>
+						</div>
+					</div>
+					<div class="row" ng-if="vm.unblacklist == true">
+						<div class="col-md-3" translate="promise.procurement.manajemenvendor.blacklistvendor.view.berkas">&nbsp;<font color="red">*)</font></div>
+						<div class="col-md-9">
+							<p class="input-group col-md-10">
+							    <input filestyle="" type="file" data-button-text="Multi file Upload" data-class-button="btn btn-default" data-class-input="form-control inline" nv-file-select="" uploader="uploader" class="form-control" /><br/>
+				   			</p>
+						</div>
+					</div>
+				
+					<div class="row" ng-if="vm.unblacklist == true">
+						<div class="col-md-3"></div>
+						<div class="col-md-9">
+					    	<h3><em>Upload Dokumen</em></h3>
+					        <h4>Antrian</h4>
+					        <p>Panjang Antrian : {{ uploader.queue.length }}</p>
+					
+							<table class="table">
+						        <thead>
+					               <tr>
+						               <th scope="col"width="50%" translate="template.tabel.nama"></th>
+					                   <th scope="col"ng-show="uploader.isHTML5" translate="promise.procurement.manajemenvendor.blacklistvendor.view.ukuran"></th>
+					                   <th scope="col"ng-show="uploader.isHTML5" translate="promise.procurement.manajemenvendor.blacklistvendor.view.progress"></th>
+					                   <th scope="col">Status</th>
+					                   <th scope="col"translate="template.tabel.aksi"></th>
+					              </tr>
+						        </thead>
+					            <tbody>
+					              <tr ng-repeat="item in uploader.queue">
+					                   <td>
+					                   		<strong>{{ item.file.name }}</strong>
+											<div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+					                   </td>
+					                   <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+					                   <td ng-show="uploader.isHTML5">
+						                   <div class="progress" style="margin-bottom: 0;">
+					    		               <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+					            	       </div>
+										</td>
+					                   <td class="text-center">
+					                       <span ng-show="item.isSuccess"><em class="glyphicon glyphicon-ok"></em></span>
+					                       <span ng-show="item.isCancel"><em class="glyphicon glyphicon-ban-circle"></em></span>
+					                       <span ng-show="item.isError"><em class="glyphicon glyphicon-remove"></em></span>
+					                   </td>
+						              <td nowrap>
+					                       <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+						                      <span class="glyphicon glyphicon-trash"></span> Remove
+					                       </button>
+					                  </td>
+						             </tr>
+					             </tbody>
+							</table>
+					
+					        <div>
+						        <div>
+					             Queue progress:
+						            <div class="progress" style="">
+						                <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+						            </div>
+					            </div>
+					            <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
+						            <span class="glyphicon glyphicon-upload"></span> Upload all
+					            </button>
+					            <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
+					                <span class="glyphicon glyphicon-trash"></span> Remove all
+					            </button>
+					            <strong style="color:red" translate={{vm.errorMessageFile}}></strong>
+					       </div>			
+						</div> 
+					</div>
+					<br/>
+					<div class="row">
+						<div class="col-md-3"></div>
+						<div class="col-md-9">
+							<div class="col-sm-12">
+								<button type="button" ripple="" class="mr btn btn-sm bg-default"
+									ng-click=" back()">
+									<span translate="template.button.kembali"></span>
+								</button>
+								<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="save()" ng-if="vm.unblacklist == true">
+									<span translate="template.button.simpan"></span>
+								</button>
+								<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="formUnblacklist()" ng-if="vm.unblacklist == false && vm.canUnblacklist == true">
+									<span>Unblacklist</span>
+								</button>
+								<span ng-if="vm.unblacklist == false && vm.canUnblacklist == false">
+									<font color="blue" translate="promise.procurement.manajemenvendor.blacklistvendor.view.sedang_dalam_proses" ></font>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

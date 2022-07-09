@@ -1,0 +1,309 @@
+<!--
+SPESIFIC VIEW EDIT OF THE DATA KEUANGAN MENU
+------------- START CONTROLLER -------------
+-->
+
+<div class="app-view-header">
+    <span translate="promise.procurement.vendor.datakualifikasi.JUDUL"></span>
+    <small><span translate="promise.procurement.vendor.datakualifikasi.SUBJUDUL"></span></small>
+</div>
+<toaster-container toaster-options="{'position-class': 'toast-top-center', 'close-button':true}"></toaster-container>
+
+
+<div class="panel panel-primary" ng-controller="DataKualifikasiDetilController as form">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-group">&nbsp;</em><span translate="promise.procurement.vendor.datakualifikasi.view.auditor.JUDUL"></span></h4>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong></div>
+                <form method="post" action="#" novalidate="" class="form-horizontal">
+                    <fieldset>
+                        <div class="row">
+                            <label class="col-sm-3 control-label"><span translate="promise.procurement.vendor.datakualifikasi.view.auditor.NOMOR"></span>
+                                <label class="text-danger">*)</label>
+                            </label>
+                            <div class="col-sm-6">
+                                <input name="nomorAudit" type="text" class="form-control shadow-z1 input-sm" ng-model="form.dataKualifikasi.nomorAudit">
+                                <p ng-show="form.dataKualifikasi.nomorAuditError" style="color:red">nomor Audit Harus diisi</p>
+                                <br/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-3 control-label"><span translate="promise.procurement.vendor.datakualifikasi.view.auditor.TANGGAL"></span>
+                                <label class="text-danger">*)</label>
+                            </label>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <input name="tanggalAudit" type="text" datepicker-popup="dd/MM/yyyy" ng-model="form.dataKualifikasi.tanggalAudit" is-open="tanggalAuditStatus" class="form-control shadow-z1 input-sm" show-button-bar="false" readonly="true" required/>
+                                    <span class="input-group-btn">
+										<button type="button" ng-click="tanggalAuditOpen($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+											<em class="fa fa-calendar"></em>
+										</button>
+									</span>
+                                </div>
+                                <p ng-show="form.dataKualifikasi.tanggalAuditError" style="color:red">tanggal Audit Harus diisi</p>
+                                <br/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-3 control-label"><span translate="promise.procurement.vendor.datakualifikasi.view.auditor.NAMA"></span>
+                                <label class="text-danger">*)</label>
+                            </label>
+                            <div class="col-sm-6">
+                                <input name="namaAudit" type="text" class="form-control shadow-z1 input-sm" ng-model="form.dataKualifikasi.namaAudit">
+                                <p ng-show="form.dataKualifikasi.namaAuditError" style="color:red">nama Audit Harus diisi</p>
+                                <br/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-group">&nbsp;</em><span translate="promise.procurement.vendor.datakualifikasi.view.keuangan.JUDUL"></span></h4>
+                        </div>
+                        <div class="row">
+                            <div class="table-responsive" style="overflow:visible;">
+                                <table id="table-ext-1" class="table table-bordered table-hover" width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <td style="text-align:left" width="40%"><span translate="promise.procurement.vendor.datakualifikasi.view.keuangan.TAHUN"></span></td>
+                                            <td style="text-align:left" width="60%">{{ form.dataKualifikasi.tahunKeuangan }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:left"><span translate="promise.procurement.vendor.datakualifikasi.view.keuangan.TANGGALUPDATE"></span></td>
+                                            <td style="text-align:left">
+                                                <div class="col-sm-6">
+                                                    <div class="input-group">
+                                                        <input name="tanggalUpdate" type="text" datepicker-popup="dd/MM/yyyy" ng-model="form.dataKualifikasi.tanggalKeuanganUpdate" is-open="tanggalUpdateStatus" class="form-control shadow-z1 input-sm" show-button-bar="false" readonly="true" required/>
+                                                        <span class="input-group-btn">
+										<button type="button" ng-click="tanggalUpdateOpen($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+											<em class="fa fa-calendar"></em>
+										</button>
+									</span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <table class="table table-hover table-condensed table-striped bg-white">
+                                <thead>
+                                    <tr style="font-weight: bold">
+                                        <th scope="col"style="width:5%; text-align:left"></th>
+                                        <th scope="col"style="width:15%; text-align:left"></th>
+                                        <th scope="col"style="width:15%; text-align:left"></th>
+                                        <th scope="col"style="width:15%; text-align:left"></th>
+                                        <th scope="col"style="width:5%; text-align:left"></th>
+                                        <th scope="col"style="width:15%; text-align:left"></th>
+                                        <th scope="col"style="width:15%; text-align:left"></th>
+                                        <th scope="col"style="width:15%; text-align:left"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="4">
+                                            <center><span translate="">AKTIVA</span></center>
+                                        </td>
+                                        <td colspan="4">
+                                            <center><span translate="">PASIVA</span></center>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><span translate="">I</span></td>
+                                        <td colspan="3"><span translate="">Aktiva Lancar, terdiri dari :</span></td>
+                                        <td><span translate="">IV</span></td>
+                                        <td colspan="3"><span translate="">Hutang Jangka Pendek, terdiri dari :</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><span translate="">Kas</span></td>
+                                        <td>
+                                            <input name="dataKas" type="number" class="form-control shadow-z1 input-sm" ng-model="form.dataKualifikasi.kas" ng-change="tambahAktivaLancar(); rugiLaba(); totalPasiva()">
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><span translate="">Hutang Dagang</span></td>
+                                        <td>
+                                            <input type="number" class="form-control shadow-z1 input-sm" ng-model="form.dataKualifikasi.hutangDagang" ng-change="tambahPasiva(); rugiLaba(); totalPasiva()">
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><span translate="">Bank</span></td>
+                                        <td>
+                                            <input type="number" class="form-control shadow-z1 input-sm" ng-model="form.dataKualifikasi.bank" ng-change="tambahAktivaLancar(); rugiLaba(); totalPasiva()">
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><span translate="">Hutang Pajak</span></td>
+                                        <td>
+                                            <input type="number" class="form-control shadow-z1 input-sm" ng-model="form.dataKualifikasi.hutangPajak" ng-change="tambahPasiva(); rugiLaba(); totalPasiva()">
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><span translate="">Total Piutang</span></td>
+                                        <td>
+                                            <input type="number" class="form-control shadow-z1 input-sm" ng-model="form.dataKualifikasi.totalPiutang" ng-change="tambahAktivaLancar(); rugiLaba(); totalPasiva()">
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><span translate="">Persediaan Barang</span></td>
+                                        <td>
+                                            <input type="number" class="form-control shadow-z1 input-sm" ng-model="form.dataKualifikasi.persediaanBarang" ng-change="tambahAktivaLancar(); rugiLaba(); totalPasiva()">
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><span translate="">Hutang Lainnya</span></td>
+                                        <td>
+                                            <input type="number" class="form-control shadow-z1 input-sm" ng-model="form.dataKualifikasi.hutangLainnya" ng-change="tambahPasiva(); rugiLaba(); totalPasiva()">
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><span translate="">Pekerjaan dalam proses</span></td>
+                                        <td>
+                                            <input type="number" class="form-control shadow-z1 input-sm" ng-model="form.dataKualifikasi.pekerjaanDalamProses" ng-change="tambahAktivaLancar(); rugiLaba(); totalPasiva()">
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><span translate="">Total (IV)</span></td>
+                                        <td></td>
+                                        <td>
+                                            <input type="number" class="form-control shadow-z1 input-sm" ng-model="form.dataKualifikasi.totalHutangJangkaPendek" ng-change="totalPasiva()" readonly>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><span translate="">Total (I)</span></td>
+                                        <td></td>
+                                        <td>
+                                            <input type="number" class="form-control shadow-z1 input-sm" ng-model="form.dataKualifikasi.totalAktivaLancar" ng-change="totalAktiva()" readonly>
+                                        </td>
+                                        <td><span translate="">V</span></td>
+                                        <td><span translate="">Hutang Jangka Panjang</span></td>
+                                        <td></td>
+                                        <td>
+                                            <input type="number" class="form-control shadow-z1 input-sm" ng-model="form.dataKualifikasi.hutangJangkaPanjang" ng-change="totalPasiva(); rugiLaba(); totalPasiva()">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><span translate="">II</span></td>
+                                        <td><span translate="">Aktiva Tetap, terdiri dari</span></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><span translate="">VI</span></td>
+                                        <td><span translate="">Kekayaan bersih (I + II + III) - (IV + V)</span></td>
+                                        <td></td>
+                                        <td>
+                                            <input type="number" class="form-control shadow-z1 input-sm" ng-model="form.dataKualifikasi.kekayaanBersih" ng-change="totalPasiva()" readonly>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><span translate="">Peralatan dan mesin</span></td>
+                                        <td>
+                                            <input type="number" class="form-control shadow-z1 input-sm" ng-model="form.dataKualifikasi.peralatanDanMesin" ng-change="tambahAktivaTetap(); rugiLaba(); totalPasiva()">
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><span translate="">Inventaris</span></td>
+                                        <td>
+                                            <input type="number" class="form-control shadow-z1 input-sm" ng-model="form.dataKualifikasi.inventaris" ng-change="tambahAktivaTetap(); rugiLaba(); totalPasiva()">
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><span translate="">Gedung - gedung</span></td>
+                                        <td>
+                                            <input type="number" class="form-control shadow-z1 input-sm" ng-model="form.dataKualifikasi.gedungGedung" ng-change="tambahAktivaTetap(); rugiLaba(); totalPasiva()">
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><span translate="">Total (II)</span></td>
+                                        <td></td>
+                                        <td>
+                                            <input type="number" class="form-control shadow-z1 input-sm" ng-model="form.dataKualifikasi.totalAktivaTetap" ng-change="totalAktiva()" readonly>
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span translate="">III</span></td>
+                                        <td><span translate="">Aktiva Lainnya (III)</span></td>
+                                        <td></td>
+                                        <td>
+                                            <input type="number" class="form-control shadow-z1 input-sm" ng-model="form.dataKualifikasi.aktivaLainnya" ng-change="totalAktiva(); rugiLaba(); totalPasiva()">
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><span translate="">Total</span></td>
+                                        <td></td>
+                                        <td>
+                                            <input type="number" class="form-control shadow-z1 input-sm" ng-model="form.dataKualifikasi.totalAktiva" readonly>
+                                        </td>
+                                        <td></td>
+                                        <td><span translate="">Total</span></td>
+                                        <td></td>
+                                        <td>
+                                            <input type="number" class="form-control shadow-z1 input-sm" ng-model="form.dataKualifikasi.totalPasiva" readonly>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <br>
+                        <div align="center" class="row">
+                            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="back()"><em class="fa fa-arrow-circle-left">&nbsp;</em>
+                                <span translate="promise.procurement.panitia.pemasukandokumenkualifikasi.view.btn.KEMBALI"></span>
+                            </button>
+                            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="btnSimpan()">
+                                <span translate="promise.procurement.panitia.pemasukandokumenkualifikasi.view.btn.SIMPAN"></span>&nbsp;<em class="fa fa-check"></em>
+                            </button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,190 @@
+<div class="app-view-header">
+	<span><span translate="promise.procurement.master.reportCatalogContrack.judul_kontrak"></span></span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary"
+	ng-controller="LaporanCatalogContrackController as vm ">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<em class="fa fa-tasks"></em> <span><span translate="promise.procurement.master.reportCatalogContrack.judul_kontrak"></span></span> <a
+			class="pull-right btn-collapse" data-toggle="collapse"
+			data-parent=".panel" href=".panel-body" aria-expanded="true"
+			aria-controls="panel-body"> <em class="fa fa-chevron-circle-down"></em>
+		</a>
+	</h4>
+
+	<div class="col-lg-12 p-b b-b m-b">
+		<div class="col-md-4">
+			<div class="form-group">
+				<label class="col-md-12 text-left control-label">Sort By </label>
+				<div class="col-md-12">
+					<select name="login" class="form-control"
+						ng-model="vm.param.orderKeyword" ng-change="catalogContrackList()">
+						<option value="">++ Pilih ++</option>
+						<option ng-repeat="option in vm.sortHeaderList" value="{{option.value}} asc">{{option.name}} A-Z</option>
+						<option ng-repeat="option in vm.sortHeaderList" value="{{option.value}} desc">{{option.name}} Z-A</option>
+					</select>
+				</div>
+			</div>
+		</div>
+
+		<!-- <div class="col-md-2">
+			<div class="form-group">
+				<label class="col-md-12 text-left control-label">Sort </label>
+				<div class="col-md-12">
+					<select name="login" class="form-control" ng-model="vm.param.sort"
+						ng-change="catalogContrackList()" theme="bootstrap"
+						ng-required="true" required>{{$select.selected.nama}}
+						<option value="" disabled selected>++ Pilih ++</option>
+						<option ng-repeat="option in vm.sortAscDesc"
+							value="{{option.value}}">{{option.name}}</option>
+
+					</select>
+				</div>
+			</div>
+		</div> -->
+
+		<div class="col-md-4">
+			<div class="form-group">
+				<label class="col-md-12 text-left control-label">Penyedia </label>
+				<div class="col-md-12">
+					<select name="login" class="form-control"
+						ng-model="vm.param.vendorName" ng-change="catalogContrackList()"
+						theme="bootstrap" ng-required="true" required>{{$select.selected.nama}}
+						<option value="" disabled selected>++ Pilih ++</option>
+						<option ng-repeat="option in vm.vendorList">{{option.nama}}</option>
+
+					</select>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-4">
+			<div class="form-group">
+				<label class="col-md-12 text-left control-label">Nama Pekerjaan</label>
+				<div class="col-md-12">
+					<div class="search-icon">
+						<input class="form-control" placeholder="Search..." type="text"
+							ng-model="vm.param.namaPekerjaan" ng-change="catalogContrackList()">
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-md-4">
+		<div class="form-group col-md-12">
+		<br/>
+			<label class="control-label">Tanggal Kontrak</label>
+			<div class="input-group">
+				<input placeholder="Start" type="text" datepicker-popup="dd/MM/yyyy"
+					max-date="endDate" ng-model="vm.param.startDate"
+					is-open="tanggalStartStatus" ng-change="catalogContrackList()"
+					class="form-control shadow-z1 input-sm" show-button-bar="true"
+					readonly="true" required /> <span class="input-group-btn">
+					<button type="button" ng-click="tanggalStartOpen($event)"
+						class="btn btn-default shadow-z1 input-sm " ripple="">
+						<em class="fa fa-calendar"></em>
+					</button>
+				</span>
+			</div>
+			</div>
+		</div>
+		
+		<div class="col-md-4">
+		<div class="form-group col-md-12">
+		<br/>
+			<label class="control-label">Tanggal Kontrak</label>
+			<div class="input-group">
+				<input placeholder="End" min-date="startDate" type="text"
+					datepicker-popup="dd/MM/yyyy" ng-change="catalogContrackList()"
+					ng-model="vm.param.endDate" is-open="tanggalEndStatus"
+					class="form-control shadow-z1 input-sm" show-button-bar="true"
+					readonly="true" required /> <span class="input-group-btn">
+					<button type="button" ng-click="tanggalEndOpen($event)"
+						class="btn btn-default shadow-z1 input-sm " ripple="">
+						<em class="fa fa-calendar"></em>
+					</button>
+				</span>
+			</div>
+		</div>
+		</div>
+	</div>
+
+	<div class="panel-body collapse in">
+		<div class="col-md-12 table-responsive">
+			<div class="text-right pr">
+				<button ng-class="'bg-' + app.theme.name" type="button"
+					class="btn btn-primary btn-add" ng-click="downLoad()">
+					<span translate="Export"></span>
+				</button>
+				<br><br>
+			</div>
+			<div align="center" ng-if="vm.loading == true">
+				<strong><em>Loading...</em><img src="app/img/loading.gif" border="0"
+					width="20px" /></strong>
+			</div>
+			<table class="table table-striped table-bordered table-hover">
+				<thead>
+					<tr style="font-weight: bold; background-color:#EEEEEE">
+						<th scope="col"><span translate="template.tabel.nomor"></span></th>
+						<th scope="col"><span
+							translate="promise.procurement.master.reportCatalogContrack.list.noContract"></span>
+						</th>
+						<th scope="col"><span
+							translate="promise.procurement.master.reportCatalogContrack.list.jobName"></span>
+						</th>
+						<th scope="col"><span
+							translate="promise.procurement.master.reportCatalogContrack.list.contractNilai"></span>
+						</th>
+						<th scope="col"><span
+							translate="promise.procurement.master.reportCatalogContrack.list.vendorName"></span>
+						</th>
+						<th scope="col"><span
+							translate="promise.procurement.master.reportCatalogContrack.list.tglAkhir"></span>
+						</th>
+						<th scope="col"><span
+							translate="promise.procurement.master.reportCatalogContrack.list.timeLeft"></span>
+						</th>
+						<th scope="col"><span
+							translate="promise.procurement.master.reportCatalogContrack.list.keterangan"></span>
+						</th>
+					</tr>
+					<tr ng-hide="vm.dataList.length">
+						<td style="text-align: center" colspan="7"> No Data Available In Table</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="catalogContract in vm.dataList">
+						<td style="text-align: center">{{ ((vm.param.pageNo -1) *
+							vm.param.pageSize ) + $index+1 }}</td>
+						<td style="text-align: left">{{catalogContract.nomorKontrak}}</td>
+						<td style="text-align: left">{{catalogContract.namaPekerjaan}}</td>
+						<td style="text-align: left">{{catalogContract.nilaiKontrak |
+							number : 2}}</td>
+						<td style="text-align: left">{{catalogContract.vendor.nama}}</td>
+						<td style="text-align: left">{{catalogContract.tglAkhirKontrak
+							| date:"dd/MM/yyyy"}}</td>
+						<td style="text-align: left">{{catalogContract.reamingTime}}</td>
+						<td style="text-align: center">
+						<span ng-if =catalogContract.refCatalogKontrakId==null>-</span>
+						<span ng-if =catalogContract.refCatalogKontrakId != null && catalogContract.id == catalogContract.refCatalogKontrakId>Addendum dari Kontrak Nomor {{catalogContract.nomorKontrak}}</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="page-option col-md-2">
+			<span class="page-opt-text">Show :</span> <a class="page-opt-num"
+				ng-click="pageChanged(5)">5</a> <a class="page-opt-num"
+				ng-click="pageChanged(10)">10</a> <a class="page-opt-num"
+				ng-click="pageChanged(25)">25</a>
+		</div>
+		<div class="text-right">
+			<pagination first-text="<<" previous-text="<" next-text=">"
+				last-text=">>" items-per-page="vm.param.pageSize"
+				total-items="vm.totalItems" ng-model="vm.param.pageNo"
+				max-size="vm.param.pageSize" boundary-links="true"
+				class="pagination-sm" ng-click="setPage()"></pagination>
+		</div>
+	</div>
+</div>
+<!--END CONTROLLER-->

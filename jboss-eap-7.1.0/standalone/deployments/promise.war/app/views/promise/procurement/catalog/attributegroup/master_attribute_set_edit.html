@@ -1,0 +1,106 @@
+<div class="app-view-header">
+    <span>Master Attribute Group</span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="masterAttrSetEditCtrl as vm">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <em class="fa fa-tasks"></em>
+        <span>Master Attribute Group</span>
+        <a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+                <em class="fa fa-chevron-circle-down"></em>
+        </a>
+    </h4>
+    <form class="form-horizontal" name="form">
+        <div class="panel-body collapse in">
+            <div class="form-group">
+                <label class="col-lg-3 control-label required">Name</label>
+                <div class="col-lg-7">
+                    <input name="name" class="form-control" maxlength="250" ng-model="attributeGroup.name" ng-blur="cekValidSame(attributeGroup.name)"><strong style="color: red" translate={{vm.errorMessageName}}></strong>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label required">Description</label>
+                <div class="col-lg-7">
+                    <textarea name="description" class="form-control" maxlength="250" ng-model="attributeGroup.description"></textarea><strong style="color: red" translate={{vm.errorMessageDesc}}></strong>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Status</label>                                            
+                <div class="col-lg-2">
+                    <div class="c-checkbox">
+                        <label>
+                            <input type="checkbox" class="form-control m-b shadow-z1 input-sm" ng-model="attributeGroup.flagEnabled">
+                            <span class="fa fa-check m-sm"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <fieldset>
+                <div class="row">
+                    <div class="col-md-6 b-r">
+                        <h3 class="page-header m-t-none">Groups
+                            <a class="btn btn-primary btn-sm btn-add pull-right" ng-click="addGroup()"> Add Group</a>
+                        </h3>
+                        <div ui-tree>
+                            <ol ui-tree-nodes="" ng-model="attributeGroup.attributePanelGroupList" data-nodrop-enabled="true">
+                                <li ui-tree-node ng-repeat="attributePanelGroup in attributeGroup.attributePanelGroupList">
+                                    <div ui-tree-handle class="tree-node tree-node-content" data-nodrag>
+                                        {{attributePanelGroup.name}}
+                                        <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="removeGroup(attributePanelGroup)"><span class="fa fa-remove"></span></a>
+                                        <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="editGroup(attributePanelGroup)" style="margin-right: 8px;"><span class="fa fa-pencil fa-lg"></span></a>
+                                    </div>
+                                    <ol ui-tree-nodes="" ng-model="attributePanelGroup.attributeList">
+                                        <li ng-repeat="attribute in attributePanelGroup.attributeList" ui-tree-node>
+                                            <div ui-tree-handle class="tree-node tree-node-content">
+                                                {{attribute.name}}
+                                            </div>
+                                        </li>
+                                    </ol>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="col-md-6 b-l">
+                        <h3 class="page-header m-t-none">Unassigned Attributes</h3>
+                        <div ui-tree>
+                            <ol ui-tree-nodes ng-model="attributeList">
+                                <li ng-repeat="attribute in attributeList" ui-tree-node>
+                                    <div ui-tree-handle class="tree-node tree-node-content">
+                                        {{attribute.name}}
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    </div>
+            </fieldset>
+            <div class="form-group text-center">
+            		<a class="btn btn-default" ng-click="kembali()"> <span translate="promise.procurement.master.attribute.btn.KEMBALI"></span>
+					</a>
+                    <!-- <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="btn btn-secondary" ng-click="kembali()">
+                       <span translate="promise.procurement.master.attribute.btn.KEMBALI"></span>
+                    </button> -->
+                    <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="btn btn-primary" ng-click="simpan()">
+                        <span translate="promise.procurement.master.attribute.btn.SIMPAN"></span>
+                    </button>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/ng-template" id="addGroup.html">
+	<div class="modal-header">
+	    	<h3 class="modal-title">Add New Group</h3>
+	    </div>
+	    <div class="modal-body form-horizontal">
+	        <div class="form-group m-t">
+	        	<label class="col-lg-3 control-label">Group Name</label>
+	            <div class="col-lg-7">
+	            	<input ng-model="groupName" maxlength="250" class="form-control"><strong style="color: red" translate={{errorMessageGroupName}}></strong>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="modal-footer">
+	        <button class="btn btn-secondary" type="button" ng-click="cancel()">Cancel</button>
+	        <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+	    </div>
+</script>

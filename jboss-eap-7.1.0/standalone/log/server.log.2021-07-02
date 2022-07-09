@@ -1,0 +1,25 @@
+2021-07-02 00:37:59,854 INFO  [id.co.promise.procurement.utils.generator.GeneratorServices] (default task-31) >>> backendAddressRoot = http://localhost:8082
+2021-07-02 00:37:59,944 INFO  [id.co.promise.procurement.utils.generator.GeneratorServices] (default task-31) >>> cmAppLink          = http://localhost:8082/cm/dashboard.promise
+2021-07-02 00:37:59,944 INFO  [id.co.promise.procurement.utils.generator.GeneratorServices] (default task-31) >>> pmAppLink          = http://localhost:18989/kai/dashboard.promise
+2021-07-02 00:38:06,793 INFO  [id.co.promise.procurement.utils.SecurityToolServices] (default task-27) ==> IS_INSERT_SECURITY_SERVICES?true
+2021-07-02 00:38:06,799 INFO  [id.co.promise.procurement.utils.SecurityToolServices] (default task-27) token?a
+2021-07-02 00:38:06,799 INFO  [id.co.promise.procurement.utils.SecurityToolServices] (default task-27) activeMenuId?0
+2021-07-02 00:38:14,992 INFO  [id.co.promise.procurement.utils.SecurityToolServices] (default task-18) ==> IS_INSERT_SECURITY_SERVICES?true
+2021-07-02 00:38:14,992 INFO  [id.co.promise.procurement.utils.SecurityToolServices] (default task-18) token?a
+2021-07-02 00:38:14,992 INFO  [id.co.promise.procurement.utils.SecurityToolServices] (default task-18) activeMenuId?0
+2021-07-02 00:38:57,426 INFO  [id.co.promise.procurement.utils.SecurityToolServices] (default task-41) ==> IS_INSERT_SECURITY_SERVICES?true
+2021-07-02 00:38:57,427 INFO  [id.co.promise.procurement.utils.SecurityToolServices] (default task-41) token?a
+2021-07-02 00:38:57,427 INFO  [id.co.promise.procurement.utils.SecurityToolServices] (default task-41) activeMenuId?0
+2021-07-02 00:39:09,846 INFO  [id.co.promise.procurement.security.LoginServices] (default task-3) User :suadmin
+2021-07-02 00:39:10,888 INFO  [id.co.promise.procurement.utils.SecurityToolServices] (default task-7) ==> IS_INSERT_SECURITY_SERVICES?true
+2021-07-02 00:39:10,888 INFO  [id.co.promise.procurement.utils.SecurityToolServices] (default task-7) token?AA76CCFAE7B0BCB597A14B48623957B4A82333928B3750F79B181A9733245323
+2021-07-02 00:39:10,888 INFO  [id.co.promise.procurement.utils.SecurityToolServices] (default task-7) activeMenuId?0
+2021-07-02 00:39:10,917 INFO  [id.co.promise.procurement.utils.SecurityToolServices] (default task-59) ==> IS_INSERT_SECURITY_SERVICES?true
+2021-07-02 00:39:10,917 INFO  [id.co.promise.procurement.utils.SecurityToolServices] (default task-59) token?AA76CCFAE7B0BCB597A14B48623957B4A82333928B3750F79B181A9733245323
+2021-07-02 00:39:10,918 INFO  [id.co.promise.procurement.utils.SecurityToolServices] (default task-59) activeMenuId?0
+2021-07-02 00:39:10,935 INFO  [id.co.promise.procurement.utils.SecurityToolServices] (default task-7) User = id.co.promise.procurement.entity.User@5035b787  activeMenuId = 0  requestPath = /procurement/master/organisasi/get-by-id/null
+2021-07-02 00:39:10,950 INFO  [id.co.promise.procurement.utils.SecurityToolServices] (default task-59) User = id.co.promise.procurement.entity.User@50e645aa  activeMenuId = 0  requestPath = /procurement/master/roleUserServices/getListByToken
+2021-07-02 00:55:57,073 INFO  [id.co.promise.procurement.utils.SecurityToolServices] (default task-11) ==> IS_INSERT_SECURITY_SERVICES?true
+2021-07-02 00:55:57,073 INFO  [id.co.promise.procurement.utils.SecurityToolServices] (default task-11) token?AA76CCFAE7B0BCB597A14B48623957B4A82333928B3750F79B181A9733245323
+2021-07-02 00:55:57,073 INFO  [id.co.promise.procurement.utils.SecurityToolServices] (default task-11) activeMenuId?0
+2021-07-02 00:55:57,215 INFO  [id.co.promise.procurement.utils.SecurityToolServices] (default task-11) User = id.co.promise.procurement.entity.User@76b99f02  activeMenuId = 0  requestPath = /catalog/CategoryPortalServices/findAllWithTree

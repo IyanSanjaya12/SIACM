@@ -1,0 +1,343 @@
+<div class="app-view-header"> 
+	<span translate="promise.procurement.master.additionaluser.judul"></span>
+</div>
+<div class="panel panel-primary" ng-controller="AdditionalUserViewController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-tasks"></em>
+		<span translate="promise.procurement.master.additionaluser.view.subjudul"></span>
+		<a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+				<em class="fa fa-chevron-circle-down"></em>
+		</a>
+	</h4>
+	
+	<div class="panel-body collapse in">
+		<div class="text-center" ng-if="vm.loading == true">
+			<strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong>
+		</div>
+		<form method="post" action="#" novalidate="" class="form-horizontal" ng-class="{'submitted' : vm.submitted}" name="formAdditionalUser">
+			<div class="form-group">
+				<label class="col-sm-4 control-label required">
+					<span translate="promise.procurement.master.additionaluser.view.organisasiPlh"></span>
+				</label>
+				<div class="col-sm-4">
+					<div class="col-sm-12">
+						<ui-select ng-model="vm.additionalUser.organisasi" name="organisasiPlh" ng-change="changeOrganisasiPlh()" theme="bootstrap" ng-disabled="vm.toDo == 'Edit'" readonly="vm.toDo == 'Edit'" required>
+							<ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+							<ui-select-choices repeat="organisasi in vm.organisasiListParentIsNull | filter: $select.search">
+								<div ng-bind-html="organisasi.nama | highlight: $select.search"></div>
+							</ui-select-choices>
+						</ui-select>
+						<strong style="color: red">{{vm.errorOrganisasi}}</strong>
+					</div>
+				</div>
+			</div> 
+			<div class="form-group">
+				<label class="col-sm-4 control-label required">
+					<span translate="promise.procurement.master.additionaluser.view.jabatan"></span>
+				</label>
+				<div class="col-sm-4">
+					<div class="col-sm-12">
+						<ui-select ng-model="vm.additionalUser.jabatan" name="jabatan" ng-change="changeJabatan()" theme="bootstrap" ng-disabled="vm.toDo == 'Edit'" required>
+							<ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+							<ui-select-choices repeat="jabatan in vm.jabatanList | filter: $select.search">
+								<div ng-bind-html="jabatan.nama | highlight: $select.search"></div>
+							</ui-select-choices>
+						</ui-select>
+						<strong style="color: red">{{vm.errorJabatan}}</strong>
+					</div>
+				</div>
+			</div> 
+			<div class="form-group">
+				<label class="col-sm-4 control-label">
+					<span translate="promise.procurement.master.additionaluser.view.kodePlh"></span>
+				</label>
+				<div class="col-sm-4">
+					<div class="col-sm-12">
+						<input id="nippPlh"  name="nippPlh" type="text" class="form-control" ng-model="vm.additionalUser.nippPlh" maxlength="20" readonly="true" required />
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label required">
+					<span translate="promise.procurement.master.additionaluser.view.namaUser"></span>
+				</label>
+				<div class="col-sm-4">
+					<div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="input-group">
+                                    <input type="text" id="namaPengguna"  name="namaPengguna" size="50" ng-model="vm.post.namaPengguna" ng-change="changeNamaPengguna()" class="form-control shadow-z1 input-sm" disabled />
+                                    <span class="input-group-btn">
+										<button type="button" ng-click="searchUserForm()" class="btn btn-default shadow-z1 input-sm " ripple="" ng-disabled="vm.toDo == 'Edit'">
+											<em class="fa fa-search"></em> <em class="fa fa-users"></em>
+										</button>
+									</span>
+                                </div>
+								<strong style="color: red">{{vm.errorNamaPengguna}}</strong>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">
+					<span translate="promise.procurement.master.additionaluser.view.nippUser"></span>
+				</label>
+				<div class="col-sm-4">
+					<div class="col-sm-12">
+						<input id="username"  name="username" type="text" class="form-control" ng-model="vm.post.username" readonly="true" maxlength="20"  required />
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label required">
+					<span translate="promise.procurement.master.additionaluser.view.emailUser"></span>
+				</label>
+				<div class="col-sm-4">
+					<div class="col-sm-12">
+						<input id="email"  name="email" type="text" class="form-control" ng-model="vm.post.email" ng-change="changeEmail(vm.post.email)" maxlength="50"  required />
+					</div>
+					<div class="col-sm-4">
+						<strong style="color: red">{{vm.errorEmail}}</strong>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label required">
+					<span translate="promise.procurement.master.additionaluser.view.tanggalAwal"></span>
+				</label>
+				<div class="col-sm-4">
+					<div class="col-sm-12">
+						<div class="input-group">
+							<input type="text"
+								datepicker-popup="dd/MM/yyyy" min-date="vm.minDateAwal" max-date="vm.additionalUser.endDate" ng-change="changeTglAwal()"
+								ng-model="vm.additionalUser.startDate" is-open="startDateStatus" readonly="readonly"
+								class="form-control shadow-z1 input-sm" show-button-bar="true"
+								required />
+								<span class="input-group-btn">
+									<button type="button" ng-click="startDateOpen($event)"
+										class="btn btn-default shadow-z1 input-sm " ripple="">
+										<em class="fa fa-calendar"></em>
+									</button>
+								</span>
+						</div>
+						<strong style="color: red">{{vm.errorStartDate}}</strong>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label required">
+					<span translate="promise.procurement.master.additionaluser.view.tanggalAkhir"></span>
+				</label>
+				<div class="col-sm-4">
+					<div class="col-sm-12">
+						<div class="input-group">
+							<input type="text"
+								datepicker-popup="dd/MM/yyyy" min-date="vm.additionalUser.startDate" ng-change="changeTglAkhir()"
+								ng-model="vm.additionalUser.endDate" is-open="endDateStatus" readonly="readonly"
+								class="form-control shadow-z1 input-sm" show-button-bar="true"
+								required /> <span class="input-group-btn"> {{ vm.additionalUser.endDate |
+											date:"dd-MM-yyyy"}}
+								<button type="button" ng-click="endDateOpen($event)"
+									class="btn btn-default shadow-z1 input-sm " ripple="">
+									<em class="fa fa-calendar"></em>
+								</button>
+							</span>
+						</div>
+						<strong style="color: red">{{vm.errorEndDate}}</strong>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label required">
+					<span translate="promise.procurement.master.additionaluser.view.notaDinas"></span>
+				</label>
+				<div class="col-sm-4">
+					<div class="col-sm-12">
+						<div class="input-group">
+							<input filestyle="" type="file" data-button-text="file Upload"
+										data-class-button="btn btn-default"
+										data-class-input="form-control inline" nv-file-select=""
+										uploader="uploader" class="form-control" />
+									<small><strong><em>Supported file:docx,doc,pdf. Max Size:5 MB</em></strong></small>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<fieldset style="border-color: black;">
+				<div class="form-group">
+					<div class="col-sm-11" >
+						<p ng-if="uploader.queue.length" class="pull-right label label-info">Jumlah Antrian: {{uploader.queue.length }}</p>
+					</div>
+					<p class="text-left"> </p>
+					<!-- <p ng-if="!uploader.queue.length" class="text-center">Tidak Ada File, silahkan upload dokumen.</p> -->
+					<p class="text-center"> <strong style="color: red">{{errormessageImage}}</strong></p>
+					<div ng-if="uploader.queue.length">
+						<table ng-if="uploader.queue.length" class="table table-border">
+							<thead>
+								<tr>
+									<th scope="col">Nama File</th>
+									<th scope="col"ng-show="uploader.isHTML5">Proses</th>
+									<th scope="col">Aksi</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="item in uploader.queue">
+									<td class="text-center">
+										<strong>{{ item.file.name }}</strong>
+									</td>
+									<td ng-show="uploader.isHTML5">
+										<div style="margin-bottom: 0;" class="progress progress-xs">
+											<div role="progressbar" ng-style="{ 'width': item.progress + '%' }"
+												class="progress-bar">
+											</div>
+										</div>
+									</td>
+									<td class="text-center">
+										<span ng-show="item.isSuccess">
+											<em class="fa fa-check fa-fw"></em>
+										</span> 
+										<span ng-show="item.isCancel"> 
+											<em class="fa fa-ban-circle fa-fw"></em>
+										</span> 
+										<span ng-show="item.isError"> 
+											<em class="fa fa-times fa-fw"></em>
+										</span>
+									</td>
+									<td nowrap="">
+										<button type="button" ng-click="item.upload()"
+											ng-disabled="item.isReady || item.isUploading || item.isSuccess"
+											class="btn btn-info btn-sm btn-upload"> Upload
+										</button>
+										<button type="button" ng-click="item.cancel()"
+											ng-disabled="!item.isUploading"
+											class="btn btn-warning btn-sm btn-cancel"> Batal
+										</button>
+										<button type="button" ng-click="item.remove()"
+											ng-disabled="vm.toDo == 'received'"
+											class="btn btn-danger btn-sm btn-delete"> Hapus
+										</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				</fieldset>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">
+					<span translate="promise.procurement.master.additionaluser.view.nonAktif"></span>
+				</label>
+				<div class="col-sm-4">
+					<div class="col-sm-4">
+						<input type="checkbox" ng-model="vm.isActive" ng-checked="vm.checkedIsActive" ng-change="nonActiveIsChecked()" >
+					</div>
+				</div>
+			</div>
+			<div class="form-group" ng-if="vm.toDo == 'Edit'">
+				<label class="col-sm-12 text-center">
+					<span translate="promise.procurement.master.additionaluser.view.keterangan"></span>
+				</label>
+			</div>
+			<div class="form-group">
+				<div class="col-md-12 text-center">
+					<button type="button" ripple="" class="btn btn-secondary" ng-click="back()">
+						<span translate="template.button.kembali"></span>
+					</button>
+					<button type="button" ripple="" class="btn btn-primary" ng-click="save()">
+						<span translate="template.button.simpan"></span>
+					</button>
+					<button type="button" ng-if="vm.toDo == 'Edit'" ripple="" class="btn btn-info" ng-click="resend()">
+						<span translate="template.button.resend"></span>
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<script type="text/ng-template" id="/user.html">
+        <div class="modal-header" align="center">
+            <button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="cancel()">×</button>
+            <h3 id="myModalLabel" class="modal-title" style="text-align:left">List User</h3>
+        </div>
+        <div class="modal-body">
+		 	<div class="row">
+			<div class="form-group" style="text-align:right;">
+				<div class="col-sm-12">
+					<label class="col-sm-8 control-label">Nama</label>
+					<div class="col-sm-4">
+						<div class="search-icon">
+							<input class="form-control" placeholder="Search" type="text" style="border-radius: 40px;"
+								ng-model="param.nama" ng-change="UserList()">
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+			</br>
+            <div class="row">
+                <div class="col-md-12">
+					<div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr style="background-color:#EEEEEE">
+                                <th scope="col"style="text-align:center">
+                                    <span translate="promise.procurement.master.additionaluser.list.no"></span>
+                                </th>
+                                <th scope="col"style="text-align:center">
+                                    <span translate="promise.procurement.master.additionaluser.listUser.nama"></span>
+                                </th>
+                                <th scope="col"style="text-align:center">
+                                    <span translate="promise.procurement.master.additionaluser.listUser.nipp"></span>
+                                </th>
+                                <th scope="col"style="text-align:center">
+                                    <span translate="promise.procurement.master.additionaluser.listUser.email"></span>
+                                </th>
+                                <th scope="col"style="text-align:center">
+                                    <span translate="promise.procurement.master.additionaluser.list.aksi"></span>
+                                </th>
+                            </tr>
+							<tr ng-hide="dataUserList.length">
+								<td style="text-align: center" colspan="6"> No Data Available In Table</td>
+							</tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="user in dataUserList">
+                                <td style="text-align: center">{{ ((param.pageNo -1) * param.pageSize ) + $index+1 }}</td>
+                                <td style="text-align: center">{{user.namaPengguna}}</td>
+                                <td style="text-align: center">{{user.username}}</td>
+                                <td style="text-align: center">{{user.email}}</td>
+                                <td style="text-align: center">
+                                    <div class="radio-inline c-radio">
+                                        <label>
+                                            <input id="inlineradio1" type="radio" name="i-radio" ng-click="pilihUser(user)" />
+                                            <span class="fa fa-circle"></span>
+										</label>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+					</div>
+					<div class="page-option col-md-2">
+						<span class="page-opt-text">Show :</span> <a class="page-opt-num"
+						ng-click="pageChanged(5)">5</a> <a class="page-opt-num"
+						ng-click="pageChanged(10)">10</a> <a class="page-opt-num"
+						ng-click="pageChanged(25)">25</a>
+					</div>
+					<div class="text-right">
+						<pagination first-text="<<" previous-text="<" next-text=">"
+						last-text=">>" items-per-page="param.pageSize"
+						total-items="totalItems" ng-model="param.pageNo"
+						max-size="param.pageSize" boundary-links="true"
+						class="pagination-sm" ng-click="setPage()"></pagination>
+					</div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button ng-click="ok()" class="btn btn-primary">Simpan</button>
+            <button ng-click="cancel()" class="btn btn-warning">Cancel</button>
+        </div>
+    </script>
+</div>

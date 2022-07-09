@@ -1,0 +1,50 @@
+<div class="app-view-header">	
+	<span translate="promise.procurement.master.negara.judul"></span>
+</div>
+<div class="panel panel-primary" ng-controller="NegaraViewController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-tasks"></em>
+			<span ng-if="vm.toDo == 'Add'" translate="promise.procurement.master.negara.view.subjudul_tambah"></span>
+			<span ng-if="vm.toDo == 'Edit'" translate="promise.procurement.master.negara.view.subjudul_ubah"></span>
+			<a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+					<em class="fa fa-chevron-circle-down"></em>
+			</a>
+	</h4>
+	<div class="panel-body collapse in">
+		<div class="text-center" ng-if="loading == true">	<strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong>
+		</div>
+		<form method="post" action="#" novalidate="" class="form-horizontal" ng-class="{'submitted' : vm.submitted}" name="formNegara">
+			<div class="form-group">
+				<label class="col-md-4 control-label required">	<span translate="promise.procurement.master.negara.view.nama"></span>
+				</label>
+				<div class="col-md-4">
+					<input name="namaNegara" type="text" class="form-control" maxlength="250" ng-model="vm.negara.nama" required ng-blur="delValidation($event)" />
+					<div class="input-error" ng-show="(vm.submitted && formNegara.namaNegara.$invalid)">
+						<p ng-show="formNegara.namaNegara.$error.required" translate="template.error.field_kosong"></p>
+						<p ng-show="!formNegara.namaNegara.$error.required && formNegara.namaNegara.$error.namaNegara" translate="promise.procurement.master.negara.error.nama_sama"></p>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-4 control-label required">	<span translate="promise.procurement.master.negara.list.ibu_kota"></span>
+				</label>
+				<div class="col-md-4">
+					<input name="ibuKotaNegara" type="text" class="form-control" maxlength="250" ng-model="vm.negara.ibuKota" required ng-blur="delValidation($event)" />
+					<div class="input-error" ng-show="(vm.submitted && formNegara.ibuKotaNegara.$invalid)">
+						<p ng-show="formNegara.ibuKotaNegara.$error.required" translate="template.error.field_kosong"></p>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-12 text-center">
+					<button type="button" ripple="" class="btn btn-secondary" ng-click="back()">	
+						<span translate="template.button.kembali"></span>
+					</button>
+					<button type="button" ripple="" class="btn btn-primary" ng-click="save(formNegara.$valid)">	
+						<span translate="template.button.simpan"></span>
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

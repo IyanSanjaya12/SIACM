@@ -1,0 +1,150 @@
+<div class="row-clone" ng-repeat="shipTo in form.shippingToList" ng-init="indexShip = $index+1">
+		<fieldset class="p-t-xl" ng-show="indexShip">
+			<label class="fieldset-label" ng-bind="'Shipping ' + ($index+1)"></label>	<a class="close-btn control-label text-danger del-btn" ng-click="form.btnDelShipping($index)"><em class="fa fa-close"></em></a>
+			<div class="col-lg-12">
+				<div class="form-group">
+					<label class="col-lg-2 control-label">Company Name</label>
+					<div class="col-md-7">
+						<input type="text" ng-model="shipTo.organisasi.nama" class="form-control">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-12 control-label text-left">Select Shipping Address From Your Address Book or New Address</label>
+					<div class="col-lg-12">
+						<select class="form-control" ng-model="shipTo.addressBook.id" ng-change="form.selectBillingAdressShipping($index)">
+							<option ng-repeat="billingAddress in form.billingAddressList" value="{{billingAddress.id}}" ng-bind="billingAddress.addressLabel+', '+billingAddress.streetAddress"></option>
+							<option value="0">New Address</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-12">
+				<div class="form-group">
+					<label class="col-lg-2 control-label">Full Name</label>
+					<div class="col-lg-10">
+						<input promise-alphabet-only type="text" ng-model="shipTo.fullName" class="form-control">
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-12">
+				<div class="form-group">
+					<label class="col-lg-2 control-label">Address</label>
+					<div class="col-lg-10">
+						<textarea class="form-control" ng-model="shipTo.streetAddress"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-12">
+				<div class="form-group">
+					<label class="col-lg-2 control-label">Telephone</label>
+					<div class="col-lg-10">
+						<input promise-numbers-only type="text" ng-model="shipTo.telephone1" class="form-control">
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-12">
+				<div class="form-group">
+					<label class="col-lg-2 control-label">Delivery Time</label>
+					<div class="col-lg-6">
+						<div class="input-group">
+							<input type="text" datepicker-popup="{{form.format}}" ng-model="shipTo.deliveryTime" is-open="shipTo.poDateOpened" min-date="form.minDate" max-date="false" datepicker-options="form.dateOptions" date-disabled="form.disabled(form.date, form.mode)" close-text="Close" class="form-control" readonly /> <span class="input-group-btn">
+									<button type="button" ng-click="form.poDateOpenDynamic($index, $event)" class="btn btn-default" ripple="">
+										<em class="fa fa-calendar"></em>
+									</button>
+								</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-12">
+				<div class="form-group">
+					<div class="col-lg-8 col-md-offset-2">
+						<div class="checkbox c-checkbox needsclick" ng-show="shipTo.companyAddress == 0">
+							<label class="needsclick">
+								<input type="checkbox" value="true" class="needsclick" ng-model="shipTo.saveAddress" />	<span class="fa fa-check"></span> Save to address book</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-12">
+				<fieldset class="p-t-xl">
+					<label class="fieldset-label">Send this products to this address</label>item
+					<div class="row" ng-repeat="purchaseOrderItem in shipTo.purchaseOrderItemList" ng-init="indexItem = $index+1">
+						<div class="col-md-6 product-inline">
+							<div class="cek-box">
+								<div class="c-checkbox">
+									<label>
+										<input ng-checked="purchaseOrderItem.selected == 1 ? true : false" ng-model="purchaseOrderItem.selected" type="checkbox" ng-true-value="'1'" ng-false-value="''" ng-change="form.doInput(indexShip-1, indexItem-1)" />	<span class="fa fa-check no-margin"></span>
+									</label>
+								</div>
+								<!-- <div class="img-wrapper">
+										<img class="thumb80 img-rounded" ng-src="poItem.imagePath" on-error-src="app/img/loading.gif" ng-show="{{poItem.imagePath !== undefined}}">
+									</div> --></div>
+							<div class="cek-text">
+								<a class="cek-link" target="_blank"><span ng-bind="purchaseOrderItem.purchaseRequestItem.item.nama" /></span>
+								</a>
+								<div class="cek-qty p-v">
+									<label class="col-lg-1 p-l-0 text-left control-label">Qty</label>
+									<div class="col-lg-8">
+										<input ng-readonly="purchaseOrderItem.shipquantityReadOnly == true ? true : false " id="input-id-1" type="text" promise-currency-blur class="form-control input-sm" ng-model="purchaseOrderItem.quantitySend" ng-blur="form.getTotalUnitPrice(indexShip-1, indexItem-1)">
+									</div>
+									<label class="col-lg-4 p-l-0 text-left control-label" ng-bind="'/ ' + purchaseOrderItem.purchaseRequestItem.quantity + ' unit'"></label>
+								</div>
+								<div class="cek-qty">
+									<label class="col-lg-3 p-l-0 p-v-0 text-left control-label">Unit Price</label>
+									<div ng-if="form.purchaseOrder.mataUang != null" class="row">
+										<label class="col-lg-1 p-l-0 p-v-0 text-right control-label" ng-bind="':'"></label>
+										<label class="col-lg-6 p-l-0 p-v-0 text-right control-label" ng-bind="(purchaseOrderItem.purchaseRequestItem.price | number:2) + ' ' + (form.purchaseOrder.mataUang.kode) "></label>
+									</div>
+									<div ng-if="form.purchaseOrder.mataUang == null" class="row">
+										<label class="col-lg-1 p-l-0 p-v-0 text-right control-label" ng-bind="':' "></label>
+										<label class="col-lg-6 p-l-0 p-v-0 text-right control-label" ng-bind="(purchaseOrderItem.purchaseRequestItem.price | number:2) + ' ' + (form.purchaseOrder.mataUang.kode) "></label>
+									</div>
+								</div>
+								<div class="cek-qty">
+									<label class="col-lg-3 p-l-0 p-v-0 text-left control-label">Total Price</label>
+									<div ng-if="form.purchaseOrder.mataUang != null" class="row">
+										<label class="col-lg-1 p-l-0 p-v-0 text-right control-label" ng-bind="':' "></label>
+										<label class="col-lg-6 p-l-0 p-v-0 text-right control-label" ng-bind="((purchaseOrderItem.quantitySend * purchaseOrderItem.unitPrice) | number:2) + ' ' + (form.purchaseOrder.mataUang.kode)"></label>
+									</div>
+									<div ng-if="form.purchaseOrder.mataUang == null" class="row">
+										<label class="col-lg-1 p-l-0 p-v-0 text-right control-label" ng-bind="':' "></label>
+										<label class="col-lg-6 p-l-0 p-v-0 text-right control-label" ng-bind="((purchaseOrderItem.quantitySend * purchaseOrderItem.unitPrice) | number:2) + ' ' + (purchaseOrderItem.purchaseRequestItem.mataUang.kode) "></label>
+									</div>
+									<!-- currency -->
+									<label class="col-lg-3 p-l-0 p-v-0 text-left control-label">Total Price IDR</label>
+									<div ng-if="form.purchaseOrder.mataUang != null" class="row">
+										<label class="col-lg-1 p-l-0 p-v-0 text-right control-label" ng-bind="':' "></label>
+										<label class="col-lg-6 p-l-0 p-v-0 text-right control-label" ng-bind="((purchaseOrderItem.quantitySend * purchaseOrderItem.unitPrice * form.purchaseOrder.mataUang.kurs) | number:2) + ' ' + 'IDR' "></label>
+									</div>
+									<div ng-if="form.purchaseOrder.mataUang == null" class="row">
+										<label class="col-lg-1 p-l-0 p-v-0 text-right control-label" ng-bind="':' "></label>
+										<label class="col-lg-6 p-l-0 p-v-0 text-right control-label" ng-bind="((purchaseOrderItem.quantitySend * purchaseOrderItem.unitPrice * form.purchaseOrder.mataUang.kurs) | number:2) + ' ' + 'IDR' "></label>
+									</div>
+								</div>
+								<br/>
+							</div>
+						</div>
+					</div>
+				</fieldset>
+			</div>
+		</fieldset>
+	</div>
+	<div class="row">
+		<div class="col-lg-12 text-right m-b-xl">
+			<button class="btn btn-danger btn-sm" ng-click="form.btnDelShipping()">
+				Remove
+			</button>
+			<button class="btn btn-primary btn-sm" ng-click="form.btnAddShipping()">Add more shipping address</button>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12 text-center">
+			<a class="btn btn-default" ng-click="tabs[0].active=true;"> 
+				<span translate="promise.procurement.master.attribute.btn.KEMBALI"></span>
+			</a>
+			<a ng-class="'bg-' + app.theme.name" class="btn btn-primary" ng-click="tabs[2].active=true;">	
+				<span translate="promise.procurement.master.attribute.btn.SELANJUTNYA"></span>
+			</a>
+		</div>
+	</div>

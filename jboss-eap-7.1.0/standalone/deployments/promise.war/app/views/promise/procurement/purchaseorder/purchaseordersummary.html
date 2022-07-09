@@ -1,0 +1,102 @@
+<fieldset>
+    <div class="row">
+        <div class="col-md-1">PO Number</div>
+        <div class="col-md-3" ng-bind="form.purchaseOrder.poNumber"></div>
+        <div class="col-md-1">Vendor</div>
+        <div class="col-md-3">
+            <strong ng-bind="form.vendor.nama"></strong>
+            <br />
+            <div ng-bind="form.vendor.alamat"></div>
+        </div>
+        <div class="col-md-1">Bill To</div>
+        <div class="col-md-3">
+            <strong ng-bind="form.purchaseOrder.addressBook.organisasi.nama"></strong>
+            <br />
+            <div ng-bind="form.purchaseOrder.addressBook.fullName"></div>
+            <br />
+            <div ng-bind="form.purchaseOrder.addressBook.streetAddress"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1">PO Date</div>
+        <div class="col-md-3" ng-bind="form.purchaseOrder.purchaseOrderDate | date : 'dd-MM-yyyy'"></div>
+    </div>
+    <h3>Product Items</h3>
+    <hr />
+    <div class="row b-b">
+        <div class="col-md-4">Product Information</div>
+        <div class="col-md-1 text-center">Quantity</div>
+        <div class="col-md-1 text-center">Unit</div>
+        <div class="col-md-2 text-right">Unit Price</div>
+        <div class="col-md-2 text-right">Prices</div>
+        <div class="col-md-2 text-right">Prices IDR</div>
+    </div>
+    <div ng-repeat="shipTo in form.shippingToList">
+        <div ng-repeat="purchaseOrderItem in shipTo.purchaseOrderItemList" class="b-b">
+            <div class="row" ng-if="purchaseOrderItem.quantitySend != null && purchaseOrderItem.quantitySend > 0">
+                <div class="col-md-4">
+                    <strong ng-bind="purchaseOrderItem.purchaseRequestItem.item.nama"></strong>
+                </div>
+                <div class="col-md-1 text-center" ng-bind="purchaseOrderItem.quantitySend"></div>
+                <div class="col-md-1 text-center" ng-bind="purchaseOrderItem.purchaseRequestItem.item.satuanId.nama"></div>
+                <div class="col-md-2 text-right" ng-bind="(purchaseOrderItem.unitPrice | number:2) +' ' + (form.purchaseOrder.mataUang.kode)"></div>
+                <div class="col-md-2 text-right" ng-bind="((purchaseOrderItem.quantitySend * purchaseOrderItem.unitPrice) | number:2) + ' ' + (form.purchaseOrder.mataUang.kode)"></div>
+                <div class="col-md-2 text-right" ng-bind="((purchaseOrderItem.quantitySend * purchaseOrderItem.unitPrice * form.purchaseOrder.mataUang.kurs) | number:2) + ' IDR' "></div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-4">Shipping Date</div>
+                    <div class="col-md-8" ng-bind="shipTo.deliveryTime | date : 'dd-MM-yyyy'"></div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-4">Shipping Address</div>
+                    <div class="col-md-8"><span ng-bind="shipTo.addressLabel"></span>
+                        <br /><span ng-bind="shipTo.address"></span></div>
+                </div>
+            </div>
+        </div>
+        <hr />
+    </div>
+    <!--Summary Approval -->
+    <h3>Approval</h3>
+    <hr />
+    <div class="row">
+        <div style="vertical-align: middle;" class="row bs-wizard">
+            <div class="col-md-12" ng-if="form.purchaseOrder.approvalId!=0">
+                <div ng-repeat="flow in form.approvalLevelList | orderBy: flow.sequence" class="bs-wizard-step complete">
+                    <div ng-if="flow.approval.approvalType.id == 1" class="text-center bs-wizard-stepnum" ng-bind="flow.group.nama"></div>
+                    <div ng-if="flow.approval.approvalType.id == 2" class="text-center bs-wizard-stepnum" ng-bind="flow.user.namaPengguna"></div>
+                    <div ng-if="flow.approval.approvalType.id == 3" class="text-center bs-wizard-stepnum" ng-bind="flow.role.nama"></div>
+
+                    <div class="progress">
+                        <div class="progress-bar"></div>
+                    </div>
+                    <a href="#" class="bs-wizard-dot"></a>
+
+                </div>
+            </div>
+            <div class="col-md-12" ng-if="form.purchaseOrder.approvalId==0">
+                <div class="bs-wizard-step complete">
+                    <div class="text-center bs-wizard-stepnum" ng-bind="form.po.approval.newSelected.user.namaPengguna"></div>
+                    <div class="progress">
+                        <div class="progress-bar"></div>
+                    </div>
+                    <a href="#" class="bs-wizard-dot"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9" align="right">
+            <strong>Total Amount</strong>
+        </div>
+        <div class="col-md-3" align="right">
+            <strong ng-bind="(form.purchaseOrder.subTotal | number : 2)+ ' ' + (form.purchaseOrder.mataUang.kode) + ' (' + ((form.purchaseOrder.subTotal * form.purchaseOrder.mataUang.kurs) | number:2) + ' IDR )' "></strong>
+        </div>
+    </div>
+</fieldset>

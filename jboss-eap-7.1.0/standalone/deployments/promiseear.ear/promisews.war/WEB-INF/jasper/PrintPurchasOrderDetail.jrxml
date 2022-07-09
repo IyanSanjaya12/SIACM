@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PrintPurchasOrderDetail" pageWidth="515" pageHeight="200" whenNoDataType="NoDataSection" columnWidth="515" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="b59e06c8-8fd8-4526-9659-2764cea1f6c5">
+	<property name="ireport.zoom" value="1.126972201352371"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="java.util.Date"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#FF7F50">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#FFD0BF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="printedBy" class="java.lang.String"/>
+	<parameter name="poId" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="shippingId" class="java.lang.String"/>
+	<parameter name="PO_ID" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT *, T2.NAMA AS ITEM_NAMA, T3.NAMA AS SATUAN_NAMA
+FROM promise_t4_purchase_order_item T1
+LEFT JOIN T2_ITEM T2
+ON T1.ITEM_ID = T2.ITEM_ID
+LEFT JOIN T1_SATUAN T3
+ON T2.SATUAN_ID = T3.SATUAN_ID
+WHERE T1.PURCHASE_ORDER_ID = $P{poId}
+AND  T1.SHIPPING_TO_ID = $P{shippingId}
+and T1.ISDELETE = 0]]>
+	</queryString>
+	<field name="PURCHASE_ORDER_ITEM_ID" class="java.lang.Integer"/>
+	<field name="CREATED" class="java.sql.Timestamp"/>
+	<field name="DELETED" class="java.sql.Timestamp"/>
+	<field name="DELIVERY_TIME" class="java.sql.Timestamp"/>
+	<field name="ISDELETE" class="java.lang.Short"/>
+	<field name="ITEM_NAME" class="java.lang.String"/>
+	<field name="QUANTITY_PURCHASE_REQUEST" class="java.lang.Double"/>
+	<field name="QUANTITY_SEND" class="java.lang.Double"/>
+	<field name="STATUS" class="java.lang.String"/>
+	<field name="TOTAL_UNIT_PRICES" class="java.lang.Double"/>
+	<field name="UNIT_PRICE" class="java.lang.Double"/>
+	<field name="UPDATED" class="java.sql.Timestamp"/>
+	<field name="USERID" class="java.lang.Integer"/>
+	<field name="VENDOR_NAME" class="java.lang.String"/>
+	<field name="ITEM_ID" class="java.lang.Integer"/>
+	<field name="PURCHASE_ORDER_ID" class="java.lang.Integer"/>
+	<field name="VENDOR_ID" class="java.lang.Integer"/>
+	<field name="STATUS_PROSES" class="java.lang.Short"/>
+	<field name="PURCHASE_REQUEST_ITEM_ID" class="java.lang.Integer"/>
+	<field name="SHIPPING_TO_ID" class="java.lang.Integer"/>
+	<field name="DESKRIPSI" class="java.lang.String"/>
+	<field name="KODE" class="java.lang.String"/>
+	<field name="NAMA" class="java.lang.String"/>
+	<field name="ITEM_GROUP_ID" class="java.lang.Integer"/>
+	<field name="ITEM_TYPE_ID" class="java.lang.Integer"/>
+	<field name="SATUAN_ID" class="java.lang.Integer"/>
+	<field name="SOURCE" class="java.lang.String"/>
+	<field name="ITEM_NAMA" class="java.lang.String"/>
+	<field name="SATUAN_NAMA" class="java.lang.String"/>
+	<columnHeader>
+		<band height="20">
+			<staticText>
+				<reportElement style="table_TD" x="0" y="0" width="34" height="20" uuid="d7cb236a-c815-46f0-97c9-5f8b5947abbf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+					<paragraph leftIndent="5" rightIndent="5"/>
+				</textElement>
+				<text><![CDATA[No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TD" x="222" y="0" width="58" height="20" uuid="fe0ad5f4-783d-474f-80b8-04afb2b3da3f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+					<paragraph leftIndent="5" rightIndent="5"/>
+				</textElement>
+				<text><![CDATA[Satuan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TD" x="279" y="0" width="54" height="20" uuid="9c2fc97b-6240-472f-854c-c4f419de9316"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+					<paragraph leftIndent="5" rightIndent="5"/>
+				</textElement>
+				<text><![CDATA[Unit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TD" x="421" y="0" width="94" height="20" uuid="8dcdfb8b-b4a0-44d5-8d0f-c7e45fadbcea"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+					<paragraph leftIndent="5" rightIndent="5"/>
+				</textElement>
+				<text><![CDATA[Jumlah (IDR)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TD" x="332" y="0" width="90" height="20" uuid="ceb36847-382c-4fb2-8cce-246dff4afd74"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+					<paragraph leftIndent="5" rightIndent="5"/>
+				</textElement>
+				<text><![CDATA[Harga (IDR)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TD" x="33" y="0" width="190" height="20" uuid="8041c848-2763-48f3-b3c8-1fad3171d6c6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+					<paragraph leftIndent="5" rightIndent="5"/>
+				</textElement>
+				<text><![CDATA[Item]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<textField>
+				<reportElement style="table_TD" positionType="Float" x="0" y="0" width="33" height="20" uuid="c53062ce-2e5d-4ffa-b34b-2119b2a32061"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+					<paragraph leftIndent="5" rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" positionType="Float" x="33" y="0" width="190" height="20" uuid="9a2d5bc5-6c11-4115-8d0a-968b64414cb8"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+					<paragraph leftIndent="5" rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ITEM_NAMA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" positionType="Float" x="279" y="0" width="53" height="20" uuid="1084ab1e-734c-4d96-b815-399e356e9779"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+					<paragraph leftIndent="5" rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{QUANTITY_SEND} == null ? "" :  new DecimalFormat("#,##0.00").format(new BigDecimal($F{QUANTITY_SEND})))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" positionType="Float" x="223" y="0" width="56" height="20" uuid="c5ea0bf2-2732-4bb8-932c-e63e5c7462fc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+					<paragraph leftIndent="5" rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SATUAN_NAMA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" positionType="Float" x="332" y="0" width="90" height="20" uuid="145ba981-0648-4cea-ad76-30684be498cf"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+					<paragraph leftIndent="5" rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{UNIT_PRICE} == null ? "" :  new DecimalFormat("#,##0.00").format(new BigDecimal($F{UNIT_PRICE})))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" positionType="Float" x="422" y="0" width="93" height="20" uuid="e3116ce0-984b-441e-af52-1e02136e48d0"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+					<paragraph leftIndent="5" rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{TOTAL_UNIT_PRICES} == null ? "" :  new DecimalFormat("#,##0.00").format(new BigDecimal($F{TOTAL_UNIT_PRICES})))]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

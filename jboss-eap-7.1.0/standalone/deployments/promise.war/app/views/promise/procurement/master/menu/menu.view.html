@@ -1,0 +1,65 @@
+<div class="app-view-header">
+    <span translate="promise.procurement.master.menu.judul"></span>
+</div>
+<div class="panel panel-primary" ng-controller="MenuViewController as vm" >
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-tasks"></em>
+			<span ng-if="vm.toDo == 'Add'" translate="promise.procurement.master.menu.view.subjudul_tambah"></span>
+   		<span ng-if="vm.toDo == 'Edit'" translate="promise.procurement.master.menu.view.subjudul_ubah"></span>
+			<a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+					<em class="fa fa-chevron-circle-down"></em>
+			</a>
+	</h4>
+	<div class="panel-body collapse in">
+		<div class="text-center" ng-if="vm.loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong></div>
+		<form method="post" action="#" novalidate="" class="form-horizontal" name="formMenu"  ng-class="{'submitted' : vm.submitted}">
+			
+				<div class="form-group">
+					 <label class="col-sm-4 control-label required">
+						<span translate="promise.procurement.master.menu.list.parent"></span>
+					</label>
+					<div class="col-sm-4">
+						<input id="input-id-1" type="number" name="parentId" ng-model="vm.menu.parentId" class="form-control" maxlength="20" required ng-blur="delValidation($event)"/> 
+						<div class="input-error" ng-show="(vm.submitted && formMenu.parentId.$invalid)">
+        					<p ng-show="formMenu.name.$error.required" translate="template.error.field_kosong"></p>
+        				</div>
+					</div>
+				</div>
+				<div class="form-group">
+					 <label class="col-sm-4 control-label required">
+						<span translate="promise.procurement.master.menu.view.nama"></span>
+					</label>
+					<div class="col-sm-4">
+						<input id="input-id-2" type="text" name="name" ng-model="vm.menu.nama" class="form-control" maxlength="120" required ng-blur="delValidation($event)"/> 
+						<div class="input-error" ng-show="(vm.submitted && formMenu.name.$invalid)">
+        					<p ng-show="formMenu.name.$error.required" translate="template.error.field_kosong"></p>
+        					<p ng-show="!formMenu.name.$error.required && formMenu.name.$error.name" translate="promise.procurement.master.menu.error.nama_sama"></p>
+        				</div>
+					</div>
+				</div>
+				<div class="form-group">
+					 <label class="col-sm-4 control-label required">
+						<span translate="promise.procurement.master.menu.list.path"></span>
+					</label>
+					<div class="col-sm-4">
+						<input id="input-id-3" type="text" name="path" ng-model="vm.menu.path" class="form-control" maxlength="120" required ng-blur="delValidation($event)" /> 
+						<div class="input-error" ng-show="(vm.submitted && formMenu.path.$invalid)">
+        					<p ng-show="formMenu.path.$error.required" translate="template.error.field_kosong"></p>
+        				</div>
+					</div>
+				</div>
+				 <br/>
+				<div class="form-group">
+					 <div class="col-md-12 text-center">
+						<button type="button" ripple="" class="btn btn-secondary" ng-click="back()">
+							<span translate="template.button.kembali"></span>
+						</button>
+						<button type="button" ripple="" class="btn btn-primary"ng-click="save(formMenu.$valid)">
+							<span translate="template.button.simpan"></span>
+						</button>
+					</div>
+				</div>
+		
+		</form>
+	</div>
+</div>

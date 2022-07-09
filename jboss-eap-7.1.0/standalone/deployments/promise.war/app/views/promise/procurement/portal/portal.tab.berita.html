@@ -1,0 +1,66 @@
+<div class="promise_accordion">
+					<accordion close-others="true">
+					<accordion-group is-open="true">
+					<accordion-heading >
+                  		<em class="fa fa-lightbulb-o"></em>&nbsp;Berita 
+               		</accordion-heading>
+						
+					 <table datatable="ng"   dt-options="form.dtBeritaOptions" class="row-border hover table-striped">
+							 <thead style=" display: none;">
+							<tr>
+							<th scope="col"style="text-align: left">No</th>
+						
+							</tr>
+							</thead>
+							<tr ng-repeat="pp in form.pengumumanList[3]">
+								<td style="text-align: left" ng-click="detilBerita(pp)" class="clickable">
+									<strong>{{pp.judulPengumuman}}</strong>
+									<p>{{pp.snipet}}</p>
+								</td>
+							</tr>
+						</table>  
+			
+				</accordion-group>
+				
+				<accordion-group >
+ 				<accordion-heading>
+                   <em class="fa fa-search"></em>&nbsp;Pencarian Berita 
+                </accordion-heading>
+					<form role="form">
+						<div class="form-group col-md-12">
+							<label for="beritaKeyword">Kata Kunci</label> <input type="text" class="form-control" id="beritaKeyword" ng-model="form.beritaKeyword">
+						</div>
+
+						<div class="form-group col-md-12">
+							<label for="email">Tanggal pengumuman</label>
+							<div class="input-group">
+								<input type="text" name="tanggalFrom"
+									ng-click="form.beritaTanggalFromOpen($event)"
+									datepicker-popup="{{form.format}}" ng-model="form.beritaTanggalFrom"
+									is-open="form.beritaTanggalFromOpened" min-date="false"
+									max-date="false" datepicker-options="form.dateOptions"
+									date-disabled="form.disabled(form.date, form.mode)"
+									close-text="Close" class="form-control input-sm"
+									readonly="true" required /> <span class="input-group-addon">s/d</span>
+								<input type="text" name="tanggalTo"
+									ng-click="form.beritaTanggalToOpen($event)"
+									datepicker-popup="{{form.format}}" ng-model="form.beritaTanggalTo"
+									is-open="form.beritaTanggalToOpened" min-date="false"
+									max-date="false" datepicker-options="form.dateOptions"
+									date-disabled="form.disabled(form.date, form.mode)"
+									close-text="Close" class="form-control input-sm"
+									readonly="true" required />
+							</div>
+						</div>
+
+						<div class="form-group col-md-12">
+							 <label for="form.beritaOrganisasi">Unit</label>
+							 <select  name="form.beritaOrganisasi" ng-model="form.beritaOrganisasi" ng-options="organisasi.nama for organisasi in form.organisasiList track by organisasi.id" class="form-control m-b input-sm"></select>
+						</div>
+						
+						<div class="form-group col-md-12">
+							<button type="button" ng-click="beritaSearch();" class="btn btn-default"><em class="fa fa-search" style="margin-left:3px"></em>&nbsp;Search</button>
+						</div>
+					</form>
+					</accordion-group> </accordion>
+				</div>

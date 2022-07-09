@@ -1,0 +1,26 @@
+<div class="app-view-header">Form Upload
+   <small>Powerfull upload module</small>
+</div>
+<div ng-controller="PengadaanFileUploadController" nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter">
+	<div class="row">
+		 <div class="col-md-12">
+            <div class="panel">
+               <div class="panel-body">
+				   	<form action="http://localhost:8080/promisews/procurement/dokumenUploadPengadaan/uploadFile" method="post" enctype="multipart/form-data">
+ 					   <p>
+							Pengadaan ID : <input type="text" name="pengadaanId" size="5" />
+					   </p>						
+					   <p>
+							Keterangan : <input type="text" name="keterangan" size="5" />
+					   </p>						
+					   <p>
+							Select a file : <input type="file" name="uploadedFile" size="50" />
+					   </p>
+					   <input type="submit" value="Upload It" />
+					</form>					
+				</div>
+			 				
+            </div>
+		</div>
+	</div>
+</div>

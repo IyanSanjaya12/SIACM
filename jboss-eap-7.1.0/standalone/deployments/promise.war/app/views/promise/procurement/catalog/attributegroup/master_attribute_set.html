@@ -1,0 +1,50 @@
+<div class="app-view-header"> <span>Master Attribute Group</span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="masterAttrSetCtrl as form">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <em class="fa fa-tasks"></em>
+        <span>Master Attribute Group</span>
+        <a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+                <em class="fa fa-chevron-circle-down"></em>
+        </a>
+    </h4>
+	<div class="panel-body collapse in">
+		<div class="text-right pr">
+			<button type="button" class="btn btn-secondary btn-import" ng-click="importData()"> <span>Import</span>
+			</button>
+			<button type="button" ng-class="'bg-' + app.theme.name" class="btn btn-primary btn-add" ng-click="addData()"> <span translate="promise.procurement.master.attribute.btn.TAMBAH"></span>
+			</button>
+		</div>
+		<br/>
+		<div class="col-md-12">
+			<div>
+				<div class="text-center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px"></strong>
+				</div>
+				<table datatable="ng" class="row-border hover table-striped">
+					<thead>
+						<tr>
+							<th scope="col"style="text-align:center; width:10%">No</th>
+							<th scope="col"style="text-align:center; width:30%">Name</th>
+							<th scope="col"style="text-align:center; width:35%">Description</th>
+							<th scope="col"style="text-align:center; width:10%">Status</th>
+							<th scope="col"style="text-align:center; width:15%">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="data in attributeGroupList">
+							<td class="text-center" ng-bind="$index+1"></td>
+							<td ng-bind="data.name"></td>
+							<td ng-bind="data.description"></td>
+							<td ng-bind="(data.flagEnabled) ? 'Active' : 'Not Active'"></td>
+							<td class="text-center" class="action-col">
+								<a class="btn btn-primary btn-sm btn-edit" ng-click="editData(data)" tooltip-placement="top" tooltip="Edit"></a>
+								<a class="btn btn-danger btn-sm btn-delete" ng-click="deleteData(data)" tooltip-placement="top" tooltip="Delete"></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

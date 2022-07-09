@@ -1,0 +1,298 @@
+<div class="app-view-header">
+    <span>Add Request For Quotation</span>
+    <small><span>RFQ</span></small>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="RequestForQuotationAddController as form">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><span>Create RFQ</span></h4>
+    <div class="panel-body">
+        <div align="center" ng-if="loading == true">
+            <strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px"/></strong>
+        </div>
+        <form role="form" name="poForm" class="form-horizontal">
+            <tabset>
+                <!--START Information-->
+                <tab heading="Information" active="tabs[0].active" ng-init="">
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-md-2">
+                                PR Number
+                            </div>
+                            <div class="col-md-3">
+                                <ui-select ng-model="form.dataRequest.purchaseRequest.prnumber" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" ng-change="prSelected(form.info.pr)">
+                                    <ui-select-match placeholder="Input PR Number ...">{{form.info.pr.prnumber}}</ui-select-match>
+                                    <ui-select-choices repeat="data in prNumberList track by $index" refresh="findPRNumber($select.search)" refresh-delay="0">
+                                        <div ng-bind-html="data.prnumber+'<br/>'+data.description+'<br/>'+data.departement | highlight: $select.search">
+                                        </div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-md-1">
+                                <span><em class="fa fa-search"></em></span>
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-2">
+                                Date of Issuance
+                            </div>
+                            <div class="col-md-3">
+                                <div class="input-group">
+                                		<input type="text" datepicker-popup="dd-MM-yyyy" ng-model="form.dataRequest.postDate" is-open="form.postDateStatus" class="form-control shadow-z1 input-sm" show-button-bar="false" readonly style="background-color:white;"/>
+                                    <span class="input-group-btn">
+																				<button type="button" ng-click="form.postDateEvent($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+																					<em class="fa fa-calendar"></em>
+																				</button>
+																		</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                RFQ Number
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" ng-model="form.dataRequest.noRFQ" class="form-control shadow-z1 input-sm">
+                            </div>
+                            <div class="col-md-1">
+                                <button>Generate</button>
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-2">
+                                Date of Quote Delivery
+                            </div>
+                            <div class="col-md-3">
+                                <div class="input-group">
+                                		<input type="text" datepicker-popup="dd-MM-yyyy" ng-model="form.dataRequest.deliveryQuoteDate" is-open="form.deliveryQuoteDateStatus" class="form-control shadow-z1 input-sm" show-button-bar="false" readonly style="background-color:white;"/>
+                                    <span class="input-group-btn">
+																				<button type="button" ng-click="form.deliveryQuoteDateEvent($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+																					<em class="fa fa-calendar"></em>
+																				</button>
+																		</span>
+                                </div>
+                            </div>
+                        </div>
+                        <h4>Contact Person</h4>
+                        <div class="row">
+                            <div class="col-md-12">
+                                Jika supplier memiliki pertanyaan silahkan menghubungi :
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                Name
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control shadow-z1 input-sm" ng-model="form.dataRequest.contactPersonName">
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                Email
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control shadow-z1 input-sm" ng-model="form.dataRequest.contactPersonEmail">
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                Phone
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control shadow-z1 input-sm" ng-model="form.dataRequest.contactPersonPhone">
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12"><br/><br/></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row pull-left">
+                                    <div class="col-md-2">
+                                        <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled" ng-click="form.backToIndex()">Back To Index</button>
+                                    </div>
+                                </div>
+                                <div class="row pull-right">
+                                    <div class="col-md-2">
+                                    		<button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled" ng-click="tabs[1].active=true;">Next</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                        
+                    </fieldset>
+                </tab>
+                <tab heading="Items" active="tabs[1].active" ng-init="">
+                    <fieldset>
+                        <div class="row pull-right">
+                            <div class="col-md-2">
+                                <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled" ng-click="">Import</button>
+                            </div>
+                        </div>
+                        <div class="row pull-right">
+                            <div class="col-md-2">
+                                <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled" ng-click="">Add Item</button>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col"style="text-align:left">
+                                                    <input type="checkbox">
+                                                </th>
+                                                <th scope="col"style="text-align:left"><span>Item Code</span>
+                                                </th>
+                                                <th scope="col"style="text-align:left"><span>Item</span>
+                                                </th>
+                                                <th scope="col"style="text-align:left"><span>Qty</span>
+                                                </th>
+                                                </th>
+                                                <th scope="col"style="text-align:left"><span>Unit</span>
+                                                </th>
+                                                <th scope="col"style="text-align:left"><span>Spesification</span>
+                                                </th>
+                                                <th scope="col"style="text-align:center"><span>Action</span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody ng-repeat="quotationItem in form.quotationItemList">
+                                            <tr>
+                                                <td style="text-align:left">
+                                                    <input type="checkbox">
+                                                </td>
+                                                <td>{{ quotationItem.item.kode }}</td>
+                                                <td>{{ quotationItem.item.itemname }}</td>
+                                                <td>{{ quotationItem.item.quantity }}</td>
+                                                <td>{{ quotationItem.item.unit }}</td>
+                                                <td>{{ quotationItem.item.specification }}</td>
+                                                <td width="120px" align="center">
+                                                    <button>Edit</button>
+                                                    <button ng-click="deleteItem(quotationItem)">Delete</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12"><br/><br/></div>
+                        </div>
+                        <div class="row pull-left">
+                            <div class="col-md-2">
+                                <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled" ng-click="tabs[0].active=true;">Back</button>
+                            </div>
+                        </div>
+                        <div class="row pull-right">
+                            <div class="col-md-2">
+                                <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled" ng-click="tabs[2].active=true;">Next</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </tab>
+                <tab heading="Vendor" active="tabs[2].active" ng-init="">
+                    <fieldset>
+                        <div class="row pull-right">
+                            <div class="col-md-2">
+                                <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled" ng-click="form.btnAddVendor()">Add Vendors</button>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col"style="text-align:left">
+                                                    <input type="checkbox">
+                                                </th>
+                                                <th scope="col"style="text-align:left"><span>Nama Vendor</span>
+                                                </th>
+                                                <th scope="col"style="text-align:left"><span>Address</span>
+                                                </th>
+                                                <th scope="col"style="text-align:left"><span>Action</span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody ng-repeat="quotationVendor in form.dataRequest.requestQuotationVendorList">
+                                            <tr>
+                                                <td style="text-align:left">
+                                                    <input type="checkbox">
+                                                </td>
+                                                <td>{{ quotationVendor.vendor.nama }}</td>
+                                                <td>{{ quotationVendor.vendor.alamat }}</td>
+                                                <td>
+                                                    <button>Edit</button>
+                                                    <button ng-click="deleteVendor(quotationVendor)">Delete</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12"><br/><br/></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row pull-left">
+                                    <div class="col-md-2">
+                                        <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled" ng-click="tabs[1].active=true;">Back</button>
+                                    </div>
+                                </div>
+                                <div class="row pull-right">
+                                    <div class="col-md-2">
+                                    		<button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled" ng-click="form.saveData()">Simpan</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- add vendor -->
+                        <script type="text/ng-template" id="/addvendor.html">
+                            <div class="modal-header">
+                                <button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="cancel()">×</button>
+                                <h3 id="myModalLabel" class="modal-title">Add Vendor</h3>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-11">
+                                        <ui-select ng-model="form.vendor.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" ng-change="check()">
+                                            <ui-select-match placeholder="Vendor Name...">{{form.vendor.selected.nama}}</ui-select-match>
+                                            <ui-select-choices repeat="vendor in vendorList track by $index" refresh="findVendor($select.search)" refresh-delay="0">
+                                                <div ng-bind-html="vendor.nama+'<br/>'+vendor.alamat+'<br/>'+vendor.telp | highlight: $select.search">
+                                                </div>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <span><em class="fa fa-search"></em></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-1">&nbsp;</div>
+                                    <div class="col-md-11">
+                                        {{ form.vendor.selected.alamat }}
+                                        <br/> {{ form.vendor.selected.email }}
+                                        <br/> {{ form.vendor.selected.nomorTelpon }}
+                                        <br/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button ng-click="ok()" class="btn btn-primary">OK</button>
+                                <button ng-click="cancel()" class="btn btn-warning">Cancel</button>
+                            </div>
+                        </script>
+                    </fieldset>
+                </tab>
+            </tabset>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="app-view-header">
+	<span translate="bonus.judul"></span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="BonusIndexController as vm ">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <em class="fa fa-tasks"></em>
+        <span translate="bonus.judul"></span>
+        <a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+            <em class="fa fa-chevron-circle-down"></em>
+        </a>
+    </h4>
+	<div class="panel-body collapse in">
+		<div class="col-md-12">
+			<div class="text-center" ng-if="vm.loading == true"> <strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px" /></strong>
+			</div>
+			<table datatable="ng" class="row-border hover table-striped">
+				<thead>
+					<tr>
+						<th scope="col"> <span translate="bonus.list.nomor"></span></th>
+						<th scope="col" style="text-align:left"> <span translate="bonus.list.nama"></span></th>
+						<th scope="col"> <span translate="bonus.list.persentase"></span></th>
+						<th scope="col" style="text-align:right"> <span translate="bonus.list.bonus"></span></th>
+						<th scope="col" style="text-align:right"> <span translate="bonus.list.totalpenjualan"></span></th>
+						<th scope="col"> <span translate="bonus.list.nomorpenjualan"></span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="bonus in vm.bonusList">
+						<td class="text-center">{{ $index+1 }}</td>
+						<td ng-bind="bonus.karyawan.nama"></td>
+						<td style="text-align:center" ng-bind="bonus.persentase">&nbsp;%</td>
+						<td style="text-align:right" ng-bind="bonus.nilaiBonus | currency : ''"></td>
+						<td style="text-align:right" ng-bind="(bonus.penjualan.hargaSetelahDiskon | currency : '')"></td>
+						<td style="text-align:center" ng-bind="bonus.penjualan.noFaktur"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<!--END CONTROLLER-->

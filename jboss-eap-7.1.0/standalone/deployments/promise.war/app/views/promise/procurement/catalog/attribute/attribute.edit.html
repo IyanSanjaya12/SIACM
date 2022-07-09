@@ -1,0 +1,213 @@
+<div class="app-view-header">
+    <span translate="promise.procurement.master.attribute.JUDUL"></span>
+    <small><span translate="promise.procurement.master.attribute.KETERANGAN_EDIT"></span></small>
+</div>
+<!--START CONTROLLER-->
+<div class="app-content" ng-controller="AttributeEditController as form">
+
+	<div class="app-content-body">
+         <div class="container">                        
+             <div class="row">
+                 <div class="col-md-12">
+                     <div class="row">
+                         <div class="col-md-12">
+                             
+                             <div class="panel">
+                                 <form class="form-horizontal" name="formv">
+                                     <div class="panel-body">
+                                         <div class="form-group">
+                                             <label class="col-lg-3 control-label">Label</label>
+                                             <div class="col-lg-7">
+                                                 <input name="label" class="form-control" ng-model="data.label" disabled="true">
+                                             </div>
+                                         </div>
+                                         <div class="form-group">
+                                             <label class="col-lg-3 control-label">Required</label>
+                                             <div class="col-lg-2">
+                                                 <select name="input_type" class="form-control m-b shadow-z1 input-sm" ng-model="data.required">
+                                                 	 <option value="false">No</option>
+                                                     <option value="true">Yes</option>
+                                                 </select>
+                                             </div>
+                                         </div>
+                                         <div class="form-group">
+                                             <label class="col-lg-3 control-label">Unique</label>
+                                             <div class="col-lg-2">
+                                                 <select name="input_type" class="form-control m-b shadow-z1 input-sm" ng-model="data.unique">
+                                                 	 <option value="false">No</option>
+                                                     <option value="true">Yes</option>
+                                                 </select>
+                                             </div>
+                                         </div>
+                                         <div class="form-group">
+                                             <label class="col-lg-3 control-label">Searchable</label>
+                                             <div class="col-lg-2">
+                                                 <select name="input_type" class="form-control m-b shadow-z1 input-sm" ng-model="data.searchable">
+                                                 	 <option value="false">No</option>
+                                                     <option value="true">Yes</option>
+                                                 </select>
+                                             </div>
+                                         </div>
+                                         <div class="form-group">
+                                             <label class="col-lg-3 control-label">Sortable</label>
+                                             <div class="col-lg-2">
+                                                 <select name="input_type" class="form-control m-b shadow-z1 input-sm" ng-model="data.sortable">
+                                                 	 <option value="false">No</option>
+                                                     <option value="true">Yes</option>
+                                                 </select>
+                                             </div>
+                                         </div>
+                                         <div class="form-group">
+                                             <label class="col-lg-3 control-label">Configurable</label>
+                                             <div class="col-lg-2">
+                                                 <select name="input_type" class="form-control m-b shadow-z1 input-sm" ng-model="data.configurable">
+                                                 	 <option value="false">No</option>
+                                                     <option value="true">Yes</option>
+                                                 </select>
+                                             </div>
+                                         </div>
+                                         <fieldset>
+                                             <h4 class="page-header no-margin">Translation</h4>
+                                             <div class="form-group m-t">
+                                                 <label class="col-lg-3 control-label">Admin</label>
+                                                 <div class="col-lg-7">
+                                                     <input name="admin_translation" class="form-control" ng-model="data.bahasa_admin">
+                                                 </div>
+                                             </div>
+                                             <div class="form-group">
+                                                 <label class="col-lg-3 control-label">IND</label>
+                                                 <div class="col-lg-7">
+                                                     <input name="ind_translation" class="form-control" ng-model="data.bahasa_ind">
+                                                 </div>
+                                             </div>
+                                             <div class="form-group">
+                                                 <label class="col-lg-3 control-label">ENG</label>
+                                                 <div class="col-lg-7">
+                                                     <input name="eng_translation" class="form-control" ng-model="data.bahasa_eng">
+                                                 </div>
+                                             </div>
+                                         </fieldset>
+                                         
+                                         <div class="form-group">
+                                             <label class="col-lg-3 control-label">Input Type</label>
+                                             <div class="col-lg-4 no-search">
+                                                 <select name="input_type" class="form-control m-b shadow-z1 input-sm" ng-model="data.inputType" ng-change="inputTypeChange(data.inputType)">
+                                                     <option ng-repeat="type in types" value="{{type.id}}" ng-selected="{{type.id == data.inputType}}">{{type.text}}</option>
+                                                 </select>
+                                             </div>
+                                         </div>
+                                         <div class="row-clone-group" ng-show="showValueInputType">
+                                             <div class="row-clone" ng-repeat="dv in dynamic_value">
+                                                 <div class="form-group" ng-show="dv.id">
+                                                     <label class="col-lg-3 control-label">Value</label>
+                                                     <div class="col-lg-7">
+                                                         <input ng-disabled="!dv.id" name="type_value[{{dv.id}}]" ng-model="dv.text" class="form-control">
+                                                     </div>
+                                                     <a class="col-lg-1 text-left control-label text-danger" ng-click="batal(dv)"><em class="fa fa-close"></em></a>
+                                                 </div>
+                                             </div>
+                                             <div class="form-group">
+                                                 <div class="col-lg-offset-3 col-lg-7 text-right">
+                                                     <button class="btn btn-xs btn-info" ng-click="clone()">Add Value</button>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <div class="panel-footer">
+                                         <div class="form-group">
+                                             <div align="center">
+                                            	<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-sm" ng-click="kembali()">
+                                    				<span class="btn-label"><em class="fa fa-chevron-left"></em></span><span translate="promise.procurement.master.attribute.btn.KEMBALI"></span>
+                                				</button>
+                                				<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="simpan()">
+                                					<span translate="promise.procurement.master.attribute.btn.SIMPAN"></span>
+                                				</button>
+                                            </div>
+                                         </div>
+                                     </div>
+                                 </form>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+        
+</div>
+<div class="app-view-header">
+	<span>Master Category</span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary"
+	ng-controller="masterCategoryCtrl as form">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<em class="fa fa-tasks">&nbsp;</em> <span>Master Category</span>
+	</h4>
+	<div class="panel-body">
+		<div align="right">
+			<button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="addRoot()">
+				<span class="btn-label"><em class="fa fa-plus"></em></span> 
+				<span translate="promise.procurement.master.alurpengadaan.TAMBAH"></span>
+			</button>
+		</div>
+		<br />
+		<div class="col-md-12">
+			<div align="center" ng-if="loading == true">
+				<strong><em>Loading...</em><img src="app/img/loading.gif" border="0"
+					width="20px"></strong>
+			</div>
+			<div class="layer-group m-t">
+				<div class="row">
+					<div class="col-md-12">
+
+						<script type="text/ng-template" id="nodes_renderer.html">
+                                        <a ng-if="node.child != null" ng-click="toggle(this)">
+                                            <span
+                                            class="fa"
+                                            ng-class="{
+                                              'fa-folder': collapsed,
+                                              'fa-folder-open': !collapsed
+                                            }"></span>
+                                        </a>
+                                        <a ng-if="node.child == null">
+                                            <span
+                                            class="cursor-default text-muted fa fa-folder-o"></span>
+                                        </a>
+                                        <div class="c-checkbox">
+                                            <label>
+                                                <input type="checkbox" value="{{node.id}}" />
+                                                <span class="fa fa-check no-margin scale7"></span>
+                                                <strong>{{node.description}} </strong>
+                                            </label>
+                                        </div><!-- Nested node template -->
+                                        <span class="edit-del-tree">
+                                            <a ui-sref="app.promise.procurement-category-add({dataCategory:node})">Add Sub</a>
+                                            <a >Edit</a>
+                                            <a >Delete</a>
+                                        </span>
+                                        <ol ng-if="node.child != null" ui-tree-nodes="" ng-model="node.child" ng-class="{hidden: collapsed}">
+                                            <li ng-repeat="node in node.child" data-nodrag ng-include="'nodes_renderer.html'" ui-tree-node>
+                                            </li>
+                                        </ol>
+                                    </script>
+
+						<div ui-tree="treeOptions">
+							<div class="col-md-12">
+								<button class="btn btn-xs btn-primary" ng-click="expandAll()">Expand
+									all</button>
+								<button class="btn btn-xs btn-info" ng-click="collapseAll()">Collapse
+									all</button>
+								<ol ui-tree-nodes="" ng-model="categoryList" class="treeView">
+									<li ng-repeat="node in categoryList" data-nodrag
+										ng-if="node.id != null" ng-include="'nodes_renderer.html'"
+										ui-tree-node></li>
+								</ol>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

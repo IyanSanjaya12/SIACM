@@ -1,0 +1,82 @@
+<!--
+SPESIFIC VIEW EDIT OF THE DATA BANK MENU
+---------- START CONTROLLER ------------
+-->
+
+<div class="app-view-header">
+    <span translate="">SETTING VENDOR</span> 
+    <small><span translate="promise.procurement.RegistrasiVendor.edit"></span></small>
+	&nbsp;<small><span translate="" style="color:green; font: italic bold 12px Georgia, serif"></span></small>
+</div>
+<toaster-container toaster-options="{'position-class': 'toast-top-center', 'close-button':true}"></toaster-container>
+
+<div ng-controller="RegistrasiDataBankController as vm">
+
+
+
+<!------------------------------------------------------------ START CONTROLLER ---------------------------------------------------------------------->
+<div class="panel panel-primary">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-folder">&nbsp;</em><span translate="{{vm.subjudul}} ">Data Bank</span></h4>
+	
+	<h4 class="page-header clearfix">
+    	<div class="pull-right">
+        	<button ng-disabled="vm.disable==true" ng-class="'bg-' + app.theme.name" ng-click="add()" class="btn btn-primary btn-sm">
+               	<span class=""><em class="fa fa-plus"></em></span>									
+				<span translate="promise.procurement.RegistrasiVendor.DataBank.Tambah">Tambah</span>
+            </button>                                                
+        </div>
+  	</h4>
+  	<div align="center" ng-if="vm.loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong></div>
+  	<div class="panel-body">
+    	<div class="col-xs-12">
+        	<div class="table-responsive">
+            	<table ng-table="dataBankTable" class="table table-hover table-condensed table-striped bg-white">
+                	<thead>
+                    	<tr style="font-weight: bold">
+                        	<th scope="col"style="width:5%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.DataBank.No"></span>
+                            </th>
+                            <th scope="col"style="width:30%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.DataBank.NamaBank"></span>
+                            </th>
+                            <th scope="col"style="width:20%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.DataBank.NomorAccount"></span>
+                            </th>
+                            <th scope="col"style="width:30%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.DataBank.NamaPemegangAccount"></span>
+                            </th>
+                            <th scope="col"style="width:10%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.DataBank.MataUang"></span>
+                            </th>
+                            <th scope="col"style="width:10%; text-align:left"><span>BnKT</span>
+                            </th>
+                            <th scope="col"style="width:5%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.DataBank.Aksi"></span>
+                            </th>
+                    	</tr>
+              		</thead>
+                    <tbody>
+                       	<tr ng-repeat="dataBank in $data">
+                           	<td style="text-align:center">{{$index+1}}</td>
+                    	    <td>{{ dataBank.namaBank }}</td>
+                          	<td>{{ dataBank.nomorRekening }}</td>
+                           	<td>{{ dataBank.namaNasabah }}</td>
+                           	<td>{{ dataBank.mataUang.nama }}</td>
+                           	<td>{{ dataBank.bnkt }} </td>
+                           	<td style="white-space: nowrap; text-align:center">
+                            	<button ng-disabled="vm.disable==true " ng-click="edit(dataBank)" title="Edit" class="btn btn-sm btn-success">
+                                 	<em class="fa fa-pencil fa-lg"></em>
+                               	</button>
+                               	<button ng-disabled="vm.disable==true || vm.deletestatus==false" ng-click="del(dataBank)" title="Delete" class="btn btn-sm btn-danger">
+                               		<em class="fa fa-trash"></em>
+                              	</button>
+                           	</td>
+                      	</tr>
+                    </tbody>
+                </table>
+         	</div>
+      	</div>
+   	</div>
+</div>
+		<div align="center">
+		    <button ng-disabled="vm.disable==true || vm.valid==false" ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm bg-primary" ng-click="approval()">
+		       	<span translate="template.button.send_approval"></span>
+		    </button>
+		</div>
+</div>
+
+

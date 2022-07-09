@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PrintPurchasOrder" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="515" leftMargin="40" rightMargin="40" topMargin="40" bottomMargin="40" uuid="b59e06c8-8fd8-4526-9659-2764cea1f6c5">
+	<property name="ireport.zoom" value="1.024520183047606"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="java.util.Date"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#FF7F50">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#FFD0BF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="printedBy" class="java.lang.String"/>
+	<parameter name="poId" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="poApprove" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT T1.PO_NUMBER, T1.PURCHASE_ORDER_DATE, T1.SUB_TOTAL, T1.TOTAL_COST,
+T3.NAMA, T3.ALAMAT, T3.NOMOR_TELEPON, T1.NOTES, T1.SUB_TOTAL, T1.TOTAL_COST
+FROM promise_t3_purchase_order T1
+LEFT JOIN promise_t4_purchase_order_item T2
+ON T1.PURCHASE_ORDER_ID = T2.PURCHASE_ORDER_ID
+LEFT JOIN promise_t2_vendor T3
+ON T2.VENDOR_ID = T3.VENDOR_ID
+LEFT JOIN promise_t1_user T4
+ON T1.CREATED = T4.NAMA_PENGGUNA
+WHERE T1.PURCHASE_ORDER_ID = $P{poId}
+GROUP BY T1.PO_NUMBER, T1.PURCHASE_ORDER_DATE, T1.SUB_TOTAL, T1.TOTAL_COST,
+T3.NAMA, T3.ALAMAT, T3.NOMOR_TELEPON, T1.NOTES, T1.SUB_TOTAL, T1.TOTAL_COST]]>
+	</queryString>
+	<field name="PO_NUMBER" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PURCHASE_ORDER_DATE" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SUB_TOTAL" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TOTAL_COST" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NAMA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ALAMAT" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOMOR_TELEPON" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOTES" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<title>
+		<band height="121" splitType="Stretch">
+			<textField>
+				<reportElement positionType="Float" x="0" y="24" width="294" height="14" uuid="145c0eba-8457-4b66-a94a-a96cc9f07a4b"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Kepada Yth."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="0" y="0" width="515" height="25" uuid="7e61f63e-05a2-4741-b3bd-b1fc39464a10"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pesanan Pembelian | Purchase Order"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="306" y="24" width="50" height="14" uuid="aca6bfb1-9c94-4c4b-92c5-0745b78b3c0d"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["P/O No."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="306" y="41" width="50" height="14" uuid="98acc225-817f-4468-8329-e537b6180f0e"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Tanggal"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="356" y="41" width="159" height="14" uuid="0efb6d90-f767-4ce4-b1d4-13a74a10df3e"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PURCHASE_ORDER_DATE} == null ? "" :
+new SimpleDateFormat("dd MMMMM yyyy", new java.util.Locale("id")).format($F{PURCHASE_ORDER_DATE})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="356" y="24" width="159" height="14" uuid="2f868415-92c6-47c7-a5e8-f219e37e6905"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PO_NUMBER} == null ? "" : $F{PO_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="0" y="41" width="294" height="14" uuid="458c4d27-2938-4dc1-beb4-10ad7a073eaa"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NAMA} == null ? "" : $F{NAMA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="0" y="58" width="294" height="14" uuid="54df7777-f214-4d41-a7dd-029d3e22a610"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ALAMAT} == null ? "" : $F{ALAMAT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="0" y="75" width="69" height="14" uuid="45c0be2e-1d4b-43d6-9925-d1ead31d7af9"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Telp/Fax."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="68" y="75" width="226" height="14" uuid="673aeea7-93ab-4ba4-96bb-01f329fe0d5d"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMOR_TELEPON} == null ? "" : $F{NOMOR_TELEPON}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="0" y="97" width="69" height="14" uuid="905c018c-fc52-4476-ae58-ce363e3e534f"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Deliver To"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="161">
+			<subreport>
+				<reportElement positionType="Float" x="0" y="0" width="515" height="14" uuid="99977ff4-d57f-4bae-b568-a2719c16d67d"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="printedBy">
+					<subreportParameterExpression><![CDATA[$P{printedBy}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="poId">
+					<subreportParameterExpression><![CDATA[$P{poId}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "PrintPurchasOrderShipping.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="208">
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="0" y="28" width="315" height="71" uuid="15af5526-c9a4-4e2a-8f02-c06c9d1325d5"/>
+				<textElement>
+					<font fontName="Arial"/>
+					<paragraph leftIndent="5" rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOTES} == null ? "" : $F{NOTES}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="table_TD" x="0" y="9" width="315" height="90" uuid="f9d26055-6abf-49d2-a5a8-668752b46e06"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TD" positionType="Float" x="326" y="9" width="189" height="90" uuid="cf9a5f36-c8a6-4fb3-ae33-9696dc4a1c5f"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="9" width="315" height="20" uuid="00370aa4-4f30-4b68-abe0-35a6447c3048"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+					<paragraph leftIndent="5" rightIndent="5"/>
+				</textElement>
+				<text><![CDATA[Note]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="326" y="9" width="74" height="20" uuid="fe734de0-4c73-4ba7-bd98-0dd6d7992850"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[Grand Total]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="356" y="48" width="116" height="20" uuid="453fb819-c97e-4bf0-bbef-02abac2951d7"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+					<paragraph leftIndent="5" rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{TOTAL_COST} == null ? "" :  new DecimalFormat("#,##0.00").format(new BigDecimal($F{TOTAL_COST}))) + " IDR"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="114" width="100" height="20" uuid="b00fd462-8534-48df-bcee-d769e818aed9"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Approved By,]]></text>
+			</staticText>
+			<subreport>
+				<reportElement positionType="Float" x="0" y="194" width="515" height="14" uuid="85e198b8-b20a-4e69-a763-9df40a5ff259"/>
+				<subreportParameter name="poApprove">
+					<subreportParameterExpression><![CDATA[$P{poId}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "SubPrintPurchaseOrder.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<noData>
+		<band/>
+	</noData>
+</jasperReport>

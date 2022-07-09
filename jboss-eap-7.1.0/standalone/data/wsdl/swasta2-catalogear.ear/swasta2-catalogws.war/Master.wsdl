@@ -1,0 +1,230 @@
+<?xml version="1.0" ?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://promise.co.id/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="Master" targetNamespace="http://promise.co.id/wsdl">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://promise.co.id/wsdl" elementFormDefault="unqualified" targetNamespace="http://promise.co.id/wsdl" version="1.0">
+
+  <xs:element name="create" type="tns:create"></xs:element>
+
+  <xs:element name="createResponse" type="tns:createResponse"></xs:element>
+
+  <xs:element name="delete" type="tns:delete"></xs:element>
+
+  <xs:element name="deleteResponse" type="tns:deleteResponse"></xs:element>
+
+  <xs:element name="edit" type="tns:edit"></xs:element>
+
+  <xs:element name="editResponse" type="tns:editResponse"></xs:element>
+
+  <xs:element name="getItemList" type="tns:getItemList"></xs:element>
+
+  <xs:element name="getItemListResponse" type="tns:getItemListResponse"></xs:element>
+
+  <xs:complexType name="delete">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="deleteResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:item"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="item">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deskripsi" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="itemGroupId" type="tns:itemGroup"></xs:element>
+      <xs:element minOccurs="0" name="itemType" type="tns:itemType"></xs:element>
+      <xs:element minOccurs="0" name="kode" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="nama" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="satuanId" type="tns:satuan"></xs:element>
+      <xs:element minOccurs="0" name="source" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="itemGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deskripsi" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="nama" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="parentId" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="itemType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="nama" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="satuan">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="created" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="deleted" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="isDelete" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="nama" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="updated" type="xs:dateTime"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="edit">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:item"></xs:element>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="editResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:item"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="create">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:item"></xs:element>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:item"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getItemList">
+    <xs:sequence></xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getItemListResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:item"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="delete">
+    <wsdl:part element="tns:delete" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="create">
+    <wsdl:part element="tns:create" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createResponse">
+    <wsdl:part element="tns:createResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getItemListResponse">
+    <wsdl:part element="tns:getItemListResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteResponse">
+    <wsdl:part element="tns:deleteResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="edit">
+    <wsdl:part element="tns:edit" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="editResponse">
+    <wsdl:part element="tns:editResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getItemList">
+    <wsdl:part element="tns:getItemList" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ItemWSDLImpl">
+    <wsdl:operation name="delete">
+      <wsdl:input message="tns:delete" name="delete">
+    </wsdl:input>
+      <wsdl:output message="tns:deleteResponse" name="deleteResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="edit">
+      <wsdl:input message="tns:edit" name="edit">
+    </wsdl:input>
+      <wsdl:output message="tns:editResponse" name="editResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <wsdl:input message="tns:create" name="create">
+    </wsdl:input>
+      <wsdl:output message="tns:createResponse" name="createResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getItemList">
+      <wsdl:input message="tns:getItemList" name="getItemList">
+    </wsdl:input>
+      <wsdl:output message="tns:getItemListResponse" name="getItemListResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MasterSoapBinding" type="tns:ItemWSDLImpl">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="delete">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="delete">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="deleteResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="edit">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="edit">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="editResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="create">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="createResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getItemList">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getItemList">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getItemListResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Master">
+    <wsdl:port binding="tns:MasterSoapBinding" name="ItemWSDLServicesPort">
+      <soap:address location="http://localhost:8082/swasta2-catalogws/Master/ItemWSDLServices"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

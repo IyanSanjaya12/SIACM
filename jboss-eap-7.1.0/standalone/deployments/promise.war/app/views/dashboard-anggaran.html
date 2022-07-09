@@ -1,0 +1,134 @@
+<div class="app-view-header">Dashboard Anggaran
+    <!-- <small ng-bind="app.name + ' - ' + app.description"></small> -->
+</div>
+<div ng-controller="DashboardAnggaranController" class="row">
+    <!-- START dashboard content-->
+    <div class="col-lg-10">
+        <!-- START Tabbed panel-->
+        <div class="panel panel-default">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="p pv-xxl">
+                        <ul class="list-table text-center">
+                            <li class="small-box bg-success">
+                                <div class="icon">
+                                  <em class="fa fa-eur"></em>
+                                </div>
+                                <div class="inner" ng-if="plannedBudget == 0" >
+                                  <h3 class="text-right text-thin mt">{{"0" | shortnumber }}</h3>
+                                  <p class="text-right text-muted m0">IDR</p>
+                                  <div class="text-right text-sm text-muted">Total Anggaran</div>
+                                </div>
+                                
+                                <div class="inner" ng-if="plannedBudget != 0" >
+                                  <h3 class="text-right text-thin mt">{{plannedBudget | shortnumber }}</h3>
+                                  <p class="text-right text-muted m0">IDR</p>
+                                  <div class="text-right text-sm text-muted">Total Anggaran</div>
+                                </div>
+                                <div ripple="" ng-click="go('/app/promise/procurement/alokasianggaran/index02')" class="clickable small-box-footer">
+                                  More info <em class="fa fa-arrow-circle-right"></em>
+                                </div>
+                            </li>
+                            <li ng-class="'bg-green small-box'">
+                                <div class="icon">
+                                  <em class="fa fa-eur"></em>
+                                </div>
+                                <div class="inner" ng-if="bookedBudget == 0">
+                                  <h3 class="text-right text-thin mt">{{"0" | shortnumber }}</h3>
+                                  <p class="text-right text-muted m0">IDR</p>
+                                  <div class="text-right text-sm text-muted">Booked</div>
+                                </div>
+                                
+                                <div class="inner" ng-if="bookedBudget != 0">
+                                  <h3 class="text-right text-thin mt">{{bookedBudget | shortnumber }}</h3>
+                                  <p class="text-right text-muted m0">IDR</p>
+                                  <div class="text-right text-sm text-muted">Booked</div>
+                                </div>
+                                <div ripple="" ng-click="go('/app/promise/procurement/alokasianggaran/index02')" class="clickable small-box-footer">
+                                  More info <em class="fa fa-arrow-circle-right"></em>
+                                </div>
+                            </li>
+                            <li class="small-box bg-warning">
+                                <div class="icon">
+                                  <em class="fa fa-eur"></em>
+                                </div>
+                                <div class="inner" ng-if="usedBudget == 0">
+                                  <h3 class="text-right text-thin mt">{{"0" | shortnumber }}</h3>
+                                  <p class="text-right text-muted m0">IDR</p>
+                                  <div class="text-right text-sm text-muted">Terpakai</div>
+                                </div>
+                                
+                                <div class="inner" ng-if="usedBudget != 0">
+                                  <h3 class="text-right text-thin mt">{{usedBudget | shortnumber }}</h3>
+                                  <p class="text-right text-muted m0">IDR</p>
+                                  <div class="text-right text-sm text-muted">Terpakai</div>
+                                </div>
+                                
+                                <div ripple="" ng-click="go('/app/promise/procurement/alokasianggaran/index02')" class="clickable small-box-footer">
+                                  More info <em class="fa fa-arrow-circle-right"></em>
+                                </div>
+                            </li>
+                            <li class="bg-danger small-box">
+                                <div class="icon">
+                                  <em class="fa fa-money"></em>
+                                </div>
+                                <div class="inner" ng-if="availableBudget == 0">
+                                  <h3 class="text-right text-thin mt">{{"0" | shortnumber }}</h3>
+                                  <p class="text-right text-muted m0">IDR</p>
+                                  <div class="text-right text-sm text-muted">Sisa Anggaran</div>
+                                </div>
+                                
+                                 <div class="inner" ng-if="availableBudget != 0">
+                                  <h3 class="text-right text-thin mt">{{availableBudget | shortnumber }}</h3>
+                                  <p class="text-right text-muted m0">IDR</p>
+                                  <div class="text-right text-sm text-muted">Sisa Anggaran</div>
+                                </div>
+                                <div ripple="" ng-click="go('/app/promise/procurement/alokasianggaran/index02')" class="clickable small-box-footer">
+                                  More info <em class="fa fa-arrow-circle-right"></em>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <!-- <div ng-class="'bg-' + app.theme.name" class="panel-heading">
+                <div class="panel-title text-center"></div>
+            </div> -->
+            <div ng-class="'bg-'+ app.theme.name" >
+                
+                <div ripple="" ng-click="changeGraph('minggu')" class="btn pull-right text-thin ">
+                    <span translate="promise.procurement.dashboard.MINGGU"></span>
+                </div>
+                <div ripple="" ng-click="changeGraph('bulan')" class="btn pull-right text-thin ">
+                    <span translate="promise.procurement.dashboard.BULAN"></span>
+                </div>
+                <div  ripple="" ng-click="changeGraph('tahun')" class="btn  pull-right text-thin ">
+                    <span translate="promise.procurement.dashboard.TAHUN"></span>
+                </div>
+                
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-body text-center">
+                <div class="center" fusioncharts width="800" height="400" type="mscolumn3d" chart="{{attrs}}" categories="{{categories}}" dataset="{{dataset}}">
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- END Tabbed panel-->
+        <!-- START Responsive table-->
+        
+    <aside class="col-lg-2">
+         <div ng-class="'small-box bg-' + app.theme.name">
+                <div class="inner">
+                  <h1 class="text-thin mt">{{ countApproval }}</h1>
+                  <div class="text-right text-sm text-muted">Approval PO/PR</div>
+                </div>
+                <div ripple="" ng-click="go('/app/promise/procurement/approval')" class="clickable small-box-footer">
+                  More info <em class="fa fa-arrow-circle-right"></em>
+                </div>
+        </div>
+    </aside>   
+</div>

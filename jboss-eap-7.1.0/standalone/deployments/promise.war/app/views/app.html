@@ -1,0 +1,16 @@
+<div ng-if="!$root.userLogin" ng-include="'templates/relogin.html'"></div>
+<!-- top navbar-->
+<div inform class="inform-fixed inform-shadow inform-animate"></div>
+<header ng-if="$root.userLogin" ng-include="'templates/top-navbar.html'" class="bg-white" ></header>
+<!-- Sidebar-->
+<!-- <aside ng-include="'templates/sidebar.html'" ng-class="app.theme.sidebar"></aside> -->
+<aside ng-if="$root.userLogin" ng-include="'templates/sidebar-menu.html'" ng-class="app.theme.sidebar"></aside>
+<!-- Main-->
+<section ng-if="$root.userLogin">
+    <!-- Breadcrums-->
+    <ui-breadcrumbs ng-hide="categoryTreeActive" displayname-property="data.displayName" abstract-proxy-property="data.proxy" template-url="templates/uiBreadcrumbs.tpl.html"></ui-breadcrumbs>
+    <!-- Content-->
+    <div ui-view="" autoscroll="false" ng-class="app.views.animation" class="app" style="padding-top: 0px"></div>
+</section>
+<!-- Page footer-->
+<footer ng-if="$root.userLogin" ng-include="'templates/footer.html'" ></footer>
