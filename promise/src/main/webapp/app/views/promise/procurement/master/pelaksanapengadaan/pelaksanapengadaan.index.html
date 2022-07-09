@@ -1,0 +1,73 @@
+<div class="app-view-header">
+    <span translate="promise.procurement.master.pelaksanapengadaan.judul"></span>
+</div>
+<!--START CONTROLLER-->
+<div ng-controller="PelaksanaPengadaanController as vm">
+    <div class="panel panel-primary">
+        <div ng-class="'bg-' + app.theme.name" class="panel-heading clearfix">
+            <div class="clearfix">
+                <h4 class="pull-left"><span translate="promise.procurement.master.pelaksanapengadaan.subjudul"></span></h4>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div dropdown="dropdown" class="btn-group mb-sm mr pull-right">
+                <button ng-disabled="disabled" dropdown-toggle="" ripple="" ng-class="'bg-' + app.theme.name" type="button"
+                    class="mr btn btn-labeled">
+                    <span class="btn-label"><em class="fa fa-plus"></em></span>
+                    <span translate="template.button.tambah"></span>&nbsp;
+                    <span class="caret"></span>
+                </button>
+                <ul role="menu" class="dropdown-menu">
+                    <li><a href="" ng-click="addTeam()"><span translate="promise.procurement.master.pelaksanapengadaan.tim"></span></a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="" ng-click="addPejabat()"><span translate="promise.procurement.master.pelaksanapengadaan.pejabat"></span></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-12">
+                <div>
+                    <div align="center" ng-if="vm.loading == true"><strong><em>Loading...</em></strong>
+                    </div>
+                    <table datatable="ng" class="row-border hover table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col"style="text-align:center"><span translate="template.tabel.nomor">Nomor</span>
+                                </th>
+                                <th scope="col"style="text-align:center"><span translate="promise.procurement.master.pelaksanapengadaan.list.kantor"></span>
+                                </th>
+                                <th scope="col"style="text-align:center"><span translate="promise.procurement.master.pelaksanapengadaan.list.unit"></span>
+                                </th>
+                                <th scope="col"style="text-align:center"><span translate="promise.procurement.master.pelaksanapengadaan.list.nama"></span>
+                                </th>
+                                <th scope="col"width="15%" style="text-align:center"><span translate="template.tabel.aksi">Aksi</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="detailPanitia in vm.detailPanitiaList">
+                                <td style="text-align:center">{{ $index+1 }}</td>
+                                <td ng-bind="detailPanitia.panitia.cabang.nama" style="text-align:center"></td>
+                                <td ng-bind="detailPanitia.panitia.divisi.nama" style="text-align:center"></td>
+                                <td ng-bind="detailPanitia.nama" style="text-align:center"></td>
+                                <td style="text-align:center">
+                                    <div>
+                                        <button ng-if="detailPanitia.panitia.id > 0" type="button" ng-class="'bg-' + app.theme.name"
+                                            class="mr btn btn-xs" ng-click="edit(detailPanitia)">
+                                            <em class="fa fa-pencil fa-lg"></em>
+                                        </button>
+                                        <button ng-if="detailPanitia.panitia.id > 0" type="button" class="mr btn btn-danger btn-xs"
+                                            ng-click="del(detailPanitia.panitia)">
+                                            <em class="fa fa-trash fa-lg"></em>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END CONTROLLER-->

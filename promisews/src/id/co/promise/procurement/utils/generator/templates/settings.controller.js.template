@@ -1,0 +1,48 @@
+/**=========================================================
+ * Module: SettingsController.js
+ * Handles app setting
+ =========================================================*/
+
+(function () {
+	'use strict';
+
+	angular
+		.module('naut')
+		.controller('SettingsController', SettingsController);
+	
+	function SettingsController($scope, settings, $rootScope) {
+
+		// Restore/Save layout settings
+		settings.loadAndWatch();
+
+		// Set scope for panel settings
+		$scope.themes = settings.availableThemes();
+		$scope.setTheme = settings.setTheme;
+		
+        $rootScope.backendAddressIP 		 = ':backendAddressIP';
+        $rootScope.aplicationVersion         = ':aplicationVersion';
+        $rootScope.cmAppLink  				 = ':cmAppLink';
+        $rootScope.pmAppLink  				 = ':pmAppLink';
+        $rootScope.fileUploadSize  			 = ':fileUploadSize';
+        $rootScope.fileTypeImg 		 		 = ':fileTypeImg';
+        $rootScope.fileTypeDoc  			 = ':fileTypeDoc';
+        $rootScope.interfacing  			 = ':interfacing';
+        $rootScope.isInsertSecurityServices	 = ':isInsertSecurityServices';
+        $rootScope.backendAddress   		 = $rootScope.backendAddressIP + "/promisews";
+		$rootScope.uploadBackendAddress      = $rootScope.backendAddress + "/procurement/file/upload";		
+		$rootScope.viewUploadBackendAddress  = $rootScope.backendAddress + "/file/view";	
+		$rootScope.forumAppLink				 = $rootScope.backendAddressIP + "/forum/";  	
+		$rootScope.salt         			 = ':salt';
+        $rootScope.iv         				 = ':iv';
+        $rootScope.passphrase   			 = ':passphrase'; 	    
+		$rootScope.cartList 				 = [];
+        // Vendor Update Status Constanta
+        $rootScope.vendorStatus = {
+            daftar: 0,
+            approve: 1,
+            blackList: 2
+        }
+        
+	}
+	SettingsController.$inject = ['$scope', 'settings', '$rootScope'];
+})();

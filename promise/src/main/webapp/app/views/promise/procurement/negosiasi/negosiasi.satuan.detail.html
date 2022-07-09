@@ -1,0 +1,152 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.panitia.negosiasi.JUDUL"></span>&nbsp;Satuan
+</div>
+<toaster-container
+	toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<div ng-controller="NegosiasiSatuanDetailController as form">
+    <div id="negosiasi">
+	<promise-view-data-pengadaan pengadaan-id=pengadaanId hide-item ></promise-view-data-pengadaan>
+	<form name="myform" class="form-validate form-horizontal" role="form" novalidate>
+		
+		<!-- MATERIAL -->
+			<div class="panel panel-primary">
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<em class="fa fa-group">&nbsp;</em> <span>Rincian Kebutuhan
+					Material</span>
+			</h4>
+			<div ng-show="loading" align="center">
+				<strong><em>Loading... <img src="app/img/loading.gif" border="0"
+						height="20px" /></em></strong>
+			</div>
+			<div ng-show="!loading" class="panel-body">
+				<div class="row">
+					<div class="col-xs-12"> 
+						<div class="table-responsive">
+							<table
+								class="table table-hover table-condensed table-striped bg-white">
+								<thead>
+									<tr style="font-weight: bold">
+										<th scope="col"style="text-align: center; vertical-align: top"><span>NOMOR PERENCANAAN</span></th>
+										<th scope="col"style="text-align: center; vertical-align: top"><span>KODE MATERIAL</span></th>
+										<th scope="col"style="text-align: center; vertical-align: top"><span>NAMA MATERIAL</span></th>
+										<th scope="col"style="text-align: center; vertical-align: top"><span>KUANTITAS</span></th>
+										<th scope="col"style="text-align: center; vertical-align: top"><span>SATUAN</span></th>
+										<th scope="col"width="13%" style="text-align: right;  vertical-align: top"><span>HPS</span></th>
+										<th scope="col"width="13%" style="text-align: right;  vertical-align: top"><span>TOTAL HPS</span></th>
+										<th scope="col"width="13%" style="text-align: right;  vertical-align: top"><span>AKSI</span></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr	ng-repeat="itemPengadaan in form.negosiasiDetailMaterialList">
+
+										<td style="text-align: center; vertical-align: top">{{$index+1}}</td>
+										<td style="text-align: center; vertical-align: top">{{itemPengadaan.item.kode}}</td>
+										<td style="text-align: center; vertical-align: top">{{itemPengadaan.item.nama}}</td>
+										<td style="text-align: center; vertical-align: top">{{itemPengadaan.kuantitas}}</td>
+										<td style="text-align: center; vertical-align: top">{{itemPengadaan.item.satuanId.nama}}</td>
+										<td style="text-align: right;  vertical-align: top">
+											{{itemPengadaan.nilaiHPS | currency:"IDR "}}
+										</td>
+										<td style="text-align: right;  vertical-align: top">
+											{{itemPengadaan.totalHPS | currency:"IDR "}}
+										</td>
+										<td style="text-align: right;  vertical-align: top">
+											<button type="button" class="btn btn-xs bg-primary" title="Negosiasi" ng-click="viewPenawaran(itemPengadaan.pengadaan.id, itemPengadaan.id)">
+	  											<em class="fa fa-chevron-right"></em>
+											</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	
+		<!-- JASA -->
+		<div class="panel panel-primary">
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<em class="fa fa-group">&nbsp;</em> <span>Rincian Kebutuhan
+					Jasa</span>
+			</h4>
+			<div ng-show="loading" align="center">
+				<strong><em>Loading... <img src="app/img/loading.gif" border="0"
+						height="20px" /></em></strong>
+			</div>
+			<div ng-show="!loading" class="panel-body">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="table-responsive">
+							<table
+								class="table table-hover table-condensed table-striped bg-white">
+								<thead>
+									<tr style="font-weight: bold">
+										<th scope="col"style="text-align: center; vertical-align: top"><span>NOMOR PERENCANAAN</span></th>
+										<th scope="col"style="text-align: center; vertical-align: top"><span>KODE JASA</span></th>
+										<th scope="col"style="text-align: center; vertical-align: top"><span>NAMA JASA</span></th>
+										<th scope="col"style="text-align: center; vertical-align: top"><span>KUANTITAS</span></th>
+										<th scope="col"style="text-align: center; vertical-align: top"><span>SATUAN</span></th>
+										<th scope="col"width="13%" style="text-align: right;  vertical-align: top"><span>HPS</span></th>
+										<th scope="col"width="13%" style="text-align: right;  vertical-align: top"><span>TOTAL HPS</span></th>
+										<th scope="col"width="13%" style="text-align: right;  vertical-align: top"><span>AKSI</span></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr	ng-repeat="itemPengadaan in form.negosiasiDetailJasaList">
+
+										<td style="text-align: center; vertical-align: top">{{$index+1}}</td>
+										<td style="text-align: center; vertical-align: top">{{itemPengadaan.item.kode}}</td>
+										<td style="text-align: center; vertical-align: top">{{itemPengadaan.item.nama}}</td>
+										<td style="text-align: center; vertical-align: top">{{itemPengadaan.kuantitas}}</td>
+										<td style="text-align: center; vertical-align: top">{{itemPengadaan.item.satuanId.nama}}</td>
+										<td style="text-align: right;  vertical-align: top">
+											{{itemPengadaan.nilaiHPS | currency:"IDR "}}
+										</td>
+										<td style="text-align: right;  vertical-align: top">
+											{{itemPengadaan.totalHPS | currency:"IDR "}}
+										</td>
+										<td style="text-align: right;  vertical-align: top">
+											<button type="button" class="btn btn-xs bg-primary" title="Negosiasi" ng-click="viewPenawaran(itemPengadaan.pengadaan.id, itemPengadaan.id)">
+	  											<em class="fa fa-chevron-right"></em>
+											</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		<br>
+		
+		<!--END KEHADIRAN VENDOR-->
+		
+		<div ng-show="!loadingSaving && !loading">
+		<!-- pull left dihilangkan -->
+   			<button ripple="" class="btn btn-primary btn-sm bg-primary" ng-click="back()" ng-class="'bg-' + app.theme.name" style="margin-right: 5px">
+    		 	  <span class=""><em class="fa fa-chevron-left"></em></span>&nbsp;&nbsp;<font color="white"><span  class="ng-scope">Back</span></font>
+  				  <span class="ripple"></span>
+  			</button>
+            <button ripple="" ng-class="'bg-' + app.theme.name" type="button" class="btn btn-primary btn-sm bg-primary" ng-click="printDiv('negosiasi')" ng-show="view==true && detilPengadaan.tahapanPengadaan.tahapan.id>15">
+                       <span class=""><em class="fa fa-print"></em></span>&nbsp;&nbsp;<font color="white"><span  class="ng-scope" translate="promise.procurement.panitia.pengambilandokumen.view.btn.PRINT"></span></font>
+          				  <span class="ripple"></span>
+            </button>
+  			
+  			 <button ripple="" class="btn btn-primary btn-sm bg-primary" ng-click="next()" ng-class="'bg-' + app.theme.name" ng-hide="view==true && detilPengadaan.tahapanPengadaan.tahapan.id>15">
+     		     <span class=""><em class="fa fa-chevron-right"></em></span>&nbsp;&nbsp;<font color="white"><span  class="ng-scope">Next</span></font>
+   				 <span class="ripple"></span>
+   			</button>
+      	</div>
+      	<br>
+      	<br>
+        		
+        		
+	</form>
+</div>
+
+
+

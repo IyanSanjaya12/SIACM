@@ -1,0 +1,36 @@
+<div class="app-view-header">
+    <span translate="promise.procurement.master.kriteriakualifikasiadministrasi.JUDUL">Kriteria Administrasi</span>
+    <small><span translate="promise.procurement.master.kriteriakualifikasiadministrasi.tambah.TAMBAH"></span></small>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="MasterKriteriaKualifikasiAdministrasiTambahController as form">
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    <div class="panel-body">
+        <div align="center" ng-if="loading == true"><strong><em>Loading...</em></strong></div>
+        <form method="post" action="#" novalidate="" class="form-horizontal">
+            <fieldset>
+                <div class="form-group">
+                    <label for="input-id-1" class="col-sm-2 control-label"><span translate="promise.procurement.master.kriteriakualifikasiadministrasi.tambah.NAMA"></span></label>
+                    <div class="col-sm-5">
+                        <input id="input-id-1" type="text" class="form-control" ng-model="form.nama" />
+                        <br/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="input-id-2" class="col-sm-2 control-label"><span translate="promise.procurement.master.kriteriakualifikasiadministrasi.KETERANGAN"></span></label>
+                    <div class="col-sm-5">
+                        <input id="input-id-2" type="text" class="form-control" ng-model="form.keterangan" />
+                        <br/>
+                        <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-sm" ng-click="form.back()">
+                            <span class="btn-label">
+						  	<em class="fa fa-chevron-left"></em>
+						  </span><span translate="promise.procurement.master.kriteriakualifikasiadministrasi.tambah.KEMBALI"></span>
+                        </button>
+                        <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="form.save()"><span translate="promise.procurement.master.kriteriakualifikasiadministrasi.tambah.SIMPAN"></span></button>
+                    </div>
+                </div>
+                <div align="left"><strong style="background-color: yellow;color:green">{{message}}</strong></div>
+            </fieldset>
+        </form>
+    </div>
+</div>

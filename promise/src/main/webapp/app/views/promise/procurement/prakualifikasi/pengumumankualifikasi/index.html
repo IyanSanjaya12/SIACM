@@ -1,0 +1,53 @@
+<!-- 
+GENERAL VIEW OF THE PROCUREMENT SYSTEM 
+---------- START CONTROLLER ----------
+@author musisician
+-->
+
+<div class="app-view-header">
+    <span translate="promise.procurement.vendor.pengumumankualifikasi.JUDUL"></span>
+</div>
+
+<div class="panel panel-primary" ng-controller="PengumumanKualifikasiController as form">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-tasks">&nbsp;</em><span translate="promise.procurement.vendor.pengumumankualifikasi.SUBJUDUL"></span></h4>
+    <div class="panel-body">
+        <br/>
+        <div class="col-md-12">
+            <div>
+                <div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px" border="0"/></strong></div>
+                <table datatable="ng" class="row-border hover table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"style="text-align:left">No
+                            </th>
+                            <th scope="col"style="text-align:left"><span translate="promise.procurement.vendor.pengumumankualifikasi.list.CREATEDATE">Tanggal Pengumuman Berakhir</span>
+                            </th>
+                            <th scope="col"style="text-align:left"><span translate="promise.procurement.vendor.pengumumankualifikasi.list.NAMA">Nama Pengadaan</span>
+                            </th>
+                            <th scope="col"style="text-align:left"><span translate="promise.procurement.vendor.pengumumankualifikasi.list.KUALIFIKASI">Kualifikasi</span>
+                            </th>
+                            <th scope="col"style="text-align:left"><span translate="promise.procurement.vendor.pengumumankualifikasi.list.AKSI">Aksi</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="data in pengumumanPengadaanList">
+                            <td style="text-align:left">{{ ($index + 1) }}</td>
+                            <td style="text-align:left">{{ data.tglSelesai | date:'dd/MM/yyyy'}}</td>
+                            <td style="text-align:left">{{ data.pengadaan.namaPengadaan }}</td>
+                            <td style="text-align:left"><a href="">{{ data.pengadaan.kualifikasiVendor.nama }}</a></td>
+                            <td style="white-space: nowrap; text-align:center">
+                                <div>
+                                    <button type="button" class="mr btn btn-primary btn-circle btn-xs" ng-click="view(data.pengadaan)">
+                                        <em class="fa fa-search"></em>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END CONTROLLER-->

@@ -1,0 +1,362 @@
+<div class="app-view-header">
+    <span>Usulan Calon Pemenang</span>
+    <small><span>Satuan Sistem Gugur</span></small>
+</div>
+<!--START CONTROLLER-->
+<div ng-controller="UsulanCalonPemenangSatuanSistemGugurController as form">
+    <div id="usulanCalonPemenang">
+    <div class="panel panel-primary">
+        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-table">&nbsp;</em> <span
+				translate="promise.procurement.panitia.pembukaanpenawaran.total.DATA"></span>
+		</h4>
+        <div class="panel-body">
+            <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+            <div class="panel-body">
+                <div align="center" ng-if="loading == true">
+                    <strong><em>Loading...</em><img src="app/img/loading.gif"
+						width="20px" border="0" /></strong>
+                </div>
+                <div class="table-responsive">
+                    <table id="table-ext-1" class="table table-bordered table-hover" width="100%">
+                        <tbody>
+                            <tr>
+                                <td style="text-align: left" width="40%"><span translate="promise.procurement.panitia.pembukaanpenawaran.total.NAMA"></span>
+                                </td>
+                                <td style="text-align: left" width="60%">{{form.detailPengadaan.namaPengadaan}}</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left"><span translate="promise.procurement.panitia.pembukaanpenawaran.total.JENIS"></span>
+                                </td>
+                                <td style="text-align: left">{{form.detailPengadaan.jenisPengadaan.nama}}</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left"><span translate="promise.procurement.panitia.pembukaanpenawaran.total.METODE"></span>
+                                </td>
+                                <td style="text-align: left">{{form.detailPengadaan.metodePengadaan.nama}}</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left"><span translate="promise.procurement.panitia.pembukaanpenawaran.total.KUALIFIKASI"></span>
+                                </td>
+                                <td style="text-align: left">{{form.detailPengadaan.kualifikasiPengadaan.nama}}</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left"><span translate="promise.procurement.panitia.pembukaanpenawaran.total.METPENAWARAN"></span>
+                                </td>
+                                <td style="text-align: left">{{form.detailPengadaan.metodePenawaranHarga.nama}}</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left"><span translate="promise.procurement.panitia.pembukaanpenawaran.total.EVALUASI"></span>
+                                </td>
+                                <td style="text-align: left">{{form.detailPengadaan.sistemEvaluasiPenawaran.nama}}</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left"><span translate="promise.procurement.panitia.pembukaanpenawaran.total.MU"></span>
+                                </td>
+                                <td style="text-align: left">{{form.detailPengadaan.mataUang.nama}}</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left"><span translate="promise.procurement.panitia.pembukaanpenawaran.total.BRGJASA"></span>
+                                </td>
+                                <td style="text-align: left">{{form.detailPengadaan.kualifikasiVendor.nama}}</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left"><span translate="promise.procurement.panitia.pembukaanpenawaran.total.BIDANG"></span>
+                                </td>
+                                <td style="text-align: left">
+                                    <div align="center" ng-if="loading == true">
+                                        <strong><em>Loading...</em><img src="app/img/loading.gif"
+											width="20px" border="0" /></strong>
+                                    </div>
+                                    <div ng-repeat="bd in form.subBidangUsahaByPengadaanIdList">
+                                        <li>{{bd.subBidangUsaha.bidangUsaha.nama}}</li>
+                                        <ul class="fa fa-long-arrow-right">
+                                            {{bd.subBidangUsaha.nama}}
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left"><span translate="promise.procurement.panitia.pembukaanpenawaran.total.KET"></span>
+                                </td>
+                                <td style="text-align: left">{{form.detailPengadaan.keterangan}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--END PANEL PERTAMA-->
+    <!--START PANEL RINCIAN KEBUTUHAN MATERIAL-->
+    <div class="panel panel-primary">
+        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-archive">&nbsp;</em> <span
+				translate="promise.procurement.inisialisasi.tambahbumn.TBLMATERIAL"></span>
+		</h4>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <div align="center" ng-if="loading == true">
+                    <strong><em>Loading...</em><img src="app/img/loading.gif"
+						width="20px" border="0" /></strong>
+                </div>
+                <table ng-table="form.itemPengadaanMaterial" class="table table-hover table-condensed table-striped bg-white">
+                    <thead>
+                        <tr style="font-weight: bold">
+                            <th scope="col"style="width: 10%; text-align: center"><span translate="promise.procurement.panitia.pembukaanpenawaran.total.list.TBLNOPERENCANAAN"></span>
+                            </th>
+                            <th scope="col"style="width: 10%; text-align: center; vertical-align: middle"><span translate="promise.procurement.inisialisasi.tambahbumn.TBLKDMATERIAL"></span>
+                            </th>
+                            <th scope="col"style="width: 15%; text-align: center; vertical-align: middle"><span translate="promise.procurement.inisialisasi.tambahbumn.TBLNMMATERIAL"></span>
+                            </th>
+                            <th scope="col"style="width: 6%; text-align: center; vertical-align: middle"><span translate="promise.procurement.inisialisasi.tambahbumn.TBLKUANTITAS"></span>
+                            </th>
+                            <th scope="col"style="width: 6%; text-align: center; vertical-align: middle"><span translate="promise.procurement.inisialisasi.tambahbumn.TBLSAT"></span>
+                            </th>
+                            <th scope="col"style="width: 15%; text-align: center; vertical-align: middle"><span translate="promise.procurement.inisialisasi.tambahbumn.TBLHPS"></span>
+                            </th>
+                            <th scope="col"style="width: 17%; text-align: center; vertical-align: middle"><span translate="promise.procurement.inisialisasi.tambahbumn.TBLTOTALHPS"></span>
+                            </th>
+                            <th scope="col"style="width: 15%; text-align: center; vertical-align: middle"><span translate="promise.procurement.inisialisasi.tambahbumn.TBLKET"></span>
+                            </th>
+                            <th scope="col"style="width: 6%; text-align: center; vertical-align: middle"><span translate="promise.procurement.inisialisasi.tambahbumn.TBLAKSI">Aksi</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="ppm in  $data">
+                            <td style="text-align: center; vertical-align: middle">
+                                {{$index+1}}</td>
+                            <td style="text-align: center; vertical-align: middle">
+                                {{ppm.item.kode}}</td>
+                            <td style="vertical-align: middle">{{ppm.item.nama}}</td>
+                            <td style="text-align: center; vertical-align: middle">
+                                {{ppm.kuantitas}}</td>
+                            <td style="text-align: center; vertical-align: middle">
+                                {{ppm.item.satuanId.nama}}</td>
+                            <td style="text-align: right; vertical-align: middle">
+                                {{ppm.nilaiHPS | currency:ppm.mataUang.kode+" "}}</td>
+                            <td style="text-align: right; vertical-align: middle">
+                                {{ppm.totalHPS | currency:ppm.mataUang.kode+" "}}</td>
+                            <td style="vertical-align: middle">{{ppm.item.deskripsi}}</td>
+                            <td style="text-align: center">
+                                <div>
+                                    <button type="button" class="mr btn btn-success btn-circle btn-xs" ng-click="form.goDetail('material', ppm, 'lg')">
+                                        <em class="fa fa-search"></em>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--END PANEL KEDUA-->
+    <!--START PANEL RINCIAN KEBUTUHAN JASA-->
+    <div class="panel panel-primary">
+        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-briefcase">&nbsp;</em> <span
+				translate="promise.procurement.inisialisasi.tambahbumn.TBLJASA"></span>
+		</h4>
+        <div class="panel-body">
+            <div class="col-xs-12">
+                <div class="table-responsive">
+                    <div align="center" ng-if="loading == true">
+                        <strong><em>Loading...</em><img src="app/img/loading.gif"
+							width="20px" border="0" /></strong>
+                    </div>
+                    <table ng-table="form.itemPengadaanJasa" class="table table-hover table-condensed table-striped bg-white">
+                        <thead>
+                            <tr style="font-weight: bold">
+                                <th scope="col"style="width: 9%; text-align: center; vertical-align: middle"><span translate="promise.procurement.inisialisasi.tambahbumn.TBLNOPERENCANAAN"></span>
+                                </th>
+                                <th scope="col"style="width: 25%; text-align: center; vertical-align: middle"><span translate="promise.procurement.inisialisasi.tambahbumn.TBLNMMATERIAL"></span>
+                                </th>
+                                <th scope="col"style="width: 10%; text-align: center; vertical-align: middle"><span translate="promise.procurement.inisialisasi.tambahbumn.TBLKUANTITAS"></span>
+                                </th>
+                                <th scope="col"style="width: 10%; text-align: center; vertical-align: middle"><span translate="promise.procurement.inisialisasi.tambahbumn.TBLSAT"></span>
+                                </th>
+                                <th scope="col"style="width: 10%; text-align: center; vertical-align: middle"><span translate="promise.procurement.inisialisasi.tambahbumn.TBLHPS"></span>
+                                </th>
+                                <th scope="col"style="width: 15%; text-align: center; vertical-align: middle"><span translate="promise.procurement.inisialisasi.tambahbumn.TBLTOTALHPS"></span>
+                                </th>
+                                <th scope="col"style="width: 15%; text-align: center; vertical-align: middle"><span translate="promise.procurement.inisialisasi.tambahbumn.TBLKET"></span>
+                                </th>
+                                <th scope="col"style="width: 6%; text-align: center; vertical-align: middle"><span translate="promise.procurement.inisialisasi.tambahbumn.TBLAKSI">Aksi</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="ppj in $data">
+                                <td style="text-align: center; vertical-align: middle">
+                                    {{$index+1}}</td>
+                                <td style="vertical-align: middle">{{ppj.item.nama}}</td>
+                                <td style="text-align: center; vertical-align: middle">
+                                    {{ppj.kuantitas}}</td>
+                                <td style="text-align: center; vertical-align: middle">
+                                    {{ppj.item.satuanId.nama}}</td>
+                                <td style="text-align: right; vertical-align: middle">
+                                    {{ppj.nilaiHPS | currency:ppj.mataUang.kode+" "}}</td>
+                                <td style="text-align: right; vertical-align: middle">
+                                    {{ppj.totalHPS | currency:ppj.mataUang.kode+" "}}</td>
+                                <td style="vertical-align: middle">{{ppj.item.deskripsi}}</td>
+                                <td style="text-align: center">
+                                    <div>
+                                        <button type="button" class="mr btn btn-success btn-circle btn-xs" ng-click="form.goDetail('jasa', ppj, 'lg')">
+                                            <em class="fa fa-search"></em>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+<!--     <div class="panel-default">
+        <div class="col-xs-12">
+            <div class="checkbox c-checkbox c-checkbox-rounded">
+                <label>
+                    <input id="inlineradio10" type="checkbox" ng-click="status" />
+                    <span class="fa fa-check"></span><code><strong>Munculkan Hasil Pengadaan Pada Halaman Vendor</strong></code>
+                </label>
+            </div>
+        </div>
+    </div> -->
+    <!----------------BUTTON SIMPAN--------------------->
+    <div align="center">
+        <button ng-class="'bg-' + app.theme.name" ng-click="form.back()" class="btn btn-primary btn-sm pull-center" ripple="">
+            <span class=""><em class="fa fa-chevron-left"></em></span>&nbsp;&nbsp;<font color="white"><span translate="promise.procurement.inisialisasi.tambahbumn.BATAL"></span></font>
+        </button>
+<!--         <button ng-class="'bg-' + app.theme.name" type="button" class="btn btn-primary btn-sm pull-center" ng-click="printDiv('penetapanPemenang')" ng-show="view==true && form.detailPengadaan.tahapanPengadaan.tahapan.id>17"><em class="fa fa-print">&nbsp;</em>
+            <span translate="promise.procurement.panitia.pengambilandokumen.view.btn.PRINT"></span>
+        </button> -->
+        <button ng-if="form.detailPengadaan.tahapanPengadaan.id == 501" ng-class="'bg-' + app.theme.name" ng-click="form.btnSimpan()" class="btn btn-primary btn-sm pull-center" ripple="" ng-disabled="form.isDisabled">
+            <span class=""><em class="fa fa-sign-in"></em></span>&nbsp;&nbsp;<font color="white"><span translate="promise.procurement.master.metodepenyampaiandokumenpengadaan.tambah.SIMPAN"></span></font>
+        </button>
+    </div>
+    <!------------------------------------->
+</div>
+<!--MODAL-->
+<script type="text/ng-template" id="/detail.html">
+    <div class="modal-header">
+        <button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="cancel()">×</button>
+        <h3 class="modal-title">
+			<span>Usulan Calon Pemenang</span>
+    		<small><span>Satuan Sistem Gugur</span></small>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-tags">&nbsp;</em>
+            <span translate="promise.procurement.panitia.penetapanpemenang.modal.MDLBRGJASA"></span>
+        </h4>
+        <div class="row">
+            <div class="col-xs-12">
+                <div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px" border="0"/></strong>
+                </div>
+                <table id="table-ext-1" class="table table-bordered table-hover" width="100%">
+                    <tbody>
+                        <tr>
+                            <td style="text-align:left" width="40%"><span translate="promise.procurement.inisialisasi.tambahbumn.TBLKDMATERIAL"></span></td>
+                            <td style="text-align:left" width="60%">{{data.item.kode}}</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left"><span translate="promise.procurement.inisialisasi.tambahbumn.TBLNMMATERIAL"></span></td>
+                            <td style="text-align:left">{{data.item.nama}}</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left"><span translate="promise.procurement.panitia.penetapanpemenang.modal.MDLKATEGORI"></span></td>
+                            <td style="text-align:left">{{data.item.itemGroupId.nama}}</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left"><span translate="promise.procurement.inisialisasi.tambahbumn.TBLKUANTITAS"></span></td>
+                            <td style="text-align:left">{{data.kuantitas}}</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left"><span translate="promise.procurement.panitia.penetapanpemenang.modal.MDLSISA"></span></td>
+                            <td style="text-align:left">{{data.sisa}}</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left"><span translate="promise.procurement.panitia.penetapanpemenang.modal.MDLUOM"></span></td>
+                            <td style="text-align:left">{{data.item.satuanId.nama}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-users">&nbsp;</em>
+            <span translate="promise.procurement.panitia.penetapanpemenang.modal.MDLDATABRGJASA"></span>
+        </h4>
+        <div class="row">
+            <div class="col-xs-12">
+                <div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px" border="0"/></strong>
+                </div>
+                <table class="table table-hover table-condensed table-striped bg-white">
+                    <thead>
+                        <tr style="font-weight: bold">
+                            <th scope="col"style="width:2%; text-align:center"><span translate="promise.procurement.inisialisasi.tambahbumn.TBLNO"></span>
+                            </th>
+                            <th scope="col"style="width:30%; text-align:center"><span translate="promise.procurement.panitia.evaluasiadministrasi.list.TBLNAMAPENYEDIABRGJASA"></span>
+                            </th>
+                            <th scope="col"style="width:10%; text-align:center"><span translate="promise.procurement.panitia.penetapanpemenang.list.TBLNILAIADMIN"></span>
+                            </th>
+                            <th scope="col"style="width:10%; text-align:center"><span translate="promise.procurement.panitia.penetapanpemenang.list.TBLNILAITEKNIS"></span>
+                            </th>
+                            <th scope="col"style="width:20%; text-align:center"><span translate="promise.procurement.panitia.penetapanpemenang.list.TBLHARGA"></span>
+                            </th>
+                            <th scope="col"style="width:2%; text-align:center"><span>Aksi</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="tabel in data2 | orderBy:'priceRevision'">
+                            <td style="text-align:center">
+                                {{$index+1}}
+                            </td>
+                            <td style="text-align:center; vertical-align:middle">
+                                {{tabel.evaluasiHargaVendor.vendor.nama}}
+                            </td>
+                            <td style="text-align:center; vertical-align:middle">
+                                <div ng-if="tabel.evaluasiHargaVendor.nilaiAdmin == 100">Lulus</div>
+                                <div ng-if="tabel.evaluasiHargaVendor.nilaiAdmin != 100">Tidak Lulus</div>
+                            </td>
+                            <td style="text-align:center; vertical-align:middle">
+                                <div ng-if="tabel.evaluasiHargaVendor.nilaiTeknis == 100">Lulus</div>
+                                <div ng-if="tabel.evaluasiHargaVendor.nilaiTeknis != 100">Tidak Lulus</div>
+                            </td>
+                            <td style="text-align:right; vertical-align:middle">
+                                {{tabel.harga | currency:tabel.pengadaan.mataUang.kode+" "}}
+                            </td>
+							<td style="text-align:center; vertical-align:middle">
+                              	<div class="checkbox c-checkbox needsclick">
+                                   	<label class="needsclick">
+                                       	<input type="checkbox" ng-model="tabel.finalCheck" class="needsclick" ng-click="checked(tabel)"/>
+                                        	<span class="fa fa-check"></span></label>
+                               	</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br/>
+        <div align="center" ng-bind-html="messageModalError" style="color:red"></div>
+        <div align="center" ng-bind-html="messageModalSuccess" style="color:green"></div>
+        <div align="center" ng-if="loading == true">
+            <strong><em>Loading...</em><img src="app/img/loading.gif" width="20px" border="0"/></strong>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <center>
+            <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-success" ng-click="cancel()"><em class="fa fa-arrow-circle-left">&nbsp;</em>
+                <span translate="promise.procurement.inisialisasi.tambahbumn.BATAL"></span>
+            </button>
+            <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-success" ng-click="ok()" ng-if="pengadaanUsulanCalonPemenang.tahapanPengadaan.id == 501">
+                <span translate="promise.procurement.master.metodepenyampaiandokumenpengadaan.tambah.SIMPAN"></span>&nbsp;<em class="fa fa-check"></em>
+            </button>
+        </center>
+    </div>
+</script>

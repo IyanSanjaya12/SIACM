@@ -1,0 +1,175 @@
+<div class="app-view-header">Compare
+    <!-- <small ng-bind="app.name + ' - ' + app.description"></small> -->
+</div>
+<!-- START row-->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="priceComparison" class="clearfix">
+                            <!-- Start #cmpTable -->
+                            <div id="cmpTable">
+
+                                <!-- Start .cmpWrap -->
+                                <div class="cmpWrap clearfix">
+
+                                    <!-- Start .cmpLabel -->
+                                    <div class="cmpLabel col-md-2">
+                                        <div class="labelGroup">
+                                            <h3>Product Compare</h3>
+                                            <ul>
+                                                <li>Delivery Time</li>
+                                                <li>Minimal Order</li>
+                                                <li>Selection</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- End .cmpLabel -->
+
+                                    <!-- Start .cmpMain -->
+                                    <div class="cmpMain col-md-10">
+
+                                        <div class="cmpPlan col-md-4">
+                                            <div class="planInner">
+                                                <div class="planTitle">
+                                                    <h3 class="bg-primary">
+                                                        Snack Kulit Garuda
+                                                        <a class="badge" tooltip-placement="top" tooltip="Delete">
+                                                            <em class="fa fa-times"></em>
+                                                        </a>
+                                                    </h3>
+                                                </div>
+                                                <div class="planPrice">
+                                                    <div class="cmpImg">
+                                                        <img src="app/img/product/garing-garuda.jpg" class="img-rounded thumb96">
+
+                                                    </div>
+                                                    <div class="cmpImgDet">
+                                                        <!-- rating -->
+                                                        <div ng-controller="MyRating" class="rating small">
+                                                            <div ng-init="xx = 3" class="text-lg">
+                                                                <rating ng-model="xx" readonly="true" state-on="'glyphicon-star text-warning'" state-off="'glyphicon-star-empty'"></rating>
+                                                            </div>
+                                                        </div>
+                                                        <!-- / rating -->
+                                                        <div class="shipFrom">
+                                                            <h3>Shipping From: </h3>
+                                                            <span>Jakarta</span>
+                                                        </div>
+                                                        <div class="shipFrom">
+                                                            <h3>Stock: </h3>
+                                                            <span>1M Doz</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cmpBtnCon">
+                                                        <a ui-sref="app.promise.procurement-vendorDetail({companyName:'GarudaFood'})" class="btn btn-sm btn-primary btn-addon">
+                                                            <em class="fa fa-chevron-right pull-right"></em>Contact Supplier
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="planFeature">
+                                                    <ul>
+                                                        <li class="empty"></li>
+                                                        <li>5-10 Working days</li>
+                                                        <li>100 Doz</li>
+                                                        <li class="has-checkbox">
+                                                            <div class="c-checkbox">
+                                                                <label>
+                                                                   <input type="checkbox" value="" />
+                                                                   <span class="fa fa-check no-margin"></span>
+                                                                </label>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="cmpPlan col-md-4">
+                                            <div class="planInner">
+                                                <div class="planTitle">
+                                                    <h3 class="bg-primary">
+                                                        Kacang Kulit Original
+                                                        <a class="badge" tooltip-placement="top" tooltip="Delete">
+                                                            <em class="fa fa-times"></em>
+                                                        </a>
+                                                    </h3>
+                                                </div>
+                                                <div class="planPrice">
+                                                    <div class="cmpImg">
+                                                        <img src="app/img/product/kacang-kulit.jpg" class="img-rounded thumb96">
+
+                                                    </div>
+                                                    <div class="cmpImgDet">
+                                                        <!-- rating -->
+                                                        <div ng-controller="MyRating" class="rating small">
+                                                            <div ng-init="xx = 3" class="text-lg">
+                                                                <rating ng-model="xx" readonly="true" state-on="'glyphicon-star text-warning'" state-off="'glyphicon-star-empty'"></rating>
+                                                            </div>
+                                                        </div>
+                                                        <!-- / rating -->
+                                                        <div class="shipFrom">
+                                                            <h3>Shipping From: </h3>
+                                                            <span>Jakarta</span>
+                                                        </div>
+                                                        <div class="shipFrom">
+                                                            <h3>Stock: </h3>
+                                                            <span>1M Doz</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cmpBtnCon">
+                                                        <a ui-sref="app.promise.procurement-vendorDetail({companyName:'GarudaFood'})" class="btn btn-sm btn-primary btn-addon">
+                                                            <em class="fa fa-chevron-right pull-right"></em>Contact Supplier
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="planFeature">
+                                                    <ul>
+                                                        <li class="empty"></li>
+                                                        <li>5-10 Working days</li>
+                                                        <li>100 Doz</li>
+                                                        <li class="has-checkbox">
+                                                            <div class="c-checkbox">
+                                                                <label>
+                                                                   <input type="checkbox" value="" />
+                                                                   <span class="fa fa-check no-margin"></span>
+                                                                </label>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- End .cmpMain -->
+
+                                    <div class="col-md-12 form-horizontal m-t">
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label text-left">On Selection : </label>
+                                            <div class="col-lg-2 no-search">
+                                                <select chosen="" name="input_type" class="form-control" disable-search="true">
+                                                    <option></option>
+                                                    <option>Contact Seller</option>
+                                                    <option>Invite to Bid</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- End .cmpWrap -->
+
+                            </div>
+                            <!-- End #cmpTable -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END row-->

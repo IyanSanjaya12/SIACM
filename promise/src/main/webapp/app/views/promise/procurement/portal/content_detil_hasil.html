@@ -1,0 +1,83 @@
+<link rel="stylesheet" href="app/views/promise/procurement/portal/portal-css/custom-styles.css">
+
+
+<link rel="stylesheet" href="app/views/promise/procurement/portal/portal-css/stylesheet.css">css">
+<div class="hasilPengumuman">
+	<br>
+	<div class="row text-center ">
+		<h2>PENGUMUMAN HASIL PELELANGAN</h2>
+	</div>
+	<br> <br>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th scope="col"colspan="2"
+					style="border-top-color: #eeeeee !important; border-top-style: solid !important; border-top-width: 1px;">Data Hasil
+					Pelelangan</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td width="40%">Nama Pengadaan</td>
+				<td>{{form.detil.pengadaan.namaPengadaan}}</td>
+			</tr>
+
+			<tr>
+				<td>Nomor Surat Penawaran</td>
+				<td>{{form.detil.suratPenawaran.nomor}}</td>
+			</tr>
+			<tr>
+				<td>Tanggal Surat Penawaran</td>
+				<td>{{form.detil.suratPenawaran.created|date:'dd-MM-yyyy'}}</td>
+			</tr>
+
+			<tr>
+				<td>Tanggal Penetapan Pemenang</td>
+				<td>{{form.detil.penetapan.created|date:"dd-MM-yyyy"}}</td>
+			</tr>
+			<tr>
+				<td>Pihak 1</td>
+				<td>{{form.detil.pengadaan.panitia.cabang.nama}}</td>
+			</tr>
+			<tr>
+				<td>Pihak 2</td>
+				<td>{{form.detil.penetapan.vendor.nama}}</td>
+			</tr>
+
+		</tbody>
+	</table>
+
+</div>
+
+<br>
+
+
+<style>
+.hasilPengumuman {
+	font-size: 14px;
+}
+
+.hasilPengumuman h1 {
+	font-size: 19px;
+}
+
+.hasilPengumuman h2 {
+	font-size: 17px;
+}
+
+.hasilPengumuman h3 {
+	font-size: 15px;
+}
+
+.hasilPengumuman h4 {
+	font-size: 13px;
+}
+
+.hasilPengumuman .tab {
+	margin-left: 120px;
+}
+
+.hasilPengumuman .th {
+	border-top-width: 0;
+}
+</style>

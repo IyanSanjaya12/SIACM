@@ -1,0 +1,49 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.vendor.undanganpengadaan.JUDUL"></span>
+	<small><span translate="promise.procurement.vendor.undanganpengadaan.KETERANGAN"></span></small>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="UndanganPengadaanController">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-tasks">&nbsp;</em><span translate="promise.procurement.vendor.undanganpengadaan.SUBJUDUL"></span></h4>
+	<div class="panel-body">
+		<br/>
+		<div class="col-md-12">
+			<div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px"></strong>
+			</div>
+			<table datatable="ng" class="row-border hover table-striped">
+				<thead>
+					<tr>
+						<th scope="col"style="text-align:left"><span translate="promise.procurement.vendor.undanganpengadaan.index.NO">No</span>
+						</th>
+						<th scope="col"style="text-align:left"><span translate="promise.procurement.vendor.undanganpengadaan.index.TGLUNDANGAN">Tanggal</span>
+						</th>
+						<th scope="col"style="text-align:left"><span translate="promise.procurement.vendor.undanganpengadaan.index.NAMAPENGADAAN">Nama Pengadaan</span>
+						</th>
+						<th scope="col"style="text-align:left"><span translate="promise.procurement.vendor.undanganpengadaan.index.KUALIFIKASI">Kualifikasi</span>
+						</th>
+						<th scope="col"style="text-align:center"><span translate="promise.procurement.vendor.undanganpengadaan.index.AKSI">Aksi</span>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="data in udanganPengadaanList">
+						<td style="text-align:left">{{ ($index + 1) }}</td>
+						<td style="text-align:left">{{ data.tanggalBerlakuMulai | date:'dd/MM/yyyy hh:mm'}} - {{ data.tanggalBerlakuAkhir | date:'dd/MM/yyyy hh:mm'}}</td>
+						<td style="text-align:left">{{ data.pengadaan.namaPengadaan }}</td>
+						<td style="text-align:left"><a href="">{{ data.pengadaan.kualifikasiVendor.nama }}</a>
+						</td>
+						<td style="white-space: nowrap; text-align:center">
+							<div>
+								<button type="button" class="mr btn btn-primary btn-circle btn-xs" ng-click="getViewDetil(data.pengadaan)">
+									<em class="fa fa-search"></em>
+								</button>
+							</div>
+
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<!--END CONTROLLER-->

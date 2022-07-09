@@ -1,0 +1,94 @@
+<div class="app-view-header">Pie Charts</div>
+<div ng-controller="PieChartController" class="container-fluid">
+   <div class="row">
+      <div class="col-md-4">
+         <h4 class="page-header clearfix">
+            <div class="pull-left">Easypie</div>
+            <div class="pull-right">
+               <button type="button" ng-click="randomize('easy')" class="btn btn-sm btn-success">Randomize</button>
+            </div>
+         </h4>
+         <p>Easy pie chart is a jQuery plugin that uses the canvas element to render simple pie charts for single values. These charts are highly customizable, very easy to implement, scale to the resolution of the display of the client to provide sharp
+            charts even on retina displays, and use requestAnimationFrame for smooth animations on modern devices.</p>
+      </div>
+      <div class="col-md-8">
+         <!-- START panel-->
+         <div class="panel panel-transparent">
+            <div class="panel-body text-center">
+               <div class="row">
+                  <div class="col-md-3 col-xs-6 mb-lg">
+                     <div easypiechart="" options="pieOptions" percent="piePercent1" class="easypie">
+                        <span>{{piePercent1}}</span>
+                     </div>
+                     <p>Default</p>
+                  </div>
+                  <div class="col-md-3 col-xs-6 mb-lg">
+                     <div easypiechart="" options="pieOptions1" percent="piePercent1" class="easypie">
+                        <span>{{piePercent2}}</span>
+                     </div>
+                     <p>Slim</p>
+                  </div>
+                  <div class="col-md-3 col-xs-6 mb-lg">
+                     <div easypiechart="" options="pieOptions2" percent="piePercent3" class="easypie">
+                        <span>{{piePercent3}}</span>
+                     </div>
+                     <p>Scale color</p>
+                  </div>
+                  <div class="col-md-3 col-xs-6 mb-lg">
+                     <div easypiechart="" options="pieOptions2" percent="piePercent4" class="easypie">
+                        <span>{{piePercent4}}</span>
+                     </div>
+                     <p></p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- END panel-->
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-md-4">
+         <h4 class="page-header clearfix">
+            <div class="pull-left">Knob</div>
+            <div class="pull-right">
+               <button type="button" ng-click="randomize('knob')" class="btn btn-sm btn-success">Randomize</button>
+            </div>
+         </h4>
+         <p>Nice, downward compatible, touchable, jQuery dial.</p>
+         <p>Implemented interactions : mouse click and wheel mouse, keyboard (on focus) and fingers (touch events)</p>
+         <p>jQuery Knob is © 2012 Anthony Terrien and dual licensed under the MIT or GPL licenses.</p>
+      </div>
+      <div class="col-md-8">
+         <!-- START panel-->
+         <div class="panel-body text-center">
+            <div class="row">
+               <div class="col-md-3 col-xs-6">
+                  <div class="mb-lg">
+                     <knob knob-data="knobLoaderData1" knob-options="knobLoaderOptions1" knob-max="100"></knob>
+                     <p>Default</p>
+                  </div>
+               </div>
+               <div class="col-md-3 col-xs-6">
+                  <div class="mb-lg">
+                     <knob knob-data="knobLoaderData2" knob-options="knobLoaderOptions2" knob-max="100"></knob>
+                     <p>Ready only</p>
+                  </div>
+               </div>
+               <div class="col-md-3 col-xs-6">
+                  <div class="mb-lg">
+                     <knob knob-data="knobLoaderData3" knob-options="knobLoaderOptions3" knob-max="100"></knob>
+                     <p>Display previous</p>
+                  </div>
+               </div>
+               <div class="col-md-3 col-xs-6">
+                  <div class="mb-lg">
+                     <knob knob-data="knobLoaderData4" knob-options="knobLoaderOptions4" knob-max="100"></knob>
+                     <p>Angle offset and arc</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- END panel-->
+      </div>
+   </div>
+</div>

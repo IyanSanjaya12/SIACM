@@ -1,0 +1,195 @@
+<div ng-controller="UserEditAddController as form">
+<div class="app-view-header">
+	<span translate="promise.procurement.master.user.JUDUL"></span> <small><span>{{title}}</span></small>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" >
+	<toaster-container
+		toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+	
+		<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<em class="fa fa-tasks"></em>
+				<span translate="promise.procurement.master.user.JUDUL"></span>
+				<a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+						<em class="fa fa-chevron-circle-down"></em>
+				</a>
+		</h4>
+		<div class="panel-body collapse in">
+		<div align="center" ng-if="loading == true">
+			<strong><em>Loading...</em><img src="app/img/loading.gif" width="15px"></strong>
+		</div>
+		<div ng-show="!loading" ng-disabled="saving">
+			<form method="post" name="userForm" novalidate=""
+				class="form-horizontal">
+				<fieldset>
+					<br> <br>
+					<div class="form-group">
+						<label for="input-id-1" class="col-sm-3 control-label"><span
+							translate="promise.procurement.master.user.tambah.USERNAME"></span></label>
+						<div class="col-sm-5">
+							<input name="form.user.username"  type="text" class="form-control"
+								ng-model="form.user.username" /> <br />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="input-id-1" class="col-sm-3 control-label"><span
+							translate="promise.procurement.master.user.tambah.NAMAPENGGUNA"></span></label>
+						<div class="col-sm-5">
+							<input name="form.user.namaPengguna" promise-alphanumeric-only type="text"
+								class="form-control" ng-model="form.user.namaPengguna" /> <br />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="input-id-1" class="col-sm-3 control-label"><span
+							translate="promise.procurement.master.user.tambah.PASSWORD"></span></label>
+						<div class="col-sm-3">
+							<input name="form.user.password" type="password"
+								class="form-control" ng-model="form.user.password" /> <br />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="input-id-1" class="col-sm-3 control-label"><span
+							translate="promise.procurement.master.user.tambah.REPASSWORD"></span></label>
+						<div class="col-sm-3">
+							<input type="password" name="form.user.rePassword"
+								class="form-control" ng-model="form.user.rePassword"
+								ui-validate="'$value==form.user.password'"
+								ui-validate-watch="'validator.password'" /> <br />
+						</div>
+						<em ng-show="userForm.form.user.rePassword.$error.validator"
+							class="text-danger">Password tidak cocok!!</em>
+					</div>
+					<div class="form-group">
+						<label for="email" class="col-sm-3 control-label"><span
+							translate="promise.procurement.master.user.tambah.EMAIL"></span></label>
+						<div class="col-sm-4">
+							<input type="email" name="form.user.email"
+								placeholder="promise@example.co.id" class="form-control"
+								ng-model="form.user.email" required=""
+								ng-pattern="/^[a-z0-9!#$%&'*+/=?^_`{|}~.-]+@[a-z0-9-]+(\.[a-z0-9-]+)*$/i">
+						</div>
+						<em ng-show='userForm.form.user.email.$error.pattern'
+							class="text-danger">Format email tidak valid</em>
+					</div>
+
+					<br />
+
+					<div class="form-group">
+						<label for="email" class="col-sm-3 control-label">Departemen</label>
+						<div class="col-sm-4">
+							<tree-dropdown class="tree-dropdown" data="form.organisasiTree"
+								selected="form.user.organisasi"></tree-dropdown>
+						</div>
+					</div>
+
+					<div class="form-group mb">
+						<label for="" class="col-sm-3 control-label"></label>
+						<div class="col-sm-9">
+							<!-- ROLE  -->
+							<table>
+								<tr style="height: 60px">
+									<td align="left">
+										<div class="checkbox-inline checkbox c-checkbox needsclick">
+											<label class="needsclick"> <input type="checkbox"
+												value="" class="needsclick" ng-model="form.user.loginPm"
+												name="form.user.loginPM" /> <span class="fa fa-check"></span>Login
+												PM (Procurement Management)
+											</label>
+										</div>
+									</td>
+									<td>&nbsp;&nbsp;&nbsp;</td>
+									<td><ui-select name="rolePM" ng-model="form.user.rolePm"
+											theme="bootstrap" ng-if="form.user.loginPm"
+											style="width:250px"> <ui-select-match
+											placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+										<ui-select-choices
+											repeat="role in form.roleListPM | filter: $select.search">
+										<div ng-bind-html="role.nama | highlight: $select.search"></div>
+										</ui-select-choices> </ui-select></td>
+									<td>
+										<div ng-if="form.user.loginPm">
+											<em ng-show="form.user.rolePMStatus" class="text-danger">Pilih
+												Role User PM.</em>
+										</div>
+									</td>
+								</tr>
+
+								<tr>
+									<td align="left">
+										<div class="checkbox-inline checkbox c-checkbox needsclick">
+											<label class="needsclick"> <input type="checkbox"
+												value="" class="needsclick" ng-model="form.user.loginCm"
+												name="form.user.loginCM" /> <span class="fa fa-check"></span>Login
+												CM (Contract Management)
+											</label>
+										</div>
+									</td>
+									<td>&nbsp;&nbsp;&nbsp;</td>
+									<td><ui-select name="roleCM" ng-model="form.user.roleCm"
+											theme="bootstrap" ng-if="form.user.loginCm"
+											style="width:250px"> <ui-select-match
+											placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+										<ui-select-choices
+											repeat="role in form.roleListCM | filter: $select.search">
+										<div ng-bind-html="role.nama | highlight: $select.search"></div>
+										</ui-select-choices> </ui-select></td>
+									<td>
+										<div ng-if="form.user.loginCm">
+											<em ng-show="form.user.roleCMStatus" class="text-danger">Pilih
+												Role User CM.</em>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+
+					<div class="form-group mb">
+						<label class="col-sm-3 control-label">Status Login</label>
+						<div class="col-sm-8">
+							<div class="row">
+								<div class="col-sm-4">
+									<ui-select name="login" ng-model="form.user.terkunci"
+										theme="bootstrap" ng-disabled="disabled"> <ui-select-match
+										placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+									<ui-select-choices
+										repeat="status in form.status | filter: $select.search">
+									<div ng-bind-html="status.nama | highlight: $select.search"></div>
+									</ui-select-choices> </ui-select>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<br> <br>
+
+					<div class="form-group">
+
+						<div ng-show="saving" align="center">
+							<strong><em>Saving...</em><img src="app/img/loading.gif" width="15px"></strong>
+						</div>
+
+						<div ng-show="!saving" align="center">
+							<button ng-class="'bg-' + app.theme.name" type="button" ripple=""
+								class="mr btn btn-labeled btn-sm" ng-click="kembali()">
+								<span class="btn-label"> <em class="fa fa-chevron-left"></em></span>
+								<span
+									translate="template.button.kembali"></span>
+							</button>
+							<button ng-class="'bg-' + app.theme.name" type="button" ripple=""
+								class="mr btn btn-sm" ng-click="simpan()">
+								<span
+									translate="template.button.simpan"></span>
+							</button>
+						</div>
+
+						
+
+					</div>
+
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</div>
+</div>

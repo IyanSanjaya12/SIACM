@@ -1,0 +1,59 @@
+<div class="app-view-header">
+    <span translate="promise.procurement.manajemenkontrak.daftarkontrak.JUDUL"></span> 
+    <!-- <small><span translate="promise.procurement.panitia.pembukaanpenawaran.KETERANGAN"></span></small> -->
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="DaftarKontrakController as form">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+    	<em class="fa fa-tasks">&nbsp;</em>
+    	<span translate="promise.procurement.manajemenkontrak.daftarkontrak.SUBJUDUL"></span>
+    </h4>
+    <div class="panel-body">
+        <br/>
+        <div class="col-md-12">
+            <div>
+                <div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px"></strong>
+                </div>
+                <table datatable="ng" class="row-border hover table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"style="text-align:left"><span translate="promise.procurement.manajemenkontrak.daftarkontrak.list.no"></span>
+                            </th>
+                            <th scope="col"style="text-align:left"><span translate="promise.procurement.manajemenkontrak.daftarkontrak.list.namapengadaan"></span>
+                            </th>
+                            <th scope="col"style="text-align:left"><span translate="promise.procurement.manajemenkontrak.daftarkontrak.list.TGLKONTRAK"></span>
+                            </th>
+                            <th scope="col"style="text-align:left"><span translate="promise.procurement.manajemenkontrak.daftarkontrak.list.NOMORKONTRAK"></span>
+                            </th>
+                            <th scope="col"style="text-align:left"><span translate="promise.procurement.manajemenkontrak.daftarkontrak.list.namavendor"></span>
+                            </th>
+                            <th scope="col"style="text-align:left"><span translate="promise.procurement.manajemenkontrak.daftarkontrak.list.NILAIKONTRAK"></span>
+                            </th>
+                            <th scope="col"style="text-align:left"><span translate="promise.procurement.manajemenkontrak.daftarkontrak.list.STATUS"></span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.manajemenkontrak.daftarkontrak.list.AKSI"></span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="pp in form.kontrakList">
+                            <td style="text-align:left">{{ ($index+1)}}</td>
+                            <td style="text-align:left">{{ pp.pengadaan.namaPengadaan }}</td>
+                            <td style="text-align:left">{{ pp.tglMulaiKontrak | date:'dd/MM/yyyy' }}</td>
+                            <td style="text-align:left">{{ pp.nomor }}</td>
+                            <td style="text-align:left">{{ pp.vendor.nama }}</td>
+                            <td style="text-align:right">{{pp.nilai | currency:ppm.mataUang.kode+" "}}</td>
+                            <td style="text-align:left">{{ pp.statusKontrak }}</td>
+                            <td class="action-col">
+                                <a class="view-order badge bg-primary" ng-click="form.edit(pp)" tooltip-placement="top" tooltip="Edit">
+                                    <em class="fa fa-pencil fa-lg"></em>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END CONTROLLER-->

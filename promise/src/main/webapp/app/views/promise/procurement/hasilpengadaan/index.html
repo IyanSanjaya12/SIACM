@@ -1,0 +1,60 @@
+<div class="app-view-header">
+    <span translate="promise.procurement.vendor.HasilPengadaan.Index.Judul"></span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="HasilPengadaanController as form">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+    	<em class="fa fa-tasks">&nbsp;</em>
+    	<span translate="promise.procurement.vendor.HasilPengadaan.Index.Judul"></span>
+    </h4>
+    <div class="panel-body">
+        <br/>
+        <div class="col-md-12">
+            <div>
+                <div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px"></strong>
+                </div>
+                <table datatable="ng" class="row-border hover table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"style="text-align:left"><span translate="promise.procurement.vendor.HasilPengadaan.Index.No"></span>
+                            </th>
+                            <th scope="col"style="text-align:left"><span translate="promise.procurement.vendor.HasilPengadaan.Index.Tahun"></span>
+                            </th>
+                            <th scope="col"style="text-align:left"><span translate="promise.procurement.vendor.HasilPengadaan.Index.Periode"></span>
+                            </th>
+                            <th scope="col"style="text-align:left"><span translate="promise.procurement.vendor.HasilPengadaan.Index.NomorPengadaan"></span>
+                            </th>
+                            <th scope="col"style="text-align:left"><span translate="promise.procurement.vendor.HasilPengadaan.Index.Jenis"></span>
+                            </th>
+                            <th scope="col"style="text-align:left"><span translate="promise.procurement.vendor.HasilPengadaan.Index.NamaPengadaan"></span>
+                            </th>
+                            <th scope="col"style="text-align:left"><span translate="promise.procurement.vendor.HasilPengadaan.Index.Kualifikasi"></span>
+                            </th>
+                            <th scope="col"style="text-align:left"><span translate="promise.procurement.vendor.HasilPengadaan.Index.Aksi"></span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="hasilPengadaan in form.hasilPengadaanList">
+                            <td style="text-align:centre">{{ ($index+1)}}</td>
+                            <td>{{ hasilPengadaan.pengadaan.tanggalNotaDinas | date:'yyyy' }}</td>
+                            <td>Tahunan</td>
+                            <td>{{hasilPengadaan.pengadaan.nomorNotaDinas}}</td>
+                            <td>{{hasilPengadaan.pengadaan.jenisPengadaan.nama}}</td>
+                            <td>{{hasilPengadaan.pengadaan.namaPengadaan}}</td>
+                            <td>{{hasilPengadaan.pengadaan.kualifikasiPengadaan.nama}}</td>
+                            <td style="white-space: nowrap; text-align:center">
+                                <div>
+								    <button type="button" class="mr btn btn-success btn-circle btn-xs" ng-click="form.buttonView(hasilPengadaan)">		
+                                            <em  class="fa fa-search"></em>                                            
+									</button>
+								</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END CONTROLLER-->

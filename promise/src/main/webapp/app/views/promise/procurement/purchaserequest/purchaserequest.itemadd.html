@@ -1,0 +1,116 @@
+<div class="app-view-header">
+    <span translate="">Purchase Request</span>
+    <small><span translate=""></span></small>
+</div>
+<div class="modal-body" ng-controller="PurchaseRequestAddItemController as form">
+    <div class="panel panel-primary">
+        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><span>Add Item</span></h4>
+        <div class="panel-body">
+            <div class="row">
+                <!-- <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-3">
+                            Categories
+                        </div>
+                        <div class="col-md-9">
+                            <select ng-model="form.categorySelected" class="form-control shadow-z1 input-sm" ng-change="getCatalogListByCategory()" ng-options="category.translateInd for category in categoryList track by category.id|orderBy:'id'">
+                                <option value="" selected>++ Pilih Semua ++</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-2">
+                            Name
+                        </div>
+                        <div class="col-md-10">
+                            <div class="input-group m-b">
+                                <input type="text" class="form-control shadow-z1 input-sm" ng-model="nameSearch">
+                                <span class="input-group-addon">
+                                <em class="fa fa-search"></em>
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-3">
+                            Location
+                        </div>
+                        <div class="col-md-9">
+                            <div class="input-group m-b">
+                                <input type="text" class="form-control shadow-z1 input-sm" ng-model="locationSearch">
+                                <span class="input-group-addon">
+                                <em class="fa fa-search"></em>
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                
+               	<table datatable="" dt-options="form.dtOptions" dt-columns="form.dtColumns" dt-instance="form.dtInstance" class="table table-bordered table-striped"></table>
+                 
+                <div class="modal-footer">
+		            <button ng-class="'bg-'+app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-sm " ng-click="cancel()">
+		                <span class="btn-label "><em class="fa fa-chevron-left "></em></span>
+		                <span translate="">Tutup</span>
+		            </button>
+		            <button ng-class="'bg-'+app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="btnImport()">
+		                <span>Simpan</span>
+		            </button>
+		        </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="panel panel-default">
+        <div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px"/></strong>
+        </div>
+        <br/>
+       
+        
+        <table datatable="ng" class="row-border hover" dt-options="dtOptions">
+            <thead>
+                <tr>
+                    <th scope="col"style="text-align:left"><span>Kode</span>
+                    </th>
+                    <th scope="col"style="text-align:left">
+                        <spa>Item Name</span>
+                    </th>
+                    <th scope="col"style="text-align:left"><span>Description</span>
+                    </th>
+                    <th scope="col"style="text-align:left"><span>Price</span>
+                    </th>
+                    <th scope="col"style="text-align:left"><span>Vendor</span>
+                    </th>
+                    <th scope="col"style="text-align:left"><span>Action</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in tableItemList | filter:nameSearch | filter:locationSearch  ">
+                    <td align="left">{{(item.kodeItem)}}</td>
+                    <td align="left">{{item.namaIND}}</td>
+                    <td align="left" width="20%" ng-bind-html="item.deskripsiIND"></td>
+                    <td align="right">{{item.harga | number:2}} {{item.mataUang.kode}}</td>
+                    <td align="left"><strong>{{item.vendor.nama}}</strong>
+                        <br/>{{item.vendor.alamat}}
+                        <br/>{{item.vendor.nomorTelpon }}
+                        <br/>{{item.vendor.email }}</td>
+                    <td align="center">
+                        <div class="checkbox c-checkbox c-checkbox-rounded">
+                            <label>
+                                <input type="checkbox" ng-click="selectItem(item)">
+                                <span class="fa fa-check"></span>
+                            </label>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div> -->
+    
+</div>

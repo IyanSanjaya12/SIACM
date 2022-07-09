@@ -1,0 +1,54 @@
+<div class="app-view-header">
+    <span translate="promise.procurement.master.jenispenawaran.judul"></span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="JenisPenawaranController as vm ">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <span translate="promise.procurement.master.jenispenawaran.subjudul"></span>
+    </h4>
+    <div class="panel-body">
+        <div align="right">
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled" ng-click=" add()">
+                <span class="btn-label"><em class="fa fa-plus"></em></span>
+                <span translate="template.button.tambah"></span>
+            </button>
+        </div>
+        <br />
+        <div class="col-md-12">
+            <div align="center" ng-if="vm.loading == true">
+                <strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px" /></strong>
+            </div>
+            <table datatable="ng" class="row-border hover table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col"style="text-align:center; width:5%"><span translate="template.tabel.nomor"></span>
+                        </th>
+                        <th scope="col"style="text-align:center; width:20%"><span translate="promise.procurement.master.jenispenawaran.list.jenis_penawaran"></span>
+                        </th>
+                        <th scope="col"style="text-align:center; width:10%"><span translate="template.tabel.aksi"></span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="jenisPenawaran in vm.jenisPenawaranList">
+                        <td style="text-align:center">{{ $index+1 }}</td>
+                        <td ng-bind="jenisPenawaran.nama"></td>
+                        <td style="text-align:center">
+                            <div>
+                                <button ng-if="jenisPenawaran.id > 2" type="button" ng-class="'bg-' + app.theme.name"
+                                    class="mr btn btn-xs" ng-click=" edit(jenisPenawaran)">
+                                    <em class="fa fa-pencil fa-lg"></em>
+                                </button>
+                                <button ng-if="jenisPenawaran.id> 2" type="button" class="mr btn btn-danger btn-xs"
+                                    ng-click=" del(jenisPenawaran)">
+                                    <em class="fa fa-trash fa-lg"></em>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!--END CONTROLLER-->

@@ -1,0 +1,79 @@
+<div class="app-view-header">	<span translate="promise.procurement.master.parameter.judul"></span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="ParameterViewController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-tasks"></em>
+			<span translate="promise.procurement.master.parameter.view.subjudul_ubah"></span>
+			<a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+					<em class="fa fa-chevron-circle-down"></em>
+			</a>
+	</h4>
+	<div class="panel-body collapse in">
+		<div class="text-center" ng-if="vm.loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong>
+		</div>
+		<form method="post" action="#" novalidate="" class="form-horizontal" ng-class="{'submitted' : vm.submitted}" name="formParameter">
+			<div class="form-group">
+				<label class="col-sm-4 control-label">	<span translate="promise.procurement.master.parameter.view.tipe"></span>
+				</label>
+				<div class="col-sm-4">
+					<input id="input-id-1" type="text" class="form-control" ng-model="vm.parameter.tipe" ng-disabled="true" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">	<span translate="promise.procurement.master.parameter.view.nama"></span>
+				</label>
+				<div class="col-sm-4">
+					<input id="input-id-2" type="text" class="form-control" ng-model="vm.parameter.nama" ng-disabled="true" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">	<span translate="promise.procurement.master.parameter.view.keterangan"></span>
+				</label>
+				<div class="col-sm-4">
+					<textarea rows="4" cols="50" class="form-control input-sm" id="input-id-3" ng-model="vm.parameter.keterangan" ng-disabled="!vm.parameter.editable" maxlength="512"></textarea>
+				</div>
+			</div>
+			<!-- NUMBER OR TEXT -->
+			<div class="form-group" ng-show="vm.parameter.tipe!='BOOLEAN'">
+				<label class="col-sm-4 control-label required">	<span translate="promise.procurement.master.parameter.view.nilai"></span>
+				</label>
+				<div class="col-sm-4">
+					<input id="nilai" name="nilai" type="text" class="form-control" ng-model="vm.parameter.nilai" maxlength="20" required ng-blur="delValidation($event)" />
+					<br />
+					<div class="input-error" ng-show="(vm.submitted && formParameter.nilai.$invalid)">
+						<p ng-show="formParameter.nilai.$error.required" translate="template.error.field_kosong"></p>
+					</div>
+					<br />
+				</div>
+			</div>
+			<!-- BOOLEAN -->
+			<div class="form-group" ng-show="vm.parameter.tipe=='BOOLEAN'" t>
+				<label class="col-sm-4 control-label required"><span translate="promise.procurement.master.parameter.view.nilai"></span>
+				</label>
+				<div class="col-sm-4">
+					<div class='radio-inline c-radio' ng-repeat="name in vm.booleanValues" for="{{name}}">
+						<label>
+							<input type="radio" ng-model="vm.parameter.nilai" ng-value="name" id="{{name}}" name="favorite">	<span class="fa fa-circle"></span>{{name}}</label>
+					</div>
+					<br />
+				</div>
+			</div>
+			<!-- <div class="form-group" ng-if="vm.loading == true">
+					<label for="input-id-1" class="col-sm-2 control-label"><span></span></label>
+					<div class="col-sm-5">
+						<strong><em>Loading...</em><img src="app/img/loading.gif"
+							width="20px"></strong>
+					</div>
+				</div> -->
+			<div class="form-group">
+				<div class="col-md-12 text-center">
+					<button type="button" ripple="" class="btn btn-secondary" ng-click="back()">	<span translate="template.button.kembali"></span>
+					</button>
+					<button type="button" ripple="" class="btn btn-primary" ng-click="save(formParameter.$valid)">	<span translate="template.button.simpan"></span>
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

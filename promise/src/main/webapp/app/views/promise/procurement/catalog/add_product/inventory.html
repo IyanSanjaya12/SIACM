@@ -1,0 +1,66 @@
+<div class="col-lg-12" ng-repeat="catalogLocation in catalog.catalogLocationList">
+	<fieldset><a class="close-btn control-label text-danger" ng-click="removeInventory(catalogLocation)"><em class="fa fa-close"></em></a>
+		<div class="col-lg-12">
+			<div class="form-group">
+				<label class="col-lg-2 control-label">Location</label>
+				<div class="col-lg-10">
+					<select ng-model="catalogLocation.officeAddress" class="form-control">
+						<option value="" disabled ng-selected="catalogLocation.officeAddress != catalog.vendor.alamat">++ Pilih ++</option>
+						<option value="{{catalog.vendor.alamat}}" ng-selected="catalogLocation.officeAddress == catalog.vendor.alamat">{{catalog.vendor.alamat}}</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-6">
+			<div class="form-group">
+				<label class="col-lg-4 control-label">Quantity/Stock</label>
+				<div class="col-lg-8">
+					<input type="text" promise-numbers-only-copy class="form-control" ng-model="catalogLocation.stockProduct">
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-6">
+			<div class="form-group">
+				<label class="col-lg-4 control-label">Min Order Qty</label>
+				<div class="col-lg-8">
+					<input type="text" promise-numbers-only-copy class="form-control" ng-model="catalogLocation.minimalOrder">
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-6">
+			<div class="form-group">
+				<label class="col-lg-4 control-label">Supply Ability</label>
+				<div class="col-lg-8">
+					<input type="text" promise-numbers-only-copy class="form-control" ng-model="catalogLocation.supplyAbility">
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-6">
+			<div class="form-group">
+				<label class="col-lg-4 control-label">Qty to become 'Out of Stock'</label>
+				<div class="col-lg-8">
+					<input type="text" promise-numbers-only-copy class="form-control" ng-model="catalogLocation.outStock">
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-6">
+			<div class="form-group">
+				<label class="col-lg-4 control-label">Notify for Qty Below</label>
+				<div class="col-lg-8">
+					<input type="text" promise-numbers-only-copy class="form-control" ng-model="catalogLocation.quantityNotify">
+				</div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<div class="col-lg-12 text-right">
+	<button class="btn btn-info btn-sm" ng-click="addInventory()">Add Value</button>
+</div>
+<div class="col-lg-12 text-center" style="margin-top: 32px">
+    <a class="btn btn-default" ng-click="backToCategories()">
+        <span translate="promise.procurement.master.attribute.btn.SEBELUMNYA"></span>
+    </a>
+    <a class="btn btn-primary" ng-click="goToImages()">
+        <span translate="promise.procurement.master.attribute.btn.SELANJUTNYA"></span>
+    </a>
+</div>

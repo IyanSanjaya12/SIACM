@@ -1,0 +1,143 @@
+<!-- START Sidebar-->
+<div class="sidebar-wrapper">
+	<div ui-sidebar="" class="sidebar">
+		<div class="sidebar-nav">
+			<ul class="nav">
+				<!-- Iterates over all sidebar items-->
+				<li class="nav-heading">
+					<span translate="sidebar.heading.HEADER" class="text-muted">Main Navigation</span>
+				</li>
+				<li ui-sref-active="active">
+					<a ui-sref="appvendor.promise.dashboard" title="Dashboard" ripple="">
+						<em class="sidebar-item-icon icon-pie-graph"></em>
+						<div class="label pull-right label-success">4</div>
+						<span translate="sidebar.nav.DASHBOARD">Dashboard</span>
+					</a>
+				</li>
+				
+				<li>
+					<hr/>
+				</li>
+				<li ng-class="{active:$state.includes('app.ui')}">
+					<a href="" title="Vendor" ripple="">
+						<em class="sidebar-item-icon icon-briefcase"></em>
+						<em class="sidebar-item-caret fa pull-right fa-angle-right"></em>
+						<span>Pengadaan</span>
+					</a>
+					<ul class="nav sidebar-subnav">
+						<li class="sidebar-subnav-header">
+							<a>
+								<em class="sidebar-item-icon fa fa-angle-right"></em>Pengadaan</a>
+						</li>
+						<li ui-sref-active="active">
+							<a ui-sref="appvendor.promise.procurement-vendor-pengumumanpengadaan" title="Buttons" ripple="">
+								<em class="sidebar-item-icon icon-volume"></em>
+								<span>Pengumuman Pengadaan</span>
+							</a>
+						</li>
+						<li ui-sref-active="active">
+							<a ui-sref="appvendor.promise.procurement-undanganvendor" title="Buttons" ripple="">
+								<em class="sidebar-item-icon icon-download"></em>
+								<span>Undangan Pengadaan</span>
+							</a>
+						</li>
+						<li ui-sref-active="active">
+							<a ui-sref="appvendor.promise.procurement-vendor-datapenawaran" title="Buttons" ripple="">
+								<em class="sidebar-item-icon"></em>
+								<span>Data Penawaran</span>
+							</a>
+						</li>
+						<li ui-sref-active="active">
+							<a ui-sref="appvendor.promise.procurement-vendor-penawaranharga" title="Buttons" ripple="">
+								<em class="sidebar-item-icon"></em>
+								<span>Penawaran Harga</span>
+							</a>
+						</li>
+						<li ui-sref-active="active">
+							<a ui-sref="appvendor.promise.procurement-vendor-negosiasi" title="Buttons" ripple="">
+								<em class="sidebar-item-icon"></em>
+								<span>Negosiasi Vendor</span>
+							</a>
+						</li>
+						<li ui-sref-active="active">
+							<a ui-sref="appvendor.promise.procurement-vendor-auctionvendortotal" title="Buttons" ripple="">
+								<em class="sidebar-item-icon"></em>
+								<span>Penawaran Harga Auction</span>
+							</a>
+						</li>
+						<li ui-sref-active="active">
+							<a ui-sref="appvendor.promise.procurement-hasilpengadaan" title="Buttons" ripple="">
+								<em class="sidebar-item-icon"></em>
+								<span>Hasil Pengadaan</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li ng-class="{active:$state.includes('app.ui')}">
+					<a href="" title="Vendor" ripple="">
+						<em class="sidebar-item-icon icon-cog"></em>
+						<em class="sidebar-item-caret fa pull-right fa-angle-right"></em>
+						<span>Setting</span>
+					</a>
+					<ul class="nav sidebar-subnav">
+						<li class="sidebar-subnav-header">
+							<a><em class="sidebar-item-icon fa fa-angle-right"></em>Master</a>
+						</li>
+						<li ui-sref-active="active">
+							<a ui-sref="appvendor.promise.procurement-vendor-datauser" title="Buttons" ripple="">
+								<em class="sidebar-item-icon icon-head"></em>
+								<span>Data User</span>
+							</a>
+						</li>
+						<li ui-sref-active="active">
+							<a ui-sref="appvendor.promise.procurement-vendor-dataperusahaan" title="Buttons" ripple="">
+								<em class="sidebar-item-icon icon-briefcase"></em>
+								<span>Data Perusahaan</span>
+							</a>
+						</li>
+						<li ui-sref-active="active">
+							<a ui-sref="appvendor.promise.procurement-vendor-databank" title="Buttons" ripple="">
+								<em class="sidebar-item-icon fa fa-money"></em>
+								<span>Data Bank</span>
+							</a>
+						</li>
+                        <li ui-sref-active="active">
+							<a ui-sref="appvendor.promise.procurement-vendor-datasegmentasi" title="Buttons" ripple="">
+								<em class="sidebar-item-icon fa fa-trello"></em>
+								<span>Data Segmentasi</span>
+							</a>
+						</li>
+                        <li ui-sref-active="active">
+							<a ui-sref="appvendor.promise.procurement-vendor-datakeuangan" title="Buttons" ripple="">
+								<em class="sidebar-item-icon fa fa-bitcoin"></em>
+								<span>Data Keuangan</span>
+							</a>
+						</li>
+                        <li ui-sref-active="active">
+							<a ui-sref="appvendor.promise.procurement-vendor-datadokumen" title="Buttons" ripple="">
+								<em class="sidebar-item-icon fa fa-download"></em>
+								<span>Data Dokumen</span>
+							</a>
+						</li>
+                        <li ui-sref-active="active">
+							<a ui-sref="appvendor.promise.procurement-vendor-dataperalatan" title="Buttons" ripple="">
+								<em class="sidebar-item-icon fa fa-wrench"></em>
+								<span>Data Peralatan</span>
+							</a>
+						</li>
+                        <li ui-sref-active="active">
+							<a ui-sref="appvendor.promise.procurement-vendor-datapengalaman" title="Buttons" ripple="">
+								<em class="sidebar-item-icon fa fa-university"></em>
+								<span>Data Pengalaman</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<hr/>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!-- END Sidebar-->

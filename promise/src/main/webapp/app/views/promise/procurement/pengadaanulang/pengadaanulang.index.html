@@ -1,0 +1,30 @@
+<div class="app-view-header">Pengadaan Ulang
+    <!-- <small ng-bind="app.name + ' - ' + app.description"></small> -->
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="PengadaanUlangController as form">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <span >Pengadaan Ulang</span>
+    </h4>
+    <div class="panel-body">
+        <div class="row form-horizontal">
+            <div class="col-md-12">
+                <table datatable="" dt-options="form.dtOptions" dt-columns="form.dtColumns" dt-instance="form.dtInstance" id="pengadaanUlangIndex" class="row-border hover"></table>
+            </div>
+        </div>
+    </div>
+    
+    
+</div>
+<!-- modal proses_simpan.html-->
+<script type="text/ng-template" id="proses_simpan.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Proses Simpan Pengadaan Ulang</h3>
+    </div>
+    <div class="modal-body form-horizontal">
+        <div align="center" ng-if="loadingSaving == true">
+            <strong><em>Proses Simpan Pengadaan Ulang ... <img src="app/img/loading.gif" border="0" height="20px"/></em></strong>
+        </div>
+        
+    </div>
+</script>

@@ -1,0 +1,292 @@
+<div class="app-view-header">
+	<span translate="">Penilaian Kinerja Rekanan</span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="PenilaianVendorViewEditController as form">
+	<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+	<form autocomplete="off">
+		<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+	    	<em class="fa fa-tasks">&nbsp;</em>
+	    	<span translate="">Penilaian Kinerja Rekanan</span>
+	    </h4>
+		<div class="panel-body">
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<em class="fa fa-tasks">&nbsp;</em>
+				<span translate="">Data Rekanan</span>
+			</h4>
+			<div class="row">
+				<div class="col-md-3">Kode Rekanan</div>
+				<div class="col-md-6">				
+					<p class="input-group" ng-bind="form.dataVendor.id"></p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">Nama Rekanan</div>
+				<div class="col-md-6">
+					<p class="input-group" ng-bind="form.dataVendor.nama"></p>
+				</div>
+			</div>
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<em class="fa fa-tasks">&nbsp;</em>
+				<span translate="">Data Purchase Order</span>
+			</h4>
+			<div class="row">
+				<div class="col-md-3">Jenis Pengadaan</div>
+				<div class="col-md-6"><p class="input-group">Melalui PROMISE</p></div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">Tanggal Penilaian</div>
+				<div class="col-md-3">
+					<p class="input-group">
+						<input readonly="readonly" type="text" datepicker-popup="{{form.format}}" ng-model="form.penilaianVendor.vPerfTglPenilaian" is-open="form.vPerfTglPenilaianOpened" min-date="false" max-date="false" datepicker-options="form.dateOptions" date-disabled="form.disabled(form.date, form.mode)" close-text="Close" class="form-control shadow-z1 input-sm" />
+						<span class="input-group-btn">
+							<button type="button" ng-click="form.vPerfTglPenilaianOpen($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+								<em class="fa fa-calendar"></em>
+							</button>
+						</span>
+					</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">Nomor Purchase Order</div>
+				<div class="col-md-6">
+					<p class="input-group">
+						<input readonly="readonly" id="input-id-1" type="text" class="form-control" ng-model="form.penilaianVendor.purchaseOrder.poNumber"/>
+						<!-- <span class="input-group-btn">
+							<button ng-class="'bg-' + app.theme.name" ng-click="form.findKontrak()" class="btn btn-primary btn-sm">
+			                	<span class=""></span>Cari Purchase Order</span>
+			            	</button>
+			            </span> -->
+					</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">Tanggal Purchase Order</div>
+				<div class="col-md-3">
+					<p class="input-group">
+						<input readonly="readonly" type="text" datepicker-popup="{{form.format}}" ng-model="form.penilaianVendor.purchaseOrder.purchaseOrderDate" is-open="form.vPerfTglKontrakOpened" min-date="false" max-date="false" datepicker-options="form.dateOptions" date-disabled="form.disabled(form.date, form.mode)" close-text="Close" class="form-control shadow-z1 input-sm" />
+						<!-- <span class="input-group-btn">
+							<button type="button" ng-click="form.vPerfTglKontrakOpen($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+								<em class="fa fa-calendar"></em>
+							</button>
+						</span> -->
+					</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">Nilai Purchase Order</div>
+				<!-- <div class="col-md-2"> 
+					<p class="input-group">
+						<select class="form-control" ng-model="form.penilaianVendor.mataUang.id">
+							<option  ng-repeat="fp in form.mataUangList" value='{{fp.id}}' ng-bind='fp.nama'> </option> 
+						</select>
+					</p>
+				</div> -->
+				<div class="col-md-4">
+	 				<p class="input-group"><input readonly="readonly" promise-currency-blur id="input-id-1" type="text" class="form-control" ng-model="form.penilaianVendor.purchaseOrder.totalCost"/></p>
+	 			</div>
+			</div>
+			<!-- <div class="row">
+				<div class="col-md-3">Nomor Kontrak</div>
+				<div class="col-md-6">
+					<p class="input-group">
+						<input id="input-id-1" readonly="readonly" type="text" class="form-control" ng-model="form.penilaianVendor.vPerfNomorKontrak"/>
+					</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">Tanggal Kontrak</div>
+				<div class="col-md-3">
+					<p class="input-group">
+						<input readonly="readonly" readonly="readonly" type="text" datepicker-popup="{{form.format}}" ng-model="form.penilaianVendor.vPerfTglKontrak" is-open="form.vPerfTglKontrakOpened" min-date="false" max-date="false" datepicker-options="form.dateOptions" date-disabled="form.disabled(form.date, form.mode)" close-text="Close" class="form-control shadow-z1 input-sm" />
+						<span class="input-group-btn">
+							<button type="button" ng-click="form.vPerfTglKontrakOpen($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+								<em class="fa fa-calendar"></em>
+							</button>
+						</span>
+					</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">Nomor Pengadaan</div>
+				<div class="col-md-6">
+					<p class="input-group"><input readonly="readonly"  id="input-id-1" type="text" class="form-control" ng-model="form.penilaianVendor.vPerfNomorPengadaan"/></p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">Paket Pekerjaan</div>
+				<div class="col-md-8">
+					<p class="input-group"><input readonly="readonly" id="input-id-1" type="text" class="form-control" ng-model="form.penilaianVendor.vPerfPaketPekerjaan"/></p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">Pengguna Hasil Pekerjaan</div>
+				<div class="col-md-6">
+					<p class="input-group"><input readonly="readonly" id="input-id-1" type="text" class="form-control" ng-model="form.penilaianVendor.vPerfPenggunaHasilPekerjaan"/></p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">Nilai Kontrak</div>
+				<div class="col-md-2"> 
+					<p class="input-group">
+						<select class="form-control" readonly="readonly" ng-options="mataUang.id as mataUang.nama for mataUang in form.mataUangList" ng-model="form.penilaianVendor.mataUang.id"></select>
+					</p>
+				</div>
+				<div class="col-md-4">
+	 				<p class="input-group"><input readonly="readonly" promise-currency-blur id="input-id-1" type="text" class="form-control" ng-model="form.penilaianVendor.vPerfNilaiKontrak"/></p>
+	 			</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">Jangka Waktu</div>
+				<div class="col-md-3">
+					<p class="input-group">
+						<input readonly="readonly" readonly="readonly" type="text" datepicker-popup="{{form.format}}" ng-model="form.penilaianVendor.vPerfKontrakTglAwalKerja" is-open="form.vPerfKontrakTglAwalKerjaOpened" min-date="false" max-date="false" datepicker-options="form.dateOptions" date-disabled="form.disabled(form.date, form.mode)" close-text="Close" class="form-control shadow-z1 input-sm" />
+						<span class="input-group-btn">
+							<button type="button" ng-click="form.vPerfKontrakTglAwalKerjaOpen($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+								<em class="fa fa-calendar"></em>
+							</button>
+						</span> 
+					</p>
+				</div>
+				<div class="col-md-2">Sampai dengan</div>
+				<div class="col-md-3">
+					<p class="input-group">
+						<input readonly="readonly" type="text" datepicker-popup="{{form.format}}" ng-model="form.penilaianVendor.vPerfKontrakTglAkhirKerja" is-open="form.vPerfKontrakTglAkhirKerjaOpened" min-date="false" max-date="false" datepicker-options="form.dateOptions" date-disabled="form.disabled(form.date, form.mode)" close-text="Close" class="form-control shadow-z1 input-sm" />
+						<span class="input-group-btn">
+							<button type="button" ng-click="form.vPerfKontrakTglAkhirKerjaOpen($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+								<em class="fa fa-calendar"></em>
+							</button>
+						</span>
+					</p>
+				</div>
+			</div> -->
+			<!-- <div class="row">
+				<div class="col-md-3">Dokumen Pendukung Penilaian</div>
+				<div class="col-md-8">
+					<div class="row">
+						<div class="col-md-6">
+							<input type="file" class="form-control shadow-z1 input-sm">
+						</div>
+						<div class="col-md-1">
+							<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="btnUpload()"><span translate="">Upload</span></button>
+						</div>
+					</div>
+	
+				</div>
+			</div> -->
+			<div class="row">
+				<div class="col-md-3">Catatan</div>
+				<div class="col-md-6">
+					<p class="input-group">
+						<textarea class="form-control shadow-z1 input-sm" ng-model="form.penilaianVendor.vPerfCatatanUser" maxlength="255"></textarea>
+					</p>
+				</div>
+			</div>
+	
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<em class="fa fa-tasks">&nbsp;</em>
+				<span translate="">Data Penilaian</span>
+			</h4>
+			<div class="table-responsive">
+				<table class="table table-striped">
+		 			<thead>
+						<tr>
+							<th scope="col"style="text-align:center">
+								<span translate="">No</span>
+							</th>
+							<th scope="col"style="text-align:center">
+								<span translate="">Aspek Kinerja</span>
+							</th>
+							<th scope="col"style="text-align:center">
+								<span translate="">Indikator</span>
+							</th>
+							<th scope="col"style="text-align:center">
+								<span translate="">Bobot</span>
+							</th>
+							<th scope="col"style="text-align:center" ng-repeat="fpd in form.formulaPenilaianList" ng-bind="fpd.fPDescription"></th>
+							<th scope="col"style="text-align:center">
+								<span translate="">Nilai Akhir</span>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="fp in form.penilaianVendorIndikatorList">
+							<td style="text-align:center">{{ $index+1 }}</td>
+							<td style="text-align:left" ng-bind="fp.indikatorPenilaian.iPAspekKerja"></td>
+							<td style="text-align:left" ng-bind="fp.indikatorPenilaian.iPIndikator"></td>
+							<td style="text-align:center" ng-bind="fp.indikatorPenilaian.iPBobot + '%'"></td>
+							<td style="text-align:left" ng-repeat="fpd in form.formulaPenilaianList">
+ 								<span  ng-if="fpd.fPId != fp.formulaPenilaian.fPId ? true : false">
+									<input type="radio" ng-model="fp.formulaPenilaian.fPId"
+									 name="{{fp.indikatorPenilaian.iPId}}" value="{{fpd.fPId}}" ng-change="form.calculateValues('{{fp.indikatorPenilaian.iPId}}','{{fpd.fPId}}','{{fpd.fPPoint}}')">
+								</span>
+								<span ng-if="fpd.fPId == fp.formulaPenilaian.fPId ? true : false">
+									<input checked="checked" type="radio" ng-model="fp.formulaPenilaian.fPId"
+									 name="{{fp.indikatorPenilaian.iPId}}" value="{{fpd.fPId}}" ng-change="form.calculateValues('{{fp.indikatorPenilaian.iPId}}','{{fpd.fPId}}','{{fpd.fPPoint}}')">
+								</span>
+							</td> 
+							<td style="text-align:center">
+								<span ng-bind="fp.vPerfAspNilaiAkhir == null ? 0 : fp.vPerfAspNilaiAkhir"></span>
+								<input type="hidden" class="form-control shadow-z1 input-sm" ng-model="fp.formulaPenilaian.fPId">
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:center"> </td>
+							<td style="text-align:left" colspan="3"><strong>Total Nilai</strong></td>
+							<td style="text-align:left" ng-repeat="fpd in form.formulaPenilaianList"></td> 
+							<td style="text-align:center"><strong ng-bind="form.penilaianVendor.vPerfNilaiAkhir"> </strong></td>
+						</tr>
+						<tr>
+							<td style="text-align:center"> </td>
+							<td style="text-align:left" colspan="3"><strong>Kesimpulan Penilaian</strong></td>
+							<td style="text-align:left" ng-repeat="fpd in form.formulaPenilaianList"></td> 
+							<td style="text-align:center"><strong ng-bind="form.penilaianVendor.vPerfKesimpulanPenilaian"> </strong></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<hr/> 
+	
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<em class="fa fa-tasks">&nbsp;</em>
+				<span translate="">Formula Penilaian</span>
+			</h4>
+			<div class="table-responsive">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col"style="text-align: center">No</th>
+							<th scope="col"style="text-align: center">Nilai</th>
+							<th scope="col"style="text-align: center">Score</th>
+							<th scope="col"style="text-align: center">Keterangan</th>
+							<th scope="col"style="text-align: center">Catatan</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="fp in form.formulaPenilaianList">
+							<td style="text-align: center" ng-bind="{{ $index+1 }}"></td>
+							<td style="text-align: center" ng-bind="form.formulaPenilaian(fp)"></td> 
+							<td style="text-align: center" ng-bind="fp.fPPoint"></td> 
+							<td style="text-align: center" ng-bind="fp.fPDescription"></td> 
+							<td style="text-align: center" ng-bind="fp.fPNote"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<br/>
+			<fieldset>
+				<div class="form-group">
+					<label for="input-id-1" class="col-sm-2 control-label"><span></span></label>
+					<div class="col-sm-5">
+						<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-sm" ng-click="form.penilaianBack()">
+							<span class="btn-label"> <em class="fa fa-chevron-left"></em></span><span>Kembali</span>
+						</button>
+						<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="form.penilaianSave()">
+							<span>Simpan</span>
+						</button>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+	</form>
+</div>

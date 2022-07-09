@@ -1,0 +1,288 @@
+<div class="app-view-header">Cost Allocation
+    <!-- <small ng-bind="app.name + ' - ' + app.description"></small> -->
+</div>
+
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="GeneralCtrl">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <span >Purchase Order</span>
+    </h4>
+    <div class="panel-body">
+     <div align="right">
+	    <button type="button" class="mr btn btn-labeled mb 2 bg-light" ng-click="importData()">
+                <span class="btn-label"><em class="fa fa-link"></em></span>
+                <span>Synchronize</span>
+            </button>
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled mb 2" ng-click="openModal('addCost.html')">
+                <span class="btn-label"> <em class="fa fa-plus"></em> </span>
+                <span>Add New</span>
+            </button>
+	    </div>
+    
+        <div class="row form-horizontal">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="col-md-3 text-left control-label">PO Status </label>
+                    <div class="col-md-5">
+                        <div class="search-icon">
+                            <input class="form-control" placeholder="Search..." type="text">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="col-md-offset-3 col-md-4 control-label">Sort by </label>
+                    <div class="col-md-5">
+                        <select name="adress[{{dv.id}}]" disable-search="true" chosen="" width="'100%'">
+                            <option value="">New Address</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-12 table-responsive">
+                <table class="table standard table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"class="w5">
+                                <div class="c-checkbox">
+                                    <label>
+                                       <input type="checkbox" value="" />
+                                       <span class="fa fa-check no-margin"></span>
+                                    </label>
+                                </div>
+                            </th>
+                            <th scope="col">Account Code</th>
+                            <th scope="col">Account Name</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Department</th>
+                            <th scope="col">Start Budget</th>
+                            <th scope="col">Booked Budget</th>
+                            <th scope="col">Available Budget</th>
+                            <th scope="col"class="w10">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="has-checkbox">
+                                <div class="c-checkbox">
+                                    <label>
+                                       <input type="checkbox" value="" />
+                                       <span class="fa fa-check no-margin"></span>
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                HRD123000015
+                            </td>
+                            <td>
+                                Supplies
+                            </td>
+                            <td>
+                                CAPEX
+                            </td>
+                            <td>
+                                HRD
+                            </td>
+                            <td class="number">
+                                5.000.000
+                            </td>
+                            <td class="number">
+                                1.000.000
+                            </td>
+                            <td class="number">
+                                3.000.000
+                            </td>
+                            <td class="action-col">
+                                <a class="view-order badge bg-primary" tooltip-placement="top" tooltip="Edit">
+                                    <em class="glyphicon glyphicon-pencil"></em>
+                                </a>
+                                <a class="view-order badge bg-danger" ng-click="openModal('delConfirm.html')" tooltip-placement="top" tooltip="Delete">
+                                    <em class="glyphicon glyphicon-trash"></em>
+                                </a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-horizontal col-md-4">
+                    <div class="form-group m-v-hg">
+                        <label class="col-lg-5 control-label">On Checked : </label>
+                        <div class="col-lg-7">
+                            <select chosen="" name="on_cheked" class="form-control" disable-search="true">
+                                <option></option>
+                                <option>Remove from Cart</option>
+                                <option>Move to Wishlist</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <pagination first-text="<<" previous-text="<" next-text=">" last-text=">>" total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" boundary-links="true" class="pagination-sm"></pagination>
+                </div>
+                <div class="page-option col-md-4 text-right">
+                    <span class="page-goto-text">Go to page</span>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="...">
+                        <span class="input-group-btn perauto">
+                            <button class="btn btn-primary" type="button">Go!</button>
+                        </span>
+                    </div><!-- /input-group -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END CONTROLLER-->
+<script type="text/ng-template" id="delConfirm.html">
+    <div class="modal-body alert-dialog">
+        <div class="alert-body">
+            <em class="fa fa-times-circle-o text-danger"></em>
+            <span>Are you sure to delete this item?</span>
+        </div>
+        <div class="alert-button">
+            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="modal.html">
+    <div class="modal-header">
+        <button class="close" ng-click="cancel()"><em class="fa fa-close"></em></button>
+        <h4 class="modal-title">Payment Monitoring</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row form-horizontal">
+            <div class="col-md-12">
+                <div class="pull-left bg-primary">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label class="col-lg-5 text-left control-label">PO Number</label>
+                            <label class="col-lg-7 text-left control-label">123456</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-5 text-left control-label">PO Date</label>
+                            <label class="col-lg-7 text-left control-label">12-02-2016</label>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Vendor</label>
+                            <div class="col-lg-9">
+                                <div class="col-lg-12 text-strong p-t">PT. Global Integrasi Data</div>
+                                <div class="col-lg-12">Gedung Sona Topas, Jl. Jend. Sudirman Kav. 26 Jakarta Selatan</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h4>Items List</h4>
+
+        <table class="table table-sm table-striped standard">
+            <thead>
+                <tr>
+                    <th scope="col">Item</th>
+                    <th scope="col">Qty</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Unit</th>
+                    <th scope="col">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Laptop DELL Inspiron N4050</td>
+                    <td>5/10</td>
+                    <td class="number">4.000.000,-</td>
+                    <td>piece</td>
+                    <td class="number">20.000.000,-</td>
+                </tr>
+                <tr>
+                    <td>Laptop LENOVO</td>
+                    <td>6/10</td>
+                    <td class="number">5.000.000,-</td>
+                    <td>piece</td>
+                    <td class="number">30.000.000,-</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="row form-horizontal">
+            <div class="col-md-12">
+                <div class="pull-left w100 bg-primary">
+                    <div class="col-md-12">
+                        <div class="form-group no-margin">
+                            <label class="col-lg-4 text-left control-label">Sub Total</label>
+                            <label class="col-lg-6 control-label">50.000.000,-</label>
+                        </div>
+                        <div class="form-group no-margin">
+                            <label class="col-lg-4 text-left control-label">Pinalty</label>
+                            <label class="col-lg-6 control-label">5.000.000,-</label>
+                            <label class="col-lg-2 control-label">(late)</label>
+                        </div>
+                        <div class="form-group no-margin">
+                            <label class="col-lg-4 text-left control-label">PPn</label>
+                            <label class="col-lg-6 control-label">4.500.000,-</label>
+                        </div>
+                        <div class="form-group">
+                            <h4 class="col-lg-4 text-left control-label">Total Amount</h4>
+                            <h4 class="col-lg-6 control-label">49.500.000,-</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</script>
+
+<script type="text/ng-template" id="addCost.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Add Cost Allocation</h3>
+    </div>
+    <div class="modal-body form-horizontal">
+        <div class="row">
+            <div class="form-group m-t">
+                <label class="col-lg-3 control-label">Account Code</label>
+                <div class="col-lg-6">
+                    <input ng-model="groupField.groupName" class="form-control">
+                </div>
+                <div class="col-lg-2">
+                    <button class="btn btn-primary" type="button" ng-click="ok()">Generate</button>
+                </div>
+            </div>
+            <div class="form-group m-t">
+                <label class="col-lg-3 control-label">Account Name</label>
+                <div class="col-lg-6">
+                    <input ng-model="groupField.groupName" class="form-control">
+                </div>
+            </div>
+            <div class="form-group m-t">
+                <label class="col-lg-3 control-label">Department</label>
+                <div class="col-lg-6">
+                    <select chosen="" name="input_type" class="form-control" disable-search="false">
+                        <option></option>
+                        <option>Remove from Cart</option>
+                        <option>Move to Wishlist</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group m-t">
+                <label class="col-lg-3 control-label">Budget</label>
+                <div class="col-lg-6">
+                    <input ng-model="groupField.groupName" class="form-control">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer text-center">
+        <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</script>

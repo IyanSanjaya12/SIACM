@@ -1,0 +1,136 @@
+<!--
+SPESIFIC VIEW OF THE HISTORY AUCTION MENU
+----------- START CONTROLLER ------------
+-->
+
+<div class="app-view-header">
+    <span translate="promise.procurement.panitia.evaluasiharga.JUDUL">Evaluasi Harga</span> 
+    <small><span translate="promise.procurement.panitia.evaluasiharga.view.TOTAL"></span></small>
+</div>
+
+<toaster-container toaster-options="{'position-class': 'toast-top-center', 'close-button':true}"></toaster-container>
+<div ng-controller="HistoryAuctionSimpleViewController as form">
+<form name="myForm" method="post" action="#" novalidate="" class="form-horizontal">
+    
+<!----------------------------------------------- Table Ke 1 ----------------------------------------------->
+<div class="panel panel-primary">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-folder">&nbsp;</em><span translate="promise.procurement.panitia.evaluasiharga.view.HISTORYAUCTION">History Auction</span></h4>
+    <div class="panel-body">
+        <div class="col-md-12">
+            <div align="center" ng-if="loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped table-bordered">
+                    <thead>
+                        <tr style="background-color:#EEEEEE">
+                            <th scope="col"style="text-align:center" width="50px"><span translate="promise.procurement.panitia.evaluasiharga.view.NOMOR">Nomor</span>
+                            </th>
+                            <th scope="col"style="text-align:center" width="500px"><span translate="promise.procurement.panitia.evaluasiharga.view.SESIAUCTION">Sesi Auction</span>
+                            </th>
+                            <th scope="col"style="text-align:center" width="500px"><span translate="promise.procurement.panitia.evaluasiharga.view.TGLSESIAUCTION">Tanggal Sesi Auction</span>
+                            </th>
+                            <th scope="col"style="text-align:center" width="500px"><span translate="promise.procurement.panitia.evaluasiharga.view.NILAITERBAIK">Nilai Terbaik</span>
+                            </th>
+                            <th scope="col"style="text-align:center" width="500px"><span translate="promise.procurement.panitia.evaluasiharga.view.NILAITERBAIK">Nilai Terbaik</span> (Rp.)
+                            </th>
+                            <th scope="col"style="text-align:center" width="500px"><span translate="promise.procurement.panitia.evaluasiharga.view.KODEVENDOR">Kode Vendor</span>
+                            <th scope="col"style="text-align:center" width="500px"><span translate="promise.procurement.panitia.evaluasiharga.view.NAMAVENDOR">Nama Vendor</span>
+                            <th scope="col"style="text-align:center" width="500px"><span translate="promise.procurement.panitia.evaluasiharga.view.STATUS">Status</span>
+                            <th scope="col"style="text-align:center" width="500px"><span translate="promise.procurement.panitia.evaluasiharga.list.AKSI">Aksi</span>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat = "sa in penawaranAuctionTerbaikList | orderBy : '-idSesi'">
+                            <td style="text-align:center">{{ $index+1 }}</td>
+                            <td style="text-align:center">{{sa.noSesi}}</td>
+                            <td style="text-align:center">{{sa.tglSesi}}</td>
+                            <td style="text-align:center">{{sa.hargaTerbaikNoKurs | number :2}} {{sa.mataUang}}</td>
+                            <td style="text-align:center">{{sa.hargaTerbaik | number :2}} IDR</td>
+                            <td style="text-align:center">{{sa.idVendor}}</td>
+                            <td style="text-align:center">{{sa.namaVendor}}</td>
+                            <td style="text-align:center">{{sa.status}}</td>
+                            <td style="text-align:center">
+                                <a href="" title="Detail Auction" ng-click="clickDetailAuction(sa.idSesi)"><em class="fa fa-folder-open"></em></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div align="center">
+    <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="back()"><em class="fa fa-arrow-circle-left">&nbsp;</em>
+        <span translate="promise.procurement.panitia.evaluasiharga.btn.KEMBALI"></span>
+    </button>
+    <!-- <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="cetak()">
+        <span translate="promise.procurement.panitia.evaluasiharga.btn.CETAK"></span>&nbsp;<em class="fa fa-download"></em>
+    </button>  -->   
+</div>    
+    
+ 
+<!----------------------------------------------- Table Ke 2 ----------------------------------------------->
+<script type="text/ng-template" id="/view_detail_auction.html">
+    <toaster-container toaster-options="{'position-class': 'toast-top-center', 'close-button':true}"></toaster-container>
+    <div class="modal-header">
+        <h3 id="myModalLabel" class="modal-title" style="text-align:center">Detail Auction</h3>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+			<label class="col-sm-4 control-label">Nomor Sesi</label>
+			<div class="col-sm-8">
+				<label>: {{noSesi}}</label>
+			</div>
+			<label class="col-sm-4 control-label">Tanggal Awal</label>
+			<div class="col-sm-8">
+				<label>: {{tglAwalSesi | date: "dd-MMM-yyyy HH:mm"}}</label>
+			</div>
+			<label class="col-sm-4 control-label">Tanggal Akhir</label>
+			<div class="col-sm-8">
+				<label>: {{tglAkhirSesi | date: "dd-MMM-yyyy HH:mm"}}</label>
+			</div>
+		</div>
+		<p>&nbsp;</p>
+         <div class="col-xs-12">
+            <table ng-table="penawaranAuctionList" class="table table-hovertable-condensed table-striped bg-white">
+                <thead>
+                    <tr style="background-color:#EEEEEE">
+                        <th scope="col"style="text-align:center" width="20px"><span translate="promise.procurement.panitia.evaluasiharga.view.NOMOR">Nomor</span>
+                        </th>
+                        <th scope="col"style="text-align:center" width="500px"><span translate="promise.procurement.panitia.evaluasiharga.view.KODEVENDOR">Kode Vendor</span>
+                        </th>
+                        <th scope="col"style="text-align:center" width="500px"><span translate="promise.procurement.panitia.evaluasiharga.view.NAMAVENDOR">Nama Vendor</span>
+                        </th>
+                        <th scope="col"style="text-align:center" width="500px"><span translate="promise.procurement.panitia.evaluasiharga.view.TGLPEMASUKAN">Tanggal Pemasukan</span>
+                        </th>
+                        <th scope="col"style="text-align:center" width="500px"><span translate="promise.procurement.panitia.evaluasiharga.view.NILAIPENAWARAN">Nilai Penawaran</span>
+                        </th>
+                        <th scope="col"style="text-align:center" width="500px"><span translate="promise.procurement.panitia.evaluasiharga.view.NILAIPENAWARAN">Nilai Penawaran</span> (Rp.)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat = "pa in $data">
+                        <td style="text-align:center">{{ $index+1 }}</td>
+                        <td style="text-align:center">{{ pa.pesertaAuction.vendor.id }}</td>
+                        <td style="text-align:left">{{ pa.pesertaAuction.vendor.nama }}</td>
+                        <td style="text-align:center">{{ pa.created | date: "dd/MM/yy HH:mm:ss" }}</td>
+                        <td style="text-align:right">{{ pa.nilaiPenawaran | number: 2 }} {{pa.mataUang.kode}}</td>
+                        <td style="text-align:right">{{ pa.totalPenawaranKonfersi | number: 2 }} IDR</td>
+                    </tr>
+                </tbody>
+             </table>
+        </div>
+        <p>&nbsp;</p>
+    </div>
+    <div class="modal-footer">
+		<button ng-class="'bg-'+app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-sm " ng-click="cancel()">
+			<span class="btn-label "><em class="fa fa-chevron-left "></em></span>
+			<span translate="promise.procurement.panitia.evaluasiharga.btn.KEMBALI">Kembali</span>
+		</button>
+	</div>
+</script>
+    
+    
+</form>
+</div>

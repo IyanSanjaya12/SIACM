@@ -1,0 +1,31 @@
+<div class="container container-sm animated fadeInDown">
+    <div class="center-block mt-xl">
+        <!-- START panel-->
+        <img src="app/img/astra-recover.png" alt="Image" class="center-block img-rounded" />
+        <div class="panel">
+            <div class="panel-body" ng-controller="RecoverExecuteController">
+                <p class="pv">
+                    <strong>RESET PASSWORD</strong>
+                    <br/>
+                </p>
+
+                <div align="center" ng-show="loading">
+                    <strong><em>Loading... <img src="app/img/loading.gif" border="0" height="20px"/></em></strong>
+                </div>
+
+                <div class="row" ng-if="sendingMessage" align="center">
+                    <strong style="color:green">Send Password is Success, check your email!</strong>
+                </div>
+                <div class="row" ng-if="sendingMessageError" align="center">
+                    <strong style="color:red">Email not register!</strong>
+                </div>
+                <br/><br/>
+                <div align="center">
+                    <button type="button" ng-click="goLogin()" class="btn btn-info">LOGIN</button>
+                </div>
+            </div>
+        </div>
+        <!-- END panel-->
+        <div ng-include="'app/views/page.footer.html'" class="p-lg text-center"></div>
+    </div>
+</div>

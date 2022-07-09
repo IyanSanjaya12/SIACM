@@ -1,0 +1,49 @@
+<!-- START Sidebar-->
+<div class="sidebar-wrapper">
+	<div ui-sidebar="" class="sidebar">
+		<div class="sidebar-nav">
+
+			<!-- dynamic menu -->
+			<ul class="nav" ng-controller="SidebarMenuController as vm">
+				<!-- Iterates over all sidebar items-->
+				<li class="nav-heading">NAVIGASI UTAMA (NEW)</li>
+				<li ui-sref-active="active">
+					<a ui-sref="{{vm.dashboardSref}}" title="Dashboard" ripple="">
+						<em class="sidebar-item-icon fa fa-home"></em>
+						<span translate="sidebar.nav.DASHBOARD">Home</span>
+					</a>
+				</li>
+				<li>
+					<hr />
+				</li>
+				
+				<!-- start repeat menu -->
+				<li ng-repeat="menu in menuList | orderBy:'urutan'" ng-class="{active:$root.activeModul==menu.id}">
+					<a href="" title="Panitia" ripple="" ng-click="toggleMenu(menu.id )">
+						<em class="sidebar-item-icon {{menu.icon}}"></em>
+						<em class="sidebar-item-caret fa pull-right fa-angle-right"></em>
+						<span ng-switch on="menu.menuTranslate != null">
+						    <span ng-switch-when="true" translate>{{menu.menuTranslate}}</span>
+						    <span ng-switch-default>{{menu.nama}}</span>
+						</span>
+					</a>
+					<ul class="nav sidebar-subnav">
+						<li ui-sref-active="active" ng-repeat="childMenu in menu.childMenuList| orderBy:'urutan'">
+							<a ui-sref="{{childMenu.path}}" title="{{childMenu.nama}}" ripple="" ng-click="toggleActiveMenu(childMenu.id)"> 
+								<em class="sidebar-item-icon {{childMenu.icon}}"></em>
+								<span ng-switch on="childMenu.menuTranslate != null && childMenu.menuTranslate != ''">
+								    <span ng-switch-when="true" translate>{{childMenu.menuTranslate}}</span>
+								    <span ng-switch-default>{{childMenu.nama}}</span>
+								</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<!-- end repeat menu -->                
+			</ul>
+			<!-- end dynamic menu -->
+
+		</div>
+	</div>
+</div>
+<!-- END Sidebar-->

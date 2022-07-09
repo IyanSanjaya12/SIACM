@@ -1,0 +1,133 @@
+<!--
+SPESIFIC VIEW OF THE FIRST DETAIL EVALUASI TEKNIS MENU
+------------- START CONTROLLER -------------
+-->
+
+<div class="app-view-header">
+    <span translate="promise.procurement.panitia.delegasipengadaan.view.JUDUL"></span>
+</div>
+
+<div ng-controller="DelegasiPengadaanDetilController as form">
+    <!--Table Ke 1 -->
+    <div class="panel panel-primary">
+        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-archive">&nbsp;</em><span translate="promise.procurement.panitia.delegasipengadaan.view.sopa.JUDUL"></span></h4>
+        <div class="panel-body">
+            <br/>
+            <div class="col-md-12">
+                <div>
+                    <div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px" border="0"/></strong></div>
+                    <div class="table-responsive" style="overflow:visible">
+                        <table class="table table-bordered table-hover" width="100%">
+                            <tbody>
+                                <tr>
+                                    <td style="text-align:left" width="20%"><span translate="promise.procurement.panitia.delegasipengadaan.view.sopa.NO"></span></td>
+                                    <td style="text-align:left" width="80%">
+                                        {{perencanaan.nomor}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:left vertical-align:middle" width="20%"><span translate="promise.procurement.panitia.delegasipengadaan.view.sopa.TANGGAL"></span></td>
+                                    <td style="text-align:left vertical-align:middle">
+                                    {{perencanaan.created | date:'dd-MM-yyyy'}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:left vertical-align:middle" width="20%"><span translate="promise.procurement.panitia.delegasipengadaan.view.sopa.JUMLAH"></span></td>
+                                    <td style="text-align:left vertical-align:middle">
+                                    -
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:left vertical-align:middle" width="20%"><span translate="promise.procurement.panitia.delegasipengadaan.view.sopa.MENYUTUJUI"></span></td>
+                                    <td style="text-align:left vertical-align:middle">
+                                        <div class="col-md-2">
+                                            <ui-select ng-model="form.delegasi.statusPersetujuan" theme="bootstrap">
+                                                <ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+                                                <ui-select-choices repeat="status in statusList | propsFilter: {id: $select.search}">
+                                                    <div ng-bind-html="status.nama | highlight: $select.search"></div>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--END Table Ke 1 -->
+
+    <!--Table Ke 2 -->
+    <div class="panel panel-primary">
+        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-archive">&nbsp;</em><span translate="promise.procurement.panitia.delegasipengadaan.view.pendelegasian.JUDUL"></span></h4>
+        <div class="panel-body">
+            <br/>
+            <div class="col-md-12">
+                <div>
+                    <div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px" border="0"/></strong></div>
+                    <div class="table-responsive" style="overflow:visible">
+                        <table class="table table-bordered table-hover" width="100%">
+                            <tbody>
+                                <tr>
+                                    <td style="text-align:left" width="20%"><span translate="promise.procurement.panitia.delegasipengadaan.view.pendelegasian.NO"></span>&nbsp;<span style="color:red">*)</span></td>
+                                    <td style="text-align:left" width="80%">
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control shadow-z1 input-sm" ng-model="form.delegasi.nomorPendelegasian" />
+                                            <p ng-show="nomorError" style="color:red">Nomor Delegasi Harus diisi.</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:left vertical-align:middle" width="20%"><span translate="promise.procurement.panitia.delegasipengadaan.view.pendelegasian.TANGGAL"></span>
+                                        <s&nbsp;pan style="color:red">*)</span>
+                                    </td>
+                                    <td style="text-align:left vertical-align:middle">
+                                        <div class="col-md-3">
+                                            <p class="input-group">
+                                                <input type="text" datepicker-popup="{{format}}" ng-model="form.delegasi.tanggalPendelegasian" is-open="tglOpened" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" class="form-control shadow-z1 input-sm" />
+                                                <span class="input-group-btn">
+								<button type="button" ng-click="tglOpen($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+													<em class="fa fa-calendar"></em>
+								</button>
+								</span>
+                                            </p>
+                                            <p ng-show="tanggalError" style="color:red">Tanggal Delegasi Harus diisi</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:left vertical-align:middle" width="20%"><span translate="promise.procurement.panitia.delegasipengadaan.view.pendelegasian.PANITIA"></span>&nbsp;<span style="color:red">*)</span></td>
+                                    <td style="text-align:left vertical-align:middle">
+                                        <div class="col-md-3">
+                                            <ui-select ng-model="form.delegasi.panitia" theme="bootstrap">
+                                                <ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+                                                <ui-select-choices repeat="panitia in panitiaList | propsFilter: {id: $select.search}">
+                                                    <div ng-bind-html="panitia.nama | highlight: $select.search"></div>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                            <p ng-show="panitiaError" style="color:red">Panitia Harus dipilih salah satu.</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--END Table Ke 2 -->
+
+    <div align="center">
+        <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="back()"><em class="fa fa-arrow-circle-left">&nbsp;</em>
+            <span translate="promise.procurement.panitia.delegasipengadaan.view.btn.KEMBALI"></span>
+        </button>
+        <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="save()">
+            <span translate="promise.procurement.panitia.delegasipengadaan.view.btn.SIMPAN"></span>&nbsp;<em class="fa fa-check"></em>
+        </button>
+    </div>
+    <br>
+</div>
+<!--END CONTROLLER-->

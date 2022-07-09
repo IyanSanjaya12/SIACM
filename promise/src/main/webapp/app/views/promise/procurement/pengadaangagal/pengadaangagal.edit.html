@@ -1,0 +1,63 @@
+<div class="app-view-header">Pengadaan Gagal
+    <!-- <small ng-bind="app.name + ' - ' + app.description"></small> -->
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="PengadaanGagalEditController as form">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <span >Pengadaan Gagal - Edit</span>
+    </h4>
+    <div class="panel-body">
+        <!--------------------------------------------------------------------------------------------------->
+        <promise-view-data-pengadaan pengadaan-id=pengadaanId></promise-view-data-pengadaan>
+        <!--------------------------------------------------------------------------------------------------->
+
+        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+            <span>Data Berita Acara Pengdaan Gagal</span>
+        </h4>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col col-lg-2">
+                    Nomor Berita Acara
+                </div>
+                <div class="col col-lg-4">
+                    <input type="text" class="form-control input-sm" ng-model="form.noBA" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-lg-2">
+                    Tanggal Berita Acara
+                </div>
+                <div class="col-sm-10 col-lg-3">
+                    <div class="input-group">
+                        <input type="text" name="tglBA" datepicker-popup="{{form.format}}" ng-model="form.tglBA" is-open="form.tglBAOpened" min-date="form.minDate" max-date="false" datepicker-options="form.dateOptions" date-disabled="form.disabled(form.date, form.mode)" close-text="Close" class="form-control shadow-z1 input-sm" ng-change="updateTglBA()" readonly="true" required readonly style="background-color:white;" />
+                        <span class="input-group-btn">
+				        <button type="button" ng-click="form.tglBAOpen($event)" class="btn btn-default shadow-z1 input-sm ">
+						  <em class="fa fa-calendar"></em>
+						</button>
+					</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-lg-2">
+                    Keterangan
+                </div>
+                <div class="col col-lg-8">
+                    <div text-angular="" ng-model="form.keterangan" name="wysiswyg-editor" class="btn-group-small"></div>
+                </div>
+            </div>
+
+            <div ng-show="loadingSaving" align="center"><strong><em>Saving... <img src="app/img/loading.gif" border="0" height="20px"/></em></strong>
+            </div>
+            <div align="center">
+                <button ng-class="'bg-' + app.theme.name" ng-click="btnBack()" class="btn btn-primary btn-sm pull-center" ripple="">
+                    <span class=""><em class="fa fa-chevron-left"></em></span>&nbsp;&nbsp;<font color="white"><span translate="promise.procurement.panitia.persetujuan.btn.KEMBALI"></span></font>
+                </button>
+                <button ng-class="'bg-' + app.theme.name" ng-click="saveData()" class="btn btn-primary btn-sm pull-center" ripple="">
+                    <span class=""><em class="fa fa-sign-in"></em></span>&nbsp;&nbsp;<font color="white"><span translate="">SIMPAN</span></font>
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>

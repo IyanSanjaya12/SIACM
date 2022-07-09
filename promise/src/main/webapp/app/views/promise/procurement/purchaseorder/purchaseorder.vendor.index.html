@@ -1,0 +1,117 @@
+<div class="app-view-header">
+    <span>Purchase Order</span>
+    <small><span>PO</span></small>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="PurchaseOrderVendorController as form">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <span>Purchase Order Status</span>
+    </h4>
+
+    <div class="panel-body form-horizontal">
+
+        <div class="row p-b b-b m-b">
+            <div class="col-lg-2">
+                <a href="#" ng-click="getOnStatus('All')"><span>All <strong>({{allData}})</strong></span></a>
+            </div>
+            <div class="col-lg-2">
+                <a href="#" ng-click="getOnStatus('On Process')"><span>On Process <strong>({{form.poOnProgress}})</strong></span></a>
+            </div>
+            <div class="col-lg-2">
+                <a href="#" ng-click="getOnStatus('DONE')"><span>Done <strong>({{form.poReceived}})</strong></span></a>
+            </div>
+        </div>
+
+        <div class="row p-b m-b">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="col-md-3 text-left control-label">PO Number</label>
+                    <div class="col-md-5">
+                        <div class="search-icon">
+                            <input class="form-control" placeholder="Search..." type="text" ng-model="searchPONumber"
+                                ng-change="getSearchPo()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="col-md-offset-3 col-md-4 control-label">Sort by </label>
+                    <div class="col-md-5">
+                        <select class="form-control" ng-model="sortBy" ng-change="getSortPO()" width="'100%'">
+                            <option ng-repeat="option in sortList" value="{{option.sort}}">{{option.name}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div align="center" ng-if="loading == true">
+                    <strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px" /></strong>
+                </div>
+                <div class="table-responsive">
+                    <table class="table standard table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col"style="text-align:left"><span>PO Number</span></th>
+                                <th scope="col"style="text-align:left"><span>PR Number</span></th>
+                                <th scope="col"style="text-align:left"><span>Department</span></th>
+                                <th scope="col"style="text-align:center"><span>Total Cost</span></th>
+                                <th scope="col"style="text-align:center"><span>Total Cost (IDR)</span></th>
+                                <th scope="col"style="text-align:left"><span>Post Date</span></th>
+                                <th scope="col"style="text-align:left"><span>Status</span></th>
+                                <th scope="col"style="text-align:left"><span>Aksi</span></th>
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="po in purchaseOrderList.purchaseOrderDTOList">
+                            <tr>
+                                <td style="text-align:left">
+                                    <span ng-bind="po.poNumber"></span>
+                                    <br />
+                                    <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled"
+                                        ng-click=" getDetil(po)" id="btnDetil_{{po.id}}">Show Detil</button>
+                                </td>
+                                <td align="center" ng-bind="po.purchaseRequestNumber"></td>
+                                <td ng-bind="po.department"></td>
+                                <td align="center" ng-bind="(po.totalCost | number:2)+ ' ' + po.kodeMataUang"></td>
+                                <td align="center" ng-bind="(po.totalCost * po.kurs | number:2)+ ' IDR' "></td>
+                                <td align="center" ng-bind="po.purchaseOrderDate | date:'dd/MM/yyyy'"></td>
+                                <td ng-bind="po.status"></td>
+                                <td style="text-align: center">
+                                    <div ng-if="po.statusProses == 1 || po.statusProses == 2">
+                                        <button type="button" ng-class="'bg-' + app.theme.name" class="mr btn btn-xs"
+                                            ng-click="editPO(po)">
+                                            <em class="fa fa-search"></em>
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="mr btn btn-primary btn-xs ng-scope" ng-click="printSertifikat(po)">
+                                            <em class="fa fa-print"></em>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr id="info_{{po.id}}" style="display:none">
+                                <td id="cell_info_{{po.id}}" colspan="8"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="page-option col-md-2">
+                    <span class="page-opt-text">Show :</span>
+                    <a class="page-opt-num" ng-click="pageChanged(5)">5</a>
+                    <a class="page-opt-num" ng-click="pageChanged(10)">10</a>
+                    <a class="page-opt-num" ng-click="pageChanged(25)">25</a>
+                </div>
+                <div class="text-right">
+                    <pagination first-text="<<" previous-text="<" next-text=">" last-text=">>" items-per-page="rowPerPage"
+                        total-items="totalItems" ng-model="currentPage" boundary-links="true" class="pagination-sm"
+                        ng-click="getPage(currentPage)"></pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END CONTROLLER-->

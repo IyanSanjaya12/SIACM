@@ -1,0 +1,52 @@
+<div class="app-view-header">
+    <span translate="promise.procurement.panitia.pemasukanpenawaran.JUDUL"></span>
+    <small><span translate="promise.procurement.panitia.pemasukanpenawaran.KETERANGAN"></span></small>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="PemasukanPenawaranTahapDuaIndexController as form">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-tasks">&nbsp;</em>
+    	<span translate="promise.procurement.panitia.pemasukanpenawaran.JUDUL"></span>
+    </h4>
+    <div class="panel-body">
+        <br/>
+        <div class="col-md-12">
+            <div>
+                <table datatable="ng" class="row-border hover table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"style="text-align:center">No
+                            </th>
+                            <th scope="col"style="text-align:left"><span translate="promise.procurement.vendor.pemasukanpenawaran.list.NOMOR"></span>
+                            </th>
+                            <th scope="col"style="text-align:left"><span translate="promise.procurement.panitia.pemasukanpenawaran.list.NAMA"></span>
+                            </th>
+                            <th scope="col"style="text-align:left"><span translate="promise.procurement.vendor.pemasukanpenawaran.list.KUALIFIKASI"></span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.pemasukanpenawaran.list.CREATEDATE"></span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.pemasukanpenawaran.list.AKSI"></span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="pp in form.pemasukanPenawaranList">
+                            <td style="text-align:center">{{ $index+1 }}</td>
+                            <td style="text-align:left">{{ pp.pengadaan.nomorNotaDinas}}</td>
+                            <td style="text-align:left">{{ pp.pengadaan.namaPengadaan }}</td>
+                            <td style="text-align:left">{{ pp.pengadaan.kualifikasiPengadaan.nama }}</td>
+                            <td style="text-align:center">{{ pp.created | date:'dd/MM/yyyy'}}</td>
+                            <td style="text-align:center">
+                                <div>
+                                    <button ng-if="pp.pengadaan.tahapanPengadaan.tahapan.id == 10" type="button" class="mr btn btn-success btn-circle btn-xs" ng-click="form.btnDetil(pp.pengadaan)">
+                                        <em class="fa fa-pencil fa-lg"></em>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END CONTROLLER-->

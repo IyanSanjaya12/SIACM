@@ -1,0 +1,61 @@
+<div class="app-view-header">
+ <span translate="promise.procurement.master.datadaftarvendor.judul"></span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="DaftarVendorIndexController as vm">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-tasks">&nbsp;</em><span translate="promise.procurement.master.datadaftarvendor.subjudul"></span></h4>
+    <div ng-show="vm.loading" align="center" ><strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px"></strong></div>
+    <div class="panel-body">
+        <br/>
+        <div ng-hide="vm.loading" class="col-md-12">
+         	
+            <div>
+            	<table datatable="" dt-options="vm.dtOptions" dt-columns="vm.dtColumns" dt-instance="vm.dtInstance" class="table table-striped"></table>
+		          <!-- <table datatable="ng" class="row-border hover table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.master.datadaftarvendor.list.NOMOR">No</span></th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.master.datadaftarvendor.list.NAMAVENDOR">NAMA VENDOR</th> 
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.master.datadaftarvendor.list.ALAMAT">ALAMAT</th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.master.datadaftarvendor.list.TLP">TELP</th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.master.datadaftarvendor.list.EMAIL">EMAIL</th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.master.datadaftarvendor.list.TANGGALREG">TANGGAL REGISTRASI</th>
+                            <th scope="col"style="text-align:center">Status</span>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.master.datadaftarvendor.list.UPDATEAKHIR">TANGGAL TERAKHIR</th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.master.datadaftarvendor.list.AKSI">Aksi</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="vv in form.vendorList">
+                            <td style="text-align:center" ng-bind="$index+1"></td>
+                            <td style="text-align:center" ng-bind="vv.nama"></td>
+                            <td style="text-align:center" ng-bind="vv.alamat"></td>
+                            <td style="text-align:center" ng-bind="vv.nomorTelpon"></td>
+                            <td style="text-align:center" ng-bind="vv.email"></td>
+                            <td style="text-align:center" ng-bind="vv.created | date:'dd/MM/yyyy'"></td>
+                            <td style="text-align:center">
+                            	<span ng-if="vv.statusBlacklist == 1">Persetujuan Blacklist</span>
+                            	<span ng-if="vv.statusBlacklist == 2">Blacklist</span>
+                            	<span ng-if="vv.statusUnblacklist == 1">Persetujuan Unblacklist</span>
+                            	<span ng-if="vv.statusPerpanjangan == 1">Persetujuan Perpanjangan Sertifikat</span>
+                            	<span ng-if="vv.status == 0">Persetujuan Calon Vendor</span>
+                            	<span ng-if="(vv.statusBlacklist != 1 && vv.statusBlacklist != 2 && vv.statusUnblacklist != 1 && vv.statusPerpanjangan != 1) && vv.status == 1">Vendor Aktif</span>
+                            </td>
+                            <td style="text-align:center" ng-bind="vv.created | date:'dd/MM/yyyy'" ng-if="vv.updated == null"></td>
+                            <td style="text-align:center" ng-bind="vv.updated | date:'dd/MM/yyyy'" ng-if="vv.updated != null"></td>
+                            <td style="text-align:center">
+									<div>
+										<button type="button" class="mr btn btn-success btn-circle btn-xs" ng-click="form.edit(vv)">
+											<em  class="fa fa-pencil fa-lg"></em>
+										</button>									
+									</div>
+						    </td>
+                        </tr>
+                    </tbody>
+                </table> -->
+            </div>
+        </div>
+    </div>
+</div>
+<!--END CONTROLLER-->

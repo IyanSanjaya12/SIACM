@@ -1,0 +1,50 @@
+<div class="app-view-header">
+    <span translate="promise.procurement.panitia.pemasukanpenawaranview.list.PEMASUKANPENAWARANDETAIL">Pemasukan Penawaran</span>
+    <small><span translate="promise.procurement.panitia.pemasukanpenawaranview.KETERANGAN"></span></small>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="PemasukanPenawaranDetailSatuanController as form">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-group">&nbsp;</em><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.DATAPENYEDIABRGJASA">Data Penyedia Barang dan Jasa</span></h4>
+    <div class="panel-body">
+        <br/>
+        <div class="col-md-12">
+            <div>
+                <div align="center" ng-if="loading == true"><strong><em>Loading...<img src="app/img/loading.gif" border="0" width="20px"></em></strong></div>
+                <table class="table table-bordered table-hover table-striped table-bordered">
+                    <thead>
+                        <tr style="background-color:#EEEEEE">
+                            <th scope="col"style="text-align:center">No
+                            </th>
+                            <th scope="col"style="text-align:left" width="300px"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.NAMAPENYEDIABRGJASA">NAMAPENYEDIABRGJASA</span>
+                            </th>
+                            <th scope="col"style="text-align:left" width="150px"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.TGLPEMASUKAN">TGLPEMASUKAN</span>
+                            </th>
+                            <th scope="col"style="text-align:left" width="150px"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.TELEPON">TELEPON</span>
+                            </th>
+                            <th scope="col"style="text-align:left"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.ALAMAT">ALAMAT</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="dpm in form.detilItemPengadaan">
+                            <td style="text-align:center">{{ $index+1 }}</td>
+                            <td style="text-align:left">{{ dpm.penawaranPertama.suratPenawaran.vendor.nama }}</td>
+                            <td style="text-align:left">{{ (dpm.penawaranPertama.updated!=null?dpm.penawaranPertama.updated:dpm.penawaranPertama.created) | date:'dd-MM-yyyy' }}</td>
+                            <td style="text-align:left">{{ dpm.penawaranPertama.suratPenawaran.vendor.nomorTelpon }}</td>
+                            <td style="text-align:left">{{ dpm.penawaranPertama.suratPenawaran.vendor.alamat }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div align="right">
+        <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-sm" ng-click="form.backView()">
+            <em class="fa fa-arrow-circle-left">&nbsp;</em>
+            <span translate="promise.procurement.panitia.pemasukanpenawaranview.btn.KEMBALI"></span>
+        </button>
+    </div>
+    <br>
+</div>
+<!--END CONTROLLER-->

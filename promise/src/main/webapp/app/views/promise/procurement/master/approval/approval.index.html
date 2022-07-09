@@ -1,0 +1,77 @@
+<div class="app-view-header"> <span translate="promise.procurement.master.masterapproval.judul">Approval Master</span>
+	<small><span translate=""></span></small>
+</div>
+<div class="panel panel-primary" ng-controller="MasterApprovalController as vm ">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <em class="fa fa-tasks"></em>
+        <span translate="promise.procurement.master.masterapproval.subjudul">Setting - Master Approval</span>
+        <a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+            <em class="fa fa-chevron-circle-down"></em>
+        </a>
+    </h4>
+	<div class="panel-body collapse in form-horizontal">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="text-right pr">
+					<button ng-class="'bg-' + app.theme.name" type="button" class="btn btn-primary btn-add" ng-click="add()">
+						<span translate="template.button.tambah"></span>
+					</button>
+				</div>
+				<br />
+				<div style="text-align:center" ng-if="vm.loading == true"> <strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px" /></strong>
+				</div>
+				<div class="table-responsive">
+					<table datatable="ng" class="row-border hover table-striped">
+						<thead>
+							<tr>
+								<th scope="col"class="w5" style="text-align:center"><span translate="template.tabel.nomor"></th>
+                                <th scope="col"style="text-align:center"><span translate="promise.procurement.master.masterapproval.list.nama"></span>
+								</th>
+								<th scope="col"style="text-align:center"><span translate="promise.procurement.master.masterapproval.list.approval_type"></span>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="approval in vm.masterApprovalList">
+								<td style="text-align:center" ng-bind="$index+1"></td>
+								<td> <span class="bold" style="vertical-align: top;">{{ approval[0].name }}</span>
+									<br />
+								</td>
+								<td>
+									<div class="table-responsive">
+										<table class="row-border hover table-striped w100" border="1">
+											<tr>
+												<th scope="col"class="col-md-2"> <span class="bold" ng-bind="approval[0].approvalType.name"></span>
+													<br /> <span ng-if="approval[0].jenis == 0">Tipe : Serial</span>
+													<span ng-if="approval[0].jenis == 1">Tipe : Paralel</span>
+												</th>
+												<th scope="col"class="action-col" style="text-align:center">
+													<a ng-class="'bg-' + app.theme.name" class="btn btn-primary btn-sm btn-edit" tooltip-placement="top" tooltip="Edit" ng-click="edit(approval)"></a>
+													<a class="btn btn-danger btn-sm btn-delete" ng-click="del(approval[0])" tooltip-placement="top" tooltip="Delete"></a>
+												</th>
+											</tr>
+											<tr>
+												<th scope="col"style="text-align:center" class="col-md-2">Level</th>
+												<th scope="col"style="text-align:center" colspan="2">Name</th>
+												<!-- <th scope="col"style="text-align:center" class="w10">Threshold</th> -->
+											</tr>
+											<tr ng-repeat="flow in approval[1]">
+												<td style="text-align:center" class="col-md-2" ng-bind="flow.sequence"></td>
+												<td class="col-md-4" colspan="2"> 
+										
+													<span ng-bind="flow.user.namaPengguna"></span>
+												</td>
+												<!-- <td style="text-align:center" class="col-md-4" ng-if="typeof (flow.threshold) !== typeof ('undefined')" ng-bind="flow.threshold">Threshold</td> -->
+												<!-- <td style="text-align:center" class="col-md-4" ng-if="typeof (flow.threshold) === typeof ('undefined')" ng-bind="flow.threshold">N/A</td> -->
+											</tr>
+										</table>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

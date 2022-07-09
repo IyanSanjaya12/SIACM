@@ -1,0 +1,139 @@
+<div class="app-view-header">
+    <span translate="promise.procurement.inisialisasi.tambahbumn.tambahkebutuhanjasa.JUDUL"></span>
+    <small><span translate="promise.procurement.inisialisasi.tambahbumn.tambahkebutuhanjasa.TAMBAH"></span></small>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="KebutuhanJasaTambahSMBSatuanController as form">
+    <div class="panel-body">
+        <form name="formInisialisasi" class="form-horizontal" novalidate>
+            <div class="form-group" align="center" ng-show="loading">
+                <strong><em>Loading...</em></strong><img src="app/img/loading.gif" border="0" width="20px" />
+            </div>
+            <!--Nama-->
+            <div class="form-group">
+                <label class="col-lg-3 control-label"><span translate="promise.procurement.inisialisasi.tambahbumn.TBLNMJASA"></span>
+                    <label class="text-danger">*)</label>
+                </label>
+                <div class="col-lg-6">
+                    <input type="text" class="form-control shadow-z1 input-sm" ng-model="form.namaJasa">
+                    <strong ng-show="namaError" style="color:red">Nama harus diisi!</strong>
+                </div>
+            </div>
+            <!--End Nama-->
+
+            <!--Kuantitas-->
+            <div class="form-group">
+                <label class="col-lg-3 control-label"><span translate="promise.procurement.inisialisasi.tambahbumn.TBLKUANTITAS"></span>
+                    <label class="text-danger">*)</label>
+                </label>
+                <div class="col-lg-4">
+                    <input type="number" class="form-control shadow-z1 input-sm" ng-model="form.kuantitas" ng-change="calculateTotalHPS();">
+                    <strong style="color:red" ng-show="kuantitasError">Jumlah Kuantitas harus diisi!</strong>
+                    <strong style="color:red" ng-show="kuantitasError01">Jumlah Kuantitas tidak boleh kurang dari atau sama dengan 0!</strong>
+                </div>
+            </div>
+            <!--End Kuantitas-->
+
+            <!--HPS-->
+            <div class="form-group">
+                <label class="col-lg-3 control-label"><span translate="promise.procurement.inisialisasi.tambahbumn.TBLHPS"></span>
+                    <label class="text-danger">*)</label>
+                </label>
+                <div class="col-lg-4">
+                    <div class="input-group">
+                        <input type="number" class="form-control shadow-z1 input-sm" ng-model="form.hps" ng-change="calculateTotalHPS();">
+                        <span class="input-group-btn">
+            						<button type="button" ng-class="'bg-' + app.theme.name" class="btn btn-primary shadow-z1 input-sm" ripple=""><em class="fa fa-search"></em></button>
+         						</span>
+                    </div>
+                    <strong style="color:red" ng-show="hpsError">Nilai HPS harus diisi!</strong>
+                    <strong style="color:red" ng-show="hpsError01">Nilai HPS tidak boleh kurang dari atau sama dengan  0!</strong>
+                </div>
+                <div class="col-lg-2">
+                    <ui-select ng-model="mataUang.selected" theme="bootstrap" ng-disabled="disabled" ng-change="calculateTotalHPS()">
+                        <ui-select-match placeholder="++ Currency ++">{{$select.selected.nama}}</ui-select-match>
+                        <ui-select-choices repeat="mataUang in mataUangList | propsFilter: {id: $select.search}">
+                            <div ng-bind-html="mataUang.nama | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+
+            </div>
+            <!--End HPS-->
+
+            <!--Total HPS-->
+            <div class="form-group">
+                <label class="col-lg-3 control-label"><span translate="promise.procurement.inisialisasi.tambahbumn.TBLTOTALHPS"></span>
+                    <label class="text-danger">&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                </label>
+                <div class="col-lg-4">
+                    <input disabled="" type="text" class="form-control shadow-z1 input-sm" ng-model="form.totalHpsTxt">
+                </div>
+                <div class="col-md-4 col-xs-12">
+                    <label class="control-label"><code>{{mataUang.selected.kode}} : {{mataUang.selected.nama}}</code>
+                    </label>
+                </div>
+            </div>
+            <!--End Total HPS-->
+
+            <!--Tipe Pajak-->
+            <div class="form-group" ng-show="inisialisasiForm.jenisPenawaran.id!=1">
+                <label class="col-lg-3 control-label"><span translate="promise.procurement.inisialisasi.tambahbumn.tambahkebutuhanjasa.TPPAJAK"></span>
+                    <label class="text-danger">&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                </label>
+                <div class="col-lg-4">
+                    <ui-select ng-model="pajak.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" ng-change="checkPajak()">
+                        <ui-select-match placeholder="Pilih Tipe Pajak...">{{$select.selected.nama}}</ui-select-match>
+                        <ui-select-choices repeat="pajak in pajakList | propsFilter: {id: $select.search}">
+                            <div ng-bind-html="pajak.nama | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+
+            <div class="form-group" ng-show="inisialisasiForm.jenisPenawaran.id!=1">
+                <label class="col-lg-3 control-label">
+                    <label class="text-danger">&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                </label>
+                <div class="col-lg-2">
+                    <div class="checkbox c-checkbox needsclick">
+                        <label class="needsclick">
+                            <input type="checkbox" value="" ng-checked="checked" class="needsclick" ng-click="checkTax()" />
+                            <span class="fa fa-check"></span> Input Presentase</label>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="input-group m-b">
+                        <input type="text" class="form-control shadow-z1 input-sm" ng-disabled="!disabled" ng-model="presentase" ng-change="calculateTotalHPS()"/>
+                        <span class="input-group-addon shadow-z1">%</span>
+                    </div>
+                </div>
+            </div>
+            <!--End Tipe Pajak-->
+
+            <!--Keterangan-->
+            <div class="form-group">
+                <label class="col-lg-3 control-label"><span translate="promise.procurement.inisialisasi.tambahbumn.TBLKET"></span>
+                    <label class="text-danger">&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                </label>
+                <div class="col-lg-6">
+                    <textarea ng-model="form.keterangan" cols="30" rows="5" class="form-control"></textarea>
+                </div>
+            </div>
+            <!--End Keterangan-->
+
+            <fieldset></fieldset>
+            <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                    <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-sm" ng-click="form.back()">
+                        <span class="btn-label">
+						  	<em class="fa fa-chevron-left"></em>
+						  </span><span translate="promise.procurement.inisialisasi.tambahbumn.BATAL"></span>
+                    </button>
+                    <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="btnSimpanJasa()"><span translate="promise.procurement.master.metodepenyampaiandokumenpengadaan.tambah.SIMPAN"></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

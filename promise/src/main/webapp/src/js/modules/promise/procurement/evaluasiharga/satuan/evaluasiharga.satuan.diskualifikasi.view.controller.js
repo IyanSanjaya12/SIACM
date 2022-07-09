@@ -1,0 +1,154 @@
+/**=========================================================
+ * Module: DiskualifikasiSatuanViewController.js
+ * Author: F.H.K
+ =========================================================*/
+
+(function() {
+    'use strict';
+
+    angular.module('naut').controller('DiskualifikasiSatuanViewController', DiskualifikasiSatuanViewController);
+
+    function DiskualifikasiSatuanViewController($scope, $http, $rootScope, $location, toaster, $resource, $filter, $modal, ngTableParams) {
+        
+        /* ======================= Pendeklarasian Variable Lokal/Interlokal ============================== */
+        var nilaiCheck = [];
+		var detailSesiAuction = $rootScope.sesiAuctionDetail;
+        
+		$rootScope.dataPenawaranAuction = [];
+        $scope.auctionList = detailSesiAuction;
+        /* ----------------------------------------------------------------------------------------------- */
+		
+		
+		/* =============================== Mapping Sesi Auction from table =============================== */
+		$scope.pilih = function() {
+            //console.log("VALUE DARI DORPDOWN = "+$scope.noSesi);
+            mappingPenawaranAuction($scope.noSesi);
+            angular.forEach(detailSesiAuction, function(value,index){
+                if($scope.noSesi == detailSesiAuction[index].id)
+                    $scope.statusAuction = detailSesiAuction[index].status;
+            });
+        }
+		/* ------------------------------- END Mapping Sesi Auction -------------------------------------- */
+		
+		
+		/* =============================== Mapping Penawaran Auction from table ========================== */
+        var mappingPenawaranAuction = function(noSesi) {
+            $http.get($rootScope.backendAddress + '/procurement/evaluasiharga/PenawaranAuctionServices/getByAuction/' + noSesi, {
+                ignoreLoadingBar: true
+            }).success(function(data, status, headers, config) {
+				
+                $rootScope.dataPenawaranAuction = data;
+				var nilaiList = [];
+				
+                angular.forEach(data,function(value,index){
+                    nilaiList.push(data[index].nilaiPenawaranOri);
+                });
+				
+                $scope.nilaiMax = sortNilai(nilaiList, 'dsc');
+                $scope.nilaiMin = sortNilai(nilaiList, 'asc');
+                $scope.mataUang = $rootScope.mataUangCode;
+                $scope.loading = false;
+                
+            }).error(function(data, status, headers, config) {
+                $scope.loading = false;
+            });
+        }
+        /* ------------------------------- END Mapping Penawaran Auction --------------------------------- */
+		
+		
+		/* =============================== START CONTROLLER DETAIL ======================================= */
+        // untuk peserta Auction dari vendor yang akan ikut
+        $scope.disHarga = function(idPenawaran, harga, dis) {
+            var isiDataDis = {
+                idPenawaran: idPenawaran,
+                diskualifikasiHarga: dis,
+                nilaiPenawaran: harga
+            }
+            if(dis) {
+                nilaiCheck.push(isiDataDis);
+            } else {
+                nilaiCheck.splice(nilaiCheck.indexOf(isiDataDis), 1);
+            }
+            //console.log("vendorCheck = " + JSON.stringify(nilaiCheck));
+        }
+        
+        // fungsi untuk pengurutan nilai
+        var sortNilai = function(nilai, type) {
+            var angka = nilai;
+            for (var x = 0; x <= angka.length; x++) {
+                for (var y = x+1; y<= angka.length+1; y++) {
+                    if(type == 'dsc'){
+                        if(angka[x] < angka[y]){
+                            var temp = angka[x];
+                            angka[x] = angka[y];
+                            angka[y] = temp;
+                        }
+                    } else {
+                        if(angka[x] > angka[y]){
+                            var temp = angka[x];
+                            angka[x] = angka[y];
+                            angka[y] = temp;
+                        }    
+                    }
+                }
+            }
+            return angka[0];
+        }
+		
+		// update ke tabel Penawaran Auction
+        $scope.simpan = function() { // NOTE: apakah nilai yang terdiskualifikasi hilang di semua sesi auction ato hanya di Menu DIS
+            if(nilaiCheck.length > 0){
+                for(var i=0; i<nilaiCheck.length; i++) {
+                    angular.forEach($rootScope.dataPenawaranAuction,function(value,index) {
+                        if(nilaiCheck[i].idPenawaran == $rootScope.dataPenawaranAuction[index].id) {
+                            var dataUpdatePenawaranAuction = {
+                                id: nilaiCheck[i].idPenawaran,
+                                diskualifikasiHarga: 1,
+                                nilaiPenawaran: $rootScope.dataPenawaranAuction[index].nilaiPenawaran,
+                                nilaiPenawaranOri: $rootScope.dataPenawaranAuction[index].nilaiPenawaranOri,
+                                pesertaAuction: $rootScope.dataPenawaranAuction[index].pesertaAuction.id,
+                                suratPenawaran: $rootScope.dataPenawaranAuction[index].suratPenawaran.id
+                            }
+                            
+                            $http({
+                                method: 'POST',
+                                url: $rootScope.backendAddress + '/procurement/evaluasiharga/PenawaranAuctionServices/update',
+                                headers: {
+                                    'Content-Type': 'application/x-www-form-urlencoded'
+                                },
+                                transformRequest: function(obj) {
+                                    var str = [];
+                                    for (var p in obj)
+                                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                                    return str.join("&");
+                                },
+                                data: dataUpdatePenawaranAuction
+                            }).success(function(data, status, headers, config) {
+                                if (typeof data !== 'undefined'){
+                                    var dataUpdatePenawaranAuction = data.id;
+                                }
+                                //console.log("CREATE PENAWARAN AUCTION OK : " + JSON.stringify(data));
+                            });
+                        }
+                    });
+                }
+                $scope.back();
+            } else {
+                toaster.pop('warning', 'Check-Box Kosong', 'Tidak ada Nilai yang didiskualifikasi');
+            }
+        }
+		
+		$scope.back = function() {
+            $scope.go('/app/promise/procurement/evaluasiharga/satuan/auction/addview');
+        }
+    
+        $scope.go = function(path) {
+            $location.path(path);
+        }
+        /* ------------------------------- END Rincian Controller ---------------------------------------- */
+	
+	}
+    
+    DiskualifikasiSatuanViewController.$inject = ['$scope', '$http', '$rootScope', '$location', 'toaster', '$resource', '$filter', '$modal', 'ngTableParams'];
+    
+})();

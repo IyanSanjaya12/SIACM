@@ -1,0 +1,5431 @@
+{
+	"menu": {
+		"approval": {
+			"modul_approval": "Persetujuan",
+			"daftar_approval": "Daftar Persetujuan",
+			"approval_history": "Riwayat Persetujuan",
+			"approval_master": "Induk Persetujuan",
+			"approval_tahapan": "Tahapan Persetujuan",
+			"approval_indeks": "Indeks Persetujuan",
+			"approval_vendor": "Persetujuan Vendor",
+			"data_vendor": "Data Vendor",
+			"keterangan": "Keterangan",
+			"perpanjangSertifikat": "- Perpanjang Sertifikat",
+			"status": "Status",
+			"approve": "Menyetujui",
+			"reject": "Menolak",
+			"hold": "Tahan",
+			"nomorberitaacara": "Nomor BA",
+			"info": "Masukkan nomor berita acara",
+			"tanggalBeritaAcara": " Tanggal BA",
+			"Dateinfo": "Masukkan tanggal berita acara",
+			"uploadfiledue": "Upload File Due Delligence",
+			"keterangans": "Keterangan",
+			"tampilan_approval": "Tampilan Persetujuan",
+			"department": "Departemen",
+			"costcenter": "Biaya pusat / Anggaran ID",
+			"daterequired": "Tanggal dibutuhkan",
+			"approvethisrequest": "Setujui permintaan ini",
+			"approveinfo": "permintaan ini membutuhkan persetujuan anda",
+			"note": "Catatan",
+			"vendor": "Vendor",
+			"awaitingapproval": "Menunggu Persetujuan"
+		},
+		"btn": {
+			"carifile": "Cari Berkas",
+			"uploadfile": "Unggah Berkas",
+			"simpan": "Simpan",
+			"kembali": "Kembali"
+		},
+		"catalog": {
+			"modul_catalog": "Katalog",
+			"attribute": "Atribut",
+			"attribute_group": "Group Atribut",
+			"category": "Katagori",
+			"manage_catalog": "Manajemen Katalog",
+			"view_vendor": "Lihat Vendor",
+			"view_catalog": "Lihat Katalog"
+		},
+		"setting": {
+			"modul_setting": "Setting"
+		},
+		"prapengadaan": {
+			"modul_prapengadaan": "Pra Pengadaan",
+			"pengadaan_private_sector": "Pengadaan Private Sektor",
+			"inisialisasi_pengadaan": "Inisialisasi Pengadaan",
+			"inisialisasi_pengadaan4": "Inisialiasi Pengadaan Versi 4",
+			"jadwal_kualifikasi": "Jadwal Kualifikasi",
+			"pengambilan_dokumen_kualifikasi": "Pengambilan Kualifikasi",
+			"kriteria_kualifikasi": "Kriteria Kualifikasi",
+			"pemasukan_dokumen_kualifikasi": "Pemasukan Dokumen Kualifikasi",
+			"seleksi_kualifikasi": "Seleksi Kualifikasi",
+			"hasil_kualifikasi": "Hasil Kualifikasi"
+		},
+		"anggaran": {
+			"modul_anggaran": "Anggaran",
+			"alokasi_anggaran": "Alokasi Anggaran",
+			"alokasi_anggaran2": "Alokasi Anggaran 02",
+			"anggaran_gabungan": "Anggaran Gabungan",
+			"cost_allocation": "Alokasi Anggaran"
+		},
+		"purchaserequestverification": {
+			"modul_purchase_request_verification": "Verifikasi PR",
+			"purchase_request_verification": "Verifikasi PR",
+			"purchase_request_konsolidasi": "Konsolidasi PR"
+		},
+		"prosespengadaan": {
+			"modul_proses_pengadaan": "Proses Pengadaan",
+			"jadwal_pengadaan": "Jadwal Pengadaan",
+			"pengambilan_dokumen": "Pengambilan Dokumen",
+			"kriteria_evaluasi": "Kriteria Evaluasi",
+			"penjelasan": "Penjelasan",
+			"pemasukan_penawaran": "Pemasukan Penawaran",
+			"pembukaan_penawaran": "Pembukaan Penawaran",
+			"evaluasi_administrasi": "Evaluasi Administrasi",
+			"evaluasi_teknis": "Evaluasi Teknis",
+			"evaluasi_harga_auction": "Evaluasi Harga Auction",
+			"evaluasi_harga_bidding": "Evaluasi Harga Bidding",
+			"negosiasi": "Negosiasi",
+			"penetapan_pemenang": "Penetapan Pemenang",
+			"rekap_pengadaan": "Rekap Pengadaan",
+			"seleksi_pendaftaran": "Seleksi Pendaftaran",
+			"pembukaan_penawaran_tahap_satu": "Pembukaan Penawaran Tahap Satu",
+			"pembukaan_penawaran_tahap_dua": "Pembukaan Penawaran Tahap Dua",
+			"sanggahan": "Sanggahan",
+			"pengumuman_evaluasi_admin_teknis": "Pengumuman Admin Teknis",
+			"usulan_calon_pemenang": "Usulan Calon Pemenenang",
+			"persetujuan_pengadaan": "Persetujuan Pengadaan",
+			"pembuktian_kualifikasi": "Pembuktian Kualifikasi"
+		},
+		"requestforquotation": {
+			"modul_request_for_quotation": "Permintaan Untuk Kutipan",
+			"rfq_manager": "Manajemen RFQ"
+		},
+		"manajemenspk": {
+			"modul_manajemen_spk": "Manajemen SPK",
+			"pembuatan_spk": "Pembuatan SPK",
+			"monitoring_spk": "Monitoring SPK"
+		},
+		"manajemenkontrak": {
+			"modul_manajemen_kontrak": "Manajemen Kontrak",
+			"buat_kontrak": "Pembuatan Kontrak",
+			"edit_data_kontrak": "Edit Data Kontrak"
+		},
+		"purchaseorder": {
+			"modul_purchase_order": "Purchase Order",
+			"purchase_order_manager": "Manajemen Purchase Order"
+		},
+		"deliveryreceived": {
+			"modul_delivery_received": "Pengiriman Diterima",
+			"delivery_received_manager": "Manajemen Pengiriman Diterima"
+		},
+		"kpimonitoring": {
+			"modul_kpi_monitoring": "KPI Monitoring",
+			"monitoring": "Monitoring"
+		},
+		"invoicemonitoring": {
+			"modul_invoice_monitoring": "Monitoring Faktur",
+			"invoice_matching": "Lihat Faktur"
+		},
+		"afco": {
+			"modul_afco": "Afco",
+			"address_book": "Alamat Afco"
+		},
+		"datapenawaran": {
+			"modul_data_penawaran": "Data Penawaran"
+		},
+		"perencanaan": {
+			"modul_perencanaan": "Perencanaan",
+			"perencanaan_pengadaan": "Perencanaan Pengadaan",
+			"purchase_request": "PR"
+		},
+		"catalogperencana": {
+			"modul_catalog_perencana": "Katalog Perencana",
+			"view_catalog": "Lihat Katalog"
+		},
+		"catalogvendor": {
+			"modul_catalog_vendor": "Katalog Vendor",
+			"manage_catalog": "Katalog Manajemen",
+			"view_catalog": "Lihat Katalog",
+			"view_vendor": "Lihat Vendor"
+		},
+		"prapengadaanvendor": {
+			"modul_prapengadaan_kualifikasi": "Pra Pengadaan Kualifikasi",
+			"undangan_kualifikasi": "Undangan Kualifikasi",
+			"pengumuman_kualifikasi": "Pengumuman Kualifikasi",
+			"data_kualifikasi": "Data Kualifikasi",
+			"hasil_kualifikasi": "Hasil Kualifikasi"
+		},
+		"prosespengadaanvendor": {
+			"modul_proses_pengadaan_vendor": "Proses Pengadaan Vendor",
+			"data_penawaran": "Data Penawaran",
+			"pengumuman_pengadaan": "Pengumuman Pengadaan",
+			"undangan_pengadaan": "Undangan Pengadaan",
+			"penawaran_harga": "Penawaran Harga",
+			"negosiasi": "Negosiasi",
+			"hasil_pengadaan": "Hasil Pengadaan",
+			"data_penawaran_tahap_dua": "Data Penawaran Tahap Dua",
+			"penyampaian_sanggahan": "Penyampaian Sanggahan"
+		},
+		"deliveryreceivedvendor": {
+			"modul_delivery_received": "Pengiriman Diterima",
+			"delivery_received_manager": "Pengiriman Diterima Manajemen"
+		},
+		"settingvendor": {
+			"modul_setting": "Setting",
+			"data_user": "Data Pengguna",
+			"data_perusahaan": "Data Perusahaan",
+			"data_pengalaman": "Data Pengalaman",
+			"data_bank": "Data Bank",
+			"data_segmentasi": "Data Segmentasi",
+			"data_keuangan": "Data Keuangan",
+			"data_dokumen": "Data Dokumen",
+			"data_peralatan": "Data Peralatan",
+			"data_sertifikat": "Data Sertifkat"
+		},
+		"manajemenvendor": {
+			"modul_manajemen_vendor": "Manajemen Vendor",
+			"approval_vendor": "Approval Vendor",
+			"daftar_vendor": "Daftar Vendor",
+			"penilaian_vendor": "Penilaian Vendor",
+			"rekap_history_vendor": "Rekap History Vendor"
+		},
+		"settingadmin": {
+			"modul_setting": "Setting",
+			"organisasi": "Organisasi",
+			"tahapan": "Tahapan",
+			"kondisi_pengadaan": "Kondisi Pengadaan",
+			"alur_pengadaan": "Alur Pengadaan",
+			"alur_pengadaan_02": "Alur Pengadaan 02",
+			"registrasi_jadwal_tahapan_pengadaan": "Registrasi Jadwal Tahapan Pengadaan",
+			"kategori_pengadaan": "Kategori Pengadaan",
+			"termin_kontrak": "Termin Kontrak",
+			"vendor_requirement": "Vendor Requirement",
+			"email_notifikasi": "Email Notifikasi",
+			"email_smtp_server": "Email SMTP Server",
+			"coditional_price": "Conditional Price",
+			"jabatan": "Jabatan",
+			"jenis_pajak": "Jenis Pajak",
+			"jenis_penawaran": "Jenis Penawaran",
+			"jenis_pengadaan": "Jenis Pengadaan",
+			"kualifikasi_pengadaan": "Kualifikasi Pengadaan",
+			"kualifikasi_vendor": "Kualifikasi Vendor",
+			"metode_penawaran_harga": "Metode Penawaran Harga",
+			"metode_pengadaan": "Metode Pengadaan",
+			"pembuat_keputusan": "Pembuat Keputusan",
+			"metode_penyampaian_dokumen_pengadaan": "Metode Penyampaian Dokumen Pengadaan",
+			"sistem_evaluasi_penawaran": "Sistem Evaluasi Penawaran",
+			"satuan": "Satuan",
+			"mata_uang": "Mata Uang",
+			"aksi": "Aksi",
+			"menu": "Menu",
+			"menu_aksi": "Menu Aksi",
+			"role" : "Role",
+			"role_menu": "Role Menu",
+    		"role_jabatan" : "Role Jabatan",
+    		"monitoring_pengadaan":"Monitoring Pengadaan",
+    		"monitoring_vendor":"Monitoring Vendor",
+			"parameter": "Parameter"
+		},
+		"masterdata": {
+			"modul_master_data": "Master Data",
+			"approval" : "Approval",
+			"tipe_item": "Tipe Item",
+			"item_group": "Item Group",
+			"item": "Item",
+			"bidang_usaha": "Bidang Usaha",
+			"sub_bidang_usaha": "Sub Bidang Usaha",
+			"kriteria_administrasi": "Kriteria Administrasi",
+			"kriteria_teknis": "Kriteria Teknis",
+			"user": "User",
+			"pelaksana_pengadaan": "Pelaksana Pengadaan",
+			"formula_penilaian": "Formula Penilaian",
+			"indikator_penilaian": "Indikator Penilaian",
+			"kriteria_kualifikasi_administrasi": "Kriteria Administrasi",
+			"alasan_blacklist": "Alasan Blacklist",
+			"hari_libur": "Hari Libur",
+			"negara": "Negara",
+			"bank": "Bank",
+			"daftar_vendor": "Daftar Vendor",
+			"data_peralatan": "Data Peralatan",
+			"org_approval_path": "Approval Path",
+			"useradditional": "Additional User",
+			"master_alamat" : "Master Alamat"
+		},
+		"laporan": {
+			"modul_laporan": "Laporan",
+			"catalog" : "Katalog",
+			"vendor": "Vendor Aktif",
+			"pembelian": "Pembelian",
+			"kontrak": "Kontrak",
+			"kinerja_vendor": "Kinerja Vendor",
+			"proses_pembelian": "Proses Pembelian",
+			"anggaran": "Anggaran",
+			"budget_dan_realisasi": "Budget Dan Realisasi",
+			"evaluasi_kinerja_vendor" : "Evaluasi Kinerja Vendor",
+			"item_catalog_po": "Item Catalog PO"
+		},
+		"rating": {
+			"rating": "Rating",
+			"rating_delivery_receipt": "Delivery Receipt"
+		}
+	},
+	"general": {
+		"number": "Nomor",
+		"name": "Nama",
+		"method": "Metode",
+		"qualification": "Kualifikasi",
+		"no": "No",
+		"add": "Tambah",
+		"merge": "Gabung",
+		"date": "Tanggal",
+		"year": "Tahun",
+		"back": "Kembali",
+		"save": "Simpan",
+		"action": "Aksi",
+		"periode": "Periode",
+		"amount": "Jumlah",
+		"status": "Status",
+		"type": "Jenis",
+		"search": "Cari",
+		"position": "Tahapan"
+	},
+	"proc": {
+		"allocation_title": "Alokasi Anggaran",
+		"no_budget": "Nomor Anggaran",
+		"no_procurement": "Nomor Pengadaan",
+		"name_procurement": "Nama Pengadaan",
+		"budget_remain": "Sisa Anggaran"
+	},
+	"topbar": {
+		"search": {
+			"PLACEHOLDER": "Ketik untuk mencari ..."
+		}
+	},
+	"promise": {
+		"procurement": {
+			"dashboard": {
+				"JUDUL": "Dashboard",
+				"SUBJUDUL": "",
+				"STATUSP": "Proses Pengadaan Selesai",
+				"VENDORDASHBOARD": "Vendor",
+				"CALONVENDORDASHBOARD": " Calon Vendor",
+				"APPROVALBLACKLIST": "Persetujuan Blacklist",
+				"APPROVALUNBLACKLIST": "Persetujuan Unblacklist",
+				"APPROVALSELECTIONVENDOR": "Persetujuan pemilihan calon vendor",
+				"APPROVALEXTENSIONTDR": "Persetujuan perpanjangan TDR",
+				"VENDORBLACKLISTDASHBOARD": "Vendor Blacklist",
+				"INFO": "Info lebih lanjut",
+				"TAHUN": "Tahun",
+				"BULAN": "Bulan",
+				"MINGGU": "Minggu",
+				"ANALITYC": "ANALITIK"
+			},
+			"inisialisasi": {
+				"JUDUL": "Pengadaan",
+				"SUBJUDUL": "Data Pengadaan",
+				"KETERANGAN": "Pengadaan Barang Dan Jasa",
+				"list": {
+					"NOMOR": "Nomor",
+					"TANGGAL": "Tanggal",
+					"NAMA": "Nama",
+					"KUALIFIKASI": "Kualifikasi",
+					"JENIS": "Jenis",
+					"METODE": "Metode",
+					"aksi": "Aksi",
+					"TAHAPAN": "Tahapan Saat Ini"
+				},
+				"btn": {
+					"BUATPENGADAAN": "Buat Pengadaan"
+				},
+				"tambah": {
+					"SUBJUDUL": "INISIALISASI PENGADAAN",
+					"DATAPENGADAAN": "DATA PENGADAAN",
+					"TBLKEBUTUHANMATERIAL": "RINCIAN KEBUTUHAN ITEM",
+					"TBLKEBUTUHANJASA": "RINCIAN KEBUTUHAN JASA"
+				},
+				"tambahbumn": {
+					"NOTA": "No. Nota Pengadaan ",
+					"TGLNOTA": "Tanggal Nota Dinas Pengadaan ",
+					"NAMAPENGADAAN": "Nama Pengadaan",
+					"IZIN": "Izin Prinsip ",
+					"NOIZINPRINSIP": "Nomor Izin Prinsip ",
+					"TGLIZINPRINSIP": "Tanggal Izin Prinsip ",
+					"PPK": "PPK ",
+					"PP": "PP ",
+					"MPD": "Metode Penyampaian Dokumen ",
+					"MPH": "Metode Penawaran Harga ",
+					"JENISPENGADAAN": "Jenis Pengadaan ",
+					"JENISPENAWARAN": "Jenis Penawaran ",
+					"SEP": "Sistem Evaluasi Penawaran ",
+					"BRGJASA": "Tambah Barang / Jasa ",
+					"PILIHPERENCANAAN": "++ Pilih ++",
+					"TANPAPERENCANAAN": "Tanpa Perencanaan",
+					"PERENCANAAN": "Perencanaan",
+					"PILIHTAMBAH": "Pilih Salah Satu",
+					"MATERIAL": "Tambah Item",
+					"JASA": "Tambah Jasa",
+					"TBLMATERIAL": "Rincian Kebutuhan Item",
+					"TBLJASA": "Rincian Kebutuhan Jasa",
+					"TAMBAH": "Tambah",
+					"UBAHHPS": "Ubah HPS",
+					"TBLNO": "No",
+					"TBLKDMATERIAL": "Kode Item",
+					"TBLNMMATERIAL": "Nama Item",
+					"TBLKDJASA": "Kode Jasa",
+					"TBLNMJASA": "Nama Jasa",
+					"TBLKUANTITAS": "Kuantitas",
+					"TBLSAT": "Satuan",
+					"TBLHPS": "HPS",
+					"TBLTOTALHPS": "Total HPS",
+					"TBLKET": "Keterangan",
+					"TBLAKSI": "Aksi",
+					"TBLJMLTOTAL": "Total Akhir",
+					"TBLTOTALHRG": "Total Harga",
+					"TBLPPN": "PPn",
+					"TBLNOPERENCANAAN": "Nomor Perencanaan",
+					"TBLJML": "Jumlah",
+					"BATAL": "Batal",
+					"BACK": "Sebelumnya",
+					"NEXT": "Selanjutnya",
+					"tambahkebutuhanmaterial": {
+						"JUDUL": "Kebutuhan Item",
+						"TAMBAH": " TAMBAH",
+						"JNSMATERIAL": "Jenis Item",
+						"TPPAJAK": "Tipe Pajak",
+						"PERSENTASE": "Input Persentase"
+					},
+					"tambahkebutuhanjasa": {
+						"JUDUL": "Kebutuhan Jasa",
+						"TAMBAH": " TAMBAH",
+						"JNSJASA": "Jenis Jasa",
+						"TPPAJAK": "Tipe Pajak",
+						"PERSENTASE": "Input Persentase"
+					}
+				},
+				"tambahsmb": {
+					"PPK": "Nama Buyer",
+					"PP": "Nama Requestioner",
+					"MPD": "Flow Pengadaan"
+				}
+			},
+			"pengadaanulang": {
+				"JUDUL": "Pengadaan Ulang",
+				"SUBJUDUL": "Data Pengadaan Ulang",
+				"KETERANGAN": "Keterangan",
+				"TAMBAH": "Tambah",
+				"SIMPAN": "Simpan",
+				"list": {
+					"NOMOR": "No",
+					"NOMORPENGADAAN": "No. Pengadaan",
+					"NAMA": "Name",
+					"NOMORBERITAACARA": "No. Berita Acara",
+					"TANGGALBERITAACARA": "Tanggal Berita Acara",
+					"TAHAPAN": "Tahapan",
+					"AKSI": "Aksi"
+				},
+				"btn": {
+					"BUATPENGADAAN": "Add",
+					"KEMBALI": "Back",
+					"SIMPAN": "Save"
+				},
+				"tambah": {
+					"TAMBAH": " Add",
+					"UBAH": " Change",
+					"NAMA": "Name",
+					"KEMBALI": "Back",
+					"SIMPAN": "Save"
+				}
+			},
+			"application": {
+				"generatenumber": {
+					"JUDUL": "Generate Number",
+					"KETERANGAN": "Generate Number",
+					"SUBJUDUL": "Generate Number",
+					"view": {
+						"PRNUMBERFORMAT": "Format Nomor PR",
+						"PONUMBERFORMAT": "Format Nomor PO",
+						"COANUMBERFORMAT": "Format Nomor COA",
+						"PRJOINUMBERFORMAT": "Format Nomor PRJOIN",
+						"CONUMBERFORMAT": "Format Nomor CO",
+						"PANUMBERFORMAT": "Format Nomor Pengadaan",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan",
+						"AVAILABLETOKEN": "Available Token",
+						"COSTCENTER": "Cost Center",
+						"TERMCONDITION": "Terms and Conditions"
+					}
+				}
+			},
+			"master": {
+				"datadaftarvendor": {
+					"judul": "Daftar Vendor",
+					"subjudul": "Data Daftar Vendor",
+					"EDITAKSI": "Detail Data Vendor",
+					"KETERANGAN": "",
+					"TAMBAH": "Tambah",
+					"list": {
+						"NOMOR": "Nomor",
+						"nama_vendor": "Nama Vendor",
+						"nama_vendor1": "Nama Penyedia Barang/Jasa",
+						"NPWP": "NPWP",
+						"ALAMAT": "Alamat",
+						"TLP": "Telp",
+						"EMAIL": "Email",
+						"TANGGAL": "Tanggal",
+						"tanggal_reg": "Tanggal Registrasi",
+						"update_terakhir": "Update Terakhir",
+						"nomor_telepon": "Nomor Telepon",
+						"AKSI": "Aksi"
+					},
+					"btn": {
+						"TAMBAH": "Tambah",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					},
+					"tambah": {
+						"TAMBAH": " TAMBAH",
+						"UBAH": " Ubah",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					}
+				},
+				"aksi": {
+					"judul": "Master Aksi",
+					"subjudul": "Data Aksi",
+					"keterangan": "",
+					"list": {
+						"path": "Path",
+						"ispublic": "Publik",
+						"aksi": "Aksi"
+					},
+					"view": {
+						"subjudul_tambah": "Tambah Aksi",
+						"subjudul_ubah": "Ubah Aksi",
+						"ispublic": "Publik",
+						"path": "Path"
+					},
+					"error": {
+						"error_kosong": "Path Tidak Boleh Kosong"
+					}
+				},
+				"menuaksi": {
+					"judul": "Menu Aksi",
+					"subjudul": "Data Menu Aksi",
+					"keterangan": "",
+					"list": {
+						"menu": "Menu",
+						"path": "Path"
+					},
+					"view": {
+						"subjudul_tambah": "Tambah Menu Aksi",
+						"subjudul_ubah": "Ubah Menu Aksi",
+						"menu": " Menu",
+						"aksi": "Aksi"
+					}
+				},
+				"menu": {
+					"judul": "Menu",
+					"subjudul": "Data Menu",
+					"keterangan": "",
+					"list": {
+						"parent": "Parent ID",
+						"nama": "Menu",
+						"path": "Path"
+					},
+					"error": {
+						"nama_sama": "Menu sudah ada"
+					},
+					"view": {
+						"subjudul_tambah": "Tambah Menu",
+						"subjudul_ubah": "Ubah Menu",
+						"nama": "Nama"
+					}
+				},
+				"alasanblacklist": {
+					"judul": "Alasan Blacklist",
+					"subjudul": "Data Alasan Blacklist",
+					"keterangan": "",
+					"list": {
+						"keterangan": "Keterangan",
+						"jangka_waktu": "Rekomendasi Jangka Waktu"
+					},
+					"view": {
+						"subjudul_tambah": "Tambah Data Alasan Blacklist",
+						"subjudul_ubah": "Ubah Data Alasan Blacklist"
+					}
+				},
+				"role": {
+					"judul": "Role",
+					"subjudul": "Data Role",
+					"keterangan": "",
+					"list": {
+						"kode": "Kode",
+						"role": "Role",
+						"aplikasi": "Aplikasi",
+						"dashboard": "Dashboard"
+					},
+					"view": {
+						"subjudul_tambah": "Tambah Role",
+						"subjudul_ubah": "Ubah Role",
+						"nama": "Nama"
+					},
+					"error": {
+						"kode_sama": "Kode role sudah ada"
+					}
+				},
+				"role_menu": {
+					"judul": "Role Menu",
+					"subjudul": "Data Role Menu",
+					"keterangan": "",
+					"list": {
+						"role": "Role",
+						"menu": "Menu"
+					},
+					"view": {
+						"subjudul_tambah": "Tambah Role Menu",
+						"subjudul_ubah": "Ubah Role Menu"
+					},
+					"error": {
+						"nama_role_sama": "Menu ini Sudah Terdaftar"
+					}
+				},"role_jabatan": {
+					"judul": "Role Jabatan",
+					"subjudul": "Data Role Jabatan",
+					"keterangan": "",
+					"list": {
+						"role": "Role",
+						"jabatan": "Jabatan",
+						"organisasi": "Organisasi"
+					},
+					"view": {
+						"subjudul_tambah": "Tambah Role Jabatan",
+						"subjudul_ubah": "Ubah Role Jabatan"
+					},
+					"error": {
+						"nama_jabatan_sama": "Menu ini Sudah Terdaftar"
+					}
+				},
+				"parameter": {
+					"judul": "Parameter",
+					"subjudul": "Data Parameter",
+					"keterangan": "",
+					"list": {
+						"nama": "Parameter",
+						"tipe": "Tipe",
+						"nilai": "Nilai"
+					},
+					"error": {
+						"nilai_angka": "Nilai harus dalam format angka"
+					},
+					"view": {
+						"subjudul_ubah": "Ubah Parameter ",
+						"tipe": "Tipe",
+						"nama": "Nama",
+						"keterangan": "Keterangan",
+						"nilai": "Nilai"
+					}
+				},
+				"indikator_penilaian": {
+					"judul": "Indikator Penilaian",
+					"subjudul": "Data Indikator Penilaian",
+					"keterangan": "",
+					"list": {
+						"kode": "Kode",
+						"aspek_kerja": "Aspek Kerja",
+						"indikator": "Indikator",
+						"bobot": "Bobot"
+					},
+					"view": {
+						"subjudul_tambah": "Tambah Data Indikator Penilaian",
+						"subjudul_ubah": "Ubah Data Indikator Penilaian",
+						"kode": "Kode",
+						"aspek_kerja": "Aspek Kerja",
+						"indikator": "Indikator",
+						"bobot": "Bobot"
+					},
+					"error":{
+          				"nama_sama":"Nama indikator penilaian sudah ada" 
+          			}
+				},
+				"pembuat_keputusan": {
+					"judul": "Pembuat Keputusan",
+					"subjudul": "Data Pembuat Keputusan",
+					"keterangan": "",
+					"list": {
+						"pembuat_keputusan": "Pembuat Keputusan"
+					},
+					"view": {
+						"subjudul_tambah": "Tambah Data Pembuat Keputusan",
+						"subjudul_ubah": "Ubah Data Pembuat Keputusan",
+						"nama": "Nama"
+					},
+					"error":{
+          				"nama_sama":"Nama pembuat keputusan sudah ada" 
+          			}
+				},
+				"user":{  
+	               "judul":"User",
+	               "subjudul":"User List",
+	               "keterangan":"",
+	               "list":{  
+	                  "nama":"Nama",
+	                  "departemen":"Department",
+	                  "role_user":"Role User",
+	                  "status":"Status"
+	               },
+	               "error": {
+						"username_sama": "Username sudah ada",
+						"email_sama":"Email sudah ada",
+						"password_beda":"Password yang dimasukkan tidak sama",
+						"email_salah":"Email yang dimasukkan salah"
+					},
+	               "view":{
+	               		"subjudul_tambah": "Tambah User",
+            			"subjudul_ubah": "Ubah User",
+	               		"username": "Username",
+                        "nama_pengguna": "Nama Pengguna",
+                        "old_password": "Masukkan Password Lama",
+                        "password": "Masukkan Password",
+                        "repassword": "Masukkan Ulang Password",
+                        "email": "E-mail",
+                        "departemen": "Departemen",
+                        "status": "Status Login"
+	               }
+				},
+				"harilibur": {
+					"judul": "Hari Libur",
+					"subjudul": "Data Hari Libur",
+					"keterangan": "",
+					"list": {
+						"nomor": "Nomor",
+						"nama": "Nama Hari Libur",
+						"tanggal": "Tanggal",
+						"deskripsi": "Deskripsi"
+					},
+					"error": {
+						"nama_sama": "Nama hari libur sudah ada"
+					},
+					"view": {
+						"subjudul_tambah": "Tambah Hari Libur",
+						"subjudul_ubah": "Ubah Hari Libur",
+						"nama": "nama",
+						"include": "Termasuk Sabtu / Minggu"
+					}
+				},
+ 				"approvalPath": {
+                    "judul": "Approval Path",
+                    "subjudul": "Approval Path",
+                    "keterangan": "",
+                    "list": {
+                        "nomor": "No",
+                        "cabang": "Cabang",
+                        "pathid": "Id Path",
+                        "pathname": "Nama Path"
+                    },
+                    "error":{                  
+                     "pathid":"Id Path Sudah Ada",
+                     "pathname":"Nama Path Sudah Ada"
+                   },
+                    "view": {
+                        "subjudul_tambah": "Tambah Approval Path",
+                        "subjudul_ubah": "Ubah Approval Path"
+                    }
+                },
+				"approvaltahapan": {
+					"judul": "Approval Tahapan",
+					"subjudul": "Data Approval Tahapan",
+					"keterangan": "",
+					"list": {
+						"approval": "Approval",
+						"tahapan": "Tahapan",
+						"organisasi": "Organisasi",
+						"unit": "Unit Kerja"
+					},
+					"view": {
+						"subjudul_tambah": "Tambah Data Approval Tahapan",
+						"subjudul_ubah": "Ubah Data Approval Tahapan",
+						"approval": "Approval",
+						"tahapan": "Tahapan"
+					},
+					"error": {
+						"nama_approval_sama": "Tahapan sudah terdaftar di Organisasi tersebut",
+						"nama_afco_ada": "Afco sudah ada dengan Tahapan tersebut"
+					}
+				},
+				"additionaluser": {
+					"judul": "Additional User",
+					"subjudul": "Data Additional User",
+					"list": {
+						"no": "No",
+						"jabatan": "Jabatan (Additional)",
+						"organisasi": "Organisasi",
+						"nippPlh": "NIPP (Additional)",
+						"namaUser": "Nama User",
+						"nippUser": "NIPP User",
+						"tanggalMulai": "Tanggal Mulai",
+						"tanggalBerakhir": "Tanggal Berakhir",
+						"status": "Status",
+						"aksi": "Aksi"
+					},
+					"view": {
+						"subjudul": "Data Additional User",
+						"organisasiPlh": "Cabang Additional",
+						"jabatan": "Jabatan Additional",
+						"kodePlh": "Kode Additional",
+						"namaUser": "Nama User",
+						"nippUser": "NIPP User",
+						"emailUser": "Email User",
+						"tanggalAwal": "Tanggal Awal",
+						"tanggalAkhir": "Tanggal Akhir",
+						"notaDinas": "Dokumen Pendukung",
+						"nonAktif": "Non Aktif",
+						"keterangan": "kirim ulang email username & password"
+					},
+					"listUser": {
+						"nama": "Nama",
+						"nipp": "NIPP",
+						"email": "Email"
+					}
+				},
+				"negara": {
+					"judul": "Negara",
+					"subjudul": "Data Negara",
+					"keterangan": "",
+					"list": {
+						"negara": "Negara",
+						"ibu_kota": "Ibu Kota"
+					},
+					"view": {
+						"subjudul_tambah": "Tambah Negara",
+						"subjudul_ubah": "Ubah Negara",
+						"nama": "Nama"
+					},
+					"error": {
+						"nama_sama": "Nama negara sudah ada"
+					}
+				},
+				"bank": {
+					"judul": "Bank",
+					"subjudul": "Data Bank",
+					"keterangan": "",
+					"list": {
+						"nomor": "No",
+						"namabank": "Nama Bank",
+						"namakantor": "Nama Kantor",
+						"kota": "Kota",
+						"telepon": "Telepon"
+					},
+					"error": {
+						"kode_sama": "Kode bank sudah ada",
+						"kode_digit": "Kode bank harus 3 digit"
+					},
+					"view": {
+						"subjudul_tambah": "Tambah Data Bank",
+						"subjudul_ubah": "Ubah Data Bank",
+						"nomor": "No",
+						"namabank": "Nama Bank",
+						"kodebank": "Kode Bank",
+						"namakantor": "Nama Kantor",
+						"alamat": "Alamat",
+						"kota": "Kota/Kabupaten",
+						"provinsi": "Provinsi",
+						"kodepos": "KodePos",
+						"telepon": "Telepon/Fax",
+						"statuskantor": "Status Kantor"
+					}
+				},
+				"emailnotifikasi": {
+					"judul": "Email Notifikasi",
+					"subjudul": "Data Email Notifikasi",
+					"keterangan": "",
+					"list": {
+						"email_status": "Status Email",
+						"nama": "Email Notifikasi",
+						"role": "Role",
+						"tahapan": "Tahapan",
+						"notif_tgl_sesudah": "Notifikasi Tanggal Sesudah",
+						"notif_tgl_sebelum": "Notifikasi Tanggal Sebelum"
+					},
+					"error": {
+						"nama_sama": "Nama email notifikasi sudah ada"
+					},
+					"view": {
+						"subjudul_tambah": "Tambah Email Notifikasi",
+						"subjudul_ubah": "Ubah Email Notifikasi",
+						"nama": "Nama",
+						"tahapan": "Tahapan",
+						"role": "Role",
+						"notif_tgl_sesudah": "Notifikasi tanggal sesudah",
+						"notif_tgl_sebelum": "Notifikasi tanggal sebelum",
+						"template_email": "Template emaill"
+					}
+				},
+				"logemailnotifikasi": {
+					"judul": "Log Email Notifikasi",
+					"subjudul": "Data Log Email Notifikasi",
+					"keterangan": "",
+					"list": {
+						"email_status": "Status Email",
+						"subjek": "Subjek",
+						"konten": "Konten",
+						"waktu": "Waktu",
+						"aksi": "Aksi",
+						"kepada":"Kepada"
+					},
+					"error": {
+						"nama_sama": "Nama email notifikasi sudah ada"
+					},
+					"view": {
+						"subjudul_tambah": "Tambah Email Notifikasi",
+						"subjudul_ubah": "Ubah Email Notifikasi",
+						"nama": "Nama",
+						"tahapan": "Tahapan",
+						"role": "Role",
+						"notif_tgl_sesudah": "Notifikasi tanggal sesudah",
+						"notif_tgl_sebelum": "Notifikasi tanggal sebelum",
+						"template_email": "Template emaill"
+					}
+				},
+				"emailsmtp": {
+					"judul": "Konfigurasi SMTP Server",
+					"subjudul": "SMTP Server",
+					"keterangan": "",
+					"list": {
+						"host": "Host / IP Address",
+						"port": "Port",
+						"username": "Nama User",
+						"password": "Kata Kunci",
+						"emailfrom": "Email Dari",
+						"ssl": "Aktifkan SSL",
+						"keteranganssl": "Pengiriman Email Akan Menggunakan SSL"
+					}
+				},
+				"pelaksanapengadaan": {
+					"judul": "Master Pelaksana Pengadaan",
+					"subjudul": "Daftar Pelaksana Pengadaan",
+					"tim": "Tim panitia",
+					"pejabat": "Pejabat pelaksana pengadaan",
+					"list": {
+						"kantor": "Kantor / Cabang",
+						"unit": "Nama unit",
+						"nama": "Nama pelaksana pengadaan"
+					},
+					"error":{
+						"nama_panitia_sama":"Nama kepanitiaan sudah ada",
+						"nama_pejabat_sama":"Nama pejabat sudah ada",
+						"tgl_berlaku_lebih_kecil":"Tanggal awal tidak boleh melebihi tanggal akhir",
+						"ketua_sekertaris_kosong":"Pilih ketua dan sekretaris terlebih dahulu ",
+						"ketua_sama":"Tidak bisa memilih ketua yang sama dengan sekertaris atau anggota ",
+						"sekertaris_sama":"Tidak bisa memilih sekertaris yang sama dengan ketua atau anggota",
+						"anggota_sama":"Tidak bisa memilih anggota yang sama dengan ketua atau sekertaris"
+					},
+					"view": {
+						"subjudul_tambah": " Tambah Data Kepanitiaan",
+                        "subjudul_ubah": " Ubah Data Kepanitiaan",
+                        "subjudul_tambah_pejabat": " Tambah Data Pejabat Pelaksana",
+                        "subjudul_ubah_pejabat": " Ubah Data Pejabat Pelaksana",
+						"data_pejabat": "Data Pejabat Pelaksana",
+						"kantor": "Kantor / Cabang",
+						"divisi": "Divisi / Unit",
+						"nama_kepanitiaan": "Nama Kepanitiaan",
+						"nama_pejabat": "Nama Pejabat",
+						"pembuat_keputusan": "Pembuat Keputusan",
+						"nama_keputusan": "Nama Keputusan",
+						"penanggung_jawab": "Penanggung Jawab",
+						"no_sk_direksi": "No. SK Direksi",
+						"tgl_sk_direksi": "Tanggal SK Direksi",
+						"tgl_berlaku": "Tanggal Berlaku",
+						"tim_panitia": "Tim Panitia / PIC",
+						"data_keanggotaan": "Data Keanggotaan",
+						"pic_pejabat": "PIC Pejabat Pelaksana",
+						"pic": "PIC",
+						"ketua": "Ketua",
+						"sekretaris": "Sekretaris",
+						"anggota": "Anggota",
+						"nama": "Nama",
+						"login": "Login",
+						"list_anggota": "List Anggota"
+					}
+				},
+				"kondisipengadaan": {
+					"JUDUL": "Kondisi Pengadaan",
+					"SUBJUDUL": "Data Kondisi Pengadaan",
+					"KETERANGAN": "",
+					"TAMBAH": "Tambah",
+					"list": {
+						"NOMOR": "Nomor",
+						"JENIS": "Jenis Pengadaan",
+						"METODE": "Metode Pengadaan",
+						"METODEPENYAMPAIAN": "Metode Peny. Dok. Pengadaan",
+						"METODEPENAWARANHARGA": "Metode Penawaran Harga",
+						"JENISPENAWARAN": "Jenis Penawaran",
+						"EVALUASIPENAWARANHARGA": "Evaluasi Penawaran Harga",
+						"SISTEMEVALUASIPENAWARAN": "Sistem Evaluasi Penawaran",
+						"KUALIFIKASIVENDOR": "Kualifikasi Vendor",
+						"VENDORREQUIREMENT": "Vendor Requirement",
+						"AKSI": "Aksi"
+					},
+					"btn": {
+						"TAMBAH": "Tambah",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					},
+					"tambah": {
+						"TAMBAH": " TAMBAH",
+						"UBAH": " UBAH",
+						"NAMA": "Nama",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					}
+				},
+				"registrasijadwaltahapanpengadaan": {
+					"JUDUL": "Registrasi Jadwal Tahapan Pengadaan",
+					"SUBJUDUL": "Data Registrasi Jadwal Tahapan Pengadaan",
+					"KETERANGAN": "",
+					"TAMBAH": "Tambah",
+					"list": {
+						"NOMOR": "Nomor",
+						"TAHAPANPENGADAAN": "Kode Tahapan Pengadaan",
+						"JADWAL": "Jadwal",
+						"LOKASI": "Lokasi",
+						"UNDANGAN": "Undangan",
+						"TGLAWAL": "Tanggal Awal",
+						"TGLAKHIR": "Tanggal Akhir",
+						"WAKTUAWAL": "Waktu Awal",
+						"WAKTUAKHIR": "Waktu Akhir",
+						"AKSI": "Aksi"
+					},
+					"btn": {
+						"TAMBAH": "Tambah",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					},
+					"tambah": {
+						"TAMBAH": " TAMBAH",
+						"UBAH": " UBAH",
+						"NAMA": "Nama",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					}
+				},
+				"vendorrequirement": {
+					"JUDUL": "Vendor Requirement",
+					"SUBJUDUL": "Data Vendor Requirement",
+					"KETERANGAN": "",
+					"TAMBAH": "Tambah",
+					"list": {
+						"NOMOR": "Nomor",
+						"MINIMALPENGALAMAN": "Minimal Pengalaman",
+						"TAHUNPENGALAMANMULAI": "Mulai Tahun Pengalaman",
+						"TAHUNPENGALAMANAKHIR": "Akhir Tahun Pengalaman",
+						"NILAIKONTRAK": "Nilai Kontrak",
+						"MATAUANG": "Mata Uang",
+						"PENGADAAN": "Pengadaan",
+						"AKSI": "Aksi"
+					},
+					"btn": {
+						"TAMBAH": "Tambah",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					},
+					"tambah": {
+						"TAMBAH": " TAMBAH",
+						"UBAH": " UBAH",
+						"NAMA": "Nama",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					}
+				},
+				"terminkontrak": {
+					"JUDUL": "Termin Kontrak",
+					"SUBJUDUL": "Data Termin Kontrak",
+					"KETERANGAN": "",
+					"TAMBAH": "Tambah",
+					"list": {
+						"NOMOR": "Nomor",
+						"TANGGAL": "Tanggal",
+						"JENISTERMIN": "Jenis Termin",
+						"MATAUANG": "Mata Uang",
+						"KONTRAK": "Kontrak",
+						"NILAI": "Nilai",
+						"NILAITUKAR": "Nilai Tukar",
+						"KETERANGAN": "Keterangan",
+						"AKSI": "Aksi"
+					},
+					"btn": {
+						"TAMBAH": "Tambah",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					},
+					"tambah": {
+						"TAMBAH": " TAMBAH",
+						"UBAH": " UBAH",
+						"NAMA": "Nama",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					}
+				},
+				"tahapan": {
+					"judul": "Tahapan",
+					"subjudul": "Data Tahapan",
+					"keterangan": "",
+					"list": {
+						"tahapan": "Tahapan",
+						"bidang_usaha": "Bidang Usaha",
+						"deskripsi": "Deskripsi"
+					},
+					"view": {
+						"subjudul_tambah": "Tambah Tahapan",
+						"subjudul_ubah": "Ubah Tahapan",
+						"nama": "Nama"
+					},
+					"error": {
+						"nama_sama": "Nama tahapan sudah ada"
+					}
+				},
+				"subbidangusaha": {
+					"judul": "Sub Bidang Usaha",
+					"subjudul": "Data Sub Bidang Usaha",
+					"keterangan": "",
+					"list": {
+						"nama": "Sub Bidang Usaha",
+						"bidangusaha": "Bidang Usaha"
+					},
+					"error": {
+						"nama_sama": "Nama sub bidang usaha sudah ada"
+					},
+					"view": {
+						"subjudul_tambah": "Tambah Sub Bidang Usaha",
+						"subjudul_ubah": "Ubah Sub Bidang Usaha",
+						"nama": "Nama",
+						"bidangusaha": "Bidang usaha"
+					}
+				},
+				"organisasi":{  
+              		"judul":"Organisasi",
+               		"subjudul":"Data Struktur Organisasi",
+              		"keterangan":"",
+               		"list":{                 
+                 		 "pilihan":"Pilihan anda :"              
+               		}
+            	},
+				"masterapproval": {
+					"judul": "Approval",
+					"subjudul": "Data Approval",
+					"keterangan": "",
+					"list": {
+						"nama": "Nama Approval",
+						"approval_type": "Tipe Approval"
+					},
+					"view": {
+						"subjudul_tambah": "Tambah Data Approval",
+						"subjudul_ubah": "Ubah Data Approval",
+						"nama": "Nama",
+						"approval_type": "Tipe approval",
+						"jenis": "Jenis",
+						"afco": "Afco",
+						"area_bisnis": "Area bisnis",
+						"approval_level": "Tingkat approval",
+						"pilih_approval": "Pilih tipe approval",
+						"role": "Role",
+						"organisasi": "Organisasi",
+						"user": "User",
+						"unit_kerja": "Unit Kerja"
+					},
+					"error": {
+						"nama_sama": "Nama approval sudah ada",
+						"level_kosong": "Tingkat approval tidak boleh kosong"
+					}
+				},"monitoringworklist": {
+					"judul": "Monitoring Worklist",
+					"subjudul": "Monitoring Worklist",
+					"list": {
+						"tahapan_persetujuan": "Tahapan Persetujuan",
+						"keterangan": "Keterangan",
+						"jabatan": "Jabatan",
+						"tanggal_terbuat":"Tanggal Terbuat"
+					}
+				},
+				"sistemevaluasipenawaran": {
+					"judul": "Sistem Evaluasi Penawaran",
+					"subjudul": "Data Sistem Evaluasi Penawaran",
+					"keterangan": "",
+					"list": {
+						"nama": "Sistem Evaluasi Penawaran"
+					},
+					"error": {
+						"nama_sama": "Nama sistem evaluasi penawaran sudah ada"
+					},
+					"view": {
+						"subjudul_tambah": " Tambah Sistem Evaluasi Penawaran",
+						"subjudul_ubah": " Ubah Sistem Evaluasi Penawaran",
+						"nama": "Nama"
+					}
+				},
+				"addressbook": {
+					"judul": "Master Alamat",
+					"subjudul": "Master Alamat List",
+					"keterangan": "",
+					"list": {
+						"addresslabel": "Label Alamat",
+						"kota": "Kota",
+						"billingaddress": "Default Billing Address",
+						"shippingaddress": "Alamat Pengiriman Utama",
+						"status": "Status",
+						"aksi": "Aksi"
+					},
+					"view": {
+						"subjudul_tambah": "Tambah Alamat",
+						"subjudul_ubah": "Ubah Alamat",
+						"label_alamat": "Label Alamat",
+						"informasi_kontak": "Informasi Kontak",
+						"nama_lengkap": "Nama Lengkap",
+						"nomor_telepon": "Nomor Telepon",
+						"fax": "Fax",
+						"alamat": "Alamat",
+						"alamat_jalan": "Alamat Jalan",
+						"kota": "Kota",
+						"distrik": "Distrik",
+						"kelurahan": "Kelurahan",
+						"kode_pos": "Kode Pos",
+						"billingaddress": "Gunakan Sebagai Alamat Penagihan Default Saya",
+						"shippingaddress": "Gunakan Sebagai Alamat Pengiriman Utama Saya",
+						"organisasi":"Organisasi"
+					}
+				},
+				"metodepenawaranharga": {
+					"judul": "Metode Penawaran Harga",
+					"subjudul": "Data Metode Penawaran Harga",
+					"keterangan": "",
+					"list": {
+						"nomor": "Nomor",
+						"nama": "Metode Penawaran Harga",
+						"kurs": "Kurs",
+						"deskripsi": "Deskripsi"
+					},
+					"error": {
+						"nama_sama": "Nama Metode Penawaran Harga sudah ada"
+					},
+					"view": {
+						"subjudul_tambah": " Tambah Data Metode Penawaran Harga ",
+						"subjudul_ubah": " Ubah Data Metode Penawaran Harga",
+						"nama": "Nama"
+					}
+				},
+				"matauang": {
+					"judul": "Mata Uang",
+					"subjudul": "Data Mata Uang",
+					"keterangan": "",
+					"list": {
+						"nomor": "Nomor",
+						"kode": "Kode",
+						"nama": "Mata Uang",
+						"kurs": "Kurs",
+						"deskripsi": "Deskripsi"
+					},
+					"error": {
+						"kode_sama": "Kode sudah ada",
+						"nama_sama": "Nama sudah ada",
+						"kurs_invalid": "Kurs harus lebih besar dari 0"
+					},
+					"view": {
+						"subjudul_tambah": " Tambah Data Mata Uang",
+						"subjudul_ubah": " Ubah Data Mata Uang",
+						"nama": "Nama"
+					}
+				},
+				"formulapenilaian": {
+					"judul": "Formula Penilaian",
+					"subjudul": "Data Formula Penilaian",
+					"KETERANGAN": "",
+					"list": {
+						"nomor": "Nomor",
+						"kode": "Kode",
+						"nilai": "Nilai",
+						"score": "Score",
+						"keterangan": "Keterangan",
+						"catatan": "Catatan"
+					},
+					"error": {
+						"kode_kosong": "Kode tidak boleh kosong",
+						"batas_kiri_nol": "Batas kiri tidak boleh nol",
+						"batas_kanan_nol": "Batas kanan tidak boleh nol",
+						"persamaan_kiri_kosong": "Persamaan kiri harus di pilih",
+						"persamaan_kanan_kosong": "Persamaan kanan harus di pilih",
+						"score_nol": "Score tidak boleh nol",
+						"deskripsi_kosong": "Deskripsi tidak boleh kosong",
+						"catatan_kosong": "Catatan tidak boleh kosong",
+						"kode_sama": "Kode tidak boleh sama",
+						"nilai_sama": "Nilai tidak boleh sama",
+						"batas_nilai_sama": "Nilai kiri dan kanan tidak boleh sama",
+						"score_sama": "Score tidak boleh sama"
+					},
+					
+					"view": {
+						"subjudul_tambah": " Tambah Formula Penilaia",
+						"subjudul_ubah": " Ubah Data Formula Penilaian",
+						"nama": "Nama",
+						"ubah": "Ubah"
+					}
+				},
+				"mastercategory": {
+					"judul": "Master Kategori",
+					"subjudul": "Data Master Kategori",
+					"keterangan": "",
+					"list": {
+						"terjemahan_indonesia": "Terjemahan Indonesia",
+						"terjemahan_inggris": "Terjemahan Inggris",
+						"parent": "Parent",
+						"status": "Status",
+						"deskripsi": "Deskripsi"
+					},
+					"error": {
+						"nama_sama": "Nama kategori sudah ada"
+					},
+					"view": {
+						"subjudul_tambah": " Tambah Data Master Kategori",
+						"subjudul_ubah": " Ubah Data Master Kategori",
+						"nama": "Nama",
+						"import": "Import",
+						"terjemahan": "Terjemahan"
+					}
+				},
+				"kualifikasi_vendor": {
+					"judul": "Kualifikasi Vendor",
+					"subjudul": "Data Kualifikasi Vendor",
+					"keterangan": "",
+					"list": {
+						"kualifikasi_vendor": "Kualifikasi Vendor",
+						"deskripsi": "Deskripsi"
+					},
+					"view": {
+						"subjudul_tambah": "Tambah Kualifikasi Vendor",
+						"subjudul_ubah": "Ubah Kualifikasi Vendor",
+						"nama": "Nama"
+					},
+					"error":{
+          				"nama_sama":"Nama kualifikasi vendor sudah ada" 
+          			}
+				},
+				"kualifikasipengadaan": {
+					"JUDUL": "Kualifikasi Pengadaan",
+					"SUBJUDUL": "Data Kualifikasi Pengadaan",
+					"KETERANGAN": "",
+					"TAMBAH": "Tambah",
+					"list": {
+						"NOMOR": "Nomor",
+						"NAMA": "Nama",
+						"DESKRIPSI": "Deskripsi",
+						"AKSI": "Aksi"
+					},
+					"btn": {
+						"TAMBAH": "Tambah",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					},
+					"tambah": {
+						"TAMBAH": " TAMBAH",
+						"UBAH": " UBAH",
+						"NAMA": "Nama",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					}
+				},
+				"kategoripengadaan": {
+					"JUDUL": "Kategori Pengadaan",
+					"SUBJUDUL": "Data Kategori Pengadaan",
+					"KETERANGAN": "",
+					"TAMBAH": "Tambah",
+					"list": {
+						"NOMOR": "Nomor",
+						"NAMA": "Nama",
+						"DESKRIPSI": "Deskripsi",
+						"AKSI": "Aksi"
+					},
+					"btn": {
+						"TAMBAH": "Tambah",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					},
+					"tambah": {
+						"TAMBAH": " TAMBAH",
+						"UBAH": " UBAH",
+						"NAMA": "Nama",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					}
+				},
+				"jenispenawaran": {
+					"judul": "Jenis Penawaran",
+					"subjudul": "Data Jenis Penawaran",
+					"keterangan": "",
+					"list": {
+						"jenis_penawaran": "Jenis Penawaran",
+						"aksi": "Aksi"
+					},
+					"view": {
+						"subjudul_tambah": "Tambah Jenis Penawaran",
+						"subjudul_ubah": "Ubah Jenis Penawaran",
+						"nama": "Nama"
+					},
+					"error": {
+						"nama_sama": "Nama jenis penawaran sudah ada"
+					}
+				},
+				"jenispajak": {
+					"JUDUL": "Jenis Pajak",
+					"SUBJUDUL": "Data Jenis Pajak",
+					"KETERANGAN": "",
+					"TAMBAH": "Tambah",
+					"list": {
+						"NOMOR": "Nomor",
+						"NAMA": "Nama",
+						"DESKRIPSI": "Deskripsi",
+						"AKSI": "Aksi"
+					},
+					"btn": {
+						"TAMBAH": "Tambah",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					},
+					"tambah": {
+						"TAMBAH": " TAMBAH",
+						"UBAH": " UBAH",
+						"NAMA": "Nama",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					}
+				},
+				"bidang_usaha": {
+					"judul": "Bidang Usaha",
+					"subjudul": " Data Bidang Usaha",
+					"keterangan": "",
+					"tambah": "Tambah Parent",
+					"pilihan": "Anda Memilih : ",
+					"list": {
+						"nama": "Nama"
+					},
+					"view": {
+						"nama": "Nama"
+					},
+					"error": {
+						"nama_sama": "Nama bidang usaha sudah ada"
+					}
+				},
+				"item": {
+					"judul": "Item",
+					"subjudul": "Data Item",
+					"keterangan": "",
+					"list": {
+						"barang": "Item",
+						"nama": "Nama",
+						"kode": "Kode",
+						"deskripsi": "Deskripsi",
+						"satuan": "Satuan",
+						"tipe_item": "Tipe Item",
+						"grup_item": "Item Group",
+						"COSTCENTER": "Biaya Pusat",
+						"QTY": "Qty",
+						"price": "Harga",
+						"unit": "Satuan",
+						"subtotal": "Sub Total",
+						"spec": "Spesifikasi",
+						"term&condition": "Syarat & Ketentuan"
+					},
+					"view": {
+						"subjudul_tambah": "Tambah Data Item",
+						"subjudul_ubah": "Ubah Data Item",
+						"nama": "Nama"
+					},
+					"error": {
+						"kode_sama": "Kode Item sudah ada"
+					}
+				},
+				"deliveryReceived": {
+					"judul": "Delivery Received",
+					"subjudul": "Delivery Received",
+					"keterangan": "",
+					"list": {
+						"poNumber": "Nomor PO",
+						"drNumber": "Nomor DR",
+						"penyedia": "Penyedia",
+						"pemesan": "Pemesan",
+						"tanggalPo": "Tanggal PO",
+						"status": "Status",
+						"aksi": "Aksi"
+					},
+					"detail": {
+						"item": "Item",
+						"jumlahDikirim": "Jumlah Dikirim",
+						"jumlahDiterima": "Jumlah Diterima"
+					}
+				},
+				"reportPurchaseOrderItem": {
+					"judul": "Laporan Pembelian",
+					"subjudul": "Laporan Pembelian",
+					"keterangan": "",
+					"list": {
+						"poNumber": "No PO",
+						"approvedDate": "Tanggal PO",
+						"itemName": "Nama Item Katalog",
+						"itemEbs": "Nama Item",
+						"vendorName": "Penyedia",
+						"organisasiName": "Pengguna",
+						"totalAmount": "Total Harga (Rp)",
+						"sort": "Sort By",
+						"noPo": "No PO"
+						
+					}
+				},
+				"reportProsesPembelian": {
+					"judul": "Laporan Proses Pembelian",
+					"subjudul": "Laporan Proses Pembelian",
+					"keterangan": "",
+					"list": {
+						"noKontrak": "No Kontrak",
+						"jobName": "Nama Pekerjaan",
+						"poNumber": "No. Po",
+						"statusReceipt": "Status Receipt",
+						"dateReceipt": "Tanggal Receipt",
+						"dateInvoice": "Tanggal Invoice Vendor",
+						"paymentStatus": "Status Pembayaran",
+						"vendor": "Vendor",
+						"codeItemEbs": "Kode Item",
+						"nameItemCat": "Nama Item (Catalog)",
+						"qty": "Status Pembayaran",
+						"boNumber": "No. BO"
+					},
+					"filter": {
+						"sortBy": "Sort By",
+						"tipeStatus": "Tipe Status",
+						"poNumber": "No. PO",
+						"statusReceipt": "Status Receipt",
+						"dateReceipt": "Tanggal Receipt"
+					}
+				},
+				"reportCatalogContrack": {
+					"judul": "Laporan Kontrak",
+					"judul_kontrak": "Laporan Kontrak Katalog",
+					"subjudul": "Laporan Kontrak",
+					"keterangan": "",
+					"list": {
+						"noContract": "No Kontrak",
+						"jobName": "Nama Pekerjaan",
+						"contractNilai": "Nilai Kontrak (Rp)",
+						"vendorName": "Penyedia",
+						"tglAkhir": "Tanggal Akhir Kontrak",
+						"timeLeft": "Waktu Tersisa (hari)",
+						"sort": "Sort By",
+						"name": "Nama Item",
+						"keterangan": "Keterangan"
+					}
+				},
+				"reportCatalog": {
+					"judul": "Laporan Kontrak",
+					"subjudul": "Laporan Kontrak",
+					"keterangan": "",
+					"list": {
+						"categoryCatalog": "Kategori Katalog",
+						"itemNameCatalog": "Nama Item Katalog",
+						"itemEbs": "Nama Item",
+						"unit": "Satuan",
+						"vendor": "Penyedia",
+						"stock": "Jumlah Stok",
+						"sort": "Sort By",
+						"price": "Harga (Rp)"												
+					}
+				},
+				"ratingdeliveryreceipt": {
+					"judul": "Rating ",
+					"subjudul": "Rating Delivery Receipt",
+					"keterangan": "",
+					"list": {
+						"dr_number": "No. DR",
+						"dr_date": "Tanggal DR",
+						"bo_number": "No. BO",
+						"po_number": "No. PO",
+						"dr_status": "Status DR",
+						"vendor": "Penyedia",
+						"rating": "Rating",
+						"rating_avg": "Rating Avg",
+						"action": "Aksi"
+						
+					}
+				},
+				"reportBudgetDanRealisasi": {
+					"judul": "Laporan Budget Dan Realisasi",
+					"subjudul": "Laporan Budget Dan Realisasi",
+					"keterangan": "",
+					"list": {
+						"noPr": "No. PR",
+						"tanggalPr": "Tanggal PR",
+						"noPo": "No. PO",
+						"tanggalPo": "Tanggal PO",
+						"amountPo": "Amount PO",
+						"jumlahAmount": "Jumlah Amount (Receipt)",
+						"tanggalTtb": "Tanggal TTB"
+					}
+				},
+				"reportItemKatalogPo": {
+					"judul": "Laporan Item Katalog PO",
+					"subjudul": "Laporan Item Katalog PO",
+					"keterangan": "",
+					"list": {
+						"kategori": "Kategori Katalog",
+						"namaProduk": "Nama Produk",
+						"penyedia": "Penyedia",
+						"noBo": "No. BO",
+						"noPo": "No. PO",
+						"tanggalPo": "Tanggal PO",
+						"jumlah": "Jumlah",
+						"harga": "Harga (Rp)",
+						"total": "Total (Rp)",
+						"ratingPembelian": "Rating Pembelian",
+						"rating": "Belum Ada Rating"
+					}
+				},
+				"reportEvaluasiKinerjaVendor": {
+					"judul": "Laporan Evaluasi Kinerja Vendor",
+					"subjudul": "Laporan Evaluasi Kinerja Vendor",
+					"keterangan": "",
+					"list": {
+						"vendorName": "Nama Penyedia",
+ 						"rating": "Average",
+ 						"teks": "Belum dinilai",
+						"value" : "Penilaian"
+					}
+				},
+				"reportDetailEvaluasiKinerjaVendor": {
+					"judul": "Laporan Detail Evaluasi Kinerja Vendor",
+					"subjudul": "Laporan Detail Evaluasi Kinerja Vendor",
+					"keterangan": "",
+					"list": {
+						"noBo": "No BO",
+ 						"poNumber": "No PO",
+ 						"prnumber" : "No PR",
+ 						"vendorName": "Nama Penyedia",
+ 						"tanggalOrder" : "Tanggal Order",
+ 						"tanggalDeliveryReceipt" : "Tanggal Delivery Receipt",
+ 						"rating": "Rating",
+						"value" : "Penilaian",
+						"komen" : "Komentar",
+						"nilai": "Belum dinilai",
+						"teks": "Tidak ada komentar",
+						"satu": "Sangat Buruk",
+						"dua" : "Buruk",
+						"tiga" : "Cukup",
+						"empat": "Baik",
+						"lima": "Sangat Baik"
+					}
+				},
+				"purchaseOrder": {
+					"judul": "Purchase Order",
+					"subjudul": "Purchase Order",
+					"po": "PO",
+					"create": "Buat Pesanan Pembelian",
+					"detail": "Detail Pesanan Pembelian",
+					"poDate": "Tanggal PO",
+					"prNumberPo": "Nomor PR",
+					"companyName": "Nama Perusahaan",
+					"purchaseOrderName": "Nama",
+					"purchaseOrderAddress": "Alamat",
+					"purchaseOrderTelp": "Telepon",
+					"purchaseOrderSla": "SLA",
+					"purchaseOrderHari": "Hari",
+					"estimatedDeliveryTime": "Perkiraan Waktu Pengiriman",
+					"proposedDeliveryTime": "Waktu Pengiriman yang Diusulkan",
+					"poItem": "Item",
+					"poItemNama": "Nama Barang",
+					"poItemQty": "Qty",
+					"poItemUnitPrice": "Patokan Harga",
+					"poItemTotalPrice": "Total Harga",
+					"poItemOngkir": "Ongkos Kirim",
+					"poItemSubTotal": "Sub Total",
+					"poItemPpn": "PPN(10%)",
+					"poItemGrandTotal": "Hasil Akhir",
+					"keterangan": "",
+					"filter": {
+						"sortBy": "Sort By",
+						"vendorName": "Penyedia",
+						"poNumber": "No. PO"
+					},
+					"table": {
+						"No":"No.",
+					 	"poNumber": "No. PO (SAP)",
+						"boNumber": "No. Booking Order",
+						"prNumber": "No. PR (SAP)",
+						"department": "Pengguna",
+						"totalCost": "Total Cost (Rp)",
+						"posDate": "Post Date",
+						"vendorName": "Penyedia",
+						"status": "Status"
+					}
+				},				
+				"afco": {
+					"judul": "Afco",
+					"subjudul": "Data Afco",
+					"keterangan": "",
+					"list": {
+						"nama_perusahaan": "Nama Perusahaan",
+						"nama_pic": "Nama PIC",
+						"departemen_pengadaan": "Departemen Pengadaan",
+						"singkatan": "Singkatan"
+					},
+					"view": {
+						"subjudul_tambah": "Tambah Data Afco",
+						"subjudul_ubah": "Ubah Data Afco",
+						"nama": "Nama"
+					},
+					"error": {
+						"nama_perusahaan_pendek": "Nama perusahaan terlalu pendek",
+						"nama_pic_pendek": "Nama PIC terlalu pendek"
+					}
+				},
+				"bookingOrder": {
+					"judul": "Purchase Request",
+					"subjudul": "Purchase Request (PR)",
+					"createPR": "Buat Permintaan Pembelian",
+					"contractCatalog": "Kontrak Katalog",
+					"selectAddress": "Pilih Alamat",
+					"select": "Pilih",
+					"keterangan": "",
+					"approvalPR" : "Persetujuan Purchase Request",
+					"list": {
+						"noBo": "Nomor Purchase Request",
+						"date": "Tanggal",
+						"buyer": "Pengguna",
+						"statusBO": "Status PR",
+						"statusPR": "Status PR (SAP)",
+						"noPR": "No PR (SAP)",
+						"no":"No",
+						"item_code":"Kode Item",
+						"item_decription":"Deskripsi Item",
+						"quantity":"Kuantitas",
+						"discount":"Diskon",
+						"price":"Harga (Rp)",
+						"price_with_discount":"Harga Setelah Diskon (Rp)",
+						"total":"Total (Rp)",
+						"ongkos_kirim":"Ongkos Kirim (Rp)",
+						"total_ongkos_kirim": "TOTAL ONGKOS KIRIM (Rp)",
+						"totalCaps": "TOTAL (Rp)",
+						"grand_total": "HASIL AKHIR (Rp)",
+						"asuransi":"Asuransi",
+						"sub_total":"Sub Total (Rp)",
+						"day" : "Hari",
+						"interfacing_notes": "Catatan Hasil Integrasi (SAP)",
+						"status": "Status",
+						"code": "Kode",
+						"description": "Deskripsi",
+						"ppn":"PPN (%)"
+						
+				 },
+					"view": {
+						"subjudul_tambah": "Tambah Data Afco",
+						"subjudul_ubah": "Ubah Data Afco",
+						"nama": "Nama",
+						"shopping_cart" : "Purchase Request",
+						"create_BO" : "Purchase Request Detail",
+						"ship_to" : "Dikirim ke",
+						"name" : "Nama",
+						"address" : "Alamat",
+						"telephone" : "Telpon",
+						"bo_number" : "Nomor PR",
+						"puspelCode" : "Kode Puspel",
+						"sla":"SLA",
+						"day":"Hari",
+						"vendor_name":"Nama Vendor",
+						"approval" : "Persetujuan",
+						"approval_status" : "Status Persetujuan",
+						"approver":"Penyetuju",
+						"note":"Catatan",
+						"approval_date":"Tanggal Persetujuan",
+						"no_data":"Tidak ada data di dalam tabel",
+						"approve_this_request":"Setujui Permintaan ini",
+						"request_need_approve":"Permintaan Ini Membutuhkan Persetujuan Anda",
+						"back":"KEMBALI",
+						"doc_type":"DOC TYPE",
+						"headernote": "Judul Pembelian",
+						"intermsof":"INTERMSOF",
+						"attachment":"ATTACHMENT",
+						"requisitioner":"Singkatan Jabatan",
+						"testrun":"Testrun",
+						"gl_account":"GL Account",
+						"cost_center":"Cost Center",
+						"pur_group":"Purchasing Group",
+			    		 "store_loc":"Store Loc",
+			    		 "purch_org":"Purch Org",
+			    		 "acctasscat":"ACCTASSCAT",
+						"code_area":"Kode Area",
+						"vendor_location":"Lokasi Vendor",
+						"prNumber": "Nomor PR",
+						"noteTotalHarga": "Total harga belum termasuk PPN tambahan sebesar 10%",
+						"generate": "GENERATE PR"
+					},
+					"error": {
+						"nama_perusahaan_pendek": "Nama perusahaan terlalu pendek",
+						"nama_pic_pendek": "Nama PIC terlalu pendek"
+					},
+					"table": {
+						"no": "No",
+						"itemCode": "Kode Item",
+						"itemDesc": "Deskripsi Item",
+						"qty": "Quantity",
+						"disc": "Diskon",
+						"price": "Harga",
+						"total": "Total",
+						"delReceive": "Ongkos Kirim",
+						"asurance": "Asuransi",
+						"subTotal": "Sub Total"
+					}
+				},
+				"conditionalprize": {
+					"judul": "Conditional Price",
+					"subjudul": "Data Conditional Price",
+					"keterangan": "",
+					"list": {
+						"kode": "Kode",
+						"nama": "Nama",
+						"tipe": "Tipe",
+						"fungsi": "Fungsi",
+						"persen": "Persentasi",
+						"aksi": "Aksi"
+					},
+					"view": {
+						"subjudul_tambah": "Tambah Conditional Price",
+						"subjudul_ubah": "Ubah Conditional Price",
+						"kode": "Kode",
+						"nama": "Nama",
+						"tipe": "Tipe",
+						"fungsi": "Fungsi",
+						"persen": "Persentasi",
+						"aksi": "Aksi"
+					},
+					"error": {
+						"kode_sama": "Kode sudah ada"
+					},
+					"table": {
+						"no": "No",
+						"itemCode": "Kode Item",
+						"itemDesc": "Deskripsi Item",
+						"qty": "Quantity",
+						"disc": "Diskon",
+						"price": "Harga",
+						"total": "Total",
+						"delReceive": "Ongkos Kirim",
+						"asurance": "Asuransi",
+						"subTotal": "Sub Total"
+					}
+				},
+				"alurpengadaan": {
+					"JUDUL": "Alur Pengadaan",
+					"SUBJUDUL": "Data Alur Pengadaan",
+					"KETERANGAN": "",
+					"TAMBAH": "Tambah",
+					"list": {
+						"NOMOR": "Nomor",
+						"NAMA": "Nama",
+						"KONDISI": "Kondisi Pengadaan",
+						"CREATED": "Created",
+						"AKSI": "Aksi"
+					},
+					"btn": {
+						"TAMBAH": "Tambah",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					},
+					"tambah": {
+						"TAMBAH": " TAMBAH",
+						"UBAH": " UBAH",
+						"NAMA": "Nama",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					}
+				},
+				"itemtype": {
+					"judul": "Tipe Item",
+					"subjudul": "Data Tipe Item",
+					"KETERANGAN": "",
+					"list": {
+						"nomor": "Nomor",
+						"nama": "Tipe Item",
+						"created": "Created"
+					},
+					"error": {
+						"nama_sama": "Nama tipe item sudah ada"
+					},
+					"view": {
+						"subjudul_tambah": " Tambah Tipe Item",
+						"subjudul_ubah": " Ubah Tipe Item",
+						"nama": "Nama"
+					}
+				},
+				"itemgroup": {
+					"judul": "Item Group",
+					"subjudul": "Data Item Group",
+					"keterangan": "",
+					"list": {
+						"pilihan": "Pilihan anda :",
+						"tambah_parent": "Tambah parent"
+					},
+					"error": {
+						"nama_sama": "Nama item group sudah ada"
+					},
+					"view": {
+						"nama": "Nama",
+						"keterangan": "Keterangan"
+					}
+				},
+				"jabatan": {
+					"judul": "Jabatan",
+					"subjudul": "Data Jabatan",
+					"keterangan": "",
+					"list": {
+						"nama": "Jabatan"
+					},
+					"view": {
+						"subjudul_tambah": "Tambah Data Jabatan",
+						"subjudul_ubah": "Ubah Data Jabatan",
+						"nama": "Nama"
+					},
+					"error": {
+						"nama_sama": "Nama jabatan sudah ada"
+					}
+				},
+				"jenispengadaan": {
+					"judul": "Jenis Pengadaan",
+					"subjudul": "Data Jenis Pengadaan",
+					"keterangan": "",
+					"list": {
+						"jenis_pengadaan": "Jenis Pengadaan",
+						"aksi": "Aksi"
+					},
+					"view": {
+						"subjudul_tambah": "Tambah Data Jenis Pengadaan",
+						"subjudul_ubah": "Ubah Data Jenis Pengadaan",
+						"nama": "Nama"
+					},
+					"error": {
+						"nama_sama": "Nama jenis pengadaan sudah ada"
+					}
+				},
+				"metodepengadaan": {
+					"judul": "Metode Pengadaan",
+					"subjudul": "Data Metode Pengadaan",
+					"keterangan": "",
+					"list": {
+						"metode_pengadaan": "Metode Pengadaan"
+					},
+					"view": {
+						"subjudul_tambah": "Tambah Data Metode Pengadaan",
+						"subjudul_ubah": "Ubah Data Metode Pengadaan",
+						"nama": "Nama"
+					},
+               		"error":{
+               			"nama_sama": "Nama metode pengadaan sudah ada"
+               		}
+				},
+				"metode_penyampaian_dokumen_pengadaan": {
+					"judul": "Metode Penyampaian Dokumen",
+					"subjudul": "Data Metode Penyampaian Dokumen",
+					"keterangan": "",
+					"list": {
+						"nama": "Metode Penyampaian Dokumen"
+					},
+					"view": {
+						"subjudul_tambah": "Tambah Data Metode Penyampaian Dokumen",
+						"subjudul_ubah": "Ubah Data Metode Penyampaian Dokumen",
+						"nama": "Nama"
+					},
+					"error": {
+						"nama_sama": "Nama metode penyampaian dokumen sudah ada"
+					}
+				},
+				"satuan": {
+					"judul": "Satuan",
+					"subjudul": "Data Satuan",
+					"keterangan": "",
+					"list": {
+						"nama": "Satuan"
+					},
+					"error": {
+						"nama_sama": "Nama satuan sudah ada"
+					},
+					"view": {
+						"subjudul_tambah": "Tambah Satuan",
+						"subjudul_ubah": " Ubah Satuan",
+						"nama": "Nama"
+					}
+				},
+				"procurement_sla": {
+					"judul": "Procurement SLA",
+					"subjudul": "Data Procurement SLA",
+					"keterangan": "",
+					"list": {
+						"tahapan": "Tahapan",
+						"jumlah_hari": "Jumlah Hari"
+					}
+				},
+				
+				"sla_vendor": {
+					"judul": "Admin Vendor SLA",
+					"subjudul": "Data Admin Vendor SLA",
+					"keterangan": "",
+					"list": {
+						"kode": "Kode",
+						"nama": "Nama"
+					},
+					"view": {
+						"subjudul_tambah": "Tambah Data Admin Vendor SLA",
+						"subjudul_ubah": "Ubah Data Admin Vendor SLA",
+						"kode_proses": "Kode Proses",
+						"nama_proses": "Nama Proses",
+						"kode": "Kode",
+						"nama": "Nama",
+						"jumlah_hari": "Jumlah Hari"
+					}
+				},
+				"sla": {
+					"JUDUL": "Master SLA",
+					"SUBJUDUL": "Data SLA",
+					"KETERANGAN": "",
+					"SIMPAN": "Simpan",
+					"list": {
+						"NOMOR": "Nomor",
+						"NAMA": "Nama",
+						"TAHAPAN": "Tahapan",
+						"JUMLAH_HARI": "Jumlah Hari",
+						"CREATED": "Created"
+					},
+					"btn": {
+						"BUATPENGADAAN": "Tambah",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					},
+					"tambah": {
+						"TAMBAH": " TAMBAH",
+						"UBAH": " UBAH",
+						"NAMA": "Nama",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					}
+				},
+				"adminsla": {
+					"JUDUL": "Admin SLA",
+					"SUBJUDUL": "Data Admin SLA",
+					"KETERANGAN": "",
+					"SIMPAN": "Simpan",
+					"list": {
+						"NOMOR": "Nomor",
+						"NAMA": "Nama",
+						"TAHAPAN": "Tahapan",
+						"JUMLAH_HARI": "Jumlah Hari",
+						"AKSI": "Aksi",
+						"CREATED": "Created"
+					},
+					"btn": {
+						"BUATPENGADAAN": "Tambah",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					},
+					"tambah": {
+						"TAMBAH": " TAMBAH",
+						"UBAH": " UBAH",
+						"NAMA": "Nama",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					}
+				},
+				"adminslaview": {
+					"JUDUL": "View Admin SLA",
+					"SUBJUDUL": "Data Admin SLA",
+					"KETERANGAN": "",
+					"SIMPAN": "Simpan",
+					"TOTAL_HARI": "Total Hari Pelaksanaan",
+					"list": {
+						"NOMOR": "Nomor",
+						"URAIANPROSES": "Uraian Proses",
+						"TANGGALAWAL": "Tanggal Awal",
+						"TANGGALAKHIR": "Tanggal Akhir",
+						"TANGGALREALISASI": "Tanggal Realisasi",
+						"SLA": "SLA",
+						"JUMLAHHARI": "Jumlah hari"
+					},
+					"btn": {
+						"BUATPENGADAAN": "Tambah",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					},
+					"tambah": {
+						"TAMBAH": " TAMBAH",
+						"UBAH": " UBAH",
+						"NAMA": "Nama",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					}
+				},
+				"kriteriaadministrasi": {
+					"judul": "Kriteria Administrasi",
+					"subjudul": "Data Kriteria Administrasi",
+					"keterangan": "",
+					"list": {
+						"kriteria_administrasi": "Kriteria Administrasi",
+						"keterangan": "Keterangan",
+						"aksi": "Aksi"
+					},
+					"view": {
+						"subjudul_tambah": "Tambah Data Kriteria Administrasi",
+						"subjudul_ubah": "Ubah Data Kriteria Administrasi",
+						"nama": "Nama",
+						"keterangan": "Keterangan"
+					},
+					"error": {
+						"nama_sama": "Nama kriteria sudah ada"
+					}
+				},
+				"kriteriakualifikasiadministrasi": {
+					"JUDUL": "Kriteria Kualifikasi Administrasi",
+					"SUBJUDUL": "Master Kriteria Kualifikasi Administrasi",
+					"KETERANGAN": " *)Pra Kualifikasi Module",
+					"TAMBAH": "Tambah",
+					"list": {
+						"NOMOR": "Nomor",
+						"NAMA": "Nama",
+						"CREATED": "Created",
+						"AKSI": "Aksi"
+					},
+					"btn": {
+						"BUATPENGADAAN": "Tambah",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					},
+					"tambah": {
+						"TAMBAH": " TAMBAH",
+						"UBAH": " UBAH",
+						"NAMA": "Nama",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					}
+				},
+				"kriteria_teknis": {
+					"judul": "Kriteria Teknis",
+					"subjudul": "Data Kriteria Teknis",
+					"keterangan": "Keterangan",
+					"list": {
+						"kriteria_teknis": "Kriteria Teknis",
+						"keterangan": "Keterangan"
+					},
+					"view": {
+						"subjudul_tambah": "Tambah Data Kriteria Teknis",
+						"subjudul_ubah": "Ubah Data Kriteria Teknis",
+						"nama": "Nama",
+						"keterangan": "Keterangan"
+					},
+					"error":{
+          				"nama_sama":"Nama kriteria teknis sudah ada" 
+          			}
+				},
+				"attribute": {
+					"JUDUL": "Attribute",
+					"SUBJUDUL": "Master Attribute",
+					"KETERANGAN": "E-Catalog Master",
+					"KETERANGAN_ADD": "Tambah Attribute",
+					"KETERANGAN_EDIT": "Ubah Attribute",
+					"list": {
+						"NOMOR": "Nomor",
+						"Label": "Label",
+						"InputType": "Input Type",
+						"Required": "Required",
+						"Searchable": "Searchable",
+						"Sortable": "Sortable",
+						"Configurable": "Configurable",
+						"Status": "Status",
+						"Aksi": "Aksi"
+					},
+					"btn": {
+						"TAMBAH": "Tambah",
+						"KEMBALI": "Kembali",
+						"SEBELUMNYA": "Sebelumnya",
+						"SELANJUTNYA": "Selanjutnya",
+						"SIMPAN": "Simpan",
+						"CETAK": "Cetak"
+					}
+				},
+				"attributeset": {
+					"JUDUL": "Attribute Set",
+					"SUBJUDUL": "Master Attribute Set",
+					"KETERANGAN": "E-Catalog Master",
+					"KETERANGAN_ADD": "Tambah Attribute Set",
+					"list": {
+						"Label": "Label",
+						"InputType": "Input Type",
+						"Required": "Required",
+						"Searchable": "Searchable",
+						"Sortable": "Sortable",
+						"Configurable": "Configurable",
+						"Status": "Status",
+						"Aksi": "Aksi"
+					},
+					"btn": {
+						"TAMBAH": "Tambah",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					}
+				},
+				"catalog": {
+					"list": {
+						"Label": "Label",
+						"InputType": "Input Type",
+						"Required": "Required",
+						"Searchable": "Searchable",
+						"Sortable": "Sortable",
+						"Configurable": "Configurable",
+						"Status": "Status",
+						"Aksi": "Aksi",
+						"CommentList": "Daftar Komentar",
+						"Rating": "Rating",
+						"Comment": "Komentar Anda",
+						"AttFilter": "Filter Specification",
+						"Categories": "Categories",
+						"CategoriesFilter": "Filter Category",
+						"ALLCatt": "All Categories",
+						"BIDANGUSAHA": "Bidang Usaha",
+						"VENDORRATING": "Rating Vendor"
+					},
+					"view":{
+						"contractnumber":"Nomor Kontrak",
+						"itemname":"Nama Item",
+						"itemcode":"Kode Item",
+						"product_desc":"Deskripsi Produk",
+						"product_info":"Informasi Produk",
+						"product_code":"Kode Produk",
+						"price":"Harga",
+						"currency":"Mata Uang",
+						"weight":"Berat",
+						"unit":"Satuan",
+						"stock":"Stok",
+						"stock_minimals":"Minimum Stok",
+						"dimensions":"Dimensi",
+						"length":"Panjang",
+						"width":"Lebar",
+						"height":"Tinggi",
+						"wholesale_price":"Harga Grosir",
+						"quantity_minimum":"Minimal Kuantitas",
+						"quantity_max":"Maksimal Kuantitas",
+						"discount":"Diskon",
+						"fee":"Biaya Pengiriman",
+						"name":"Nama",
+						"qty_batch":"Jumlah Batch",
+						"postal_fee":"Ongkos Kirim",
+						"sla_time":"Waktu pengiriman SLA (Dalam Hari)",
+						"changes" : "Perubahan",
+						"additions" : "Penambahan",
+						"quantity_min_order" : "Minimum Quantity Order",
+						"max_order_quantity" : "Maksimum Quantity Order (Available)",
+						"quantity_max_order_day" : "Maksimum Quantity Order Per Hari",
+						"quantity_max_order_transaction" : "Maksimum Quantity Per Order",
+						"time_contract_expires" : "Kontrak Waktu Berakhir",
+						"d" : "D",
+						"p" : "P",
+						"profile" : "Profil",
+						"project": "Projects",
+						"themes": "THEMMES",
+						"layout": "LAYOUT",
+						"fixed": "Fixed",
+						"boxed":"Boxed",
+						"material":"Material",
+						"footer": "FOOTER",
+						"hidden":"Hidden",
+						"language":"LANGUAGE"
+					},
+					"btn": {
+						"TAMBAH": "Tambah",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan",
+						"CARI": "Cari",
+						"IMPORT": "Import"
+					}
+				},
+				"webservicemanager": {
+					"JUDUL": "Web Services Manager (WSDL)",
+					"KETERANGAN": "Modul ini digunakan untuk mengatur WSDL Services, WSDL Services ini bisa digunakan untuk integrasi dengan sistem lainnya.",
+					"SUBJUDUL": "Data Web Services Manager"
+				}
+			},
+			"panitia": {
+				"jadwalpengadaan": {
+					"JUDUL": "Jadwal Pengadaan",
+					"KETERANGAN": "Jadwal Pengadaan digunakan untuk mengatur jadwal tahapan-tahapan proses pengadaan.",
+					"SUBJUDUL": "Jadwal Pengadaan",
+					"index": {
+						"NOMOR": "Nomor Pengadaan",
+						"NAMA": "Nama Pengadaan",
+						"POSISI": "Tahapan Saat Ini",
+						"CREATEDATE": "Tanggal Buat",
+						"CREATED": "Created",
+						"AKSI": "Aksi"
+					},
+					"detil": {
+						"DATAPENGADAAN": "Data Pengadaan",
+						"NOPENGADAAN": "Nomor Pengadaan",
+						"NAMAPENGADAAN": "Nama Pengadaan",
+						"JENISPENGADAAN": "Jenis Pengadaan / Kategori Pengadaan",
+						"METODEPENGADAAN": "Metode Pengadaan",
+						"KULIFIKASIPENGADAAN": "Kualifikasi Pengadaan",
+						"METODEPENAWARANHARGA": "Metode Penawaran Harga",
+						"SISTEMEVALUASIPENAWARANHARGA": "Sistem Evaluasi Penawaran Harga",
+						"MATAUANG": "Mata Uang",
+						"KUALIFIKASIPENYEDIABRGJASA": "Kualifikasi Penyedia Barang/Jasa",
+						"BIDANGSUBBIDUSAHA": "Bidang - Sub Bidang Usaha",
+						"KETERANGANPENGADAAN": "Keterangan Pengadaan",
+						"RINCIANKEBMATERIAL": "Rincian Kebutuhan Item",
+						"RINCIANKEBJASA": "Rincian Kebutuhan Jasa",
+						"rincianmaterial": {
+							"NO": "No",
+							"NOMORPR": "Nomor Perencanaan",
+							"KODEMATERIAL": "Kode Item",
+							"NAMAMATERIAL": "Nama Item",
+							"KUANTITAS": "Kuantitas",
+							"SATUAN": "Satuan",
+							"HPS": "HPS",
+							"HPSTOTAL": "Harta Total HPS",
+							"KET": "Ket"
+						},
+						"rincianjasa": {
+							"NO": "No",
+							"NOMORPR": "Nomor Perencanaan",
+							"KODEJASA": "Kode Jasa",
+							"NAMAJASA": "Nama Jasa",
+							"KUANTITAS": "Kuantitas",
+							"SATUAN": "Satuan",
+							"HPS": "HPS",
+							"HPSTOTAL": "Harga Total HPS",
+							"KET": "Keterangan"
+						},
+						"jadwalpengadaan": {
+
+						},
+						"SIMPAN": "Simpan Jadwal Pengadaan",
+						"KEMBALI": "Kembali"
+					}
+				},
+				"datapenawaran": {
+					"JUDUL": "Data Penawaran",
+					"SUBJUDUL": "Data Pemasukan Penawaran"
+				},
+				"pemasukanpenawaran": {
+					"JUDUL": "Pemasukan Penawaran",
+					"SUBJUDUL": "Data Pemasukan Penawaran",
+					"KETERANGAN": "",
+					"TAMBAH": "Tambah",
+					"list": {
+						"NOMOR": "Nomor Pengadaan",
+						"NAMA": "Nama Pengadaan",
+						"POSISI": "Tahapan saat ini",
+						"CREATEDATE": "Tanggal Buat",
+						"CREATED": "Created",
+						"AKSI": "Aksi"
+					},
+					"btn": {
+						"BUATPENGADAAN": "Tambah",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					},
+					"tambah": {
+						"TAMBAH": " TAMBAH",
+						"UBAH": " UBAH",
+						"NAMA": "Nama",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					}
+				},
+				"pemasukanpenawaranview": {
+					"JUDUL": "Pemasukan Penawaran",
+					"SUBJUDUL": "Data Pengadaan",
+					"KETERANGAN": "",
+					"TAMBAH": "Tambah",
+					"list": {
+						"NAMAPENGADAAN": "Nama Pengadaan",
+						"JENISPENGADAAN": "Jenis Pengadaan / Kategori Pengadaan",
+						"METODEPENGADAAN": "Metode Pengadaan",
+						"KULIFIKASIPENGADAAN": "Kualifikasi Pengadaan",
+						"METODEPENAWARANHARGA": "Metode Penawaran Harga",
+						"SISTEMEVALUASIPENAWARANHARGA": "Sistem Evaluasi Penawaran Harga",
+						"MATAUANG": "Mata Uang",
+						"KUALIFIKASIPENYEDIABRGJASA": "Kualifikasi Penyedia Barang/Jasa",
+						"BIDANGSUBBIDUSAHA": "Bidang - Sub Bidang Usaha",
+						"KETERANGANPENGADAAN": "Keterangan Pengadaan",
+						"RINCIANKEBMATERIAL": "Rincian Kebutuhan Item",
+						"RINCIANJASA": "Rincian Kebutuhan Jasa",
+						"PEMASUKANPENAWARANDETAIL": "Pemasukan Penawaran Detail",
+						"DATAPENYEDIABRGJASA": "Data Penyedia Barang dan Jasa",
+						"NMPENYEDIABRGJASA": "Nama Penyedia Barang dan Jasa",
+						"TGLPEMASUKAN": "Tanggal Pemasukan",
+						"TGLAWAL": "Tanggal Awal",
+						"TGLBATAS": " Tanggal Batas",
+						"TGLDAFTAR": "Tanggal Daftar",
+						"PENAWARANTELP": "Telepon",
+						"NOMORPR": "Nomor Perencanaan",
+						"KODEMATERIAL": "Kode Item",
+						"NAMAMATERIAL": "Nama Item",
+						"NAMAMAJASA": "Nama Jasa",
+						"KUANTITAS": "Kuantitas",
+						"SATUAN": "Satuan",
+						"HPS": "HPS",
+						"HRGTOTALHPS": "Harga Total HPS",
+						"KET": "Keterangan",
+						"NOMORPERENCANAAN": "Nomor Perencanaan",
+						"NAMAPENYEDIABRGJASA": "Nama Penyedia Barang / Jasa",
+						"TELEPON": "Telepon",
+						"ALAMAT": "Alamat",
+						"JUMLAH": "jumlah",
+						"CREATED": "Created",
+						"AKSI": "Aksi"
+					},
+					"btn": {
+						"BUATPENGADAAN": "Tambah",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan",
+						"KIRIM": "Kirim"
+					}
+				},
+				"pembukaanpenawaran": {
+					"JUDUL": "Pembukaan Penawaran",
+					"SUBJUDUL": "Data Pembukaan Penawaran",
+					"KETERANGAN": "",
+					"TAMBAH": "Tambah",
+					"list": {
+						"NOMOR": "Nomor Pengadaan",
+						"NAMA": "Nama Pengadaan",
+						"POSISI": "Tahapan saat ini",
+						"CREATEDATE": "Tanggal Buat",
+						"CREATED": "Created",
+						"AKSI": "Aksi"
+					},
+					"total": {
+						"TOTAL": "Pembukaan Penawaran Total",
+						"DATA": "Data Pengadaan",
+						"NAMA": "Nama Pengadaan",
+						"JENIS": "Jenis Pengadaan / Kategori Pengadaan",
+						"METODE": "Metode Pengadaan",
+						"KUALIFIKASI": "Kualifikasi Pengadaan (Hanya BUMN)",
+						"METPENAWARAN": "Metode Penawaran Harga / Flow Pengadaan",
+						"EVALUASI": "Sistem Evaluasi Penawaran Harga",
+						"MU": "Mata Uang",
+						"BRGJASA": "Kualifikasi Penyedia Barang / Jasa",
+						"BIDANG": "Bidang - Sub Bidang Usaha",
+						"KET": "Keterangan Pengadaan",
+						"KURS": "Input Kurs",
+						"list": {
+							"TBLNOPERENCANAAN": "Nomor Perencanaan (jika ada PR)",
+							"TBLKEHADIRAN": "Status Kehadiran Penyedia Barang / Jasa",
+							"TBLPENYEDIA": "Nama Penyedia Barang / Jasa",
+							"TBLHADIR": "Hadir",
+							"TBLEMAIL": "Email",
+							"TBLTELP": "Telepon",
+							"TBLDEV": "Deviasi",
+							"TBLDAFTARKEHADIRAN": "Daftar Hadir Panitia Pengadaan dan Tim Teknis",
+							"TBLNAMA": "Nama",
+							"TBLJABATAN": "Jabatan",
+							"TBLNMKURS": "Nama Mata Uang",
+							"TBLKDJASA": "Kode Jasa"
+						},
+						"modal": {
+							"KURSTERHADAP": "Kurs Terhadap (Mata Uang pada Inisialisasi)",
+							"KURSTERHADAPIDR": "Kurs Terhadap IDR",
+							"TBLMATAUANG": "Mata Uang",
+							"TBLTERHADAP": "Terhadap",
+							"TBLTGLAWAL": "Tanggal Awal Berlaku",
+							"TBLTGLAKHIR": "Tanggal Akhir Berlaku",
+							"NILAI": "Nilai",
+							"SUMBER": "Sumber",
+							"DETAIL": "Pembukaan Penawaran Detail",
+							"BACK": "Kembali"
+						}
+					},
+					"satuan": {
+						"SATUAN": " Pembukaan Penawaran Satuan"
+					},
+					"tambah": {
+						"TAMBAH": " TAMBAH",
+						"UBAH": " UBAH",
+						"NAMA": "Nama",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					}
+				},
+				"penetapanpemenang": {
+					"JUDUL": "Penetapan Pemenang",
+					"SUBJUDUL": "Data Penetapan Pemenang",
+					"list": {
+						"TBLPENETAPANPEMENANG": "Data Penyedia Barang dan Jasa",
+						"TBLNILAIADMIN": "Nilai Evaluasi Admin",
+						"TBLNILAITEKNIS": "Nilai Evaluasi Teknis",
+						"TBLNILAIHARGA": "Nilai Evaluasi Harga",
+						"TBLTTLNILAI": "Total Nilai",
+						"TBLHARGA": "Harga",
+						"TBLPEMENANG": "Pemenang"
+					},
+					"modal": {
+						"MDLBRGJASA": "Rincian Item / Jasa",
+						"MDLDATABRGJASA": "Data Penyedia Barang dan Jasa",
+						"MDLKATEGORI": "Kategori",
+						"MDLSISA": "Sisa",
+						"MDLUOM": "Unit of Measurement",
+						"TBLHARGA": "Harga",
+						"TBLPEMENANG": "Pemenang"
+					},
+					"JENISKONTRAK": "Jenis Kontrak"
+				},
+				"penunjukanpemenang": {
+					"JUDUL": "Penunjukan Pemenang",
+					"SUBJUDUL": "Data Penunjukan Pemenang",
+					"list": {
+						"TBLPENUNJUKANPEMENANG": "Data Penyedia Barang dan Jasa",
+						"TBLNILAIADMIN": "Admin",
+						"TBLNILAITEKNIS": "Teknis",
+						"TBLNILAIHARGA": "Nilai Harga",
+						"TBLTTLNILAI": "Total Nilai",
+						"TBLHARGA": "Harga",
+						"TBLPEMENANG": "Pemenang"
+					},
+					"modal": {
+						"MDLBRGJASA": "Rincian Item / Jasa",
+						"MDLDATABRGJASA": "Data Penyedia Barang dan Jasa",
+						"MDLKATEGORI": "Kategori",
+						"MDLSISA": "Sisa",
+						"MDLUOM": "Unit of Measurement",
+						"TBLHARGA": "Harga",
+						"TBLPEMENANG": "Pemenang"
+					}
+				},
+				"evaluasiadministrasi": {
+					"JUDUL": "Evaluasi Administrasi",
+					"SUBJUDUL": "Data Evaluasi Administrasi",
+					"KETERANGAN": "Tambah Kriteria",
+					"TAMBAH": "Tambah",
+					"list": {
+						"NOMOR": "Nomor Pengadaan",
+						"NAMA": "Nama Pengadaan",
+						"POSISI": "Tahapan saat ini",
+						"CREATEDATE": "Tanggal Buat",
+						"CREATED": "Created",
+						"AKSI": "Aksi",
+						"TBLEVALUASIADMIN": "Hasil Evaluasi Administrasi",
+						"TBLNAMAPENYEDIABRGJASA": "Nama Penyedia Barang / Jasa",
+						"TBLNILAI": "Nilai Evaluasi Administrasi"
+					},
+					"modal": {
+						"KRITERIAADMIN": "Kriteria Administrasi",
+						"DATAVENDOR": "Data Vendor",
+						"DAFTARVENDOR": "DAFTAR VENDOR",
+						"NAMA": "Nama Penyedia Barang / Jasa",
+						"ALAMAT": "Alamat",
+						"TELEPON": "Telepon",
+						"EMAIL": "Email",
+						"PENILAIANVENDOR": "Penilaian Kriteria Administrasi",
+						"KETHASIL1": "Dari Hasil Evaluasi Administrasi, Vendor ( ",
+						"KETHASIL2": " ) dinyatakan",
+						"NAMAKRITERIA": "Nama Kriteria",
+						"KET": "Keterangan",
+						"TGL": "Tanggal Berakhir",
+						"STATUS": "Status"
+					},
+					"ModalVendor": {
+						"No": "No",
+						"NamaVendor": "Nama Penyedia Barang / Jasa",
+						"Alamat": "Alamat",
+						"Telepon": "Telepon",
+						"NilaiAdministrasi": "Nilai Administrasi",
+						"Aksi": "Aksi"
+					}
+				},
+				"kriteriaevaluasi": {
+					"JUDUL": "Kriteria Evaluasi",
+					"SUBJUDUL": "Data Kriteria Evaluasi",
+					"KETERANGAN1": "Tambah Kriteria Sistem Gugur",
+					"KETERANGAN2": "Tambah Kriteria Merit Point",
+					"KETERANGAN3": "Sistem Gugur - Satuan",
+					"KETERANGAN4": "Merit Point - Satuan",
+					"TOTAL": "Total",
+					"SATUAN": "Satuan",
+					"TAMBAH": "Tambah",
+					"list": {
+						"NOMOR": "Nomor Pengadaan",
+						"NAMA": "Nama Pengadaan",
+						"POSISI": "Tahapan saat ini",
+						"CREATEDATE": "Tanggal Buat",
+						"CREATED": "Created",
+						"AKSI": "Aksi"
+					},
+					"btn": {
+						"BUATPENGADAAN": "Tambah",
+						"KEMBALI": "Kembali",
+						"BATAL": "Batal",
+						"SIMPAN": "Simpan",
+						"KIRIM": "Kirim",
+						"TAMBAHKRITERIA": "Tambah Kriteria Evaluasi",
+						"LANJUT": "Lanjut"
+					},
+					"tambah": {
+						"TAMBAH": " TAMBAH",
+						"UBAH": " UBAH",
+						"NAMA": "Nama",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					},
+					"view": {
+						"RINCIANKEBMATERIAL": "Rincian Kebutuhan Item",
+						"KODEMATERIAL": "Kode Item",
+						"NAMAMATERIAL": "Nama Item",
+						"KUANTITAS": "Kuantitas",
+						"SATUAN": "Satuan",
+						"HPS": "HPS",
+						"HRGTOTALHPS": "Harga Total HPS",
+						"KET": "Keterangan",
+						"RINCIANJASA": "Rincian Kebutuhan Jasa",
+						"NOMORPERENCANAAN": "Nomor Perencanaan",
+						"KRITERIAEVALUASIADMINISTRASI": "Kriteria Evaluasi Administrasi",
+						"NOKRITERIA": "Nomor",
+						"KRITERIAADMINISTRASI": "Kriteria Administrasi",
+						"AKSI": "Aksi",
+						"KRITERIAEVALUASITEKNIS": "Kriteria Evaluasi Teknis",
+						"KRITERIATEKNIS": "Kriteria Teknis",
+						"NILAIMAKSIMAL": "Nilai Maksimal",
+						"JUMLAH": "Jumlah",
+						"NILAI": "Nilai",
+						"KRITERIAEVALUASIHARGA": "Kriteria Evaluasi Harga",
+						"BATASAMBANG": "Batas Ambang",
+						"PRESENTASI": "Presentasi(%)",
+						"TABJUDUL1": "KRITERIA EVALUASI ADMINISTRASI",
+						"TABJUDUL2": "KRITERIA EVALUASI TEKNIS",
+						"TABJUDUL3": "KRITERIA EVALUASI HARGA",
+						"DATAEVAADMIN": "Data Evaluasi Administrasi",
+						"DATAEVATEKNIS": "Data Evaluasi Teknis",
+						"DATAEVAHARGA": "Data Evaluasi Harga",
+						"NAMAKRITERIAADMINISTRASI": "Nama Kriteria Administrasi",
+						"NAMAKRITERIATEKNIS": "Nama Kriteria Teknis",
+						"AMBANGATAS": "Ambang Atas",
+						"AMBANGBAWAH": "Ambang Bawah",
+						"PEMBOBOTANHEADER": "Pembobotan Merit Point",
+						"PRESENTASEADMIN": "Presentase Nilai Administrasi",
+						"PRESENTASITEKNIS": "Presentase Nilai Teknis",
+						"PRESENTASIHARGA": "Presentase Nilai Harga",
+						"SETDEFAULT": "Set Default",
+						"BATASATAS": "Batas Atas",
+						"BATASBAWAH": "Batas Bawah",
+						"TOTALNILAITEKNIS": "TOTAL NILAI PEMBOBOTAN TEKNIS",
+						"MINIMALKELULUSANTEKNIS": "MINIMAL KELULUSAN NILAI TEKNIS(Maximal 100)",
+						"TOTALNILAIADMIN": "TOTAL NILAI PEMBOBOTAN ADMINISTRASI",
+						"MINIMALKELULUSANADMIN": "MINIMAL KELULUSAN NILAI ADMINISTRASI(Maximal 100)"
+					}
+				},
+				"evaluasiteknis": {
+					"JUDUL": "Evaluasi Teknis",
+					"SUBJUDUL": "Data Evaluasi Teknis",
+					"KETERANGAN1": "Tambah Evaluasi Teknis Sistem Gugur",
+					"KETERANGAN2": "Tambah Evaluasi Teknis Merit Point",
+					"TAMBAH": "Tambah",
+					"list": {
+						"NOMOR": "Nomor Pengadaan",
+						"NAMA": "Nama Pengadaan",
+						"POSISI": "Tahapan saat ini",
+						"CREATEDATE": "Tanggal Buat",
+						"AKSI": "Aksi"
+					},
+					"btn": {
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan",
+						"KIRIM": "Kirim"
+					},
+					"view": {
+						"RINCIANKEBMATERIAL": "Rincian Kebutuhan Item",
+						"KODEMATERIAL": "Kode Item",
+						"NAMAMATERIAL": "Nama Item",
+						"KUANTITAS": "Kuantitas",
+						"SATUAN": "Satuan",
+						"HPS": "HPS",
+						"HRGTOTALHPS": "Harga Total HPS",
+						"KET": "Keterangan",
+						"RINCIANJASA": "Rincian Kebutuhan Jasa",
+						"NOMORPERENCANAAN": "Nomor Perencanaan",
+						"NAMAPENYEDIABRGJASA": "Nama Penyedia Barang / Jasa",
+						"TGLDAFTAR": "Tanggal Daftar",
+						"TGLPEMASUKAN": "Tanggal Pemasukan",
+						"TELEPON": "Telepon",
+						"ALAMAT": "Alamat",
+						"JUMLAH": "jumlah",
+						"CREATED": "Created",
+						"AKSI": "Aksi",
+						"DATAPENYEDIABRGJASA": "Data Penyedia Barang dan Jasa",
+						"NMPENYEDIABRGJASA": "Nama Penyedia Barang dan Jasa",
+						"PENAWARANTELP": "Telepon",
+						"NILAITEKNIS": "Nilai Teknis",
+						"rincianmaterial": {
+							"NO": "No",
+							"NAMAMATERIAL": "Nama Item",
+							"SATUAN": "Satuan",
+							"JENIS": "Jenis Item",
+							"JUMLAH": "Kuantitas",
+							"HPS": "HPS",
+							"HRGTOTALHPS": "Harga Total HPS"
+						},
+						"rincianjasa": {
+							"NO": "No",
+							"NAMAMATERIAL": "Nama Jasa",
+							"SATUAN": "Satuan",
+							"JENIS": "Jenis Jasa",
+							"JUMLAH": "Kuantitas",
+							"HPS": "HPS",
+							"HRGTOTALHPS": "Harga Total HPS"
+						}
+					},
+					"kriteriateknis": {
+						"JUDUL": "Kriteria Teknis",
+						"DATAVENDOR": "Data Vendor",
+						"NO": "NO",
+						"NAMA": "Nama Kriteria",
+						"KETERANGAN": "Keterangan",
+						"STATUS": "Status",
+						"PENILAIANKRITERIATEKNIS": "Penilaian Kriteria Teknis",
+						"LULUS": "Lulus(100)",
+						"TIDAKLULUS": "Tidak Lulus(0)",
+						"NILAIMAKSIMAL": "Nilai Bobot",
+						"NILAI": "Nilai"
+					}
+				},
+				"penjelasan": {
+					"JUDUL": "Penjelasan",
+					"SUBJUDUL": "Data Penjelasan",
+					"SUBJUDULDETILPENGADAAN": "Data Pengadaan",
+					"list": {
+						"NOMOR": "Nomor Pengadaan",
+						"NAMA": "Nama Pengadaan",
+						"POSISI": "Tahapan saat ini",
+						"CREATEDATE": "Tanggal Buat",
+						"CREATED": "Created",
+						"AKSI": "Aksi"
+					},
+					"kehadiranvendor": {
+						"NOMOR": "No",
+						"NAMA": "Nama Penyedia Barang / Jasa",
+						"HADIR": "Hadir",
+						"PERWAKILAN": "Perwakilan",
+						"EMAIL": "Email",
+						"HANDPHONE": "Handphone"
+					},
+					"kehadiranpanitia": {
+						"NOMOR": "No",
+						"NAMA": "Nama",
+						"JABATAN": "Jabatan",
+						"AKSI": "Aksi",
+						"TAMBAH": "Tambah"
+					},
+					"dokumen": {
+						"TITLE": "Upload Dokumen Penjelasan",
+						"NO_FILE": "Belum ada dokumen, silahkan upload file",
+						"NAMA_FILE": "File",
+						"UKURAN": "Ukuran",
+						"PROSES": "Proses",
+						"STATUS": "Status",
+						"AKSI": "Aksi"
+					},
+					"beritaacara": {
+						"TITLE": "Berita Acara",
+						"NOMOR": "Nomor Berita Acara",
+						"TANGGAL": "Tanggal Berita Acara",
+						"KETERANGAN": "Keterangan"
+					},
+					"btn": {
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan",
+						"KIRIM": "Kirim",
+						"LANJUT": "Lanjut"
+					},
+					"tambah": {
+						"TAMBAH": " TAMBAH",
+						"UBAH": " UBAH",
+						"NAMA": "Nama",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					},
+					"view": {
+						"RINCIANKEBMATERIAL": "Rincian Kebutuhan Item",
+						"KODEMATERIAL": "Kode Item",
+						"NAMAMATERIAL": "Nama Item",
+						"KUANTITAS": "Kuantitas",
+						"SATUAN": "Satuan",
+						"HPS": "HPS",
+						"HRGTOTALHPS": "Harga Total HPS",
+						"KET": "Keterangan",
+						"RINCIANJASA": "Rincian Kebutuhan Jasa",
+						"NOMORPERENCANAAN": "Nomor Perencanaan",
+						"NO": "No",
+						"KRITERIAEVALUASIADMINISTRASI": "Kriteria Evaluasi Administrasi",
+						"NOKRITERIA": "Nomor",
+						"KRITERIAADMINISTRASI": "Kriteria Administrasi",
+						"AKSI": "Aksi",
+						"KRITERIAEVALUASITEKNIS": "Kriteria Evaluasi Teknis",
+						"KRITERIATEKNIS": "Kriteria Teknis",
+						"NILAIMAKSIMAL": "Nilai Maksimal",
+						"JUMLAH": "Jumlah",
+						"KRITERIAEVALUASIHARGA": "Kriteria Evaluasi Harga",
+						"BATASAMBANG": "Batas Ambang",
+						"PRESENTASI": "Presentasi(%)",
+						"TABJUDUL1": "KRITERIA EVALUASI ADMINISTRASI",
+						"TABJUDUL2": "KRITERIA EVALUASI TEKNIS",
+						"TABJUDUL3": "KRITERIA EVALUASI HARGA",
+						"DATAEVAADMIN": "Data Evaluasi Administrasi",
+						"DATAEVATEKNIS": "Data Evaluasi Teknis",
+						"DATAEVAHARGA": "Data Evaluasi Harga",
+						"NAMAKRITERIAADMINISTRASI": "Nama Kriteria Administrasi",
+						"NAMAKRITERIATEKNIS": "Nama Kriteria Teknis",
+						"AMBANGATAS": "Ambang Atas",
+						"AMBANGBAWAH": "Ambang Bawah",
+						"PEMBOBOTANHEADER": "Pembobotan Merit Point",
+						"PRESENTASEADMIN": "Presentase Nilai Administrasi",
+						"PRESENTASITEKNIS": "Presentase Nilai Teknis",
+						"PRESENTASIHARGA": "Presentase Nilai Harga",
+						"SETDEFAULT": "Set Default",
+						"BATASATAS": "Batas Atas",
+						"BATASBAWAH": "Batas Bawah",
+						"UPLOAD_TITLE": "Upload Dokumen Perubahan",
+						"VENDORLIST_TITLE": "Status Kehadiran Penyedia Barang // Jasa",
+						"BERITA_ACARA_TITLE": "Berita Acara",
+						"BERITA_ACARA_NOMOR": "Nomor Berita Acara",
+						"BERITA_ACARA_TANGGAL": "Tanggal Berita Acara",
+						"BERITA_ACARA_KETERANGAN": "Keterangan"
+					}
+				},
+				"persetujuan": {
+					"JUDUL": "Persetujuan Pengadaan",
+					"SUBJUDUL": "Data Persetujuan Pengadaan",
+					"SUBJUDULDETILPENGADAAN": "Data Pengadaan",
+					"dokumen": {
+						"TITLE": "Dokumen Persetujuan",
+						"NO_FILE": "Tidak Ada Dokumen File Persetujuan."
+					},
+					"list": {
+						"NOMOR": "Nomor Pengadaan",
+						"NAMA": "Nama Pengadaan",
+						"POSISI": "Tahapan saat ini",
+						"CREATEDATE": "Tanggal Buat",
+						"CREATED": "Created",
+						"AKSI": "Aksi"
+					},
+					"kehadiranvendor": {
+						"NOMOR": "No",
+						"NAMA": "Nama Penyedia Barang / Jasa",
+						"HADIR": "Hadir",
+						"PERWAKILAN": "Perwakilan",
+						"EMAIL": "Email",
+						"HANDPHONE": "Handphone"
+					},
+					"kehadiranpanitia": {
+						"NOMOR": "No",
+						"NAMA": "Nama",
+						"JABATAN": "Jabatan",
+						"AKSI": "Aksi",
+						"TAMBAH": "Tambah"
+					},
+					"pengajuan": {
+						"TITLE": "Pengajuan Persetujuan",
+						"KETERANGAN": "Keterangan",
+						"DOK": "Dokumen Pengajuan Persetujuan",
+						"NAMA_FILE": "File",
+						"UKURAN": "Ukuran",
+						"PROSES": "Proses",
+						"STATUS": "Status",
+						"AKSI": "Aksi",
+						"NO_FILE": "Belum Ada File yang Diunggah"
+					},
+					"pengumuman": {
+						"TITLE": "Pengumuman Pengadaan",
+						"TANGGAL": "Tanggal Pengumuman",
+						"KETERANGAN": "Keterangan"
+					},
+					"btn": {
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan",
+						"KIRIM": "Kirim",
+						"LANJUT": "Lanjut"
+					},
+					"tambah": {
+						"TAMBAH": " TAMBAH",
+						"UBAH": " UBAH",
+						"NAMA": "Nama",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					},
+					"view": {
+						"RINCIANKEBMATERIAL": "Rincian Kebutuhan Item",
+						"KODEMATERIAL": "Kode Item",
+						"NAMAMATERIAL": "Nama Item",
+						"KUANTITAS": "Kuantitas",
+						"SATUAN": "Satuan",
+						"HPS": "HPS",
+						"HRGTOTALHPS": "Harga Total HPS",
+						"KET": "Keterangan",
+						"RINCIANJASA": "Rincian Kebutuhan Jasa",
+						"NOMORPERENCANAAN": "Nomor Perencanaan",
+						"KRITERIAEVALUASIADMINISTRASI": "Kriteria Evaluasi Administrasi",
+						"NOKRITERIA": "Nomor",
+						"KRITERIAADMINISTRASI": "Kriteria Administrasi",
+						"AKSI": "Aksi",
+						"KRITERIAEVALUASITEKNIS": "Kriteria Evaluasi Teknis",
+						"KRITERIATEKNIS": "Kriteria Teknis",
+						"NILAIMAKSIMAL": "Nilai Maksimal",
+						"JUMLAH": "Jumlah",
+						"KRITERIAEVALUASIHARGA": "Kriteria Evaluasi Harga",
+						"BATASAMBANG": "Batas Ambang",
+						"PRESENTASI": "Presentasi(%)",
+						"TABJUDUL1": "KRITERIA EVALUASI ADMINISTRASI",
+						"TABJUDUL2": "KRITERIA EVALUASI TEKNIS",
+						"TABJUDUL3": "KRITERIA EVALUASI HARGA",
+						"DATAEVAADMIN": "Data Evaluasi Administrasi",
+						"DATAEVATEKNIS": "Data Evaluasi Teknis",
+						"DATAEVAHARGA": "Data Evaluasi Harga",
+						"NAMAKRITERIAADMINISTRASI": "Nama Kriteria Administrasi",
+						"NAMAKRITERIATEKNIS": "Nama Kriteria Teknis",
+						"AMBANGATAS": "Ambang Atas",
+						"AMBANGBAWAH": "Ambang Bawah",
+						"PEMBOBOTANHEADER": "Pembobotan Merit Point",
+						"PRESENTASEADMIN": "Presentase Nilai Administrasi",
+						"PRESENTASITEKNIS": "Presentase Nilai Teknis",
+						"PRESENTASIHARGA": "Presentase Nilai Harga",
+						"SETDEFAULT": "Set Default",
+						"BATASATAS": "Batas Atas",
+						"BATASBAWAH": "Batas Bawah",
+						"UPLOAD_TITLE": "Upload Dokumen Perubahan",
+						"VENDORLIST_TITLE": "Status Kehadiran Penyedia Barang // Jasa",
+						"BERITA_ACARA_TITLE": "Berita Acara",
+						"BERITA_ACARA_NOMOR": "Nomor Berita Acara",
+						"BERITA_ACARA_TANGGAL": "Tanggal Berita Acara",
+						"BERITA_ACARA_KETERANGAN": "Keterangan"
+					}
+				},
+				"delegasipersetujuan": {
+					"JUDUL": "Delegasi Persetujuan Pengadaan",
+					"SUBJUDUL": "Data Delegasi Persetujuan Pengadaan",
+					"SUBJUDULDETILPENGADAAN": "Data Delegasi Persetujuan",
+					"form": {
+						"JENISPERSETUJUAN": "Jenis Persetujuan Pengadaan",
+						"STATUS": "Status",
+						"TGLAWAL": "Tanggal Awal",
+						"TGLAKHIR": "Tanggal Berakhir",
+						"USERPENGGANTI": "User Pengganti",
+						"SIMPAN": "Simpan",
+						"HAPUS": "Hapus"
+					},
+					"list": {
+						"NOMOR": "No",
+						"PERSETUJUAN": "Persetujuan",
+						"TGLAWAL": "Tanggal Awal",
+						"TGLAKHIR": "Tanggal Berakhir",
+						"USERPENGGANTI": "User Pengganti",
+						"STATUS": "Status",
+						"AKSI": "Aksi"
+					}
+				},
+				"evaluasiharga": {
+					"JUDUL": "Evaluasi Harga",
+					"SUBJUDUL": "Data Evaluasi Harga",
+					"KETERANGAN": "Tambah Evaluasi Harga",
+					"TAMBAH": "Tambah",
+					"list": {
+						"NOMOR": "Nomor Pengadaan",
+						"NAMA": "Nama Pengadaan",
+						"POSISI": "Tahapan saat ini",
+						"CREATEDATE": "Tanggal Buat",
+						"AKSI": "Aksi"
+					},
+					"btn": {
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan",
+						"KIRIM": "Kirim",
+						"DISKUALIFIKASI": "Diskualifikasi Harga",
+						"HISTORIAUCTION": "History Auction",
+						"AUCTIONBARU": "Sesi Auction Baru",
+						"BATAL": "Batal",
+						"CETAK": "Cetak"
+					},
+					"view": {
+						"AUCTION": "Auction",
+						"BIDDING": "Bidding",
+						"TOTAL": "Total",
+						"DETAIL": "Detail",
+						"NOMOR": "No",
+						"RINCIANKEBMATERIAL": "Rincian Kebutuhan Item",
+						"KODEMATERIAL": "Kode Item",
+						"NAMAMATERIAL": "Nama Item",
+						"KUANTITAS": "Kuantitas",
+						"SATUAN": "Satuan",
+						"HPS": "HPS",
+						"HRGTOTALHPS": "Harga Total HPS",
+						"KET": "Keterangan",
+						"RINCIANJASA": "Rincian Kebutuhan Jasa",
+						"NOMORPERENCANAAN": "Nomor Perencanaan",
+						"JUMLAH": "Jumlah",
+						"NAMAPENYEDIABRGJASA": "Nama Penyedia Barang / Jasa",
+						"DATAPENYEDIA": "Data Penyedia Barang/Jasa",
+						"NAMAPENYEDIA": "Nama Penyedia Barang/Jasa",
+						"ALAMAT": "Alamat",
+						"TELEPON": "Telepon",
+						"PENAWARANAWAL": "Penawaran Awal",
+						"PENAWARANTERAKHIR": "Penawaran Terakhir",
+						"NILAIEVALUASI": "Nilai Evaluasi",
+						"NILAIADMIN": "Nilai Admin",
+						"NILAITEKNIS": "Nilai Teknis",
+						"NILAIHARGA": "Nilai Harga",
+						"TOTALNILAI": "Total Nilai",
+						"HARGA": "Harga",
+						"SESIAUCTION": "Sesi Auction",
+						"NOSESI": "Nomor Sesi",
+						"TANGGALSESIAWAL": "Tanggal / Jam Awal",
+						"TANGGALSESIAKHIR": "Tanggal / Jam Akhir",
+						"HARGAAWAL": "Harga Awal",
+						"SELISIHPENAWARAN": "Selisih Penawaran",
+						"KETERANGAN": "Keterangan",
+						"PESERTAAUCTION": "Peserta Auction",
+						"IKUTAUCTION": "Ikut Auction",
+						"HISTORYAUCTION": "History Auction",
+						"TGLSESIAUCTION": "Tanggal Sesi Auction",
+						"NILAITERBAIK": "Nilai Terbaik",
+						"MATAUANG": "Mata Uang",
+						"KODEVENDOR": "Kode Vendor",
+						"NAMAVENDOR": "Nama Vendor",
+						"STATUS": "Status",
+						"TGLPEMASUKAN": "Tanggal Pemasukan",
+						"NILAIPENAWARAN": "Nilai Penawaran",
+						"DISKUALIFIKASIHARGA": "Diskualifikasi Harga",
+						"TGLPEMASUKANPENAWAN": "Tanggal Pemasukan Penawaran",
+						"KODEJASA": "Kode Jasa",
+						"NAMAJASA": "Nama Jasa",
+						"KODE": "Kode",
+						"NILAI": "Nilai",
+						"NAMA": "Nama",
+						"KODEMATERIALJASA": "Kode Item/Jasa",
+						"NAMAMATERIALJASA": "Nama Item/Jasa",
+						"SESIBERLANGSUNG": "Sesi Auction Berlangsung"
+					},
+					"penawaranharga": {
+						"JUDUL": "Penawaran Harga",
+						"SUBJUDUL": "Data Penawaran Harga",
+						"SUBJUDUL2": "Pemasukan Penawaran",
+						"AUCTIONTERBUKA": "Auction Terbuka",
+						"AUCTIONTERTUTUP": "Auction Tertutup",
+						"DATAAUCTION": "Data Auction",
+						"MASUKANPENAWARAN": "Masukan Penawaran",
+						"STATUSPENAWARANTERAKHIR": "Status Penawaran Terakhir",
+						"PENAWARAN": "Penawaran",
+						"WAKTU": "Waktu",
+						"RANKPENAWARAN": "Rank Penawaran",
+						"HARGAPENAWARANTERAKHIR": "Harga Penawaran Terakhir",
+						"NAMAVENDOR": "Nama Vendor",
+						"WAKTUPENAWARAN": "Waktu Penawaran",
+						"HARGAPENAWARAN": "Harga Penawaran",
+						"KETERANGAN": "Keterangan",
+						"RINCIANJASA": "Rincian Kebutuhan Jasa",
+						"RINCIANKEBMATERIAL": "Rincian Kebutuhan Item",
+						"TOTALPERHITUNGAN": "Total Perhitungan",
+						"TOTALPENAWARANVENDOR": "Total Penawaran Vendor",
+						"HEADERCON": "Header Condition",
+						"ITEMCON": "Item Condition",
+						"RINCIANKEBMATERIALJASA": "Rincian Kebutuhan Item/Jasa"
+					}
+				},
+				"negosiasi": {
+					"JUDUL": "Negosiasi",
+					"SUBJUDUL": "Data Negosiasi",
+					"list": {
+						"NOMOR": "Nomor Pengadaan",
+						"NAMA": "Nama Pengadaan",
+						"POSISI": "Tahapan saat ini",
+						"CREATEDATE": "Tanggal Buat",
+						"CREATED": "Created",
+						"AKSI": "Aksi"
+					}
+				},
+				"spk": {
+					"JUDUL": "SPK",
+					"SUBJUDUL": "Data SPK",
+					"listPengadaan": {
+						"NOMOR": "No Pengadaan",
+						"NAMA": "Nama Pengadaan",
+						"VENDOR": "Nama Vendor",
+						"AKSI": "Aksi"
+					},
+					"listSPK": {
+						"NOMOR": "No SPK",
+						"NAMA": "Nama Pengadaan",
+						"VENDOR": "Nama Vendor",
+						"TGL": "Tanggal SPK",
+						"AKSI": "Aksi"
+					},
+					"view": {
+						"spkDetail": {
+							"JUDUL": "NO SPK",
+							"NO": "No. SPK",
+							"TANGGAL": "Tanggal SPK",
+							"WAKTUMULAI": "Waktu Pelaksanaan Pekerjaan",
+							"WAKTUSELESAI": "Sampai Dengan"
+						},
+						"vendor": {
+							"JUDUL": "Data Penyedia Barang/Jasa Calon Pemenang",
+							"NO": "No",
+							"NAMA": "Nama Penyedia Barang/Jasa",
+							"ALAMAT": "Alamat",
+							"ADMIN": "Admin",
+							"TEKNIS": "Teknis",
+							"HARGA": "Harga"
+						},
+						"btn": {
+							"KEMBALI": "KEMBALI",
+							"SIMPAN": "SIMPAN",
+							"UBAH": "UBAH",
+							"CETAK": "CETAK SPK"
+						}
+					}
+				},
+				"pengambilandokumen": {
+					"JUDUL": "Pengambilan Dokumen",
+					"SUBJUDUL": "Data Pengambilan Dokumen",
+					"list": {
+						"NOMOR": "No Pengadaan",
+						"NAMA": "Nama Pengadaan",
+						"TAHAPAN": "Tahapan Saat Ini",
+						"TANGGAL": "Tanggal",
+						"AKSI": "Aksi"
+					},
+					"view": {
+						"rincianmaterial": {
+							"JUDUL": "Rincian Kebutuhan Item",
+							"NO": "No",
+							"NAMAMATERIAL": "Nama Item",
+							"SATUAN": "Satuan",
+							"JENIS": "Jenis Item",
+							"JUMLAH": "Kuantitas",
+							"HPS": "HPS",
+							"HRGTOTALHPS": "Harga Total HPS"
+						},
+						"rincianjasa": {
+							"JUDUL": "Rincian Kebutuhan Jasa",
+							"NO": "No",
+							"NAMAMATERIAL": "Nama Jasa",
+							"SATUAN": "Satuan",
+							"JENIS": "Jenis Jasa",
+							"JUMLAH": "Kuantitas",
+							"HPS": "HPS",
+							"HRGTOTALHPS": "Harga Total HPS"
+						},
+						"vendor": {
+							"JUDUL": "Status Pengambilan Dokumen",
+							"NO": "No",
+							"NAMA": "Nama Penyedia Barang/Jasa",
+							"ALAMAT": "Alamat",
+							"TELEPON": "Telepon",
+							"TGLDAFTAR": "Tanggal Daftar",
+							"TGLPENGAMBILAN": "Tanggal Pengambilan"
+						},
+						"btn": {
+							"KEMBALI": "KEMBALI",
+							"SIMPAN": "SIMPAN",
+							"UBAH": "UBAH",
+							"CETAK": "CETAK SPK",
+							"PRINT": "CETAK"
+						}
+					}
+				},
+				"alokasianggaran": {
+					"JUDUL": "Alokasi Anggaran",
+					"SUBJUDUL": "Data Alokasi Anggaran",
+					"list": {
+						"NOMOR": "Nomor Anggaran",
+						"TAHUN": "Tahun",
+						"PERIODE": "Periode",
+						"TANGGAL": "Tanggal",
+						"JUMLAH": "Jumlah",
+						"STATUS": "Status",
+						"AKSI": "Aksi",
+						"JENIS": "Jenis Anggaran",
+						"SISA": "Sisa Anggaran"
+					},
+					"btn": {
+						"TAMBAH": "TAMBAH ANGGARAN",
+						"GABUNG": "GABUNG ANGGARAN"
+					},
+					"add": {
+						"JUDUL": "ALOKASI ANGGARAN",
+						"SUBJUDUL": "AlokasiAnggaran",
+						"NOMOR": "Nomor Draft",
+						"TGLDRAFT": "Tanggal Draft",
+						"CABANG": "Cabang",
+						"BIROPENGADAAN": "Biro Pengadaan",
+						"TAHUN": "Tahun Anggaran",
+						"PERIODE": "Periode",
+						"JENIS": "Jenis Anggaran",
+						"JUMLAH": "Jumlah Anggaran",
+						"btn": {
+							"KEMBALI": "KEMBALI",
+							"SIMPAN": "SIMPAN",
+							"CETAK": "CETAK HASIL"
+						}
+					},
+					"gabung": {
+						"JUDUL": "GABUNGAN ANGGARAN",
+						"search": {
+							"JUDUL": "Pencarian Anggaran",
+							"JENIS": "Jenis Anggaran",
+							"NOMOR": "Nomor Anggaran",
+							"TAHUN": "Tahun",
+							"btn": {
+								"SEARCH": "Cari"
+							}
+						},
+						"list": {
+							"JUDUL": "GABUNG ANGGARAN",
+							"NOMORANGGARAN": "Nomor Anggaran",
+							"NOMORPENGADAAN": "Nomor Pengadaan",
+							"SISA": "Sisa Anggaran"
+						},
+						"view": {
+							"JUDUL": "DETAIL ANGGARAN",
+							"anggaran": {
+								"JUDUL": "Detail Anggaran",
+								"PANITIA": "Panitia Pengadaan",
+								"TAHUN": "Tahun Anggaran",
+								"PERIODE": "Periode",
+								"NOMOR": "Nomor Anggaran",
+								"TANGGAL": "Tanggal Anggaran",
+								"JUMLAH": "Jumlah Anggaran",
+								"SISA": "Sisa Anggaran"
+							},
+							"pengadaan": {
+								"JUDUL": "Data Pengadaan",
+								"NOMOR": "No. Nota Dinas Pengadaan",
+								"TANGGAL": "Tanggal Nota Dinas Pengadaan",
+								"NAMA": "Nama Pengadaan",
+								"JENIS": "Jenis Pengadaan",
+								"METODE": "Metode Pengadaan",
+								"KUALIFIKASI": "Kualifikasi Pengadaan",
+								"METODEPENAWARAN": "Metode Penawaran Harga",
+								"METODEPENYAMPAIAN": "Metode Penyampaian Dokumen",
+								"IDENTIFIKASI": "Identifikasi HPS",
+								"MATAUANG": "Mata Uang",
+								"KUALIFIKASIPENYEDIA": "Kualifikasi Penyedia Barang/Jasa",
+								"BIDANG": "Bidang - Sub Bidang Usaha",
+								"MINIMALPENGALAMAN": "Minimal Pengalaman",
+								"MINIMALNILAIKONTRAK": "Minimal Nilai Kontrak",
+								"RANGETAHUNPENGALAMAN": "Range Tahun Pengalaman",
+								"KETERANGAN": "Keterangan Pengadaan"
+							}
+						}
+					}
+				},
+				"perencanaan": {
+					"JUDUL": "Rincian Item Pengadaan",
+					"JUDULDETAIL": "TAMBAH PERENCANAAN",
+					"SUBJUDUL": "Data Rincian Item Pengadaan",
+					"KETERANGAN": "",
+					"list": {
+						"NOMOR": "No",
+						"TAHUN": "Tahun",
+						"PERIODE": "Periode",
+						"TANGGAL": "Tanggal",
+						"NOANGGARAN": "Nomor Anggaran",
+						"JUMLAH": "Jumlah",
+						"AKSI": "Aksi"
+					},
+					"btn": {
+						"TAMBAH": "TAMBAH PERENCANAAN",
+						"CARI": "CARI",
+						"SIMPAN": "SIMPAN",
+						"BATAL": "Kembali"
+					},
+					"DETAIL": {
+						"DataPerencanaan": {
+							"JUDUL": "Data Perencanaan",
+							"NOMEMO": "Nomor Memo",
+							"TGLMEMO": "Tanggal Memo",
+							"UNITKERJA": "Unit Kerja"
+						},
+						"FilePengadaan": {
+							"JUDUL": "File Pengadaan",
+							"TOR": "TOR",
+							"HPS": "HPS",
+							"BQ": "BQ (Bill Of Quantity)",
+							"SURATIZIN": "Surat Izin Prinsip",
+							"SPEKTEKNIS": "Spesifikasi Teknis",
+							"GAMBARPERTAMA": "Gambar 1",
+							"GAMBARKEDUA": "Gambar 2",
+							"GAMBARKETIGA": "Gambar 3",
+							"DOKPENDUKUNG": "Dokumen Pendukung Lainya",
+							"NOTE": "Semua file yang diupload harus dalam PDF"
+						},
+						"DataAlokasi": {
+							"JUDUL": "Data Alokasi Anggaran",
+							"TAHUNANGGARAN": "Tahun Anggaran",
+							"NOMORALOKASI": "Nomor Alokasi Anggaran",
+							"TGLANGGARAN": "Tanggal Anggaran",
+							"JMLANGGARAN": "Jumlah Anggaran",
+							"SISAH": "Sisa Anggaran (Aktual)"
+						},
+						"RINCIANMATERIAL": {
+							"JUDUL": "Rincian Kebutuhan Item",
+							"NOMOR": "No",
+							"NAMA": "Nama Item",
+							"JENIS": "Jenis Item",
+							"JUMLAH": "Jumlah",
+							"SATUAN": "Satuan",
+							"HPS": "HPS",
+							"TOTALHPS": "Total HPS"
+						},
+						"RINCIANJASA": {
+							"JUDUL": "Rincian Kebutuhan Jasa",
+							"NOMOR": "No",
+							"NAMA": "Nama Jasa",
+							"KODEJASA": "Kode Jasa",
+							"JUMLAH": "Jumlah",
+							"SATUAN": "Satuan",
+							"HPS": "HPS",
+							"TOTALHPS": "Total HPS"
+						},
+						"CARIANGGARAN": {
+							"JUDUL": "Pencarian Anggaran",
+							"SUBJUDUL": "Alokasi Anggaran",
+							"NOMOR": "No",
+							"TAHUN": "Tahun",
+							"TANGGAL": "Tanggal",
+							"NOANGGARAN": "Nomor Anggaran",
+							"JUMLAH": "Jumlah",
+							"SISAH": "Sisa Anggaran",
+							"STATUS": "Status",
+							"AKSI": "Aksi"
+						},
+						"ADDMATERIAL": {
+							"JUDUL": "PERENCANAAN DATA Item ",
+							"ALOKASIANGGARAN": "Alokasi Anggaran",
+							"DATAMATERIAL": "Data Item",
+							"DATAPERENCANAAN": "Data Perencanaan",
+							"PANITIA": "Panitia / Bidang",
+							"TAHUN": "Tahun Anggaran",
+							"PRIODE": "Priode",
+							"NOANGGARAN": "Nomor Anggaran",
+							"TGLANGGARAN": "Tanggal Anggaran",
+							"JUMLAH": "Jumlah Anggaran",
+							"NMMATERIAL": "Nama Item",
+							"SISTEM": "Normalisasi Sistem",
+							"NORMAUNIT": "Normalisasi Unit",
+							"SATUAN": "Satuan",
+							"JMLMATERIAL": "Jumlah Item",
+							"HRGSATUAN": "Harga Satuan",
+							"KETERANGAN": "Keterangan"
+						},
+						"CARIMATERIAL": {
+							"JUDUL": "Pencarian Item",
+							"DATAMETERIAL": "Data Item",
+							"BERDASARKAN": "Berdasarkan",
+							"NOMOR": "No",
+							"NMMATERIAL": "Nama Item",
+							"NORMALSISTEM": "Normalisasi Sistem",
+							"SATUAN": "Satuan",
+							"JENIS": "Jenis",
+							"CARI": "Cari",
+							"AKSI": "Aksi"
+						},
+						"ADDJASA": {
+							"JUDUL": "PERENCANAAN DATA JASA ",
+							"ALOKASIANGGARAN": "Alokasi Anggaran",
+							"DATAJASA": "Data Jasa",
+							"DATAPERENCANAAN": "Data Perencanaan",
+							"PANITIA": "Panitia / Bidang",
+							"TAHUN": "Tahun Anggaran",
+							"PRIODE": "Priode",
+							"NOANGGARAN": "Nomor Anggaran",
+							"TGLANGGARAN": "Tanggal Anggaran",
+							"JUMLAH": "Jumlah Anggaran",
+							"NMMAJASA": "Nama Jasa",
+							"KODEJASA": "Kode Jasa",
+							"SATUAN": "Satuan",
+							"JMLJASA": "Jumlah Jasa",
+							"HRGJASA": "Harga Jasa",
+							"KETERANGAN": "Keterangan"
+						},
+						"CARIJASA": {
+							"JUDUL": "Pencarian Jasa",
+							"DATAJASA": "Data Jasa",
+							"BERDASARKAN": "Berdasarkan",
+							"NOMOR": "No",
+							"NMMAJASA": "Nama Jasa",
+							"KODEJASA": "Kode Jasa",
+							"SATUAN": "Satuan",
+							"JENIS": "Jenis",
+							"CARI": "Cari",
+							"JENISJASA": "Jenis Jasa",
+							"AKSI": "Aksi"
+						}
+					}
+				},
+				"laporanpengadaan": {
+					"JUDUL": "HISTORY PENGADAAN",
+					"SUBJUDUL": "Data Pengadaan",
+					"KETERANGAN": "History pengadaan dan tahapan yang telah berlangsung",
+					"tahapan": {
+						"JUDUL": "Data Tahapan",
+						"list": {
+							"NAMA": "Nama Tahapan",
+							"JADWALMULAI": "Jadwal Mulai Tahapan",
+							"JADWALSELESAI": "Jadwal Selesai Tahapan",
+							"AKSI": "Aksi"
+						}
+					},
+					"search": {
+						"JUDUL": "Cari Pengadaan",
+						"TGL": "Tanggal",
+						"TGLMULAI": "Tanggal Mulai",
+						"TGLSELESAI": "Tanggal Selesai",
+						"JENIS": "Jenis Pengadaan",
+						"NOMOR": "Nomor Pengadaan"
+					}
+				},
+				"RekapPengadaan": {
+					"Index": {
+						"Judul": "REKAP PENGADAAN",
+						"SubJudul1": "PENCARIAN PENGADAAN",
+						"Cabang": "Kantor / Cabang",
+						"Periode": "Periode",
+						"ButtonCari": "Cari",
+						"ButtonExcell": "Excell",
+						"ButtonAdvancedSearch": "ADVANCED SEARCH",
+						"SubJudul2": "DAFTAR PESANAN",
+						"No": "No",
+						"Wilayah": "Wilayah",
+						"JumlahPengadaan": "Jumlah Pengadaan",
+						"TotalPengadaan": "Total Pengadaan (Rp)",
+						"Aksi": "Aksi",
+						"Total": "TOTAL",
+						"JudulModal": "ADVANCED SEARCH REKAP PENGADAAN",
+						"JenisPengadaan": "Jenis Pengadaan",
+						"MetodePengadaan": "Metode Pengadaan",
+						"MataUang": "Mata Uang"
+					},
+					"Detail": {
+						"Judul": "DAFTAR PENGADAAN",
+						"No": "No",
+						"TglPembuatanLelang": "Tgl. Pembuatan Lelang",
+						"NoPengadaan": "No. Pengadaan",
+						"NamaPengadaan": "Nama Pengadaan",
+						"NoSPK": "No. SPK",
+						"Kualifikasi": "Kualifikasi",
+						"NilaiHPS": "Nilai HPS",
+						"Aksi": "Aksi"
+					},
+					"View": {
+						"Judul": "LAPORAN PENGADAAN",
+						"ButtonKembali": "Kembali",
+						"Anggaran": {
+							"Judul": "ANGGARAN",
+							"TahunAnggaran": "Tahun Anggaran",
+							"Periode": "Periode",
+							"JenisAnggaran": "Jenis Anggaran",
+							"Bidang": "Bidang",
+							"NomorAnggaran": "Nomor Anggaran",
+							"JumlahAnggaran": "Jumlah Anggaran"
+						},
+						"DataPengadaan": {
+							"Judul": "DATA PENGADAAN",
+							"MetodePengadaan": "Metode Pengadaan",
+							"NoIjinPrinsip": "No Ijin Prinsip",
+							"TanggalIjinPrinsip": "Tanggal Ijin Prinsip",
+							"KualifikasiPenyediaBarangJasa": "Kualifikasi Penyedia Barang / Jasa",
+							"BidangSubBidangUsaha": "Bidang - Sub Bidang Usaha",
+							"NoDokumenPengadaan": "No. Dokumen Pengadaan",
+							"TanggalDokumenPengadaan": "Tanggal Dokumen Pengadaan",
+							"NamaPengadaan": "Nama Pengadaan",
+							"KeteranganTambahan": "Keterangan Tambahan"
+						},
+						"VendorPengadaan": {
+							"Judul": "PENYEDIA BARANG/JASA YANG MENGIKUTI PENGADAAN",
+							"No": "No",
+							"Kode": "Kode",
+							"NamaVendor": "Nama Penyedia Barang/Jasa",
+							"NoTelepon": "No Telepon",
+							"Alamat": "Alamat"
+						},
+						"JadwalPrakualifikasi": {
+							"Judul": "JADWAL PRAKUALIFIKASI",
+							"PengambilanDokumenPrakualifikasi": "Pengambilan Dokumen Prakualifikasi",
+							"TanggalPengambilan": "Tanggal",
+							"LokasiPengambilan": "Lokasi",
+							"PemasukanDokumenPrakualifikasi": "Pemasukan Dokumen Prakualifikasi",
+							"TanggalPemasukan": "Tanggal",
+							"LokasiPemasukan": "Lokasi",
+							"EvaluasiPrakualifikasi": "Evaluasi Prakualifikasi",
+							"TanggalEvaluasi": "Tanggal",
+							"PengumumanHasilPrakualifikasi": "Pengumuman Hasil Prakualifikasi",
+							"TanggalPengumuman": "Tanggal"
+						},
+						"ProsesPrakualifikasi": {
+							"Judul": "PROSES PRAKUALIFIKASI",
+							"No": "No",
+							"NamaVendor": "Nama Penyedia Barang/Jasa",
+							"TanggalPengirimanDokumen": "Tanggal Pengiriman Dokumen",
+							"Selesai": "Selesai",
+							"Keterangan": "Keterangan"
+						},
+						"JadwalPengadaanBidding": {
+							"Judul": "JADWAL PENGADAAN",
+							"Tanggal": "Tanggal",
+							"Lokasi": "Lokasi"
+						},
+						"ProsesPengadaanbidding": {
+							"Judul": "PROSES PENGADAAN",
+							"No": "No",
+							"NamaVendor": "Nama Penyedia Barang/Jasa",
+							"AmbilDokumen": "Ambil Dokumen",
+							"HadirPenjelasan": "Hadir Penjelasan",
+							"PemasukanPenawaran": "Pemasukan Penawaran",
+							"HadirPembukaan": "Hadir Pembukaan",
+							"EvaluasiAdmin": "Evaluasi Admin",
+							"EvaluasiTeknis": "Evaluasi Teknis",
+							"HargaPenawaran": "Harga Penawaran (Rp)",
+							"HargaNegosiasi": "Harga Negosiasi (Rp)"
+						},
+						"HasilPengadaan": {
+							"Judul": "HASIL PENGADAAN",
+							"NomorBeritaAcara": "Nomor Berita Acara",
+							"TanggalBeritaAcara": "Tanggal Berita Acara",
+							"vendorPemenang": "Penyedia Barang/Jasa Pemenang"
+						},
+						"RincianKebutuhanMaterial": {
+							"Judul": "RINCIAN KEBUTUHAN Item",
+							"No": "No",
+							"NomorPerencanaan": "Nomor Perencanaan (Jika ada PR)",
+							"KodeMaterial": "Kode Item",
+							"NamaMaterial": "Nama Item",
+							"Kuantitas": "Kuantitas",
+							"Satuan": "Satuan",
+							"HPS": "HPS (Rp)",
+							"TotalHPS": "Total HPS (Rp)",
+							"HargaPerolehan": "Harga Perolehan (Rp)",
+							"TotalHargaPerolehan": "Total Harga Perolehan",
+							"TotalKebutuhanMaterial": "Total Kebutuhan Item"
+						},
+						"RincianKebutuhanJasa": {
+							"Judul": "RINCIAN KEBUTUHAN JASA",
+							"No": "No",
+							"NamaJasa": "Nama Jasa",
+							"KodeJasa": "Kode Jasa",
+							"Jumlah": "Jumlah",
+							"Satuan": "Satuan",
+							"HPS": "HPS (Rp)",
+							"TotalHPS": "Total HPS (Rp)",
+							"HargaPerolehan": "Harga Perolehan (Rp)",
+							"TotalHargaPerolehan": "Total Harga Perolehan",
+							"TotalKebutuhanJasa": "Total Kebutuhan Jasa"
+						}
+					}
+				},
+				"jadwalkualifikasi": {
+					"JUDUL": "Jadwal Kualifikasi",
+					"KETERANGAN": "Jadwal Kualifikasi digunakan untuk mengatur jadwal tahapan-tahapan proses pengadaan.",
+					"SUBJUDUL": "Jadwal Kualifikasi",
+					"index": {
+						"NOMOR": "Nomor Pengadaan",
+						"NAMA": "Nama Pengadaan",
+						"POSISI": "Tahapan Saat Ini",
+						"CREATEDATE": "Tanggal Buat",
+						"CREATED": "Created",
+						"AKSI": "Aksi"
+					},
+					"detil": {
+						"DATAPENGADAAN": "Data Pengadaan",
+						"NOPENGADAAN": "Nomor Pengadaan",
+						"NAMAPENGADAAN": "Nama Pengadaan",
+						"JENISPENGADAAN": "Jenis Pengadaan / Kategori Pengadaan",
+						"METODEPENGADAAN": "Metode Pengadaan",
+						"KULIFIKASIPENGADAAN": "Kualifikasi Pengadaan",
+						"METODEPENAWARANHARGA": "Metode Penawaran Harga",
+						"SISTEMEVALUASIPENAWARANHARGA": "Sistem Evaluasi Penawaran Harga",
+						"MATAUANG": "Mata Uang",
+						"KUALIFIKASIPENYEDIABRGJASA": "Kualifikasi Penyedia Barang/Jasa",
+						"BIDANGSUBBIDUSAHA": "Bidang - Sub Bidang Usaha",
+						"KETERANGANPENGADAAN": "Keterangan Pengadaan",
+						"RINCIANKEBMATERIAL": "Rincian Kebutuhan Item",
+						"RINCIANKEBJASA": "Rincian Kebutuhan Jasa",
+						"rincianmaterial": {
+							"NO": "No",
+							"NOMORPR": "Nomor Perencanaan",
+							"KODEMATERIAL": "Kode Item",
+							"NAMAMATERIAL": "Nama Item",
+							"KUANTITAS": "Kuantitas",
+							"SATUAN": "Satuan",
+							"HPS": "HPS",
+							"HPSTOTAL": "Harta Total HPS",
+							"KET": "Ket"
+						},
+						"rincianjasa": {
+							"NO": "No",
+							"NOMORPR": "Nomor Perencanaan",
+							"KODEJASA": "Kode Jasa",
+							"NAMAJASA": "Nama Jasa",
+							"KUANTITAS": "Kuantitas",
+							"SATUAN": "Satuan",
+							"HPS": "HPS",
+							"HPSTOTAL": "Harga Total HPS",
+							"KET": "Keterangan"
+						},
+						"jadwalpengadaan": {
+
+						},
+						"SIMPAN": "Simpan Jadwal Kualifikasi",
+						"KEMBALI": "Kembali"
+					}
+				},
+				"pengambilandokumenkualifikasi": {
+					"JUDUL": "Pengambilan Dokumen Kualifikasi",
+					"SUBJUDUL": "Data Pengambilan Dokumen Kualifikasi",
+					"list": {
+						"NOMOR": "No Pengadaan",
+						"NAMA": "Nama Pengadaan",
+						"TAHAPAN": "Tahapan Saat Ini",
+						"TANGGAL": "Tanggal",
+						"AKSI": "Aksi"
+					},
+					"view": {
+						"rincianmaterial": {
+							"JUDUL": "Rincian Kebutuhan Item",
+							"NO": "No",
+							"NAMAMATERIAL": "Nama Item",
+							"SATUAN": "Satuan",
+							"JENIS": "Jenis Item",
+							"JUMLAH": "Kuantitas",
+							"HPS": "HPS",
+							"HRGTOTALHPS": "Harga Total HPS"
+						},
+						"rincianjasa": {
+							"JUDUL": "Rincian Kebutuhan Jasa",
+							"NO": "No",
+							"NAMAMATERIAL": "Nama Jasa",
+							"SATUAN": "Satuan",
+							"JENIS": "Jenis Jasa",
+							"JUMLAH": "Kuantitas",
+							"HPS": "HPS",
+							"HRGTOTALHPS": "Harga Total HPS"
+						},
+						"vendor": {
+							"JUDUL": "Status Pengambilan Dokumen Kualifikasi",
+							"NO": "No",
+							"NAMA": "Nama Penyedia Barang/Jasa",
+							"ALAMAT": "Alamat",
+							"TELEPON": "Telepon",
+							"TGLDAFTAR": "Tanggal Daftar",
+							"TGLPENGAMBILAN": "Tanggal Pengambilan"
+						},
+						"btn": {
+							"KEMBALI": "KEMBALI",
+							"SIMPAN": "SIMPAN",
+							"UBAH": "UBAH",
+							"CETAK": "CETAK SPK",
+							"PRINT": "CETAK"
+						}
+					}
+				},
+				"pemasukandokumenkualifikasi": {
+					"JUDUL": "Pemasukan Dokumen Kualifikasi",
+					"SUBJUDUL": "Data Pemasukan Dokumen Kualifikasi",
+					"list": {
+						"NOMOR": "No Pengadaan",
+						"NAMA": "Nama Pengadaan",
+						"TAHAPAN": "Tahapan Saat Ini",
+						"TANGGAL": "Tanggal",
+						"AKSI": "Aksi"
+					},
+					"view": {
+						"rincianmaterial": {
+							"JUDUL": "Rincian Kebutuhan Item",
+							"NO": "No",
+							"NAMAMATERIAL": "Nama Item",
+							"SATUAN": "Satuan",
+							"JENIS": "Jenis Item",
+							"JUMLAH": "Kuantitas",
+							"HPS": "HPS",
+							"HRGTOTALHPS": "Harga Total HPS"
+						},
+						"rincianjasa": {
+							"JUDUL": "Rincian Kebutuhan Jasa",
+							"NO": "No",
+							"NAMAMATERIAL": "Nama Jasa",
+							"SATUAN": "Satuan",
+							"JENIS": "Jenis Jasa",
+							"JUMLAH": "Kuantitas",
+							"HPS": "HPS",
+							"HRGTOTALHPS": "Harga Total HPS"
+						},
+						"vendor": {
+							"JUDUL": "Status Pengambilan Dokumen Kualifikasi",
+							"NO": "No",
+							"NAMA": "Nama Penyedia Barang/Jasa",
+							"ALAMAT": "Alamat",
+							"TELEPON": "Telepon",
+							"TGLDAFTAR": "Tanggal Daftar",
+							"TGLPENGAMBILAN": "Tanggal Pengambilan",
+							"TGLPEMASUKAN": "Tanggal Pemasukan"
+						},
+						"btn": {
+							"KEMBALI": "KEMBALI",
+							"SIMPAN": "SIMPAN",
+							"UBAH": "UBAH",
+							"CETAK": "CETAK SPK",
+							"PRINT": "CETAK"
+						}
+					}
+				},
+				"kriteriakualifikasi": {
+					"JUDUL": "Kriteria Kualifikasi",
+					"SUBJUDUL": "Data Kriteria Kualifikasi",
+					"list": {
+						"NOMOR": "No Pengadaan",
+						"NAMA": "Nama Pengadaan",
+						"TAHAPAN": "Tahapan Saat Ini",
+						"TANGGAL": "Tanggal",
+						"AKSI": "Aksi"
+					},
+					"view": {
+						"rincianmaterial": {
+							"JUDUL": "Rincian Kebutuhan Item",
+							"NO": "No",
+							"NAMAMATERIAL": "Nama Item",
+							"SATUAN": "Satuan",
+							"JENIS": "Jenis Item",
+							"JUMLAH": "Kuantitas",
+							"HPS": "HPS",
+							"HRGTOTALHPS": "Harga Total HPS"
+						},
+						"rincianjasa": {
+							"JUDUL": "Rincian Kebutuhan Jasa",
+							"NO": "No",
+							"NAMAMATERIAL": "Nama Jasa",
+							"SATUAN": "Satuan",
+							"JENIS": "Jenis Jasa",
+							"JUMLAH": "Kuantitas",
+							"HPS": "HPS",
+							"HRGTOTALHPS": "Harga Total HPS"
+						},
+						"daftarkriteriaadmin": {
+							"JUDUL": "Daftar Kriteria Kualifikasi Administrasi",
+							"NO": "No",
+							"NAMAKRITERIA": "Nama Kriteria",
+							"DESKRIPSI": "Deskripsi",
+							"AKSI": "Aksi",
+							"NILAIKRITERIA": "Nilai Kriteria (Memenuhi)",
+							"JUDULMODAL": "DAFTAR KRITERIA KUALIFIKASI ADMINISTRASI"
+						},
+						"daftarkriteriateknis": {
+							"JUDUL": "Daftar Kriteria Kualifikasi Teknis",
+							"NO": "No",
+							"NAMAKRITERIA": "Nama Kriteria",
+							"NILAI": "Nilai",
+							"ITEM1": "Konstanta Pengali NPT (KD = kons x NPT)",
+							"ITEM2": "Nilai Maksimal Pengalaman Tertinggi di Bidang Pekerjaan",
+							"ITEM3": "Nilai Maksimal Pengalaman Nilai Kontrak",
+							"ITEM4": "Nilai Maksimal Pengalaman Status Penyedia Barang/Jasa",
+							"ITEM5": "Nilai Maksimal Persyaratan Personil",
+							"ITEM6": "Nilai Maksimal Persyaratan Peralatan",
+							"ITEM7": "Nilai Maksimal Manajemen Mutu",
+							"KONS1": "2",
+							"KONS2": "3",
+							"KONS3": "5",
+							"JUMLAHNILAI": "Jumlah Nilai Kriteria No.2 - 7",
+							"NILAIAMBANG": "Nilai Ambang Kelulusan"
+						},
+						"daftarkriteriakeuangan": {
+							"JUDUL": "Daftar Kriteria Kualifikasi Keuangan",
+							"NO": "No",
+							"NAMAKRITERIA": "Nama Kriteria",
+							"BOBOT": "Bobot",
+							"FAKTORLIKUIDITAS": "Faktor Likuiditas(0.6 - 0.8)",
+							"FAKTORPERPUTARANMODAL": "Faktor Perputaran Modal(6 - 8)",
+							"BESARAMBANG": "Besar Ambang SKK(% Ambang Batas Nilai Paket Pengadaan(NPP)(0.2 - 0.8)"
+						},
+						"btn": {
+							"KEMBALI": "KEMBALI",
+							"SIMPAN": "SIMPAN",
+							"UBAH": "UBAH",
+							"CETAK": "CETAK SPK",
+							"PRINT": "CETAK",
+							"TAMBAH": "TAMBAH"
+						}
+					}
+				},
+				"seleksikualifikasi": {
+					"JUDUL": "Seleksi Kualifikasi",
+					"SUBJUDUL": "Data Seleksi Kualifikasi",
+					"list": {
+						"NOMOR": "No Pengadaan",
+						"NAMA": "Nama Pengadaan",
+						"TAHAPAN": "Tahapan Saat Ini",
+						"TANGGAL": "Tanggal",
+						"AKSI": "Aksi"
+					},
+					"view": {
+						"rincianmaterial": {
+							"JUDUL": "Rincian Kebutuhan Item",
+							"NO": "No",
+							"NAMAMATERIAL": "Nama Item",
+							"SATUAN": "Satuan",
+							"JENIS": "Jenis Item",
+							"JUMLAH": "Kuantitas",
+							"HPS": "HPS",
+							"HRGTOTALHPS": "Harga Total HPS"
+						},
+						"rincianjasa": {
+							"JUDUL": "Rincian Kebutuhan Jasa",
+							"NO": "No",
+							"NAMAMATERIAL": "Nama Jasa",
+							"SATUAN": "Satuan",
+							"JENIS": "Jenis Jasa",
+							"JUMLAH": "Kuantitas",
+							"HPS": "HPS",
+							"HRGTOTALHPS": "Harga Total HPS"
+						},
+						"seleksiadministrasi": {
+							"JUDUL": "Seleksi Kualifikasi Administrasi",
+							"TABELVENDOR": "Data Penyedia Barang/Jasa",
+							"NO": "No",
+							"NAMAVENDOR": "Nama Vendor",
+							"TELEPON": "Telepon",
+							"ALAMAT": "Alamat",
+							"STATUSKELULUSAN": "Status Kelulusan Syarat Administrasi",
+							"AKSI": "Evaluasi Administrasi",
+							"JUDULMODAL": "DETAIL NILAI EVALUASI ADMINISTRASI",
+							"SUBJUDULMODAL": "Daftar Kriteria Kualifikasi Administrasi",
+							"ALLCHECK": "Memenuhi Kriteria Administrasi"
+						},
+						"seleksidatabank": {
+							"JUDUL": "Seleksi Kriteria Data Bank",
+							"STATUSKELULUSAN": "Status Kelulusan Syarat Keuangan",
+							"AKSI": "Dukungan Bank"
+						},
+						"seleksikemampuandasar": {
+							"JUDUL": "Seleksi Kriteria Kemampuan Dasar",
+							"STATUSKELULUSAN": "Status Kelulusan Syarat Teknis",
+							"AKSI": "Evaluasi Kemampuan Dasar",
+							"JUDULMODAL": "DETAIL NILAI EVALUASI KEMAMPUAN DASAR",
+							"SUBJUDULMODAL": "Daftar Kriteria Kualifikasi Kemampuan Dasar",
+							"NO": "No",
+							"NPP": "NPP",
+							"KONSKRITERIATEKNIS": "Konstanta Pengali NPT",
+							"NPT": "NPT Penyedia Barang/Jasa",
+							"KD": "KD",
+							"PENILAIAN": "Penilaian"
+						},
+						"seleksikeuangan": {
+							"JUDUL": "Seleksi Kriteria Keuangan",
+							"STATUSKELULUSAN": "Status Kelulusan Syarat Keuangan",
+							"AKSI": "Evaluasi Keuangan",
+							"JUDULMODAL": "DETAIL NILAI EVALUASI KEUANGAN",
+							"SUBJUDULMODAL": "Data Penilaian Keuangan",
+							"FP": "FP",
+							"FL": "FL",
+							"KB": "KB",
+							"NK": "NK",
+							"PRESTASI": "PRESTASI",
+							"NILAISKK": "Nilai SKK"
+						},
+						"seleksiteknis": {
+							"JUDUL": "Seleksi Kriteria Teknis & Ambang Lulus",
+							"STATUSKELULUSAN": "Status Kelulusan Syarat Teknis",
+							"AKSI": "Evaluasi Ambang Lulus",
+							"PENGALAMAN": "Pengalaman Perusahaan",
+							"SYARATPERSONIL": "Persyaratan Personil",
+							"SYARATPERALATAN": "Persyaratan Peralatan",
+							"SYARATMUTU": "Persyaratan Manajemen Mutu",
+							"NO": "No",
+							"KRITERIA": "Kriteria Penilaian",
+							"NILAI": "Nilai",
+							"NILAIMAX": "Nilai Maksimum",
+							"ITEM1": "Penilaian berdasarkan bidang pekerjaan",
+							"ITEM2": "Penilaian berdasarkan nilai kontrak",
+							"ITEM3": "Penilaian berdasarkan status penyedia Barang/Jasa",
+							"ITEM4": "Penilaian berdasarkan persyaratan personil",
+							"ITEM5": "Penilaian berdasarkan persyaratan peralatan",
+							"ITEM6": "Nilai manajemen mutu"
+						},
+						"btn": {
+							"KEMBALI": "KEMBALI",
+							"SIMPAN": "SIMPAN",
+							"UBAH": "UBAH",
+							"CETAK": "CETAK SPK",
+							"PRINT": "CETAK",
+							"TAMBAH": "TAMBAH",
+							"LANJUT": "LANJUT"
+						}
+					}
+				},
+				"SeleksiPendaftaran": {
+					"Index": {
+						"Judul": "SELEKSI PENDAFTARAN",
+						"No": "No",
+						"Nomor": "Nomor",
+						"Tanggal": "Tanggal",
+						"Nama": "Nama",
+						"Kualifikasi": "Kualifikasi",
+						"Jenis": "Jenis",
+						"Metode": "Metode",
+						"Aksi": "Aksi",
+						"Tahapan": "Tahapan Saat Ini"
+					},
+					"View": {
+						"Judul": "SELEKSI PENDAFTARAN",
+						"ButtonKembali": "Kembali",
+						"ButtonSimpan": "Simpan",
+						"FormDataPengadaan": {
+							"Judul": "DATA PENGADAAN",
+							"NamaPengadaan": "Nama Pengadaan",
+							"JenisPengadaan": "Jenis Pengadaan / Kategori Pengadaan",
+							"MetodePengadaan": "Metode Pengadaan",
+							"KualifikasiPengadaan": "Kualifikasi Pengadaan",
+							"MetodePenawaranHarga": "Metode Penawaran Harga",
+							"SistemEvaluasiPenawaranHarga": "Sistem Evaluasi Penawaran Harga",
+							"MataUang": "Mata Uang",
+							"KualifikasiVendor": "Kualifikasi Penyedia Barang / Jasa",
+							"BidangSubBidangUsaha": "Bidang - Sub Bidang Usaha",
+							"KeteranganPengadaan": "Keterangan Pengadaan"
+						},
+						"RincianKebutuhanMaterial": {
+							"Judul": "RINCIAN KEBUTUHAN Item",
+							"No": "No",
+							"KodeMaterial": "Kode Item",
+							"NamaMaterial": "Nama Item",
+							"Kuantitas": "Kuantitas",
+							"Satuan": "Satuan",
+							"HPS": "HPS",
+							"TotalHPS": "Harga Total HPS",
+							"Keterangan": "Keterangan"
+						},
+						"RincianKebutuhanJasa": {
+							"Judul": "RINCIAN KEBUTUHAN JASA",
+							"No": "No",
+							"NamaJasa": "Nama Jasa",
+							"KodeJasa": "Kode Jasa",
+							"Jumlah": "Jumlah",
+							"Satuan": "Satuan",
+							"HPS": "HPS",
+							"TotalHPS": "Harga Total HPS",
+							"Keterangan": "Keterangan"
+						},
+						"DaftarRekananTerseleksi": {
+							"Judul": "DAFTAR REKANAN TERSELEKSI",
+							"No": "No",
+							"NamaVendor": "Nama Penyedia Barang / Jasa",
+							"TanggalDaftar": "Tanggal Daftar",
+							"Telepon": "Telepon",
+							"Alamat": "Alamat",
+							"Status": "Status",
+							"Proses": "Proses"
+						}
+					},
+					"ModalSeleksiPendaftaran": {
+						"Judul": "SELEKSI PENDAFTARAN - DATA VENDOR",
+						"DaftarDokumenVendor": {
+							"Judul": "Daftar Dokumen Vendor (Dokumen yang di upload saat registrasi)",
+							"No": "No",
+							"NamaDokumen": "Nama Dokumen",
+							"TanggalBerakhir": "Tanggal Berakhir"
+						},
+						"Pengalaman": {
+							"Judul": "Pengalaman (Pengalaman saat daftar pengadaan)",
+							"No": "No",
+							"NamaPekerjaan": "Nama Pekerjaan",
+							"LokasiPekerjaan": "Lokasi Pekerjaan",
+							"Bidang": "Bidang",
+							"SubBidang": "Sub Bidang",
+							"MulaiKerjasama": "Mulai Kerjasama",
+							"NilaiKontrak": "Nilai Kontrak",
+							"Dokumen": "Dokumen"
+						},
+						"ButtonLihatNeracaKeuangan": "Lihat Neraca Keuangan",
+						"TextLine": "Berdasarkan data rekanan diatas, Vendor (nama vendor) dinyatakan :"
+					}
+				},
+				"delegasipengadaan": {
+					"JUDUL": "Delegasi Pengadaan",
+					"SUBJUDUL": "Data Delegasi Pengadaan",
+					"list": {
+						"NOMOR": "Nomor SPP",
+						"NAMA": "Nama Perencanaan",
+						"TAHAPAN": "Tahapan Saat Ini",
+						"TANGGAL": "Tanggal",
+						"AKSI": "Aksi"
+					},
+					"view": {
+						"JUDUL": "PENDELEGASIAN",
+						"sopa": {
+							"JUDUL": "Data SOPA",
+							"NO": "Nomor SPP",
+							"TANGGAL": "Tanggal SPP",
+							"JUMLAH": "Jumlah Total Kebutuhan",
+							"MENYUTUJUI": "Menyutujui"
+						},
+						"pendelegasian": {
+							"JUDUL": "Data Pendelegasian",
+							"NO": "Nomor Pendelegasian",
+							"NAMA": "Nama Pendelegasian",
+							"TANGGAL": "Tanggal Pendelegasian",
+							"PANITIA": "Pelaksana Pengadaan"
+						},
+						"btn": {
+							"KEMBALI": "KEMBALI",
+							"SIMPAN": "SIMPAN",
+							"UBAH": "UBAH",
+							"CETAK": "CETAK SPK",
+							"PRINT": "CETAK"
+						}
+					}
+				},
+				"pembuktiankualifikasi": {
+					"JUDUL": "Pembuktian Kualifikasi",
+					"SUBJUDUL": "Data Pembuktian Kualifikasi",
+					"list": {
+						"NOMOR": "No Pengadaan",
+						"NAMA": "Nama Pengadaan",
+						"TAHAPAN": "Tahapan Saat Ini",
+						"TANGGAL": "Tanggal",
+						"AKSI": "Aksi"
+					},
+					"view": {
+						"rincianmaterial": {
+							"JUDUL": "Rincian Kebutuhan Item",
+							"NO": "No",
+							"NAMAMATERIAL": "Nama Item",
+							"SATUAN": "Satuan",
+							"JENIS": "Jenis Item",
+							"JUMLAH": "Kuantitas",
+							"HPS": "HPS",
+							"HRGTOTALHPS": "Harga Total HPS"
+						},
+						"rincianjasa": {
+							"JUDUL": "Rincian Kebutuhan Jasa",
+							"NO": "No",
+							"NAMAMATERIAL": "Nama Jasa",
+							"SATUAN": "Satuan",
+							"JENIS": "Jenis Jasa",
+							"JUMLAH": "Kuantitas",
+							"HPS": "HPS",
+							"HRGTOTALHPS": "Harga Total HPS"
+						},
+						"vendor": {
+							"JUDUL": "Status Pengambilan Dokumen",
+							"NO": "No",
+							"NAMA": "Nama Penyedia Barang/Jasa",
+							"ALAMAT": "Alamat",
+							"TELEPON": "Telepon",
+							"TGLDAFTAR": "Tanggal Daftar",
+							"TGLPENGAMBILAN": "Tanggal Pengambilan",
+							"KUALIFIKASI": "Keabsahan Kualifikasi"
+						},
+						"btn": {
+							"KEMBALI": "KEMBALI",
+							"SIMPAN": "SIMPAN",
+							"UBAH": "UBAH",
+							"CETAK": "CETAK SPK",
+							"PRINT": "CETAK"
+						}
+					}
+				},
+				"pengadaangagal": {
+					"JUDUL": "Pengadaan Gagal",
+					"SUBJUDUL": "Data Pengadaan Gagal",
+					"KETERANGAN": "Keterangan",
+					"SIMPAN": "Simpan",
+					"list": {
+						"NOMOR": "No",
+						"NOMORPENGADAAN": "Nomor Pengadaan",
+						"NAMA": "Nama",
+						"TAHAPAN": "Tahapan",
+						"NOMORBERITAACARA": "No. Berita Acara",
+						"AKSI": "Aksi"
+					},
+					"btn": {
+						"TAMBAHPENGADAANGAGAL": "Tambah Pengadaan Gagal",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					},
+					"tambah": {
+						"TAMBAH": " TAMBAH",
+						"UBAH": " UBAH",
+						"NAMA": "Nama",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					}
+				}
+			},
+			"vendor": {
+				"undanganpengadaan": {
+					"JUDUL": "Undangan Pengadaan",
+					"KETERANGAN": "Undangan Pengadaan menampilkan informasi Pengadaan yang mengundang Anda untuk mengikuti prose pengadaan",
+					"SUBJUDUL": "Undangan Pengadaan",
+					"index": {
+						"NO": "No",
+						"TGLUNDANGAN": "Tanggal Undangan",
+						"NAMAPENGADAAN": "Nama Pengadaan",
+						"KUALIFIKASI": "Kualifikasi",
+						"AKSI": "Aksi"
+					},
+					"detil": {
+						"DATAPENGADAAN": "Data Pengadaan",
+						"NOPENGADAAN": "Nomor Pengadaan",
+						"NAMAPENGADAAN": "Nama Pengadaan",
+						"JENISPENGADAAN": "Jenis Pengadaan",
+						"METODEPENGADAAN": "Metode Pengadaan",
+						"KUALIFIKASIVENDOR": "Kualifikasi Penyedia Barang / Jasa",
+						"MINIMALPENGALAMAN": "Minimal Pengalaman",
+						"MINIMALNILAIKONTRAK": "Besar Minimal Nilai Kontrak",
+						"JANGKATHNPENGALAMAN": "Range Tahun Pengalaman",
+						"BIDANGUSAHA": "Bidang - Sub Bidang Usaha",
+						"KETERANGAN": "Keterangan Pengadaan",
+						"MATERIALSUBJUDUL": "Rincian Kebutuhan Item",
+						"rincianmaterial": {
+							"NO": "No",
+							"NAMAMATERIAL": "Nama Item",
+							"SATUAN": "Satuan",
+							"JENIS": "Jenis Item",
+							"JUMLAH": "Jumlah"
+						},
+						"JASASUBJUDUL": "Rincian Kebutuhan Jasa",
+						"rincianjasa": {
+							"NO": "No",
+							"NAMAJASA": "Nama Jasa",
+							"SATUAN": "Satuan",
+							"JENIS": "Jenis Jasa",
+							"JUMLAH": "Jumlah"
+						},
+						"jadwalpengadaan": {
+
+						},
+						"DAFTAR": "Pendaftaran Pengadaan",
+						"KEMBALI": "Kembali"
+					},
+					"hasildaftar": {
+						"HASILPENDAFTARAN": "Sudah Terdaftar di Pengadaan",
+						"CETAK": "Cetak"
+					}
+				},
+				"pengumumanpengadaan": {
+					"JUDUL": "Pengumuman Pengadaan",
+					"SUBJUDUL": "Data Pengumuman Pengadaan",
+					"KETERANGAN1": "Tambah Evaluasi Teknis Sistem Gugur",
+					"KETERANGAN2": "Tambah Evaluasi Teknis Merit Point",
+					"TAMBAH": "Tambah",
+					"list": {
+						"NOMOR": "Nomor Pengadaan",
+						"NAMA": "Nama Pengadaan",
+						"POSISI": "Tahapan saat ini",
+						"CREATEDATE": "Tanggal Buat",
+						"AKSI": "Aksi",
+						"UNIT": "Unit",
+						"KUALIFIKASI": "Kualifikasi"
+					},
+					"btn": {
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan",
+						"DAFTAR": "Daftar",
+						"KIRIM": "Kirim"
+					},
+					"view": {
+						"TGLPEMASUKAN": "Tanggal Pemasukan",
+						"TELEPON": "Telepon",
+						"ALAMAT": "Alamat",
+						"JUMLAH": "jumlah",
+						"CREATED": "Created",
+						"AKSI": "Aksi",
+						"DATAPENYEDIABRGJASA": "Data Penyedia Barang dan Jasa",
+						"NMPENYEDIABRGJASA": "Nama Penyedia Barang dan Jasa",
+						"PENAWARANTELP": "Telpon",
+						"NILAITEKNIS": "Nilai Teknis",
+						"MATERIALSUBJUDUL": "Rincian Kebutuhan Item",
+						"rincianmaterial": {
+							"NO": "No",
+							"NAMAMATERIAL": "Nama Item",
+							"SATUAN": "Satuan",
+							"JENIS": "Jenis Item",
+							"JUMLAH": "Jumlah"
+						},
+						"JASASUBJUDUL": "Rincian Kebutuhan Jasa",
+						"rincianjasa": {
+							"NO": "No",
+							"NAMAJASA": "Nama Jasa",
+							"SATUAN": "Satuan",
+							"JENIS": "Jenis Jasa",
+							"JUMLAH": "Jumlah"
+						},
+						"jadwalpengadaan": {
+
+						}
+					},
+					"modal": {
+						"JUDUL": "SUDAH TERDAFTAR DI PENGADAAN",
+						"KETERANGAN": "Keterangan"
+					},
+					"hasildaftar": {
+						"HASILPENDAFTARAN": "Sudah Terdaftar di Pengadaan",
+						"CETAK": "Cetak"
+					}
+				},
+				"pemasukanpenawaran": {
+					"JUDUL": "Pemasukan Penawaran",
+					"SUBJUDUL": "Data Pemasukan Penawaran",
+					"KETERANGAN": "",
+					"TAMBAH": "Tambah",
+					"list": {
+						"NOMOR": "Nomor Pengadaan",
+						"NAMA": "Nama Pengadaan",
+						"POSISI": "Tahapan saat ini",
+						"CREATEDATE": "Tanggal Buat",
+						"KUALIFIKASI": "Kualifikasi",
+						"CREATED": "Created",
+						"AKSI": "Aksi"
+					},
+					"btn": {
+						"BUATPENGADAAN": "Tambah",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					},
+					"tambah": {
+						"TAMBAH": " TAMBAH",
+						"UBAH": " UBAH",
+						"NAMA": "Nama",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					}
+				},
+				"pemasukanpenawaranview": {
+					"JUDUL": "DATA PENAWARAN",
+					"SUBJUDUL": "Data Pengadaan",
+					"KETERANGAN": "",
+					"TAMBAH": "Tambah",
+					"list": {
+						"RINCIANKEBMATERIAL": "Rincian Kebutuhan Item",
+						"DOKDATAPENAWARAN": "Dokumen Data Penawaran",
+						"UNIT": "Unit",
+						"SISTEMPELELANGAN": "Sistem Pelelangan",
+						"METODEPENGADAAN": "Metode Pengadaan",
+						"KUALIFIKASIPENYEDIABRGJASA": "Kualifikasi Penyedia Barang/Jasa",
+						"BIDANGSUBBIDUSAHA": "Bidang - Sub Bidang Usaha",
+						"NAMAPENGADAAN": "Nama Pengadaan",
+						"NOPENGADAAN": "No.Pengadaan",
+						"TAMBAHANSPEK": "Tambahan Spesifikasi",
+						"DOKADMINISTRASI": "Dokumen Administrasi",
+						"DOKTEKNIS": "Dokumen Teknis",
+						"NOSURATPENAWARAN": "No. Surat Penawaran",
+						"TGLSURATPENAWARAN": "Tanggal Surat Penawaran",
+						"TGLBTSPENAWARAN": "Tanggal Batas Penawaran",
+						"BENTUKJAMINANDANNOMOR": "Bentuk Jaminan dan Nomor Bank Garansi",
+						"NILAIJAMINANPENAWARAN": "Nilai Jaminan Penawaran",
+						"TGLBTSJAMINAN": "Tanggal Batas Jaminan",
+						"DATAPENAWARAN": "Data Penawaran",
+						"HEADCONDISI": "Header Condition",
+						"MATERIALLINE": "Item Line",
+						"JUMLAH": "Jumlah",
+						"NO": "No",
+						"CODE": "Code",
+						"NAME": "Name",
+						"Value": "Value",
+						"ITEMKONDISI": "Item Condition",
+						"CREATED": "Created",
+						"AKSI": "Aksi"
+					},
+					"btn": {
+						"BUATPENGADAAN": "Tambah",
+						"KEMBALI": "Kembali",
+						"KIRIM": "Simpan"
+					}
+				},
+				"HasilPengadaan": {
+					"Index": {
+						"Judul": "HASIL PENGADAAN",
+						"No": "No",
+						"Tahun": "Tahun",
+						"Periode": "Periode",
+						"NomorPengadaan": "Nomor Pengadaan",
+						"Jenis": "Jenis",
+						"NamaPengadaan": "Nama Pengadaan",
+						"Kualifikasi": "Kualifikasi",
+						"Aksi": "Aksi"
+					},
+					"View": {
+						"Judul": "HASIL PENGADAAN",
+						"DataPengadaan": "Data Pengadaan",
+						"NoPengadaan": "No. Pengadaan",
+						"NamaPengadaan": "Nama Pengadaan",
+						"JenisPengadaan": "Jenis Pengadaan",
+						"MetodePengadaan": "Metode Pengadaan",
+						"Kualifikasi": "Kualifikasi Penyedia Barang/Jasa",
+						"BidangSubBidang": "Bidang / Sub Bidang Usaha",
+						"Keterangan": "Keterangan Pengadaan",
+						"DetailPelelangan": "Detail Pelelangan",
+						"NamaVendor": "Nama Vendor",
+						"PengambilanDokumen": "Pengambilan Dokumen",
+						"Penjelasan": "Penjelasan",
+						"Pemasukan": "Pemasukan",
+						"Pembukaan": "Pembukaan",
+						"EvaluasiAdmin": "Evaluasi Admin",
+						"Teknis": "Teknis",
+						"Harga": "Harga",
+						"PembuktianKualifikasi": "Pembuktian Kualifikasi",
+						"LogPenawaran": "Log Penawaran",
+						"NoLogPenawaran": "No",
+						"TanggalLogPenawaran": "Tanggal",
+						"NamaLogPenawaran": "Nama",
+						"HargaLogPenawaran": "Harga Final",
+						"UsulanCalonPemenang": "Usulan Calon Pemenang",
+						"NoUsulan": "No",
+						"NamaUsulan": "Nama",
+						"NilaiTeknisUsulan": "Nilai Teknis",
+						"NilaiHargaUsulan": "Nilai Harga",
+						"Pemenang": "Pemenang",
+						"NoPemenang": "No",
+						"NamaPemenang": "Nama",
+						"NilaiTeknisPemenang": "Nilai Teknis",
+						"NilaiHargaPemenang": "Nilai Harga"
+					}
+				},
+				"undangankualifikasi": {
+					"JUDUL": "Undangan Kualifikasi",
+					"KETERANGAN": "Undangan Kualifikasi menampilkan informasi Pengadaan yang mengundang Anda untuk mengikuti prose pengadaan tahap kualifikasi",
+					"SUBJUDUL": "Undangan Kualifikasi",
+					"index": {
+						"NO": "No",
+						"TGLUNDANGAN": "Tanggal Undangan",
+						"NAMAPENGADAAN": "Nama Pengadaan",
+						"KUALIFIKASI": "Kualifikasi",
+						"AKSI": "Aksi"
+					},
+					"detil": {
+						"DATAPENGADAAN": "Data Pengadaan",
+						"NOPENGADAAN": "Nomor Pengadaan",
+						"NAMAPENGADAAN": "Nama Pengadaan",
+						"JENISPENGADAAN": "Jenis Pengadaan",
+						"METODEPENGADAAN": "Metode Pengadaan",
+						"KUALIFIKASIVENDOR": "Kualifikasi Penyedia Barang / Jasa",
+						"MINIMALPENGALAMAN": "Minimal Pengalaman",
+						"MINIMALNILAIKONTRAK": "Besar Minimal Nilai Kontrak",
+						"JANGKATHNPENGALAMAN": "Range Tahun Pengalaman",
+						"BIDANGUSAHA": "Bidang - Sub Bidang Usaha",
+						"KETERANGAN": "Keterangan Pengadaan",
+						"MATERIALSUBJUDUL": "Rincian Kebutuhan Item",
+						"rincianmaterial": {
+							"NO": "No",
+							"NAMAMATERIAL": "Nama Item",
+							"SATUAN": "Satuan",
+							"JENIS": "Jenis Item",
+							"JUMLAH": "Jumlah"
+						},
+						"JASASUBJUDUL": "Rincian Kebutuhan Jasa",
+						"rincianjasa": {
+							"NO": "No",
+							"NAMAJASA": "Nama Jasa",
+							"SATUAN": "Satuan",
+							"JENIS": "Jenis Jasa",
+							"JUMLAH": "Jumlah"
+						},
+						"jadwalpengadaan": {
+
+						},
+						"DAFTAR": "Pendaftaran Pengadaan",
+						"KEMBALI": "Kembali"
+					},
+					"hasildaftar": {
+						"HASILPENDAFTARAN": "Sudah Terdaftar di Pengadaan",
+						"CETAK": "Cetak"
+					}
+				},
+				"pengumumankualifikasi": {
+					"JUDUL": "Pengumuman Kualifikasi",
+					"SUBJUDUL": "Data Pengumuman Kualifikasi",
+					"KETERANGAN1": "Tambah Evaluasi Teknis Sistem Gugur",
+					"KETERANGAN2": "Tambah Evaluasi Teknis Merit Point",
+					"TAMBAH": "Tambah",
+					"list": {
+						"NOMOR": "Nomor Pengadaan",
+						"NAMA": "Nama Pengadaan",
+						"POSISI": "Tahapan saat ini",
+						"CREATEDATE": "Tanggal Buat",
+						"AKSI": "Aksi",
+						"UNIT": "Unit",
+						"KUALIFIKASI": "Kualifikasi"
+					},
+					"btn": {
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan",
+						"DAFTAR": "Daftar",
+						"KIRIM": "Kirim"
+					},
+					"view": {
+						"TGLPEMASUKAN": "Tanggal Pemasukan",
+						"TELEPON": "Telepon",
+						"ALAMAT": "Alamat",
+						"JUMLAH": "jumlah",
+						"CREATED": "Created",
+						"AKSI": "Aksi",
+						"DATAPENYEDIABRGJASA": "Data Penyedia Barang dan Jasa",
+						"NMPENYEDIABRGJASA": "Nama Penyedia Barang dan Jasa",
+						"PENAWARANTELP": "Telpon",
+						"NILAITEKNIS": "Nilai Teknis",
+						"MATERIALSUBJUDUL": "Rincian Kebutuhan Item",
+						"rincianmaterial": {
+							"NO": "No",
+							"NAMAMATERIAL": "Nama Item",
+							"SATUAN": "Satuan",
+							"JENIS": "Jenis Item",
+							"JUMLAH": "Jumlah"
+						},
+						"JASASUBJUDUL": "Rincian Kebutuhan Jasa",
+						"rincianjasa": {
+							"NO": "No",
+							"NAMAJASA": "Nama Jasa",
+							"SATUAN": "Satuan",
+							"JENIS": "Jenis Jasa",
+							"JUMLAH": "Jumlah"
+						},
+						"jadwalpengadaan": {
+
+						}
+					},
+					"modal": {
+						"JUDUL": "SUDAH TERDAFTAR DI PENGADAAN",
+						"KETERANGAN": "Keterangan"
+					},
+					"hasildaftar": {
+						"HASILPENDAFTARAN": "Sudah Terdaftar di Pengadaan",
+						"CETAK": "Cetak"
+					}
+				},
+				"datakualifikasi": {
+					"JUDUL": "Data Kualifikasi",
+					"SUBJUDUL": "Data Kualifikasi",
+					"TAMBAH": "Tambah",
+					"list": {
+						"NOMOR": "Nomor Pengadaan",
+						"NAMA": "Nama Pengadaan",
+						"POSISI": "Tahapan saat ini",
+						"TANGGAL": "Tanggal Buat",
+						"AKSI": "Aksi",
+						"UNIT": "Unit",
+						"KUALIFIKASI": "Kualifikasi"
+					},
+					"btn": {
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan",
+						"DAFTAR": "Daftar",
+						"KIRIM": "Kirim"
+					},
+					"view": {
+						"TGLPEMASUKAN": "Tanggal Pemasukan",
+						"TELEPON": "Telepon",
+						"ALAMAT": "Alamat",
+						"JUMLAH": "jumlah",
+						"CREATED": "Created",
+						"AKSI": "Aksi",
+						"DATAPENYEDIABRGJASA": "Data Penyedia Barang dan Jasa",
+						"NMPENYEDIABRGJASA": "Nama Penyedia Barang dan Jasa",
+						"PENAWARANTELP": "Telpon",
+						"NILAITEKNIS": "Nilai Teknis",
+						"MATERIALSUBJUDUL": "Rincian Kebutuhan Item",
+						"rincianmaterial": {
+							"NO": "No",
+							"NAMAMATERIAL": "Nama Item",
+							"SATUAN": "Satuan",
+							"JENIS": "Jenis Item",
+							"JUMLAH": "Jumlah"
+						},
+						"JASASUBJUDUL": "Rincian Kebutuhan Jasa",
+						"rincianjasa": {
+							"NO": "No",
+							"NAMAJASA": "Nama Jasa",
+							"SATUAN": "Satuan",
+							"JENIS": "Jenis Jasa",
+							"JUMLAH": "Jumlah"
+						},
+						"auditor": {
+							"JUDUL": "Data Auditor",
+							"NOMOR": "Nomor Audit",
+							"TANGGAL": "Tanggal Audit",
+							"NAMA": "Nama Audit"
+						},
+						"keuangan": {
+							"JUDUL": "Data Kualifikasi Keuangan",
+							"TAHUN": "Tahun Keuangan",
+							"TANGGALUPDATE": "Tanggal Keuangan Update"
+						}
+					}
+				},
+				"datapenawaran": {
+					"JUDUL": "Data Penawaran",
+					"SUBJUDUL": "Data Penawaran",
+					"TAMBAH": "Tambah",
+					"list": {
+						"NOMOR": "Nomor Pengadaan",
+						"NAMA": "Nama Pengadaan",
+						"POSISI": "Tahapan saat ini",
+						"TANGGAL": "Tanggal Buat",
+						"AKSI": "Aksi",
+						"UNIT": "Unit",
+						"KUALIFIKASI": "Kualifikasi"
+					},
+					"btn": {
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan",
+						"DAFTAR": "Daftar",
+						"KIRIM": "Kirim"
+					},
+					"view": {
+						"TGLPEMASUKAN": "Tanggal Pemasukan",
+						"TELEPON": "Telepon",
+						"ALAMAT": "Alamat",
+						"JUMLAH": "jumlah",
+						"CREATED": "Created",
+						"AKSI": "Aksi",
+						"DATAPENYEDIABRGJASA": "Data Penyedia Barang dan Jasa",
+						"NMPENYEDIABRGJASA": "Nama Penyedia Barang dan Jasa",
+						"PENAWARANTELP": "Telpon",
+						"NILAITEKNIS": "Nilai Teknis",
+						"MATERIALSUBJUDUL": "Rincian Kebutuhan Material",
+						"rincianmaterial": {
+							"NO": "No",
+							"NAMAMATERIAL": "Nama Material",
+							"SATUAN": "Satuan",
+							"JENIS": "Jenis Material",
+							"JUMLAH": "Jumlah"
+						},
+						"JASASUBJUDUL": "Rincian Kebutuhan Jasa",
+						"rincianjasa": {
+							"NO": "No",
+							"NAMAJASA": "Nama Jasa",
+							"SATUAN": "Satuan",
+							"JENIS": "Jenis Jasa",
+							"JUMLAH": "Jumlah"
+						},
+						"auditor": {
+							"JUDUL": "Data Auditor",
+							"NOMOR": "Nomor Audit",
+							"TANGGAL": "Tanggal Audit",
+							"NAMA": "Nama Audit"
+						},
+						"keuangan": {
+							"JUDUL": "Data Kualifikasi Keuangan",
+							"TAHUN": "Tahun Keuangan",
+							"TANGGALUPDATE": "Tanggal Keuangan Update"
+						}
+					}
+				}
+			},
+			"manajemenvendor": {
+				"blacklistvendor": {
+					"JUDULBLACKLIST": "Vendor Blacklist",
+					"daftar_pelanggaran": "Daftar Pelanggaran",
+					"jenis_pelanggaran": "Jenis Pelanggaran",
+					"durasi_blacklist": "Rekomendasi Durasi Blacklist",
+					"judul": " Blacklist Vendor",
+					"subjudul": "Daftar Blacklist Vendor",
+					"keterangan": "",
+					"SIMPAN": "Simpan",
+					"list": {
+						"NOMOR": "No",
+						"nama_vendor": "Nama Vendor",
+						"jangka_waktu": "Jangka Waktu",
+						"tanggal_awal": "Tanggal Awal",
+						"tanggal_akhir": "Tanggal Akhir",
+						"AKSI": "Aksi"
+					},
+					"view":	{
+						"subjudul_vendor": "Data Vendor",
+						"kode_vendor": "Kode Vendor",
+						"nama_vendor": "Nama Vendor",
+						"cari_vendor": "Cari Vendor",
+						"npwp_vendor": "NPWP Vendor",
+						"daftar_pelanggaran": "Daftar Pelanggaran",
+						"jenis_pelanggaran": "Jenis Pelanggaran",
+						"rekomendasi_durasi": "Rekomendasi Durasi Blacklist",
+						"aksi": "Aksi",
+						"keterangan_blacklist": "Keterangan Blacklist",
+						"durasi_blacklist": "Durasi Blacklist",
+						"catatan_blacklist": "Catatan Blacklist",
+						"catatan_untuk_vendor": "Catatan Untuk Vendor",
+						"berkas": "Berkas",
+						"hari": "Hari",
+						"bulan": "Bulan",
+						"tahun": "Tahun",
+						"upload_dokumen":"Upload Dokumen",
+						"antrian":"Antrian",
+						"panjang_antrian":"Panjang Antrian",
+						"progress_antrian":"Progress Antrian:",
+						"ukuran": "Ukuran",
+						"progress": "Progress",
+						"view_modal": {
+							"judul":"Daftar Vendor",
+							"id_vendor":"ID Vendor",
+							"nama_vendor":"Nama Vendor",
+							"npwp":"NPWP",
+							"judul_alasan":"Daftar Alasan Blacklist",
+							"keterangan":"Keterangan",
+							"rekomendasi_jangka_waktu":"Rekomendasi Jangka Waktu"
+						},
+						"tanggal_mulai_blacklist":"Tanggal Mulai Blacklist",
+						"tanggal_akhir_blacklist":"Tanggal Akhir Blacklist",
+						"unblacklist_vendor":"Unblacklist Vendor",
+						"catatan_unblacklist":"Catatan Unblacklist",
+						"sedang_dalam_proses":"Sedang Dalam Proses Approval Unblacklist"
+					},
+					"error":{
+						"data_vendor":"Data vendor tidak boleh kosong!",
+						"alasan_blacklist":"Alasan blacklist harus dipilih!",
+						"durasi_kosong":"Durasi blacklist tidak boleh kosong!",
+						"durasi_nol":"Durasi harus lebih dari nol!",
+						"jangka_waktu":"Jangka waktu blacklist harus dipilih!",
+						"catatan":"Catatan blacklist tidak boleh kosong!",
+						"catatan_vendor":"Catatan blacklist untuk vendor tidak boleh kosong!",
+						"file_blacklist": "File blacklist harus dipilih!",
+						"file":"File belum diupload"
+					}
+				},
+				"unblacklistvendor": {
+					"JUDUL": "Unblacklist Vendor",
+					"KETERANGANUNBLACKLIST": "Keterangan Unblacklist",
+					"CATATANUNBLACKLIST": "Catatan Unblacklist ",
+					"CATATANUNTUKVENDOR": "Catatan Untuk Vendor",
+					"BERKAS": "Berkas"
+				},
+				"slaregistrasivendor": {
+					"judul": "Vendor Management",
+					"subjudul": "Data Admin SLA Vendor Registrasi",
+					"KETERANGAN": "",
+					"list": {
+						"vendor": "Nama Vendor",
+						"proses": "Nama Proses",
+						"tanggal_proses": "Tanggal Proses"
+					},
+					"view": {
+						"subjudul": "Admin SLA Vendor Registrasi Detail",
+						"vendor": "Nama Vendor",
+						"proses": "Nama Proses",
+						"tahapan": "Tahapan",
+						"tanggal_awal": "Tanggal Awal",
+						"tanggal_akhir": "Tanggal Akhir",
+						"sla": "SLA",
+						"tanggal_realisasi": "Tanggal Realisasi",
+						"jumlah_hari": "Jumlah Hari",
+						"ubah": "Ubah"
+					}
+				},
+				"rekaphistoryvendor": {
+					"judul": "Manajemen Vendor",
+					"subjudul": "Data Rekap History Vendor",
+					"keterangan": "",
+					"list": {
+						"nama_vendor": "Nama Vendor",
+						"pernah_mengikuti_pengadaan": "Pernah Mengikuti Pengadaan",
+						"sedang_mengikuti_pengadaan": "Sedang Mengikuti Pengadaan",
+						"menang_pengadaan": "Menang Pengadaan"
+					},
+					"view": {
+						"subjudul_pernah": "Pernah Mengikuti Pengadaan",
+						"subjudul_sedang": "Sedang Mengikuti Pengadaan",
+						"subjudul_menang": "Menang Pengadaan", 
+						"list": {
+							"nama_pengadaan": "Nama Pengadaan",
+							"tanggal_pengadaan": "Tanggal Pengadaan",
+							"nilai_pengadaan": "Nilai Pengadaan",
+							"hingga_tahapan": "Hingga Tahapan",
+							"nomor_kontrak": "Nomor Kontrak",
+							"nilai_kontrak": "Nilai Kontrak"
+						}
+					}
+				},
+				"penilaiankerjarekanan": {
+					"JUDUL": "Penilaian Kerja Rekanan",
+					"SUBJUDUL": "Data Penilaian Kerja Rekanan",
+					"PENCARIANDATAREKANAN": "Pencarian Data Rekanan",
+					"KETERANGAN": "",
+					"SIMPAN": "Simpan",
+					"list": {
+						"NOMORREKANAN": "Nomor Rekanan",
+						"SAMPAIDENGAN": "Sampai Dengan",
+						"NAMAREKANAN": "Nama Rekanan",
+						"BIDANGUSAHA": "Bidang Usaha",
+						"SUBBIDANGUSAHA": "Sub Bidang Usaha",
+						"PERNAHDINILAISEBELUMNYA": "Pernah Dinilai Sebelumnya",
+						"HASILPENCARIANDATAREKANAN": "Hasil Pencarian Data Rekanan"
+					},
+					"btn": {
+						"BUATPENGADAAN": "Tambah",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					},
+					"tambah": {
+						"TAMBAH": " TAMBAH",
+						"UBAH": " UBAH",
+						"NAMA": "Nama",
+						"KEMBALI": "Kembali",
+						"SIMPAN": "Simpan"
+					}
+				}
+			},
+			"manajemenkontrak": {
+				"buatkontrak": {
+					"list": {
+						"judul": "BUAT KONTRAK",
+						"subjudul": "Daftar Pelelangan",
+						"no": "No",
+						"nopengadaan": "No. Pengadaan",
+						"namapengadaan": "Nama Pengadaan",
+						"namavendor": "Nama Vendor",
+						"aksi": "Aksi"
+					}
+				},
+				"kontrak": {
+					"panelpelelangan": {
+						"judul": "Data Pelelangan",
+						"periode": "Periode",
+						"tahun": "Tahun",
+						"sistempengadaan": "Sistem Pengadaan",
+						"nomorpelelangan": "Nomor Pelelangan"
+					},
+					"panelitemdanjasa": {
+						"judulitem": "Harga Perolehan Untuk Item",
+						"juduljasa": "Harga Perolehan Untuk Jasa",
+						"totalmaterial": "Total Item",
+						"totaljasa": "Total Jasa",
+						"totalhargatermasukpajak": "Total Harga Perolehan Termasuk Pajak",
+						"no": "No",
+						"NamaMaterial": "Nama Item",
+						"satuan": "Satuan",
+						"jumlah": "Jumlah",
+						"hpssatuan": "HPS Satuan",
+						"hpstotal": "HPS Total",
+						"nilaiperolehan": "Nilai Perolehan (Satuan)"
+					},
+					"paneldatakontrak": {
+						"judul": "Data Kontrak",
+						"nokontrak": "No Kontrak",
+						"nomorsuratpenawaran": "Nomor Surat Penawaran",
+						"tanggalsuratpenawaran": "Tanggal Surat Penawaran",
+						"nomorsuratkeputusanpemenang": "Nomor Surat Keputusan Pemenang / Penunjukan atau Memo Penetapan Penyedia",
+						"tanggalsuratkeputusanpemenang": "Tanggal Surat Keputusan Pemenang / Penunjukan atau Memo Penetapan Penyedia",
+						"pihak1": "Pihak 1 (Panitia)",
+						"pihak2": "Pihak 2 (Penyedia)",
+						"nilaikontrak": "Nilai Kontrak",
+						"kursdollar": "Kurs Dollar",
+						"tanggalspk": "Tanggal SPK",
+						"tanggalmulaikontrak": "Tanggal Mulai Kontrak",
+						"tanggalselesaikontrak": "Tanggal Selesai Kontrak",
+						"tanggalbataspengiriman": "Tanggal Batas Pengiriman",
+						"namajaminanpelaksanaan": "Nama Jaminan Pelaksanaan",
+						"nilaijaminanpelaksanaan": "Nilai Jaminan Pelaksanaan",
+						"pinalty": "Pinalty",
+						"tanggalbatasjaminan": "Tanggal Batas Jaminan",
+						"templatekontrak": "Template Kontrak",
+						"buttongenerate": "GENERATE"
+					},
+					"paneltermin": {
+						"judul": "Termin",
+						"buttonTambah": "Tambah",
+						"no": "No",
+						"tanggal": "Tanggal",
+						"tipe": "Tipe",
+						"keterangan": "Keterangan",
+						"unit": "Unit",
+						"value": "Value",
+						"exchangerate": "Exchange Rate",
+						"aksi": "Aksi"
+					},
+					"FileKontrak": {
+						"Judul": "File Kontrak",
+						"UploadFilekontrak": "Upload File Kontrak"
+					},
+					"HistoryAddendum": {
+						"Judul": "History Addendum",
+						"No": "No",
+						"TanggalAddendum": "Tanggal Addendum",
+						"DiubahOleh": "Diubah Oleh",
+						"NilaiKontrak": "Nilai Kontrak (Rp)",
+						"Aksi": "Aksi"
+					}
+				},
+				"daftarkontrak": {
+					"JUDUL": "DATA KONTRAK",
+					"SUBJUDUL": "Daftar Kontrak",
+					"ButtonAddendum": "ADDENDUM",
+					"ButtonSynchronisasi": "SINKRONISASI",
+					"ButtonCetak": "CETAK",
+					"list": {
+						"no": "No",
+						"namapengadaan": "Nama Pengadaan",
+						"TGLKONTRAK": "Tgl. Kontrak",
+						"NOMORKONTRAK": "Nomor Kontrak",
+						"namavendor": "Nama Vendor",
+						"NILAIKONTRAK": "Nilai Kontrak",
+						"STATUS": "Status",
+						"AKSI": "Aksi"
+					}
+				},
+				"btn": {
+					"kembali": "Kembali",
+					"simpan": "Simpan"
+				}
+			},
+			"UbahDataUser": {
+				"Judul": "Ubah Password",
+				"SubJudul": "Ubah Password"
+			},	
+			"RegistrasiVendor": {
+				"Judul": "REGISTRASI VENDOR",
+				"SubJudul": "DATA VENDOR",
+				"ExtJudul": "*) Dengan mengisi formulir registrasi ini anda telah menyetujui TERM OF CONDITION E-PROCUREMENT",
+				"buttonBatal": "BATAL",
+				"buttonLanjut": "LANJUT",
+				"kembali": "Kembali",
+				"simpan": "Simpan",
+				"before": "Sebelumnya",
+				"edit": " - EDIT DATA",
+				"data_login": {
+					"judul": "Data Login",
+					"nama_pengguna": "Nama Pengguna",
+					"user_id": "ID User",
+					"password": "Password",
+					"password_baru": "Password Baru",
+					"retype_password": "Retype Password",
+					"logo_user": "Logo",
+					"head_image": "Header Image",
+					"buttonCheckUserID": "Check User ID",
+					"catatan1": "*) User ID and Password Akan Digunakan Pada Saat LOG IN",
+					"catatan2": "*) Password Minimal 8 Karakter, Kombinasi Huruf Besar, Huruf Kecil dan Angka",
+					"mata_uang": "Mata Uang",
+					"password_salah":"Password yang dimasukkan salah, lihat ketentuan dibawah",
+					"upload_ext":"Extensi yang diperbolehkan hanya png, jpeg, dan jpg",
+					"upload_dok": "Extensi yang diperbolehkan hanya xls, xlsx, doc, docx, pdf, jpg, jpeg dan zip",
+					"upload_size":"Ukuran file tidak boleh lebih dari"
+				},
+				"DataPerusahaan": {
+					"judul": "Data Perusahaan Vendor",
+					"judul_draft": "Data Perusahaan Vendor(DRAFT)",
+					"judul_draft_approve": "Data Perusahaan Vendor(MENUNGGU PERSETUJUAN)",
+					"FormDataPerusahaan": "Data Perusahaan",
+					"FormDataUtama": "Data Utama",
+					"PKPNonPKP": "PKP / Non PKP",
+					"buttonCheckPKP": "Check PKP",
+					"buttonCheckNPWP": "Check NPWP",
+					"title": "Title",
+					"area_bisnis": "Area Bisnis",
+					"kualifikasi": "Kualifikasi",
+					"mendaftardiunit": "Mendaftar di Unit",
+					"bussinessArea": " Bussiness Area ",
+					"NamaPerusahaan": "Nama Perusahaan",
+					"NPWPPerusahaan": "NPWP Perusahaan",
+					"namaNPWP": "Nama NPWP",
+					"alamatNPWP": "Alamat NPWP",
+					"provinsiNPWP": "Provinsi NPWP",
+					"kotaNPWP": "Kota NPWP",
+					"NamaSingkatan": "Nama Singkatan",
+					"FormAlamatPerusahaan": "Alamat Perusahaan",
+					"AlamatPerusahaan": "Alamat Perusahaan",
+					"kota": "Kota",
+					"pobox": "Po Box",
+					"kodepos": "Kode Pos",
+					"provinsi": "Provinsi",
+					"TeleponPerusahaan": "Telepon Perusahaan",
+					"NoFax": "No. Fax",
+					"Email": "Email",
+					"Website": "Website",
+					"FormContactPerson": "Contact Person",
+					"NamaContactPerson": "Nama",
+					"NoHPContactPerson": "No. HP",
+					"EmailContactPerson": "Email",
+					"NoKTPContactPerson": "No. KTP",
+					"NoKKContactPerson": "No. KK",
+					"FormDataPenanggungJawab": "Data Penanggung Jawab",
+					"NoPenanggungJawab": "No",
+					"NamaPenanggungJawab": "Nama",
+					"JabatanPenanggungJawab": "Jabatan",
+					"EmailPenanggungJawab": "Email",
+					"AksiPenanggungJawab": "Aksi",
+					"PilihUnit": "Pilih Unit",
+					"VendorComment": "Deskripsi",
+					"JumlahKaryawan": "Jumlah Karyawan",
+					"nomorAktaPendirian": "Nomor Akta Pendirian",
+					"TanggalBerdiri": "Tanggal Berdiri",
+					"no_kk": "No. KK",
+					"informasi":{
+							"email":"Struktur Email anda SALAH (ex.procurement@promise.co.id)",
+							"pkp_ada":"Nomor PKP sudah pernah ada, Silahkan input yang Baru",
+							"pkp_baru":"Nomor PKP Baru, silahkan lanjutkan",
+							"npwp_ada":"Nomor NPWP sudah pernah ada, Silahkan input yang Baru",
+							"npwp_baru":"Nomor NPWP Baru, silahkan lanjutkan",
+							"error_data":"Tolong Periksa Kembali Data Anda!"
+							}
+				},
+				"DataBank": {
+					"judul": "Data Bank",
+					"judul_draft": "Data Bank(DRAFT)",
+					"judul_draft_approve": "Data Bank(MENUNGGU PERSETUJUAN)",
+					"view":{
+                    	"subjudul_tambah":"Tambah Data Bank",
+                    	"subjudul_ubah"	 :"Ubah Data Bank"
+                    },
+					"MasterBank": "Tambah Data Bank",
+					"FormDataBank": "Data Bank",
+					"Tambah": "Tambah",
+					"No": "No",
+					"NamaBank": "Nama Bank",
+					"CabangBank": "Cabang Bank",
+					"AlamatBank": "Alamat Bank",
+					"Kota": "Kota",
+					"Negara": "Negara",
+					"NomorAccount": "Nomor Rekening",
+					"NamaPemegangAccount": "Nama Nasabah",
+					"MataUang": "Mata Uang",
+					"Aksi": "Aksi",
+					"CariBank": "Cari Bank",
+					"HapusData": "Hapus Data",
+					"Alert": "Anda Yakin Ingin Menghapus Item",
+					"Alert2": "Atas Nama",
+					"ButtonOk": "OKE",
+					"ButtonCancel": "BATAL"
+				},
+				"DataSegmentasi": {
+					"judul": "SETTING VENDOR",
+					"subjudul": "Data Segmentasi",
+					"subjudul_draft": "Data Segmentasi(DRAFT)",
+					"subjudul_draft_approve": "Data Segmentasi(MENUNGGU PERSETUJUAN)",
+					"bidang_usaha": "Bidang Usaha",
+					"subbidang": "Sub Bidang",
+					"pilih": "Pilih",
+					"asosiasi": "Asosiasi",
+					"tanggal_mulai": "Tanggal Mulai",
+					"tanggal_berakhir": "Tanggal Berakhir",
+					"view": {
+							"subjudul_tambah": "Tambah Data Segmentasi",
+							"subjudul_ubah": "Ubah Data Segmentasi",
+							"bidang_usaha": "Bidang Usaha",
+							"subbidang": "Sub Bidang",
+							"pilih": "Pilih",
+							"asosiasi": "Asosiasi",
+							"tanggal_mulai": "Tanggal Mulai",
+							"tanggal_berakhir": "Tanggal Berakhir"
+							},
+					"error":{
+							"error_subbidang":"Sub bidang belum dipilih!"
+							}
+				},
+				"DataDokumen": {
+					"judul": "Data Dokumen Vendor",
+					"judul_draft": "Data Dokumen Vendor(DRAFT)",
+					"judul_draft_approve": "Data Dokumen Vendor(MENUNGGU PERSETUJUAN)",
+					"subjudul": "Data Dokumen",
+					"FormDataDokumen": "Dokumen Vendor",
+					"Subject": "Subject",
+					"NomorDokumen": "Nomor Dokumen",
+					"NamaDokumen": "Nama Dokumen",
+					"AlamatDokumen": "Alamat Dokumen",
+					"TanggalTerbit": "Tanggal Terbit",
+					"TanggalBerakhir": "Tanggal Berakhir",
+					"UploadFile": "Unggah File",
+					"ProsesUpload": "Upload Semua File",
+					"OldFile": "Nama File Lama",
+					"HistorySKB": "Riwayat Surat Keterangan Bebas",
+					"SubJudul1": "Dokumen Legal Dan Administrasi",
+					"VendorRegistrasiForm": "Vendor Registrasi Form",
+					"SuratKeteranganBebas": "Surat Keterangan Bebas PPh",
+					"SalinanAktePendirian": "Salinan Akta Pendirian dan Anggaran Dasar Terakhir Perusahaan",
+					"SalinanTandaDaftar": "Salinan Tanda Daftar Perusahaan (TDP)",
+					"SalinanSuratIjinUsaha": "Salinan Surat Ijin Usaha (SIUP / SIUJK)",
+					"dokumenPKS": "Dokumen PKS",
+					"dokumenSPR": "Dokumen SPR",
+					"dokumenSPB": "Dokumen SPB",
+					"SubJudul2": "Dokumen Administrasi",
+					"BuktiFisikPerusahaan": "Bukti Fisik Perusahaan",
+					"SubJudul3": "Dokumen Teknis",
+					"DokumenQuality": "Dokumen Quality yang dimiliki",
+					"DokumenTeknik": "Dokumen Teknik",
+					"Checklist": "Valid",
+					"SubJudul4": "Dokumentasi SKD",
+					"informasi":{
+							"error_pks":"Dokumen PKS tidak boleh kosong",
+							"error_data":"Nama Dokumen (TDP, Bukti Fisik Perusahaan atau Dokumen Teknik) tidak boleh kosong"
+							}
+				},
+				"Peralatan": {
+					"judul": "Data Peralatan Vendor",
+					"subjudul": "Data Peralatan",
+					"judul_draft": "DATA PERALATAN(DRAFT)",
+          			"judul_draft_approve": "DATA PERALATAN (MENUNGGU PERSETUJUAN)",
+					"subjudul_tambah": "Tambah Data Peralatan",
+					"subjudul_ubah": "Ubah Data Peralatan",
+					"FormPeralatan": "Peralatan / Asset",
+					"Tambah": "Tambah",
+					"No": "No",
+					"Jenis": "Jenis",
+					"Jumlah": "Jumlah",
+					"Kapasitas": "Kapasitas",
+					"MerkTipe": "Merk / Tipe",
+					"TahunPembuatan": "Tahun Pembuatan",
+					"Kondisi": "Kondisi",
+					"Lokasi": "Lokasi",
+					"BuktiKepemilikan": "Bukti Kepemilikan",
+					"DokumenBuktiKepemilikan": "Dokumen Bukti Kepemilikan",
+					"GambarPeralatanAsset": "Gambar Peralatan / Asset",
+					"Aksi": "Aksi",
+					"HapusData": "Hapus Data",
+					"Alert": "Anda Yakin Ingin Menghapus Item",
+					"ButtonOk": "OKE",
+					"error_peralatan": "Kolom ini tidak boleh kosong (Min=0 dan Max=1 Juta)",
+					"error_tahun": "Tahun melebihi batas (1950 s/d 2020)",
+					"ButtonCancel": "BATAL"
+				},
+				"DataKeuangan": {
+					"judul": "Data Keuangan Vendor",
+					"judul_draft": "DATA KEUANGAN (DRAFT)",
+          			"judul_draft_approve": "DATA KEUANGAN (MENUNGGU PERSETUJUAN)",
+					"list":{
+						"tahun_keuangan": "Tahun Keuangan",
+						"kas":"Kas",
+						"total_aktiva":"Total Aktiva",
+						"total_kewajiban":"Total Kewajiban",
+						"rugi_laba":"Rugi Laba",
+						"aktiva_lancar":"Aktiva Lancar",
+						"hutang_lancar":"Hutang Lancar",
+						"rasio_likuiditas":"Rasio Likuiditas"						
+					},
+					"view":{
+						"subjudul_tambah":"Tambah Data Keuangan",
+						"subjudul_ubah":"Ubah Data Keuangan",
+						"subjudul1":"Data Auditor",
+						"nomor_audit": "Nomor Audit",
+						"tanggal_audit": "Tanggal Audit",
+						"nama_audit": "Nama Audit",
+						"subjudul2": "Data Keuangan Perusahaan",
+						"tahun_keuangan": "Tahun Keuangan",
+						"aktiva": "Aktiva",
+						"I": "Aktiva Lancar, Terdiri Dari :",
+						"kas":"Kas",
+						"bank": "Bank",
+						"total_piutang": "Total Piutang",
+						"persediaan_barang": "Persediaan Barang",
+						"pekerjaan_dalam_proses": "Pekerjaan Dalam Proses",
+						"II": "Aktiva Tetap, Terdiri Dari :",
+						"peralatan_dan_mesin": "Peralatan dan Mesin",
+						"inventaris": "Inventaris",
+						"gedung": "Gedung-Gedung",
+						"III": "Aktiva Lainnya (III)",
+						"pasiva": "Pasiva",
+						"IV": "Hutang Jangka Pendek, Terdiri Dari :",
+						"hutang_dagang": "Hutang Dagang",
+						"hutang_pajak": "Hutang Pajak",
+						"hutang_lainnya": "Hutang Lainnya",
+						"V": "Hutang Jangka Panjang",
+						"VI": "Kekayaan Bersih (I + II + III) - (IV + V)"
+					},
+					"error":{
+						"aktiva_blum_lengkap":"Data aktiva belum lengkap",
+						"pasiva_blum_lengkap":"Data pasiva belum lengkap"
+					}
+				},
+				"DataSertifikat": {
+					"SubJudul": "Data Sertifikat",
+					"NomorSertifikat": "Nomor Sertifikat",
+					"TanggalAwal": "Tanggal Awal",
+					"TanggalAkhir": "Tanggal Akhir",
+					"Status": "Status",
+					"CetakSertifikat": "Cetak Sertifikat",
+					"PerpanjangSertifikat": "Perpanjang Sertifikat",
+					"BatalPerpanjangSertifikat": "Batal Perpanjang Sertifikat",
+					"FormPermintaanPerpanjangan": "Form Permintaan Perpanjangan Sertifikat",
+					"PermintaanPerpanjangan": "Permintaan Perpanjangan Sertifikat"
+				},
+				"sertifikatvendor": {
+					"judul": "Vendor Management",
+					"subjudul": "Data Sertifikat Vendor",
+					"nama_rekanan": "Nama Rekanan",
+					"status_sertifikat": "Status Sertifikat",
+					"list":{
+						"nama_vendor": "Nama Vendor",
+						"email": "E-Mail",
+						"nomor_sertifikat": "Nomor Sertifikat",
+						"tanggal_terbit": "Tanggal Terbit",
+						"tanggal_berakhir": "Tanggal Berakhir"
+					},
+					"view":{
+						"subjudul": "Riwayat Data Sertifikat Vendor",
+						"nama_rekanan": "Nama Rekanan",
+						"nomor_sertifikat": "Nomor Sertifikat",
+						"tanggal_mulai": "Tanggal Mulai",
+						"tanggal_berakhir": "Tanggal Berakhir"
+					}
+				},
+				"datapengalaman": {
+			          "judul": "Data Pengalaman",
+			          "judul_draft": "Data Pengalaman(DRAFT)",
+			          "judul_draft_approve": "Data Pengalaman(MENUNGGU PERSETUJUAN)",
+			          "tanpa_pengalaman": "Tanpa Pengalaman",
+			          "aksi": "Aksi",
+			          "judul1": "Data Pengalaman",
+			          "judul2": "Daftar Pelelangan Aktif selama 5 tahun terakhir",
+			          "judul3": "Daftar Mitra Dagang / Mitra Usaha",
+			          "judul4": "Daftar Pekerjaan yang sedang berjalan",
+			          "No": "No",
+			          "nama": "Nama",
+			          "alamat": "Alamat",
+			          "bidang_usaha": "Bidang Usaha",
+			          "mulai_kerjasama": "Mulai Kerjasama",
+			          "nilai_kontrak": "Nilai Kontrak",
+			          "bukti_kerjasama": "Bukti Kerjasama",
+			          "HapusData": "Hapus Data",
+			          "Alert1": "Anda Yakin Ingin Menghapus Item",
+			          "Alert2": "Dari Jenis",
+			          "ButtonOk": "OKE",
+			          "ButtonCancel": "BATAL",
+			          "error":{
+			            "nama_sama": "Nama Sudah Ada"
+			            
+			          },
+			          "view": {
+			            "subjudul_tambah_pelanggan": " Tambah Data Pelanggan",
+			            "subjudul_tambah_mitra": "Tambah Data Mitra",
+			            "subjudul_tambah_inprogress": "Tambah Data Pekerjaan Berjalan",
+			            "subjudul_ubah_pelanggan": " Ubah Data Pelanggan",
+			            "subjudul_ubah_mitra": "Ubah Data Mitra",
+			            "subjudul_ubah_inprogress": "Ubah Data Pekerjaan Berjalan",
+			            "nama": "Nama",
+			            "Judul": "Pengalaman Pekerjaan",
+			            "nama_pekerjaan": "Nama Pekerjaan",
+			            "lokasi_pekerjaan": "Lokasi Pekerjaan",
+			            "bidang_usaha": "Bidang Usaha",
+			            "pilih_bidang_usaha": "Pilih Bidang Usaha...",
+			            "mulai_kerjasama": "Mulai Kerjasama",
+			            "nilai_kontrak": "Nilai Kontrak",
+			            "bukti_kerjasama": "Bukti Kerjasama"
+			          }
+			      }
+			}
+		}
+	},
+	"sidebar": {
+		"heading": {
+			"HEADER": "Navigasi Utama"
+		},
+		"nav": {
+			"DASHBOARD": "Home",
+			"CARDS": "Kartu",
+			"DOCUMENTATION": "Dokumentasi",
+			"promise": {
+				"PENGADAAN": "Pengadaan",
+				"JADWALPENGADAAN": "Jadwal Pengadaan",
+				"JENISPENGADAAN": "Jenis Pengadaan",
+				"METODEPENGADAAN": "Metode Pengadaan",
+				"PEMASUKANPENAWARAN": "Pemasukan Penawaran",
+				"MPDP": "Metode Penyampaian Dokumen Pengadaan",
+				"JABATAN": "Jabatan",
+				"ITEMTYPE": "Item Type",
+				"SATUAN": "Satuan",
+				"KRITERIAADMINISTRASI": "Kriteria Administrasi",
+				"KRITERIATEKNIS": "Kriteria Teknis",
+				"PRIZE": "Conditional Price",
+				"ALURPENGADAAN": "Alur Pengadaan",
+				"ORGANISASI": "Organisasi",
+				"JENISPAJAK": "Jenis Pajak",
+				"JENISPENAWARAN": "Jenis Penawaran",
+				"KATEGORIPENGADAAN": "Kategori Pengadaan",
+				"KUALIFIKASIPENGADAAN": "Kualifikasi Pengadaan",
+				"KUALIFIKASIVENDOR": "Kualifikasi Vendor",
+				"MATAUANG": "Mata Uang",
+				"METODEPENAWARANHARGA": "Metode Penawaran Harga",
+				"SISTEMEVALUASIPENAWARAN": "Sistem Evaluasi Penawaran",
+				"SUBBIDANGUSAHA": "Sub Bidang Usaha",
+				"TAHAPAN": "Tahapan",
+				"TERMINKONTRAK": "Termin Kontrak",
+				"VENDORREQUIREMENT": "Vendor Requirement",
+				"BIDANGUSAHA": "Bidang Usaha",
+				"REGJADWALTP": "Registrasi Jadwal Tahapan Pengadaan",
+				"KONDISIPENGADAAN": "Kondisi Pengadaan",
+				"PELAKSANAPENGADAAN": "Pelaksana Pengadaan",
+				"EMAILNOTIF": "Email Notifikasi",
+				"USER": "User",
+				"PEMBUATKEPUTUSAN": "Pembuat Keputusan",
+				"MENU": "Menu",
+				"ROLEMENU": "Role Menu",
+				"AKSI": "Aksi",
+				"MENUAKSI": "Menu Aksi"
+			},
+			"component": {
+				"COMPONENTS": "Komponen",
+				"BUTTON": "Tombol",
+				"NOTIFICATION": "Notifikasi",
+				"BOOTSTRAPUI": "Bootstrap UI",
+				"PANEL": "Panels",
+				"PORTLET": "Portlet",
+				"GRID": "Grid",
+				"GRID_MASONRY": "Grid Masonry",
+				"TYPO": "Typography",
+				"PALETTE": "Palette"
+			},
+			"icon": {
+				"ICON": "Icons",
+				"FEATHER": "Feather Icons",
+				"FA": "Font Awesome",
+				"CLIMA": "Climacons",
+				"WEATHER": "Weather Icons"
+			},
+			"form": {
+				"FORM": "Forms",
+				"INPUT": "Inputs",
+				"VALIDATION": "Validasi",
+				"WIZARD": "Wizard"
+			},
+			"CHART": "Charts",
+			"table": {
+				"TABLE": "Tables",
+				"RESPONSIVE": "Responsive"
+			},
+			"map": {
+				"MAP": "Maps",
+				"GOOGLE": "Google Map",
+				"VECTOR": "Vector Map"
+			},
+			"app": {
+				"APP": "Apps",
+				"MAILBOX": "Mailbox",
+				"CALENDAR": "Calendar",
+				"TASK": "Tasks"
+			},
+			"pages": {
+				"PAGES": "Pages",
+				"LOGIN": "Login",
+				"REGISTER": "Register",
+				"RECOVER": "Recover password",
+				"LOCK": "Lock",
+				"BLANK": "Blank Template",
+				"INVOICE": "Invoice",
+				"PRICE": "Price Table",
+				"SEARCH": "Search"
+			}
+		}
+	},
+	"template": {
+		"button": {
+			"simpan": "Simpan",
+			"kembali": "Kembali",
+			"tambah": "Tambah",
+			"ubah": "Ubah",
+			"hapus": "Hapus",
+			"batal": "Batal",
+			"cari" : "Cari",
+			"tutup"	: "Tutup",
+			"upload" :"Upload",
+			"synchronize" :"Synchronize",
+			"save_as_draft": "Save as Draft",
+			"send_approval": "Send Approval",
+			"generate": "Generate",
+			"resend": "Resend"
+			
+		},
+		"error": {
+			"field_kosong": "Kolom ini tidak boleh kosong",
+			"limit_ktp":"Nomor KTP harus 16 digit",
+			"limit_kk":"Nomor KK harus 16 digit",
+			"upload_belum": "file belum di upload!",
+			"upload_belum_selesai":"File belum selesai di upload"
+		},
+		"tabel": {
+			"nomor": "Nomor",
+			"aksi": "Aksi",
+			"nama": "Nama"
+		},
+		"informasi": {
+			"simpan_sukses": "Data berhasil disimpan!",
+			"hapus_sukses": "Data berhasil dihapus!",
+			"kirim_approval":"Meminta persetujuan berhasil!",
+			"gagal": "Terjadi Kesalahan Pada Sistem!",
+			"upload": "Ada file yang belum di upload!",			
+			"upload_sukses":"File berhasil di upload",
+			"upload_gagal":"File gagal di upload",
+			"upload_dok": "Extensi yang diperbolehkan hanya xls, xlsx, doc, docx, pdf, jpg, jpeg dan zip",
+			"upload_size": "Max size yang di perbolehkan hanya 10MB",
+			"informasi":"Informasi"
+		},
+		"konfirmasi":{
+			"message" :"Apakah anda yakin untuk menyimpan data?",
+			"hapus" :"Apakah anda yakin ingin menghapus ?",
+			"konfirmasi":"Konfirmasi"
+		}
+	},
+	"tablelog": {
+		"judul": "Table Log",
+		"indexlist": {
+			"nomor": "Nomor",
+			"nama_user": "Nama User",
+			"aksi": "Aksi"
+		},
+		"viewlist": {
+			"nama_kolom": "Nama Kolom",
+			"nama_tabel": "Nama Table",
+			"nilai_awal": "Nilai Awal",
+			"nilai_baru": "Nilai Baru",
+			"nama_user": "Nama User",
+			"waktu": "Waktu",
+			"action_type": "Action Type",
+			"Detail": "Detail"
+		},
+		"sort": {
+			"bulan": "Bulan",
+			"tahun": "Tahun"
+		}
+	},
+	"barang": {
+		"judul": "Master Barang",
+		"judulTambah":"Tambah Barang",
+		"judulEdit":"Edit Barang",
+		"barang": "Barang",
+		"tipe": "Jenis Barang",
+		"list": {
+			"nomor": "No",
+			"namabarang": "Nama Barang",
+			"kodebarang": "Kode Barang",
+			"stok": "Stok",
+			"stokminimal": "Stok Minimal",
+			"jenismobil": "Nama Mobil",	
+			"aksi": "Aksi",
+			"tambah":"Tambah",
+			"harga":"Harga Barang (IDR)",
+			"hargabeli":"Harga Beli (IDR)"
+		}
+	},
+	"karyawan": {
+		"judul": "Master Karyawan",
+		"judulTambah":"Tambah Karyawan",
+		"judulEdit":"Edit Karyawan",
+		"karyawan": "Karyawan",
+		"list": {
+			"nomor": "No",
+			"namakaryawan": "Nama Karyawan",
+			"nikkaryawan": "NIK Karyawan",
+			"jabatan": "Jabatan",
+			"alamat": "Alamat",
+			"telepon": "Telpon",
+			"aksi": "Aksi",
+			"tambah":"Tambah"
+		}
+	},
+	"jabatan": {
+		"judul": "Master Jabatan",
+		"judulTambah":"Tambah Jabatan",
+		"judulEdit":"Edit Jabatan",
+		"jabatan": "Jabatan",
+		"tipe": "Jenis Jabatan",
+		"list": {
+			"nomor": "No",
+			"namajabatan": "Nama Jabatan",
+			"kodejabatan": "Kode Jabatan",
+			"keterangan": "Keterangan",
+			"aksi": "Aksi",
+			"tambah":"Tambah"
+		}
+	},
+	"mobil":{
+		"nama":"Nama Mobil",
+		"merk":"Merk Mobil",
+		"judul": "Master Mobil",
+		"judulTambah":"Tambah Mobil",
+		"judulEdit":"Edit Mobil",
+		"mobil": "Mobil",
+		"tipe": "Jenis Mobil",
+		"list": {
+			"nomor": "No",
+			"namamobil": "Nama Mobil",
+			"merkmobil": "Merk Mobil",
+			"keterangan": "Keterangan",
+			"aksi": "Aksi",
+			"tambah":"Tambah"
+		}
+	},
+	"pelanggan": {
+		"judul": "Master Pelanggan",
+		"judulTambah":"Tambah Pelanggan",
+		"judulEdit":"Edit Pelanggan",
+		"pelanggan": "Pelanggan",
+		"list": {
+			"nomor": "No",
+			"namapelanggan": "Nama Pelanggan",
+			"nopolisi": "No Polisi",
+			"alamat": "Alamat",
+			"telepon": "Telepon",
+			"aksi": "Aksi",
+			"tambah":"Tambah"
+		}
+	},
+	"penjualan": {
+		"judul": "Transaksi",
+		"judulTambah":"Tambah Transaksi",
+		"judulEdit":"Edit Transaksi",
+		"penjualan": "Penjualan",
+		"detail": "Detail Transaksi",
+		"datapelanggan":"Data Pelanggan",
+		"datamontir":"Data Mekanik",
+		"detailpembayaran":"Detail Pembayaran",
+		"diskon":"Diskon",
+		"totaldiskon":"Total Diskon",
+		"garansi":"Garansi",
+		"totalpembayaran":"Total Yang Harus Dibayar",
+		"pembayaran":"Pembayaran",
+		"kembalian":"Kembalian",
+		"kepalamekanik":"Kepala Mekanik",
+		"list": {
+			"nomor": "No",
+			"nofaktur": "Nomor Penjualan",
+			"tglpenjualan": "Tanggal Penjualan",
+			"total": "Total Penjualan (IDR)",
+			"nopolisi": "Nomor Polisi",
+			"aksi": "Aksi",
+			"tambah":"Tambah",
+			"harga":"Harga Barang (IDR)",
+			"namapelanggan":"Nama Pelanggan",
+			"telponpelanggan":"Telepon",
+			"namamontir":"Nama Mekanik",
+			"pembantu":"Perbantuan",
+			"qty":"Quantitas",
+			"totalHarga":"Total Harga (IDR)"
+		}
+	},
+	"bonus": {
+		"judul": "Data Bonus",
+		"list": {
+			"nomor": "No",
+			"nama": "Nama Karyawan",
+			"persentase": "Persentase (%)",
+			"bonus": "bonus (IDR)",
+			"totalpenjualan": "Total Penjualan (IDR)",
+			"nomorpenjualan": "Nomor Penjualan"
+		}
+	},
+	"laporanpenjualan": {
+		"judul": "Laporan Penjualan",
+		"judulTambah":"Tambah Transaksi",
+		"list": {
+			"nomor": "No",
+			"nofaktur": "Nomor Penjualan",
+			"tglpenjualan": "Tanggal Penjualan",
+			"total": "Total Penjualan (IDR)",
+			"nopolisi": "Nomor Polisi",
+			"aksi": "Aksi",
+			"tambah":"Tambah",
+			"harga":"Harga Barang (IDR)",
+			"namapelanggan":"Nama Pelanggan",
+			"telponpelanggan":"Telepon",
+			"namamontir":"Nama Mekanik",
+			"pembantu":"Perbantuan",
+			"qty":"Quantitas",
+			"totalHarga":"Total Harga (IDR)",
+			"potonganharga":"Potongan Harga (IDR)"
+		}
+	}
+}

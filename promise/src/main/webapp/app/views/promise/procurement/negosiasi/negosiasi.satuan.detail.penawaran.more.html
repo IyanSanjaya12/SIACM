@@ -1,0 +1,191 @@
+<div class="app-view-header">
+	<span>Detil Penawaran </span>
+</div>
+<toaster-container
+	toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+
+<div ng-controller="NegosiasiSatuanDetailPenawaranMoreController as form">
+	<form name="myform" class="form-validate form-horizontal" role="form"
+		novalidate>
+
+		<div ng-show ="form.negosiasiDetailMaterialList.length>0" class="panel panel-primary">
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<em class="fa fa-group">&nbsp;</em> <span>Rincian Penawaran
+					Material</span>
+			</h4>
+			<div ng-show="loading" align="center">
+				<strong><em>Loading... <img src="app/img/loading.gif" border="0"
+						height="20px" /></em></strong>
+			</div>
+			<div ng-show="!loading" class="panel-body">
+				<div class="row">
+					<div class="col-xs-12"> 
+						<div class="table-responsive">
+							<table
+								class="table table-hover table-condensed table-striped bg-white">
+								<thead>
+									<tr style="font-weight: bold">
+										<th scope="col"style="text-align: center; vertical-align: top"><span>NOMOR PERENCANAAN</span></th>
+										<th scope="col"style="text-align: center; vertical-align: top"><span>KODE MATERIAL</span></th>
+										<th scope="col"style="text-align: center; vertical-align: top"><span>NAMA MATERIAL</span></th>
+										<th scope="col"style="text-align: center; vertical-align: top"><span>KUANTITAS</span></th>
+										<th scope="col"style="text-align: center; vertical-align: top"><span>SATUAN</span></th>
+										<th scope="col"width="13%" style="text-align: right;  vertical-align: top"><span>HPS</span></th>
+										<th scope="col"width="13%" style="text-align: right;  vertical-align: top"><span>CONDITINAL ITEM</span></th>
+										<th scope="col"width="13%" style="text-align: right;  vertical-align: top"><span>TOTAL</span></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr	ng-repeat="negosiasiDetail in form.negosiasiDetailMaterialList">
+
+										<td style="text-align: center; vertical-align: top">{{$index+1}}</td>
+										<td style="text-align: center; vertical-align: top">{{negosiasiDetail.itemPengadaan.item.kode}}</td>
+										<td style="text-align: center; vertical-align: top">{{negosiasiDetail.itemPengadaan.item.nama}}</td>
+										<td style="text-align: center; vertical-align: top">{{negosiasiDetail.itemPengadaan.kuantitas}}</td>
+										<td style="text-align: center; vertical-align: top">{{negosiasiDetail.itemPengadaan.item.satuanId.nama}}</td>
+										<td style="text-align: right;  vertical-align: top">
+											
+											{{negosiasiDetail.hargaSatuanOri | currency:form.kursPengadaan.mataUang.kode+" "}}
+										</td>
+										<td style="text-align: right;  vertical-align: top">
+											{{(negosiasiDetail.hargaSatuanAfterCondition -  negosiasiDetail.hargaSatuanOri) | currency: form.kursPengadaan.mataUang.kode+" "}}
+										</td>
+										<td style="text-align: right;  vertical-align: top">
+											{{negosiasiDetail.hargaTotalAfterCondition | currency: form.kursPengadaan.mataUang.kode+" "}}
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+		<div ng-show ="form.negosiasiDetailJasaList.length>0" class="panel panel-primary">
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<em class="fa fa-group">&nbsp;</em> <span>Rincian Penawaran
+					Jasa</span>
+			</h4>
+			<div ng-show="loading" align="center">
+				<strong><em>Loading... <img src="app/img/loading.gif" border="0"
+						height="20px" /></em></strong>
+			</div>
+			<div ng-show="!loading" class="panel-body">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="table-responsive">
+							<table
+								class="table table-hover table-condensed table-striped bg-white">
+								<thead>
+									<tr style="font-weight: bold">
+										<th scope="col"style="text-align: center; vertical-align: top"><span>NOMOR PERENCANAAN</span></th>
+										<th scope="col"style="text-align: center; vertical-align: top"><span>KODE JASA</span></th>
+										<th scope="col"style="text-align: center; vertical-align: top"><span>NAMA JASA</span></th>
+										<th scope="col"style="text-align: center; vertical-align: top"><span>KUANTITAS</span></th>
+										<th scope="col"style="text-align: center; vertical-align: top"><span>SATUAN</span></th>
+										<th scope="col"width="13%" style="text-align: right; vertical-align: top"><span>HPS</span></th>
+										<th scope="col"width="13%" style="text-align: right; vertical-align: top"><span>CONDITINAL ITEM</span></th>
+										<th scope="col"width="13%" style="text-align: right; vertical-align: top"><span>TOTAL</span></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="negosiasiDetail in form.negosiasiDetailJasaList">
+
+										<td style="text-align: center; vertical-align: top">{{$index+1}}</td>
+										<td style="text-align: center; vertical-align: top">{{negosiasiDetail.itemPengadaan.item.kode}}</td>
+										<td style="text-align: center; vertical-align: top">{{negosiasiDetail.itemPengadaan.item.nama}}</td>
+										<td style="text-align: center; vertical-align: top">{{negosiasiDetail.itemPengadaan.kuantitas}}</td>
+										<td style="text-align: center; vertical-align: top">{{negosiasiDetail.itemPengadaan.item.satuanId.nama}}</td>
+										<td style="text-align: right; vertical-align: top">
+											{{negosiasiDetail.hargaSatuanOri | currency: form.kursPengadaan.mataUang.kode+" "}}
+										</td>
+										<td style="text-align: right; vertical-align: top">
+											{{(negosiasiDetail.hargaSatuanAfterCondition -  negosiasiDetail.hargaSatuanOri) | currency: form.kursPengadaan.mataUang.kode+" "}}
+										</td>
+										<td style="text-align: right; vertical-align: top">
+											{{negosiasiDetail.hargaTotalAfterCondition | currency: form.kursPengadaan.mataUang.kode+" "}}
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		
+		<!-- ITEM PRICE CONDITION -->
+		<div class="panel panel-primary">
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<em class="fa fa-group">&nbsp;</em> <span>Item Condition</span>
+			</h4>
+			<div ng-show="loading" align="center">
+				<strong><em>Loading... <img src="app/img/loading.gif" border="0"
+						height="20px" /></em></strong>
+			</div>
+			<div ng-show="!loading" class="panel-body">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="table-responsive">
+							<table
+								class="table table-hover table-condensed table-striped bg-white">
+								<thead>
+									<tr style="font-weight: bold">
+										<th scope="col"style="text-align: center; vertical-align: top"><span>NO</span></th>
+										<th scope="col"style="text-align: center; vertical-align: top"><span>KODE</span></th>
+										<th scope="col"style="text-align: center; vertical-align: top"><span>NAMA</span></th>
+										<th scope="col"style="text-align: center; vertical-align: top"><span>ITEM CODE</span></th>
+										<th scope="col"style="text-align: center; vertical-align: top"><span>VALUE</span></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="cp in form.itemConditionList">
+										<td style="text-align: center; vertical-align: top">{{$index+1}}</td>
+										<td style="text-align: center; vertical-align: top">{{cp.conditionalPrice.kode}}</td>
+										<td style="text-align: center; vertical-align: top">{{cp.conditionalPrice.nama}}</td>
+										<td style="text-align: center; vertical-align: top">{{cp.itemPengadaan.item.kode}}</td>
+										<td style="text-align: center; vertical-align: top">
+											 <!--  amount -->
+											<p ng-show="cp.conditionalPrice.isPersentage==0">
+												{{(cp.nilai)  | currency: form.kursPengadaan.mataUang.kode+" "}}
+											</p>
+											
+											 
+											<p ng-show="cp.conditionalPrice.isPersentage==1">
+												{{cp.nilai}} %
+											</p> 
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<div ng-show="!loading" class="panel panel-primary">
+			<div align="right" styile="">
+				<button ripple="" class="btn btn-primary btn-sm pull-left bg-primary"
+					ng-click="back()" ng-class="'bg-' + app.theme.name">
+					<span class=""><em class="fa fa-chevron-left"></em></span>&nbsp;&nbsp;<font
+						color="white"><span class="ng-scope">Back</span></font> <span
+						class="ripple"></span>
+				</button>
+				
+			</div>
+		</div>
+		<br>
+		<br>
+		
+	</form>
+	
+</div>
+

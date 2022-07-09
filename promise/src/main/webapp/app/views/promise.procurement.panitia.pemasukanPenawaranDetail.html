@@ -1,0 +1,61 @@
+<div class="app-view-header">
+    <span translate="promise.procurement.panitia.pemasukanpenawaranview.list.PEMASUKANPENAWARANDETAIL">Pemasukan Penawaran</span> 
+    <small><span translate="promise.procurement.panitia.pemasukanpenawaranview.KETERANGAN"></span></small>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="PemasukanPenawaranController as form">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.DATAPENYEDIABRGJASA">Pemasukan Penawaran</span></h4>
+    <div class="panel-body">
+        <br/>
+        <div class="col-md-12">
+            <div>
+				<div align="center" ng-if="form.loading == true"><strong><em>Loading...</em></strong></div>
+                <table  class="row-border hover table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col"style="text-align:left" width="500px"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.NOMORPERENCANAAN">Metode Pengadaan</span>
+                            </th>
+                            <th scope="col"style="text-align:left" width="500px"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.NAMAMATERIAL">Metode Pengadaan</span>
+                            </th>
+                            <th scope="col"style="text-align:left" width="500px"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.NAMAMATERIAL">Metode Pengadaan</span>
+                            </th>
+                            <th scope="col"style="text-align:left" width="500px"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.KUANTITAS">Metode Pengadaan</span>
+                            </th>
+                            <th scope="col"style="text-align:left" width="500px"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.SATUAN">Metode Pengadaan</span>
+                            </th>
+                            <th scope="col"style="text-align:left" width="500px"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.HPS">Metode Pengadaan</span>
+                            </th>
+                            <th scope="col"style="text-align:left" width="500px"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.HRGTOTALHPS">Metode Pengadaan</span>
+                            </th>
+                            <th scope="col"style="text-align:left" width="500px"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.KET">Metode Pengadaan</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr >
+                            <td style="text-align:left">10000011</td>
+                            <td style="text-align:left" >10 Agustus 2014</td>
+                            <td style="text-align:left" >Meja Kerja</td>
+                            <td style="text-align:left" >100</td>
+                            <td style="text-align:left" >UNIT</td>
+                            <td style="text-align:left" >350.000</td>
+                            <td style="text-align:left" >35.000.000</td>
+                            <td style="text-align:left" >Smesco</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+<div align="right">
+        <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="form.backview()">
+			  <span translate="promise.procurement.panitia.pemasukanpenawaranview.btn.KEMBALI"></span>
+		  </button>
+          <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="form.add()">
+			  <span translate="promise.procurement.panitia.pemasukanpenawaranview.btn.KIRIM"></span>
+		  </button>    
+        </div>
+<br>
+</div>
+<!--END CONTROLLER-->

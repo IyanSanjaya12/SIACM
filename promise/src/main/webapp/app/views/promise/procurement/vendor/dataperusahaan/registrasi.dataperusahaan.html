@@ -1,0 +1,734 @@
+<!--
+SPESIFIC VIEW EDIT OF THE DATA USER LOGIN MENU
+--------------- START CONTROLLER -------------
+-->
+
+<div class="app-view-header">
+    <span translate="">SETTING VENDOR</span> 
+    <small><span translate="promise.procurement.RegistrasiVendor.edit"></span></small>
+	&nbsp;<small><span translate="" style="color:green; font: italic bold 12px Georgia, serif"></span></small>
+</div>
+<div ng-controller="RegistrasiDataPerusahaanController as vm">
+
+	<!------------------------------------------------------------ START CONTROLLER ---------------------------------------------------------------------->
+	<div class="panel panel-primary">
+		<h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><span
+				translate="{{vm.subjudul}}">Data
+				Perusahaan</span>
+		</h4>
+		<div class="panel-body" ng-disabled="vm.disable==true">
+			<div class="row">
+				<div class="col-md-7">
+					<form method="post" action="#" novalidate=""
+						class="form-horizontal">
+						<fieldset>
+							<div class="form-group">
+								<label class="col-sm-4 control-label"><span
+									translate="promise.procurement.RegistrasiVendor.DataPerusahaan.PKPNonPKP"></span>
+									<label class="text-danger">*</label> </label>
+								<div class="col-sm-7">
+									<label> <input type="radio" value="1"
+										ng-model="vm.pilihPKP.name" ng-click="pilihPKP();vm.klikSearch=false"> PKP
+									</label> <label> <input type="radio" value="2"
+										ng-model="vm.pilihPKP.name" ng-click="pilihPKP();vm.klikSearch=false"> Non
+										PKP
+									</label> <br />
+								</div>
+							</div>
+							<div class="form-group" ng-show="vm.pilihPKP.name == 1">
+								<label class="col-sm-4 control-label"> </label>
+								<div class="col-sm-5">
+									<input name="nomorPKP" promise-numbers-only type="text"
+										class="form-control shadow-z1 input-sm"
+										ng-model="vm.nomorPKP" ng-disabled="vm.disabled"
+										maxlength="20" ng-click = "vm.klikSearch=false" >
+									<p ng-show="vm.nomorPKPError" style="color: red" translate="template.error.field_kosong">Nomor
+										PKP Harus diisi</p>
+									<br />
+								</div>
+								<div class="col-sm-3">
+									<button ng-class="'bg-' + app.theme.name" type="button"
+										class="mr btn btn-labeled btn-sm" style="height: 30px"
+										ng-hide="vm.disabled" ng-click="checkPKP(vm.nomorPKP);vm.klikSearch=false">
+										<span
+											translate="promise.procurement.RegistrasiVendor.DataPerusahaan.buttonCheckPKP"></span>
+									</button>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label"><span
+									translate="promise.procurement.RegistrasiVendor.DataPerusahaan.title"></span>
+									<label class="text-danger">*</label> </label>
+								<div class="col-sm-5">
+
+									<ui-select name="title" ng-model="vm.titleVendor" ng-click = "vm.klikSearch=false" ng-change="isCompanyCheck()"
+										theme="bootstrap"> <ui-select-match
+										placeholder="++ Pilih ++">{{$select.selected.title}}</ui-select-match>
+									<ui-select-choices
+										repeat="title in vm.titleList | filter: $select.search">
+									<div ng-bind-html="title.title | highlight: $select.search"></div>
+									</ui-select-choices> </ui-select>
+									<p ng-show="vm.TitleError" style="color: red" translate="template.error.field_kosong">Title Harus
+										diisi</p>
+									<br />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label"><span
+									translate="promise.procurement.RegistrasiVendor.DataPerusahaan.kualifikasi"></span>
+									<label class="text-danger">*</label> </label>
+								<div class="col-sm-5">
+									<ui-select name="kualifikasiVendor" ng-click = "vm.klikSearch=false"
+										ng-model="vm.kualifikasiVendor" theme="bootstrap">
+									<ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+									<ui-select-choices
+										repeat="kualifikasiVendor in vm.kualifikasiVendorList | filter: $select.search">
+									<div
+										ng-bind-html="kualifikasiVendor.nama | highlight: $select.search"></div>
+									</ui-select-choices> </ui-select>
+									<p ng-show="vm.kualifikasiVendorError" style="color: red" translate="template.error.field_kosong">Kualifikasi
+										Harus diisi</p>
+									<br />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label"><span
+									translate="promise.procurement.RegistrasiVendor.DataPerusahaan.mendaftardiunit"></span>
+									<label class="text-danger">*</label> </label>
+								<div class="col-sm-5">
+									<ui-select name="unitTerdaftar" ng-model="vm.unitTerdaftar" ng-change="getBusinessArea(vm.unitTerdaftar.id); vm.checkIsChange()"
+										theme="bootstrap"> <ui-select-match
+										placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+									<ui-select-choices
+										repeat="unitTerdaftar in vm.unitTerdaftarList | filter: $select.search"
+										style="width: 350px;font-size: 14px;">
+									<div
+										ng-bind-html="unitTerdaftar.nama | highlight: $select.search"></div>
+									</ui-select-choices> </ui-select>
+									<p ng-show="vm.unitTerdaftarError" style="color: red" translate="template.error.field_kosong">Unit
+										Harus diisi</p>
+									<br />
+								</div>
+							</div>
+
+							<!-- Bussiness Area -->
+							<div class="form-group">
+								<label class="col-sm-4 control-label"><span>Business
+										Area</span> <label class="text-danger">*</label> </label>
+								<div class="col-sm-5">
+									<ui-select ng-if="!vm.isChange" name="businessArea"
+										ng-model="vm.businessArea" theme="bootstrap"> <ui-select-match
+										placeholder="++ Pilih ++">{{vm.businessArea.nama}}</ui-select-match>
+									<ui-select-choices
+										repeat="businessArea in vm.businessAreaList | filter: $select.search"
+										style="width: 350px;font-size: 14px;">
+									<div
+										ng-bind-html="businessArea.nama | highlight: $select.search"></div>
+									</ui-select-choices> </ui-select>
+
+									<ui-select ng-if="vm.isChange" name="businessArea"
+										ng-model="vm.businessArea" theme="bootstrap"> <ui-select-match
+										placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+									<ui-select-choices
+										repeat="businessArea in vm.businessAreaList | filter: $select.search"
+										style="width: 350px;font-size: 14px;">
+									<div
+										ng-bind-html="businessArea.nama | highlight: $select.search"></div>
+									</ui-select-choices> </ui-select>
+									<p ng-show="vm.bussinessAreaError" style="color: red" translate="template.error.field_kosong">BussinessArea
+										Harus diisi</p>
+									<br />
+								</div>
+							</div>
+
+							
+
+							<div class="form-group">
+								<label class="col-sm-4 control-label"><span
+									translate="promise.procurement.RegistrasiVendor.DataPerusahaan.NamaPerusahaan"></span>
+									<label class="text-danger">*</label> </label>
+								<div class="col-sm-5">
+									<input name="NamaPerusahaan" type="text" ng-click = "vm.klikSearch=false"
+										promise-alphanumeric-only 
+										class="form-control shadow-z1 input-sm"
+										ng-model="vm.NamaPerusahaan">
+									<p ng-show="vm.NamaPerusahaanError" style="color: red" translate="template.error.field_kosong">Nama
+										Perusahaan Harus diisi</p>
+									<br />
+								</div>
+								<div class="col-sm-3">
+									<ui-select name="jenisPerusahaan"
+										ng-model="vm.jenisPerusahaan" theme="bootstrap">
+									<ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+									<ui-select-choices
+										repeat="jenisPerusahaan in vm.jenisPerusahaanList | filter: $select.search">
+									<div
+										ng-bind-html="jenisPerusahaan.nama | highlight: $select.search"></div>
+									</ui-select-choices> </ui-select>
+									<p ng-show="vm.jenisPerusahaanError" style="color: red" translate="template.error.field_kosong">jenis
+										Perusahaan Harus diisi</p>
+									<br />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label"><span
+									translate="promise.procurement.RegistrasiVendor.DataPerusahaan.NPWPPerusahaan"></span>
+									<label class="text-danger">*</label> </label>
+								<div class="col-sm-5">
+									<input name="NPWPPerusahaan" promise-alphanumeric-only ng-click = "vm.klikSearch=false"
+										type="text" class="form-control shadow-z1 input-sm"
+										ng-model="vm.NPWPPerusahaan" maxlength="20">
+									<p ng-show="vm.NPWPPerusahaanError" style="color: red" translate="template.error.field_kosong">NPWP
+										Perusahaan Harus diisi</p>
+									<br />
+								</div>
+								<div class="col-sm-3">
+									<button ng-class="'bg-' + app.theme.name" type="button"
+										class="mr btn btn-labeled btn-sm" style="height: 30px"
+										ng-click="checkNPWP(vm.NPWPPerusahaan, 0);vm.klikSearch=false">
+										<span
+											translate="promise.procurement.RegistrasiVendor.DataPerusahaan.buttonCheckNPWP"></span>
+									</button>
+								</div>
+							</div>
+
+							<!-- nama NPWP -->
+							<div class="form-group">
+								<label class="col-sm-4 control-label"><span
+									translate="promise.procurement.RegistrasiVendor.DataPerusahaan.namaNPWP"></span>
+									<label class="text-danger">*</label> </label>
+								<div class="col-sm-5">
+									<input promise-alphabet-only name="namaNPWP" type="text" ng-click = "vm.klikSearch=false"
+										class="form-control shadow-z1 input-sm"
+										ng-model="vm.namaNPWP" maxlength="100">
+									<p ng-show="vm.namaNPWPError" style="color: red" translate="template.error.field_kosong">Nama
+										NPWP Harus diisi</p>
+									<br />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-4 control-label"><span
+									translate="promise.procurement.RegistrasiVendor.DataPerusahaan.alamatNPWP"></span>
+									<label class="text-danger">*</label> </label>
+								<div class="col-sm-5">
+									<input name="alamatNPWP" type="text" ng-click = "vm.klikSearch=false"
+										class="form-control shadow-z1 input-sm"
+										ng-model="vm.alamatNPWP" maxlength="500">
+									<p ng-show="vm.alamatNPWPError" style="color: red" translate="template.error.field_kosong">Alamat
+										NPWP Harus diisi</p>
+									<br />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-4 control-label"><span
+									translate="promise.procurement.RegistrasiVendor.DataPerusahaan.provinsiNPWP"></span>
+									<label class="text-danger">*</label> </label>
+
+								<div class="col-sm-5">
+									<ui-select name="provinsiNPWP" ng-model="vm.provinsiNPWP" ng-click = "vm.klikSearch=false"
+										theme="bootstrap" ng-change="pilihPropinsiNPWP()">
+									<ui-select-match placeholder="++ Pilih ++">{{$select.selected.lokasi_nama}}</ui-select-match>
+									<ui-select-choices
+										repeat="provinsiNPWP in vm.provinsiNPWPList | filter: $select.search">
+									<div
+										ng-bind-html="provinsiNPWP.lokasi_nama | highlight: $select.search"></div>
+									</ui-select-choices> </ui-select>
+									<p ng-show="vm.provinsiNPWPError" style="color: red" translate="template.error.field_kosong">Provinsi
+										NPWP Harus diisi</p>
+									<br />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-4 control-label"><span
+									translate="promise.procurement.RegistrasiVendor.DataPerusahaan.kotaNPWP"></span>
+									<label class="text-danger">*</label> </label>
+
+								<div class="col-sm-5">
+									<ui-select name="kotaNPWP" ng-model="vm.kotaNPWP" ng-click = "vm.klikSearch=false"
+										theme="bootstrap"> <ui-select-match
+										placeholder="++ Pilih ++">{{$select.selected.lokasi_nama}}</ui-select-match>
+									<ui-select-choices
+										repeat="kotaNPWP in vm.kotaNPWPList | filter: $select.search">
+									<div
+										ng-bind-html="kotaNPWP.lokasi_nama | highlight: $select.search"></div>
+									</ui-select-choices> </ui-select>
+									<p ng-show="vm.kotaNPWPError" style="color: red" translate="template.error.field_kosong">Kota
+										NPWP Harus diisi</p>
+									<br />
+								</div>
+							</div>
+
+							<!-- <div class="form-group">
+                                    <label class="col-sm-4 control-label">Kota NPWP<span translate="promise.procurement.RegistrasiVendor.DataPerusahaan.NamaSingkatan"></span>
+                                        <label class="text-danger">*</label>
+                                    </label>
+                                    <div class="col-sm-5">
+                                        <input promise-alphabet-only name="kotaNPWP" type="text" class="form-control shadow-z1 input-sm" ng-model="form.kotaNPWP" maxlength="30">
+                                        <p ng-show="form.kotaNPWPError" style="color:red">Kota NPWP Harus diisi</p>
+                                        <br/>
+                                    </div>
+                                </div> -->
+
+							<div class="form-group">
+								<label class="col-sm-4 control-label"><span
+									translate="promise.procurement.RegistrasiVendor.DataPerusahaan.NamaSingkatan"></span>
+									<label class="text-danger">*</label> </label>
+								<div class="col-sm-5">
+									<input name="NamaSingkatan" type="text" ng-click = "vm.klikSearch=false"
+										class="form-control shadow-z1 input-sm"
+										ng-model="vm.NamaSingkatan">
+									<p ng-show="vm.NamaSingkatanError" style="color: red" translate="template.error.field_kosong">Nama
+										Singkatan Harus diisi</p>
+									<br />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label"> <span
+									translate="promise.procurement.RegistrasiVendor.DataPerusahaan.JumlahKaryawan"></span>
+									<!-- <label class="text-danger">*</label> -->
+								</label>
+								<div class="col-sm-5">
+									<input name="JumlahKaryawan" type="text" ng-click = "vm.klikSearch=false"
+										class="form-control shadow-z1 input-sm"
+										ng-model="vm.jumlahKaryawan" maxlength="10"> <br />
+								</div>
+							</div>
+							<div class="form-group" ng-show="vm.titleVendor == 'Company'">
+								<label class="col-sm-4 control-label">Nomor Akta
+									Pendirian<!-- <span translate="promise.procurement.RegistrasiVendor.DataPerusahaan.NamaSingkatan"> -->
+									</span> <label class="text-danger">*</label>
+								</label>
+								<div class="col-sm-5">
+									<input promise-alphanumericlimitedspecialsymbol-only ng-click = "vm.klikSearch=false"
+										name="noAktaPendirian" type="text"
+										class="form-control shadow-z1 input-sm"
+										ng-model="vm.noAktaPendirian" maxlength="30">
+									<p ng-show="vm.noAktaPendirianError" style="color: red" translate="template.error.field_kosong">Nomor
+										Akta Pendirian Harus diisi</p>
+									<br />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label"> <span
+									translate="promise.procurement.RegistrasiVendor.DataPerusahaan.TanggalBerdiri"></span>
+									<label class="text-danger">*</label>
+								</label>
+								<div class="col-sm-5">
+									<div class="input-group">
+										<input type="text" disabled datepicker-popup="{{vm.format}}"
+											datepicker-options="vm.dateOptions"
+											is-open="tanggalBerdiriStatus"
+											class="form-control shadow-z1 input-sm"
+											show-button-bar="false" readonly style="background: white"
+											ng-model="vm.tanggalBerdiri" /> <span
+											class="input-group-btn">
+											<button type="button" ng-click="tanggalBerdiriOpen($event);vm.klikSearch=false"
+												class="btn btn-default shadow-z1 input-sm " ripple="">
+												<em class="fa fa-calendar"></em>
+											</button>
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label"><span
+									translate="promise.procurement.RegistrasiVendor.DataPerusahaan.VendorComment"></span></label>
+								<div class="col-sm-7">
+									<div text-angular=""
+										ta-toolbar="[['h1','h2','h3'],['bold','italics', 'underline'],['quote'],['ul','ol']]"
+										name="deskripsi" class="btn-group-small"
+										ng-model="vm.deskripsi" ng-click = "vm.klikSearch=false" ></div>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+				<div class="row" ng-show ="vm.klikSearch">
+				<div  class="col-md-5 container-fh">
+					<div chained-animation="fadeInDown" class="col-md-12">
+						<div class="row pv">
+							<span class="mt"><font size="2"><strong>&nbsp;&nbsp;&nbsp;&nbsp;Tree
+										Control API :</strong></font></span>
+						</div>
+						<div class="btn-group btn-group-justified mb">
+							<a ng-click="my_tree.select_first_branch()"
+								class="btn btn-default btn-sm mb">First Branch</a><a
+								ng-click="my_tree.expand_branch()"
+								class="btn btn-default btn-sm">Expand</a>
+						</div>
+						<div class="btn-group btn-group-justified mb">
+							<a ng-click="my_tree.expand_all()" class="btn btn-default btn-sm">Expand
+								All</a><a ng-click="my_tree.collapse_all()"
+								class="btn btn-default btn-sm">Collapse All</a>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div chained-animation="fadeInUp" class="well wd-wide"
+							style="background-color: #F0F8FF;">
+							<span ng-if="doing_async"><strong><em>Loading...</em><img
+									src="app/img/loading.gif" width="15px" border="0" /></strong></span>
+							<div align="center" ng-show="loading">
+								<strong><em>Loading...</em><img src="app/img/loading.gif"
+									width="15px" border="0" /></strong>
+							</div>
+							<abn-tree tree-data="my_data" tree-control="my_tree"
+								on-select="my_tree_handler(branch)" expand-level="2"
+								initial-selection="Granny Smith"></abn-tree>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+		<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<span
+				translate="promise.procurement.RegistrasiVendor.DataPerusahaan.FormAlamatPerusahaan"></span>
+		</h4>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-8">
+					<form method="post" action="#" novalidate=""
+						class="form-horizontal">
+						<fieldset>
+							<div class="form-group">
+								<label class="col-sm-4 control-label"><span
+									translate="promise.procurement.RegistrasiVendor.DataPerusahaan.AlamatPerusahaan"></span>
+									<label class="text-danger">*</label> </label>
+								<div class="col-sm-7">
+									<textarea name="alamatPerusahaan"
+										ng-model="vm.alamatPerusahaan" cols="30" rows="5"
+										maxlength="100" class="form-control"></textarea>
+									<p ng-show="vm.alamatPerusahaanError" style="color: red" translate="template.error.field_kosong">alamat
+										Perusahaan Harus diisi</p>
+									<br />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label"> </label>
+								<div class="col-sm-8">
+									<div class="form-group">
+										<label class="col-sm-3"><span
+											translate="promise.procurement.RegistrasiVendor.DataPerusahaan.provinsi"></span>
+											<label class="text-danger">*</label> </label>
+										<div class="col-sm-6">
+											<ui-select name="provinsiPerusahaan"
+												ng-model="vm.provinsiPerusahaan" theme="bootstrap"
+												ng-change="pilihPropinsi()"> <ui-select-match
+												placeholder="++ Pilih ++">{{$select.selected.lokasi_nama}}</ui-select-match>
+											<ui-select-choices
+												repeat="provinsiPerusahaan in vm.provinsiPerusahaanList | filter: $select.search">
+											<div
+												ng-bind-html="provinsiPerusahaan.lokasi_nama | highlight: $select.search"></div>
+											</ui-select-choices> </ui-select>
+											<p ng-show="vm.provinsiPerusahaanError" style="color: red" translate="template.error.field_kosong">Provinsi
+												Perusahaan Harus diisi</p>
+										</div>
+									</div>
+									<br />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label"> </label>
+								<div class="col-sm-8">
+									<div class="form-group">
+										<label class="col-sm-3"><span
+											translate="promise.procurement.RegistrasiVendor.DataPerusahaan.kota"></span>
+											<label class="text-danger">*</label> </label>
+										<div class="col-sm-6">
+											<ui-select name="kotaPerusahaan"
+												ng-model="vm.kotaPerusahaan" theme="bootstrap">
+											<ui-select-match placeholder="++ Pilih ++">{{$select.selected.lokasi_nama}}</ui-select-match>
+											<ui-select-choices
+												repeat="kotaPerusahaan in vm.kotaPerusahaanList | filter: $select.search">
+											<div
+												ng-bind-html="kotaPerusahaan.lokasi_nama | highlight: $select.search"></div>
+											</ui-select-choices> </ui-select>
+											<p ng-show="vm.kotaPerusahaanError" style="color: red" translate="template.error.field_kosong">Kota
+												Perusahaan Harus diisi</p>
+										</div>
+									</div>
+									<br />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label"> </label>
+								<div class="col-sm-8">
+									<div class="form-group">
+										<label class="col-sm-3"><span
+											translate="promise.procurement.RegistrasiVendor.DataPerusahaan.pobox"></span>
+											<label class="text-danger"></label> </label>
+										<div class="col-sm-6">
+											<input name="poboxPerusahaan" type="text"
+												class="form-control shadow-z1 input-sm"
+												ng-model="vm.poboxPerusahaan">
+										</div>
+									</div>
+									<br />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label"> </label>
+								<div class="col-sm-8">
+									<div class="form-group">
+										<label class="col-sm-3"><span
+											translate="promise.procurement.RegistrasiVendor.DataPerusahaan.kodepos"></span>
+											<label class="text-danger"></label> </label>
+										<div class="col-sm-6">
+											<input name="kodeposPerusahaan" type="text"
+												class="form-control shadow-z1 input-sm"
+												ng-model="vm.kodeposPerusahaan">
+										</div>
+									</div>
+									<br />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label"><span
+									translate="promise.procurement.RegistrasiVendor.DataPerusahaan.TeleponPerusahaan"></span>
+									<label class="text-danger">*</label> </label>
+								<div class="col-sm-3">
+									<input name="TeleponPerusahaan" type="text"
+										class="form-control shadow-z1 input-sm"
+										ng-model="vm.TeleponPerusahaan">
+									<p ng-show="vm.TeleponPerusahaanError" style="color: red" translate="template.error.field_kosong">Telepon
+										Perusahaan Harus diisi</p>
+									<br />
+								</div>
+								<label class="col-sm-2 control-label"><span
+									translate="promise.procurement.RegistrasiVendor.DataPerusahaan.NoFax"></span>
+								</label>
+								<div class="col-sm-3">
+									<input type="text" class="form-control shadow-z1 input-sm"
+										ng-model="vm.NoFaxPerusahaan">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label"><span
+									translate="promise.procurement.RegistrasiVendor.DataPerusahaan.Email"></span>
+									<label class="text-danger">*</label> </label>
+								<div class="col-sm-7">
+									<input name="EmailPerusahaan" type="text"
+										class="form-control shadow-z1 input-sm"
+										ng-model="vm.EmailPerusahaan"
+										ng-blur="validasiEmail(vm.EmailPerusahaan)">
+									<p ng-show="vm.EmailPerusahaanError" style="color: red" translate="template.error.field_kosong">Email
+										Perusahaan Harus diisi</p>
+									<br />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label"><span
+									translate="promise.procurement.RegistrasiVendor.DataPerusahaan.Website"></span>
+									<label class="text-danger"></label> </label>
+								<div class="col-sm-7">
+									<input name="WebsitePerusahaan" type="text"
+										class="form-control shadow-z1 input-sm"
+										ng-model="vm.WebsitePerusahaan"> <br />
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+		<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<span
+				translate="promise.procurement.RegistrasiVendor.DataPerusahaan.FormContactPerson"></span>
+		</h4>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-8">
+					<form method="post" name="companyProfile" action="#" novalidate=""
+						class="form-horizontal">
+						<fieldset>
+							<div class="form-group">
+								<label class="col-sm-4 control-label"><span
+									translate="promise.procurement.RegistrasiVendor.DataPerusahaan.NamaContactPerson"></span>
+									<label class="text-danger">*</label> </label>
+								<div class="col-sm-7">
+									<input name="NamaContactPerson" type="text"
+										class="form-control shadow-z1 input-sm"
+										ng-model="vm.NamaContactPerson">
+									<p ng-show="vm.NamaContactPersonError" style="color: red" translate="template.error.field_kosong">Nama
+										Contact Person Harus diisi</p>
+									<br />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label"><span
+									translate="promise.procurement.RegistrasiVendor.DataPerusahaan.NoHPContactPerson"></span>
+									<label class="text-danger">*</label> </label>
+								<div class="col-sm-7">
+									<input name="NoHPContactPerson" type="text"
+										class="form-control shadow-z1 input-sm"
+										ng-model="vm.NoHPContactPerson">
+									<p ng-show="vm.NoHPContactPersonError" style="color: red" translate="template.error.field_kosong">No
+										HP Contact Person Harus diisi</p>
+									<br />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label"><span
+									translate="promise.procurement.RegistrasiVendor.DataPerusahaan.EmailContactPerson"></span>
+									<label class="text-danger">*</label> </label>
+								<div class="col-sm-7">
+									<input name="EmailContactPerson" type="text"
+										class="form-control shadow-z1 input-sm"
+										ng-model="vm.EmailContactPerson"
+										ng-blur="validasiEmail(vm.EmailContactPerson)">
+									<p ng-show="vm.EmailContactPersonError" style="color: red" translate="template.error.field_kosong">Email
+										Contact Person Harus diisi</p>
+									<br />
+								</div>
+							</div>
+							<div class="form-group" ng-hide="vm.isCompany">
+								<label class="col-sm-4 control-label"><span
+									translate="promise.procurement.RegistrasiVendor.DataPerusahaan.NoKTPContactPerson"></span>
+									<label class="text-danger">*</label> </label>
+								<div class="col-sm-7">
+									<input ng-disabled="vm.isCompany" name="NoKTPContactPerson"
+										type="text" class="form-control shadow-z1 input-sm"
+										ng-model="vm.NoKTPContactPerson" maxlength="16"
+										ng-minlength="16">
+									<p ng-show="vm.NoKTPContactPersonError" style="color: red" translate="template.error.field_kosong">No
+										KTP Contact Person Harus diisi</p>
+									<p ng-show="companyProfile.NoKTPContactPerson.$error.minlength"
+										class="text-danger" translate="template.error.limit_ktp">No KTP harus 16 digit</p>
+									<br />
+								</div>
+							</div>
+							<div class="form-group" ng-hide="vm.isCompany">
+								<label class="col-sm-4 control-label">No. KK<!-- <span translate="promise.procurement.RegistrasiVendor.DataPerusahaan.NoKTPContactPerson"> -->
+									</span> <label class="text-danger">*</label>
+								</label>
+								<div class="col-sm-7">
+									<input ng-disabled="vm.isCompany" promise-numbers-only-copy
+										name="NoKKContactPerson" type="text"
+										class="form-control shadow-z1 input-sm"
+										ng-model="vm.NoKKContactPerson" maxlength="16"
+										ng-minlength="16">
+									<p ng-show="vm.NoKKContactPersonError" style="color: red" translate="template.error.field_kosong">No
+										KK Contact Person Harus diisi</p>
+									<p ng-show="companyProfile.NoKKContactPerson.$error.minlength"
+										class="text-danger" translate="template.error.limit_kk">No KK harus 16 digit</p>
+									<br />
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+		<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<span
+				translate="promise.procurement.RegistrasiVendor.DataPerusahaan.FormDataPenanggungJawab"></span>
+		</h4>
+		<h4 class="page-header clearfix">
+			<div class="pull-right">
+				<button ng-class="'bg-' + app.theme.name"
+					ng-click="addPenanggungJawab();vm.klikSearch=false" class="btn btn-primary btn-sm">
+					<span class=""><em class="fa fa-plus"></em></span> <span
+						translate="promise.procurement.inisialisasi.tambahbumn.TAMBAH">Tambah</span>
+				</button>
+			</div>
+		</h4>
+		<div class="panel-body">
+			<div class="col-xs-12">
+				<div class="table-responsive">
+					<table
+						class="table table-hover table-condensed table-striped bg-white">
+						<thead>
+							<tr style="font-weight: bold">
+								<th scope="col"style="width: 40%; text-align: left"><span
+									translate="promise.procurement.RegistrasiVendor.DataPerusahaan.NamaPenanggungJawab"></span>
+								</th>
+								<th scope="col"style="width: 20%; text-align: left"><span
+									translate="promise.procurement.RegistrasiVendor.DataPerusahaan.JabatanPenanggungJawab"></span>
+								</th>
+								<th scope="col"style="width: 20%; text-align: left"><span
+									translate="promise.procurement.RegistrasiVendor.DataPerusahaan.EmailPenanggungJawab"></span>
+								</th>
+								<th scope="col"style="width: 10%; text-align: left"><span
+									translate="promise.procurement.RegistrasiVendor.DataPerusahaan.AksiPenanggungJawab"></span>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="penanggungJawab in vm.penanggungJawabList">
+								<td>
+									<!-- editable username (text with validation)--> <span
+									editable-text="penanggungJawab.nama" e-name="nama"
+									e-form="rowform"
+									onbeforesave="checkName($data, penanggungJawab.id)"
+									e-required="">{{ penanggungJawab.nama ||
+										&apos;empty&apos; }}</span>
+								</td>
+								<td><span editable-select="penanggungJawab.jabatan"
+									e-name="penanggungJawab.jabatan"
+									onbeforesave="checkJabatan($data, penanggungJawab.id)"
+									e-form="rowform"
+									e-ng-options="g as g.nama for g in vm.jabatanList track by g.id">{{
+										showJabatan(penanggungJawab) }}</span></td>
+								<td>
+									<!-- editable username (text with validation)--> <span
+									editable-text="penanggungJawab.email" e-name="email"
+									e-form="rowform"
+									onbeforesave="checkEmail($data, penanggungJawab.id)"
+									e-required="">{{ penanggungJawab.email ||
+										&apos;empty&apos; }}</span>
+								</td>
+								<td style="white-space: nowrap">
+									<!-- form-->
+									<form editable-form="" name="rowform"
+										shown="dataInserted == penanggungJawab"
+										ng-show="rowform.$visible" class="form-buttons form-inline">
+										<button type="submit" ng-disabled="rowform.$waiting"
+											title="Save" class="btn btn-sm btn-info">
+											<em class="fa fa-save"></em>
+										</button>
+										<button type="button" ng-disabled="rowform.$waiting"
+											ng-click="cancelPenanggungJawab(rowform, $index);vm.klikSearch=false"
+											title="Cancel" class="btn btn-sm btn-default">
+											<em class="fa fa-times"></em>
+										</button>
+									</form>
+									<div ng-show="!rowform.$visible" class="buttons">
+										<button ng-click="rowform.$show();vm.klikSearch=false" title="Edit"
+											class="btn btn-sm btn-info">
+											<em class="fa fa-pencil fa-lg"></em>
+										</button>
+										<button
+											ng-click="removePenanggungJawab($index, penanggungJawab);vm.klikSearch=false"
+											title="Delete" class="btn btn-sm btn-danger">
+											<em class="fa fa-trash"></em>
+										</button>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<br>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+
+	<div align="center">
+			<button ng-disabled="vm.disable==true" type="button" ripple=""
+				class="mr btn btn-sm bg-primary" ng-click="save()">
+				<span translate="template.button.save_as_draft"></span>
+			</button>
+		    <button ng-disabled="vm.disable==true || vm.valid==false" ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm bg-primary" ng-click="approval()">
+		       	<span translate="template.button.send_approval"></span>		      	
+		    </button>
+		</div>
+	</div>
+
+
+</div>

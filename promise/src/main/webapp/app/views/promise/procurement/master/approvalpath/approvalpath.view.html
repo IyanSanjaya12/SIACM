@@ -1,0 +1,81 @@
+	<div class="app-view-header">
+		<span translate="promise.procurement.master.approvalPath.judul"></span> 
+	</div>
+	
+		<div ng-controller="ApprovalPathViewController as vm" class="panel panel-primary">
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-tasks"></em>
+					<span ng-if="vm.toDo == 'add'" translate="promise.procurement.master.approvalPath.view.subjudul_tambah"></span>
+		   				<span ng-if="vm.toDo == 'Edit'" translate="promise.procurement.master.approvalPath.view.subjudul_ubah"></span>
+							<a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+						<em class="fa fa-chevron-circle-down"></em>
+					</a>
+				</h4>
+			<div class="panel-body collapse in">
+				<div class="text-center" ng-if="vm.loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong>
+			</div>
+				<form method="post" action="#" novalidate="" class="form-horizontal" name="formApprovalPath" ng-class="{'submitted' : vm.submitted}">
+					<div class="form-group">
+						<label class="col-sm-4 control-label required">	
+							<span translate="promise.procurement.master.approvalPath.list.cabang"></span>
+						</label>
+						<div class="col-sm-4">
+							<div ng-class="(vm.submitted && formApprovalPath.cabang.$invalid) ? 'border-error' : ! formApprovalPath.cabang.$invalid ? '' : 'border-success'">
+								<ui-select ng-model="vm.approvalPath.organisasi" name="cabang" theme="bootstrap" ng-disabled="disabled" required="" ng-blur="delValidation($event)">
+									<ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+									<ui-select-choices repeat="organisasi in vm.organisasiParentList | filter: $select.search">
+										<div ng-bind-html="organisasi.nama | highlight: $select.search"></div>
+									</ui-select-choices>
+								</ui-select>
+							</div>
+							<div class="input-error" ng-show="(vm.submitted && formApprovalPath.cabang.$invalid)">
+								<p ng-show="formApprovalPath.cabang.$error.required" translate="template.error.field_kosong"></p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="input-id-1" class="col-sm-4 control-label required">	
+							<span translate="promise.procurement.master.approvalPath.list.pathid">
+						</label>
+						<div class="col-sm-4">
+							<input name="approvalPathId" id="input-id-1" promise-numbers-only-copy type="text" class="form-control" ng-model="vm.approvalPath.approvalPathId" maxlength="10" required ng-blur="delValidation($event)" />
+							<div class="input-error" ng-show="(vm.submitted && formApprovalPath.approvalPathId.$invalid)">
+								<p ng-show="formApprovalPath.approvalPathId.$error.required" translate="template.error.field_kosong"></p>
+								<p ng-show="!formApprovalPath.approvalPathId.$error.required && formApprovalPath.approvalPathId.$error.approvalPathId" translate="promise.procurement.master.approvalPath.error.pathid"></p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="input-id-1" class="col-sm-4 control-label required">	
+							<span translate="promise.procurement.master.approvalPath.list.pathname"></span>
+						</label>
+						<div class="col-sm-4">
+							<input style="text-transform: uppercase;" onkeypress="return RestrictSpace()" name="approvalPathName" id="input-id-1" 
+							 type="text" class="form-control" ng-model="vm.approvalPath.approvalPathName" maxlength="120" required ng-blur="delValidation($event)" />
+							<div class="input-error" ng-show="(vm.submitted && formApprovalPath.approvalPathName.$invalid)">
+								<p ng-show="formApprovalPath.approvalPathName.$error.required" translate="template.error.field_kosong"></p>
+								<p ng-show="!formApprovalPath.approvalPathName.$error.required && formApprovalPath.approvalPathName.$error.approvalPathName" translate="promise.procurement.master.approvalPath.error.pathname"></p>
+							</div>
+						</div>
+						
+					</div>
+					
+					<div class="form-group">
+						<div class="col-md-12 text-center">
+							<button type="button" ripple="" class="btn btn-secondary" ng-click="back()">	<span translate="template.button.kembali"></span>
+							</button>
+							<button type="button" ripple="" class="btn btn-primary" ng-click="save(formApprovalPath.$valid)">	<span translate="template.button.simpan"></span>
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<script>
+		function RestrictSpace() {
+		    if (event.keyCode == 32) {
+		        return false;
+		    }
+		}
+		</script>

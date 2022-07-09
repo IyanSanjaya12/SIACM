@@ -1,0 +1,51 @@
+<div class="app-view-header">
+    <span>Manage Catalog</span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="catalogAddCtrl as vm">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+    	<em class="fa fa-tasks">&nbsp;</em>
+    	<span>Add New Product</span>
+    </h4>
+    <form class="form-horizontal" name="form">
+    	<div class="panel-body">
+            <div class="form-group">
+                <label class="col-lg-4 control-label">Attribute Group</label>
+                <div class="col-lg-8 no-search">
+                    <select name="attributeGroup" class="form-control m-b shadow-z1 input-sm" ng-model="catalog.attributeGroup" ng-options="attributeGroup.name for attributeGroup in attributeGroupList track by attributeGroup.id">
+                            <option value="" disabled selected>++ Pilih ++</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-4 control-label">Product Type</label>
+                <div class="col-lg-8 no-search">
+                    <select name="itemType" class="form-control m-b shadow-z1 input-sm" ng-model="catalog.itemType" ng-options="itemType.nama for itemType in itemTypeList track by itemType.id">
+                            <option value="" disabled selected>++ Pilih ++</option>
+                    </select>
+                </div>
+                </div>
+        </div>
+            
+</div>
+    	<div class="panel-body">
+    		<tabset>
+                <tab ng-repeat="pane in panes" heading="{{pane.heading}}">
+                    <div class="form-group" ng-include="pane.include" ></div>
+                </tab>
+            </tabset>
+    	</div>
+    	<div class="panel-footer">
+    		<div class="form-group">
+            	<div align="center">
+                	<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-sm" ng-click="kembali()">
+        				<span class="btn-label"><em class="fa fa-chevron-left"></em></span><span translate="promise.procurement.master.attribute.btn.KEMBALI"></span>
+    				</button>
+    				<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="simpan()">
+    					<span translate="promise.procurement.master.attribute.btn.SIMPAN"></span>
+    				</button>
+                </div>
+            </div>
+        </div>
+    </form>    
+</div>

@@ -1,0 +1,54 @@
+<div class="app-view-header">
+ <span translate="menu.approval.approval_vendor"></span>
+</div>
+
+<div class="panel panel-primary" ng-controller="VendorApprovalController as form">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-tasks">&nbsp;</em><span translate="menu.approval.data_vendor"></span></h4>
+    <div ng-show="form.loading" align="center" ><strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px"></strong></div>
+    <div class="panel-body">
+        <br/>
+        <div ng-hide="form.loading" class="col-md-12"> 
+            <div>
+		          <table datatable="ng" class="row-border hover table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"style="text-align:center"><span translate="template.tabel.nomor">No</span></th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.master.datadaftarvendor.list.nama_vendor">NAMA VENDOR</th> 
+                            <!-- <th scope="col"style="text-align:center"><span translate="promise.procurement.master.datadaftarvendor.list.alamat">ALAMAT</th> -->
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.master.datadaftarvendor.list.TLP">TELP</th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.master.datadaftarvendor.list.EMAIL">EMAIL</th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.master.datadaftarvendor.list.tanggal_reg">TANGGAL REGISTRASI</th>
+                            <th scope="col"style="text-align:center">Status</span>
+                            <!-- <th scope="col"style="text-align:center"><span translate="promise.procurement.master.datadaftarvendor.list.AKSI">Aksi</span>
+                            </th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="vv in form.vendorList">
+                            <td style="text-align:center" ng-bind="$index+1"></td>
+                            <td style="text-align:center" ng-bind="vv.nama"></td>
+                            <!-- <td style="text-align:center" ng-bind="vv.alamat"></td> -->
+                            <td style="text-align:center" ng-bind="vv.nomorTelpon"></td>
+                            <td style="text-align:center" ng-bind="vv.email"></td>
+                            <td style="text-align:center" ng-bind="vv.created | date:'dd/MM/yyyy'"></td>
+                            <td style="text-align:center">
+                            	<span ng-if="vv.statusBlacklist == 1">Persetujuan Blacklist</span>
+                            	<span ng-if="vv.statusUnblacklist == 1">Persetujuan Unblacklist</span>
+                            	<span ng-if="vv.statusPerpanjangan == 1">Persetujuan Perpanjangan Sertifikat</span>
+                            	<span ng-if="vv.status == 0">Persetujuan Calon Vendor</span>
+                            </td>
+                            <!-- <td style="text-align:center">
+									<div>
+										<button type="button" class="mr btn btn-success btn-circle btn-xs" ng-click="form.edit(vv)">
+											<em  class="fa fa-pencil fa-lg"></em>
+										</button>									
+									</div>
+						    </td> -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END CONTROLLER-->

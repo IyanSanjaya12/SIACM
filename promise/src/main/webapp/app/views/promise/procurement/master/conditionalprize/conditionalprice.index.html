@@ -1,0 +1,82 @@
+<div class="app-view-header">
+    <span translate="promise.procurement.master.conditionalprize.judul">Conditional Prize</span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="ConditionalPrizeController as vm ">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <span translate="promise.procurement.master.conditionalprize.subjudul"></span>
+    </h4>
+    <div class="panel-body">
+        <div align="right">
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled" ng-click=" add()">
+                <span class="btn-label"><em class="fa fa-plus"></em></span>
+                <span translate="template.button.tambah"></span>
+            </button>
+        </div>
+        <br />
+        <div class="col-md-12">
+            <div align="center" ng-if="vm.loading == true">
+                <strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px" /></strong>
+            </div>
+            <table datatable="ng" class="row-border hover table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col"style="text-align:center; width:5%">
+                            <span translate="template.tabel.nomor">Nomor</span>
+                        </th>
+                        <th scope="col"style="text-align:center; width:15%">
+                            <span translate="promise.procurement.master.conditionalprize.list.kode"></span>
+                        </th>
+                        <th scope="col"style="text-align:center; width:15%">
+                            <span translate="promise.procurement.master.conditionalprize.list.nama"></span>
+                        </th>
+                        <th scope="col"style="text-align:center; width:25%">
+                            <span translate="promise.procurement.master.conditionalprize.list.tipe"></span>
+                        </th>
+                        <th scope="col"style="text-align:center; width:15%">
+                            <span translate="promise.procurement.master.conditionalprize.list.fungsi"></span>
+                        </th>
+                        <th scope="col"style="text-align:center; width:15%">
+                            <span translate="promise.procurement.master.conditionalprize.list.persen"></span>
+                        </th>
+                        <th scope="col"style="text-align:center; width:10%">
+                            <span translate="promise.procurement.master.conditionalprize.list.aksi">Aksi</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="conditionalPrice in vm.conditionalPriceList">
+                        <td style="text-align:center">{{ $index+1 }}</td>
+                        <td ng-bind="conditionalPrice.kode"></td>
+                        <td ng-bind="conditionalPrice.nama"></td>
+                        <td style="text-align:left">
+                            <span ng-if="conditionalPrice.tipe == 1">Header / Kena price berdasarkan Total</span>
+                            <span ng-if="conditionalPrice.tipe == 2">Item / tiap satuan kena price</span>
+                        </td>
+                        <td style="text-align:left">
+                            <span ng-if="conditionalPrice.fungsi == -1">Mengurangi Harga</span>
+                            <span ng-if="conditionalPrice.fungsi == 1">Menambah Harga</span>
+                        </td>
+                        <td style="text-align:left">
+                            <span ng-if="conditionalPrice.isPersentage == 0">Nilai</span>
+                            <span ng-if="conditionalPrice.isPersentage == 1">Nilai Persentase</span>
+                        </td>
+                        <td style="text-align:center">
+                            <div>
+                                <button ng-if="conditionalPrice.id > 1" type="button" ng-class="'bg-' + app.theme.name"
+                                    class="mr btn btn-xs" ng-click="edit(conditionalPrice)">
+                                    <em class="fa fa-pencil fa-lg"></em>
+                                </button>
+                                <button ng-if="conditionalPrice.id > 1" type="button" class="mr btn btn-danger btn-xs"
+                                    ng-click="del(conditionalPrice.id)">
+                                    <em class="fa fa-trash fa-lg"></em>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!--END CONTROLLER-->

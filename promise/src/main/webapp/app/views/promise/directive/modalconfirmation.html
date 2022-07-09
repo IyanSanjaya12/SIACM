@@ -1,0 +1,23 @@
+<!--
+ *  Modal Confirmation
+ *
+ *  Copyright (c) 2016 F.H.K
+ *  http://forum.mitramandiri.co.id:8088
+ *
+ *  Licensed under GOD's give
+ *
+ -->
+ 
+<div class="modal-header" ng-class="'bg-' + app.theme.name" >
+    <button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="cancel()">x</button>
+    <h4 id="myModalLabel" class="modal-title" translate="template.konfirmasi.konfirmasi">Konfirmasi</h4>
+</div>
+<div class="modal-body text-center">
+    <p translate={{msg}}></p>
+</div>
+<div class="modal-footer">
+    <div align="center">        
+        <button ng-click="cancel()" class="btn btn-warning">Cancel</button>
+        <button ng-click="ok()" class="btn btn-primary">OK</button>		
+    </div>
+</div>

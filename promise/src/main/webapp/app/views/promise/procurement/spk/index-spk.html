@@ -1,0 +1,55 @@
+<!-- 
+GENERAL VIEW OF THE PROCUREMENT SYSTEM 
+---------- START CONTROLLER ----------
+-->
+
+<div class="app-view-header">
+    <span translate="promise.procurement.panitia.spk.JUDUL">SPK</span>
+</div>
+
+<div class="panel panel-primary" ng-controller="SPKIndexController as form">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-tasks">&nbsp;</em><span translate="promise.procurement.panitia.spk.SUBJUDUL">SPK</span></h4>
+    <div class="panel-body">
+        <br/>
+        <div class="col-md-12">
+            <div>
+                <div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px" border="0"/></strong></div>
+                <table datatable="ng" class="row-border hover table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"style="text-align:center">No
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.spk.listSPK.NAMA"></span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.spk.listSPK.TGL"></span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.spk.listSPK.NOMOR"></span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.spk.listSPK.VENDOR"></span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.spk.listSPK.AKSI">Aksi</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="data in spkList">
+                            <td style="text-align:center">{{ $index+1 }}</td>
+                            <td style="text-align:center">{{ data.pengadaan.namaPengadaan }}</td>
+                            <td style="text-align:center">{{ data.tanggal }}</td>
+                            <td style="text-align:center">{{ data.nomor }}</td>
+                            <td style="text-align:center">{{ data.vendor.nama }}</td>
+                            <td style="text-align:center">
+                                <div>
+                                    <button type="button" class="mr btn btn-primary btn-circle btn-xs" ng-click="view(data)">
+                                        <em class="fa fa-search"></em>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END CONTROLLER-->

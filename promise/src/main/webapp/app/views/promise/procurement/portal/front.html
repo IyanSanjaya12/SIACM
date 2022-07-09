@@ -1,0 +1,18 @@
+    
+
+
+    <div class="portal_wrapper">
+
+
+        <!-- Wrapper -->
+        <div class="animate_fade">
+            <!--  header -->
+            <header ng-include="'app/views/home/navbar.html'" ></header>
+            <div class="container m-t-70 text-center ng-hide-animate" ng-show="stateIsLoading">
+                <div class="col-md-12"><em class="fa fa-spin fa-spinner"></em></div>
+            </div>
+            <div class="m-t-70" ui-view ng-hide="stateIsLoading">
+            </div>      
+            <div ng-include="'app/views/home/footer.html'" ></div>
+        </div>
+    </div>

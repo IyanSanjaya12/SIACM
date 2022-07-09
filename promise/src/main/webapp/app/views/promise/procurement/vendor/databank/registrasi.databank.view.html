@@ -1,0 +1,194 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.RegistrasiVendor.DataBank.judul">Satuan</span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary"
+	ng-controller="RegistrasiDataBankViewController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<span ng-if="vm.toDo=='Add'" translate="promise.procurement.RegistrasiVendor.DataBank.view.subjudul_tambah"></span>
+		<span ng-if="vm.toDo=='Edit'" translate="promise.procurement.RegistrasiVendor.DataBank.view.subjudul_ubah"></span>
+	</h4>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-md-12">
+				<div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong></div>
+				<form method="post" action="#" novalidate="" class="form-horizontal">		                
+					<fieldset>
+		                	<div class="form-group">
+				            	<label class="col-sm-3 control-label"><span translate="promise.procurement.RegistrasiVendor.DataBank.NamaBank"></span>
+				                	<label class="text-danger">*)</label>
+				                </label>
+				                <div class="col-sm-5">
+				                	<input name="namaBank" type="text" class="form-control shadow-z1 input-sm" ng-model="vm.dataBankVendor.namaBank" ng-disabled="true">
+				                    <p ng-show="vm.dataBankVendor.namaBankError" style="color:red">Nama Bank Harus diisi</p>
+                                	<br/>
+				        		</div>
+								<div class="col-sm-2">
+                                    <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-sm" style="height:30px" ng-click="cariBank()">
+                                     	<span translate="promise.procurement.RegistrasiVendor.DataBank.CariBank"></span>
+                                    </button>
+				                </div>
+							</div>
+		                	<div class="form-group">
+				            	<label class="col-sm-3 control-label"><span translate="promise.procurement.RegistrasiVendor.DataBank.CabangBank"></span>
+				                	<label class="text-danger"></label>
+				                </label>
+				                <div class="col-sm-7">
+				                	<input name="cabangBank" type="text" class="form-control shadow-z1 input-sm" ng-model="vm.dataBankVendor.cabangBank">
+									<br/>
+				        		</div>
+							</div>
+		                	<div class="form-group">
+				            	<label class="col-sm-3 control-label"><span translate="promise.procurement.RegistrasiVendor.DataBank.AlamatBank"></span>
+				                	<label class="text-danger"></label>
+				                </label>
+				                <div class="col-sm-7">
+				                	<input name="alamatBank" type="text" class="form-control shadow-z1 input-sm" ng-model="vm.dataBankVendor.alamatBank">
+									<br/>
+				        		</div>
+							</div>
+		                	<div class="form-group">
+				            	<label class="col-sm-3 control-label"><span translate="promise.procurement.RegistrasiVendor.DataBank.Kota"></span>
+				                	<label class="text-danger"></label>
+				                </label>
+				                <div class="col-sm-7">
+				                	<input name="kota" type="text" class="form-control shadow-z1 input-sm" ng-model="vm.dataBankVendor.kota">
+									<br/>
+				        		</div>
+							</div>
+		                	<div class="form-group">
+				            	<label class="col-sm-3 control-label"><span translate="promise.procurement.RegistrasiVendor.DataBank.Negara"></span>
+				                	<label class="text-danger">&nbsp;</label>
+				                </label>
+				                <div class="col-sm-7">
+                					<div class="input-group">
+                    					<ui-select name="negara" ng-model="vm.dataBankVendor.negara" search-enabled="true" theme="bootstrap">
+											<ui-select-match placeholder="Pilih Negara ...">{{$select.selected.nama}}</ui-select-match>
+											<ui-select-choices repeat="negara in vm.negaraList | filter: $select.search" style="width: 350px;font-size: 14px;">
+												<div ng-bind-html="negara.nama | highlight: $select.search"></div>
+											</ui-select-choices>
+										</ui-select>
+                    				</div>
+									<br/>
+				        		</div>
+							</div>
+		                	<div class="form-group">
+				            	<label class="col-sm-3 control-label"><span translate="promise.procurement.RegistrasiVendor.DataBank.NomorAccount"></span>
+				                	<label class="text-danger">*)</label>
+				                </label>
+				                <div class="col-sm-7">
+				                	<!--<input name="nomorRekening" type="number" min="0" class="form-control shadow-z1 input-sm" ng-model="dataBankVendor.nomorRekening" maxlength="30">
+				                    <p ng-show="vm.dataBankVendor.nomorRekeningError" style="color:red">nomor Account Bank Harus diisi</p>-->
+                                	
+									<input name="nomorRekening" type="text" pattern="[0-9]*" promise-numbers-comma class="form-control shadow-z1 input-sm" ng-model="vm.dataBankVendor.nomorRekening" maxlength="30">
+				                    <p ng-show="vm.dataBankVendor.nomorRekeningError" style="color:red">nomor Account Bank Harus diisi</p>
+									<br/>
+				        		</div>
+							</div>
+		                	<div class="form-group">
+				            	<label class="col-sm-3 control-label"><span translate="promise.procurement.RegistrasiVendor.DataBank.NamaPemegangAccount"></span>
+				                	<label class="text-danger">*)</label>
+				                </label>
+				                <div class="col-sm-7">
+				                	<input name="namaNasabah" type="text" class="form-control shadow-z1 input-sm" ng-model="vm.dataBankVendor.namaNasabah">
+				                    <p ng-show="vm.dataBankVendor.namaNasabahError" style="color:red">nama Pemegang Account Bank Harus diisi</p>
+                                	<br/>
+				        		</div>
+							</div>
+		                	<div class="form-group">
+				            	<label class="col-sm-3 control-label"><span translate="promise.procurement.RegistrasiVendor.DataBank.MataUang"></span>
+				                	<label class="text-danger">*)</label>
+				                </label>
+				                <div class="col-sm-7">
+                					<div class="input-group">
+                    					<ui-select name="mataUang" ng-model="vm.dataBankVendor.mataUang" theme="bootstrap">
+											<ui-select-match placeholder="Pilih Mata Uang ...">{{$select.selected.nama}}</ui-select-match>
+											<ui-select-choices repeat="mataUang in vm.mataUangList | filter: $select.search">
+												<div ng-bind-html="mataUang.nama | highlight: $select.search"></div>
+											</ui-select-choices>
+										</ui-select>
+                    				</div>
+									<p ng-show="vm.dataBankVendor.mataUangError" style="color:red">mata Uang belum ada yang dipilih!</p>
+                                	<br/>
+				        		</div>
+							</div>
+								<div class="form-group">
+                                    <div class="col-lg-offset-2 col-lg-10">
+                                        <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="back()">
+                                            <span class="btn-label"><em class="fa fa-chevron-left"></em></span>
+                                            <span translate="promise.procurement.RegistrasiVendor.kembali"></span>
+                                        </button>
+                                        <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="save()" >
+                                        	<span translate="promise.procurement.RegistrasiVendor.simpan"></span>
+                                        	<span class="btn-label btn-label-right"><em class="fa fa-chevron-right"></em></span>
+                                        </button>
+                                    </div>
+                                </div>
+		                    </fieldset>
+				</form>
+			</div>		            
+		</div>
+	</div>
+</div>
+
+<script type="text/ng-template" id="/bankMaster.html">
+<div class="app-view-header"></div>
+<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+	<span translate="promise.procurement.RegistrasiVendor.DataBank.MasterBank"></span>
+</h4>
+<div class="panel panel-primary">
+	<div class="panel-body">
+		<div class="col-sm-12">
+			<div class="table-responsive">
+				<table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance" class="table table-striped"></table>
+            	<!--- <table datatable="ng" class="table table-hover table-condensed table-striped bg-white">
+                	<thead>
+                    	<tr style="font-weight: bold">
+                        	<th scope="col"style="width:5%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.DataBank.No"></span>
+                            </th>
+                            <th scope="col"style="width:15%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.DataBank.NamaBank"></span>
+                            </th>
+                            <th scope="col"style="width:15%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.DataBank.CabangBank"></span>
+                            </th>
+                            <th scope="col"style="width:15%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.DataBank.Kota"></span>
+                            </th>
+                            <th scope="col"style="width:15%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.DataBank.AlamatBank"></span>
+                            </th>
+                            <th scope="col"style="width:5%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.DataPengalaman.Aksi"></span>
+                            </th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr ng-repeat="bank in bankList">
+                        	<td style="text-align:center">{{$index+1}}</td>
+                            <td>{{ bank.namaBank }}</td>
+                            <td>{{ bank.namaKantor }}</td>
+                            <td>{{ bank.kota }}</td>
+                            <td>{{ bank.alamat }}</td>
+                            <td>
+								<div class="radio c-radio">
+                                	<label style="color:green">
+										<input type="radio" name="dataBank" ng-model="bank.id" ng-click="pilihBank(bank)"><span class="fa fa-circle"></span>
+									</label>
+								</div>
+							</td>
+                        </tr>
+                     </tbody>
+              </table> --->
+				<div class="form-group">
+					<div class="col-lg-offset-2 col-lg-10">
+            			<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="btnBatal()">
+                        	<span class="btn-label"><em class="fa fa-chevron-left"></em></span>
+                            <span translate="promise.procurement.RegistrasiVendor.kembali"></span>
+                        </button>
+                        <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="btnSimpan()" >
+                          	<span translate="promise.procurement.RegistrasiVendor.simpan"></span>
+                           	<span class="btn-label btn-label-right"><em class="fa fa-chevron-right"></em></span>
+                        </button>
+               		</div>
+          		</div>
+   		  	</div>
+    	</div>
+    </div>
+</div>
+</script>

@@ -1,0 +1,43 @@
+<div class="app-view-header">	<span translate="promise.procurement.master.satuan.judul">Satuan</span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="SatuanViewController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-tasks"></em>
+			<span ng-if="vm.toDo=='add'" translate="promise.procurement.master.satuan.view.subjudul_tambah"></span>
+			<span ng-if="vm.toDo=='edit'" translate="promise.procurement.master.satuan.view.subjudul_ubah"></span>
+			<a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+					<em class="fa fa-chevron-circle-down"></em>
+			</a>
+	</h4>
+	<div class="panel-body collapse in">
+		<div class="text-center" ng-if="vm.loading == true">	<strong><em>Loading...</em></strong>
+		</div>
+		<form method="post" action="#" novalidate="" class="form-horizontal" ng-class="{'submitted' : vm.submitted}" name="formSatuan">
+			<div class="form-group">
+				<label for="input-id-1" class="col-md-4 control-label required">	<span translate="promise.procurement.master.satuan.view.nama"></span>
+				</label>
+				<div class="col-md-4">
+					<input name="namaSatuan" id="input-id-1" promise-alphanumeric-only type="text" maxlength="250" class="form-control" ng-model="vm.satuan.nama" required ng-blur="delValidation($event)" />
+					<div class="input-error" ng-show="(vm.submitted && formSatuan.namaSatuan.$invalid)">
+						<p ng-show="formSatuan.namaSatuan.$error.required" translate="template.error.field_kosong"></p>
+						<p ng-show="!formSatuan.namaSatuan.$error.required && formSatuan.namaSatuan.$error.namaSatuan" translate="promise.procurement.master.satuan.error.nama_sama"></p>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-12 text-center">
+					<button type="button" ripple="" class="btn btn-secondary" ng-click="back()">	
+						<span translate="template.button.kembali"></span>
+					</button>
+					<button type="button" ripple="" class="btn btn-primary" ng-click="save(formSatuan.$valid)">	
+						<span translate="template.button.simpan">
+							</span>
+					</button>
+				</div>
+			</div>
+			<div align="left">	<strong style="background-color: yellow; color: green">{{message}}</strong>
+			</div>
+		</form>
+	</div>
+</div>

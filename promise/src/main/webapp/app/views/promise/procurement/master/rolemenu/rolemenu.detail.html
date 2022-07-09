@@ -1,0 +1,65 @@
+<div class="app-view-header">	<span translate="promise.procurement.master.role_menu.judul"></span>
+	<small><span translate="promise.procurement.master.role_menu.keterangan"></span></small>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="DetailRoleMenuController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-tasks"></em>
+			<span translate="promise.procurement.master.role_menu.subjudul"></span>&nbsp;{{role.nama}}
+			<a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+					<em class="fa fa-chevron-circle-down"></em>
+			</a>
+	</h4>
+	<div class="panel-body collapse in">
+		<!--<div align="right">
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="add()">
+                <span class="btn-label"><em class="fa fa-plus"></em></span>
+                <span translate="promise.procurement.master.rolemenu.TAMBAH"></span>
+            </button>
+        </div>-->
+		<div class="col-md-12">
+			<div>
+				<div class="text-center" ng-if="vm.loading == true">	<strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0" /></em></strong>
+				</div>
+				<table datatable="ng" class="row-border hover table-striped">
+					<thead>
+						<tr>
+							<th scope="col">	<span translate="template.tabel.nomor"></span>
+							</th>
+							<th scope="col">	<span translate="promise.procurement.master.role_menu.list.role"></span>
+							</th>
+							<th scope="col">	<span translate="promise.procurement.master.role_menu.list.menu"></span>
+							</th>
+							<th scope="col">	<span translate="template.tabel.aksi"></span>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="roleMenu in vm.roleMenuList">
+							<td style="text-align: center">{{ $index+1 }}</td>
+							<td ng-bind="roleMenu.role.nama"></td>
+							<td ng-bind="roleMenu.menu.nama"></td>
+							<td style="text-align: center">
+								<button type="button" ng-class="'bg-' + app.theme.name" class="btn btn-primary btn-sm btn-edit" ng-click="edit(roleMenu)"></button>
+								<button type="button" class="btn btn-danger btn-sm btn-delete" ng-click="del(roleMenu.id)"></button>
+								<!-- <button type="button" ng-class="'bg-' + app.theme.name" class="mr btn btn-xs"
+										ng-click="form.edit(rm)">
+										<em class="fa fa-edit"></em>
+									</button>
+									<button type="button" class="mr btn btn-danger btn-xs"
+										ng-click="form.del(rm.id)">
+										<em class="fa fa-trash fa-lg"></em>
+									</button> -->
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="panel-footer text-center">
+			<button type="button" ripple="" class="btn btn-secondary" ng-click="back()">	<span translate="template.button.kembali"></span>
+			</button>
+		</div>
+	</div>
+</div>
+<!--END CONTROLLER-->

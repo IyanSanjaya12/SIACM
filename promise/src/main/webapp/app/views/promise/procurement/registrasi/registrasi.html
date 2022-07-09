@@ -1,0 +1,66 @@
+<div class="container container-sm animated fadeInDown">
+	<div class="center-block mt-xl">
+		<!-- START panel-->
+		<img src="app/img/promise_architechture.png" width="610px" height="300px" alt="Image" class="center-block img-rounded" />
+		<div class="panel">
+			<div class="panel-body" ng-controller="RegistrasiController as form">
+				<p class="pv text-bold">REGISTRASI VENDOR BARU</p>
+				<form name="formRegistrasi" role="form" class="form-validate mb-lg">
+					<div class="row">
+						<div class="col-md-12">
+							<div align="center" ng-show="loadingCheckEmail">
+								<strong><em>Check Email Loading... <img src="app/img/loading.gif" border="0" height="20px"/></em></strong>
+							</div>
+							<div align="center" ng-show="loading">
+								<strong><em>Loading... <img src="app/img/loading.gif" border="0" height="20px"/></em></strong>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div align="center" style="color:red" ng-show="messageError">
+								Silahkan isi form registrasi dengan benar!
+							</div>
+							<div class="form-group has-feedback">
+								<input id="signupInputEmail1" type="email" ng-model="form.email" placeholder="Email Anda" autocomplete="off" class="form-control" required="" />
+								<span class="fa fa-envelope form-control-feedback text-muted"></span>
+							</div>
+							<div align="center" style="color:red" ng-show="errorEmail">
+								Email anda sudah ada yang menggunakan!
+							</div>
+							<div class="form-group has-feedback">
+								<input id="signupInputPassword1" type="password" ng-model="form.passwd1" placeholder="Your password" autocomplete="off" class="form-control" />
+								<span class="fa fa-lock form-control-feedback text-muted"></span>
+							</div>
+							<div class="form-group has-feedback">
+								<input id="signupInputRePassword1" type="password" ng-model="form.passwd2" placeholder="Type again your password" autocomplete="off" class="form-control" />
+								<span class="fa fa-lock form-control-feedback text-muted"></span>
+							</div>
+							<div align="center" style="color:red" ng-show="errorPassword">
+								Password yang anda masukan tidak sama!
+							</div>
+							<div class="clearfix">
+								<div class="checkbox c-checkbox pull-left mt0">
+									<label>
+										<input type="checkbox" ng-model="form.persetujuan" value="true" required="" />
+										<span class="fa fa-check"></span>Setuju dengan <a href="">kesepakatan</a>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<button type="submit" class="btn btn-block btn-primary" ng-click="(formRegistrasi.$valid)?btnRegistrasi():messageError=true">Buat Account Vendor</button>
+							<br/>
+							<p class="pt-lg text-center mt-sm">Already register?</p>
+							<a ui-sref="page.promiselogin" class="btn btn-block btn-default">
+								<strong>Login</strong>
+							</a>
+							</ div>
+						</div>
+				</form>
+				</div>
+			</div>
+			<!-- END panel-->
+			<div ng-include="'app/views/page.footer.html'" class="p-lg text-center"></div>
+		</div>
+	</div>

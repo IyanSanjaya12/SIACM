@@ -1,0 +1,60 @@
+<fieldset>
+        <div align="center" ng-if="loadingApproval == true"> <strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px" /></strong>
+        </div>
+        <div class="row">
+            <div class="col-md-2">Approval</div>
+            <div class="col-md-3">
+                <select class="form-control m-b shadow-z1 input-sm" ng-model="form.purchaseOrder.approvalId" ng-change="form.getApprovalLevel()">
+                    <option ng-repeat="approval in form.approvalList" ng-value="approval.id" ng-selected="form.purchaseOrder.approvalId==approval.id">{{approval.name}}</option>
+                    <option value="0" ng-selected="form.purchaseOrder.approvalId==0">New Approval</option>
+                </select>
+            </div>
+            <div class="col-md-5" ng-show="form.purchaseOrder.approvalId == 0">
+                <ui-select ng-model="form.roleUserNewSelected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false">
+                    <ui-select-match placeholder="Masukan Jabatan / Nama User">{{form.roleUserNewSelected.organisasi.nama +' - '+form.roleUserNewSelected.user.namaPengguna}}</ui-select-match>
+                    <ui-select-choices repeat="approvalNew in approvalNewList track by $index" refresh="getApprovalNewList($select.search)" refresh-delay="0">
+                        <div ng-bind-html="''+approvalNew.user.namaPengguna| highlight: $select.search"></div>
+                        <div ng-bind-html="''+approvalNew.organisasi.nama+' ('+approvalNew.role.nama+')'| highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="row" ng-show="form.purchaseOrder.approvalId > 0">
+            <div style="vertical-align: middle;" class="row bs-wizard">
+                <div class="col-md-12">
+                    <div ng-repeat="flow in form.approvalLevelList | orderBy: flow.sequence" class="bs-wizard-step complete">
+                        <div ng-if="flow.approval.approvalType.id == 1" class="text-center bs-wizard-stepnum" ng-bind="flow.group.nama"></div>
+                        <div ng-if="flow.approval.approvalType.id == 2" class="text-center bs-wizard-stepnum" ng-bind="flow.user.namaPengguna"></div>
+                        <div ng-if="flow.approval.approvalType.id == 3" class="text-center bs-wizard-stepnum" ng-bind="flow.role.nama"></div>
+                        <div class="progress">
+                            <div class="progress-bar"></div>
+                        </div>
+                        <a href="#" class="bs-wizard-dot"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <!-- <div class="row pull-left">
+            <div class="col-md-2">
+                <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled" ng-click="tabs[2].active=true;">Back</button>
+            </div>
+        </div>
+        <div class="row pull-right">
+            <div class="col-md-2">
+                <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled" ng-click="tabs[4].active=true;">Next</button>
+            </div>
+        </div> -->
+    </fieldset>
+    <div class="row">
+            <div class="col-12 text-center">
+                <a class="btn btn-default" ng-click="tabs[2].active=true;">	
+                    <span translate="promise.procurement.master.attribute.btn.KEMBALI"></span>
+                </a>
+                <a ng-class="'bg-' + app.theme.name" class="btn btn-primary" ng-click="tabs[4].active=true;"> 
+                    <span translate="promise.procurement.master.attribute.btn.SELANJUTNYA"></span>
+                </a>
+            </div>
+        </div>

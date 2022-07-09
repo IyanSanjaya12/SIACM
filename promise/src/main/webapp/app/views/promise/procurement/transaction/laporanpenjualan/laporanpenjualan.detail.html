@@ -1,0 +1,277 @@
+<div class="app-view-header"> 
+	<span translate="penjualan.judul"></span>
+</div>
+<!--START CONTROLLER-->
+
+<div class="panel panel-primary" ng-controller="PenjualanDetailController as vm">
+	<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-tasks"></em>
+			<span ng-if="vm.todo=='add'" translate="penjualan.judulTambah"></span>
+			<span ng-if="vm.todo=='edit'" translate="penjualan.judulEdit"></span>
+			<a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+				<em class="fa fa-chevron-circle-down"></em>
+			</a>
+		</h4>
+	<form class="form-horizontal" name="penjualanForm">
+		<div class="panel-body collapse in">			
+			<div class="col-lg-12">
+				<fieldset>
+					<h4 class="page-header no-margin"><span translate="penjualan.penjualan"></h4>
+					<div class="form-group m-t">
+						<label class="col-lg-2 control-label">
+							<span translate="penjualan.list.nofaktur"></span>
+						</label>
+						<div class="col-lg-6">
+							<input name="nofaktur" maxlength="255" class="form-control" ng-model="vm.penjualan.noFaktur" disabled>
+						</div>
+					</div>
+	                <div class="form-group">
+						<label class="col-lg-2 control-label">
+							<span translate="penjualan.list.tglpenjualan"></span>
+						</label>
+						<div class="col-lg-6">
+							<input name="tglPenjualan" maxlength="255" class="form-control" ng-model="vm.tanggalView" disabled>
+						</div>
+					</div>
+				</fieldset>
+				<br>
+				<fieldset>
+					<h4 class="page-header no-margin"><span translate="penjualan.datapelanggan"></h4>
+					<div class="form-group m-t">
+						<label class="col-lg-2 control-label required">
+							<span translate="penjualan.list.namapelanggan"></span>
+						</label>
+						<div class="col-lg-6 no-search">
+							<ui-select ng-model="vm.penjualan.pelanggan" ng-disabled="vm.todo=='edit'" theme="bootstrap" reset-search-input="false">
+			                    <ui-select-match placeholder="Select Pelanggan">{{vm.penjualan.pelanggan.nama}}</ui-select-match>
+			                    <ui-select-choices repeat="data in vm.pelangganList" refresh="findMobil($select.search)" refresh-delay="0">
+			                        <div ng-bind-html="data.nama | highlight: $select.search" ></div>
+			                    </ui-select-choices>
+			                </ui-select>
+			                <strong style="color: red" translate={{vm.errorMessagePelanggan}}></strong>
+						</div> 
+					</div>
+	                <div class="form-group">
+						<label class="col-lg-2 control-label">
+							<span translate="penjualan.list.telponpelanggan"></span>
+						</label>
+						<div class="col-lg-6">
+							<input name="telpon" class="form-control" ng-model="vm.penjualan.pelanggan.telepon" disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 control-label">
+							<span translate="penjualan.list.nopolisi"></span>
+						</label>
+						<div class="col-lg-6">
+							<input name="telpon" class="form-control" ng-model="vm.penjualan.pelanggan.noPolisi" disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 control-label">
+							<span translate="mobil.nama"></span>
+						</label>
+						<div class="col-lg-6">
+							<input name="namamobil" class="form-control" ng-model="vm.penjualan.pelanggan.mobil.nama" disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 control-label">
+							<span translate="mobil.list.merkmobil"></span>
+						</label>
+						<div class="col-lg-6">
+							<input name="telpon" class="form-control" ng-model="vm.penjualan.pelanggan.mobil.merk" disabled>
+						</div>
+					</div>
+				</fieldset>
+				<br>
+				<fieldset>
+					<h4 class="page-header no-margin"><span translate="penjualan.datamontir"></h4>
+					<div class="form-group m-t">
+						<label class="col-lg-2 control-label">
+							<span translate="penjualan.kepalamekanik"></span>
+						</label>
+						<div class="col-lg-6 no-search">
+							<ui-select ng-disabled="vm.todo=='edit'" ng-model="vm.penjualan.kepalaMekanik" theme="bootstrap" reset-search-input="false">
+			                    <ui-select-match placeholder="Select Kepala Mekanik">{{vm.penjualan.kepalaMekanik.nama}}</ui-select-match>
+			                    <ui-select-choices repeat="data in vm.karyawan.kepalaMekanikList" refresh="findMobil($select.search)" refresh-delay="0">
+			                        <div ng-bind-html="data.nama | highlight: $select.search" ></div>
+			                    </ui-select-choices>
+			                </ui-select>
+						</div>
+					</div>
+					<div class="form-group m-t">
+						<label class="col-lg-2 control-label required">
+							<span translate="penjualan.list.namamontir"></span>
+						</label>
+						<div class="col-lg-6 no-search">
+							<ui-select ng-disabled="vm.todo=='edit'" ng-model="vm.penjualan.karyawan" theme="bootstrap" reset-search-input="false">
+			                    <ui-select-match placeholder="Select Montir">{{vm.penjualan.karyawan.nama}}</ui-select-match>
+			                    <ui-select-choices repeat="data in vm.karyawan.mekanikList" refresh="findMobil($select.search)" refresh-delay="0">
+			                        <div ng-bind-html="data.nama | highlight: $select.search" ></div>
+			                    </ui-select-choices>
+			                </ui-select>
+			                <strong style="color: red" translate={{vm.errorMessageMekanik}}></strong>
+						</div> 
+					</div>
+					<div class="form-group m-t">
+						<label class="col-lg-2 control-label">
+							<span translate="penjualan.list.pembantu"></span>
+						</label>
+						<div class="col-lg-6 no-search">
+							<ui-select ng-disabled="vm.todo=='edit'" ng-model="vm.penjualan.perbantuan" theme="bootstrap" reset-search-input="false">
+			                    <ui-select-match placeholder="Select Perbantuan">{{vm.penjualan.perbantuan.nama}}</ui-select-match>
+			                    <ui-select-choices repeat="data in vm.karyawan.pembantuMekanikList" refresh="findMobil($select.search)" refresh-delay="0">
+			                        <div ng-bind-html="data.nama | highlight: $select.search" ></div>
+			                    </ui-select-choices>
+			                </ui-select>
+						</div>
+					</div>
+				</fieldset>
+				<br>
+				<fieldset>
+					<h4 class="page-header no-margin"><span translate="penjualan.detail"></h4>
+					<div class="col-lg-12">
+						<div class="form-group">
+							<div class="col-lg-12">
+								<div class="col-lg-12 " align="right">
+									<br>
+									<button class="btn btn-primary btn-sm" ng-click="addDataBarang()" ng-show="vm.todo == 'add'"><em
+									class="fa fa-plus"></em> <span translate="promise.procurement.master.catalog.btn.TAMBAH"></span></button>
+									<br>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<table class="table table-striped">
+							<thead>
+								<tr style="font-weight: bold; background-color:#EEEEEE">
+									<th scope="col"><span translate="barang.list.nomor"></span></th>
+									<th scope="col"><span translate="barang.list.namabarang"></span></th>
+									<th scope="col"><span translate="barang.list.kodebarang"></span></th>
+									<th scope="col"><span translate="penjualan.list.harga"></span></th>
+									<th scope="col"><span translate="penjualan.list.qty"></span></th>
+									<th scope="col"><span translate="penjualan.list.totalHarga"></span></th>
+									<th scope="col" ng-if="vm.todo!='edit'"><span translate="template.tabel.aksi"></span></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="penjualanDet in vm.penjualanDetailList">
+									<td ng-bind="$index+1"></td>
+									<td >
+										<select name="barang" class="form-control"
+											ng-model="penjualanDet.barang"
+											ng-options="barang.nama for barang in vm.barangList track by barang.id"
+											ng-change="selectBarang(penjualanDet.barang,$index)" ng-if="vm.penjualanDetailList[$index].barang == null" >
+											<option value="" disabled selected>++ Pilih ++</option>
+										</select>
+										<input type="text" name="barang" disabled class="form-control" ng-model="penjualanDet.barang.nama" ng-if="penjualanDet.barang != null">
+									</td>
+									<td ng-bind="penjualanDet.barang.kode"></td>
+									<td ng-bind="(penjualanDet.barang.harga | currency: '')"></td>
+									<td ng-if="penjualanDet.isOpenForm == null || penjualanDet.isOpenForm == false" ng-bind="penjualanDet.quantity"></td>
+									<td ng-if="penjualanDet.isOpenForm">
+										<input promise-numbers-only-copy name="quantity" class="form-control" ng-change="changeQty(penjualanDet)" ng-model="penjualanDet.quantity" >
+									</td>
+									<td ng-bind="(penjualanDet.total | currency: '')"></td>
+									<td class="action-col" ng-if="vm.todo!='edit'">
+										<a class="view-order badge bg-primary" ng-click="editDataBarang(penjualanDet)" tooltip-placement="top" tooltip="Edit">
+											<em class="fa fa-pencil fa-lg"></em>
+										</a>
+										<a class="view-order badge bg-danger" ng-click="hapusDataBarang(penjualanDet)" tooltip-placement="top" tooltip="Delete">
+											<em class="fa fa-trash"></em>
+										</a>
+									</td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+									<td >
+										<strong>TOTAL</strong>
+									</td>
+									<td colspan="6">
+										<input type="text" name="barang" promise-currency-blur ng-model="vm.penjualan.totalPembayaran" disabled class="form-control">
+									</td>
+								</tr>
+							</tfoot>
+						</table>
+						<br>
+					</div>
+				</fieldset>
+				<br>
+				<fieldset>
+					<h4 class="page-header no-margin"><span translate="penjualan.detailpembayaran"></span></h4>
+					<div class="form-group"><br>
+						<label class="col-lg-2 control-label"><span translate="penjualan.garansi"></span></label>
+						<div class="col-md-3">
+							<input ng-disabled="vm.todo=='edit'" name="garansi" promise-numbers-only-copy class="form-control" ng-model="vm.penjualan.garansi" maxlength="2">&nbsp;
+						</div>
+						<div class="col-md-3">
+							<select ng-disabled="vm.todo=='edit'" ng-model="vm.penjualan.jenisGaransi" class="form-control">
+								<option value="" disabled selected>+Pilih+</option>
+								<option value="tahun">Tahun</option>
+								<option value="bulan">Bulan</option>
+								<option value="minggu">Minggu</option>
+								<option value="hari">Hari</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 control-label"><span translate="penjualan.diskon"></span></label>
+						<div class="col-md-3">
+							<input ng-disabled="vm.todo=='edit'" name="diskon" type="number" ng-change="changeDiscount(vm.penjualan.diskon)" class="form-control" ng-model="vm.penjualan.diskon">
+						</div>
+						<div class="col-md-3">
+							<strong>%</strong>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 control-label"><span translate="penjualan.totaldiskon"></span></label>
+						<div class="col-md-6">
+							<input name="totaldiskon" promise-currency-blur disabled class="form-control" ng-model="vm.penjualan.totalDiskon">
+						</div>
+					</div>
+					<div class="form-group m-t">
+						<label class="col-lg-2 control-label"><span translate="penjualan.totalpembayaran"></span></label>
+						<div class="col-md-6">
+							<input name="totalpembayaran" promise-currency-blur disabled class="form-control" ng-model="vm.penjualan.hargaSetelahDiskon">
+						</div>
+					</div>
+				</fieldset><br>
+				<fieldset>
+					<h4 class="page-header no-margin"><span translate="penjualan.pembayaran"></span></h4>
+					<div class="form-group m-t">
+						<label class="col-lg-2 control-label required"><span translate="penjualan.pembayaran"></span></label>
+						<div class="col-lg-6">
+							<input ng-disabled="vm.todo=='edit'" name="totalpembayaran" promise-currency-blur class="form-control" ng-change="changePayment(vm.penjualan.pembayaran)" ng-model="vm.penjualan.pembayaran">
+							<em><strong style="color: red" translate={{vm.errorMessagePembayaran}}></strong></em>
+						</div>
+						<strong>IDR</strong>
+					</div>
+	                <div class="form-group">
+						<label class="col-lg-2 control-label "><span translate="penjualan.kembalian"></span></label>
+						<div class="col-lg-6">
+							<input name="kembalian" promise-currency-blur class="form-control" ng-model="vm.penjualan.kembalian" disabled>
+						</div>
+					</div>
+				</fieldset>
+				<br>
+			</div>
+			<br>
+		</div>
+		<div class="panel-footer">
+			<div class="form-group">
+				<div align="center">
+					<br/>
+					<br/>
+					<button type="button" ripple="" class="btn btn-default" ng-click="back()"><span translate="template.button.kembali"></span>
+					</button>
+					<button ng-show="vm.todo != 'edit'" type="button" ripple="" class="btn btn-primary" ng-click="save()"><span translate="template.button.simpan"></span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

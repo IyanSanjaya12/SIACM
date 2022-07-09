@@ -1,0 +1,81 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.inisialisasi.JUDUL">Pengadaan</span>
+	<small><span translate="promise.procurement.inisialisasi.KETERANGAN"></span></small>
+</div>
+<div class="panel panel-primary" ng-controller="PengadaanIndex04Controller as pc">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><span translate="promise.procurement.inisialisasi.SUBJUDUL">Data Pengadaan</span>
+            
+        </h4>
+	<div class="panel-body">
+	 <div align="right">
+	    
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled mb 2" ng-click="pc.addInisialisasi()">
+                <span class="btn-label"> <em class="fa fa-plus"></em> </span>
+                <span translate="promise.procurement.inisialisasi.btn.BUATPENGADAAN"></span>
+            </button>
+	    </div>
+	
+		<script type="text/ng-template" id="/addInisialisasi01.html">
+			<div class="modal-header">
+				<button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="cancel()">×</button>
+				<h3 id="myModalLabel" class="modal-title">Inisiasi Pengadaan</h3></div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label class="col-sm-4 control-label">Metoda Pengadaan <strong style="color:red">*)</strong></label>
+					<div class="col-sm-8">
+						<select id="metodaPengadaan" class="form-control m-b" ng-model="metodaPengadaan">
+							<option value="" disabled selected>++ Pilih Metoda Pengadaan ++</option>
+							<option value="1">Pelelangan</option>
+							<option value="5">Penunjukan Langsung</option>
+							<option value="4">Pemilihan Langsung</option>
+						</select>
+					</div>					
+				</div>
+				<p id="message">&nbsp;</p>
+				<div data-ng-bind-html="message" align="center" style="color:red"></div>
+			</div>
+			<div class="modal-footer">
+				<button ng-click="ok()" class="btn btn-primary">OK</button>
+				<button ng-click="cancel()" class="btn btn-warning">Cancel</button>
+			</div>
+		</script>
+		<div align="center" ng-if="loading == true"><strong><em>Loading... <img src="app/img/loading.gif" border="0" height="20px"/></em></strong>
+		</div>
+		<div id="message" align="center">&nbsp;</div>
+		<div class="col-md-12">
+			<div>
+				<table datatable="ng" class="row-border hover table-striped">
+					<thead>
+						<tr>
+							<th scope="col">No</th>
+							<th scope="col"><span translate="general.number">Nomor</span></th>
+							<th scope="col"><span translate="general.date">Tanggal</span></th>
+							<th scope="col"><span translate="general.name">Nama</span></th>
+							<th scope="col"><span translate="general.qualification">Kualifikasi</span></th>
+							<th scope="col"><span translate="general.type">Jenis</span></th>
+							<th scope="col"><span translate="general.method">Metode</span></th>
+							<th scope="col"><span translate="general.action"></span></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="pengadaan in pc.pengadaanList|orderBy:'-tanggalNotaDinas'">
+							<td>{{ $index+1 }}</td>
+							<td>{{ pengadaan.nomorNotaDinas }}</td>
+							<td>{{ pengadaan.tanggalNotaDinas | date:"dd/MM/yyyy" }}</td>
+							<td>{{ pengadaan.namaPengadaan }}</td>
+							<td>{{ pengadaan.kualifikasiPengadaan.nama }}</td>
+							<td>{{ pengadaan.jenisPengadaan.nama }}</td>
+							<td>{{ pengadaan.metodePengadaan.nama }}</td>
+                            <td class="action-col">
+                                <a class="view-order badge bg-success" tooltip-placement="top" tooltip="Edit" ng-click="pc.buttonEdit(pengadaan)">
+                                    <em class="glyphicon glyphicon-pencil"></em>
+                                </a>
+                            </td>
+                           
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

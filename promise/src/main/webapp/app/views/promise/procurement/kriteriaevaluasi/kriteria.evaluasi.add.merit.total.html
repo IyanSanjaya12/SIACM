@@ -1,0 +1,288 @@
+<!--
+TAB VIEW DETAIL ADDED KRITERIA EVALUASI MENU
+------------- START CONTROLLER -------------
+-->
+
+<div ng-controller="KriteriaEvaluasiMeritTambahController as form">
+    <div class="app-view-header">
+        <span translate="promise.procurement.panitia.kriteriaevaluasi.JUDUL">Kriteria Evaluasi</span>
+        <small><span translate="promise.procurement.panitia.kriteriaevaluasi.KETERANGAN2"></span></small>
+    </div>
+    <toaster-container toaster-options="{'position-class': 'toast-top-center', 'close-button':true}"></toaster-container>
+    <div class="panel panel-primary">
+        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+            <center>
+                <span translate="promise.procurement.panitia.kriteriaevaluasi.SUBJUDUL">Data Kriteria Evaluasi</span>
+            </center>
+        </h4>
+        <!-- START FORM -->
+        <div class="panel-body">
+            <tabset>
+                <!-- TAB KRITERIA ADMINISTRASI -->
+                <tab heading="Kriteria Administrasi" active="form.tabActiveStatus.tabAdministrasi" ng-if="btnTambahKriteria" disabled="tabAdmin">
+                    <fieldset>
+                        <h3>
+                            <center>
+                             <span translate="promise.procurement.panitia.kriteriaevaluasi.view.TABJUDUL1">KRITERIA EVALUASI ADMINISTRASI</span>
+                            </center>
+                        </h3>
+                        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><span translate="promise.procurement.panitia.kriteriaevaluasi.view.DATAEVAADMIN">Data Evaluasi Administrasi</span></h4>
+                        <div class="col-md-12">
+                            <div>
+                                <div class="table-responsive">
+                                    <table ng-table="form.tableAdminList" class="table table-bordered table-hover table-striped table-bordered">
+                                        <thead>
+                                            <tr style="background-color:#EEEEEE">
+                                                <th scope="col"style="text-align:center" width="50px">No</th>
+                                                <th scope="col"style="text-align:center" width="500px"><span translate="promise.procurement.panitia.kriteriaevaluasi.view.NAMAKRITERIAADMINISTRASI">Nama Kriteria Administrasi</span>
+                                                </th>
+                                                <th scope="col"style="text-align:center" width="50px"><span translate="promise.procurement.panitia.kriteriaevaluasi.view.NILAI">Nilai</span></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="ka in $data">
+                                                <td style="text-align:center">
+                                                    <div class="checkbox c-checkbox c-checkbox-rounded">
+                                                        <label>
+                                                            <input type="checkbox" ng-model="ka.active" ng-change="changeAdminCheck(ka, active); ka.nilai=null"/><span class="fa fa-check"></span></label>
+                                                    </div>
+                                                </td>
+                                                <td style="text-align:center">
+                                                    <span>{{ka.nama}}</span>
+                                                </td>
+                                                <td style="text-align:center">
+                                                    <input promise-numbers-comma class="form-control shadow-z1 input-sm" type="text" ng-model="ka.nilai" min="0" max="100" ng-blur="setNilaiAdmin(ka);" onKeyUp="if(this.value>99){this.value='100';}else if(this.value<0){this.value='0';}" oninput="if(value.length>5)value=value.slice(0,5)" ng-disabled="!ka.active"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <table class="table table-bordered table-hover table-striped table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <td width="550px"></td>
+                                                    <td width="50px"></td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td style="text-align:left"><span translate="promise.procurement.panitia.kriteriaevaluasi.view.TOTALNILAIADMIN">Total Nilai Pembobotan</span></td>
+                                                    <td style="text-align:center">
+                                                        <input class="form-control shadow-z1 input-sm" type="number" ng-model="valueTotalAdmin" ng-disabled="true" min="0" max="100"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="text-align:left"><span translate="promise.procurement.panitia.kriteriaevaluasi.view.MINIMALKELULUSANADMIN">Nilai Maksimal Pembobotan</span></td>
+                                                    <td style="text-align:center">
+                                                        <input promise-numbers-comma class="form-control shadow-z1 input-sm" type="text" ng-model="valueMaksAdmin" ng-disabled="!bukaAdmin" ng-blur="checkNilaiAdmin(valueMaksAdmin)" max="100" onKeyUp="if(this.value>99){this.value='100';}else if(this.value<0){this.value='0';}"/>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="form-group">
+                        <div align="right">
+                            <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-sm" ng-click="form.go('/app/promise/procurement/kriteriaEvaluasi/view')">
+                                <span class="btn-label">
+                                <em class="fa fa-chevron-left"></em>
+				                </span><span translate="promise.procurement.panitia.kriteriaevaluasi.btn.KEMBALI"></span>
+                            </button>
+                            <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-sm" ng-click="form.goToTabTeknis()" ng-disabled="validAdmin"><span translate="promise.procurement.panitia.kriteriaevaluasi.btn.LANJUT"></span><span class="btn-label btn-label-right"><em class="fa fa-chevron-right"></em></span>
+                            </button>
+                        </div>
+                    </div>
+                </tab>
+                <!-- END TAB -->
+
+                <!-- TAB KRITERIA TEKNIS -->
+                <tab heading="Kriteria Teknis" active="form.tabActiveStatus.tabTeknis" ng-if="btnTambahKriteria" ng-click="form.goToTabTeknis()" disabled="tabTeknis">
+                    <fieldset>
+                        <h3>
+                            <center>
+                            <span translate="promise.procurement.panitia.kriteriaevaluasi.view.TABJUDUL2">KRITERIA EVALUASI TEKNIS</span>
+                            </center>
+                        </h3>
+                        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><span translate="promise.procurement.panitia.kriteriaevaluasi.view.DATAEVATEKNIS">Data Evaluasi Teknis</span></h4>
+                        <div class="col-md-12">
+                            <div>
+                                <div class="table-responsive">
+                                    <table ng-table="form.tableTeknisList" class="table table-bordered table-hover table-striped table-bordered">
+                                        <thead>
+                                            <tr style="background-color:#EEEEEE">
+                                                <th scope="col"style="text-align:center" width="50px">No</th>
+                                                <th scope="col"style="text-align:center" width="500px"><span translate="promise.procurement.panitia.kriteriaevaluasi.view.NAMAKRITERIATEKNIS">Nama Kriteria Teknis</span>
+                                                </th>
+                                                <th scope="col"style="text-align:center" width="50px"><span translate="promise.procurement.panitia.kriteriaevaluasi.view.NILAI">Nilai</span></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="kt in $data">
+                                                <td style="text-align:center">
+                                                    <div class="checkbox c-checkbox c-checkbox-rounded">
+                                                        <label>
+                                                            <input type="checkbox" ng-model="kt.active" ng-click="changeTeknisCheck(kt, active); kt.nilai=null" /><span class="fa fa-check"></span></label>
+                                                    </div>
+                                                </td>
+                                                <td style="text-align:center">{{kt.nama}}</td>
+                                                <td style="text-align:center">
+                                                    <input promise-numbers-comma class="form-control shadow-z1 input-sm" type="text" ng-model="kt.nilai" ng-disabled="!kt.active" ng-checked="checked" ng-blur="setNilaiTeknis(kt)" min="0" max="100" onKeyUp="if(this.value>99){this.value='100';}else if(this.value<0){this.value='0';}" oninput="if(value.length>5)value=value.slice(0,5)"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table class="table table-bordered table-hover table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <td width="550px"></td>
+                                                <td width="50px"></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td style="text-align:left"><span translate="promise.procurement.panitia.kriteriaevaluasi.view.TOTALNILAITEKNIS">Total Nilai Pembobotan</span></td>
+                                                <td style="text-align:center">
+                                                    <input class="form-control shadow-z1 input-sm" type="number" ng-model="valueTotalTeknis" ng-disabled="true" min="0" max="100"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align:left"><span translate="promise.procurement.panitia.kriteriaevaluasi.view.MINIMALKELULUSANTEKNIS">Nilai Maksimal Pembobotan</span></td>
+                                                <td style="text-align:center">
+                                                    <input promise-numbers-comma class="form-control shadow-z1 input-sm" type="text" ng-model="valueMaksTeknis" ng-disabled="!bukaTeknis" ng-blur="checkNilaiTeknis(valueMaksTeknis)" min="0" max="100"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="form-group">
+                        <div align="right">
+                            <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-sm" ng-click="form.goToTabTeknisPrev()">
+                                <span class="btn-label">
+                                <em class="fa fa-chevron-left"></em>
+				                </span><span translate="promise.procurement.panitia.kriteriaevaluasi.btn.KEMBALI"></span>
+                            </button>
+                            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-sm" ng-click="form.goToTabHarga()" ng-disabled="validTeknis"><span translate="promise.procurement.panitia.kriteriaevaluasi.btn.LANJUT"></span><span class="btn-label btn-label-right"><em class="fa fa-chevron-right"></em></span>
+                            </button>
+                        </div>
+                    </div>
+                </tab>
+                <!-- END TAB -->
+
+                <!-- TAB KRITERIA HARGA -->
+                <tab heading="Kriteria Harga" active="form.tabActiveStatus.tabHarga" ng-click="form.goToTabHarga()" disabled="tabHarga">
+                    <fieldset>
+                        <h3>
+                            <center>
+                            <span translate="promise.procurement.panitia.kriteriaevaluasi.view.TABJUDUL3">KRITERIA EVALUASI HARGA</span>
+                            </center>
+                        </h3>
+                        <div class="col-md-12">
+                            <div>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped table-bordered">
+                                        <tbody>
+                                            <tr>
+                                                <th scope="col"style="text-align:left" width="600px">
+                                                    <label><span translate="promise.procurement.panitia.kriteriaevaluasi.view.AMBANGATAS">Ambang Atas</span>
+                                                    </label>
+                                                </th>
+                                                <th scope="col"style="text-align:left" width="200px">
+                                                    <label class="col-lg-7">
+                                                        <input promise-numbers-comma type="text" name="input" class="form-control shadow-z1 input-sm" ng-model="form.batasAtas" min="0" max="100" required onKeyUp="if(this.value>99){this.value='100';}else if(this.value<0){this.value='0';}" oninput="if(value.length>5)value=value.slice(0,5)" />
+                                                    </label>%
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="col"style="text-align:left" width="600px">
+                                                    <label><span translate="promise.procurement.panitia.kriteriaevaluasi.view.AMBANGBAWAH">Ambang Bawah</span>
+                                                    </label>
+                                                </th>
+                                                <th scope="col"style="text-align:left" width="200px">
+                                                    <label class="col-lg-7">
+                                                        <input promise-numbers-comma type="text" name="input" class="form-control shadow-z1 input-sm" ng-model="form.batasBawah" min="0" max="100" required onKeyUp="if(this.value>99){this.value='100';}else if(this.value<0){this.value='0';}" oninput="if(value.length>5)value=value.slice(0,5)" />
+                                                    </label>%
+                                                </th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="checkbox c-checkbox c-checkbox-rounded">
+                                        <label>
+                                            <input type="checkbox" name="default" value="true" /><span class="fa fa-check"></span>
+                                        </label>
+                                        <label translate="promise.procurement.panitia.kriteriaevaluasi.view.SETDEFAULT">Set Default</label>
+                                    </div>
+                                    <div>
+                                        <table class="table table-bordered table-hover table-striped table-bordered">
+                                            <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><span translate="promise.procurement.panitia.kriteriaevaluasi.view.PEMBOBOTANHEADER">Pembobotan Merit Point</span></h4>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="col"style="text-align:left" width="600px">
+                                                        <label><span translate="promise.procurement.panitia.kriteriaevaluasi.view.PRESENTASEADMIN">Presentase Nilai Administrasi</span>
+                                                        </label>
+                                                    </th>
+                                                    <th scope="col"style="text-align:left" width="200px">
+                                                        <label class="col-lg-7">
+                                                            <input promise-numbers-comma type="text" name="input" class="form-control shadow-z1 input-sm" ng-model="form.persenAdmin" min="0" max="100" required onKeyUp="if(this.value>99){this.value='100';}else if(this.value<0){this.value='0';}" oninput="if(value.length>5)value=value.slice(0,5)" />
+                                                        </label>%
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="col"style="text-align:left" width="600px">
+                                                        <label><span translate="promise.procurement.panitia.kriteriaevaluasi.view.PRESENTASITEKNIS">Presentase Nilai Teknis</span>
+                                                        </label>
+                                                    </th>
+                                                    <th scope="col"style="text-align:left" width="200px">
+                                                        <label class="col-lg-7">
+                                                            <input promise-numbers-comma type="text" name="input" class="form-control shadow-z1 input-sm" ng-model="form.persenTeknis" min="0" max="100" required onKeyUp="if(this.value>99){this.value='100';}else if(this.value<0){this.value='0';}" oninput="if(value.length>5)value=value.slice(0,5)" />
+                                                        </label>%
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="col"style="text-align:left" width="600px">
+                                                        <label><span translate="promise.procurement.panitia.kriteriaevaluasi.view.PRESENTASIHARGA">Presentase Nilai Harga</span>
+                                                        </label>
+                                                    </th>
+                                                    <th scope="col"style="text-align:left" width="200px">
+                                                        <label class="col-lg-7">
+                                                            <input promise-numbers-comma type="text" name="input" class="form-control shadow-z1 input-sm" ng-model="form.persenHarga" min="0" max="100" required onKeyUp="if(this.value>99){this.value='100';}else if(this.value<0){this.value='0';}" oninput="if(value.length>5)value=value.slice(0,5)" />
+                                                        </label>%
+                                                    </th>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="form-group">
+                        <div align="right">
+                            <!--if harga.length > 0-->
+                            <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-sm" ng-click="form.go('/app/promise/procurement/kriteriaEvaluasi/view')" ng-show="btnKriteriaHarga">
+                                <span class="btn-label">
+                                <em class="fa fa-chevron-left"></em>
+				                </span><span translate="promise.procurement.panitia.kriteriaevaluasi.btn.BATAL"></span>
+                            </button>
+
+                            <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-sm" ng-click="form.goToTabHargaPrev()" ng-show="btnTambahKriteria">
+                                <span class="btn-label">
+                                <em class="fa fa-chevron-left"></em>
+				                </span><span translate="promise.procurement.panitia.kriteriaevaluasi.btn.KEMBALI"></span>
+                            </button>
+                            <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-sm" ng-click="checkDataBinding()"><span translate="promise.procurement.panitia.kriteriaevaluasi.btn.LANJUT"></span><span class="btn-label btn-label-right"><em class="fa fa-chevron-right"></em></span>
+                            </button>
+                        </div>
+                    </div>
+                </tab>
+                <!-- END TAB -->
+            </tabset>
+        </div>
+    </div>
+
+</div>
+
+<!--END CONTROLLER-->

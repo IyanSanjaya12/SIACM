@@ -1,0 +1,267 @@
+<div class="app-view-header">
+    <span translate="promise.procurement.vendor.pemasukanpenawaranview.JUDUL"></span>
+</div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<!--START CONTROLLER-->
+<div ng-controller="DataPenawaranVendorTahapDuaController as form">
+    <div class="panel panel-primary">
+        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-table">&nbsp;</em>
+        		<span translate="promise.procurement.vendor.pemasukanpenawaranview.SUBJUDUL"></span>
+    		</h4>
+        <div class="panel-body">
+            <div align="center" ng-if="loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <tbody>
+                        <tr>
+                            <td style="text-align:left" width="40%"><span translate="promise.procurement.vendor.pemasukanpenawaranview.list.UNIT"></span></td>
+                            <td style="text-align:left" width="60%">{{form.dataPengadaan.panitia.divisi.nama}}</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left"><span translate="promise.procurement.vendor.pemasukanpenawaranview.list.SISTEMPELELANGAN"></span></td>
+                            <td style="text-align:left">{{ form.dataPengadaan.metodePengadaan.nama}}</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left"><span translate="promise.procurement.vendor.pemasukanpenawaranview.list.KUALIFIKASIPENYEDIABRGJASA"></span></td>
+                            <td style="text-align:left">{{form.dataPengadaan.kualifikasiVendor.nama}}</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left"><span translate="promise.procurement.vendor.pemasukanpenawaranview.list.BIDANGSUBBIDUSAHA"></span></td>
+                            <td style="text-align:left">
+                                <div ng-repeat="bd in form.subBidangUsahaList">
+                                    <li>{{bd.subBidangUsaha.bidangUsaha.nama}}</li>
+                                    <ul class="fa fa-long-arrow-right">
+                                        {{bd.subBidangUsaha.nama}}
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left"><span translate="promise.procurement.vendor.pemasukanpenawaranview.list.NAMAPENGADAAN"></span></td>
+                            <td style="text-align:left">{{form.dataPengadaan.namaPengadaan}}</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left"><span translate="promise.procurement.vendor.pemasukanpenawaranview.list.NOPENGADAAN"></span></td>
+                            <td style="text-align:left">{{form.dataPengadaan.nomorNotaDinas}}</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left"><span translate="promise.procurement.vendor.pemasukanpenawaranview.list.TAMBAHANSPEK"></span></td>
+                            <td style="text-align:left">{{form.dataPengadaan.keterangan}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        		<em class="fa fa-briefcase">&nbsp;</em>
+        		<span translate="promise.procurement.vendor.pemasukanpenawaranview.list.DOKDATAPENAWARAN"></span>
+        </h4>
+        <div class="panel-body">
+            <div align="center" ng-if="loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="" class="col-sm-4 control-label">Pilih Dokumen</label>
+                    <div class="col-sm-6">
+                        <input filestyle="" type="file" data-button-text="Upload File" data-class-button="btn btn-default" data-class-input="form-control inline" nv-file-select="" uploader="uploadDokumenPenawaran" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <p ng-if="uploadDokumenPenawaran.queue.length" class="pull-right label label-info">Jumlah Antrian: {{ uploader.queue.length }}</p>
+                    <h4 class="page-header mt0">Upload Antrian</h4>
+                    <p ng-if="!uploadDokumenPenawaran.queue.length" class="lead text-center">Tidak Ada File, silahkan upload dokumen.</p>
+                    <div ng-if="uploadDokumenPenawaran.queue.length">
+                        <table ng-if="uploadDokumenPenawaran.queue.length" class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col"width="50%">Nama File</th>
+                                    <th scope="col"ng-show="uploadDokumenPenawaran.isHTML5">Ukuran</th>
+                                    <th scope="col"ng-show="uploadDokumenPenawaran.isHTML5">Proses</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item3 in uploadDokumenPenawaran.queue">
+                                    <td>
+                                        <strong>{{ item3.file.name }}</strong>
+                                    </td>
+                                    <td ng-show="uploadDokumenPenawaran.isHTML5" nowrap="">{{ item3.file.size/1024/1024|number:2 }} MB</td>
+                                    <td ng-show="uploadDokumenPenawaran.isHTML5">
+                                        <div style="margin-bottom: 0;" class="progress progress-xs">
+                                            <div role="progressbar" ng-style="{ 'width': item3.progress + '%' }" class="progress-bar"></div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <span ng-show="item3.isSuccess">
+                                        <em class="fa fa-check fa-fw"></em>
+                                     </span>
+                                        <span ng-show="item3.isCancel">
+                                        <em class="fa fa-ban-circle fa-fw"></em>
+                                     </span>
+                                        <span ng-show="item3.isError">
+                                        <em class="fa fa-times fa-fw"></em>
+                                     </span>
+                                    </td>
+                                    <td nowrap="">
+                                        <button type="button" ng-click="item3.upload()" ng-disabled="item3.isReady || item3.isUploading || item3.isSuccess" class="btn btn-info btn-xs">
+                                            <span class="icon-cloud-upload mr"></span>Upload</button>
+                                        <button type="button" ng-click="item3.cancel()" ng-disabled="!item3.isUploading" class="btn btn-warning btn-xs">
+                                            <span class="icon-cross mr"></span>Batal</button>
+                                        <button type="button" ng-click="item3.remove()" class="btn btn-danger btn-xs">
+                                            <span class="icon-trash mr"></span>Hapus</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div>
+                        <p>Proses Antrian:</p>
+                        <div style="" class="progress progress-xs">
+                            <div role="progressbar" ng-style="{ 'width': uploadDokumenPenawaran.progress + '%' }" class="progress-bar"></div>
+                        </div>
+                    </div>
+                    <div align="right">
+                        <button type="button" ng-click="uploadDokumenPenawaran.uploadAll()" ng-disabled="!uploadDokumenPenawaran.getNotUploadedItems().length" class="btn btn-info btn-s">
+                            <span class="icon-cloud-upload mr"></span>Upload Semua</button>
+                        <button type="button" ng-click="uploadDokumenPenawaran.cancelAll()" ng-disabled="!uploadDokumenPenawaran.isUploading" class="btn btn-warning btn-s">
+                            <span class="icon-cross mr"></span>Batalkan Semua</button>
+                        <button type="button" ng-click="uploadDokumenPenawaran.clearQueue()" ng-disabled="!uploadDokumenPenawaran.queue.length" class="btn btn-danger btn-s">
+                            <span class="icon-trash mr"></span>Hapus Semua</button>
+                    </div>
+                </div>
+                <div class="form-group" ng-if="loading == true">
+                    <div align="center">
+                        {{ message }}
+                    </div>
+                    <div align="center">
+                        <strong><em>Loading... <img src="app/img/loading.gif" border="0" height="20px"/></em></strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-table">&nbsp;</em>
+        		<span translate="promise.procurement.vendor.pemasukanpenawaranview.list.DATAPENAWARAN"></span>
+    		</h4>
+        <div class="panel-body">
+            <table class="table table-bordered table-hover">
+                <tbody>
+                    <tr>
+                        <td style="width: 40%"><span translate="promise.procurement.vendor.pemasukanpenawaranview.list.NOSURATPENAWARAN"></span></td>
+                        <td style="width: 60%">
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control shadow-z1 input-sm" ng-model="form.dataPengadaan.nomorSuratPenawaran">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span translate="promise.procurement.vendor.pemasukanpenawaranview.list.TGLSURATPENAWARAN"></span></td>
+                        <td>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        <input type="text" datepicker-popup="dd/MM/yyyy" ng-model="form.dataPengadaan.tglSuratPenawaran" is-open="form.tanggalSuratPenawaranStatus" class="form-control shadow-z1 input-sm" show-button-bar="false" readonly style="background:white" />
+                                        <span class="input-group-btn">
+                                        <button type="button" ng-click="form.tanggalSuratPenawaranOpened($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+                                            <em class="fa fa-calendar"></em>
+                                        </button>
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span translate="promise.procurement.vendor.pemasukanpenawaranview.list.TGLBTSPENAWARAN"></span></td>
+                        <td>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        <input type="text" datepicker-popup="dd/MM/yyyy" ng-model="form.dataPengadaan.tanggalBatas" is-open="form.tglBatasPenawaran" class="form-control shadow-z1 input-sm" show-button-bar="false" readonly style="background:white" />
+                                        <span class="input-group-btn">
+                                        <button type="button" ng-click="form.tglBtsPenawaranOpen($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+                                            <em class="fa fa-calendar"></em>
+                                        </button>
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span translate="promise.procurement.vendor.pemasukanpenawaranview.list.BENTUKJAMINANDANNOMOR"></span></td>
+                        <td>
+                            <input type="text" class="form-control shadow-z1 input-sm" ng-model="form.dataPengadaan.namaJaminan">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span translate="promise.procurement.vendor.pemasukanpenawaranview.list.NILAIJAMINANPENAWARAN"></span></td>
+                        <td>
+                            <div class="col-md-3">
+                                <ui-select ng-model="form.dataPengadaan.mataUang" theme="bootstrap">
+                                    <ui-select-match placeholder="++ Pilih ++">{{$select.selected.kode}}</ui-select-match>
+                                    <ui-select-choices repeat="mataUang in form.mataUangList | propsFilter: {id: $select.search}">
+                                        <div ng-bind-html="mataUang.kode + ' - ' + mataUang.nama | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-sm-6 col-lg-9">
+                                <div class="input-group">
+                                    <input promise-currency-blur type="text" class="form-control shadow-z1 input-sm" ng-model="form.dataPengadaan.nilaiJaminan">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:left"><span translate="promise.procurement.vendor.pemasukanpenawaranview.list.TGLBTSJAMINAN"></span></td>
+                        <td>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        <input type="text" datepicker-popup="dd/MM/yyyy" ng-model="form.dataPengadaan.tanggalBatasJaminan" is-open="form.tglBtsJaminanOpened" class="form-control shadow-z1 input-sm" show-button-bar="false" readonly style="background:white" />
+                                        <span class="input-group-btn">
+                                        <button type="button" ng-click="form.tglBtsJaminanOpen($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+                                            <em class="fa fa-calendar"></em>
+                                        </button>
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!----------------BUTTON SIMPAN--------------------->
+    <div align="center">
+        <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-sm" ng-click="form.back()"><em class="fa fa-arrow-circle-left">&nbsp;</em>
+            <span translate="promise.procurement.vendor.pemasukanpenawaranview.btn.KEMBALI"></span>
+        </button>
+        <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-sm" ng-click="form.btnSimpanPenawaran()" ng-show="form.btnSimpanPenawaran">
+            <span translate="promise.procurement.vendor.pemasukanpenawaranview.btn.KIRIM"></span>&nbsp;<em class="fa fa-check"></em>
+        </button>
+    </div>
+    <!-------------------------------------------------->
+
+</div>
+<!--End Controller-->
+
+<script type="text/ng-template" id="/confirm.html">
+    <div class="modal-header" ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="cancel()">×</button>
+        <h3 id="myModalLabel" class="modal-title"><em class="fa fa-exclamation-circle"></em> Confirmation </h3>
+    </div>
+    <div class="modal-body">
+        <strong>Proses Selanjutnya !!!</strong>
+    </div>
+    <div class="modal-footer" style="background-color:#EEEEEE">
+        <button ng-click="cancel()" class="btn btn-warning">Cancel</button>
+        <button ng-click="ok()" class="btn btn-primary">OK <em class="fa fa-sign-in"></em></button>
+    </div>
+</script>

@@ -1,0 +1,48 @@
+<div class="app-view-header">
+    <span translate="">Pengumuman Evaluasi Administrasi & Teknis</span>
+</div>
+<div class="panel panel-primary" ng-controller="PengumumanEvaluasiAdminTeknisController">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-tasks">&nbsp;</em><span translate="">Daftar Pengadaan </span></h4>
+    <div class="panel-body">
+        <div class="col-md-12">
+            <div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px"></strong>
+            </div>
+            <table datatable="ng" class="row-border hover table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col"style="text-align:center">No
+                        </th>
+                        <th scope="col"style="text-align:center"><span translate="proc.no_procurement">No Pengadaan</span>
+                        </th>
+                        <th scope="col"style="text-align:center"><span translate="proc.name_procurement">Nama Pengadaan</span>
+                        </th>
+                        <th scope="col"style="text-align:center"><span translate="general.date">Tanggal</span>
+                        </th>
+                        <th scope="col"style="text-align:center"><span translate="general.position">Tahapan Saat Ini</span>
+                        </th>
+                        <th scope="col"style="text-align:center"><span translate="general.action">Aksi</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="pengadaan in pengadaanList">
+                        <td style="text-align:centor;width=5px">{{ ($index + 1) }}</td>
+                        <td style="text-align:left">{{ pengadaan.nomorNotaDinas }}</td>
+                        <td style="text-align:left">{{ pengadaan.namaPengadaan }}</td>
+                        <td style="text-align:left">{{ pengadaan.tanggalNotaDinas | date:'dd/MM/yyyy' }}</td>
+                        <td style="text-align:left"><a href="">{{ pengadaan.tahapanPengadaan.tahapan.nama }}</a>
+                        </td>
+                        <td class="action-col">
+                            <a ng-if="pengadaan.tahapanPengadaan.id!=1" class="view-order badge bg-primary" ng-click="getViewDetil(pengadaan)">
+                                <em class="fa fa-search"></em>
+                            </a>
+                            <a ng-if="pengadaan.tahapanPengadaan.id==1" class="view-order badge bg-success" ng-click="getViewDetil(pengadaan)">
+                                <em class="fa fa-pencil fa-lg"></em>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

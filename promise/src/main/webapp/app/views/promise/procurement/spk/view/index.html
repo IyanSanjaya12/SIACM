@@ -1,0 +1,145 @@
+<!--
+SPESIFIC VIEW OF THE FIRST DETAIL EVALUASI TEKNIS MENU
+------------- START CONTROLLER -------------
+-->
+
+<div class="app-view-header">
+    <span translate="promise.procurement.panitia.spk.JUDUL">SPK</span>
+</div>
+
+<div ng-controller="SPKViewController as form">
+    <form method="post" action="#" novalidate="" class="form-horizontal">
+        <promise-view-data-pengadaan pengadaan-id=detilPengadaan.id hide-Item></promise-view-data-pengadaan>
+
+        <!--Table Ke 2 -->
+        <div class="panel panel-primary">
+            <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-archive">&nbsp;</em><span translate="promise.procurement.panitia.spk.view.spkDetail.JUDUL">NO SPK</span></h4>
+            <div class="panel-body">
+                <br/>
+                <div class="col-md-12">
+                    <div>
+                        <div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px" border="0"/></strong></div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover" width="100%">
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align:left" width="20%"><span translate="promise.procurement.panitia.spk.view.spkDetail.NO"></span></td>
+                                        <td style="text-align:left" width="80%" colspan="2">
+                                            <input type="text" class="form-control shadow-z1 input-sm" ng-model="form.nomor" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left vertical-align:middle" width="20%"><span translate="promise.procurement.panitia.spk.view.spkDetail.TANGGAL"></span></td>
+                                        <td style="text-align:left vertical-align:middle" colspan="2">
+                                            <p class="input-group">
+                                                <input type="text" datepicker-popup="{{format}}" ng-model="form.tanggal" is-open="tglOpened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" class="form-control shadow-z1 input-sm" />
+                                                <span class="input-group-btn">
+								<button type="button" ng-click="tglOpen($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+													<em class="fa fa-calendar"></em>
+								</button>
+								</span>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left vertical-align:middle" width="20%"><span translate="promise.procurement.panitia.spk.view.spkDetail.WAKTUMULAI"></span></td>
+                                        <td style="text-align:left vertical-align:middle" width="24%">
+                                            <p class="input-group">
+                                                <input type="text" datepicker-popup="{{format}}" ng-model="form.tanggalMulai" is-open="tglMulaiOpened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" class="form-control shadow-z1 input-sm" />
+                                                <span class="input-group-btn">
+								<button type="button" ng-click="tglMulaiOpen($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+													<em class="fa fa-calendar"></em>
+								</button>
+								</span>
+                                            </p>
+                                        </td>
+                                        <td style="text-align:left vertical-align:middle">
+                                            <div style="width:40%">
+                                                <p class="input-group">
+                                                    <input type="text" datepicker-popup="{{format}}" ng-model="form.tanggalSelesai" is-open="tglSelesaiOpened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" class="form-control shadow-z1 input-sm" />
+                                                    <span class="input-group-btn">
+								<button type="button" ng-click="tglSelesaiOpen($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+													<em class="fa fa-calendar"></em>
+								</button>
+								</span>
+                                                </p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--END Table Ke 2 -->
+
+        <!--Table Ke 4 -->
+        <div class="panel panel-primary">
+            <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-group">&nbsp;</em><span translate="promise.procurement.panitia.spk.view.vendor.JUDUL">Data Penyedia Barang dan Jasa</span></h4>
+            <div class="panel-body">
+                <br/>
+                <div class="col-md-12">
+                    <div>
+                        <div align="center" ng-if="loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+                        <div class="table-responsive">
+                            <table class="table table-hover table-condensed table-striped bg-white">
+                                <thead>
+                                    <tr style="font-weight: bold">
+                                        <th scope="col"style="width:5%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.spk.view.vendor.NO"></span>
+                                        </th>
+                                        <th scope="col"style="width:25%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.spk.view.vendor.NAMA"></span>
+                                        </th>
+                                        <th scope="col"style="width:30%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.spk.view.vendor.ALAMAT"></span>
+                                        </th>
+                                        <th scope="col"style="width:13%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.spk.view.vendor.ADMIN"></span>
+                                        </th>
+                                        <th scope="col"style="width:13%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.spk.view.vendor.TEKNIS"></span>
+                                        </th>
+                                        <th scope="col"style="width:14%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.spk.view.vendor.HARGA"></span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="ppm in listVendors">
+                                        <td style="text-align:center; vertical-align:middle">
+                                            {{ $index+1 }}
+                                        </td>
+                                        <td style="text-align:center; vertical-align:middle">
+                                            {{ ppm.vendor.nama}}
+                                        </td>
+                                        <td style="text-align:center; vertical-align:middle">
+                                            {{ ppm.vendor.alamat}}
+                                        </td>
+                                        <td style="text-align:center; vertical-align:middle">
+                                            {{ ppm.nilaiAdmin }}
+                                        </td>
+                                        <td style="text-align:center; vertical-align:middle">
+                                            {{ ppm.nilaiTeknis }}
+                                        </td>
+                                        <td style="text-align:center; vertical-align:middle">
+                                            {{ ppm.nilaiHarga }}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--END Table Ke 4 -->
+
+        <div align="center">
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="back()"><em class="fa fa-arrow-circle-left">&nbsp;</em>
+                <span translate="promise.procurement.panitia.spk.view.btn.KEMBALI"></span>
+            </button>
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="save()">
+                <span translate="promise.procurement.panitia.spk.view.btn.SIMPAN" ng-show="status==false"></span><span translate="promise.procurement.panitia.spk.view.btn.UBAH" ng-show="status==true"></span>&nbsp;<em class="fa fa-check"></em>
+            </button>
+        </div>
+        <br>
+    </form>
+</div>
+<!--END CONTROLLER-->

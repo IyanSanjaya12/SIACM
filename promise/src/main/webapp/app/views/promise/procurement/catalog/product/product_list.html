@@ -1,0 +1,527 @@
+<div ng-controller="ecatalogCtrl as vm">
+	<!-- Breadcrumb khusus catalog -->
+	<div ng-show="categoryTreeActive">
+		<ol class="breadcrumb bg-primary white">
+			<li ng-repeat="crumb in breadcrumbsHome" ng-class="{ active: $last }"> <a ui-sref="{{ crumb.route }}" ng-if="!$last">{{ crumb.displayName }}&nbsp;</a>
+				<span ng-show="$last" style="color:white">{{ crumb.displayName }}</span>
+			</li>
+			<li ng-repeat="categoryTree in categoryTreeList"> <a ng-click="changeCategory(categoryTree)"><span ng-bind="categoryTree.translateInd"></span></a>
+			</li>
+		</ol>
+	</div>
+	<div class="app-view-header">Product List
+		<!-- <small ng-bind="app.name + ' - ' + app.description"></small> -->
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-3 col-sm-12 col-xs-12" style="
+                                                                        margin-bottom:10px;
+                                                                        background-color: #ffffff;">
+							<div class="col-xs-12 col-md-12" style="
+                                                                        background-color: white;
+                                                                        padding-top: 20px;
+                                                                        padding-left: 0;
+                                                                        margin-bottom: 20px;
+                                                                        padding-right: 0;">
+								<div style="font-size:13px;" class="col-md-6 col-xs-6"> <strong>FILTER BY</strong>
+								</div>
+								<div style="
+                                    border-bottom: 1px solid #e8e8e8;
+                                    padding-top: 20px;
+                                " class="col-md-12 "></div>
+							</div>
+							<div>
+								<div class="col-xs-12 col-md-12">
+									<div collapse="isCollapsed" class="navleft-container" style="height: auto; border: none;">
+    									<promise-tree filter-name="promise.procurement.master.catalog.list.Categories" on-click="changeCategory" tree-list="categoryList">
+											<div style="border-top: 1px solid #e0e0e0; margin-top: 1rem;" ng-show="vm.sbText!=null">
+												<div style="display: inline-block; background: #a6a6a6; margin: 1rem 0; padding-left: 0.5rem; border-radius: 4px; color: white; font-size: 1.2rem;">
+													<span ng-bind="vm.sbText"></span>
+													<em ng-click="changeCategory()" class="btn" style="font-style: normal; background: #939393; padding: 0.2rem 0.5rem; display: inline-block; cursor: pointer;">X</em>
+												</div>
+											</div>
+										</promise-tree>
+									</div>
+								</div>
+							</div>
+							<div class="vermagemenu m-b">
+								<div class="content-vermagemenu">
+									<div>
+										<h2 ng-click="isCollapsed = !isCollapsed"><span style="text-transform: capitalize; font-weight: normal;" translate="promise.procurement.master.catalog.list.CategoriesFilter">Filter Categories</span></h2>
+									</div>
+								</div>
+							</div>
+							<!-- <div ng-show="vm.sbText==null" class="categories-filter" style="border: none; background: none;">
+								<div class="ratings">
+									<div style="text-align: right; padding-right: 4px; line-height: 10px"></div>
+									<div style="padding-bottom: 10px; font-size: 16px;"> <span translate="promise.procurement.master.catalog.list.ALLCatt"></span>
+									</div>
+								</div>
+							</div> -->
+
+							<!-- <div ng-show="vm.sbText!=null" class="vermagemenu m-b">
+                                <div class="content-vermagemenu">
+                                    <div class="" style="border: none;color: black;margin-bottom: 10px;">
+                                        <strong style="
+                                                    color: #585f69;
+                                                    font-size: 16px;
+                                                    font-style: normal;
+                                                    font-stretch: normal;
+                                                    line-height: normal;
+                                                    letter-spacing: normal;
+                                                    text-align: left;
+" translate="promise.procurement.master.catalog.list.AttFilter" class="ng-scope">Filter Specification</strong>
+                                    </div>
+
+                                    <div class="pt_vmegamenu">
+                                        <div class="pt_ver_menu">
+                                            <div class="parentMenu p-v p-h b-a" style="border: none;">
+                                                <select class="form-control" ng-model="dataAttGrp" ng-change="cariAttGrp(dataAttGrp)">
+                                                    <option value="" disabled>++ Specification ++</option>
+                                                    <option ng-repeat="groupOption in attGrpList track by groupOption.id " value="{{groupOption.id}}" ng-selected="dataAttGrp.id == groupOption.id">{{groupOption.name}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="" ng-if="lihat">
+                                        <div class="form-group" ng-repeat="attributePanelGroup in dataAttGrp.attributePanelGroupList">
+                                            <label class="col-lg-12 control-label pt" ng-bind="attributePanelGroup.attribute.translateInd"></label>
+                                            <div class="col-lg-12" ng-if="attributePanelGroup.attribute.inputType.name == 'Text'">
+                                                <input type="text" ng-model="attributePanelGroup.value" class="form-control">
+                                            </div>
+                                            <div class="col-lg-12" ng-if="attributePanelGroup.attribute.inputType.name == 'Number'">
+                                                <input type="number" ng-model="attributePanelGroup.value" class="form-control">
+                                            </div>
+                                            <div class="col-lg-12" ng-if="attributePanelGroup.attribute.inputType.name == 'Textarea'">
+                                                <input type="text" ng-model="attributePanelGroup.value" class="form-control">
+                                            </div>
+                                            <div class="col-lg-12" ng-if="attributePanelGroup.attribute.inputType.name == 'Selectbox'">
+                                                <select class="m-b shadow-z1 input-sm" ng-model="attributePanelGroup.value">
+                                                    <option value="" disabled>++ Pilih ++</option>
+                                                    <option ng-repeat="attributeOption in attributePanelGroup.attribute.attributeOptionList track by attributeOption.id " value="{{attributeOption.id}}" ng-selected="attributePanelGroup.value == attributeOption.id">{{attributeOption.name}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-12" ng-if="attributePanelGroup.attribute.inputType.name == 'Checkbox'">
+                                                <label class="m-r pt" ng-repeat="attributeOption in attributePanelGroup.attribute.attributeOptionList">
+                                                    <input type="checkbox" ng-model="attributeOption.value" ng-true-value="'{{attributeOption.id}}'" /> {{attributeOption.name}}
+                                                </label>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <label class="m-r pt" ng-if="attributePanelGroup.attribute.inputType.name == 'Radio'" ng-repeat="attributeOption in attributePanelGroup.attribute.attributeOptionList">
+                                                    <input type="radio" value="{{attributeOption.id}}" ng-model="attributePanelGroup.value" /> {{attributeOption.name}}
+                                                </label>
+                                            </div>
+                                            <div class="col-lg-6" ng-if="attributePanelGroup.attribute.inputType.name == 'Date'">
+                                                <div class="input-group">
+                                                    <input type="text" datepicker-popup="dd-MM-yyyy" ng-model="attributePanelGroup.value" is-open="tglOpened" show-button-bar="false" readonly="true" close-text="Close" class="form-control shadow-z1 input-sm" />
+                                                    <span class="input-group-btn">
+                                                            <button type="button" ng-click="tglOpen($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+                                                                <em class="fa fa-calendar"></em>
+                                                            </button>
+                                                        </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <br/>
+                                            <button type="button" class="btn btn-default btn-sm btn-addon" ng-click="changeAttributeGroup()">
+                                                    <em class="fa fa-search"></em>
+                                                    <span translate="promise.procurement.master.catalog.btn.CARI">Cari</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> --></div>
+						<div class="col-md-9 col-sm-12 col-xs-12 p-l-0">
+							<div class="custom-category row">
+								<div class="col-md-12">
+									<div class="filter-search">
+										<div class="col-filter">
+											<div class="col-md-2 no-padding text-right">
+												<label class="control-label">Search</label>
+											</div>
+											<div class="col-md-9 search-icon" style="padding-top: 1px;">
+												<input type="text" class="form-control" ng-model="catalogVendor.name" ng-change="search()" ng-model-options="{debounce: 750}">
+											</div>
+										</div>
+										<div class="col-filter">
+											<div class="row">
+												<div class="col-md-1 no-padding text-right">
+													<label class="control-label">Sort By</label>
+												</div>
+												<div class="col-md-4" style="padding-top: 1px;">
+													<select class="form-control" ng-model="catalogVendor.stringOrder" ng-change="search()">
+														<option value="harga asc">Harga Termurah</option>
+														<option value="harga desc">Harga Termahal</option>
+														<!-- <option value="rating desc">Rating Tertinggi</option>
+														<option value="kota asc">Lokasi</option> -->
+														<option value="vendor.nama asc">Vendor</option>
+														<option value="namaIND asc">Nama</option>
+													</select>
+												</div>
+												<!-- <div class="col-md-3" ng-if="roleUser == false && okForECatalog == true">
+													<div class="c-checkbox l-h-30">
+														<label>
+															<input type="checkbox" ng-model="catalogVendor.contract" ng-change="checkContract()" /> <span class="fa fa-check m-sm"></span>
+															<label style="font-size:11px;">Contract</label>
+														</label>
+													</div>
+												</div> -->
+												<!--  <div class="col-md-3" ng-if="roleUser == false && okForECatalog == true">
+                                                <div class="c-checkbox l-h-30">
+                                                    <label>
+                                                        <input type="checkbox" ng-model="catalogVendor.eCatalog" ng-change="checkECatalog()" />
+                                                        <span class="fa fa-check m-sm"></span>
+                                                        <label style="font-size:10px;">MyCatalog</label>
+                                                    </label>
+                                                </div>
+                                            </div> -->
+												<div class="col-md-5">
+													<ui-select ng-model="catalogVendor.vendor" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" ng-change="search()">
+			                                            <ui-select-match placeholder="Select Vendor Name">{{catalogVendor.vendor.nama}}</ui-select-match>
+			                                            <ui-select-choices repeat="data in vm.vendorList track by $index" refresh="findVendor($select.search)" refresh-delay="0">
+			                                                <div ng-bind-html="data.nama | highlight: $select.search"></div>
+			                                            </ui-select-choices>
+			                                        </ui-select>
+												</div>
+												<div class="col-lg-1" style="padding-top: 3px;">
+													<button type="button" ng-click="resetFilter()" class="btn btn-danger btn-lg fa fa-undo" id="reset-filter" title="Reset Filter">
+													</button>
+												</div>
+											</div>
+										</div>
+										<div class="sort-lg">
+											<button type="button" ng-click="swap('list')" class="btn btn-default list-view selected" id="list-view" title="List"><span>list</span>
+											</button>
+											<button type="button" ng-click="swap('grid')" class="btn btn-default grid-view" id="grid-view" title="Grid"><span>grid</span>
+											</button>
+										</div>
+									</div>
+									<div class="container-fluid">
+										<!-- <div class="row">
+                                        <div class="col-md-6">
+                                            <ul class="breadcrumb-category">
+                                                <li class="text-strong" ng-repeat="categoryTree in categoryTreeList">
+                                                    <a ng-click="changeCategory(categoryTree)">
+						                                <span ng-bind="categoryTree.translateInd"></span>
+						                            </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div> -->
+										<div class="page-option col-md-2"> <span class="page-opt-text">Show :</span>
+											<a class="page-opt-num" ng-click="pageSizeChanged(20)">20</a>
+											<a class="page-opt-num" ng-click="pageSizeChanged(30)">30</a>
+											<a class="page-opt-num" ng-click="pageSizeChanged(50)">50</a>
+										</div>
+										<div class="page-option col-md-4"> <span class="page-opt-text" ng-bind="totalPagination"></span>
+										</div>
+										<div class="pull-right">
+											<pagination first-text="<<" previous-text="<" next-text=">" last-text=">>" items-per-page="catalogVendor.pageSize" total-items="totalList" ng-model="catalogVendor.currentPage" max-size="5" boundary-links="true" class="pagination-sm" ng-click="clickCurrentPage(catalogVendor.currentPage, catalogVendor.pageSize)"></pagination>
+										</div>
+									</div>
+									<div align="center" ng-if="loading == true"> <strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px" /></strong>
+									</div>
+									<div class="text-center" ng-show="showNoItem">
+										<h3>Maaf, item yang anda cari tidak ada</h3>
+									</div>
+									<div class="custom-product add-quickview">
+										<div ng-if="!showList" id="prodwrap" class="product-layout product-grid" angular-grid="catalogList" ag-options="gridViewOpt" ag-id="gallery">
+											<div class="product-thumb" ng-repeat="catalog in catalogList" style="width: 258px; height: 600px;">
+												<div class="col-md-12" style="padding-top: 10; top: 510px; text-align: center;">
+													<button ng-if="isCartOk" ng-click="addCartCatalog(catalog)" ng-show="showCartButton" class="btn btn-lg btn-primary ng-scope fa fa-shopping-cart" title="Add to Cart" style="
+	                                                               border-radius: 20px;
+	                                                               font-size: 25px;
+	                                                               text-align: center;
+	                                                               height: 41px;
+	                                                               width: 35%;
+	                                                           "></button>
+												</div>
+												<div class="item-inner" style="bottom: 20px;">
+													<div class="col-md-3 col-md-offset-10">
+														<a href="#" ng-click="addCompareCatalog(catalog)">
+															<img src="app/img/compare-normal-state.svg" title="Bandingkan" style="
+													width: 18px;
+													height: 20px;
+													object-fit: contain;">
+														</a>
+													</div>
+													<div class="col-md-12 col-xs-12">
+														<div>
+															<a ng-click="viewProductDetail(catalog)">
+																<!-- <img class="img2" ng-src="{{catalog.catalogImageList[0].loadFile}}"/> -->
+																<img class="img-responsive" ng-src="{{catalog.catalogImageList[0].loadFile}}" on-error="{{gambarDefault}}" style="
+													height: 205px;"/>
+															</a>
+														</div>
+													</div>
+													<div class="col-md-12 col-xs-12" style="padding: 0;">
+														<div>
+															<div>
+																<h2 class="product-name">
+                                                                    <a ng-click="viewProductDetail(catalog)">{{catalog.namaIND}}</a>
+                                                                </h2>
+																<div style="padding-bottom: 20px;">
+																	<div class="col-md-12 col-xs-12" style="padding: 0px;">
+																		<h2 class="product-name price-show" ng-if="catalog.harga_eproc == null || catalog.harga_eproc == 0" ng-bind="(catalog.harga | currency:'')+' '+catalog.mataUang.kode" style="
+	                                                                color: #ee5c12;
+	                                                                font-size: 17px;
+	                                                                letter-spacing: -0.7px;">
+                                                                        </h2>
+																		<h2 class="product-name price-show" ng-if="catalog.harga_eproc != null && catalog.harga_eproc != 0" ng-bind="(catalog.harga_eproc | currency:'')+' '+catalog.mataUang.kode" style="
+	                                                                 color: #ee5c12;
+	                                                                 font-size: 17px;
+	                                                                 letter-spacing: -0.7px;">
+                                                                        </h2>
+																		<del><h2 class="product-name price-show" ng-if="catalog.harga_eproc != null && catalog.harga_eproc != 0" ng-bind="(catalog.harga | currency:'')+' '+catalog.mataUang.kode" style="
+	                                                                color: #000;
+	                                                                font-size: 15px;
+	                                                                letter-spacing: -0.7px;">
+	                                                            </h2></del>
+																	</div>
+																</div>
+															</div>
+															<div>
+																<div style="border-top: 1px solid #e8e8e8; padding-top: 10px;" />
+																<!-- <div class="col-md-2 col-xs-12" style="padding: 0;">
+	                                                            <div style="
+															width: 30px;
+															height: 30px;
+															border-radius: 20px;">
+	                                                                <img class="img-circle" ng-src="{{catalog.vendor.logoImage}}" />
+	                                                            </div>
+	                                                        </div> -->
+																<div class="m-b col-md-10 col-xs-12" style="padding-left: 0;">
+																	<p style=" color:#ee5c12; font-size:  14px;font-weight:  bold;">Kode Item: {{catalog.item.kode}}</p>
+																	<a ui-sref="app.promise.procurement-catalog-vendor-detail({dataVendor: catalog.vendor})" ng-bind="catalog.vendor.nama" class="ng-binding" style=" color:#113180; font-size:  14px;font-weight:  bold;"></a>
+																	<div style="font-size: 12px;line-height: normal;letter-spacing: -0.3px;text-align: left;">
+																		Transaksi : <span ng-if="catalog.transaksi != undefined">{{catalog.transaksi}}</span><span ng-if="catalog.transaksi == undefined">0</span>
+																	</div>
+																	<!-- <div style="font-size: 12px;line-height: normal;letter-spacing: -0.3px;text-align: left;color: #9b9b9b;">
+																		Stock : <span ng-if="catalog.transaksi != undefined">{{catalog.currentStock}}</span><span ng-if="catalog.transaksi == undefined">0</span>
+																	</div> -->
+																	<div class="ng-binding" style="font-size: 10px;letter-spacing: -0.3px;text-align: left;color: #9b9b9b;">{{catalog.vendorProfile.kota}}</div>
+																	<div class="m-b cat-label"> <em style="float: left" class="fa fa-tags fa-lg"></em>
+																		<span style="background-color: #ee5c12; margin-right: 5px; float: left" class="label label-primary" ng-repeat="catalogcategory in catalog.catalogCategoryList | limitTo:-2">{{catalogcategory.category.translateInd}}</span>
+																	</div>
+																</div>
+																<br/>
+															</div>
+														</div>
+													</div>
+												</div>
+
+											</div>
+										</div>
+										<div ng-if="showList" class="col-md-12">
+											<div class="product-thumb" ng-repeat="catalog in catalogList">
+												<div class="item-inner">
+													<div class="col-md-12 col-xs-12" style="border: 1px solid lightgray;
+												border-radius:5px;
+												padding-bottom:10px;
+												margin-bottom:10px;">
+														<div class="col-md-4 col-xs-12">
+															<div>
+																<a ng-click="viewProductDetail(catalog)">
+																	<!-- <img class="img2" ng-src="{{catalog.catalogImageList[0].loadFile}}" /> -->
+																	<img class="img-responsive" ng-src="{{catalog.catalogImageList[0].loadFile}}" on-error="{{gambarDefault}}" />
+																</a>
+															</div>
+														</div>
+														<div class="col-md-8 col-xs-12" style="padding: 0;">
+															<div>
+																<div>
+																	<h2 class="product-name">
+                                                                        <a ng-click="viewProductDetail(catalog)">{{catalog.namaIND}}</a>
+                                                                    </h2>
+																	<div style="padding-bottom: 60px;">
+																		<div class="col-md-9 col-xs-12" style="padding: 0px;">
+																			<h2 class="product-name price-show" ng-if="catalog.harga_eproc == null || catalog.harga_eproc == 0" ng-bind="catalog.mataUang.kode+' '+(catalog.harga | currency:'')" style="
+	                                                                color: #ee5c12;
+	                                                                font-size: 17px;
+	                                                                letter-spacing: -0.7px;">
+                                                                            </h2>
+																			<h2 class="product-name price-show" ng-if="catalog.harga_eproc != null && catalog.harga_eproc != 0" ng-bind="catalog.mataUang.kode+' '+(catalog.harga_eproc | currency:'')" style="
+		                                                                color: #ee5c12;
+		                                                                font-size: 17px;
+		                                                                letter-spacing: -0.7px;">
+                                                                            </h2>
+																			<del><h3 class="product-name price-show" ng-if="catalog.harga_eproc != null && catalog.harga_eproc != 0" ng-bind="catalog.mataUang.kode+' '+(catalog.harga | currency:'')" style="
+		                                                                color: #000;
+		                                                                font-size: 15px;
+		                                                                letter-spacing: -0.7px;">
+		                                                            </h3></del>                                            
+		                                                            	<h4 style="font-size: 12px;line-height: normal;letter-spacing: -0.3px;text-align: left;color: #ec0000;">
+																			<span translate="promise.procurement.master.catalog.view.time_contract_expires"></span> : <span ng-bind="(catalog.catalogKontrak.tglAkhirKontrak | date:'dd/MM/yyyy')"></span>
+																		</h4>
+																		</div>
+																		
+																		
+																		<div class="col-md-3 col-xs-12" style="padding-top: 5px;">
+																			<a href="#" ng-click="addCompareCatalog(catalog)">	
+																			<img src="app/img/compare-normal-state.svg" title="Bandingkan" style="
+																	width: 28px;
+																	height: 28px;
+																	object-fit: contain;">
+																			</a>
+																		</div>
+																		<div class="col-md-12 col-xs-12" style="
+																	border-top: 1px solid #e8e8e8;
+																	margin-top: 10px;
+																	margin-bottom:5px"></div>
+																	</div>
+																</div>
+																<div>
+																	<!-- <div class="col-md-1 col-xs-2" style="padding: 0;">
+	                                                                <div style="
+																	width: 30px;
+																	height: 30px;
+																	border-radius: 20px;">
+	                                                                    <img class="img-circle" ng-src="{{catalog.vendor.logoImage}}" />
+	                                                                </div>
+	                                                            </div> -->
+																	<div class="col-md-8 col-xs-12" style="padding-left: 0;">
+																		<p style=" color:#ee5c12; font-size:  14px;font-weight:  bold;">Kode Item: {{catalog.item.kode}}</p>
+																		<p ng-bind="catalog.vendor.nama" class="ng-binding" style=" color:#113180; font-size:  14px;font-weight:  bold;"></p>
+																		<p ng-bind="catalog.vendor.nomorTelpon" class="ng-binding" style=" color:#113180; font-size:  14px;font-weight:  bold;"></p>
+																		<p ng-bind="catalog.vendor.alamat" class="ng-binding" style=" color:#113180; font-size:  14px;font-weight:  bold;"></p>
+																		<div style="font-size: 12px;line-height: normal;letter-spacing: -0.3px;text-align: left;color: #113180;">
+																			Transaksi : <span ng-if="catalog.transaksi != undefined">{{catalog.transaksi}}</span><span ng-if="catalog.transaksi == undefined">0</span>
+																		</div>
+																		<div style="font-size: 12px;line-height: normal;letter-spacing: -0.3px;text-align: left;color: #113180;">
+																			<span translate="promise.procurement.master.catalog.view.quantity_min_order"></span> : <span ng-bind="catalog.minimumQuantityOrder == null?'-':catalog.minimumQuantityOrder"></span>
+																		</div>
+																		<div style="font-size: 12px;line-height: normal;letter-spacing: -0.3px;text-align: left;color: #113180;">
+																			<span translate="promise.procurement.master.catalog.view.quantity_max_order_transaction"></span> : <span ng-bind="catalog.maksimumQuantityPerOrder == null?'-':catalog.maksimumQuantityPerOrder"></span>
+																		</div>
+																		<div style="font-size: 12px;line-height: normal;letter-spacing: -0.3px;text-align: left;color: #113180;">
+																			<span translate="promise.procurement.master.catalog.view.quantity_max_order_day"></span> : <span ng-bind="catalog.maksimumQuantityOrderDay == null?'-':catalog.maksimumQuantityOrderDay"></span>
+																		</div>
+																		<div style="font-size: 12px;line-height: normal;letter-spacing: -0.3px;text-align: left;color: #113180;">
+																			<span translate="promise.procurement.master.catalog.view.max_order_quantity"></span> : <span ng-bind="catalog.catalogContractDetail.qtyMaxOrder == null?'-':catalog.catalogContractDetail.qtyMaxOrder"></span>
+																		</div>
+																		<div class="ng-binding" style="font-size: 10px;letter-spacing: -0.3px;text-align: left;color: #113180;">{{catalog.vendorProfile.kota}}</div>
+																		<div class="m-b cat-label"> <em class="fa fa-tags fa-lg"></em>
+																			<span style="margin-right:5px" class="label label-primary" ng-repeat="catalogcategory in catalog.catalogCategoryList | limitTo:-2">{{catalogcategory.category.translateInd}}</span>
+																		</div>
+																	</div>
+																	<div class="col-md-4 col-xs-12">
+																		<div class="col-md-12" style="
+																	height: 1.5em;">
+																			<div>
+																				<button ng-if="isCartOk" ng-click="addCartCatalog(catalog)" ng-show="showCartButton" class="btn btn-sm btn-primary ng-scope fa fa-shopping-cart" style="
+																			border-radius: 20px;
+																			font-size: 15px;
+																			text-align: center;
+																			height: 35px;
+																			width: 110%;"> Add to cart </button>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="container-fluid">
+											<div class="page-option col-md-2"> <span class="page-opt-text">Show :</span>
+												<a class="page-opt-num" ng-click="pageSizeChanged(20)">20</a>
+												<a class="page-opt-num" ng-click="pageSizeChanged(30)">30</a>
+												<a class="page-opt-num" ng-click="pageSizeChanged(50)">50</a>
+											</div>
+											<div class="page-option col-md-4"> <span class="page-opt-text" ng-bind="totalPagination"></span>
+											</div>
+											<div class="pull-right">
+												<pagination first-text="<<" previous-text="<" next-text=">" last-text=">>" items-per-page="catalogVendor.pageSize" total-items="totalList" ng-model="catalogVendor.currentPage" max-size="5" boundary-links="true" class="pagination-sm" ng-click="clickCurrentPage(catalogVendor.currentPage, catalogVendor.pageSize)"></pagination>
+											</div>
+										</div>
+									</div>
+									<!-- <div class="table-responsive">
+                                    <div class="custom-products add-quickview">
+                                        <div id="prodwrap" class="product-layout product-list col-xs-12" angular-grid="catalogList" ag-options="angularGridOptions" ag-id="gallery">
+                                            <div class="product-thumb img-loaded angular-grid-item" ng-repeat="catalog in catalogList">
+                                                <div class="item-inner">
+                                                    <div class="images-container">
+                                                        <a class="product-image" ui-sref="app.promise.procurement-ecatalog-Detail({dataCatalog: catalog})">
+                                                            <img class="img2" ng-src="{{catalog.catalogImageList[0].loadFile}}" />
+                                                            <img ng-src="{{catalog.catalogImageList[1].loadFile}}"/>
+                                                        </a>
+                                                    </div>
+                                                    <div class="des-detail two-col">
+                                                        <h2 class="product-name">
+                                                        <a ui-sref="app.promise.procurement-ecatalog-Detail({dataCatalog: catalog})">{{catalog.namaIND}}</a>
+                                                    </h2>
+                                                        <div class="ratings">
+                                                            <div>
+                                                                <rating ng-model="catalog.rating" readonly="true" state-on="'glyphicon-star text-warning'" state-off="'glyphicon-star-empty'"></rating>
+                                                            </div>
+                                                        </div>
+
+                                
+                                                        <h2 class="product-name price-show" ng-if="catalog.harga_eproc == null || catalog.harga_eproc == 0" ng-bind="(catalog.harga | currency:'')+' '+catalog.mataUang.kode"></h2>
+                                                        <del><h2 class="product-name" ng-if="catalog.harga_eproc != null && catalog.harga_eproc != 0" ng-bind="(catalog.harga | currency:'')+' '+catalog.mataUang.kode"></h2></del>
+                                                        <h2 class="product-name price-show" ng-if="catalog.harga_eproc != null && catalog.harga_eproc != 0" ng-bind="(catalog.harga_eproc | currency:'')+' '+catalog.mataUang.kode"></h2>
+                                                        <br/>
+                                                        <div class="short-des" ng-bind-html="catalog.deskripsiIND"></div>
+
+                                                        <div class="m-b cat-label">
+                                                            <strong>Category : </strong>
+                                                            <a class="label label-primary" ng-repeat="catalogcategory in catalog.catalogCategoryList | limitTo:5">{{catalogcategory.category.translateInd}}</a>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="list-pt">
+                                                        <a class="product-image" ui-sref="app.promise.procurement-catalog-vendor-detail({dataVendor: catalog.vendor})">
+                                                            <h3 ng-bind="catalog.vendor.nama"></h3>
+                                                        </a>
+                                                        <div>{{catalog.vendorProfile.kota}}</div>
+                                                        <div>Reputasi :
+                                                            <div class="ratings">
+                                                                <div>
+                                                                    <rating ng-model="catalog.vendor.performanceAvg" readonly="true" state-on="'glyphicon-star text-warning'" state-off="'glyphicon-star-empty'"></rating>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div>Transaksi : <span ng-if="catalog.catalogKontrakList != undefined">{{ catalog.catalogKontrakList.length }}</span><span ng-if="catalog.catalogKontrakList == undefined">0</span></div>
+                                                        <button ng-click="addCompareCatalog(catalog)" class="btn btn-xs btn-primary">Compare</button>
+                                                        <button ng-if="isCartOk" ng-click="addCartCatalog(catalog)" class="btn btn-xs btn-warning">Add to Cart</button>
+                                                    </div>
+                                                    <div ng-if="roleUser == false && catalog.catalogKontrakList != undefined && catalog.catalogKontrakList.length > 0">
+                                                        <table class="table table-striped">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th scope="col">No</th>
+                                                                    <th scope="col">Nomor Kontrak</th>
+                                                                    <th scope="col">Tanggal Berakhir Kontrak</th>
+                                                                    <th scope="col">Stock</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="catalogKontrak in catalog.catalogKontrakList">
+                                                                    <td ng-bind="$index+1"></td>
+                                                                    <td ng-bind="catalogKontrak.nomorKontrak"></td>
+                                                                    <td ng-bind="(catalogKontrak.tglAkhirKontrak | date:'dd/MM/yyyy')"></td>
+                                                                    <td ng-bind="(catalogKontrak.stock | number)"></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> --></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

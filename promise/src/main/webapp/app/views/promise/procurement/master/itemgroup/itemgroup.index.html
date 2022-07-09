@@ -1,0 +1,137 @@
+<div class="app-view-header"> <span translate="promise.procurement.master.itemgroup.judul"></span>
+</div>
+<div class="panel panel-primary">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <em class="fa fa-tasks"></em>
+        <span translate="promise.procurement.master.itemgroup.subjudul"></span>
+        <a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+                <em class="fa fa-chevron-circle-down"></em>
+        </a>
+    </h4>
+	<div class="panel-body collapse in" ng-controller="ItemGroupController as vm" class="container-fluid">
+		<div class="row">
+			<div class="page-header clearfix">
+				<label for="input-id-1" class="col-sm-2 control-label" translate="promise.procurement.master.itemgroup.list.pilihan"></label>
+				<div class="col-sm-6" ng-show="vm.statusEdit!=null"><code>{{ output }}</code>
+				</div>
+			</div>
+			<fieldset>
+				<div class="form-group">
+					<div ng-show="vm.statusEdit">
+						<label for="input-id-1" class="col-md-2 col-sm-3 control-label required"><span translate="promise.procurement.master.itemgroup.view.nama"> </span>
+						</label>
+						<div class="col-md-5 col-sm-6">
+							<input id="input-id-1" promise-alphanumeric-only type="text" placeholder="masukan Nama" class="form-control" ng-model="vm.itemGroup.nama" style="background-color:#F0F8FF;" />	<strong style="color: red" translate={{vm.errorNamaItemGroup}}></strong>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+			<fieldset>
+				<div class="form-group">
+					<div ng-show="vm.statusEdit">
+						<label for="input-id-2" class="col-md-2 col-sm-3 control-label required"><span translate="promise.procurement.master.itemgroup.view.keterangan"> </span>
+						</label>
+						<div class="col-md-5 col-sm-6">
+							<input id="input-id-2" placeholder="masukan Deksripsi" promise-alphanumeric-only type="text" class="form-control" ng-model="vm.itemGroup.deskripsi" style="background-color:#F0F8FF;" />	<strong style="color: red" translate={{vm.errorDescItemGroup}}></strong>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+			<div class="row">
+				<br/>
+				<div class="panel-body">
+					<br/>
+					<div class="col-sm-2"></div>
+					<div class="col-md-5 col-md-push-2 col-sm-5 col-sm-push-3" ng-show="vm.statusEdit==false">
+						<button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-sm" ng-click="vm.statusEdit=true">	<span translate="template.button.ubah">Edit</span>
+						</button>
+						<button type="button" class="mr btn btn-sm bg-danger" ng-click="del()">	<span translate="template.button.hapus">Hapus</span>
+						</button>
+					</div>
+					<div class="col-md-5 col-md-push-2 col-sm-5 col-sm-push-3" ng-show="vm.statusEdit">
+						<button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-sm" ng-click="cancel()">	<span translate="template.button.batal">Batal</span>
+						</button>
+						<button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-sm" ng-click="save()">	<span translate="template.button.simpan">Simpan</span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-8">
+				<div class="well wd-wide"> <span ng-if="doing_async"><strong><em>Loading...</em><img src="app/img/loading.gif" width="15px" border="0"/></strong></span>
+					<div align="center" ng-show="vm.loading"><strong><em>Loading...</em><img src="app/img/loading.gif" width="15px" border="0"/></strong>
+					</div>
+					<abn-tree tree-data="my_data" tree-control="my_tree" on-select="my_tree_handler(branch)" expand-level="2" initial-selection="Granny Smith"></abn-tree>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="row pv"> <span class="mt"><font size="2"><strong>&nbsp;&nbsp;&nbsp;&nbsp;Tree Control API :</strong></font></span>
+					<div class="col-md-7 col-md-7 pull-right">
+						<a href="" ng-click="modalsTambah()" class="btn btn-info btn-xs" translate="promise.procurement.master.itemgroup.list.tambah_parent"></a>
+					</div>
+				</div>
+				<br/>
+				<div class="btn-group btn-group-justified mb"><a ng-click="my_tree.select_first_branch()" class="btn btn-default btn-sm mb">First Branch</a><a ng-click="try_adding_a_branch()" class="btn btn-default btn-sm">Add Branch</a>
+				</div>
+				<div class="btn-group btn-group-justified mb"><a ng-click="my_tree.select_next_sibling()" class="btn btn-default btn-sm">Next Sibling</a><a ng-click="my_tree.select_prev_sibling()" class="btn btn-default btn-sm">Prev Sibling</a>
+				</div>
+				<div class="btn-group btn-group-justified mb"><a ng-click="my_tree.select_next_branch()" class="btn btn-default btn-sm">Next Branch</a><a ng-click="my_tree.select_prev_branch()" class="btn btn-default btn-sm">Prev Branch</a>
+				</div>
+				<div class="btn-group btn-group-justified mb"><a ng-click="my_tree.expand_branch()" class="btn btn-default btn-sm">Expand</a><a ng-click="my_tree.select_parent_branch()" class="btn btn-default btn-sm mb">Parent</a>
+				</div>
+				<div class="btn-group btn-group-justified mb"><a ng-click="my_tree.expand_all()" class="btn btn-default btn-sm">Expand All</a><a ng-click="my_tree.collapse_all()" class="btn btn-default btn-sm">Collapse All</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/ng-template" id="/tambah.html">
+	<div class="modal-header">
+	        <button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="cancel()">× </button>
+	        <h3 id="myModalLabel" class="modal-title"><span>Item Group</span>
+	    </h3>
+	    </div>
+	    <div class="modal-body">
+	        <div class="row">
+	            <div class="col-xs-12" align="center" ng-if="loading==true"> <strong> <em> Loading... </em><img src="app/img/loading.gif" width="20px" border="0 "/></strong></div>
+	                <fieldset>
+	                    <div class="form-group">
+	                        <label class="col-lg-3 control-label required"><span translate="promise.procurement.master.itemgroup.view.nama"></span> </label>
+	                        <div class="col-lg-6">
+	                        <input type="text" placeholder=" " class="form-control" ng-model="nama"/>
+							<strong style="color: red" translate={{errorNamaItemGroup}} ></strong>
+							</div>
+	                    </div>
+					</fieldset>
+					<fieldset>	
+	                    <div class="form-group">
+	                        <label class="col-lg-3 control-label required"><span translate="promise.procurement.master.itemgroup.view.keterangan"></span> </label>
+	                        <div class="col-lg-6">
+	                            <input type="text" placeholder=" " class="form-control" ng-model="deskripsi"/>
+								
+								<strong style="color: red" translate={{errorDescItemGroup}} ></strong>
+	
+	                        </div>
+	                    </div>
+	                </fieldset>
+	        </div>
+	        <div class="col-xs-12" align="center" ng-bind-html="messageSuccess" style="color:green"></div>
+	        <div class="col-xs-12" align="center" ng-bind-html="messageError" style="color:red "></div>
+	    </div>
+	    <div class="modal-footer">
+	       
+						<div class="col-md-5 col-md-push-2 col-sm-5 col-sm-push-3">
+							<button type="button" ripple="" class="mr btn btn-sm bg-default"
+								ng-click="cancel()">
+								<span
+									translate="template.button.kembali"></span>
+							</button>
+							<button type="button" ripple="" class="mr btn btn-sm bg-primary"
+								ng-click="save()">
+								<span translate="template.button.simpan"></span>
+							</button>
+						</div>
+				
+	    </div>
+</script>

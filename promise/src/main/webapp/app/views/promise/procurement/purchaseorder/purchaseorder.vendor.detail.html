@@ -1,0 +1,33 @@
+<div class="app-view-header">
+    <span>Edit Purchase Order</span>
+    <small><span>PO</span></small>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="PurchaseOrderEditVendorsController as form">
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><span>Edit Purchase Order</span></h4>
+    <div class="panel-body">
+        <div align="center" ng-if="loading == true">
+            <strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px"/></strong>
+        </div>
+        <form role="form" name="poForm" class="form-horizontal row-clone-group" autocomplete="off">
+            <tabset>              
+                <!--Summary-->
+                <tab heading="Summary" active="tabs[0].active" ng-init="">
+                	
+                	<div ng-include="'app/views/promise/procurement/purchaseorder/purchaseordervendorsummary.html'"></div>
+                
+                    <fieldset>
+                        <div class="form-group">
+                            <div class="col-lg-offset-4 col-lg-10">
+                               <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="form.btnKembaliIndex()" ng-disabled="form.isProcessing" ng-show="form.btnKembaliIndex">
+                                    <span translate="">Kembali - Index</span>
+                                </button>                               
+                            </div>
+                        </div>
+                    </fieldset>
+                </tab>
+            </tabset>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,311 @@
+<div class="app-view-header"> <span translate="promise.procurement.master.approvaltahapan.judul"></span>
+	<small> <span translate="promise.procurement.master.approvaltahapan.keterangan"></span></small>
+</div>
+<div class="panel panel-primary" ng-controller="ApprovalTahapanViewController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-tasks"></em>
+			<span ng-if="vm.toDo == 'Add'" translate="promise.procurement.master.approvaltahapan.view.subjudul_tambah"></span>
+   		<span ng-if="vm.toDo == 'Edit'" translate="promise.procurement.master.approvaltahapan.view.subjudul_ubah"></span>
+			<a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+					<em class="fa fa-chevron-circle-down"></em>
+			</a>
+	</h4>
+	
+	<div class="panel-body collapse in">
+		<div class="text-center" ng-if="vm.loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong>
+		</div>
+		<form method="post" action="#" novalidate="" class="form-horizontal" ng-class="{'submitted' : vm.submitted}" name="formApprovalTahapan">
+		<div class="form-group">
+			<label class="col-sm-4 control-label required">	<!-- <span translate="promise.procurement.master.approvaltahapan.view.tahapan"> -->Organisasi</span>
+				</label>
+				<div class="col-sm-4">
+					<div ng-class="(vm.submitted && formApprovalTahapan.organisasi.$invalid) ? 'border-error' : !formApprovalTahapan.organisasi.$invalid ? '' : 'border-success'">
+						<ui-select ng-model="vm.approvalTahapan.organisasi" theme="bootstrap" name="organisasi" on-select="getUnitList($item)" ng-change="setValueOrganisasiId();  clearUnitList(); reset();" required ng-disabled="vm.toDo == 'Edit'">
+							<ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+							<ui-select-choices repeat="organisasi in vm.organisasiList | filter: $select.search">
+								<div ng-bind-html="organisasi.nama | highlight: $select.search"></div>
+							</ui-select-choices>
+						</ui-select>
+						<strong style="color: red" translate={{vm.errorMessageApproval}}></strong> 
+					</div>
+					<div class="input-error" ng-show="(vm.submitted && formApprovalTahapan.organisasi.$invalid)">
+						<p ng-show="formApprovalTahapan.organisasi.$error.required" translate="template.error.field_kosong"></p>
+					</div>
+				</div>
+			</div>
+			
+		<div class="form-group">
+			<label class="col-sm-4 control-label required">	Unit</span>
+				</label>
+				<div class="col-sm-4">
+					<div ng-class="(vm.submitted && formApprovalTahapan.unit.$invalid) ? 'border-error' : !formApprovalTahapan.unit.$invalid ? '' : 'border-success'">
+						<ui-select ng-model="vm.approvalTahapan.unit" theme="bootstrap" name="unit" on-select="getTahapanList($item)" ng-change="clearApprovalDetailList();reset()" required ng-disabled="vm.toDo == 'Edit'">
+							<ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+							<ui-select-choices repeat="unit in vm.unitList | filter: $select.search">
+								<div ng-bind-html="unit.nama | highlight: $select.search"></div>
+							</ui-select-choices>
+						</ui-select>
+						<strong style="color: red" translate={{vm.errorMessageApproval}}></strong> 
+					</div>
+					<div class="input-error" ng-show="(vm.submitted && formApprovalTahapan.unit.$invalid)">
+						<p ng-show="formApprovalTahapan.unit.$error.required" translate="template.error.field_kosong"></p>
+					</div>
+				</div>
+			</div>			
+		
+		<!-- <div class="form-group">
+				<label class="col-sm-4 control-label required">	<span translate="promise.procurement.master.approvaltahapan.view.tahapan"></span>
+				</label>
+				<div class="col-sm-4">
+					<div ng-class="(vm.submitted && formApprovalTahapan.tahapan.$invalid) ? 'border-error' : !formApprovalTahapan.tahapan.$invalid ? '' : 'border-success'">
+						<ui-select ng-model="vm.approvalTahapan.tahapan" theme="bootstrap" name="tahapan" ng-change="setType()" required ng-disabled="vm.toDo == 'Edit'">
+							<ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+							<ui-select-choices repeat="tahapan in vm.tahapanList | filter: $select.search">
+								<div ng-bind-html="tahapan.nama | highlight: $select.search"></div>
+							</ui-select-choices>
+						</ui-select>
+						<strong style="color: red" translate={{vm.errorMessageApproval}}></strong> 
+					</div>
+					<div class="input-error" ng-show="(vm.submitted && formApprovalTahapan.tahapan.$invalid)">
+						<p ng-show="formApprovalTahapan.tahapan.$error.required" translate="template.error.field_kosong"></p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="form-group"  ng-show="vm.isThreshold != null">
+			<label class="col-sm-4 control-label required">	Tipe threshold</span>
+				</label>
+				<div class="col-sm-4">
+					<div ng-class="(vm.submitted && formApprovalTahapan.tipe.$invalid) ? 'border-error' : !formApprovalTahapan.tipe.$invalid ? '' : 'border-success'">
+						<ui-select ng-model="vm.approvalTahapan.tipe" theme="bootstrap" name="tipe" on-select="setFormList($item)" required >
+							<ui-select-match placeholder="++ Pilih ++">{{$select.selected}}</ui-select-match>
+							<ui-select-choices repeat="tipe in vm.tipeList | filter: $select.search">
+								<div ng-bind-html="tipe.nama | highlight: $select.search"></div>
+							</ui-select-choices>
+							<ui-select-choices repeat="choice in ['PUSAT', 'CABANG']">
+							    <span>{{ choice }}</span>
+							</ui-select-choices>
+						</ui-select>
+						<strong style="color: red" translate={{vm.errorMessageApproval}}></strong> 
+					</div>
+					<div class="input-error" ng-show="(vm.submitted && formApprovalTahapan.tipe.$invalid)">
+						<p ng-show="formApprovalTahapan.tipe.$error.required" translate="template.error.field_kosong"></p>
+					</div>
+				</div>
+			</div> -->
+			
+			<!-- New KAI 2020 -->
+			<div class="form-group">
+				<label class="col-sm-4 control-label required">	<span translate="promise.procurement.master.approvaltahapan.view.tahapan"></span>
+				</label>
+				<div class="col-sm-4">
+					<div ng-class="(vm.submitted && formApprovalTahapan.tahapan.$invalid) ? 'border-error' : !formApprovalTahapan.tahapan.$invalid ? '' : 'border-success'">
+						<ui-select ng-model="vm.approvalTahapan.tahapan" theme="bootstrap" name="tahapan" ng-change="setType()" required ng-disabled="vm.toDo == 'Edit'">
+							<ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+							<ui-select-choices repeat="tahapan in vm.tahapanList | filter: $select.search">
+								<div ng-bind-html="tahapan.nama | highlight: $select.search"></div>
+							</ui-select-choices>
+						</ui-select>
+						<strong style="color: red" translate={{vm.errorMessageApproval}}></strong> 
+					</div>
+					<div class="input-error" ng-show="(vm.submitted && formApprovalTahapan.tahapan.$invalid)">
+						<p ng-show="formApprovalTahapan.tahapan.$error.required" translate="template.error.field_kosong"></p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="form-group m-b-sm" ng-show="vm.isThreshold != null">
+				<label class="col-sm-4 col-sm-4 col-sm-offset-8" style="margin-top: -25px;">	<strong ng-bind="'Max Amount Level'"></strong> 
+				</label>
+			</div>
+				<!-- level 1 -->
+				<div class="form-group" ng-show="vm.isThreshold != null">
+					<label class="col-sm-4 control-label required">	<span >Approval Level 1</span>
+					</label>
+					<div class="col-sm-4">
+						<div ng-class="(vm.submitted && formApprovalTahapan.approval1.$invalid) ? 'border-error' : !formApprovalTahapan.approval1.$invalid ? '' : 'border-success'">
+							<ui-select ng-model="vm.approvalTahapan.approvalTahapanDetailList[0].approval" theme="bootstrap" name="approval1" required ng-change="change(vm.approvalTahapan.approvalTahapanDetailList[0],approval1);validasiApprovalLevel(0)" >
+								<ui-select-match placeholder="++ Pilih ++">{{$select.selected.name}}</ui-select-match>
+								<ui-select-choices repeat="approval in vm.approvalList">
+									<div ng-bind-html="approval.name | highlight: $select.search"></div>
+								</ui-select-choices>
+							</ui-select>
+						</div>
+						
+						<div class="input-error" ng-show="(vm.submitted && formApprovalTahapan.approval1.$invalid)">
+							<p ng-show="formApprovalTahapan.approval1.$error.required" translate="template.error.field_kosong"></p>
+						</div>
+					</div>
+					
+					<div class="col-sm-4" >
+						<div style="width: 180px; height: 37px;float: left;">
+					<!-- <td ng-bind="(vm.approvalTahapan.approvalTahapanDetailList[0].endRange | currency:'')"></td> -->
+							<input name="endRange1" type="text" promise-numbers-only-copy class="form-control" ng-model="vm.approvalLevel.endRange1" ng-blur="checkMaxAmount(vm.approvalLevel.endRange1,1)" ng-change="validasiKosong(vm.isReadOnly)" required promise-currency-blur>
+							<strong style="color: red">{{vm.errorValidasi1}}</strong>
+						</div>
+						<div style="margin: 8px 12px;float: left;display: flex; align-items: center;">
+							<strong ng-bind="'Tidak Terbatas'"></strong>
+							<input type="checkbox" name="checkbox0" ng-model="vm.isActive[0]" ng-change="nonActiveIsChecked(0,vm.isActive[0] )" style="margin-top: 0;margin-left: 8px;">
+						</div>
+					</div>
+				</div>
+				
+
+				<!-- level 2 -->
+				<div class="form-group" ng-show="vm.isThreshold != null">
+					<label class="col-sm-4 control-label">	<span >Approval Level 2</span>
+					</label>
+					<div class="col-sm-4">
+						<div ng-class="(vm.submitted && formApprovalTahapan.approval2.$invalid && vm.isInputReadOnly[1] === false) ? 'border-error' : !formApprovalTahapan.approval2.$invalid ? '' : 'border-success'">
+							<ui-select ng-model="vm.approvalTahapan.approvalTahapanDetailList[1].approval" ng-disabled="vm.isInputReadOnly[1]" theme="bootstrap" name="approval2" required ng-change="change(vm.approvalTahapan.approvalTahapanDetailList[1],approval2);validasiApprovalLevel(1)" >
+								<ui-select-match placeholder="++ Pilih ++">{{$select.selected.name}}</ui-select-match>
+								<ui-select-choices repeat="approval in vm.approvalList">
+									<div ng-bind-html="approval.name | highlight: $select.search"></div>
+								</ui-select-choices>
+							</ui-select>
+						</div>
+						<div class="input-error" ng-show="(vm.submitted && formApprovalTahapan.approval2.$invalid && vm.isInputReadOnly[1] === false)">
+							<p ng-show="formApprovalTahapan.approval2.$error.required" translate="template.error.field_kosong"></p>
+						</div>
+					</div>
+					
+					<div class="col-sm-4" >
+						<div style="width: 180px; height: 37px;float: left;">
+							<input name="endRange2" type="text" promise-numbers-only-copy class="form-control" ng-value="vm.endRange[1]" ng-readonly="vm.isReadOnly[1]" value="" required ng-model="vm.approvalLevel.endRange2" ng-blur="checkMaxAmount(vm.approvalLevel.endRange2,2)" ng-change="validasiKosong(vm.isReadOnly)" promise-currency-blur>
+							<strong style="color: red">{{vm.errorValidasi2}}</strong>
+						</div>
+						
+						<div style="margin: 8px 12px;float: left;display: flex; align-items: center;">
+							<strong ng-bind="'Tidak Terbatas'"></strong>
+							<input type="checkbox" name="checkbox1" ng-model="vm.isActive[1]" ng-change="nonActiveIsChecked(1,vm.isActive[1] )" style="margin-top: 0;margin-left: 8px;">
+						</div>
+					</div>
+				</div>
+				
+				<!-- level 3 -->
+				<div class="form-group" ng-show="vm.isThreshold != null">
+					<label class="col-sm-4 control-label">	<span >Approval Level 3</span>
+					</label>
+					<div class="col-sm-4">
+						<div ng-class="(vm.submitted && formApprovalTahapan.approval3.$invalid && vm.isInputReadOnly[2] === false) ? 'border-error' : !formApprovalTahapan.approval3.$invalid ? '' : 'border-success'">
+							<ui-select ng-model="vm.approvalTahapan.approvalTahapanDetailList[2].approval" theme="bootstrap" ng-disabled="vm.isInputReadOnly[2]" name="approval3" required ng-change="change(vm.approvalTahapan.approvalTahapanDetailList[2],approval3);validasiApprovalLevel(2);" >
+								<ui-select-match placeholder="++ Pilih ++">{{$select.selected.name}}</ui-select-match>
+								<ui-select-choices repeat="approval in vm.approvalList">
+									<div ng-bind-html="approval.name | highlight: $select.search"></div>
+								</ui-select-choices>
+							</ui-select>
+						</div>
+						<div class="input-error" ng-show="(vm.submitted && formApprovalTahapan.approval3.$invalid && vm.isInputReadOnly[2] === false )">
+							<p ng-show="formApprovalTahapan.approval3.$error.required" translate="template.error.field_kosong"></p>
+						</div>
+					</div>
+					
+					<div class="col-sm-4" >
+						<div style="width: 180px; height: 37px;float: left;">
+							<input name="endRange3" type="text" promise-numbers-only-copy class="form-control" ng-readonly="vm.isReadOnly[2]" ng-value="vm.endRange[2]" ng-model="vm.approvalLevel.endRange3" ng-blur="checkMaxAmount(vm.approvalLevel.endRange3,3)" ng-change="validasiKosong(vm.isReadOnly)" promise-currency-blur>
+							<strong style="color: red">{{vm.errorValidasi3}}</strong>
+						</div>
+						
+						<div style="margin: 8px 12px;float: left;display: flex; align-items: center;">
+							<strong ng-bind="'Tidak Terbatas'"></strong>
+							<input type="checkbox" name="checkbox2" ng-model="vm.isActive[2]" ng-change="nonActiveIsChecked(2, vm.isActive[2])" style="margin-top: 0;margin-left: 8px;">
+						</div>
+					</div>
+				</div>
+				
+				<!-- level 4 -->
+				<div class="form-group" ng-show="vm.isThreshold != null">
+					<label class="col-sm-4 control-label">	<span >Approval Level 4</span>
+					</label>
+					<div class="col-sm-4">
+						<div ng-class="(vm.submitted && formApprovalTahapan.approval4.$invalid && vm.isInputReadOnly[3] === false) ? 'border-error' : !formApprovalTahapan.approval4.$invalid ? '' : 'border-success'">
+							<ui-select ng-model="vm.approvalTahapan.approvalTahapanDetailList[3].approval" theme="bootstrap" ng-disabled="vm.isInputReadOnly[3]" name="approval4" required ng-change="change(vm.approvalTahapan.approvalTahapanDetailList[3],approval4);validasiApprovalLevel(3);" >
+								<ui-select-match placeholder="++ Pilih ++">{{$select.selected.name}}</ui-select-match>
+								<ui-select-choices repeat="approval in vm.approvalList">
+									<div ng-bind-html="approval.name | highlight: $select.search"></div>
+								</ui-select-choices>
+							</ui-select>
+						</div>
+						<div class="input-error" ng-show="(vm.submitted && formApprovalTahapan.approval4.$invalid && vm.isInputReadOnly[3] === false)">
+							<p ng-show="formApprovalTahapan.approval4.$error.required" translate="template.error.field_kosong"></p>
+						</div>
+					</div>
+					
+					<div class="col-sm-4" >
+						<div style="width: 180px; height: 37px;float: left;">
+							<input name="endRange4" type="text" promise-numbers-only-copy class="form-control" ng-readonly="vm.isReadOnly[3]" ng-value="vm.endRange[3]" ng-model="vm.approvalLevel.endRange4" ng-blur="checkMaxAmount(vm.approvalLevel.endRange4,4)" ng-change="validasiKosong(vm.isReadOnly)" promise-currency-blur>
+							<strong style="color: red">{{vm.errorValidasi4}}</strong>
+						</div>
+							
+						<div style="margin: 8px 12px;float: left;display: flex; align-items: center;">
+							<strong ng-bind="'Tidak Terbatas'"></strong>
+							<input type="checkbox" name="checkbox3" ng-model="vm.isActive[3]" ng-change="nonActiveIsChecked(3, vm.isActive[3])" style="margin-top: 0;margin-left: 8px;">
+						</div>
+					</div>
+				</div>
+				
+				<!-- level 5 -->
+				<div class="form-group" ng-show="vm.isThreshold != null">
+					<label class="col-sm-4 control-label">	<span >Approval Level 5</span>
+					</label>
+					<div class="col-sm-4">
+						<div ng-class="(vm.submitted && formApprovalTahapan.approval5.$invalid && vm.isInputReadOnly[4] === false) ? 'border-error' : !formApprovalTahapan.approval5.$invalid ? '' : 'border-success'">
+							<ui-select ng-model="vm.approvalTahapan.approvalTahapanDetailList[4].approval" theme="bootstrap" ng-disabled="vm.isInputReadOnly[4]" name="approval5" required ng-change="change(vm.approvalTahapan.approvalTahapanDetailList[4],approval5);validasiApprovalLevel(4);" >
+								<ui-select-match placeholder="++ Pilih ++">{{$select.selected.name}}</ui-select-match>
+								<ui-select-choices repeat="approval in vm.approvalList">
+									<div ng-bind-html="approval.name | highlight: $select.search"></div>
+								</ui-select-choices>
+							</ui-select>
+						</div>
+						<div class="input-error" ng-show="(vm.submitted && formApprovalTahapan.approval5.$invalid && vm.isInputReadOnly[4] === false)">
+							<p ng-show="formApprovalTahapan.approval5.$error.required" translate="template.error.field_kosong"></p>
+						</div>
+					</div>
+					
+					<div class="col-sm-4" >
+						<div style="width: 180px; height: 37px;float: left;">
+							<input name="endRange5" type="text" promise-numbers-only-copy class="form-control" ng-readonly="vm.isReadOnly[4]" ng-value="vm.endRange[4]" ng-model="vm.approvalLevel.endRange5" ng-blur="checkMaxAmount(vm.approvalLevel.endRange5,5)" ng-change="validasiKosong(vm.isReadOnly)" promise-currency-blur>
+							<strong style="color: red">{{vm.errorValidasi5}}</strong>
+						</div>
+							
+						<div style="margin: 8px 12px;float: left;display: flex; align-items: center;">
+							<strong ng-bind="'Tidak Terbatas'"></strong>
+							<input type="checkbox" name="checkbox4" ng-model="vm.isActive[4]" ng-change="nonActiveIsChecked(4, vm.isActive[4])" style="margin-top: 0;margin-left: 8px;">
+						</div>
+					</div>
+				</div>
+				
+				<!-- NEW -->
+				<div class="form-group" ng-show="vm.isThreshold == null" ng-repeat="threshold in vm.thresholdList track by $index">
+					<label class="col-sm-4 control-label required">	<span >{{ 'promise.procurement.master.approvaltahapan.view.approval' | translate: {} }} {{threshold.name}}</span>
+					</label>
+					<div class="col-sm-4">
+						<div ng-class="(vm.submitted && formApprovalTahapan.approval1.$invalid) ? 'border-error' : !formApprovalTahapan.approval1.$invalid ? '' : 'border-success'">
+							<ui-select ng-model="vm.approvalTahapan.approvalTahapanDetailList[0].approval" theme="bootstrap" name="approval1" required ng-change="change(vm.approvalTahapan.approvalTahapanDetailList[0],approval1)" >
+								<ui-select-match placeholder="++ Pilih ++">{{$select.selected.name}}</ui-select-match>
+								<ui-select-choices repeat="approval in vm.approvalList">
+									<div ng-bind-html="approval.name | highlight: $select.search"></div>
+								</ui-select-choices>
+							</ui-select>
+						</div>
+						
+						<div class="input-error" ng-show="(vm.submitted && formApprovalTahapan.approval1.$invalid)">
+							<p ng-show="formApprovalTahapan.approval1.$error.required" translate="template.error.field_kosong"></p>
+						</div>
+					</div>
+				</div>
+				
+			<br/>
+			<div class="form-group">
+				<div class="col-md-12 text-center">
+					<button type="button" ripple="" class="btn btn-secondary" ng-click="back()">	
+						<span translate="template.button.kembali"></span>
+					</button>
+					<button type="button" ripple="" class="btn btn-primary" ng-click="save(formApprovalTahapan.$valid, vm.isActive)">
+						<span translate="template.button.simpan"></span>
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

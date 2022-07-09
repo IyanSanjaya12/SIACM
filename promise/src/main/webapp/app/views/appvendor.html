@@ -1,0 +1,13 @@
+<div ng-if="!$root.userLogin" ng-include="'templates/relogin.html'" ></div>
+<!-- top navbar-->
+<header ng-if="$root.userLogin" ng-include="'templates/top-navbar.html'" ng-class="app.theme.topbar"></header>
+<!-- Sidebar-->
+<!-- <aside ng-include="'templates/sidebar_vendor.html'" ng-class="app.theme.sidebar"></aside> -->
+<aside ng-if="$root.userLogin" ng-include="'templates/sidebar-menu.html'" ng-class="app.theme.sidebar"></aside> 
+<!-- Main-->
+<section ng-if="$root.userLogin">
+   <!-- Content-->
+   <div  ui-view="" autoscroll="false" ng-class="app.views.animation" class="app"></div>
+</section>
+<!-- Page footer-->
+<footer ng-if="$root.userLogin" ng-include="'templates/footer.html'"></footer>

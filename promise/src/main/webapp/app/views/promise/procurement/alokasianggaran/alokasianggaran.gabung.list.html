@@ -1,0 +1,60 @@
+<!-- 
+GENERAL VIEW OF THE PROCUREMENT SYSTEM 
+---------- START CONTROLLER ----------
+-->
+
+<div class="app-view-header">
+    <span translate="promise.procurement.panitia.alokasianggaran.gabung.JUDUL"></span>
+</div>
+<div ng-controller="AlokasiAnggaranGabungListController as form">
+    <div class="panel panel-primary">
+        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-tasks">&nbsp;</em><span translate="promise.procurement.panitia.alokasianggaran.gabung.list.JUDUL"></span></h4>
+        <div class="panel-body">
+            <div class="col-md-12">
+                <div>
+                    <div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px" border="0"/></strong></div>
+                    <table ng-table="tableList" class="table table-hover table-condensed table-striped bg-white">
+                        <thead>
+                            <tr>
+                                <th scope="col"style="text-align:center">No
+                                </th>
+                                <th scope="col"style="text-align:center"><span translate="proc.no_budget"></span>
+                                </th>
+                                <th scope="col"style="text-align:center"><span translate="proc.no_procurement"></span>
+                                </th>
+                                <th scope="col"style="text-align:center"><span translate="proc.budget_remain"></span>
+                                </th>
+                                <th scope="col"style="text-align:center"><span translate="general.action"></span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="data in $data">
+                                <td style="text-align:center">{{ $index+1 }}</td>
+                                <td style="text-align:center">{{ data.nomorDraft }}</td>
+                                <td style="text-align:center">{{ data.nomorNotaDinas }}</td>
+                                <td style="text-align:center">{{ data.sisaAnggaran | number : 2 }}</td>
+                                <td style="text-align:center">
+                                    <div>
+                                        <button type="button" class="mr btn btn-primary btn-circle btn-xs" ng-click="view(data)" ng-if="data.nomorNotaDinas!=null">
+                                            <em class="fa fa-search"></em>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div align="center">
+        <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="back()"><em class="fa fa-arrow-circle-left">&nbsp;</em>
+            <span translate="general.back"></span>
+        </button>
+        <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="save()">
+            <span translate="general.save"></span>&nbsp;<em class="fa fa-check"></em>
+        </button>
+    </div>
+</div>
+<!--END CONTROLLER-->

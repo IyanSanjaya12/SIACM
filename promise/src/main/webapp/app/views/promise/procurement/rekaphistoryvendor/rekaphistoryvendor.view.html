@@ -1,0 +1,160 @@
+ <div class="app-view-header">
+	<span translate="promise.procurement.manajemenvendor.rekaphistoryvendor.judul"></span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="RekapHistoryVendorViewControllerController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <span translate="promise.procurement.manajemenvendor.rekaphistoryvendor.subjudul"></span>	
+    </h4>    
+    
+    <form autocomplete="off"> 
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-12"><strong><h4 ng-bind="vm.vendor.nama"></h4></strong></div>
+			</div>			
+			<div class="row">
+				<div class="col-md-12">Ratings : <strong><span ng-bind="vm.vendor.performanceAvg"></span></strong></div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<span class="stars2" tooltip-placement="top" tooltip="{{vm.vendor.performanceAvg}}">
+						<span style="width: {{vm.vendor.star}}"></span>
+					</span>
+				</div>
+			</div>
+	
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<em class="fa fa-tasks">&nbsp;</em>
+				<span translate="promise.procurement.manajemenvendor.rekaphistoryvendor.view.subjudul_pernah"></span>
+			</h4>
+			<div class="table-responsive">
+				<table datatable="ng" class="row-border hover table-striped">
+					<thead>
+						<tr>
+							<th scope="col"style="text-align:center">
+								<span translate="template.tabel.nomor"></span>
+							</th>
+							<th scope="col"style="text-align:center">
+								<span translate="promise.procurement.manajemenvendor.rekaphistoryvendor.view.list.nama_pengadaan"></span>
+							</th>
+							<th scope="col"style="text-align:center">
+								<span translate="promise.procurement.manajemenvendor.rekaphistoryvendor.view.list.tanggal_pengadaan"></span>
+							</th>
+							<th scope="col"style="text-align:center">
+								<span translate="promise.procurement.manajemenvendor.rekaphistoryvendor.view.list.nilai_pengadaan"></span>
+							</th>
+							<th scope="col"style="text-align:center">
+								<span translate="promise.procurement.manajemenvendor.rekaphistoryvendor.view.list.hingga_tahapan"></span>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="dataPernahMengikuti in vm.dataPernahMengikutiList">
+							<td style="text-align: center" ng-bind="{{ $index+1 }}"></td>
+							<td ng-bind="dataPernahMengikuti.pengadaan.namaPengadaan"></td>
+							<td style="text-align:center" ng-bind="dataPernahMengikuti.pengadaan.created | date:'yyyy-MM-dd'"></td>
+							<td style="text-align:right" ng-bind="(dataPernahMengikuti.totalHPS|number:2)+' '+dataPernahMengikuti.pengadaan.mataUang.kode"></td>
+							<td style="text-align:center" ng-bind="dataPernahMengikuti.pengadaan.tahapanPengadaan.tahapan.nama"></td>
+							
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- <div class="page-option col-md-2">
+					<span class="page-opt-text">Show :</span> <a class="page-opt-num" ng-click="pageChanged(5)">5</a> <a class="page-opt-num" ng-click="pageChanged(10)">10</a> <a class="page-opt-num" ng-click="pageChanged(25)">25</a>
+			</div>
+			<div class="text-right">
+					<pagination first-text="<<" previous-text="<" next-text=">" last-text=">>" items-per-page="rowPerPage" total-items="totalItems" ng-model="currentPage" max-size="6" boundary-links="true" class="pagination-sm" ng-click="getPage(currentPage)"></pagination>
+			</div>-->
+			
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<em class="fa fa-tasks">&nbsp;</em>
+				<span translate="promise.procurement.manajemenvendor.rekaphistoryvendor.view.subjudul_sedang"></span>
+			</h4>
+			<div class="table-responsive">
+				<table datatable="ng" class="row-border hover table-striped">
+					<thead>
+						<tr>
+							<th scope="col"style="text-align:center">
+								<span translate="template.tabel.nomor"></span>
+							</th>
+							<th scope="col"style="text-align:center">
+								<span translate="promise.procurement.manajemenvendor.rekaphistoryvendor.view.list.nama_pengadaan"></span>
+							</th>
+							<th scope="col"style="text-align:center">
+								<span translate="promise.procurement.manajemenvendor.rekaphistoryvendor.view.list.tanggal_pengadaan"></span>
+							</th>
+							<th scope="col"style="text-align:center">
+								<span translate="promise.procurement.manajemenvendor.rekaphistoryvendor.view.list.nilai_pengadaan"></span>
+							</th>
+							<th scope="col"style="text-align:center">
+								<span translate="promise.procurement.manajemenvendor.rekaphistoryvendor.view.list.hingga_tahapan"></span>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+					<tr ng-repeat="dataSedangMengikuti in vm.dataSedangMengikutiList">
+							<td style="text-align: center" ng-bind="{{ $index+1 }}"></td>
+							<td ng-bind="dataSedangMengikuti.pengadaan.namaPengadaan"></td>
+							<td style="text-align:center" ng-bind="dataSedangMengikuti.pengadaan.created | date:'yyyy-MM-dd'"></td>
+							<td style="text-align:right" ng-bind="(dataSedangMengikuti.totalHPS|number:2)+' '+dataSedangMengikuti.pengadaan.mataUang.kode" > </td>
+							<td style="text-align:center" ng-bind="dataSedangMengikuti.pengadaan.tahapanPengadaan.tahapan.nama"></td>		
+					</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<em class="fa fa-tasks">&nbsp;</em>
+				<span translate="promise.procurement.manajemenvendor.rekaphistoryvendor.view.subjudul_menang"></span>
+			</h4>
+			<div class="table-responsive">
+				<table datatable="ng" class="row-border hover table-striped">
+					<thead>
+						<tr>
+							<th scope="col"style="text-align:center">
+								<span translate="template.tabel.nomor"></span>
+							</th>
+							<th scope="col"style="text-align:center">
+								<span translate="promise.procurement.manajemenvendor.rekaphistoryvendor.view.list.nama_pengadaan"></span>
+							</th>
+							<th scope="col"style="text-align:center">
+								<span translate="promise.procurement.manajemenvendor.rekaphistoryvendor.view.list.tanggal_pengadaan"></span>
+							</th>
+							<th scope="col"style="text-align:center">
+								<span translate="promise.procurement.manajemenvendor.rekaphistoryvendor.view.list.nilai_kontrak"></span>
+							</th>
+							
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="dataPemenang in vm.dataPemenangListByVendor">
+							<td style="text-align: center" ng-bind="{{ $index+1 }}"></td>
+							<td ng-bind="dataPemenang.pengadaan.namaPengadaan"></td>
+							<td style="text-align:center" ng-bind="dataPemenang.created | date:'yyyy-MM-dd'"></td>
+							<td style="text-align:right" ng-bind="(dataPemenang.nilaiPenawaranAfterCondition | number:2)+' '+(dataPemenang.pengadaan.mataUang.kode)"></td>
+							
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<div class="panel-body">
+				<div class="container-fluid ng-scope">
+					<form method="post" action="#" novalidate="" class="form-horizontal">
+						 <fieldset>
+							<div class="form-group">
+								<div class="col-md-5 col-md-push-5 col-sm-5 col-sm-push-3">
+									<button type="button" ripple=""
+										class="mr btn btn-sm bg-default" ng-click="back()">
+										<span translate="template.button.kembali"></span>
+									</button>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

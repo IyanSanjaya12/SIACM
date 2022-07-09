@@ -1,0 +1,392 @@
+<div class="app-view-header">
+    Vendor List <!-- <small ng-bind="app.name + ' - ' + app.description"></small> -->
+</div>
+
+<!-- START row-->
+<div class="row" ng-controller="evendorcatalogCtrl as vm">
+    <div class="col-lg-12">
+        <div class="panel panel-default ">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="vermagemenu m-b">
+                            <div class="content-vermagemenu">
+                                <div class="title-vermegamenu bg-primary">
+                                    <h2 ng-click="isCollapsed = !isCollapsed"><span translate="promise.procurement.master.catalog.list.BIDANGUSAHA">BIDANG USAHA</span></h2>
+                                </div>
+                                <div collapse="isCollapsed" class="navleft-container">
+                                    <div id="pt_vmegamenu" class="pt_vmegamenu">
+                                        <div data-id="1" class="pt_ver_menu" ng-repeat="bidangUsaha in bidangUsahaList" ng-class="(bidangUsaha.bidangUsahaChildList.length > 0) ? 'had-child' : 'pt_ver_menu_no_child'">
+                                            <div class="parentMenu">
+                                                <a ng-click="searchByBidangUsaha(bidangUsaha)"> <span ng-bind="bidangUsaha.nama"></span>
+                                                </a>
+                                            </div>
+                                            <div class="popup" ng-if="bidangUsaha.bidangUsahaChildList.length > 0">
+                                                <div class="content-popup">
+                                                    <div class="column" ng-repeat="sub1bidangUsaha in bidangUsaha.bidangUsahaChildList  | limitTo : 4">
+                                                        <div class="itemMenu level1">
+                                                            <a class="itemMenuName level0 actParent" ng-click="searchBySubBidangUsaha(sub1bidangUsaha)">
+                                                                <span ng-bind="sub1bidangUsaha.nama"></span>
+                                                            </a>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="vermagemenu m-b">
+                            <div class="content-vermagemenu">
+                                <div class="title-vermegamenu bg-primary">
+                                    <h2 ng-click="isCollapsed = !isCollapsed"><span translate="promise.procurement.master.catalog.list.VENDORRATING">RATING VENDOR</h2>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-show="vm.sbText!=null" class="filter-search">
+                            <div class="ratings">
+                                <div style="text-align: right; padding-right: 4px; line-height: 10px">
+                                    <a style="color: #999; font-size: 10px;" ng-click='clearSbText()'>Clear</a>
+                                </div>
+                                <div style="padding-bottom: 10px; font-size: 16px;">
+                                    <span ng-bind="vm.sbText"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Filter Search Rating-->
+
+                        <div class="filter-search">
+                            <div class="ratings">
+                                <div style="padding-bottom: 10px;">
+                                    <div style="text-align: right; padding-right: 4px; line-height: 10px">
+                                        <a style="color: #999; font-size: 10px;" ng-click='clearRatings()'>Clear</a>
+                                    </div>
+                                    <rating ng-model="vm.ratings" ng-click="search()" state-on="'glyphicon-star text-warning'" state-off="'glyphicon-star-empty'"></rating>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-9 col-sm-12 col-xs-12">
+                        <div class="custom-category row">
+                            <div class="col-md-12">
+                                <!-- product fillter -->
+                                <div class="filter-search">
+                                    <div class="col-filter">
+                                        <div class="col-md-4 no-padding text-right">
+                                            <label class="control-label">Vendor</label>
+                                        </div>
+                                        <div class="col-md-8 search-icon">
+                                            <input type="text" class="form-control ng-pristine ng-valid ng-touched" ng-model="vm.vendorAndProductCategoryName" ng-change="searchTxtVendorAndProductCategoryName()" ng-model-options="{debounce: 750}">
+                                        </div>
+                                    </div>
+                                    <div class="col-filter">
+                                        <div class="col-md-1 no-padding text-right">
+                                            <label class="control-label">Location</label>
+                                        </div>
+                                        <div class="col-md-3 search-icon">
+                                            <input type="text" class="form-control" ng-model="vm.location" ng-change="searchTxtLocation()">
+                                        </div>
+                                        <div class="col-md-1 no-padding text-right">
+                                            <label class="control-label">Sort</label>
+                                        </div>
+                                        <div class="col-md-4 search-icon">
+                                            <ui-select ng-model="vm.selected" theme="bootstrap" ng-change="searchShortBy()">
+                                                <ui-select-match placeholder="++ Pilih ++">{{$select.selected.value}}</ui-select-match>
+                                                <ui-select-choices repeat="object in vm.values | filter:  $select.search track by object.value">
+                                                    <div ng-bind="object.value | highlight: $select.search"></div>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>
+                                        <div class="col-md-2 ">
+                                            <button class="btn btn-primary" type="button" ng-click="search()">Cari</button>
+                                        </div>
+                                    </div>
+                                    <div class="sort-lg">
+		                                <button type="button" ng-click="swap('list')" class="btn btn-default list-view selected" id="list-view" title="List"><span>list</span></button>
+		                                <button type="button" ng-click="swap('grid')" class="btn btn-default grid-view" id="grid-view" title="Grid"><span>grid</span></button>
+		                            </div>
+                                </div>
+                                <div class="col-md-12 col-xs-12">
+                                    <div class="page-option col-md-2 col-xs-6">
+                                        <span class="page-opt-text">Show :</span>
+                                        <a href="#" class="page-opt-num" ng-click="pagingSetMaxShow(20);">20</a>
+                                        <a href="#" class="page-opt-num" ng-click="pagingSetMaxShow(30);">30</a>
+                                        <a href="#" class="page-opt-num" ng-click="pagingSetMaxShow(50);">50</a>
+                                    </div>
+                                    <div class="pull-rights">
+                                        <pagination first-text="<<" previous-text="<" next-text=">" last-text=">>" items-per-page="vm.pagingMaxBaris" total-items="vm.pagingTotalBaris" ng-model="vm.pagingHalamanKe" max-size="5" boundary-links="true" class="pagination-sm" ng-change="pageChanged()"></pagination>
+                                    </div>
+                                </div>
+                                
+                                <div align="center" ng-if="loading == true">
+                                    <strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px" /></strong>
+                                </div>
+                                <div class="custom-products add-quickview">
+                                	<div ng-if="!showList" id="prodwrap" class="col-md-12 col-xs-12 product-layout product-grid" angular-grid="vendorListDTO.vendorList" ag-options="gridViewOpt" ag-id="gallery">
+	                                	<div class="product-thumb" ng-repeat="vendor in vendorListDTO.vendorList">
+	                                    	<div class="item-inner">
+	                                    		<div class="col-md-2 col-md-offset-10 col-xs-12">
+		                                            <a href="#" ng-click="addCompareVendor(vendor)">
+	                                                        <img src="app/img/compare-normal-state.svg" style="
+	                                                        width: 14px;
+	                                                        height: 18px;
+	                                                        object-fit: contain;">
+	                                                </a>
+		                                        </div>
+		                                        
+		                                        <div class="col-md-12 col-xs-7">
+		                                            <div>
+		                                                <a ui-sref="app.promise.procurement-catalog-vendor-detail({dataVendor: vendor})">
+		                                                    <img ng-src="{{vendor.loadLogoImage}}" alt="{{vendor.nama}}"/>
+		                                                </a>
+		                                            </div>
+		                                        </div>
+		                                        
+		                                        <div class="col-md-12 col-xs-5" style="padding: 0;">
+		                                        	<div>
+		                                        	
+	                                                    <h2 class="product-name">
+	                                                        <a ui-sref="app.promise.procurement-catalog-vendor-detail({dataVendor: vendor})">{{vendor.nama}}</a>
+	                                                    </h2>
+	
+	                                                    <div style="padding-bottom: 20px;">
+	                                                        <div class="ratings" style="color:lightgray;">
+	                                                            <div>
+	                                                                <rating ng-model="vendor.performanceAvgFloor" max="5" readonly="true" state-on="'glyphicon-star text-warning'" state-off="'glyphicon-star-empty'"></rating>
+	                                                            </div>
+	                                                        </div>
+	                                                    </div>
+                                                    
+                                                    </div>
+                                                    
+                                                    <div>
+	                                                    <div style="border-top: 1px solid #e8e8e8; padding-top: 10px;" />
+		                                                    <div class="col-md-10 col-xs-12" style="padding-left: 0;">
+		                                                        <div class="ng-binding" style="
+	                                                                                font-size: 14px;
+	                                                                                letter-spacing: -0.3px;
+	                                                                                text-align: left;
+	                                                                        ">Region / Country : <span >{{vendor.alamat | limitTo: 27}}</span></div>
+		                                                        <div style="
+		                                                                                font-size: 14px;
+		                                                                                line-height: normal;
+		                                                                                letter-spacing: -0.3px;
+		                                                                                text-align: left;">Transaksi :
+		                                                            <span>{{vendor.winnerCount}}</span>
+		                                                        </div>
+		
+		                                                    </div>
+		                                                    <br/>
+		                                                    <br/>
+		                                                    <div class="col-md-9 col-md-push-4 col-xs-12" style="padding-left: 0;">
+		                                                        <div style="padding: 0;">
+		                                                            <a ng-click="mailTo(vendor.email)" class="btn btn-sm btn-primary btn-addon"><em
+																	class="glyphicon glyphicon-phone-alt"></em> Contact</a>
+		                                                        </div>
+		                                                    </div>
+	                                                </div>
+		                                                
+		                                        </div>
+		                                        
+	                                    	</div>
+	                                   	</div>
+	                                </div>
+		                            
+		                            <div ng-if="showList">
+		                            	<div class="product-thumb" ng-repeat="vendor in vendorListDTO.vendorList">
+		                            		<div class="item-inner">
+		                            			<div class="col-md-12 col-xs-12" style="border: 1px solid lightgray;
+	                                                                                        border-radius:5px;
+	                                                                                        padding-bottom:10px;
+	                                                                                        margin-bottom:10px;">
+	                                            	<div class="col-md-4 col-xs-7">
+		                                                <div>
+		                                                    <a class="product-image" ui-sref="app.promise.procurement-catalog-vendor-detail({dataVendor: vendor})">
+		                                                        <!-- <img class="img2" ng-src="{{vendor.loadLogoImage}}" alt="{{vendor.nama}}" /> -->
+		                                                        <img ng-src="{{vendor.loadLogoImage}}" alt="{{vendor.nama}}" on-error="{{gambarDefault}}"/>
+		                                                    </a>
+		                                                </div>
+		                                            </div>
+		                                            <div class="col-md-8 col-xs-5" style="padding: 10px 0;">
+		                                                <h2 class="product-name">
+		                                                    <a ui-sref="app.promise.procurement-catalog-vendor-detail({dataVendor: vendor})">{{vendor.nama}}</a>
+		                                                </h2>
+		
+	                                                    <div style="padding-bottom: 80px;">
+	                                                        <div class="col-md-push-9 col-md-3 col-xs-12" style="
+	                                                                                    padding-top: 5px;">
+	                                                            <img src="app/img/compare-normal-state.svg" style="
+	                                                                                        width: 14px;
+	                                                                                        height: 18px;
+	                                                                                        object-fit: contain;">
+	                                                            <a href="#" ng-click="addCompareVendor(vendor)">
+	                                                                                                <strong style="
+	                                                                                                    font-size: 12px;
+	                                                                                                    font-weight: bold;
+	                                                                                                    letter-spacing: -0.2px;
+	                                                                                                    text-align: left;
+	                                                                                                    color: #ee5c12;">Bandingkan </strong>
+	                                                                                        </a>
+	                                                        </div>
+	                                                        <div class="col-md-12 col-xs-12" style="padding: 0;">
+	                                                            <div class="ratings" style="color:lightgray;">
+	                                                            	<rating ng-model="vendor.performanceAvgFloor" max="5" readonly="true" state-on="'glyphicon-star text-warning'" state-off="'glyphicon-star-empty'"></rating>
+	                                                            </div>
+	                                                        </div>
+	                                                        <div class="col-md-12 col-xs-12" style="
+	                                                                                border-top: 1px solid #e8e8e8;
+	                                                                                margin-top: 10px;
+	                                                                                margin-bottom:5px">
+	
+	                                                        </div>
+	                                                    </div>
+	                                                    
+	                                                    <div class="col-md-12 col-xs-12" style="padding-left: 0;">
+	                                                    	<div class="ng-binding" style="
+	                                                                                font-size: 14px;
+	                                                                                letter-spacing: -0.3px;
+	                                                                                text-align: left;
+	                                                                        ">Region / Country : <span >{{vendor.alamat | limitTo: 27}}</span></div>
+	                                                        <div style="
+	                                                                                font-size: 14px;
+	                                                                                line-height: normal;
+	                                                                                letter-spacing: -0.3px;
+	                                                                                text-align: left;">Transaksi :
+	                                                            <span>{{vendor.winnerCount}}</span>
+	                                                        </div>
+	                                                        <br/>
+	                                                        <a ng-click="mailTo(vendor.email)" class="btn btn-sm btn-primary btn-addon"><em
+																	class="glyphicon glyphicon-phone-alt"></em> Contact</a>
+	                                                        <!-- <div class="m-b cat-label">
+	                                                            <strong>Category : </strong>
+	                                                            <span style="background-color: #ee5c12; margin-right: 5px;" class="label label-primary" ng-repeat="catalogcategory in catalog.catalogCategoryList | limitTo:-2">{{catalogcategory.category.translateInd}}</span>
+	                                                        </div> -->
+	                                                    </div>
+	
+	                                            	</div>
+		                                              
+	                                            </div>
+		                            		</div>
+		                            	</div>
+		                            </div>
+	                          		
+	                                    <!-- <div id="prodwrap" class="product-layout product-list col-xs-12" angular-grid="vendorListDTO.vendorList" ag-options="angularGridOptions">
+	                                        <div class="product-thumb img-loaded angular-grid-item" ng-repeat="vendor in vendorListDTO.vendorList">
+	                                            <div class="item-inner">
+	                                                <div class="images-container">
+	                                                    <a class="product-image" ui-sref="app.promise.procurement-catalog-vendor-detail({dataVendor: vendor})">
+	                                                        <img class="img2" ng-src="{{vendor.loadLogoImage}}" alt="{{vendor.nama}}" />
+	                                                        <img ng-src="{{vendor.loadLogoImage}}" alt="{{vendor.nama}}" />
+	                                                    </a>
+	                                                </div>
+	                                                images-container
+	                                                <div class="des-detail">
+	                                                    <h2 class="product-name">
+															<a ui-sref="app.promise.procurement-catalog-vendor-detail({dataVendor: vendor})">{{vendor.nama}}</a>
+														</h2>
+	                                                    rating
+	                                                    <div class="ratings">
+	                                                        <div>
+	                                                            <rating ng-model="vendor.performanceAvgFloor" max="5" readonly="true" state-on="'glyphicon-star text-warning'" state-off="'glyphicon-star-empty'"></rating>
+	                                                        </div>
+	                                                    </div>
+	                                                    / rating
+	                                                    <div class="short-des" ng-bind-html="vendor.description"></div>
+	
+	                                                    <div class="supplier-desc">
+	                                                        <div class="supplier-desc-text">
+	                                                            <strong>Main Product : </strong> <a ng-repeat="cat in vendor.mainProductCategoryList | limitTo:5" class="label label-primary m-r-xs">{{cat.description}}</a>
+	                                                        </div>
+	                                                        <div class="supplier-desc-text">
+	                                                            <strong>Region / Country : </strong><span >{{vendor.alamat | limitTo: 27}}</span>
+	                                                        </div>
+	                                                        <div class="supplier-desc-text">
+	                                                            <strong>Transaksi : </strong><span>{{vendor.winnerCount}}</span>
+	                                                        </div>
+	                                                    </div>
+	                                                    <div class="cart-wrapper">
+	                                                        <a ng-click="mailTo(vendor.email)" class="btn btn-sm btn-primary btn-addon"><i
+																class="glyphicon glyphicon-phone-alt"></em> Contact</a>
+	                                                        <a ng-click="addCompareVendor(vendor)" class="btn btn-sm btn-info btn-addon"><i
+															   class="fa fa-check-square-o"></em> Compare</a>
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                     -->
+	                                   
+                                
+                                </div>
+                                <div class="col-md-12 col-xs-12">
+                                    <div class="page-option col-md-2 col-xs-6">
+                                        <span class="page-opt-text">Show :</span>
+                                        <a href="#" class="page-opt-num" ng-click="pagingSetMaxShow(20);">20</a>
+                                        <a href="#" class="page-opt-num" ng-click="pagingSetMaxShow(30);">30</a>
+                                        <a href="#" class="page-opt-num" ng-click="pagingSetMaxShow(50);">50</a>
+                                    </div>
+                                    <div class="pull-rights">
+                                        <pagination first-text="<<" previous-text="<" next-text=">" last-text=">>" items-per-page="vm.pagingMaxBaris" total-items="vm.pagingTotalBaris" ng-model="vm.pagingHalamanKe" max-size="5" boundary-links="true" class="pagination-sm" ng-change="pageChanged()"></pagination>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+<!----------------------- MODAL MAIL COMPOSE --------------------------------->
+<script type="text/ng-template" id="/mail.compose.list.html">
+	<div class="app-view-header">
+        <h3 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        	<span><em class="fa fa-envelope"></em>&nbsp;&nbsp;Compose Email</span>
+    	</h3>
+    </div>
+	<div class="mb-mail-compose">
+	   <div class="clearfix mb">
+	      <div class="pull-left">
+	         <button type="button" ng-class="{'active':mailCC}" ng-click="mailCC = !mailCC" class="btn btn-default btn-sm" ng-model="mailCC"><em class="fa fa-users"></em>&nbsp;&nbsp;CC</button>
+	      </div>
+	   </div>
+	   <div class="panel panel-default">
+	      <div class="panel-body">
+	         <form role="form-horizontal" method="post">
+	            <div class="input-group form-group">
+	               <span class="input-group-addon text-sm">To:</span>
+	               <input type="text" class="form-control" disabled ng-model="emailTujuan" />
+	            </div>
+	            <div ng-show="mailCC" name="emailCC" class="input-group form-group">
+	               <span class="input-group-addon text-sm">CC:</span>
+	               <input type="text" class="form-control" ng-model="emailCC" />
+	            </div>
+	            <div class="input-group form-group">
+	               <span class="input-group-addon text-sm">Subject:</span>
+	               <input type="text" ng-model="emailSubject" class="form-control" />
+	            </div>
+	            <div class="mb-editor">
+	               <!-- Wysiswyg editor-->
+	               <div text-angular="" name="emailIsi" ng-model="emailIsi" name="wysiswyg-editor" ta-toolbar="[['h1','h2','h3'],['bold','italics', 'underline'],['quote'],['ul','ol'],['insertImage','insertLink']]" class="btn-group-small">
+				   </div>
+	               
+				   <p ng-show="emailIsiError" style="color:red">Harus Diisi!</p>
+	            </div>
+	         </form>
+	      </div>
+	      <div class="form-group">
+	       &nbsp;&nbsp; <a href="#" class="btn btn-success btn-addon" ng-click="btnBatal()"><em class="fa fa-angle-double-left"></em>Close</a>
+	        <a href="#" class="btn btn-primary btn-addon" ng-click="btnKirim()"><em class="fa fa-paper-plane"></em>Send</a>
+	     </div>
+	     <br/>
+	   </div>
+	</div>
+</script>

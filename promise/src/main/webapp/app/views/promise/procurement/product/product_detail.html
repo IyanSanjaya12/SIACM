@@ -1,0 +1,440 @@
+<div class="app-view-header">Product Detail
+    <!-- <small ng-bind="app.name + ' - ' + app.description"></small> -->
+</div>
+
+<!-- START row-->
+<div class="row" ng-controller="swapViews">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-4 col-sm-12" ng-controller="ImgZoomCtrl">
+                        <div class="thumbnails-image">
+                            <a class="thumbnail">
+                                <img id="zoom_01"
+                                    src="app/img/product/garing-garuda.jpg"
+                                    data-zoom-image="app/img/product/garing-garuda.jpg"
+
+                                    ez-plus
+                                    ezp-model="zoomModelGallery01"
+                                    ezp-options="zoomOptions"
+                                   />
+                           </a>
+                        </div>
+
+                        <div class="wrapper-img-additional">
+                            <div class="image-additional" id="gallery_01">
+                                <a
+                                   ng-repeat="image2 in imagesForGallery"
+                                   ng-click="setActiveImageInGallery('zoomModelGallery01',image2);"
+
+                                   data-image="{{approot}}{{image2.small}}"
+                                   data-zoom-image="{{approot}}{{image2.large}}"
+
+                                   class="thumbnail col-md-3">
+                                    <img ng-src="{{approot}}{{image2.thumb}}"/>
+                                </a>
+                            </div>
+                       </div>
+
+                    </div>
+                    <!--col-1-->
+                    <div class="col-md-8 col-sm-12">
+                        <div class="product-shop-inner">
+                            <div class="product-name">
+                                <h1>Kacang Kulit Garuda</h1>
+                            </div>
+                            <!-- / rating -->
+                                
+                            <!--                            
+                            <div class="event-countdown">
+                                <div class="event-text">Discount remaining time : </div>
+                                <span id="clock" data-periode="2016/02/13 15:40:56"></span>
+                            </div>
+                            <!-- price-box -->
+                            <!--   
+                            <div class="price-box price-range">
+                                <span class="price">
+                                    <span class="price-qty">1 - 20 Pieces</span>
+                                    <span class="price-value">$100.00</span>
+                                </span>
+                                <span class="price">
+                                    <span class="price-qty">21 - 99 Pieces</span>
+                                    <span class="price-value">$100.00</span>
+                                </span>
+                                <span class="price">
+                                    <span class="price-qty">>= 100 Pieces</span>
+                                    <span class="price-value">$100.00</span>
+                                </span>
+                            </div>
+                            <!--price-box-->
+                            
+                            <div class="short-description">
+                                Kacang Kulit Garuda terbuat dari kacang tanah pilihan yang garing dan istimewa renyahnya serta isi yang padat. Berbagai penelitian menunjukan bahwa kacang mengandung berbagai zat gizi penting yang baik bagi kesehatan kita, bahkan kandungan asam lemak tak jenuh (unsaturated fatty acids) didalamnya dapat menurunkan resiko penyakit jantung koroner. Kacang Kulit Garuda cocok disajikan sebagai makanan ringan saat santai atau dalam perjalanan, serta baik untuk dikonsumsi oleh semua usia.
+                            </div>
+                            <ul class="list-unstyled infor-product">
+                                <!-- <li class="list-infor-product">Brand:<span>Kacang Kulit Garuda</span></li> -->
+                                <li class="list-infor-product">Shipping From:<span>Jakarta</span></li>
+                                <li class="list-infor-product">Estimated Delivery Time:<span>5-10 working days</span></li>            
+                                <li class="list-infor-product">Availability:<span>In Stock</span></li>            
+                            </ul><!--infor-product-->
+                            <div class="add-to-cart m-h-lg">
+                                <div class="col-sm-4 no-padding m-r">
+                                    <input ui-jq="TouchSpin" type="text" value="0" class="input-sm form-control" data-min='1' data-max="10" data-step="1" >
+                                </div>
+                                <a class="btn btn-warning btn-xs" >Add to Cart</a>
+                                <a class="btn btn-primary btn-xs">Send Order Request</a>
+                            </div>
+
+                            <div class="actions-buttons">
+                                <a class="btn m-b-xs btn-sm btn-success btn-addon"><em class="fa fa-heart"></em>Add to Wishlist</a>
+                                <a class="btn m-b-xs btn-sm btn-info btn-addon"><em class="glyphicon glyphicon-retweet"></em>Add to Compare</a>
+                                <a class="btn m-b-xs btn-sm btn-default btn-addon"><em class="fa fa-envelope-o"></em>Send to email</a>
+                            </div><!--actions-inner-->
+                        </div><!--product-shop-inner-->
+
+                        <div class="related-products-view">
+                            <div class="related-title">
+                                <span>Supplier Detail</span>
+                            </div>
+                            <div class="view-related">
+                                <div class="row_items">
+                                    <div class="item_product">
+                                        <div class="caption">
+                                            <h2 class="product-name">
+                                                <a ui-sref="app.promise.procurement-vendorDetail({companyName:'TPJ'})">PT Tudung Putra Jaya (TPJ)</a>
+                                            </h2>
+                                            <p class="des-newproduct">
+                                                <ul class="no-style">
+                                                    <li><strong>3 </strong>Years Gold Supplier</li>
+                                                    <li><strong>546 </strong>Transactions</li>
+                                                    <li><strong>17009 </strong>Products sold</li>
+                                                </ul>
+                                            </p>
+                                            <div class="contact-widget">
+                                                <a ui-sref="app.promise.procurement-vendorDetail({companyName:'TPJ'})"><em class="fa fa-phone-square"></em> Contact Now</a>
+                                                <a ui-sref="app.promise.procurement-vendorDetail({companyName:'TPJ'})"><em class="fa fa-envelope-square"></em> Messages Supplier</a>
+                                            </div>
+                                        </div><!-- caption-->
+                                    </div><!--item_product-->
+                                </div>
+                            </div>
+                        </div><!--related-products-view-->      
+                    </div><!--col-2-->
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <tabset class="tab-container">
+                            <tab heading="Product Detail">
+                                <div class="cpt_product_description ">
+                                    <table class="table detail no-border">
+                                        <tbody>
+                                            <tr>
+                                                <td>Place of Origin:</td>
+                                                <td>Pati, Central Java<td>
+                                                <td>Brand Name:</td>
+                                                <td>Kacang Garuda</td>
+<!--                                                <td>Model Number:</td>
+                                                <td>x3100 M55457-IC2</td>-->
+                                            </tr>
+<!--                                            <tr>
+                                                <td>Storage:</td>
+                                                <td>1TB</td>
+                                                <td>Processor:</td>
+                                                <td>Xeon 4C E3-1271v3 80W 3.6GHz/1600MHz/8MB</td>
+                                                <td>Chassing:</td>
+                                                <td>430W p/s, Tower</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Function:</td>
+                                                <td>Server for bigdata support</td>
+                                                <td>Condition:</td>
+                                                <td>Brand new & fashion</td>
+                                                <td>Delivery:</td>
+                                                <td>door to door by express ,fast and save</td>
+                                            </tr>-->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </tab>
+                            <tab heading="Comment">
+                                <div class="comment_rate form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">Nama</label>
+                                        <div class="col-lg-8">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">Your Comment</label>
+                                        <div class="col-lg-8">
+                                            <!-- Wysiswyg editor-->
+                                            <div text-angular="" name="wysiswyg-editor-ind" class="btn-group-none"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-2 col-lg-8">
+                                            <!-- Wysiswyg editor-->
+                                            <a class="btn btn-success">Submit</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </tab>
+                            <tab heading="Company Profile">
+                                <div class="profile-text">
+                                    <p>GarudaFood is a food and beverage company subordinated to Tudung Group. In addition to GarudaFood, Tudung Group also subordinates agribusiness companies operating in Crude Palm Oil field and peanuts.</p>
+                                    <p>GarudaFood Group had originated from PT Tudung Putra Jaya (TPJ), it was established in Pati, Central Java. The company founder is the deceased Darmo Putro, ex-warrior who had chosen to engage in business sector after the independence of Indonesia.</p>
+                                    <p>In early of 1987, TPJ started selling its peanut production products using a brand of Kacang Garing Garuda, which was recently known as: Kacang Garuda. Kacang Garuda earned the following awards: Indonesian Customer Satisfaction Award (ICSA) under the category of branded peanut for 16 times consecutively (2000 – 2015); Superbrands (2003 -&nbsp; 2004); Top Brand for Kids (2004); Indonesian Best Brand Award (IBBA, 2004 – 2015); Top Brand (2007 – 2015).</p>
+                                    <p>When national economy suffered from economic crisis, on December 1997, PT GarudaFood Jaya (GFJ) was established, producing Gery-branded biscuit. Gery Saluut earned Indonesian Best Brand Award (IBBA) from MARS and SWA Magazine for a period of 2005-2009, 2011 – 2013, 2015 under the category of wafer salut. In 2007-2015 Gery Chocolatos earned IBBA under the category of wafer stick.</p>
+                                    <p>In 1998 GarudaFood acquired PT Triteguh Manunggal Sejati (TRMS), producer of jelly and launched jelly product using brands of Okky and Keffy. Achievement of Okky jelly has been proven by its successfulness in earning Top Brand for Kids (TBK) Award 2004 under the category of jelly. In addition to TBK, OKKY Jelly also managed to earn IBBA (2005-2015). Okky jelly Drink also earned Top Brand Award 2007-2015 from Marketing Magazine in cooperation with Frontier.</p>
+                                    <p>In the end of 2002, TRMS launched jelly beverage products with a brand of Okky Jelly Drink and it also constituted a new phase for GarudaFood to deal with beverages business. Seriousness of GarudaFood in focusing on beverages business had also become apparent by the launching of Mountea, fruit-flavored tea beverage. Mountea had even been awarded by IBBA 2007-2015 under the category of tea beverage in cup packaging, Indonesia Customer Satisfaction Awarded by SWA MAgazine &amp; Frontier Survey Foundation in 2010 and also earned Word of Mouth Marketing Award given by SWA Magazine in 2011 – 2013.</p>
+                                    <p>GarudaFood also produces Snack with a brand of Leo, for category of Potato chips, banana chips, cassava chips products initiated from the end of 2005. In 2007-2011 Leo earned IBBA award for category of potato chips.</p>
+                                    <p>In national level, GarudaFood is also positively perceived as one of the admired food and beverage companies. Survey made by Frontier and BusinessWeek Indonesia Magazine in Jakarta and Surabaya in 2005 – 2011 indicated that GarudaFood was in the third position and 2nd position in food &amp; category in 2012 – 2013 of Indonesian Most Admired Company (IMAC) GarudaFood also actively performs corporate social responsibility (CSR) under the flag of GarudaFood Sehati.</p>
+                                    <p>To accelerate the achievement of its vision, in 2011 GarudaFood Group with non-alcohol division of&nbsp; Suntory Beverage &amp; Food, a company from Japan established a subsidiary PT Suntory Garuda Beverage, focused on the development of the beverage.</p>
+                                    <p>In 2012, GarudaFood also established Garuda Polyflex Foods Private Limited (GP Foods), a joint venture company with Polyflex India Private Limited in the&nbsp; food and beverage business.. GP Foods has a manufacturing facility in Bangalore that produces choco stick</p>
+                                    <p>Now, all potencies supported by&nbsp; above 16 thousands knowledge workers have become main asset to GarudaFood in the effort to go forward to meet a success as sustainable enterprise.</p>
+                                </div>
+                                <div class="box">
+                                    <h3 class="title">Factory Information</h3>
+                                    <table class="table table-striped detail">
+                                        <tbody>
+                                            <tr>
+                                                <td class="trust">  </td>
+                                                <td class="name">Factory Size (Sq.meters):</td>
+                                                <td>Below 1,000 square meters &nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="trust">  </td>
+                                                <td class="name">Factory Location:</td>
+                                                <td>Pati, Central Java</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="trust"></td>
+                                                <td class="name">Number of Production Lines:</td>
+                                                <td>5 &nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="trust">  </td>
+                                                <td class="name">Number of R&amp;D Staff:</td>
+                                                <td>5 - 10 People &nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="trust">  </td>
+                                                <td class="name">Number of QC Staff:</td>
+                                                <td>5 - 10 People &nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="trust"></td>
+                                                <td class="name">Contract Manufacturing:</td>
+                                                <td> OEM Service Offered &nbsp; </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </tab>
+
+                        </tabset>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="module-title">
+                            <h3>Product from this Supplier</h3>
+                        </div>
+                        <div class="module-loop pb0 clearfix">
+                            <wrap-owlcarousel class="owl-carousel"   
+                                data-options="{autoPlay: 5000, stopOnHover: true,  
+                                slideSpeed : 300, paginationSpeed : 400, singleItem : true, dots:true, items : 5}">
+                                <div class="row_items">
+                                    <div class="item">
+                                        <div class="item-inner">
+                                            <div class="images-container">
+                                                <a class="product-image" ui-sref="app.promise.procurement-ecatalogDetail({productName:'KacangGaruda'})">
+                                                    <img src="app/img/product/garing-garuda.jpg" alt="Kacang Garuda"/>
+                                                </a>
+                                            </div><!--images-container-->
+                                            <div class="des-container">
+                                                <h2 class="product-name">
+                                                    <a class="product" ui-sref="app.promise.procurement-ecatalogDetail({productName:'KacangGaruda'})">QNP STEAM TURBIN</a>
+                                                    <a class="supplier" ui-sref="app.promise.procurement-vendorDetail({companyName:'GarudaFood'})"><strong>PT.QNP INDONESIA</strong></a>
+                                                    <a class="supplier">Jakarta, Indonesia</a>
+                                                </h2>
+                                                <!-- rating -->
+                                                <div ng-controller="MyRating" class="ratings">
+                                                    <div ng-init="xx = 5" class="">
+                                                      <rating ng-model="xx" readonly="true" state-on="'glyphicon-star text-warning'" state-off="'glyphicon-star-empty'"></rating>
+                                                    </div>
+                                                </div>
+                                                <!-- / rating -->
+                                                <div class="price-box box-special">
+                                                    <p class="special-price"><span class="price"></span></p>
+                                                    <p class="old-price"><span class="price"></span></p>
+                                                </div>
+                                                <div class="text-center m-b">
+                                                    <a ui-sref="app.promise.procurement-vendorDetail({companyName:'GarudaFood'})" class="btn btn-sm btn-primary btn-addon">
+                                                        <em class="fa fa-chevron-right pull-right"></em>Contact Supplier
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div> <!-- item-inner -->
+                                    </div> <!-- item -->
+                                </div>
+                                <div class="row_items">
+                                    <div class="item">
+                                        <div class="item-inner">
+                                            <div class="images-container">
+                                                <a class="product-image" ui-sref="app.promise.procurement-ecatalogDetail({productName:'Chocholatos'})">
+                                                    <img class="img2" src="app/img/product/chocholatos.png" alt="Chocholatos" />
+                                                    <img src="app/img/product/chocolatosheader2.jpg" alt="Chocholatos" />
+                                                </a>
+                                            </div><!--images-container-->
+                                            <div class="des-container">
+                                                <h2 class="product-name">
+                                                    <a class="product" ui-sref="app.promise.procurement-ecatalogDetail({productName:'Chocholatos'})">CYCLONE TURBINE VENTILATOR</a>
+                                                    <a class="supplier" ui-sref="app.promise.procurement-vendorDetail({companyName:'GarudaFood'})"><strong>CV. Bangun Tujuh Cahaya</strong></a>
+                                                    <a class="supplier">Sidoarjo, East Java</a>
+                                                </h2>
+                                                <!-- rating -->
+                                                <div ng-controller="MyRating" class="ratings">
+                                                    <div ng-init="xx = 5" class="">
+                                                      <rating ng-model="xx" readonly="true" state-on="'glyphicon-star text-warning'" state-off="'glyphicon-star-empty'"></rating>
+                                                    </div>
+                                                </div>
+                                                <!-- / rating -->
+                                                <div class="price-box box-special">
+                                                    <p class="special-price"><span class="price"></span></p>
+                                                    <p class="old-price"><span class="price"></span></p>
+                                                </div>
+                                                <div class="text-center m-b">
+                                                    <a ui-sref="app.promise.procurement-vendorDetail({companyName:'GarudaFood'})" class="btn btn-sm btn-primary btn-addon">
+                                                        <em class="fa fa-chevron-right pull-right"></em>Contact Supplier
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div> <!-- item-inner -->
+                                    </div> <!-- item -->
+                                </div>
+
+                                <div class="row_items">
+                                    <div class="item">
+                                        <div class="item-inner">
+                                            <div class="images-container">
+                                                <a class="product-image" ui-sref="app.promise.procurement-ecatalogDetail({productName:'PilusGaruda'})">
+                                                    <img class="img2 img-loaded" src="app/img/product/snack_pilus.jpg" alt="Pilus Garuda"/>
+                                                    <img class="img-loaded" src="app/img/product/Snack_Pilus_Original_95gr.jpg" alt="Pilus Garuda"/>
+                                                </a>
+                                            </div><!--images-container-->
+                                            <div class="des-container">
+                                                <h2 class="product-name">
+                                                    <a class="product" ui-sref="app.promise.procurement-ecatalogDetail({productName:'PilusGaruda'})">STEAM TURBIN GENERATOR</a>
+                                                    <a class="supplier" ui-sref="app.promise.procurement-vendorDetail({companyName:'GarudaFood'})"><strong>PT.QNP INDONESIA</strong></a>
+                                                    <a class="supplier">Jakarta, Indonesia</a>
+                                                </h2>
+                                                <!-- rating -->
+                                                <div ng-controller="MyRating" class="ratings">
+                                                    <div ng-init="xx = 5" class="">
+                                                      <rating ng-model="xx" readonly="true" state-on="'glyphicon-star text-warning'" state-off="'glyphicon-star-empty'"></rating>
+                                                    </div>
+                                                </div>
+                                                <!-- / rating -->
+                                                <div class="price-box box-special">
+                                                    <p class="special-price"><span class="price"></span></p>
+                                                    <p class="old-price"><span class="price"></span></p>
+                                                </div>
+                                                <div class="text-center m-b">
+                                                    <a ui-sref="app.promise.procurement-vendorDetail({companyName:'GarudaFood'})" class="btn btn-sm btn-primary btn-addon">
+                                                        <em class="fa fa-chevron-right pull-right"></em>Contact Supplier
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div> <!-- item-inner -->
+                                    </div> <!-- item -->
+                                </div>
+                                <div class="row_items">
+                                    <div class="item">
+                                        <div class="item-inner">
+                                            <div class="images-container">
+                                                <a class="product-image" ui-sref="app.promise.procurement-ecatalogDetail({productName:'LeoKeripikKentang'})">
+                                                    <img class="img2" src="app/img/product/apta.png"/>
+                                                    <img src="app/img/product/apta.png" alt="LeoKeripikKentang"/>
+                                                </a>
+                                            </div><!--images-container-->
+                                            <div class="des-container">
+                                                <h2 class="product-name">
+                                                    <a class="product" ui-sref="app.promise.procurement-ecatalogDetail({productName:'LeoKeripikKentang'})">STEAM TURBIN CONDENSING</a>
+                                                    <a class="supplier" ui-sref="app.promise.procurement-vendorDetail({companyName:'GarudaFood'})"><strong>PT.QNP INDONESIA</strong></a>
+                                                    <a class="supplier">Jakarta, Indonesia</a>
+                                                </h2>
+                                                <!-- rating -->
+                                                <div ng-controller="MyRating" class="ratings">
+                                                    <div ng-init="xx = 5" class="">
+                                                      <rating ng-model="xx" readonly="true" state-on="'glyphicon-star text-warning'" state-off="'glyphicon-star-empty'"></rating>
+                                                    </div>
+                                                </div>
+                                                <!-- / rating -->
+                                                <div class="price-box box-special">
+                                                    <p class="special-price"><span class="price"></span></p>
+                                                    <p class="old-price"><span class="price"></span></p>
+                                                </div>
+                                                <div class="text-center m-b">
+                                                    <a ui-sref="app.promise.procurement-vendorDetail({companyName:'GarudaFood'})" class="btn btn-sm btn-primary btn-addon">
+                                                        <em class="fa fa-chevron-right pull-right"></em>Contact Supplier
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div> <!-- item-inner -->
+                                    </div> <!-- item -->
+                                </div>
+                                <div class="row_items">
+                                    <div class="item">
+                                        <div class="item-inner">
+                                            <div class="images-container">
+                                                <a class="product-image" ui-sref="app.promise.procurement-ecatalogDetail({productName:'OkkyJellyDrink'})">
+                                                    <img class="img2" src="app/img/product/Jenis Alat Berat.jpg"/>
+                                                    <img src="app/img/product/Jenis Alat Berat.jpg" alt="OkkyJellyDrink"/>
+                                                </a>
+                                            </div><!--images-container-->
+                                            <div class="des-container">
+                                                <h2 class="product-name">
+                                                    <a class="product" ui-sref="app.promise.procurement-ecatalogDetail({productName:'OkkyJellyDrink'})">MOLEN</a>
+                                                    <a class="supplier" ui-sref="app.promise.procurement-vendorDetail({companyName:'GarudaFood'})"><strong>PT Eventus</strong></a>
+                                                    <a class="supplier">Pati, Central Java</a>
+                                                </h2>
+                                                <!-- rating -->
+                                                <div ng-controller="MyRating" class="ratings">
+                                                    <div ng-init="xx = 5" class="">
+                                                      <rating ng-model="xx" readonly="true" state-on="'glyphicon-star text-warning'" state-off="'glyphicon-star-empty'"></rating>
+                                                    </div>
+                                                </div>
+                                                <!-- / rating -->
+                                                <div class="price-box box-special">
+                                                    <p class="special-price"><span class="price"></span></p>
+                                                    <p class="old-price"><span class="price"></span></p>
+                                                </div>
+                                                <div class="text-center m-b">
+                                                    <a ui-sref="app.promise.procurement-vendorDetail({companyName:'GarudaFood'})" class="btn btn-sm btn-primary btn-addon">
+                                                        <em class="fa fa-chevron-right pull-right"></em>Contact Supplier
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div> <!-- item-inner -->
+                                    </div> <!-- item -->
+                                </div>
+                            </wrap-owlcarousel>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END row-->

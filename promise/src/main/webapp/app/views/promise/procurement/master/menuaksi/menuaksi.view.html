@@ -1,0 +1,61 @@
+<div class="app-view-header"> <span translate="promise.procurement.master.menuaksi.judul"></span>
+</div>
+<div class="panel panel-primary" ng-controller="MenuAksiViewController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-tasks"></em>
+			<span ng-if="vm.toDo=='add'" translate="promise.procurement.master.menuaksi.view.subjudul_tambah"></span>
+		<span ng-if="vm.toDo=='edit'" translate="promise.procurement.master.menuaksi.view.subjudul_ubah"></span>
+			<a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+					<em class="fa fa-chevron-circle-down"></em>
+			</a>
+	</h4>
+	<div class="panel-body collapse in">
+		<div class="text-center" ng-if="vm.loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong>
+		</div>
+		<form action="#" name="formMenuAksi" class="form-validate form-horizontal" ng-class="{'submitted' : vm.submitted}">
+			<div class="form-group">
+				<label class="col-sm-4 control-label required">	
+					<span translate="promise.procurement.master.menuaksi.view.menu"></span>
+				</label>
+				<div class="col-sm-4">
+					<ui-select ng-model="vm.menuAksi.menu" theme="bootstrap" ng-disabled="disabled" name="menu" required="" ng-blur="delValidation($event)">
+						<ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+						<ui-select-choices repeat="menu in vm.menuList | filter: $select.search">
+							<div ng-bind-html="menu.nama | highlight: $select.search"></div>
+						</ui-select-choices>
+					</ui-select>
+					<div class="input-error" ng-show="(vm.submitted && formMenuAksi.menu.$invalid)">
+						<p ng-show="formMenuAksi.menu.$error.required" translate="template.error.field_kosong"></p>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label required">	
+					<span translate="promise.procurement.master.menuaksi.view.aksi"></span>
+				</label>
+				<div class="col-sm-4">
+					<ui-select ng-model="vm.menuAksi.aksi" theme="bootstrap" ng-disabled="disabled" name="aksi" required="" ng-blur="delValidation($event)">
+						<ui-select-match placeholder="++ Pilih ++">{{$select.selected.path}}</ui-select-match>
+						<ui-select-choices repeat="ma in vm.aksiList track by $index" refresh="getAksi($select.search)" refresh-delay="0">
+							<div ng-bind-html="ma.path | highlight: $select.search"></div>
+						</ui-select-choices>
+					</ui-select>
+					<div class="input-error" ng-show="(vm.submitted && formMenuAksi.aksi.$invalid)">
+						<p ng-show="formMenuAksi.aksi.$error.required" translate="template.error.field_kosong"></p>
+					</div>
+				</div>
+			</div>
+			<br/>
+			<div class="form-group">
+				<div class="col-md-12 text-center">
+					<button type="button" ripple="" class="btn btn-secondary" ng-click="back()">	
+						<span translate="template.button.kembali"></span>
+					</button>
+					<button type="button" ripple="" class="btn btn-primary" ng-click="save(formMenuAksi.$valid)">	
+						<span translate="template.button.simpan"></span>
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

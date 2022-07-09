@@ -1,0 +1,141 @@
+<!--
+SPESIFIC VIEW OF THE FIRST DETAIL EVALUASI HARGA BIDDING MENU
+----------------------- START CONTROLLER --------------------
+-->
+
+<div class="app-view-header">
+    <span translate="promise.procurement.panitia.evaluasiharga.JUDUL">Evaluasi Harga</span>
+    <small><span translate="promise.procurement.panitia.evaluasiharga.view.BIDDING"></span></small>
+    <small><span translate="promise.procurement.panitia.evaluasiharga.view.TOTAL"></span></small>
+</div>
+<toaster-container toaster-options="{'position-class': 'toast-top-center', 'close-button':true}"></toaster-container>
+
+<div ng-controller="EvaluasiHargaTotalBiddingViewSimpleController as form">
+    <form method="post" action="#" novalidate="" class="form-horizontal">
+        <div id="evaluasiHarga">
+
+            <!----------------------------------------------- Table Ke 1 ----------------------------------------------->
+            <!----------------------------------------------- Table Ke 2 ----------------------------------------------->
+            <!----------------------------------------------- Table Ke 3 ----------------------------------------------->
+            <promise-view-data-pengadaan pengadaan-id=pengadaanId></promise-view-data-pengadaan>
+            <!----------------------------------------------- Table Ke 5 ----------------------------------------------->
+            <div class="panel panel-primary">
+                <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-barcode">&nbsp;</em><span translate="promise.procurement.panitia.evaluasiharga.view.DATAPENYEDIA">Data Penyedia Barang/Jasa</span></h4>
+                <div class="panel-body">
+
+                    <div>
+                        <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="btn btn-sm pull-right" ng-click="goKurs()"> <span translate="promise.procurement.panitia.pembukaanpenawaran.total.KURS"></span>
+                        </button>
+                    </div>
+                    <div class="col-md-12">
+                        <div align="center" ng-if="loading == true">
+                            <strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover table-striped table-bordered">
+                                <thead>
+                                    <tr style="background-color:#EEEEEE">
+                                        <th scope="col"style="text-align:center" width="50px"><span translate="promise.procurement.panitia.evaluasiharga.view.NOMOR">Nomor</span>
+                                        </th>
+                                        <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.evaluasiharga.view.NAMAPENYEDIA">Nama Penyedia Barang/Jasa</span>
+                                        </th>
+                                        <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.evaluasiharga.view.ALAMAT">Alamat</span>
+                                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.evaluasiharga.view.TELEPON">Telepon</span>
+                                            </th>
+                                            <th scope="col"style="text-align:right" width="400px"><span translate="promise.procurement.panitia.evaluasiharga.view.PENAWARANAWAL">Penawaran Awal</span>
+                                            </th>
+                                            <th scope="col"style="text-align:right" width="400px"><span translate="">Penawaran Awal(IDR)</span>
+                                            </th>
+                                            <th scope="col"style="text-align:center" width="200px"><span translate="promise.procurement.panitia.evaluasiharga.view.STATUS">Status</span>
+                                            </th>
+                                            <th scope="col"style="text-align:center" width="50px"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="dp in dataPenyediaList | orderBy : 'nilaiDenganKurs'">
+                                        <td style="text-align:center">{{ $index+1 }}</td>
+                                        <td style="text-align:left">{{dp.penawaranPertama.suratPenawaran.vendor.nama}}</td>
+                                        <td style="text-align:left">{{dp.penawaranPertama.suratPenawaran.vendor.alamat}}</td>
+                                        <td style="text-align:center">{{dp.penawaranPertama.suratPenawaran.vendor.nomorTelpon}}</td>
+                                        <td style="text-align:right">{{dp.penawaranPertama.nilaiPenawaranOri | number :2}} {{ dp.penawaranPertama.suratPenawaran.mataUang.kode }}</td>
+                                        <td style="text-align:right">{{dp.nilaiDenganKurs | number :2}} {{ dp.kursMataUang.kode }}</td>
+                                        <td style="text-align:center">{{ dp.hasil }}</td>
+                                        <td style="text-align:center"><em class="fa fa-flag" ng-if="$index==0"></em></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div align="center">
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="back()"><em class="fa fa-arrow-circle-left">&nbsp;</em>
+                <span translate="promise.procurement.panitia.evaluasiharga.btn.KEMBALI"></span>
+            </button>
+            <button ng-class="'bg-' + app.theme.name" type="button" class="btn btn-primary btn-sm pull-center" ng-click="printDiv('evaluasiHarga')" ng-show="view==true && detilPengadaan.tahapanPengadaan.tahapan.id!=13000001"><em class="fa fa-print">&nbsp;</em>
+                <span translate="promise.procurement.panitia.pengambilandokumen.view.btn.PRINT"></span>
+            </button>
+            <button ng-if="viewAja!=1" ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="saveData()" ng-show="showBtnSaveData">
+                <span translate="promise.procurement.panitia.evaluasiharga.btn.SIMPAN"></span>&nbsp;<em class="fa fa-sign-in"></em>
+            </button>
+        </div>
+
+        <br>
+    </form>
+</div>
+<script type="text/ng-template" id="/inputKurs.html">
+    <div class="modal-header">
+        <button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="cancel()">× </button>
+        <h3 id="myModalLabel" class="modal-title">
+            <span translate="promise.procurement.panitia.pembukaanpenawaran.total.modal.KURSTERHADAP"></span></h3>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-xs-12" align="center" ng-if="loading==true"> <strong> <em> Loading... </em><img src="app/img/loading.gif" width="20px" border="0 "/></strong></div>
+            <div class="col-xs-12">
+                <table class="table table-hovertable-condensed table-striped bg-white">
+                    <thead>
+                        <tr style="font-weight:bold">
+                            <th scope="col"style="width:2%; text-align:center">
+                                <span translate="promise.procurement.inisialisasi.tambahbumn.TBLNO "></span>
+                            </th>
+                            <th scope="col"style="width:20%; text-align:left">
+                                <span translate="promise.procurement.panitia.pembukaanpenawaran.total.list.TBLNMKURS"></span>
+                            </th>
+                            <th scope="col"style="width:20%; text-align:center">KURS</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="inputKurs in inputKursList | limitTo: 10">
+                            <td style="text-align: center;vertical-align:middle">
+                                {{$index+1}}
+                            </td>
+                            <td style="text-align:left; vertical-align:middle">
+                                {{inputKurs.nama +' - ' + inputKurs.kode}}
+                            </td>
+                            <td style="text-align:center; vertical-align:middle">
+                                <input promise-numbers-only type="number" class="form-control shadow-z1 input-sm" fcsa-number="{prepend:'Rp. '}" ng-model="inputKurs.kurs" ng-if="btnSimpanStatus">
+                                <input type="number" class="form-control shadow-z1 input-sm" fcsa-number=" {prepend:'Rp. '}" ng-model="inputKurs.kurs" ng-if="btnSimpanStatus == false" readonly style="background:white">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-xs-12" align="center" ng-bind-html="messageSuccess" style="color:green"></div>
+            <div class="col-xs-12" align="center" ng-bind-html="messageError" style="color:red "></div>
+        </div>
+        <br/>
+    </div>
+    <div class="modal-footer">
+        <button ng-class="'bg-'+app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-sm " ng-click="cancel()">
+            <span class="btn-label "><em class="fa fa-chevron-left "></em></span>
+            <span translate="template.button.tutup">Tutup</span>
+        </button>
+        <button ng-show="btnSimpanStatus" ng-class="'bg-'+app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="ok()">
+            <span translate="template.button.simpan"></span>
+        </button>
+    </div>
+</script>

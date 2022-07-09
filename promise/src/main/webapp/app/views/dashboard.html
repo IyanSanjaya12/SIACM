@@ -1,0 +1,217 @@
+<div class="app-view-header"><span translate="promise.procurement.dashboard.JUDUL"></span>
+    <!-- <small ng-bind="app.name + ' - ' + app.description"></small> -->
+</div>
+<div ng-controller="DashboardPController" class="row">
+    <!-- START dashboard content-->
+    <div class="col-lg-9 fw-boxed" >
+        <!-- START Tabbed panel-->
+        <div class="panel panel-default">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="list-table">
+                        <li>
+                            <div class="p">
+                                <h3><span translate="promise.procurement.dashboard.STATUSP"></span> {{pengadaanSelesai | number : 2}} %</h3>
+                                <progressbar value="spkProsentase" type="info" class="progress-xs"></progressbar>
+                                <em>Proses Pengadaan Selesai yaitu ketika proses pengadaan sudah mencapai pembuatan kontrak</em>
+                            </div>
+                        </li>
+                        <li ng-if="realTimeChartData != undefined && realTimeChartData.length > 0">
+                            <div class="p">
+                                <flot dataset="realTimeChartData" options="chartPieFlotChart" ng-click="moveToHistoryPengadaan()"></flot>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- END Tabbed panel-->
+
+     
+        <!-- END Responsive table-->
+
+
+    </div>
+       <!-- START dashboard sidebar-->
+    <aside class="col-lg-3 fw-boxed" >
+        <div class="row">
+            <div class="col-lg-6 col-sm-3 col-xs-6">
+                <div ripple="" class="panel panel-default">
+                    <div ng-class="'bg-' + app.theme.name" class="panel-body">
+                        <h1 class="text-thin mt">{{ totalPengadaan }}</h1>
+                        <div class="text-right text-sm text-muted">Pengadaan</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-3 col-xs-6">
+                <div ripple="" class="panel panel-default">
+                    <div class="panel-body">
+                        <h1 class="text-thin mt">{{ totalVendor }}</h1>
+                        <div class="text-right text-sm text-muted">Vendor</div>
+                    </div>
+                </div>
+            </div>
+<!--
+            <div class="col-lg-6 col-sm-3 col-xs-6">
+                <div ripple="" class="panel panel-default">
+                    <div class="panel-body">
+                        <h1 class="text-thin mt">{{ totalUserOnline }}</h1>
+                        <div class="text-right text-sm text-muted">User Online</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-3 col-xs-6">
+                <div ripple="" class="panel panel-default">
+                    <div ng-class="'bg-' + app.theme.name" class="panel-body">
+                        <h1 class="text-thin mt">17,3K</h1>
+                        <div class="text-right text-sm text-muted">Transaksi</div>
+                    </div>
+                </div>
+            </div>
+-->
+        </div>
+    </aside>
+    <!-- END dashboard sidebar-->
+    
+     <div class="col-lg-12 fw-boxed" >
+         <!-- START Responsive table-->
+        <div class="panel-default panel" style="width:auto;">
+            <div class="table-responsive">
+                
+                <table class="table standard table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col"style="text-align:left">No</th>
+                            <th scope="col"style="text-align:left"><span translate="promise.procurement.panitia.jadwalpengadaan.index.NOMOR">Nomor Pengadaan</span>
+                            </th>
+                            <th scope="col"style="text-align:left"><span translate="promise.procurement.panitia.jadwalpengadaan.index.NAMA">Nama Pengadaan</span>
+                            </th>
+                            <th scope="col"style="text-align:left"><span translate="promise.procurement.panitia.jadwalpengadaan.index.CREATEDATE">Tanggal</span>
+                            </th>
+                            <th scope="col"style="text-align:left"><span translate="promise.procurement.panitia.jadwalpengadaan.index.POSISI">Tahapan</span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.jadwalpengadaan.index.AKSI">Aksi</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="pp in pengadaanList | orderBy:'-tanggalNotaDinas' | filter:cariNamaPengadaan">
+                            <td style="text-align:centor;width=5px" ng-bind="((currentPage*rowPerPage)+($index+1))-rowPerPage"></td>
+                            <td style="text-align:left" ng-bind="pp.nomorNotaDinas"></td>
+                            <td style="text-align:left" ng-bind="pp.namaPengadaan"></td>
+                            <td style="text-align:left" ng-bind="pp.tanggalNotaDinas | date:'dd/MM/yyyy'"></td>
+                            <td style="text-align:left">
+                                <div ng-if="pp.tahapanPengadaan.tahapan.id>=1 && pp.tahapanPengadaan.tahapan.id<=5" class="label label-success text-bold">{{ pp.tahapanPengadaan.tahapan.nama }}
+                                    <em class="fa fa-fw fa-check-circle"></em>
+                                </div>
+                                <div ng-if="pp.tahapanPengadaan.tahapan.id>=6 && pp.tahapanPengadaan.tahapan.id<=10" class="label label-warning text-bold">{{ pp.tahapanPengadaan.tahapan.nama }}
+                                    <em class="fa fa-fw fa-check-circle"></em>
+                                </div>
+                                <div ng-if="pp.tahapanPengadaan.tahapan.id>=11 && pp.tahapanPengadaan.tahapan.id<=14" class="label label-danger text-bold">{{ pp.tahapanPengadaan.tahapan.nama }}
+                                    <em class="fa fa-fw fa-check-circle"></em>
+                                </div>
+                                <div ng-if="pp.tahapanPengadaan.tahapan.id>=16" class="label label-info text-bold">{{ pp.tahapanPengadaan.tahapan.nama }}
+                                    <em class="fa fa-fw fa-check-circle"></em>
+                                </div>
+
+                                <div ng-if="pp.tahapanPengadaan.tahapan.id==15" class="label label-info text-bold">
+                                    Negosiasi Harga
+                                    <em class="fa fa-fw fa-check-circle"></em>
+                                </div>
+
+                                <!-- hasil kualifikasi setara dengan sanggahan -->
+                                <div ng-if="pp.tahapanPengadaan.tahapan.id==10100000" class="label label-warning text-bold">
+                                    Sanggahan Kualifikasi
+                                    <em class="fa fa-fw fa-check-circle"></em>
+                                </div>
+                            </td>
+                            <td style="white-space: nowrap; text-align:center;" width="20px">
+                                <div>
+                                    <button type="button" class="mr btn btn-primary btn-circle btn-xs" ng-click="view(pp)">
+                                        <em class="fa fa-search"></em>
+                                    </button>
+                                </div>
+                                <!-- hasil kualifikasi setara dengan sanggahan -->
+                                <div ng-show="pp.tahapanPengadaan.tahapan.id==10100000">
+                                    <button type="button" class="mr btn btn-warning btn-circle btn-xs" ng-click="viewSanggahan()">
+                                        <em class="fa fa-search"></em>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div align="center" ng-if="loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+            <div class="page-option col-md-2">
+                <span class="page-opt-text">Show :</span>
+                <a class="page-opt-num" ng-click="pageChanged(5)">5</a>
+                <a class="page-opt-num" ng-click="pageChanged(10)">10</a>
+                <a class="page-opt-num" ng-click="pageChanged(25)">25</a>
+            </div>
+            <div class="text-right">
+                <pagination first-text="<<" previous-text="<" next-text=">" last-text=">>" items-per-page="rowPerPage" total-items="totalItems" ng-model="currentPage" max-size="6" boundary-links="true" class="pagination-sm" ng-click="getPage(currentPage)"></pagination>
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-4 col-xs-6">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-btn">
+                        <button type="button" class="btn btn-sm btn-default" ng-click="cariNamaPengadaan"><em class="fa fa-search"></em></button>
+                     </span>
+                            <input type="text" placeholder="Pencarian" class="form-control" ng-model="cariNamaPengadaan" ng-change="getSearch()" />
+
+
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-md-offset-3 col-xs-6">
+                        <div class="input-group input-group-sm pull-right">
+                            <select class="form-control" ng-model="cariTahapanPengadaan">
+                                <option value="0">Tampilkan Semua Tahapan</option>
+                                <option value="10010000">Inisialisasi Pengadaan</option>
+                                <option value="5">Pengumuman/Undangan </option>
+                                <option value="6">Pengambilan Dokumen</option>
+                                <option value="11">Evaluasi Administrasi</option>
+                                <option value="12">Evaluasi Teknis</option>
+                                <option value="13">Evaluasi Harga Biding</option>
+                                <option value="14">Evaluasi Harga Auction</option>
+                                <option value="13000001">Evaluasi Harga Simple Biding</option>
+                                <option value="14000001">Evaluasi Harga Simple Auction</option>
+                                <option value="7">Kriteria Evaluasi</option>
+                                <option value="9">Pemasukan Penawaran</option>
+                                <option value="10">Pembukaan Penawaran</option>
+                                <option value="15">Negosiasi</option>
+                                <option value="17">Penetapan Pemenang</option>
+                            </select>
+                            <span class="input-group-btn">
+                        <button class="btn btn-sm btn-default" ng-click="getSearch()">Apply</button>
+                     </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <!-- START Panel-->
+        <div class="panel-default panel" style="width:auto;">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <em class="icon-signal fa-lg text-muted pull-right"></em>Analytics {{ dateNow | date : 'yyyy' }}</div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <flot options="splineChartOpts" dataset="splineData" series="{lines: lineSeriesLines, points: lineSeriesPoints}"></flot>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        </div>
+    <!-- END dashboard content-->
+      
+    
+ 
+</div>

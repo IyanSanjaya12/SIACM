@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="laporanPenjualan_detail" language="groovy" pageWidth="802" pageHeight="555" orientation="Landscape" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="dc83a77a-0038-4892-8006-22f0db40ea18">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="53"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="startDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="endDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+	t1.NO_FAKTUR,
+	t1.TANGGAL,
+	t2.NAMA,
+	t2.NO_POLISI,
+	t3.NAMA MOBIL,
+	t4.NAMA AS MEKANIK,
+	t5.NAMA AS PERBANTUAN,
+	t6.NAMA AS KEPALA_MEKANIK,
+	t1.HARGA_SETELAH_DISKON,
+	t1.TOTAL_DISKON
+
+FROM
+	TB_PENJUALAN t1
+	LEFT OUTER JOIN TB_PELANGGAN t2 ON t1.PELANGGAN_ID = t2.PELANGGAN_ID
+	LEFT OUTER JOIN TB_MOBIL t3 ON t2.MOBIL_ID = t3.MOBIL_ID
+	LEFT OUTER JOIN TB_KARYAWAN t4 ON t1.KARYAWAN_ID = t4.KARYAWAN_ID
+	LEFT OUTER JOIN TB_KARYAWAN t5 ON t1.PERBANTUAN_ID = t5.KARYAWAN_ID
+	LEFT OUTER JOIN TB_KARYAWAN t6 ON t1.KEPALA_MEKANIK = t6.KARYAWAN_ID
+WHERE
+	t1.ISDELETE = 0 AND t1.TANGGAL >= $P{startDate} AND t1.TANGGAL < $P{endDate}]]>
+	</queryString>
+	<field name="NO_FAKTUR" class="java.lang.String"/>
+	<field name="TANGGAL" class="java.sql.Timestamp"/>
+	<field name="NAMA" class="java.lang.String"/>
+	<field name="NO_POLISI" class="java.lang.String"/>
+	<field name="MOBIL" class="java.lang.String"/>
+	<field name="MEKANIK" class="java.lang.String"/>
+	<field name="PERBANTUAN" class="java.lang.String"/>
+	<field name="KEPALA_MEKANIK" class="java.lang.String"/>
+	<field name="HARGA_SETELAH_DISKON" class="java.lang.Double"/>
+	<field name="TOTAL_DISKON" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="608" y="17" width="121" height="37" uuid="247af523-45c4-4501-9671-8e901e539c02"/>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Diskon (IDR)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="87" y="17" width="94" height="37" uuid="d51b8127-95b6-40be-9ab0-be53a0ff5e7f"/>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Nomor Faktur]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="54" y="17" width="33" height="37" uuid="ba0d71cf-1a01-4bfd-bccc-253ed0245b93"/>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="351" y="17" width="93" height="37" uuid="75b81548-26e9-4879-bb01-88c7b3e03859"/>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Jenis Mobil]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="512" y="17" width="96" height="37" uuid="640da178-c9b4-4335-89db-9a75f62fbfd4"/>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Harga (IDR)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="444" y="17" width="68" height="37" uuid="bec363f8-e89e-4614-9ac5-9a5d0203a2ec"/>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Nomor Polisi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="181" y="17" width="77" height="37" uuid="8642f273-32dd-4bba-a77f-545f9cbb6117"/>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Tanggal Penjualan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="17" width="93" height="37" uuid="74130cad-0202-4e1b-a243-f04bdb8574b9"/>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Nama Pelanggan]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="181" y="1" width="77" height="49" uuid="d4573de3-fae2-41d4-b70e-ff6b5ba515f1"/>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TANGGAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="608" y="1" width="121" height="49" uuid="a641a993-690f-4307-aa14-b2fbfbcd6581"/>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[msg("{0,number,#,##0.00}", ($F{TOTAL_DISKON}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="351" y="1" width="93" height="49" uuid="b8c00c3b-d7a3-424f-8ee2-e14da0580014"/>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MOBIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="87" y="1" width="94" height="49" uuid="436f21b5-117e-4b95-9a61-e5ea233be1a4"/>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NO_FAKTUR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="1" width="68" height="49" uuid="ce162faa-dee9-43f1-837a-ea97ba829aa0"/>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NO_POLISI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="512" y="1" width="96" height="49" uuid="44b1d5c3-1371-45ea-b70e-4c43db5b451c"/>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[msg("{0,number,#,##0.00}", ($F{HARGA_SETELAH_DISKON}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="54" y="1" width="33" height="49" uuid="63fa810e-51f7-404a-9862-cb752186630f"/>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="258" y="0" width="93" height="49" uuid="3ca1d549-a634-4c27-a28a-35c5d7eb150b"/>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NAMA}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

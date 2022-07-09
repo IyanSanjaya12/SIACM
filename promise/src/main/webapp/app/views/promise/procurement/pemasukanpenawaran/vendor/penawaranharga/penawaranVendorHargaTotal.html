@@ -1,0 +1,493 @@
+<div class="app-view-header">
+    <span translate="promise.procurement.panitia.pemasukanpenawaranview.JUDUL">Pemasukan Penawaran</span>
+    <small><span translate="promise.procurement.vendor.pemasukanpenawaranview.KETERANGAN"></span></small>
+</div>
+<div ng-controller="PenawaranVendorHargaTotalController as form">
+    <div class="panel panel-primary" ng-show="isMaterialNotEmpty">
+        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-archive">&nbsp;</em>
+            <span translate="promise.procurement.vendor.pemasukanpenawaranview.list.RINCIANKEBMATERIAL">Rincian Kebutuhan Material</span>
+        </h4>
+        <div class="panel-body">
+            <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+            <br/>
+            <div class="col-md-12">
+                <div>
+                    <div align="center" ng-if="loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover table-striped table-bordered">
+                            <thead>
+                                <tr style="background-color:#EEEEEE">
+                                    <th scope="col"style="text-align:center">No
+                                    </th>
+                                    <th scope="col"style="text-align:left"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.KODEMATERIAL">Kode Material</span>
+                                    </th>
+                                    <th scope="col"style="text-align:left" width="200px"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.NAMAMATERIAL">Nama Material</span>
+                                    </th>
+                                    <th scope="col"style="text-align:center" width="5%"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.KUANTITAS">Kuantitas</span>
+                                    </th>
+                                    <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.SATUAN">Satuan</span>
+                                    </th>
+                                    <th scope="col"style="text-align:right" width="200px"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.HPS">Nilai HPS</span>
+                                    </th>
+                                    <th scope="col"style="text-align:right" width="250px"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.HRGTOTALHPS">Nilai Total</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="mt in form.itemPengadaanMaterialByPengadaanIdList">
+                                    <td style="text-align:center">{{ $index+1 }}</td>
+                                    <td style="text-align:left">{{mt.item.kode}}</td>
+                                    <td style="text-align:left">{{mt.item.nama}}</td>
+                                    <td style="text-align:center">
+                                        <input type="text" style="text-align:center;" class="form-control shadow-z1 input-sm" ng-model="mt.kuantitas" disabled="" class="form-control">
+                                    </td>
+                                    <td style="text-align:center">{{mt.item.satuanId.nama}}</td>
+                                    <td style="text-align:right">
+                                        <ng-form name="validasiMaterial_validasiMaterialForm">
+                                            <input promise-currency-blur name="validasiMaterial_hargaSatuanOri" style="text-align:right;" class="form-control shadow-z1 input-sm" ng-change="hitungTotalPrice(mt)" ng-model="mt.penawaranDetail.hargaSatuanOri" required>
+                                        </ng-form>
+                                    </td>
+                                    <td style="text-align:right">
+                                        <input promise-currency-blur style="text-align:right;" class="form-control shadow-z1 input-sm" ng-model="mt.penawaranDetail.hargaSatuanAfterCondition" disabled="">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!------------------------------>
+    <div class="panel panel-primary" ng-show="isJasaNotEmpty">
+        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-briefcase">&nbsp;</em><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.RINCIANJASA">Pemasukan Penawaran</span></h4>
+        <div class="panel-body">
+            <br/>
+            <div class="col-md-12">
+                <div>
+                    <div align="center" ng-if="loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover table-striped table-bordered">
+                            <thead>
+                                <tr style="background-color:#EEEEEE">
+                                    <th scope="col"style="text-align:center" width="2%">No
+                                    </th>
+                                    <th scope="col"style="text-align:left" width="20%"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.NAMAMAJASA">Nama Jasa</span>
+                                    </th>
+                                    <th scope="col"style="text-align:center" width="5%"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.KUANTITAS">Kuantitas</span>
+                                    </th>
+                                    <th scope="col"style="text-align:center" width="10%"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.SATUAN">Satuan</span>
+                                    </th>
+                                    <th scope="col"style="text-align:center" width="200px"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.HPS">Nilai HPS</span>
+                                    </th>
+                                    <th scope="col"style="text-align:right" width="250px"><span translate="promise.procurement.panitia.pemasukanpenawaranview.list.HRGTOTALHPS">Harga Total HPS</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="mt in form.itemPengadaanJasaByPengadaanIdList">
+                                    <td style="text-align:center">{{ $index+1 }}</td>
+                                    <td style="text-align:left">{{mt.item.nama}}</td>
+                                    <td style="text-align:center">
+                                        <input type="text" name="kuantitas" style="text-align:center;" class="form-control shadow-z1 input-sm" ng-model="mt.kuantitas" disabled="">
+                                    </td>
+                                    <td style="text-align:center">{{mt.item.satuanId.nama}}</td>
+                                    <td style="text-align:center">
+                                        <ng-form name="validasiJasa_validasiJasaForm">
+                                            <input promise-currency-blur name="validasiJasa_hargaSatuanOri" style="text-align:right;" class="form-control input-sm" ng-change="hitungTotalPrice(mt)" ng-model="mt.penawaranDetail.hargaSatuanOri" required>
+                                        </ng-form>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <input promise-currency-blur name="totalhps" style="text-align:right;" class="form-control shadow-z1 input-sm" ng-model="mt.penawaranDetail.hargaSatuanAfterCondition" disabled="">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!------------------------------->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="input-id-1" class="col-sm-1 control-label"><strong>Currency</strong></label>
+                <div class="col-lg-3">
+                    
+                  
+                    
+                    
+                    <select name="mataUang" ng-model="mataUang" ng-change="validasiMataUang()" class="form-control shadow-z1 input-sm">
+                        <option value="" selected>++Pilih Currency++</option>
+                        <option value="{{mataUangObj.id}}" ng-repeat="mataUangObj in mataUangList">{{mataUangObj.kode +' - '+mataUangObj.nama}}</option>
+                    </select>
+                    <br>
+                </div>
+                <label class="col-sm-2 control-label"><strong style="font-size:14px">Total Price</strong></label>
+                <div class="col-sm-4">
+                    <input id="input-id-1" promise-currency-blur class="form-control" ng-model="hargaTotalAfterCondition" style="text-align:right;font-size:14px;font-weight: bold;" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+    	<div class="col-md-12">
+    		<label class="col-sm-2 col-sm-push-4 control-label"><strong style="font-size:14px">Setelah Konversi</strong></label>
+            <div class="col-sm-4 col-sm-push-4">
+            	<input id="input-id-1" promise-currency-blur class="form-control" ng-model="totalPenawaranDenganKonfersi" style="text-align:right;font-size:14px;font-weight: bold;" disabled=""/>
+            </div>
+			<label class="col-sm-1 col-sm-push-4 control-label">IDR</label>                  
+    	</div>
+    </div>
+    <br/>
+    <!------------------------------->
+
+    <script type="text/ng-template" id="/alertTable2.html">
+        <div class="modal-header" ng-class="'bg-' + app.theme.name" class="panel-heading">
+            <button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="cancel()">×</button>
+            <h3 id="myModalLabel" class="modal-title"><em class="fa fa-trash-o"></em> Hapus Header Condition</h3>
+        </div>
+        <div class="modal-body">
+            <strong>Anda yakin ingin menghapus..???</strong>
+        </div>
+        <div class="modal-footer" style="background-color:#EEEEEE">
+            <button ng-click="ok()" class="btn btn-primary">OK</button>
+            <button ng-click="cancel()" class="btn btn-warning">Cancel</button>
+        </div>
+    </script>
+    <div class="panel panel-primary" ng-hide="true">
+        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-briefcase">&nbsp;</em><span translate="promise.procurement.vendor.pemasukanpenawaranview.list.HEADCONDISI">Head Condition</span>        
+        </h4>
+        <div class="panel-body">
+            <div class="col-md-12">
+                <div>
+                    <div align="center" ng-if="loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+                    <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-sm" ng-click="addHeaderCondition()">
+                        <span class="btn-label"><em class="fa fa-plus"></em></span>
+                        <span translate="promise.procurement.master.jabatan.TAMBAH"></span>
+                    </button>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover table-striped table-bordered">
+                            <thead>
+                                <tr style="background-color:#EEEEEE">
+                                    <th scope="col"style="text-align:center" width="5%">No
+                                    </th>
+                                    <th scope="col"style="text-align:left" width="40%"><span translate="promise.procurement.vendor.pemasukanpenawaranview.list.NAME">Nama</span>
+                                    </th>
+                                    <th scope="col"style="text-align:left" width="30%"><span translate="promise.procurement.vendor.pemasukanpenawaranview.list.CODE">Code</span>
+                                    </th>
+                                    <th scope="col"style="text-align:center" width="25%"><span translate="promise.procurement.vendor.pemasukanpenawaranview.list.Value">Value</span>
+                                    </th>
+                                    <th scope="col"style="text-align:center"><span translate="promise.procurement.vendor.pemasukanpenawaran.list.AKSI">Aksi</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="mt in form.conditionPriceList">
+                                    <td style="text-align:center">{{ $index+1 }}</td>
+                                    <td style="text-align:left">{{mt.conditionalPrice.nama}}</td>
+                                    <td style="text-align:left">{{mt.conditionalPrice.kode}}</td>
+                                    <td style="text-align:center">{{mt.nilai}}</td>
+                                    <td style="white-space: nowrap; text-align:center">
+                                        <button ripple="" ng-click="editHeaderCondition(mt)" title="Edit" class="btn btn-sm btn-success">
+                                            <em class="fa fa-pencil fa-lg"></em>
+                                        </button>
+                                        <button ripple="" ng-click="removeHeader(mt.id)" title="Delete" class="btn btn-sm btn-danger">
+                                            <em class="fa fa-trash"></em>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-------------------->
+    <script type="text/ng-template" id="/alertTable3.html">
+        <div class="modal-header" ng-class="'bg-' + app.theme.name" class="panel-heading">
+            <button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="cancel()">×</button>
+            <h3 id="myModalLabel" class="modal-title"><em class="fa fa-trash-o"></em> Hapus Item Condition</h3>
+        </div>
+        <div class="modal-body">
+            <strong> Anda yakin ingin menghapus..???</strong>
+        </div>
+        <div class="modal-footer" style="background-color:#EEEEEE">
+            <button ng-click="ok()" class="btn btn-primary">OK</button>
+            <button ng-click="cancel()" class="btn btn-warning">Cancel</button>
+        </div>
+    </script>
+    <script type="text/ng-template" id="/confirm.html">
+        <div class="modal-header" ng-class="'bg-' + app.theme.name" class="panel-heading">
+            <button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="cancel()">×</button>
+            <h3 id="myModalLabel" class="modal-title"><em class="fa fa-exclamation-circle"></em> Warning !!!</h3>
+        </div>
+        <div class="modal-body">
+            <strong>Anda harus mengisi data penawaran terlebih dahulu</strong>
+        </div>
+        <div class="modal-footer" style="background-color:#EEEEEE">
+            <button ng-click="ok()" class="btn btn-success"><em class="fa fa-mail-reply"></em> OK</button>
+        </div>
+    </script>
+    <!--Table Ke 3 -->
+    <div class="panel panel-primary" ng-hide="true">
+        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-briefcase">&nbsp;</em><span translate="promise.procurement.vendor.pemasukanpenawaranview.list.ITEMKONDISI">Item Condition</span>        
+        </h4>
+        <div class="panel-body">
+            <br/>
+            <div class="col-md-12">
+                <div>
+                    <div align="center" ng-if="loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+                    <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-sm" ng-click="addItemCondition()">
+                        <span class="btn-label"><em class="fa fa-plus"></em></span>
+                        <span translate="promise.procurement.master.jabatan.TAMBAH"></span>
+                    </button>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover table-striped table-bordered">
+                            <thead>
+                                <tr style="background-color:#EEEEEE">
+                                    <th scope="col"style="text-align:center" width="20px">No
+                                    </th>
+                                    <th scope="col"style="text-align:left" width="200px"><span translate="promise.procurement.vendor.pemasukanpenawaranview.list.MATERIALLINE">Material Line</span>
+                                    </th>
+                                    <th scope="col"style="text-align:left" width="200px"><span translate="promise.procurement.vendor.pemasukanpenawaranview.list.NAME">Nama</span>
+                                    </th>
+                                    <th scope="col"style="text-align:left" width="300px"><span translate="promise.procurement.vendor.pemasukanpenawaranview.list.CODE">Code</span>
+                                    </th>
+                                    <th scope="col"style="text-align:center"><span translate="promise.procurement.vendor.pemasukanpenawaranview.list.Value">Value</span>
+                                    </th>
+                                    <th scope="col"style="text-align:center"><span translate="promise.procurement.vendor.pemasukanpenawaran.list.AKSI">Aksi</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="mt in form.itemConditionPriceList">
+                                    <td style="text-align:center">{{ $index+1 }}</td>
+                                    <td style="text-align:left">{{mt.itemPengadaan.item.kode}}</td>
+                                    <td style="text-align:left">{{mt.conditionalPrice.nama}}</td>
+                                    <td style="text-align:left">{{mt.conditionalPrice.kode}}</td>
+                                    <td style="text-align:center">{{mt.nilai}}</td>
+                                    <td style="white-space: nowrap; text-align:center">
+                                        <button ripple="" ng-click="editItemCondition(mt)" title="Edit" class="btn btn-sm btn-success">
+                                            <em class="fa fa-pencil fa-lg"></em>
+                                        </button>
+                                        <button ripple="" ng-click="removeItemCondition(mt.id)" title="Delete" class="btn btn-sm btn-danger">
+                                            <em class="fa fa-trash"></em>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/ng-template" id="/addHeaderCondition.html">
+        <div class="modal-header" ng-class="'bg-' + app.theme.name" class="panel-heading">
+            <button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="cancel()">×</button>
+            <h3 id="myModalLabel" class="modal-title"><em class="fa fa-plus-square">&nbsp;</em><span translate="promise.procurement.vendor.pemasukanpenawaranview.list.HEADCONDISI"><em class="fa fa-plus-square"></em> Add Head Condition</span></h3>
+        </div>
+        <div class="modal-body">
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <div align="center" ng-if="form.loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+                        <fieldset class="last-child">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Type Condition</label>
+                                <div class="col-sm-8">
+                                    <ui-select ng-model="headerCondition.selected" theme="bootstrap" ng-disabled="disabled">
+                                        <ui-select-match placeholder="++ Pilih ++">{{$select.selected.kode}}</ui-select-match>
+                                        <ui-select-choices repeat="hc in headerConditionList | propsFilter: {id: $select.search}">
+                                            <div ng-bind-html="hc.kode + ' - ' + hc.nama | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-group">
+                                <label for="input-id-1" class="col-sm-4 control-label">Amount</label>
+                                <div class="col-sm-4">
+                                    <input id="input-id-1" type="text" class="form-control shadow-z1" ng-model="nilai" />
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="modal-footer" style="background-color:#EEEEEE">
+            <button ng-click="simpanHeader()" class="btn btn-primary">Save</button>
+            <button ng-click="cancel()" class="btn btn-warning">Cancel</button>
+        </div>
+    </script>
+    <script type="text/ng-template" id="/editHeaderCondition.html">
+        <div class="modal-header" ng-class="'bg-' + app.theme.name" class="panel-heading">
+            <button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="cancel()">×</button>
+            <h3 id="myModalLabel" class="modal-title"><em class="fa fa-pencil fa-lg">&nbsp;</em><span translate="promise.procurement.vendor.pemasukanpenawaranview.list.HEADCONDISI"><em class="fa fa-pencil fa-lg"></em> Edit Header Condition</span></h3>
+        </div>
+        <div class="modal-body">
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <div align="center" ng-if="form.loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+                        <fieldset class="last-child">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Type Condition</label>
+                                <div class="col-sm-8">
+                                    <ui-select ng-model="headerCondition.conditionalPrice" theme="bootstrap" ng-disabled="disabled">
+                                        <ui-select-match placeholder="++ Pilih ++">{{$select.selected.kode}}</ui-select-match>
+                                        <ui-select-choices repeat="conditionalPrice in headerConditionList | propsFilter: {id: $select.search}">
+                                            <div ng-bind-html="conditionalPrice.kode + ' - ' + conditionalPrice.nama | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-group">
+                                <label for="input-id-1" class="col-sm-4 control-label">Amount</label>
+                                <div class="col-sm-4">
+                                    <input id="input-id-1" type="text" class="form-control shadow-z1" ng-model="nilai" />
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer" style="background-color:#EEEEEE">
+            <button ng-click="simpanHeader()" class="btn btn-primary">Update</button>
+            <button ng-click="cancel()" class="btn btn-warning">Cancel</button>
+        </div>
+    </script>
+    <!--item Condition-->
+    <script type="text/ng-template" id="/addItemCondition.html">
+        <div class="modal-header" ng-class="'bg-' + app.theme.name" class="panel-heading">
+            <button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="cancel()">×</button>
+            <h3 id="myModalLabel" class="modal-title"><em class="fa fa-plus-square">&nbsp;</em><span translate="promise.procurement.vendor.pemasukanpenawaranview.list.ITEMKONDISI"><em class="fa fa-plus-square"></em> Add Item Condition</span></h3>
+        </div>
+        <div class="modal-body">
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <div align="center" ng-if="form.loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+                        <fieldset class="last-child">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Material Line</label>
+                                <div class="col-sm-8">
+                                    <ui-select ng-model="materialLine.selected" theme="bootstrap" ng-disabled="disabled">
+                                        <ui-select-match placeholder="++ Pilih ++">{{$select.selected.item.kode}}</ui-select-match>
+                                        <ui-select-choices repeat="material in itemPengadaanByPengadaanList | propsFilter: {id: $select.search}">
+                                            <div ng-bind-html="material.item.kode | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="last-child">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Type Condition</label>
+                                <div class="col-sm-8">
+                                    <ui-select ng-model="itemCondition.selected" theme="bootstrap" ng-disabled="disabled">
+                                        <ui-select-match placeholder="++ Pilih ++">{{$select.selected.kode}}</ui-select-match>
+                                        <ui-select-choices repeat="item in itemConditionList | propsFilter: {id: $select.search}">
+                                            <div ng-bind-html="item.kode + ' - ' + item.nama | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Amount</label>
+                                <div class="col-sm-4">
+                                    <input id="input-id-1" type="text" class="form-control shadow-z1" ng-model="nilai" />
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer" style="background-color:#EEEEEE">
+            <button ng-click="simpanItemCondition()" class="btn btn-primary">Save</button>
+            <button ng-click="cancel()" class="btn btn-warning">Cancel</button>
+        </div>
+    </script>
+    <script type="text/ng-template" id="/editItemCondition.html">
+        <div class="modal-header" ng-class="'bg-' + app.theme.name" class="panel-heading">
+            <button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="cancel()">×</button>
+            <h3 id="myModalLabel" class="modal-title"><em class="fa fa-pencil fa-lg">&nbsp;</em><span translate="promise.procurement.vendor.pemasukanpenawaranview.list.ITEMKONDISI"><em class="fa fa-pencil fa-lg"></em> Edit Item Condition</span></h3>
+        </div>
+        <div class="modal-body">
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <div align="center" ng-if="form.loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+                        <fieldset class="last-child">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Material Line</label>
+                                <div class="col-sm-8">
+                                    <ui-select ng-model="materialLine.itemPengadaan" theme="bootstrap" ng-disabled="disabled">
+                                        <ui-select-match placeholder="++ Pilih ++">{{$select.selected.item.kode}}</ui-select-match>
+                                        <ui-select-choices repeat="material in itemPengadaanByPengadaanList | propsFilter: {id: $select.search}">
+                                            <div ng-bind-html="material.item.kode | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="last-child">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Type Condition</label>
+                                <div class="col-sm-8">
+                                    <ui-select ng-model="itemCondition.conditionalPrice" theme="bootstrap" ng-disabled="disabled">
+                                        <ui-select-match placeholder="++ Pilih ++">{{$select.selected.kode}}</ui-select-match>
+                                        <ui-select-choices repeat="conditionalPrice in itemConditionList | propsFilter: {id: $select.search}">
+                                            <div ng-bind-html="conditionalPrice.kode | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Amount</label>
+                                <div class="col-sm-4">
+                                    <input id="input-id-1" type="text" class="form-control shadow-z1" ng-model="nilai" />
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer" style="background-color:#EEEEEE">
+            <button ng-click="simpanItemCondition()" class="btn btn-primary">Update</button>
+            <button ng-click="cancel()" class="btn btn-warning">Cancel</button>
+        </div>
+    </script>
+    <!--------------------------------------->
+    <div align="center" ng-if="loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+    <div align="center">
+        <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-sm" ng-click="back()"><em class="fa fa-arrow-circle-left">&nbsp;</em>
+            <span translate="promise.procurement.panitia.pemasukanpenawaranview.btn.KEMBALI"></span>
+        </button>
+        <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-sm" ng-click="btnSimpanPenawaran()" ng-show="btnSimpanPenawaran" ng-disabled="btnSimpanDisable">
+            <span translate="promise.procurement.vendor.pemasukanpenawaranview.btn.KIRIM"></span>&nbsp;<em class="fa fa-check"></em>
+        </button>
+
+
+    </div>
+    <br>
+</div>
+<!--END CONTROLLER-->

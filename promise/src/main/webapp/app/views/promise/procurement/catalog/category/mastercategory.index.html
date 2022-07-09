@@ -1,0 +1,61 @@
+<div class="app-view-header"> <span translate="promise.procurement.master.mastercategory.judul"></span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="masterCategoryCtrl as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+            <em class="fa fa-tasks"></em>
+            <span translate="promise.procurement.master.mastercategory.subjudul"></span>
+            <a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+                    <em class="fa fa-chevron-circle-down"></em>
+            </a>
+        </h4>
+	<div class="panel-body collapse in">
+		<div class="text-right pr">
+			<button type="button" class="btn btn-secondary btn-import" ng-click="importData()"> <span translate="promise.procurement.master.mastercategory.view.import"></span>
+			</button>
+			<button type="button" ng-class="'bg-' + app.theme.name" class="btn btn-primary btn-add" ng-click="add()"> <span translate="template.button.tambah"></span>
+			</button>
+		</div>
+		<br />
+		<div class="col-md-12">
+			<div class="text-center" ng-if="loading == true"> <strong><em>Loading...</em><img src="app/img/loading.gif" border="0"
+                width="20px"></strong>
+			</div>
+			<table datatable="ng" class="row-border hover table-striped">
+				<thead>
+					<tr>
+						<th scope="col"style="text-align:center; width:5%"><span translate="template.tabel.nomor"></span>
+						</th>
+						<th scope="col"style="text-align: center; width: 20%"><span translate="promise.procurement.master.mastercategory.list.terjemahan_indonesia"></span>
+						</th>
+						<th scope="col"style="text-align: center; width: 20%"><span translate="promise.procurement.master.mastercategory.list.terjemahan_inggris"></span>
+						</th>
+						<th scope="col"style="text-align: center; width: 15%"><span translate="promise.procurement.master.mastercategory.list.deskripsi"></span>
+						</th>
+						<th scope="col"style="text-align: center; width: 12%"><span translate="promise.procurement.master.mastercategory.list.parent"></span>
+						</th>
+						<th scope="col"style="text-align: center; width: 13%"><span translate="promise.procurement.master.mastercategory.list.status"></span>
+						</th>
+						<th scope="col"style="text-align: center; width: 15%"><span translate="template.tabel.aksi"></span>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="category in categoryList">
+						<td ng-bind="$index+1"></td>
+						<td ng-bind="category.translateInd"></td>
+						<td ng-bind="category.translateEng"></td>
+						<td ng-bind="category.description"></td>
+						<td ng-bind="category.parentCategory.translateInd"></td>
+						<td ng-bind="(category.flagEnabled) ? 'Active' : 'Not Active'"></td>
+						<td class="text-center">
+							<button type="button" class="btn btn-primary btn-sm btn-add" tooltip-placement="top" tooltip="Add Sub" ng-click="addSubRoot(category)"></button>
+							<button ng-class="'bg-' + app.theme.name" class="btn btn-primary btn-sm btn-edit" ng-click="edit(category)" type="button" tooltip-placement="top" tooltip="Edit"></button>
+							<button class="btn btn-danger btn-sm btn-delete" ng-click="del(category.id)" type="button" tooltip-placement="top" tooltip="Delete"></button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

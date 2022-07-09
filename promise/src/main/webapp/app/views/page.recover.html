@@ -1,0 +1,51 @@
+<div class="container container-sm animated fadeInDown">
+    <div class="center-block mt-xl">
+        <!-- START panel-->
+        <img src="app/img/LOGO-SIACM.png" alt="Image" class="center-block img-rounded" />
+        <br/>
+        <br/>
+        <div class="panel">
+            <div class="panel-body" ng-controller="RecoverController">
+                <p class="pv">
+                    <strong>RESET PASSWORD</strong>
+                    <br/>We will send you instructions to reset your password.</p>
+                
+                <div align="center" ng-show="loading">
+                    <strong><em>Loading... <img src="app/img/loading.gif" border="0" height="20px"/></em></strong>
+                </div>
+                
+                <form name="formRecover" role="form" class="form-validate mb-lg">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group has-feedback">
+                                <input id="email" name="email" type="email" placeholder="Your email" autocomplete="off" class="form-control" required="" ng-model="emailUser" />
+                                <span class="fa fa-envelope form-control-feedback text-muted"></span>
+                            </div>
+                        </div>
+                        
+                         <div class="col-md-2" >
+                            <button type="submit" ng-click="back()" class="btn btn-info btn-block" style="text-align:center;">Back</button>
+                    	</div>
+                    	<div class="col-md-2" style="align:center">
+                            <button type="submit" ng-click="(formRecover.$valid)?resetPassword():messageError=true" class="btn btn-danger btn-block" style="text-align:center;">Send</button>
+                        </div>
+                    </div>
+                    
+                   
+                    
+                    <div class="row" ng-if="messageError" align="center">
+                        <strong style="color:red">Check your mail format!</strong>
+                    </div>
+                    <div class="row" ng-if="sendingMessage" align="center">
+                        <strong style="color:green">Send Validation is Success, check your email!</strong>
+                    </div>
+                    <div class="row" ng-if="sendingMessageError" align="center">
+                        <strong style="color:red">Email not register!</strong>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- END panel-->
+        <div ng-include="'app/views/page.footer.html'" class="p-lg text-center"></div>
+    </div>
+</div>

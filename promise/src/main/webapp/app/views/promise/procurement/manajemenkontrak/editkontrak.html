@@ -1,0 +1,481 @@
+<div class="app-view-header">
+    <span translate="promise.procurement.manajemenkontrak.daftarkontrak.JUDUL"></span> 
+    <!-- <small><span translate="promise.procurement.panitia.pembukaanpenawaran.KETERANGAN"></span></small> -->
+</div>
+<!--START CONTROLLER-->
+<div ng-controller="KontrakEditController as form">
+	<!-- Panel Pelelangan -->
+	<div class="panel panel-primary">
+        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        	<em class="fa fa-table">&nbsp;</em>
+        	<span translate="promise.procurement.manajemenkontrak.kontrak.panelpelelangan.judul"></span>
+        </h4>
+        <div class="panel-body">
+            <br/>
+            <div class="col-md-12">
+                <div>
+                    <div align="center" ng-if="loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+                    <div class="table-responsive">
+                        <table id="table-ext-1" class="table table-bordered table-hover" width="100%">
+                            <tbody>
+                                <tr>
+		                            <td style="text-align:left" width="40%"><span translate="promise.procurement.manajemenkontrak.kontrak.panelpelelangan.periode"></span>
+		                            </td>
+		                            <td style="text-align:left" width="60%">Tahunan</td>
+		                        </tr>
+		                        <tr>
+		                            <td style="text-align:left"><span translate="promise.procurement.manajemenkontrak.kontrak.panelpelelangan.tahun"></span>
+		                            </td>
+		                            <td style="text-align:left">{{form.dataKontrak.pengadaan.tanggalNotaDinas | date:'yyyy'}}</td>
+		                        </tr>
+		                        <tr>
+		                            <td style="text-align:left"><span translate="promise.procurement.manajemenkontrak.kontrak.panelpelelangan.sistempengadaan"></span>
+		                            </td>
+		                            <td style="text-align:left">{{form.dataKontrak.pengadaan.metodePengadaan.nama}}</td>
+		                        </tr>
+		                        <tr>
+		                            <td style="text-align:left"><span translate="promise.procurement.manajemenkontrak.kontrak.panelpelelangan.nomorpelelangan"></span>
+		                            </td>
+		                            <td style="text-align:left">{{form.dataKontrak.pengadaan.nomorNotaDinas}}</td>
+		                        </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<!-- Harga Perolehan untuk material -->
+	<div class="panel panel-primary">
+        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-archive">&nbsp;</em>
+                                            <span translate="promise.procurement.manajemenkontrak.kontrak.panelitemdanjasa.judulitem"></span>
+        </h4>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px" border="0"/></strong>
+                </div>
+                <table ng-table="tableMaterialPengadaan" class="table table-hover table-condensed table-striped bg-white">
+                    <thead>
+                        <tr style="font-weight: bold">
+                            <th scope="col"style="width:5%; text-align:center"><span translate="promise.procurement.manajemenkontrak.kontrak.panelitemdanjasa.no"></span>
+                            </th>
+                            <th scope="col"style="width:40%; text-align:center; vertical-align:middle"><span translate="promise.procurement.manajemenkontrak.kontrak.panelitemdanjasa.NamaMaterial"></span>
+                            </th>
+                            <th scope="col"style="width:5%; text-align:center; vertical-align:middle"><span translate="promise.procurement.manajemenkontrak.kontrak.panelitemdanjasa.satuan"></span>
+                            </th>
+                            <th scope="col"style="width:5%; text-align:center; vertical-align:middle"><span translate="promise.procurement.manajemenkontrak.kontrak.panelitemdanjasa.jumlah"></span>
+                            </th>
+                            <th scope="col"style="width:15%; text-align:center; vertical-align:middle"><span translate="promise.procurement.manajemenkontrak.kontrak.panelitemdanjasa.hpssatuan"></span>
+                            </th>
+                            <th scope="col"style="width:15%; text-align:center; vertical-align:middle"><span translate="promise.procurement.manajemenkontrak.kontrak.panelitemdanjasa.hpstotal"></span>
+                            </th>
+                            <th scope="col"style="width:15%; text-align:center; vertical-align:middle"><span translate="promise.procurement.manajemenkontrak.kontrak.panelitemdanjasa.nilaiperolehan"></span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="ppm in  $data">
+                            <td style="text-align:center; vertical-align:middle">
+                                {{$index+1}}
+                            </td>
+                            <td style="vertical-align:middle">
+                                {{ppm.itemPengadaan.item.nama}}
+                            </td>
+                            <td style="text-align:center; vertical-align:middle">
+                                {{ppm.itemPengadaan.item.satuanId.nama}}
+                            </td>
+                            <td style="text-align:center; vertical-align:middle">
+                                {{ppm.jumlah}}
+                            </td>
+                            <td style="text-align:right; vertical-align:middle">
+                                {{ppm.itemPengadaan.nilaiHPS | currency:ppm.mataUang.kode+" "}}
+                            </td>
+                            <td style="text-align:right; vertical-align:middle">
+                                {{ppm.itemPengadaan.totalHPS | currency:ppm.mataUang.kode+" "}}
+                            </td>
+                            <td style="text-align:right; vertical-align:middle">
+                                {{ppm.nilaiTotal | currency:ppm.mataUang.kode+" "}}
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                    	<tr>
+                    		<td colspan="6" style="text-align:right; vertical-align:middle;font-weight: bold"><span translate="promise.procurement.manajemenkontrak.kontrak.panelitemdanjasa.totalmaterial"></span></td>
+                            <td style="text-align:right; vertical-align:middle">
+                                {{form.dataKontrak.totalNilaiMaterial | currency:form.dataKontrak.valutaItemPengadaan.kode+" "}}
+                            </td>
+                    	</tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Harga Perolehan untuk jasa -->
+	<div class="panel panel-primary">
+        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-archive">&nbsp;</em>
+                                            <span translate="promise.procurement.manajemenkontrak.kontrak.panelitemdanjasa.juduljasa"></span>
+        </h4>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px" border="0"/></strong>
+                </div>
+                <table ng-table="tableJasaPengadaan" class="table table-hover table-condensed table-striped bg-white">
+                    <thead>
+                        <tr style="font-weight: bold">
+                            <th scope="col"style="width:5%; text-align:center"><span translate="promise.procurement.manajemenkontrak.kontrak.panelitemdanjasa.no"></span>
+                            </th>
+                            <th scope="col"style="width:40%; text-align:center; vertical-align:middle"><span translate="promise.procurement.manajemenkontrak.kontrak.panelitemdanjasa.NamaMaterial"></span>
+                            </th>
+                            <th scope="col"style="width:5%; text-align:center; vertical-align:middle"><span translate="promise.procurement.manajemenkontrak.kontrak.panelitemdanjasa.satuan"></span>
+                            </th>
+                            <th scope="col"style="width:5%; text-align:center; vertical-align:middle"><span translate="promise.procurement.manajemenkontrak.kontrak.panelitemdanjasa.jumlah"></span>
+                            </th>
+                            <th scope="col"style="width:15%; text-align:center; vertical-align:middle"><span translate="promise.procurement.manajemenkontrak.kontrak.panelitemdanjasa.hpssatuan"></span>
+                            </th>
+                            <th scope="col"style="width:15%; text-align:center; vertical-align:middle"><span translate="promise.procurement.manajemenkontrak.kontrak.panelitemdanjasa.hpstotal"></span>
+                            </th>
+                            <th scope="col"style="width:15%; text-align:center; vertical-align:middle"><span translate="promise.procurement.manajemenkontrak.kontrak.panelitemdanjasa.nilaiperolehan"></span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="ppm in  $data">
+                            <td style="text-align:center; vertical-align:middle">
+                                {{$index+1}}
+                            </td>
+                            <td style="vertical-align:middle">
+                                {{ppm.itemPengadaan.item.nama}}
+                            </td>
+                            <td style="text-align:center; vertical-align:middle">
+                                {{ppm.itemPengadaan.item.satuanId.nama}}
+                            </td>
+                            <td style="text-align:center; vertical-align:middle">
+                                {{ppm.jumlah}}
+                            </td>
+                            <td style="text-align:right; vertical-align:middle">
+                                {{ppm.itemPengadaan.nilaiHPS | currency:ppm.mataUang.kode+" "}}
+                            </td>
+                            <td style="text-align:right; vertical-align:middle">
+                                {{ppm.itemPengadaan.totalHPS | currency:ppm.mataUang.kode+" "}}
+                            </td>
+                            <td style="text-align:right; vertical-align:middle">
+                                {{ppm.nilaiTotal | currency:ppm.mataUang.kode+" "}}
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                    	<tr>
+                    		<td colspan="6" style="text-align:right; vertical-align:middle;font-weight: bold"><span translate="promise.procurement.manajemenkontrak.kontrak.panelitemdanjasa.totaljasa"></span></td>
+                            <td style="text-align:right; vertical-align:middle">
+                            		{{form.dataKontrak.totalNilaiJasa | currency:form.dataKontrak.valutaItemPengadaan.kode+" "}}
+                            </td>
+                    	</tr>
+                    	<tr>
+                    		<td colspan="6" style="text-align:right; vertical-align:middle;font-weight: bold"><span translate="promise.procurement.manajemenkontrak.kontrak.panelitemdanjasa.totalhargatermasukpajak"></span></td>
+                            <td style="text-align:right; vertical-align:middle">
+                            		{{(form.dataKontrak.totalNilaiMaterial + form.dataKontrak.totalNilaiJasa) | currency:form.dataKontrak.valutaItemPengadaan.kode+" "}}
+                            </td>
+                    	</tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+	<!-- Panel Pelelangan -->
+	<div class="panel panel-primary">
+        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        	<em class="fa fa-table">&nbsp;</em>
+        	<span translate="promise.procurement.manajemenkontrak.kontrak.paneldatakontrak.judul"></span>
+        </h4>
+        <div class="panel-body">
+            <br/>
+            <div class="col-md-12">
+                <div>
+                    <div class="table-responsive">
+                        <table id="table-ext-1" class="table table-bordered table-hover" width="100%">
+                            <tbody>
+                                <tr>
+		                            <td style="text-align:left" width="40%"><span translate="promise.procurement.manajemenkontrak.kontrak.paneldatakontrak.nokontrak"></span>
+		                            </td>
+		                            <td style="text-align:left" width="60%">{{form.dataKontrak.nomor}}</td>
+		                        </tr>
+		                        <tr>
+		                            <td style="text-align:left"><span translate="promise.procurement.manajemenkontrak.kontrak.paneldatakontrak.nomorsuratpenawaran"></span>
+		                            </td>
+		                            <td style="text-align:left">{{form.dataKontrak.nomorSuratPenawaran}}</td>
+		                        </tr>
+		                        <tr>
+		                            <td style="text-align:left"><span translate="promise.procurement.manajemenkontrak.kontrak.paneldatakontrak.tanggalsuratpenawaran"></span>
+		                            </td>
+		                            <td style="text-align:left">{{form.dataKontrak.tglSuratPenawaran | date:'dd/MM/yyyy'}}</td>
+		                        </tr>
+		                        <tr>
+		                            <td style="text-align:left"><span translate="promise.procurement.manajemenkontrak.kontrak.paneldatakontrak.pihak1"></span>
+		                            </td>
+		                            <td style="text-align:left">{{form.dataKontrak.vendor.nama}}</td>
+		                        </tr>
+		                        <tr>
+		                            <td style="text-align:left"><span translate="promise.procurement.manajemenkontrak.kontrak.paneldatakontrak.pihak2"></span>
+		                            </td>
+		                            <td style="text-align:left">{{form.dataKontrak.vendor.nama}}</td>
+		                        </tr>
+		                        <tr>
+		                            <td style="text-align:left"><span translate="promise.procurement.manajemenkontrak.kontrak.paneldatakontrak.nilaikontrak"></span>
+		                            </td>
+		                            <td style="text-align:left">{{(form.dataKontrak.totalNilaiMaterial + form.dataKontrak.totalNilaiJasa) | currency:form.dataKontrak.valutaItemPengadaan.kode+" "}}</td>
+		                        </tr>
+		                        <tr>
+		                            <td style="text-align:left"><span translate="promise.procurement.manajemenkontrak.kontrak.paneldatakontrak.kursdollar"></span>
+		                            </td>
+		                            <td style="text-align:left">{{form.dataKontrak.nilaiKursUSD | currency:form.dataKontrak.mataUang.kode+" "}}</td>
+		                        </tr>
+		                        <tr>
+		                            <td style="text-align:left"><span translate="promise.procurement.manajemenkontrak.kontrak.paneldatakontrak.tanggalspk"></span>
+		                            </td>
+		                            <td style="text-align:left">{{form.dataKontrak.tglSPK | date:'dd/MM/yyyy'}}</td>
+		                        </tr>
+		                        <tr>
+		                            <td style="text-align:left"><span translate="promise.procurement.manajemenkontrak.kontrak.paneldatakontrak.tanggalmulaikontrak"></span>
+		                            </td>
+		                            <td style="text-align:left">{{form.dataKontrak.tglMulaiKontrak | date:'dd/MM/yyyy'}}</td>
+		                        </tr>
+		                        <tr>
+		                            <td style="text-align:left"><span translate="promise.procurement.manajemenkontrak.kontrak.paneldatakontrak.tanggalselesaikontrak"></span>
+		                            </td>
+		                            <td style="text-align:left">{{form.dataKontrak.tglSelesaiKontrak | date:'dd/MM/yyyy'}}</td>
+		                        </tr>
+		                        <tr>
+		                            <td style="text-align:left"><span translate="promise.procurement.manajemenkontrak.kontrak.paneldatakontrak.tanggalbataspengiriman"></span>
+		                            </td>
+		                            <td style="text-align:left">{{form.dataKontrak.tglBatasPengiriman | date:'dd/MM/yyyy'}}</td>
+		                        </tr>
+		                        <tr>
+		                            <td style="text-align:left"><span translate="promise.procurement.manajemenkontrak.kontrak.paneldatakontrak.namajaminanpelaksanaan"></span>
+		                            </td>
+		                            <td style="text-align:left">{{form.dataKontrak.namaJaminanPelaksana}}</td>
+		                        </tr>
+		                        <tr>
+		                            <td style="text-align:left"><span translate="promise.procurement.manajemenkontrak.kontrak.paneldatakontrak.nilaijaminanpelaksanaan"></span>
+		                            </td>
+		                            <td style="text-align:left">{{form.dataKontrak.nilaiJaminanPelaksana |  currency:form.dataKontrak.valutaItemPengadaan.kode+" "}}</td>
+		                        </tr>
+		                        <tr>
+		                            <td style="text-align:left"><span translate="promise.procurement.manajemenkontrak.kontrak.paneldatakontrak.tanggalbatasjaminan"></span>
+		                            </td>
+		                            <td style="text-align:left">{{form.dataKontrak.tglBatasJaminan | date:'dd/MM/yyyy'}}</td>
+		                        </tr>
+		                        <tr>
+		                            <td style="text-align:left"><span translate="promise.procurement.manajemenkontrak.kontrak.paneldatakontrak.pinalty"></span></td>
+		                            <td style="text-align:left">
+		                            	<select class="form-control" ng-model="form.dataKontrak.pinaltyType" disabled>
+				                            <option value="" disabled selected>++ Pilih ++</option>
+				                            <option value="0" disabled ng-selected="form.dataKontrak.pinaltyType == 0" >Persen - {{form.dataKontrak.pinalty |  currency:form.dataKontrak.valutaItemPengadaan.kode+" "}}</option>
+				                            <option value="1" disabled ng-selected="form.dataKontrak.pinaltyType == 1" >Total - {{form.dataKontrak.pinalty |  currency:form.dataKontrak.valutaItemPengadaan.kode+" "}}</option>	
+				                        </select>
+		                            </td>
+		                        </tr>
+		                        <tr>
+		                            <td style="text-align:left"><span translate="promise.procurement.manajemenkontrak.kontrak.paneldatakontrak.templatekontrak"></span>
+		                            </td>
+		                            <td style="text-align:left">
+		                            	<div class="col-sm-4">
+						                    <ui-select ng-model="form.dataKontrak.templateKontrak" theme="bootstrap" >
+						                        <ui-select-match placeholder="++ Template Kontrak ++">{{$select.selected.nama}}</ui-select-match>
+						                        <ui-select-choices repeat="templateKontrak in form.dataKontrak.templateKontrakList | propsFilter: {id: $select.search}">
+						                            <div ng-bind-html="templateKontrak.nama | highlight: $select.search"></div>
+						                        </ui-select-choices>
+						                    </ui-select>
+					                    </div>
+					                     <div class="col-sm-3">
+							                <label><input type="radio" value="1" ng-model="form.dataKontrak.pilihDocGenerated">PDF</label>
+							                <label><input type="radio" value="2" ng-model="form.dataKontrak.pilihDocGenerated">DOC</label>
+	                                		<br/>
+					                    </div>
+					                    <div class="col-sm-3">
+					                    	<button ng-class="'bg-' + app.theme.name" ng-click="btnSimpan()" class="btn btn-sm pull-center" ripple="">
+									            <span class=""><em class="fa fa-sign-in"></em></span>&nbsp;&nbsp;
+									            <font color="white">
+									            	<span translate="promise.procurement.manajemenkontrak.kontrak.paneldatakontrak.buttongenerate"></span>
+									            </font>
+									        </button>
+					                    </div>
+		                            </td>
+		                        </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </div>
+	
+    <!-- File Kontrak -->
+    <div class="panel panel-primary">
+    	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+            <span translate="promise.procurement.manajemenkontrak.kontrak.FileKontrak.Judul"></span>
+        </h4>
+	
+		<div class="panel panel-primary">
+			<div class="panel-body">
+				<div class="row">
+					<label class="col-sm-3 control-label"><span translate="promise.procurement.manajemenkontrak.kontrak.FileKontrak.UploadFilekontrak"></span></label>
+			        <div class="col-sm-6">
+			            	<input filestyle="" type="file" data-button-text="Upload" data-class-button="btn btn-default" data-class-input="form-control inline" nv-file-select="" uploader="uploader" class="form-control" multiple="" />
+			        </div>
+				</div>
+                <div class="form-group">
+                    <p ng-if="uploader.queue.length" class="pull-right label label-info">Jumlah Antrian: {{ uploader.queue.length }}</p>
+                    <h4 class="page-header mt0">Upload Antrian</h4>
+                    <p ng-if="!uploader.queue.length" class="lead text-center">Tidak Ada File, silahkan upload dokumen.</p>
+                    <div ng-if="uploader.queue.length">
+                        <table ng-if="uploader.queue.length" class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col"width="50%">Nama File</th>
+                                    <th scope="col"ng-show="uploader.isHTML5">Ukuran</th>
+                                    <th scope="col"ng-show="uploader.isHTML5">Proses</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in uploader.queue">
+                                    <td>
+                                        <strong>{{ item.file.name }}</strong>
+                                    </td>
+                                    <td ng-show="uploader.isHTML5" nowrap="">{{ item.file.size/1024/1024|number:2 }} MB</td>
+                                    <td ng-show="uploader.isHTML5">
+                                        <div style="margin-bottom: 0;" class="progress progress-xs">
+                                            <div role="progressbar" ng-style="{ 'width': item.progress + '%' }" class="progress-bar"></div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <span ng-show="item.isSuccess">
+										<em class="fa fa-check fa-fw"></em>
+									 </span>
+                                        <span ng-show="item.isCancel">
+										<em class="fa fa-ban-circle fa-fw"></em>
+									 </span>
+                                        <span ng-show="item.isError">
+										<em class="fa fa-times fa-fw"></em>
+									 </span>
+                                    </td>
+                                    <td nowrap="">
+                                        <button type="button" ng-click="uploadFileKontrak(item)" ng-disabled="item.isReady || item.isUploading || item.isSuccess" class="btn btn-info btn-xs">
+                                            <span class="icon-cloud-upload mr"></span>Upload</button>
+                                        <button type="button" ng-click="item.cancel()" ng-disabled="!item.isUploading" class="btn btn-warning btn-xs">
+                                            <span class="icon-cross mr"></span>Batal</button>
+                                        <button type="button" ng-click="item.cancel()" class="btn btn-danger btn-xs">
+                                            <span class="icon-trash mr"></span>Hapus</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div>
+                        <p>Proses Antrian:</p>
+                        <div style="" class="progress progress-xs">
+                            <div role="progressbar" ng-style="{ 'width': uploader.progress + '%' }" class="progress-bar"></div>
+                        </div>
+                    </div>
+                    <div align="right">
+                        <button type="button" ng-click="uploadAllFileKontrak()" ng-disabled="!uploader.getNotUploadedItems().length" class="btn btn-info btn-s">
+                            <span class="icon-cloud-upload mr"></span>Upload Semua</button>
+                        <button type="button" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading" class="btn btn-warning btn-s">
+                            <span class="icon-cross mr"></span>Batalkan Semua</button>
+                        <button type="button" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length" class="btn btn-danger btn-s">
+                            <span class="icon-trash mr"></span>Hapus Semua</button>
+                    </div>
+                </div>
+			</div>
+		</div>
+	</div>
+	
+    <!-- History Addendum -->
+    <div class="panel panel-primary">
+    	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+            <span translate="promise.procurement.manajemenkontrak.kontrak.HistoryAddendum.Judul"></span>
+        </h4>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px" border="0"/></strong>
+                </div>
+                <table ng-table="tableHistoryAddendum" class="table table-hover table-condensed table-striped bg-white">
+                    <thead>
+                        <tr style="font-weight: bold">
+                            <th scope="col"style="width:5%; text-align:center"><span translate="promise.procurement.manajemenkontrak.kontrak.HistoryAddendum.No"></span>
+                            </th>
+                            <th scope="col"style="width:40%; text-align:center; vertical-align:middle"><span translate="promise.procurement.manajemenkontrak.kontrak.HistoryAddendum.TanggalAddendum"></span>
+                            </th>
+                            <th scope="col"style="width:5%; text-align:center; vertical-align:middle"><span translate="promise.procurement.manajemenkontrak.kontrak.HistoryAddendum.DiubahOleh"></span>
+                            </th>
+                            <th scope="col"style="width:5%; text-align:center; vertical-align:middle"><span translate="promise.procurement.manajemenkontrak.kontrak.HistoryAddendum.NilaiKontrak"></span>
+                            </th>
+                            <th scope="col"style="width:15%; text-align:center; vertical-align:middle"><span translate="promise.procurement.manajemenkontrak.kontrak.HistoryAddendum.Aksi"></span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="dataKontrak in  $data">
+                            <td style="text-align:center; vertical-align:middle">
+                                {{$index+1}}
+                            </td>
+                            <td style="vertical-align:middle">
+                                {{dataKontrak.created | date:'dd/MM/yyyy' }}
+                            </td>
+                            <td style="text-align:center; vertical-align:middle">
+                                {{dataKontrak.user.namaPengguna}}
+                            </td>
+                            <td style="text-align:center; vertical-align:middle">
+                                {{dataKontrak.nilai  | currency:dataKontrak.mataUang.kode+" " }}
+                            </td>
+                            <td class="action-col">
+                                <a class="view-order badge bg-primary" ng-click="viewDatakontrak($index)" tooltip-placement="top" tooltip="View">
+                                    <em class="fa fa-search"></em>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+	</div>
+	
+    <div align="center">
+		<div align="center" ng-if="loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+		<div align="center">
+			<strong class="text-success">{{syncResponse.msg}}</strong>
+			<strong class="text-danger">{{syncResponse.msgError}}</strong>
+		</div>
+        <button ng-class="'bg-' + app.theme.name" ng-click="btnKembali()" class="btn btn-sm pull-center" ripple="">
+            <span class=""><em class="fa fa-chevron-left"></em></span>&nbsp;&nbsp;
+            <font color="white">
+            	<span translate="promise.procurement.manajemenkontrak.btn.kembali"></span>
+            </font>
+        </button>
+        
+        <button ng-class="'bg-' + app.theme.name" ng-click="btnAddendum()" class="btn btn-sm pull-center" ripple="">
+            <span class=""><em class="fa fa-sign-in"></em></span>&nbsp;&nbsp;
+            <font color="white">
+            	<span translate="promise.procurement.manajemenkontrak.daftarkontrak.ButtonAddendum"></span>
+            </font>
+        </button>
+        
+        <button ng-class="'bg-' + app.theme.name" ng-click="btnSyncronizePR()" class="btn btn-sm pull-center" ripple="">
+            <span class=""><em class="fa fa-sign-in"></em></span>&nbsp;&nbsp;
+            <font color="white">
+            	<span translate="promise.procurement.manajemenkontrak.daftarkontrak.ButtonSynchronisasi"></span>
+            </font>
+        </button>
+        
+        <button ng-class="'bg-' + app.theme.name" ng-click="btnAddendum()" class="btn btn-sm pull-center" ripple="">
+            <span class=""><em class="fa fa-sign-in"></em></span>&nbsp;&nbsp;
+            <font color="white">
+            	<span translate="promise.procurement.manajemenkontrak.daftarkontrak.ButtonCetak"></span>
+            </font>
+        </button>
+    </div>
+</div>
+<!--END CONTROLLER-->

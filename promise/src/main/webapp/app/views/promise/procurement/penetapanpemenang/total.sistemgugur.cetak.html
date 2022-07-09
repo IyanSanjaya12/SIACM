@@ -1,0 +1,143 @@
+<div class="app-view-header">
+    <span translate="promise.procurement.panitia.penetapanpemenang.JUDUL"></span>
+    <!--<small><span translate="promise.procurement.panitia.pembukaanpenawaran.total.TOTAL"></span></small>-->
+</div>
+<!--START CONTROLLER-->
+<div ng-controller="TotalSistemGugurCetakController as form">
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    <div id="penetapanPemenang">
+        <!--------------------------------------------------------------------------------------------------->
+        <promise-view-data-pengadaan pengadaan-id=pengadaanId></promise-view-data-pengadaan>
+        <!--------------------------------------------------------------------------------------------------->
+
+        <!--START-->
+        <div class="panel panel-primary">
+            <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-group">&nbsp;</em>
+        <span translate="promise.procurement.panitia.penetapanpemenang.list.TBLPENETAPANPEMENANG"></span>
+                                        </h4>
+            <div class="panel-body"><!-- 
+                <div align="right">
+                    <button ng-class="'bg-' + app.theme.name" ng-click="btnSwitchMultiwinner()" class="btn btn-primary btn-sm pull-center" ripple="" ng-hide="true">
+                        <span class=""><em class="fa fa-group"></em></span>&nbsp;&nbsp;<font color="white"><span translate="">Multiwinner</span></font>
+                    </button>
+                </div> -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="loading" align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px" border="0"/></strong>
+                        </div>
+                        <table ng-table="form.evaluasiHargaVendor" class="table table-hover table-condensed table-striped bg-white">
+                            <thead>
+                                <tr style="font-weight: bold">
+                                    <th scope="col"style="width:2%; text-align:center"><span translate="promise.procurement.inisialisasi.tambahbumn.TBLNO"></span>
+                                    </th>
+                                    <th scope="col"style="width:20%; text-align:center"><span translate="promise.procurement.panitia.evaluasiadministrasi.list.TBLNAMAPENYEDIABRGJASA"></span>
+                                    </th>
+                                    <th scope="col"ng-hide="form.isSimple" style="width:10%; text-align:center"><span translate="promise.procurement.panitia.penetapanpemenang.list.TBLNILAIADMIN"></span>
+                                    </th>
+                                    <th scope="col"ng-hide="form.isSimple" style="width:10%; text-align:center"><span translate="promise.procurement.panitia.penetapanpemenang.list.TBLNILAITEKNIS"></span>
+                                    </th>
+                                    <th scope="col"style="width:20%; text-align:center"><span translate="promise.procurement.panitia.penetapanpemenang.list.TBLNILAIHARGA"></span>
+                                    </th>
+                                    <th scope="col"style="width:20%; text-align:right"><span translate="promise.procurement.panitia.penetapanpemenang.list.TBLHARGA"></span>
+                                    </th>
+                                    <th scope="col"style="width:20%; text-align:right"><span translate="promise.procurement.panitia.penetapanpemenang.list.TBLHARGA"></span> (Rp.)
+                                    </th><!-- 
+                                    <th scope="col"style="width:2%; text-align:center"><span translate="promise.procurement.panitia.penetapanpemenang.list.TBLPEMENANG"></span>
+                                    </th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="tabel in $data | orderBy:'hargaWithKurs'">
+                                    <td style="text-align:center">
+                                        <span ng-if="$index>0">{{ $index+1 }}</span>
+                                        <strong ng-if="$index==0" style="font-size:14px">{{ $index+1 }}</strong>
+                                    </td>
+                                    <td style="text-align:left; vertical-align:middle">
+                                        <span ng-if="$index>0">{{tabel.vendor.nama}}</span>
+                                        <strong ng-if="$index==0" style="font-size:14px">{{tabel.vendor.nama}}</strong>
+                                    </td>
+                                    <td ng-hide="form.isSimple" style="text-align:center; vertical-align:middle">
+
+                                        <span ng-if="$index>0"><div ng-if="tabel.nilaiAdmin == 100">Lulus</div>
+                                        <div ng-if="tabel.nilaiAdmin != 100">Tidak Lulus</div></span>
+                                        <strong ng-if="$index==0" style="font-size:14px"><div ng-if="tabel.nilaiAdmin == 100">Lulus</div>
+                                        <div ng-if="tabel.nilaiAdmin != 100">Tidak Lulus</div></strong>
+                                    </td>
+                                    <td ng-hide="form.isSimple" style="text-align:center; vertical-align:middle">
+
+                                        <span ng-if="$index>0"><div ng-if="tabel.nilaiTeknis == 100">Lulus</div>
+                                        <div ng-if="tabel.nilaiTeknis != 100">Tidak Lulus</div></span>
+                                        <strong ng-if="$index==0" style="font-size:14px"><div ng-if="tabel.nilaiTeknis == 100">Lulus</div>
+                                        <div ng-if="tabel.nilaiTeknis != 100">Tidak Lulus</div></strong>
+                                    </td>
+                                    <td style="text-align:center; vertical-align:middle">
+                                        <span ng-if="$index>0">{{ tabel.nilaiHarga | number:2}}</span>
+                                        <strong ng-if="$index==0" style="font-size:14px">{{ tabel.nilaiHarga | number:2}}</strong>
+                                    </td>
+                                    <td style="text-align:right; vertical-align:middle">
+                                        <span ng-if="$index>0">{{tabel.harga | number:2}} {{tabel.mataUang.kode}}</span>
+                                        <strong ng-if="$index==0" style="font-size:14px" class="text-success">{{tabel.harga | number:2}} {{tabel.mataUang.kode}}</strong>
+                                    </td>
+                                    <td style="text-align:right; vertical-align:middle">
+                                        <span ng-if="$index>0">{{tabel.hargaWithKurs | number:2}} IDR</span>
+                                        <strong ng-if="$index==0" style="font-size:14px" class="text-success">{{tabel.hargaWithKurs | number:2}} IDR</strong>
+                                    </td><!-- 
+                                    <td style="width:2%; white-space: nowrap; text-align:center; vertical-align:middle">
+                                        <div class="checkbox c-checkbox c-checkbox-rounded">
+                                            <label>
+                                                <input id="inlineradio10" type="radio" name="rdPemenang" ng-checked="tabel.status" ng-click="form.pemenangCheck(tabel)" />
+                                                <span class="fa fa-check"></span>
+                                            </label>
+                                        </div>
+                                    </td> -->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <!-- jenis kontrak -->
+            <h4 ng-if="form.detailPengadaan.tahapanPengadaan.tahapan.id == 17 || form.detailPengadaan.tahapanPengadaan.tahapan.id == 15" ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-group">&nbsp;</em>
+                <span translate="promise.procurement.panitia.penetapanpemenang.JENISKONTRAK"></span>
+            </h4>
+            <div ng-if="form.detailPengadaan.tahapanPengadaan.tahapan.id == 17 || form.detailPengadaan.tahapanPengadaan.tahapan.id == 15" class="panel-body">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <strong><span translate="promise.procurement.panitia.penetapanpemenang.JENISKONTRAK"></span></strong>
+                    </div>
+                    <div class="col-lg-6">
+                        <select id="jenisKontrak" name="jenisKontrak" ng-model="form.jenisKontrak" class="form-control" ng-change="showJenisKontrak()">
+                            <option ng-repeat="option in jenisKontrakList | orderBy:'nama'" value="{{option.id}}" ng-hide="option.id==1 && isJoinPR==true">{{option.nama}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div align="center"><strong style="color:red">{{errorMsg}}</strong></div>
+        </div>
+    </div>
+    <div ng-if="form.detailPengadaan.tahapanPengadaan.tahapan.id == 17 || form.detailPengadaan.tahapanPengadaan.tahapan.id == 15"  class="panel-default">
+        <div class="col-xs-12">
+            <div class="checkbox c-checkbox c-checkbox-rounded">
+                <label>
+                    <input id="inlineradio10" type="checkbox" ng-click="status" />
+                    <span class="fa fa-check"></span><code><strong>Munculkan Hasil Pengadaan Pada Halaman Vendor</strong></code>
+                </label>
+            </div>
+        </div>
+    </div>
+    <!----------------BUTTON SIMPAN--------------------->
+    <div align="center">
+        <button ng-class="'bg-' + app.theme.name" ng-click="form.back()" class="btn btn-primary btn-sm pull-center" ripple="">
+            <span class=""><em class="fa fa-chevron-left"></em></span>&nbsp;&nbsp;<font color="white"><span translate="template.button.batal"></span></font>
+        </button>
+        <button ng-class="'bg-' + app.theme.name" type="button" class="btn btn-primary btn-sm pull-center" ng-click="printDiv('penetapanPemenang')" ng-show="view==true && form.detailPengadaan.tahapanPengadaan.tahapan.id>17"><em class="fa fa-print">&nbsp;</em>
+            <span translate="promise.procurement.panitia.pengambilandokumen.view.btn.PRINT"></span>
+        </button>
+        <button ng-if="form.detailPengadaan.tahapanPengadaan.tahapan.id == 17 || form.detailPengadaan.tahapanPengadaan.tahapan.id == 15" ng-class="'bg-' + app.theme.name" ng-click="form.btnSimpan()" class="btn btn-primary btn-sm pull-center" ripple="">
+            <span class=""><em class="fa fa-sign-in"></em></span>&nbsp;&nbsp;<font color="white"><span translate="template.button.simpan"></span></font>
+        </button>
+    </div>
+    <!------------------------------------->
+</div>

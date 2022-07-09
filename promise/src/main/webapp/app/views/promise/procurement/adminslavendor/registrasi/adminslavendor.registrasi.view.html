@@ -1,0 +1,68 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.manajemenvendor.slaregistrasivendor.judul"></span>
+
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="AdminSLARegistrasiVendorViewController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+	<span translate="promise.procurement.manajemenvendor.slaregistrasivendor.view.subjudul"></span>
+		
+	</h4>
+	<div class="panel-body">
+		<div class="col-md-12">
+			<div>
+				<div class="row">
+					<div class="col-md-3"><span translate="promise.procurement.manajemenvendor.slaregistrasivendor.view.vendor"></span></div>
+					<div class="col-md-6">
+						: <span ng-bind="vm.slaAdminVendor.vendor.nama"></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3"><span translate="promise.procurement.manajemenvendor.slaregistrasivendor.view.proses"></span></div>
+					<div class="col-md-6">
+						: <span ng-bind="vm.slaAdminVendor.slaVendor.namaProses"></span>
+					</div>
+				</div>
+				<div class="table-responsive">
+					<table class="table table-striped"> 
+						<thead>
+							<tr>
+								<th scope="col"style="text-align: center"><span><span translate="template.tabel.nomor"></span></span></th>
+								<th scope="col"style="text-align: center"><span translate="promise.procurement.manajemenvendor.slaregistrasivendor.view.tahapan"></span></th>
+								<th scope="col"style="text-align: center"><span translate="promise.procurement.manajemenvendor.slaregistrasivendor.view.tanggal_awal"></span></th>
+								<th scope="col"style="text-align: center"><span translate="promise.procurement.manajemenvendor.slaregistrasivendor.view.tanggal_akhir"></span></th>
+								<th scope="col"style="text-align: center"><span translate="promise.procurement.manajemenvendor.slaregistrasivendor.view.sla"></span></th>
+								<th scope="col"style="text-align: center"><span translate="promise.procurement.manajemenvendor.slaregistrasivendor.view.tanggal_realisasi"></span></th> 
+								<th scope="col"style="text-align: center"><span translate="promise.procurement.manajemenvendor.slaregistrasivendor.view.jumlah_hari"></span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="slaVendorRegistrasi in vm.slaAdminVendorDetailList">
+								<td style="text-align: center" ng-bind="{{index+1}}"></td>
+								<td style="text-align: center" ng-bind="slaVendorRegistrasi.slaVendorProses.tahapan"></td> 
+								<td style="text-align:center" ng-bind="slaVendorRegistrasi.tglAwal  == null ? '' : slaVendorRegistrasi.tglAwal | date:'yyyy-MM-dd'"></td>
+								<td style="text-align:center" ng-bind="slaVendorRegistrasi.tglAkhir  == null ? '' : slaVendorRegistrasi.tglAkhir | date:'yyyy-MM-dd'"></td>
+								<td style="text-align: center" ng-bind="slaVendorRegistrasi.slaVendorProses.jmlHari"></td> 
+								<td style="text-align:center" ng-bind="slaVendorRegistrasi.tglRealisasi  == null ? '' : slaVendorRegistrasi.tglRealisasi | date:'yyyy-MM-dd'"></td>
+								<td style="text-align: center" ng-bind="slaVendorRegistrasi.jmlHariRealisasi"></td> 
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div><br>
+		<br>
+		<div align="right">			
+           <div class="form-group">
+					<div class="col-md-5 col-md-push-2 col-sm-5 col-sm-push-3">
+					<br>
+						<button type="button" ripple="" class="mr btn btn-sm bg-default" ng-click="back()">
+							<span translate="template.button.kembali"></span>
+						</button>
+						
+					</div>
+				</div>
+        </div>
+	</div>
+</div>
+<!--END CONTROLLER-->

@@ -1,0 +1,72 @@
+<!-- 
+GENERAL VIEW OF THE PROCUREMENT SYSTEM 
+---------- START CONTROLLER ----------
+-->
+
+<div class="app-view-header">
+    <span translate="menu.approval.modul_approval"></span>
+</div>
+
+<div class="panel panel-primary" ng-controller="ApprovalController as vm">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+            <em class="fa fa-tasks"></em>
+            <span translate="menu.approval.approval_indeks"></span>
+            <a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+                <em class="fa fa-chevron-circle-down"></em>
+            </a>
+        </h4>
+        <div class="panel-body collapse in">
+        <div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px" border="0"/></strong></div>
+        <table datatable="ng" class="row-border hover table-striped">
+            <thead>
+                <tr>
+                    <th scope="col"><span translate="general.no"></span></th>
+                    <th scope="col"><span translate="menu.approval.approval_tahapan"></span></th>
+                    <th scope="col"><span translate="general.status"></span></th>
+                    <th scope="col"><span translate="menu.approval.keterangan"></span></th>
+                    <th scope="col"><span translate="general.action"></span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="data in vm.ListApproval">
+                    <td style="text-align:center">{{ $index+1 }}</td>
+                    <td style="text-align:left">
+                         <div class="label label-info text-bold" ng-if="data.approvalProcess.approvalProcessType.tahapan.nama=='Approval Purchase Request'">
+                            {{ data.approvalProcess.approvalProcessType.tahapan.nama }}
+                        </div>		 	
+                        <div class="label label-success text-bold" ng-if="data.approvalProcess.approvalProcessType.tahapan.nama=='CREATE_PO'">
+                            {{ data.approvalProcess.approvalProcessType.tahapan.nama }}
+                        </div>
+                        <div class="label label-info text-bold" ng-if="data.approvalProcess.approvalProcessType.tahapan.nama=='Approval Edit Catalog'">
+                            {{ data.approvalProcess.approvalProcessType.tahapan.nama }}
+                        </div>
+                        <div class="label label-info text-bold" ng-if="data.approvalProcess.approvalProcessType.tahapan.nama=='Approval New Catalog'">
+                            {{ data.approvalProcess.approvalProcessType.tahapan.nama }}
+                        </div>
+                    </td>
+                    <td style="text-align:center">
+                        <strong class="text-primary text-bold" ng-if="data.approvalProcess.status==1"><span translate="menu.approval.awaitingapproval"></span></strong>	
+                        <strong class="text-warning text-bold" ng-if="data.approvalProcess.status==4">{{ (data.approvalProcess.status==4?'Hold':'') }}</strong>
+                    </td>
+                    <td style="text-align:left">{{ data.keteranganIndex }}</td>
+                    <td class="action-col" style="text-align:center">
+                         <a class="view-order badge bg-primary" ng-click="selectApprovalPR(data.approvalProcess)" ng-if="data.approvalProcess.approvalProcessType.tahapan.nama=='Approval Purchase Request'">
+                            <em class="fa fa-search"></em>
+                        </a> 
+                        <a class="view-order badge bg-primary" ng-click="selectApprovalPO(data.approvalProcess)" ng-if="data.approvalProcess.approvalProcessType.tahapan.nama=='CREATE_PO'">
+                            <em class="fa fa-search"></em>
+                        </a>
+                        <a class="view-order badge bg-primary" ng-click="selectApprovalNewCatalog(data.approvalProcess.approvalProcessType.valueId,'add',data.approvalProcess)" ng-if="data.approvalProcess.approvalProcessType.tahapan.nama=='Approval New Catalog'">
+                            <em class="fa fa-search"></em>
+                        </a>
+                        <a class="view-order badge bg-primary" ng-click="selectApprovalNewCatalog(data.approvalProcess.approvalProcessType.valueId,'edit',data.approvalProcess)" ng-if="data.approvalProcess.approvalProcessType.tahapan.nama=='Approval Edit Catalog'">
+                            <em class="fa fa-search"></em>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<!--END CONTROLLER-->

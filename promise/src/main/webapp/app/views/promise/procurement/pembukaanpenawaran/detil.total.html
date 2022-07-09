@@ -1,0 +1,341 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.panitia.pembukaanpenawaran.JUDUL"></span>
+	<!--<small><span translate="promise.procurement.panitia.pembukaanpenawaran.total.TOTAL"></span></small>-->
+</div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<!--START CONTROLLER-->
+<div ng-controller="PembukaanPenawaranTotalController as form">
+	<div id="pembukaanPenawaran">
+		<promise-view-data-pengadaan pengadaan-id=pengadaanId></promise-view-data-pengadaan>
+		<!--START PANEL KETIGA-->
+		<div class="panel panel-primary">
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-group">&nbsp;</em>
+                <span translate="promise.procurement.panitia.pembukaanpenawaran.total.list.TBLKEHADIRAN"></span> {{testValue.length}}
+            </h4>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="loading" align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px" border="0"/></strong>
+						</div>
+						<div class="table-responsive">
+							<table ng-table="form.daftarHadirVendorList" class="table table-hover table-condensed table-striped bg-white">
+								<thead>
+									<tr style="font-weight: bold">
+										<th scope="col"style="width:2%; text-align:center; vertical-align:middle"><span translate="promise.procurement.inisialisasi.tambahbumn.TBLNO"></span>
+										</th>
+										<th scope="col"style="width:20%; text-align:lef; vertical-align:middle"><span translate="promise.procurement.panitia.pembukaanpenawaran.total.list.TBLPENYEDIA"></span>
+										</th>
+										<th scope="col"style="width:10%; text-align:lef; vertical-align:middle"><span translate="promise.procurement.panitia.pembukaanpenawaran.total.list.TBLEMAIL"></span>
+										</th>
+										<th scope="col"style="width:15%; text-align:left; vertical-align:middle"><span translate="promise.procurement.panitia.pembukaanpenawaran.total.list.TBLTELP"></span>
+										</th>
+										<th scope="col"style="width:7%; text-align:right; vertical-align:middle"><span translate="promise.procurement.panitia.pembukaanpenawaran.total.list.TBLDEV"></span>
+										</th>
+										<th scope="col"style="width:10%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.pembukaanpenawaran.total.list.TBLHADIR"></span>
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="dhvl in $data">
+										<td style="text-align:center; vertical-align:middle">
+											{{$index+1}}
+										</td>
+										<td style="text-align:lef; vertical-align:middle">
+											{{dhvl.suratPenawaran.vendor.nama}}<br/>
+											<button ng-class="'bg-'+app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-sm " ng-click="viewDocument(dhvl.suratPenawaran)">
+												<span translate="">View Document</span>
+											</button>
+										</td>
+										<td style="text-align:left; vertical-align:middle">
+											{{dhvl.suratPenawaran.vendor.email}}
+										</td>
+										<td style="text-align:left; vertical-align:middle">
+											{{dhvl.suratPenawaran.vendor.nomorTelpon}}
+										</td>
+										<td style="text-align:right; vertical-align:middle">
+											<strong> {{ dhvl.deviasi |number : 2}}</strong>
+										</td>
+										<td style="text-align:center; vertical-align:middle">
+											<div class="checkbox c-checkbox c-checkbox-rounded">
+												<label>
+													<input ng-if="btnSimpanStatus" id="inlineradio10" type="checkbox" checked="checked" ng-model="checked" ng-click="togleCheckKehadiranVendor(dhvl.suratPenawaran.vendor)" />
+													<input ng-if="btnSimpanStatus==false" id="inlineradio10" type="checkbox" checked="checked" ng-model="checked" ng-click="togleCheckKehadiranVendor(dhvl.suratPenawaran.vendor)" ng-checked="getVendorId($index)" value="getVendorId($index)" onclick="return false" />
+													<span class="fa fa-check"></span>
+												</label>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="btn btn-sm pull-right" ng-click="form.goKurs()"><span translate="promise.procurement.panitia.pembukaanpenawaran.total.KURS"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--END PANEL KETIGA-->
+		<!--START PANEL KEEMPAT-->
+		<div class="panel panel-primary">
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-group">&nbsp;</em>
+                 <span translate="promise.procurement.panitia.pembukaanpenawaran.total.list.TBLDAFTARKEHADIRAN"></span>
+            </h4>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="table-responsive">
+							<table class="table table-hover table-condensed table-striped bg-white">
+								<thead>
+									<tr style="font-weight: bold">
+										<th scope="col"style="width:2%; text-align:center"><span translate="promise.procurement.inisialisasi.tambahbumn.TBLNO"></span>
+										</th>
+										<th scope="col"style="width:20%; text-align:center"><span translate="promise.procurement.panitia.pembukaanpenawaran.total.list.TBLNAMA"></span><small style="color:red; ">&nbsp;*</small>
+										</th>
+										<th scope="col"style="width:20%; text-align:center"><span translate="promise.procurement.panitia.pembukaanpenawaran.total.list.TBLJABATAN"></span><small style="color:red; ">&nbsp;*</small>
+										</th>
+										<th scope="col"ng-if="btnSimpanStatus" style="width:2%; text-align:center"><span translate="promise.procurement.inisialisasi.tambahbumn.TBLAKSI"></span>
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="pphp in form.kehadiranPanitiaList | limitTo:10">
+										<td style="text-align:center">
+											{{$index+1}}
+										</td>
+										<td style="text-align:center; vertical-align:middle">
+											<input type="text" name="namap" promise-alphanumeric-only class="form-control shadow-z1 input-sm" id="namap" ng-model="pphp.nama" ng-if="btnSimpanStatus">
+											<span ng-if="!btnSimpanStatus">{{pphp.nama}}</span>
+										</td>
+										<td style="text-align:center; vertical-align:middle">
+											<select name="jabatan" ng-model="pphp.jabatan" class="form-control m-b shadow-z1 input-sm" ng-if="btnSimpanStatus">
+												<option ng-repeat="jabatan in optionJabatan" value="{{ jabatan.id }}">{{jabatan.nama}}</option>
+											</select>
+											<span ng-if="!btnSimpanStatus">{{pphp.jabatan.nama}}</span>
+										</td>
+										<td style="width:2%; white-space: nowrap; text-align:center; vertical-align:middle" ng-if="btnSimpanStatus">
+											<button ripple="" ng-click="form.removeHadir($index)" title="Delete" class="mr btn btn-danger btn-circle btn-xs">
+												<em class="fa fa-trash"></em>
+											</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="panel-body" ng-show="btnSimpanStatus">
+							<button ng-class="'bg-' + app.theme.name" ng-click="form.addHadir()" class="btn btn-primary btn-sm pull-right" ripple="">
+								<span class=""><em class="fa fa-plus"></em></span>&nbsp;&nbsp;<font color="white"><span translate="promise.procurement.inisialisasi.tambahbumn.TAMBAH"></span></font>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div align="center" ng-bind-html="messageError" style="color:red"></div>
+	<div align="center" ng-bind-html="messageSuccess" style="color:green"></div>
+	<div align="center" ng-if="loading == true">
+		<strong><em>Loading...</em><img src="app/img/loading.gif" width="20px" border="0"/></strong>
+	</div>
+
+	<!----------------BUTTON SIMPAN--------------------->
+	<div align="center">
+		<button ng-class="'bg-' + app.theme.name" ng-click="form.back()" class="btn btn-primary btn-sm pull-center" ripple="">
+			<span class=""><em class="fa fa-chevron-left"></em></span>&nbsp;&nbsp;<font color="white"><span translate="promise.procurement.panitia.pembukaanpenawaran.tambah.KEMBALI">Kembali</span></font>
+		</button>
+<!-- 		<button ng-class="'bg-' + app.theme.name" type="button" class="btn btn-primary btn-sm pull-center" ng-click="printDiv('pembukaanPenawaran')" ng-show="view==true && form.tahapanPengadaan>6"><em class="fa fa-print">&nbsp;</em>
+			<span translate="promise.procurement.panitia.pengambilandokumen.view.btn.PRINT"></span>
+		</button> -->
+		<button ng-class="'bg-' + app.theme.name" ng-click="validasiSimpan()" ng-show="btnsimpanhilang" class="btn btn-primary btn-sm pull-center" ripple="">
+			<span class=""><em class="fa fa-chevron-left"></em></span>&nbsp;&nbsp;<font color="white">
+        <span class=""><em class="fa fa-sign-in"></em></span>&nbsp;&nbsp;<font color="white"><span translate="promise.procurement.panitia.pembukaanpenawaran.tambah.SIMPAN"></span></font></font>
+		</button>
+
+	</div>
+	<!------------------------------------->
+</div>
+<script type="text/ng-template" id="/inputKurs.html">
+	<div class="modal-header">
+		<button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="cancel()">× </button>
+		<h3 id="myModalLabel" class="modal-title">
+            <span translate="promise.procurement.panitia.pembukaanpenawaran.total.modal.KURSTERHADAP"></span></h3>
+	</div>
+	<div class="modal-body">
+		<div class="row">
+			<div class="col-xs-12" align="center" ng-if="loading==true"> <strong> <em> Loading... </em><img src="app/img/loading.gif" width="20px" border="0 "/></strong></div>
+			<div class="col-xs-12">
+				<table class="table table-hovertable-condensed table-striped bg-white">
+					<thead>
+						<tr style="font-weight:bold">
+							<th scope="col"style="width:2%; text-align:center">
+								<span translate="promise.procurement.inisialisasi.tambahbumn.TBLNO "></span>
+							</th>
+							<th scope="col"style="width:20%; text-align:left">
+								<span translate="promise.procurement.panitia.pembukaanpenawaran.total.list.TBLNMKURS"></span>
+							</th>
+							<th scope="col"style="width:20%; text-align:center">KURS</th>
+							
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="inputKurs in inputKursList | limitTo: 10">
+							<td style="text-align: center;vertical-align:middle">
+								{{$index+1}}
+							</td>
+							<td style="text-align:left; vertical-align:middle">
+								{{inputKurs.nama +' - ' + inputKurs.kode}}
+							</td>
+							<td style="text-align:center; vertical-align:middle">
+								<input promise-numbers-only type="number" class="form-control shadow-z1 input-sm" fcsa-number="{prepend:'Rp. '}" ng-model="inputKurs.kurs" ng-if="btnSimpanStatus">
+								<input type="number" class="form-control shadow-z1 input-sm" fcsa-number=" {prepend:'Rp. '}" ng-model="inputKurs.kurs" ng-if="btnSimpanStatus == false" readonly style="background:white">
+							</td>
+							
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-xs-12" align="center" ng-bind-html="messageSuccess" style="color:green"></div>
+			<div class="col-xs-12" align="center" ng-bind-html="messageError" style="color:red "></div>
+		</div>
+		<br/>
+	</div>
+	<div class="modal-footer">
+		<button ng-class="'bg-'+app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-sm " ng-click="cancel()">
+			<span class="btn-label "><em class="fa fa-chevron-left "></em></span>
+			<span translate="">Tutup</span>
+		</button>
+		<button ng-show="btnSimpanStatus" ng-class="'bg-'+app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="ok()">
+			<span translate="promise.procurement.panitia.pembukaanpenawaran.tambah.SIMPAN"></span>
+		</button>
+	</div>
+</script>
+
+
+
+<script type="text/ng-template" id="/view_document.html">
+	<div class="modal-header">
+		<button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="cancel()">× </button>
+		<h3 id="myModalLabel" class="modal-title">
+            <span translate="">View Dokumen Penawaran </span> {{suratPenawaranSelected.vendor.nama}}</h3>
+	</div>
+	<div class="modal-body">
+		<div class="row">
+			<div class="col-xs-12" align="center" ng-if="loadingDokAdmin==true"> <strong> <em> Loading... </em><img src="app/img/loading.gif" width="20px" border="0 "/></strong></div>
+			<h4>&nbsp;&nbsp;Dokumen Administrasi</h4>
+			<div class="col-xs-12">
+				<table class="table table-hovertable-condensed table-striped bg-white">
+					<thead>
+						<tr style="font-weight:bold">
+							<th scope="col"style="width:2%; text-align:center">
+								<span translate="">NO</span>
+							</th>
+							<th scope="col"style="width:20%; text-align:left">
+								<span translate="">Nama File</span>
+							</th>
+							<th scope="col"style="width:2%; text-align:center">
+								<span translate="">Download</span>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="fileAdmin in fileAdminList">
+							<td style="text-align: center;vertical-align:middle">
+								{{$index+1}}
+							</td>
+							<td style="text-align:left; vertical-align:middle">
+								{{fileAdmin.fileName}}
+							</td>
+							<td style="width:10%; white-space: nowrap; text-align: center; vertical-align:middle">
+								<button ripple="" ng-click="downloadFile(fileAdmin.realFileName)" class="mr btn btn-success">
+									Download
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12" align="center" ng-if="loadingDokTeknis==true"> <strong> <em> Loading... </em><img src="app/img/loading.gif" width="20px" border="0 "/></strong></div>
+			<h4>&nbsp;&nbsp;Dokumen Teknis</h4>
+			<div class="col-xs-12">
+				<table class="table table-hovertable-condensed table-striped bg-white">
+					<thead>
+						<tr style="font-weight:bold">
+							<th scope="col"style="width:2%; text-align:center">
+								<span translate="">NO</span>
+							</th>
+							<th scope="col"style="width:20%; text-align:left">
+								<span translate="">Nama File</span>
+							</th>
+							<th scope="col"style="width:2%; text-align:center">
+								<span translate="">Download</span>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="fileTeknis in fileTeknisList">
+							<td style="text-align: center;vertical-align:middle">
+								{{$index+1}}
+							</td>
+							<td style="text-align:left; vertical-align:middle">
+								{{fileTeknis.fileName}}
+							</td>
+							<td style="width:10%; white-space: nowrap; text-align: center; vertical-align:middle">
+								<button ripple="" ng-click="downloadFile(fileTeknis.realFileName)" class="mr btn btn-success">
+									Download
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12" align="center" ng-if="loadingDokDataPenawaran==true"> <strong> <em> Loading... </em><img src="app/img/loading.gif" width="20px" border="0 "/></strong></div>
+			<h4>&nbsp;&nbsp;Dokumen Data Penawaran</h4>
+			<div class="col-xs-12">
+				<table class="table table-hovertable-condensed table-striped bg-white">
+					<thead>
+						<tr style="font-weight:bold">
+							<th scope="col"style="width:2%; text-align:center">
+								<span translate="">NO</span>
+							</th>
+							<th scope="col"style="width:20%; text-align:left">
+								<span translate="">Nama File</span>
+							</th>
+							<th scope="col"style="width:2%; text-align:center">
+								<span translate="">Download</span>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="fileDataPenawaran in fileDataPenawaranList">
+							<td style="text-align: center;vertical-align:middle">
+								{{$index+1}}
+							</td>
+							<td style="text-align:left; vertical-align:middle">
+								{{fileDataPenawaran.fileName}}
+							</td>
+							<td style="width:10%; white-space: nowrap; text-align: center; vertical-align:middle">
+								<button ripple="" ng-click="downloadFile(fileDataPenawaran.realFileName)" class="mr btn btn-success">
+									Download
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<br/>
+	</div>
+	<div class="modal-footer">
+		<button ng-class="'bg-'+app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-sm " ng-click="cancel()">
+			<span class="btn-label "><em class="fa fa-chevron-left "></em></span>
+			<span translate="">Tutup</span>
+		</button>
+		<!--<button ng-show="btnSimpanStatus" ng-class="'bg-'+app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="ok()">
+			<span translate="promise.procurement.panitia.pembukaanpenawaran.tambah.SIMPAN"></span>
+		</button>-->
+	</div>
+</script>

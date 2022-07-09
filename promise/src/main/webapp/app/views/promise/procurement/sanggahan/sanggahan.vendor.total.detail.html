@@ -1,0 +1,292 @@
+<!-- rmt -->
+<div class="app-view-header">
+	<span>Sanggahan Total</span>
+</div>
+<toaster-container
+	toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<div ng-controller="SanggahanVendorTotalDetailController as form">
+	<promise-view-data-pengadaan pengadaan-id=pengadaanId></promise-view-data-pengadaan>
+
+
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<em class="fa fa-table">&nbsp;</em>
+		<span translate="promise.procurement.vendor.HasilPengadaan.View.Pemenang"></span>
+	</h4>
+	<div class="panel panel-primary">
+		<div class="panel-body">
+			<div class="col-xs-12">
+				<div class="table-responsive">
+					<table ng-table="evaluasiVendorList" class="table table-hover table-condensed table-striped bg-white">
+						<thead>
+							<tr style="font-weight: bold">
+								<th scope="col"style="width:5%; text-align:left"><span >No</span>
+								</th>
+								<th scope="col"style="width:35%; text-align:left"><span >Vendor Name</span>
+								</th>
+								<th scope="col"style="width:20%; text-align:center"><span>Administration Evaluation</span>
+								</th>
+								<th scope="col"style="width:20%; text-align:center"><span >Tehnical Evaluation</span>
+								</th>
+								<th scope="col"style="width:20%; text-align:center"><span >Quotation Evaluation</span>
+								</th>
+								<th scope="col"style="width:20%; text-align:center"><span >Candidate</span>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="evaluasi in $data">
+								<td>{{$index+1}}</td>
+								<td>{{ evaluasi.vendor.nama }}</td>
+								<td align="center">{{ evaluasi.nilaiAdmin | number: 2 }}</td>
+								<td align="center">{{ evaluasi.nilaiTeknis | number: 2 }}</td>
+								<td align="center">{{ evaluasi.nilaiHarga | number: 2 }}</td>
+								<td align="center">
+										 <div class="checkbox c-checkbox c-checkbox-rounded">
+		                                    <label>
+		                                        <input id="inlineradio10" type="checkbox" ng-disabled="true"  ng-model="evaluasi.isCalonPemenang" ng-checked="evaluasi.isCalonPemenang == 1" ng-click="statusCheck(nevl)" />
+		                                        <span class="fa fa-check"></span>
+		                                    </label>
+		                                </div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+
+	<!-- Berita Sanggahan -->
+	<div class="panel panel-primary">
+		<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-tasks">&nbsp;</em><span>Sanggahan Vendor</span>
+		</h4>
+		<div ng-show="form.loading" align="center">
+			<strong><em>Loading... <img src="app/img/loading.gif" border="0"
+					height="20px" /></em></strong>
+		</div>
+		<div ng-show="!loading" class="panel-body">
+			<table id="table-ext-1" class="table table-bordered table-hover"
+				width="100%">
+				<tbody>
+
+					<tr>
+						<td style="text-align: left;valign=top"><span>Refutation
+								Date</span><small style="color: red">&nbsp;*</small></td>
+						<td style="text-align: left;" width="60%">
+							<div class="row">
+								<div class="col-sm-10 col-lg-4">
+									<div class="input-group">
+										<input type="text" name="sanggahan_tanggal"
+											datepicker-popup="{{form.format}}"
+											ng-model="sanggahan_tanggal"
+											is-open="form.tanggalSanggahanOpened"
+											min-date="form.minDate" max-date="false"
+											datepicker-options="form.dateOptions"
+											date-disabled="form.disabled(form.date, form.mode)"
+											close-text="Close" class="form-control shadow-z1 input-sm"
+											readonly="true"
+											required readonly style="background-color: white;" /> <span
+											class="input-group-btn"
+											
+											>
+											<button type="button"
+												ng-click="form.tanggalSanggahanOpen($event)"
+												class="btn btn-default shadow-z1 input-sm " ripple=""
+												ng-show="isEditable">
+												<em class="fa fa-calendar"></em>
+											</button>
+										</span>
+									</div>
+								</div>
+								<div class="col-sm-12 ">
+									<div
+										ng-show="tanggal_error_required"
+										style="color: red">Masukkan tanggal berita acara</div>
+								</div>
+							</div>
+
+						</td>
+					</tr>
+
+					<tr>
+						<td style="text-align: left; vertical-align: top"><span>Refutation
+								Information</span></td>
+						<td style="text-align: left; vertical-align: top" width="60%">
+							<textarea rows="4" cols="50" class="form-control input-sm" id=""
+								ng-model="form.sanggahan.keterangan" ng-disabled="!isEditable"
+								maxlength="250">
+                                </textarea>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+<!-- Berita Sanggahan -->
+
+
+<!-- Upload -->
+<div class="panel panel-primary">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<em class="fa fa-briefcase">&nbsp;</em><span>Refutation Document</span>
+	</h4>
+	<div ng-show="loading" align="center">
+		<strong><em>Loading... <img src="app/img/loading.gif" border="0"
+				height="20px" /></em></strong>
+	</div>
+	<div ng-show="!loading" class="panel-body">
+		<div class="col-md-12">
+
+			<div class="form-group">
+				<p ng-if="!uploader.queue.length" class=" text-center">
+					<span
+						translate="promise.procurement.panitia.penjelasan.dokumen.NO_FILE">Upload
+						Dokumen Perubahan</span>
+				</p>
+				<div ng-if="uploader.queue.length">
+					<table ng-if="uploader.queue.length" class="table">
+						<thead>
+							<tr>
+								<th scope="col"width="50%"><span
+									translate="promise.procurement.panitia.penjelasan.dokumen.NAMA_FILE"></span>
+								</th>
+								<th scope="col"ng-show="uploader.isHTML5"><span
+									translate="promise.procurement.panitia.penjelasan.dokumen.UKURAN"></span>
+								</th>
+								<th scope="col"ng-show="uploader.isHTML5 && isEditable"><span
+									translate="promise.procurement.panitia.penjelasan.dokumen.PROSES"></span>
+								</th>
+								<th scope="col"ng-show="isEditable"><span
+									translate="promise.procurement.panitia.penjelasan.dokumen.STATUS"></span>
+								</th>
+								<th scope="col"ng-show="isEditable"><span
+									translate="promise.procurement.panitia.penjelasan.dokumen.AKSI"></span>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in uploader.queue">
+								<td><strong>{{ item.file.name }}</strong></td>
+								<td ng-show="uploader.isHTML5" nowrap="">{{
+									item.file.size/1024/1024|number:2 }} MB</td>
+								<td ng-show="uploader.isHTML5 && isEditable">
+									<div style="margin-bottom: 0;" class="progress progress-xs">
+										<div role="progressbar"
+											ng-style="{ 'width': item.progress + '%' }"
+											class="progress-bar"></div>
+									</div>
+								</td>
+								<td class="text-center" ng-show="isEditable"><span
+									ng-show="item.isSuccess"> <em class="fa fa-check fa-fw"></em>
+								</span> <span ng-show="item.isCancel"> <em
+										class="fa fa-ban-circle fa-fw"></em>
+								</span> <span ng-show="item.isError"> <em
+										class="fa fa-times fa-fw"></em>
+								</span></td>
+								<td nowrap="" ng-show="isEditable">
+									<button ng-hide="item.isSuccess" type="button"
+										ng-click="item.upload()"
+										ng-disabled="item.isReady || item.isUploading || item.isSuccess"
+										class="btn btn-info btn-xs">
+										<span class="icon-cloud-upload mr"></span>Upload
+									</button>
+									<button ng-hide="item.isSuccess" type="button"
+										ng-click="item.cancel()" ng-disabled="!item.isUploading"
+										class="btn btn-warning btn-xs">
+										<span class="icon-cross mr"></span>Batal
+									</button>
+									<button type="button" ng-click="item.remove()"
+										class="btn btn-danger btn-xs">
+										<span class="icon-trash mr"></span>Hapus
+									</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="panel-body" >
+		<div class="col-md-12">
+
+			<div class="form-group">
+				<div ng-if="uploader.queue.length">
+					<div style="" class="progress progress-xs">
+						<div role="progressbar"
+							ng-style="{ 'width': uploader.progress + '%' }"
+							class="progress-bar"></div>
+					</div>
+				</div>
+				<div>
+					<div ng-if="uploader.queue.length <=0"
+						style="width: 40%; margin: 0 auto;">
+						<input filestyle="" type="file" data-button-text="Pilih File"
+							data-class-button="btn btn-default"
+							data-class-input="form-control inline" nv-file-select=""
+							uploader="uploader" multiple="" class="form-control" />
+					</div>
+					<div ng-if="uploader.queue.length" class="col-sm-6">
+						<input filestyle="" type="file" data-button-text="Pilih File"
+							data-class-button="btn btn-default"
+							data-class-input="form-control inline" nv-file-select=""
+							uploader="uploader" multiple="" class="form-control" />
+					</div>
+					<div ng-if="uploader.queue.length">
+						<button type="button" ng-click="uploader.uploadAll()"
+							ng-disabled="!uploader.getNotUploadedItems().length"
+							class="btn btn-info btn-s">
+							<span class="icon-cloud-upload mr"></span>Upload Semua
+						</button>
+						<button type="button" ng-click="uploader.cancelAll()"
+							ng-disabled="!uploader.isUploading" class="btn btn-warning btn-s">
+							<span class="icon-cross mr"></span>Batalkan Semua
+						</button>
+						<button type="button" ng-click="uploader.clearQueue()"
+							ng-disabled="!uploader.queue.length" class="btn btn-danger btn-s">
+							<span class="icon-trash mr"></span>Hapus Semua
+						</button>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+<!-- end upload -->
+
+<!-- BUTTON -->
+<div align="center">
+	<div ng-show="loadingSaving" align="center">
+		<strong><em>Simpan data sanggahan... <img src="app/img/loading.gif"
+				border="0" height="20px" /></em></strong>
+	</div>
+	<div ng-show="!loading" align="center">
+		<div align="center">
+			<button ng-disabled="loadingSaving" ripple=""
+				class="btn btn-primary btn-sm  bg-primary" ng-click="gotoIndex()"
+				ng-class="'bg-' + app.theme.name" style="margin-right: 5px">
+				<span class=""><em class="fa fa-chevron-left"></em></span>&nbsp;&nbsp;<font
+					color="white"><span class="ng-scope">Kembali</span></font> <span
+					class="ripple"></span>
+			</button>
+
+
+			<button ng-disabled="loadingSaving" ng-show="isEditable" ng-class="'bg-' + app.theme.name"
+				ng-click="save()" class="btn btn-sm pull-center" ripple="">
+				<span class=""><em class="fa fa-sign-in"></em></span>&nbsp;&nbsp;<font
+					color="white"><span>Simpan</span></font>
+			</button>
+
+
+		</div>
+	</div>
+</div>
+
+</div>
+

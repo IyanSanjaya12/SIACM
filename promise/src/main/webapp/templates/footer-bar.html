@@ -1,0 +1,173 @@
+<div class="footer-bar">
+    <div class="comp-win" ng-show="openCompare">
+        <div class="comp-win-title">
+            <span>Comparison</span>
+            <a ng-click="openCompare = !openCompare"><em class="fa fa-close"></em></a>
+        </div>
+        <div class="compare-panel">
+            <tabset class="tab-container small-tab">
+                <tab heading="Products">
+                    <div class="comp-select-all">
+                        <div class="c-checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="isAllSelectedCatalog" ng-click="selectAllCatalog(isAllSelectedCatalog)"/>
+                                <span class="fa fa-check no-margin"></span>
+                                Check all
+                            </label>
+                        </div>
+                        <a ng-click="openCompare = !openCompare; removeAllCompare(); ">Clear all</a>
+                    </div>
+                    <div class="comp-list">
+                        <div class="product-title" ng-repeat="compare in compareList">
+                            <div class="c-checkbox col-sm-1 col-sm-1">
+                                <label>
+                                    <input type="checkbox" ng-model="compare.checked" />
+                                    <span class="fa fa-check no-margin"></span>
+                               </label>
+                            </div>
+							<div class="img-wrapper col-sm-5 col-sm-5">
+								<a href="#" target="_blank"> <img class="thumb80 img-rounded" ng-src="{{compare.catalogImageList[0].loadFile}}" on-error="{{gambarDefault}}"> </a>
+                            </div>
+                            <a ui-sref="app.promise.procurement-ecatalog-Detail({dataCatalog:compare})" class="product-desc"> {{compare.namaIND}} </a>
+                            <div ng-bind="compare.vendor.nama"></div>
+                            <a ng-click="openCompare = !openCompare; removeCompare(compare);"><em class="fa fa-close"></em></a>
+                        </div>
+                    </div>
+                </tab>
+            </tabset>
+
+            <div class="button-area util-clearfix">
+                <button ng-click="openCompare = !openCompare; showCompare();" class="btn btn-primary btn-sm">Compare</button>
+            </div>
+
+        </div>
+    </div>
+  
+    <!-- COMPARE VENDOR -->
+    <div class="comp-win ng-hide" ng-show="openVendor">
+        <div class="comp-win-title">
+            <span>My Vendor</span>
+            <a ng-click="openVendor = !openVendor"><em class="fa fa-close"></em></a>
+        </div>
+        <div class="compare-panel">
+            <tabset class="tab-container small-tab">
+                <tab heading="Supplier">
+                    <div class="comp-select-all">
+                        <div class="c-checkbox">
+                            <label> 
+                            	<input type="checkbox" ng-model="isAllSelectedVendor" ng-click="selectAllVendor(isAllSelectedVendor)" /> 
+                            	<span class="fa fa-check no-margin"></span> Check all 
+                            </label>
+                        </div>
+                        <a ng-click="openVendor = !openVendor; removeAllCompareVendor(); ">Clear all</a>
+                    </div>
+                    <div class="comp-list">
+                        <div class="product-title" ng-repeat="compareVendor in compareVendorList">
+                            <div class="c-checkbox col-sm-1 col-sm-1">  
+                            	<label>
+                                    <input type="checkbox" ng-model="compareVendor.checked"/>
+                                    <span class="fa fa-check no-margin"></span>
+                                </label>       	                                
+                            </div>
+                            <div class="img-wrapper col-sm-5 col-sm-5">
+								<a href="#" target="_blank">
+									<div ng-if="compareVendor.logoImage == null">
+										<img class="thumb80 img-rounded" ng-src="app/img/user/01.jpg" alt="{{compareVendor.nama}}">
+									</div>
+									<div ng-if="compareVendor.logoImage != null">
+										<img class="thumb80 img-rounded" ng-src="{{compareVendor.loadLogoImage}}" alt="{{compareVendor.nama}}" on-error="app/img/user/01.jpg">
+									</div>
+                                </a>
+							</div>
+							<div ng-bind="compareVendor.nama"></div>
+							<div ng-bind="compareVendor.alamat"></div>
+								<div class="rating small">
+									<rating ng-model="compareVendor.performanceAvgFloor"  max="5" readonly="true" state-on="'glyphicon-star text-warning'" state-off="'glyphicon-star-empty'"></rating>
+								</div>
+                            <a ng-click="openVendor = !openVendor; removeCompareVendor(compareVendor);"><em class="fa fa-close"></em></a>
+                        </div>
+                    </div>
+                </tab>
+            </tabset>
+            <div class="button-area util-clearfix">
+                <button ng-click="openVendor = !openVendor; showCompareVendor();" class="btn btn-primary btn-sm">Compare</button>
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- CART LIST -->
+	<div class="comp-win" ng-show="openCart">
+        <div class="comp-win-title">
+            <span>My Cart</span>
+            <a ng-click="openCart = !openCart"><em class="fa fa-close"></em></a>
+        </div>
+        <div class="compare-panel">
+            <tabset class="tab-container small-tab">
+                <tab heading="Products">
+					<div class="comp-select-all">
+                        <!-- <div class="c-checkbox">
+                            <label>
+                                <input type="checkbox" value="" />
+                                <span class="fa fa-check no-margin"></span>
+                                Check all
+                            </label>
+                        </div> -->
+                    </div>
+                    <div class="comp-list">
+                        <div class="product-title" ng-repeat="cart in cartList">
+                            <div class="c-checkbox">
+                                <label>
+<!--                                     <input type="checkbox" value="" /> -->
+<!--                                     <span class="fa fa-check no-margin"></span> -->
+                                    <div class="img-wrapper">
+                                        <a ui-sref="app.promise.procurement-ecatalog-Detail({dataCatalog:cart})" >
+                                            <img class="thumb80 img-rounded" ng-src="{{cart.catalogImageList[0].loadFile}}">
+                                        </a>
+                                    </div>
+                                    <a ui-sref="app.promise.procurement-ecatalog-Detail({dataCatalog:cart})" class="product-desc">
+                                        {{ cart.namaIND | cut:true:25:''}} <small><p><strong ng-bind="cart.vendor.nama | cut:true:25:' ...'"></strong><br> 
+                                        <em ng-show="cart.harga_eproc == null || cart.harga_eproc == 0"><font face="verdana" color="green" ng-bind="cart.mataUang.kode+' '+(cart.harga | currency:'')"></font></em>
+                                        <em ng-show="cart.harga_eproc != null && cart.harga_eproc != 0"><font face="verdana" color="green" ng-bind="cart.mataUang.kode+' '+(cart.harga_eproc | currency:'')"></font></em></p></small>
+                                    </a>
+                                </label>
+                            </div>
+                            <a ng-click="openCart = !openCart; removeCart(cart);"><em class="fa fa-close"></em></a>
+                        </div>
+                    </div>
+                </tab>
+            </tabset>
+
+            <div class="button-area util-clearfix">
+                <button ng-click="openCart = !openCart; showCart();" class="btn btn-primary btn-sm">GO TO CART</button>
+            </div>
+
+        </div>
+    </div>
+    
+    <!-- mini icon catalog -->
+    <div class="my-cart" ng-show="compareList != undefined && compareList.length > 0" ng-click="openCompare = !openCompare;openCompare = !openCart">
+    	
+    	<span class="badge" style="padding: 5px 8px; background-color: #31547D"">{{compareList.length}}</span>
+        <div class="comp-img"> <em class="compare-icon"></em> </div>
+        <div class="comp-text"> Compare Catalog </div>
+    </div>
+    
+    <!-- mini icon vendor -->
+    <div  class="my-cart" ng-show="compareVendorList != undefined && compareVendorList.length > 0" ng-click="openVendor = !openVendor">
+        <div class="comp-img"> <em class="compare-icon"></em> </div>
+        <div class="comp-text"> Compare Vendor </div>
+    </div>
+    
+    <!-- mini icon chart -->
+    <div id="tes2" class="my-cart" ng-show="cartShow" ng-click="openCart = !openCart;openCart = !openCompare">
+    	
+    	<span class="badge" style="padding: 5px 8px; background-color: #31547D">{{cartList.length}}</span>
+        <div class="comp-img">
+            <em class="cart-icon"></em>
+        </div>
+        <div class="comp-text">
+            My Cart
+        </div>
+    </div>
+</div>

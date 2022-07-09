@@ -1,0 +1,81 @@
+<div class="app-view-header"> 
+    <span translate="promise.procurement.master.alurpengadaan.JUDUL"></span>
+	<small>
+        <span translate="promise.procurement.master.alurpengadaan.tambah.TAMBAH"></span>
+    </small>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="AlurPengadaanAddTahapanController as form">
+	<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <em class="fa fa-tasks"></em>
+        <span translate="promise.procurement.master.alurpengadaan.tambah.TAMBAH"></span>
+        <a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+            <em class="fa fa-chevron-circle-down"></em>
+        </a>
+    </h4>
+    <div class="panel-body collapse in">
+		<div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong>
+		</div>
+		<form novalidate class="form-horizontal">
+			<ul html-sortable="sortableOptions" html-sortable-callback="sortableCallback" ng-model="form.tahapanPengadaanList" class="list-group">
+				<li ng-repeat="itm in form.tahapanPengadaanList" class="list-group-item"> <em class="fa fa-reorder fa-fw text-muted mr-lg"></em>{{itm.tahapan.nama}}</li>
+			</ul>
+			<div class="col-sm-12">
+				<div class="col-sm-3">
+					<button ng-click="form.find()" class="btn btn-info">Add another</button>
+				</div>
+				<div class="col-sm-9 text-right">
+					<button ng-click="form.copy()" class="btn btn-info btn-sm">Copy</button>&nbsp;&nbsp;
+					<button ng-click="form.paste()" class="btn btn-info btn-sm">Paste</button>&nbsp;&nbsp;
+					<button ng-click="form.remove()" class="btn btn-info btn-sm">Remove</button>&nbsp;&nbsp;
+					<button ng-click="form.clear()" class="btn btn-info btn-sm">Clear</button>
+				</div>
+			</div>
+		</form>
+		<div class=" text-center">
+			<button type="button" ripple="" class="mr mb-sm btn btn-default" ng-click="form.back()"> <span translate="member_detail.BTN_KEMBALI"></span>
+			</button>
+			<button type="submit" ripple="" class="mr mb-sm btn btn-primary" ng-click="form.save()"> <span translate="member_detail.BTN_SIMPAN"></span>
+			</button>
+		</div>
+	</div>
+</div>
+<script type="text/ng-template" id="/modal.html">
+	<div class="modal-header">
+	        <button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="cancel()">×</button>
+	        <h3 id="myModalLabel" class="modal-title">Pencarian Data Tahapan Pengadaan</h3>
+	    </div>
+	    <div class="modal-body">
+	        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">Data Tahapan Pengadaan</h4>
+	        <div class="panel-body">
+	            <div class="form-group">
+	                <table datatable="ng" class="row-border hover table-striped">
+	                    <thead>
+	                        <tr>
+	                            <th scope="col"style="text-align:center">No
+	                            </th>
+	                            <th scope="col"style="text-align:center">Nama</th>
+	                            <th scope="col"style="text-align:center">Aksi
+	                            </th>
+	                        </tr>
+	                    </thead>
+	                    <tbody>
+	                        <tr ng-repeat="pr in tahapanPengadaanList">
+	                            <td style="text-align:center">{{ $index+1 }}</td>
+	                            <td style="text-align:center" ng-if="pr.tahapan==undefined">{{ pr.nama}}</td>
+	                            <td style="text-align:center" ng-if="pr.tahapan!=undefined">{{ pr.tahapan.nama}}</td>
+	                            <td style="text-align:center">
+	                                <div>
+	                                    <button type="button" class="mr btn btn-success btn-circle btn-xs" ng-click="choose(pr)">
+	                                        <em class="fa fa-search"></em>
+	                                    </button>
+	                                </div>
+	                            </td>
+	                        </tr>
+	                    </tbody>
+	                </table>
+	            </div>
+	        </div>
+	    </div>
+</script>

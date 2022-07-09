@@ -1,0 +1,75 @@
+<div class="container container-sm animated fadeInDown">
+   <div class="center-block mt-xl">
+      <!-- START panel-->
+      <img src="app/img/logo.png" alt="Image" class="center-block img-rounded" />
+      <div class="panel panel-danger">
+          <div class="panel-heading"><p class="pv text-bold">LOGIN CREDENTIALS</p></div>
+         <div class="panel-body">            
+            <form role="form" class="mb-lg">
+               <div class="row">
+                   <div class="col-md-12">
+                   <div class="col-md-8">
+                  <div class="col-md-12">
+                     <div class="form-group has-feedback mb">
+                        <input id="exampleInputUserName" type="email" placeholder="Your Username" autocomplete="off" class="form-control" />
+                        <span class="fa fa-user form-control-feedback text-muted"></span>
+                     </div>
+                   </div>                    
+                   <div class="col-md-12">
+                     <div class="form-group has-feedback">
+                        <input id="exampleInputPassword1" type="password" placeholder="Your password" class="form-control" />
+                        <span class="fa fa-lock form-control-feedback text-muted"></span>
+                     </div>
+                   </div>
+                    <div class="col-md-6">
+                     <div class="form-group has-feedback mb">
+                        <input id="exampleInputUserName" type="email" placeholder="Capcha" autocomplete="off" class="form-control" />
+                        <span class="fa fa-picture-o form-control-feedback text-muted"></span>
+                     </div>
+                   </div>
+                    <div class="col-md-6">
+                     <div class="form-group has-feedback mb">
+                        <input id="exampleInputUserName" type="email" placeholder="Input Capcha" autocomplete="off" class="form-control" />
+                        <span class="fa fa-pencil-square-o form-control-feedback text-muted"></span>
+                     </div>
+                   </div>
+                   <div class="col-md-12">
+                     <div class="checkbox c-checkbox pull-left mt0">
+                        <label>
+                           <input type="checkbox" value="" />
+                           <span class="fa fa-check"></span>Remember me</label>
+                       </div></div>
+                   <div class="col-md-12">
+                     <div class="form-group has-feedback">
+                         <div class="row">
+                             <div class="panel-body">
+                                 <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="form.add()">
+              <span class="btn-label"><em class="fa fa-unlock"></em></span>Login
+		  </button>
+                                 <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="form.add()">
+              <span class="btn-label"><em class="fa fa-repeat"></em></span>Cencel
+		  </button>
+                                 
+                             </div>
+                         </div>
+                        <p class="text-muted mb0">Don't have an account yet ? 
+                        <a ui-sref="page.register">
+                            <strong>Register</strong>
+                        </a></p>
+                       </div>
+                       </div>
+               </div>
+                   <div class="col-md-4">
+                       <img src="app/img/user/01.jpg" alt="Image" class="center-block img-rounded" />
+                   </div>
+                </div>
+                </div>
+            </form>
+         </div>
+      </div>
+      <div class="text-center mt"><a ui-sref="page.recover" class="text-muted">Forgot your password?</a>
+      </div>
+      <!-- END panel-->
+      <div ng-include="'app/views/page.footer.html'" class="p-lg text-center"></div>
+   </div>
+</div>

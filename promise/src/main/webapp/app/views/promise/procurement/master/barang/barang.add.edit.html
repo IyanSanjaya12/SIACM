@@ -1,0 +1,118 @@
+<div class="app-view-header"> 
+	<span translate="barang.judul"></span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="BarangAddEditController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-tasks"></em>
+			<span ng-if="vm.todo=='add'" translate="barang.judulTambah"></span>
+			<span ng-if="vm.todo=='edit'" translate="barang.judulEdit"></span>
+			<a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+				<em class="fa fa-chevron-circle-down"></em>
+			</a>
+		</h4>
+	<form class="form-horizontal" name="barangForm">
+		<div class="panel-body collapse in">			
+			<div class="col-lg-12">
+				<fieldset>
+					<h4 class="page-header no-margin"><span translate="barang.barang"></h4>
+					<div class="form-group m-t">
+						<label class="col-lg-2 control-label required">
+							<span translate="barang.list.namabarang"></span>
+						</label>
+						<div class="col-lg-8">
+							<input name="namaBarang" maxlength="255" class="form-control" ng-model="vm.barang.nama">
+							<strong style="color: red" translate={{vm.errorMessageNama}}></strong> 
+						</div>
+					</div>
+	                <div class="form-group">
+						<label class="col-lg-2 control-label required">
+							<span translate="barang.list.kodebarang"></span>
+						</label>
+						<div class="col-lg-8">
+							<input name="kodeBarang" maxlength="255" class="form-control" ng-model="vm.barang.kode">
+							<strong style="color: red" translate={{vm.errorMessageKode}}></strong> 
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 control-label required">
+							<span translate="barang.list.hargabeli"></span>
+						</label>
+						<div class="col-lg-8 no-search">
+							<input name="hargaBeli" maxlength="30" promise-numbers-only-copy promise-currency-blur class="form-control" ng-model="vm.barang.hargaBeli"> 
+							<strong style="color: red" translate={{vm.errorMessageHargaBeli}}></strong> 
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 control-label required">
+							<span translate="barang.list.harga"></span>
+						</label>
+						<div class="col-lg-8 no-search">
+							<input name="hargaBarang" maxlength="30" promise-numbers-only-copy promise-currency-blur class="form-control" ng-model="vm.barang.harga"> 
+							<strong style="color: red" translate={{vm.errorMessageHarga}}></strong> 
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 control-label required">
+							<span translate="barang.list.stok"></span>
+						</label>
+						<div class="col-lg-8 no-search">
+							<input name="stokBarang" maxlength="30" promise-numbers-only-copy class="form-control" ng-model="vm.barang.jumlah"> 
+							<strong style="color: red" translate={{vm.errorMessageStok}}></strong> 
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 control-label required">
+							<span translate="barang.list.stokminimal"></span>
+						</label>
+						<div class="col-lg-8 no-search">
+							<input name="stokMinimal" promise-numbers-only-copy maxlength="30" class="form-control" ng-model="vm.barang.stokMinimal">
+							<strong style="color: red" translate={{vm.errorMessageStokMinimal}}></strong> 
+						</div>
+					</div>
+				</fieldset>
+				<br>
+				<fieldset>
+					<h4 class="page-header no-margin"><span translate="barang.tipe"></h4>
+					<div class="form-group m-t">
+						<label class="col-lg-2 control-label required">
+							<span translate="mobil.nama"></span>
+						</label>
+						<div class="col-lg-8 no-search">
+							<ui-select ng-model="vm.barang.mobil" theme="bootstrap" reset-search-input="false" ng-change="changeNomorKontrak()">
+			                    <ui-select-match placeholder="Select Tipe Mobil">{{vm.barang.mobil.nama}}</ui-select-match>
+			                    <ui-select-choices repeat="data in vm.mobilList" refresh="findMobil($select.search)" refresh-delay="0">
+			                        <div ng-bind-html="data.nama | highlight: $select.search" ></div>
+			                    </ui-select-choices>
+			                </ui-select>
+			                <strong style="color: red" translate={{vm.errorMessageMobil}}></strong>
+						</div> 
+					</div>
+	                <div class="form-group">
+						<label class="col-lg-2 control-label required">
+							<span translate="mobil.merk"></span>
+						</label>
+						<div class="col-lg-8">
+							<input name="streetAddress" class="form-control" ng-model="vm.barang.mobil.merk" disabled>
+							<strong style="color: red" translate={{vm.errorMessage}}></strong> 
+						</div>
+					</div>
+				</fieldset>
+				<br>
+			</div>
+			<br>
+		</div>
+		<div class="panel-footer">
+			<div class="form-group">
+				<div align="center">
+					<br/>
+					<br/>
+					<button type="button" ripple="" class="btn btn-default" ng-click="back()"><span translate="template.button.kembali"></span>
+					</button>
+					<button type="button" ripple="" class="btn btn-primary" ng-click="save()"><span translate="template.button.simpan"></span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

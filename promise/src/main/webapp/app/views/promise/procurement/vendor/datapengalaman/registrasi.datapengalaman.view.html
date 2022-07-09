@@ -1,0 +1,200 @@
+<div class="app-view-header">
+	<span
+		translate="promise.procurement.RegistrasiVendor.datapengalaman.judul1"></span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary"
+	ng-controller="DataPengalamanViewController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<span ng-if="vm.toDo=='add' && vm.tipe=='PELANGGAN'"
+			translate="promise.procurement.RegistrasiVendor.datapengalaman.view.subjudul_tambah_pelanggan"></span>
+		<span ng-if="vm.toDo=='add' && vm.tipe=='MITRA'"
+			translate="promise.procurement.RegistrasiVendor.datapengalaman.view.subjudul_tambah_mitra"></span>
+		<span ng-if="vm.toDo=='add' && vm.tipe=='INPROGRESS'"
+			translate="promise.procurement.RegistrasiVendor.datapengalaman.view.subjudul_tambah_inprogress"></span>
+			
+			
+		<span ng-if="vm.toDo=='edit' && vm.dataPengalaman.tipePengalaman=='PELANGGAN'"
+			translate="promise.procurement.RegistrasiVendor.datapengalaman.view.subjudul_ubah_pelanggan"></span>
+		<span ng-if="vm.toDo=='edit' && vm.dataPengalaman.tipePengalaman=='MITRA'"
+			translate="promise.procurement.RegistrasiVendor.datapengalaman.view.subjudul_ubah_mitra"></span>
+		<span ng-if="vm.toDo=='edit' && vm.dataPengalaman.tipePengalaman=='INPROGRESS'"
+			translate="promise.procurement.RegistrasiVendor.datapengalaman.view.subjudul_ubah_inprogress"></span>
+	</h4>
+
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-md-12">
+				<div align="center" ng-if="loadingUpload == true">
+					<strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong>
+				</div>
+				<form method="post" action="#" novalidate="" class="form-horizontal">
+					<fieldset>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label"><span
+								translate="promise.procurement.RegistrasiVendor.datapengalaman.view.nama_pekerjaan"></span>
+								<label class="text-danger">*</label> </label>
+							<div class="col-sm-5 col-sm-6">
+								<input name="namaPekerjaan" promise-alphanumeric-only
+									maxlength="200" type="text" class="form-control shadow-z1 input-sm"
+									ng-model="vm.dataPengalaman.namaPekerjaan">
+								<strong style="color: red" translate={{vm.errorMessageNamaPekerjaan}}>
+								</strong>
+								<br />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label"><span
+								translate="promise.procurement.RegistrasiVendor.datapengalaman.view.lokasi_pekerjaan"></span>
+								<label class="text-danger">*</label> </label>
+							<div class="col-sm-5">
+								<input name="lokasiPekerjaan" type="text"
+									promise-alphanumeric-only maxlength="100"
+									class="form-control shadow-z1 input-sm"
+									ng-model="vm.dataPengalaman.lokasiPekerjaan">
+								<strong style="color: red"
+									translate={{vm.errorMessageLokasiPekerjaan}}></strong>
+								<br />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label"><span
+								translate="promise.procurement.RegistrasiVendor.datapengalaman.view.bidang_usaha"></span>
+								<label class="text-danger">*</label> </label>
+							<div class="col-sm-5">
+								<div class="input-group">
+									<ui-select name="bidangUsaha" ng-model="vm.list.bidangUsaha"
+										theme="bootstrap"> <ui-select-match
+										placeholder="Pilih Bidang Usaha ...">
+									{{$select.selected.nama}}</ui-select-match> <ui-select-choices
+										repeat="bidangUsaha in vm.bidangUsahaList | filter: $select.search"
+										style="width: 350px;font-size: 14px;">
+									<div
+										ng-bind-html="bidangUsaha.nama | highlight: $select.search"></div>
+									</ui-select-choices> </ui-select>
+								</div>
+								<strong style="color: red" translate={{vm.errorMessageBidangUsaha}}></strong>
+								<br />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label"><span
+								translate="promise.procurement.RegistrasiVendor.datapengalaman.view.mulai_kerjasama"></span>
+								<label class="text-danger">*</label> </label>
+							<div class="col-sm-3">
+								<div class="input-group">
+									<input name="mulaiKerjasama" type="text"
+										datepicker-popup="dd/MM/yyyy"
+										ng-model="vm.dataPengalaman.mulaiKerjasama"
+										is-open="mulaiKerjasamaStatus"
+										class="form-control shadow-z1 input-sm"
+										show-button-bar="false" readonly="true" required /> <span
+										class="input-group-btn">
+										<button type="button" ng-click="mulaiKerjasamaOpen($event)"
+											class="btn btn-default shadow-z1 input-sm " ripple="">
+											<em class="fa fa-calendar"></em>
+										</button>
+									</span>
+								</div>
+								<strong style="color: red"
+									translate={{vm.errorMessageMulaiKerjasama}}></strong>
+								<br />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label"><span
+								translate="promise.procurement.RegistrasiVendor.datapengalaman.view.nilai_kontrak"></span>
+								<label class="text-danger">*</label> </label>
+							<div class="col-sm-3">
+								<input name="nilaiKontrak" promise-currency-blur min="0"
+									maxlength="17" class="form-control shadow-z1 input-sm"
+									ng-model="vm.dataPengalaman.nilaiKontrak">
+								<strong style="color: red" translate={{vm.errorMessageNilaiKontrak}}></strong>
+								<br />
+							</div>
+							<div class="col-sm-6">
+								<div class="input-group">
+									<ui-select name="mataUang"
+										ng-model="vm.dataPengalaman.mataUang" theme="bootstrap"
+										style="width: 300px;font-size: 14px;"> <ui-select-match
+										placeholder="Pilih Mata Uang ...">{{$select.selected.nama}}</ui-select-match>
+									<ui-select-choices
+										repeat="mataUang in vm.mataUangList | filter: $select.search"
+										style="width: 250px;font-size: 14px;">
+									<div ng-bind-html="mataUang.nama | highlight: $select.search"></div>
+									</ui-select-choices> </ui-select>
+								</div>
+								<strong style="color: red" translate={{vm.errorMessageMataUang}}></strong>
+								<br />
+							</div>
+						</div>
+
+						<!-- 	<div class="form-group">
+							<label class="col-sm-3 control-label"><span
+								translate="promise.procurement.RegistrasiVendor.DataPengalaman.ModalPengalamanPekerjaan.BuktiKerjasama"></span>
+								<label class="text-danger">*)</label> </label>
+							<div class="col-sm-3">
+								<input name="buktiKerjasama"   filestyle="" type="file"   data-button-text="Upload" data-class-button="btn btn-default" data-class-input="form-control inline" nv-file-select=""  uploader="uploadBukti"  class="form-control" />
+
+								
+							</div>
+							<div class="col-sm-5">
+								<p style="color: green"
+									ng-repeat="item in uploadVendorLogo.queue">
+									<em ng-if="item.isUploaded">{{ item.file.name }}</em>
+								</p>
+							</div>
+							<br />
+						</div> -->
+
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label"><span
+								translate="promise.procurement.RegistrasiVendor.datapengalaman.view.bukti_kerjasama"></span>
+								<label class="text-danger">*</label> </label>
+
+							<!-- <div class="col-sm-4" align="left" ng-if="vm.toDo=='edit'">
+								<span title="download file"><a
+									href="{{vm.downloadFile1}}" download><em><u>{{vm.dataPengalaman.pathFile}}</u></em></a></span>
+							</div> -->
+							<div class="col-sm-4">
+								<span title="download file"><a
+									href="{{vm.downloadFile1}}" download><em><u>{{vm.dataPengalaman.pathFile }}</u></em></a></span> 
+									<input name="uploadBukti" id="uploadBukti"
+									filestyle="" type="file" data-button-text="Browse"
+									data-class-button="btn btn-default"
+									data-class-input="form-control inline" nv-file-select=""
+									uploader="uploadBukti" class="form-control" />
+								<button ng-class="'bg-' + app.theme.name" type="button"
+									ripple="" class="mr btn btn-labeled btn-sm"
+									ng-click="uploadAja()">
+									<span>Upload</span>
+								</button>
+								<strong style="color: red"
+									translate={{vm.errorMessageBuktiKerjasama}}></strong>
+								<br />
+							</div>
+						</div>
+						<br />
+
+
+						<div class="form-group">
+							<div class="col-md-5 col-md-push-2 col-sm-5 col-sm-push-3">
+								<button type="button" ripple="" class="mr btn btn-sm bg-default"
+									ng-click="back()">
+									<span translate="template.button.kembali"></span>
+								</button>
+								<button type="button" ripple="" class="mr btn btn-sm bg-primary"
+									ng-click="save()">
+									<span translate="template.button.simpan"> </span>
+								</button>
+								<br />
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

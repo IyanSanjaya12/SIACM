@@ -1,0 +1,69 @@
+<div class="app-view-header">
+    <span translate="promise.procurement.master.terminkontrak.JUDUL"></span>
+    <small><span translate="promise.procurement.master.terminkontrak.KETERANGAN"></span></small>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="TerminKontrakController as form ">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><span translate="promise.procurement.master.terminkontrak.SUBJUDUL"></span></h4>
+    <div class="panel-body">
+        <div align="right">
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="form.add()">
+                <span class="btn-label"><em class="fa fa-plus"></em></span>
+                <span translate="promise.procurement.master.item.TAMBAH"></span>
+            </button>
+        </div>
+        <br />
+        <div class="col-md-12">
+            <div>
+                <div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" border="0"
+                            width="20px" /></strong>
+                </div>
+                <table datatable="ng" class="row-border hover table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"style="text-align:center; width:5%"><span translate="promise.procurement.master.terminkontrak.list.NOMOR"></span>
+                            </th>
+                            <th scope="col"style="text-align:center; width:10%"><span translate="promise.procurement.master.terminkontrak.list.TANGGAL"></span>
+                            </th>
+                            <th scope="col"style="text-align:center; width:10%"><span translate="promise.procurement.master.terminkontrak.list.JENISTERMIN"></span>
+                            </th>
+                            <th scope="col"style="text-align:center; width:10%"><span translate="promise.procurement.master.terminkontrak.list.MATAUANG"></span>
+                            </th>
+                            <th scope="col"style="text-align:center; width:10%"><span translate="promise.procurement.master.terminkontrak.list.NILAI"></span>
+                            </th>
+                            <th scope="col"style="text-align:center; width:10%"><span translate="promise.procurement.master.terminkontrak.list.NILAITUKAR"></span>
+                            </th>
+                            <th scope="col"style="text-align:left; width:15%"><span translate="promise.procurement.master.terminkontrak.list.KETERANGAN"></span>
+                            </th>
+                            <th scope="col"style="text-align:center; width:10%"><span translate="promise.procurement.master.alurpengadaan.list.AKSI">Aksi</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="tabel in form.terminKontrakList">
+                            <td style="text-align:center">{{ $index+1 }}</td>
+                            <td style="text-align:center">{{ tabel.tanggal | date:'dd/MM/yyyy' }}</td>
+                            <td style="text-align:center">{{ tabel.jenisTermin.nama }}</td>
+                            <td style="text-align:center">{{ tabel.mataUang.nama }}</td>
+                            <td style="text-align:center">{{ tabel.nilai }}</td>
+                            <td style="text-align:center">{{ tabel.nilaiTukar }} </td>
+                            <td style="text-align:left">{{ tabel.keterangan }} </td>
+                            <td style="text-align:center">
+                                <div>
+                                    <button type="button" ng-class="'bg-' + app.theme.name" class="mr btn btn-xs"
+                                        ng-click="form.edit(tabel)">
+                                        <em class="fa fa-pencil fa-lg"></em>
+                                    </button>
+                                    <button type="button" class="mr btn btn-danger btn-xs" ng-click="form.del(tabel.id)">
+                                        <em class="fa fa-trash fa-lg"></em>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END CONTROLLER-->

@@ -1,0 +1,72 @@
+<div class="app-view-header">	
+	<span translate="promise.procurement.master.harilibur.judul"></span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="HariLiburViewController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-tasks"></em>
+			<span ng-if="vm.toDo=='add'" translate="promise.procurement.master.harilibur.view.subjudul_tambah"></span>
+		<span ng-if="vm.toDo=='edit'" translate="promise.procurement.master.harilibur.view.subjudul_ubah"></span>
+			<a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+					<em class="fa fa-chevron-circle-down"></em>
+			</a>
+	</h4>
+	<div class="panel-body collapse in">
+		<form method="post" action="#" novalidate="" class="form-horizontal" ng-class="{'submitted' : vm.submitted}" name="formHariLibur">
+			<div class="form-group">
+				<label for="input-id-1" class="col-sm-4 control-label required">	
+					<span translate="promise.procurement.master.harilibur.list.nama"></span>
+				</label>
+				<div class="col-sm-4">
+					<input name="namaHariLibur" id="input-id-1" promise-alphanumeric-only type="text" class="form-control" ng-model="vm.hariLibur.nama" maxlength="120" required ng-blur="delValidation($event)" />
+					<div class="input-error" ng-show="(vm.submitted && formHariLibur.namaHariLibur.$invalid)">
+						<p ng-show="formHariLibur.namaHariLibur.$error.required" translate="template.error.field_kosong"></p>
+						<p ng-show="!formHariLibur.namaHariLibur.$error.required && formHariLibur.namaHariLibur.$error.namaHariLibur" translate="promise.procurement.master.harilibur.error.nama_sama"></p>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label required">	
+					<span translate="promise.procurement.master.harilibur.list.tanggal"></span>
+					</label>
+					<div class="col-sm-4">
+						<div class="input-group">
+							<input name="tanggalHariLibur" id="input-id-2" type="text" datepicker-popup="{{vm.format}}"
+								ng-model="vm.hariLibur.tanggal" is-open="vm.daterequiredOpened"
+								max-date="false" datepicker-options="vm.dateOptions"
+								date-disabled="vm.disabled(vm.date, vm.mode)" close-text="Close"
+								class="form-control" readonly
+								style="background-color: white;" required ng-blur="delValidation($event)" /> 
+							<span class="input-group-btn">
+								<button type="button" ng-click="vm.daterequiredOpen($event)" class="btn btn-default" ripple="">
+									<em class="fa fa-calendar"></em>
+								</button>
+							</span>
+			</div>
+			<div class="input-error" ng-show="(vm.submitted && formHariLibur.tanggalHariLibur.$invalid)">
+				<p ng-show="formHariLibur.tanggalHariLibur.$error.required" translate="template.error.field_kosong"></p>
+			</div>
+	</div>
+</div>
+<div class="form-group">
+	<label for="input-id-3" class="col-sm-4 control-label required">	
+		<span translate="promise.procurement.master.harilibur.list.deskripsi"></span>
+	</label>
+	<div class="col-sm-4">
+		<textarea name="deskripsiHariLibur" rows="4" cols="50" class="form-control input-sm ng-valid-maxlength" id="" ng-model="vm.hariLibur.deskripsi" maxlength="512" required ng-blur="delValidation($event)"></textarea>
+		<div class="input-error" ng-show="(vm.submitted && formHariLibur.deskripsiHariLibur.$invalid)">
+			<p ng-show="formHariLibur.deskripsiHariLibur.$error.required" translate="template.error.field_kosong"></p>
+		</div>
+	</div>
+</div>
+<div class="form-group">
+	<div class="col-md-12 text-center">
+		<button type="button" ripple="" class="mr btn btn-md bg-default" ng-click="back()">	<span translate="template.button.kembali"></span>
+		</button>
+		<button type="button" ripple="" class="mr btn btn-md bg-primary" ng-click="save(formHariLibur.$valid)">	<span translate="template.button.simpan"></span>
+		</button>
+	</div>
+</div>
+		</form>
+	</div>
+</div>

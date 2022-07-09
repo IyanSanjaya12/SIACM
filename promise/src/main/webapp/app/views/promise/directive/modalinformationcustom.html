@@ -1,0 +1,10 @@
+<div class="modal-header" ng-class="'bg-' + app.theme.name">
+    <button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="modalOptions.close()">x</button>
+	<h4 class="modal-title" ng-bind="modalOptions.headerText"></h4>
+</div>
+<div class="modal-body">
+	<p ng-bind="modalOptions.bodyText"></p>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-warning" data-ng-click="modalOptions.close()" ng-bind="modalOptions.closeButtonText"></button>
+</div>

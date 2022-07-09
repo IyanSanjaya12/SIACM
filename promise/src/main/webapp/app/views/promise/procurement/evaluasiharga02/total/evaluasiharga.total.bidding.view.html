@@ -1,0 +1,78 @@
+<!--
+SPESIFIC VIEW OF THE FIRST DETAIL EVALUASI HARGA BIDDING MENU
+----------------------- START CONTROLLER --------------------
+-->
+
+<div class="app-view-header">
+    <span translate="promise.procurement.panitia.evaluasiharga.JUDUL">Evaluasi Harga</span> 
+    <small><span translate="promise.procurement.panitia.evaluasiharga.view.BIDDING"></span></small>
+    <small><span translate="promise.procurement.panitia.evaluasiharga.view.TOTAL"></span></small>
+</div>
+<toaster-container toaster-options="{'position-class': 'toast-top-center', 'close-button':true}"></toaster-container>
+
+<div ng-controller="EvaluasiHargaTotalBiddingViewController as form">
+<form method="post" action="#" novalidate="" class="form-horizontal">
+<div id="evaluasiHarga">
+        
+<!----------------------------------------------- Table Ke 1 ----------------------------------------------->
+<!----------------------------------------------- Table Ke 2 ----------------------------------------------->
+<!----------------------------------------------- Table Ke 3 ----------------------------------------------->
+<promise-view-data-pengadaan pengadaan-id=pengadaanId></promise-view-data-pengadaan>
+    
+
+
+
+<!----------------------------------------------- Table Ke 5 ----------------------------------------------->
+<div class="panel panel-primary" >
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-barcode">&nbsp;</em><span translate="promise.procurement.panitia.evaluasiharga.view.DATAPENYEDIA">Data Penyedia Barang/Jasa</span></h4>
+    <div class="panel-body">
+        <br/>
+        <div class="col-md-12">
+            <div align="center" ng-if="loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+            <div class="table-responsive">
+                <table  class="table table-bordered table-hover table-striped table-bordered">
+                    <thead>
+                        <tr style="background-color:#EEEEEE">
+                             <th scope="col"style="text-align:center" width="50px"><span translate="promise.procurement.panitia.evaluasiharga.view.NOMOR">Nomor</span>
+                            </th>
+                            <th scope="col"style="text-align:center" width="500px"><span translate="promise.procurement.panitia.evaluasiharga.view.NAMAPENYEDIA">Nama Penyedia Barang/Jasa</span>
+                            </th>
+                            <th scope="col"style="text-align:center" width="500px"><span translate="promise.procurement.panitia.evaluasiharga.view.ALAMAT">Alamat</span>
+                            <th scope="col"style="text-align:center" width="500px"><span translate="promise.procurement.panitia.evaluasiharga.view.TELEPON">Telepon</span>
+                            </th>
+                            <th scope="col"style="text-align:center" width="500px"><span translate="promise.procurement.panitia.evaluasiharga.view.PENAWARANAWAL">Penawaran Awal</span>
+                            </th>
+                            <th scope="col"style="text-align:center" width="300px"><span translate="promise.procurement.panitia.evaluasiharga.view.STATUS">Status</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat = "dp in dataPenyediaList | orderBy : 'nilaiPenawaranOri'">{{dp.nilaiPenawaranOri}}
+                            <td style="text-align:center">{{ $index+1 }}</td>
+                            <td style="text-align:left">{{dp.suratPenawaran.vendor.nama}}</td>
+                            <td style="text-align:left">{{dp.suratPenawaran.vendor.alamat}}</td>
+                            <td style="text-align:center">{{dp.suratPenawaran.vendor.nomorTelpon}}</td>
+                            <td style="text-align:center">{{dp.nilaiPenawaranOri | number :2}} {{ dp.suratPenawaran.mataUang.kode }}</td>
+                            <td style="text-align:center">{{ dp.hasil }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div align="center">
+    <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="back()"><em class="fa fa-arrow-circle-left">&nbsp;</em>
+        <span translate="template.button.kembali"></span>
+    </button>
+    <button ng-class="'bg-' + app.theme.name" type="button" class="btn btn-primary btn-sm pull-center" ng-click="printDiv('evaluasiHarga')" ng-show="view==true && detilPengadaan.tahapanPengadaan.tahapan.id>13"><em class="fa fa-print">&nbsp;</em>
+                <span translate="promise.procurement.panitia.pengambilandokumen.view.btn.PRINT"></span>
+            </button>
+    <button ng-if="viewAja!=1" ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="saveData()">
+        <span translate="template.button.simpan"></span>&nbsp;<em class="fa fa-sign-in"></em>
+    </button>    
+</div>
+    <br></form>
+</div>

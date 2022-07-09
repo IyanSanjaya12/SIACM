@@ -1,0 +1,10 @@
+ <div animate-enabled="false"ng-controller="PortalCarouselController as form">
+     <carousel interval="myInterval" class="cursor-default">
+         <slide ng-repeat="slide in slides" active="slide.active">
+             <img ng-src="{{slide.image}}" style="width:100%; margin: auto;" alt="" />
+             <div class="carousel-caption" style="text-shadow: none !important;">
+                 <p ng-bind-html="slide.text"></p>
+             </div>
+         </slide>
+     </carousel>
+ </div>

@@ -1,0 +1,65 @@
+<!-- 
+GENERAL VIEW OF THE PROCUREMENT SYSTEM 
+---------- START CONTROLLER ----------
+-->
+<div class="app-view-header"> <span translate="promise.procurement.panitia.alokasianggaran.JUDUL">Alokasi Anggaran</span>
+</div>
+<div class="panel panel-primary" ng-controller="AlokasiAnggaranController as form">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <em class="fa fa-tasks"></em>
+        <span>Alokasi Anggaran</span>
+        <a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+                <em class="fa fa-chevron-circle-down"></em>
+        </a>
+    </h4>
+	<div class="panel-body collapse in">
+		<div class="text-right pr">
+			<button type="button" class="btn btn-warning btn-exchange" ng-click="gabungAlokasiAnggaran()"> <span translate="general.merge"></span>
+			</button>
+			<button type="button" ng-class="'bg-' + app.theme.name" type="button" class="btn btn-primary btn-add" ng-click="addAlokasiAnggaran()"> <span translate="general.add"></span>
+			</button>
+        </div>
+        <br/>
+		<div class="col-md-12">
+			<div class="text-center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px" border="0"/></strong>
+			</div>
+			<table datatable="ng" class="row-border hover table-striped">
+				<thead>
+					<tr>
+						<th scope="col"style="text-align:center">No</th>
+						<th scope="col"style="text-align:center"><span translate="general.year"></span>
+						</th>
+						<th scope="col"style="text-align:center"><span translate="general.periode"></span>
+						</th>
+						<th scope="col"style="text-align:center"><span translate="general.date"></span>
+						</th>
+						<th scope="col"style="text-align:center"><span translate="general.no"></span>
+						</th>
+						<th scope="col"style="text-align:center"><span translate="general.amount"></span>
+						</th>
+						<th scope="col"style="text-align:center"><span translate="general.status"></span>
+						</th>
+						<th scope="col"style="text-align:center"><span translate="general.action"></span>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="data in form.list">
+						<td class="text-center">{{ $index+1 }}</td>
+						<td class="text-center">{{ data.tahunAnggaran }}</td>
+						<td class="text-center">{{ data.periodeAnggaran.nama }}</td>
+						<td class="text-center">{{ data.tanggalDraft | date:"dd/MM/yyyy"}}</td>
+						<td class="text-center">{{ data.nomorDraft }}</td>
+						<td class="text-center">{{ data.jumlah | number : 2 }}</td>
+						<td class="text-center"><span ng-if=data.status!=1>Belum digunakan</span><span ng-if=data.status==1>Sudah digunakan</span>
+						</td>
+						<td class="text-center">
+							<button type="button" class="btn btn-primary btn-sm btn-search" ng-click="view(data)"></button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<!--END CONTROLLER-->

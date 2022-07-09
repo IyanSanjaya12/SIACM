@@ -1,0 +1,110 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.master.formulapenilaian.judul"></span>
+
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="FormulaPenilaianEditController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<span  translate="promise.procurement.master.formulapenilaian.view.subjudul_ubah"></span>
+	</h4>
+	<div class="panel-body">
+<!--
+		<div align="right">
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="form.formulaPenilaianAddRow()">
+                <span class="btn-label"><em class="fa fa-plus"></em></span>
+                <span>Tambah Baris</span>
+            </button>
+        </div>
+-->
+        <br/>
+		<div class="col-md-12">
+			<div align="center" ng-if="vm.loading == true">
+				<strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px"></strong>
+			</div>
+			<div class="table-responsive">
+				<table class="table table-striped"> 
+					<thead>
+						<tr>
+							<th scope="col"style="text-align: center">
+								<span translate="template.tabel.nomor">Nomor</span>
+							</th>
+							<th scope="col"style="text-align: center">
+								<span translate="promise.procurement.master.formulapenilaian.list.kode">Kode</span>
+							</th>
+							<th scope="col"style="text-align: center">
+								<span translate="promise.procurement.master.formulapenilaian.list.nilai">Nilai</span>
+							</th>
+							<th scope="col"style="text-align: center">
+								<span translate="promise.procurement.master.formulapenilaian.list.score">Score</span>
+							</th>
+							<th scope="col"style="text-align: center">
+								<span translate="promise.procurement.master.formulapenilaian.list.keterangan">Keterangan</span>
+							</th>
+							<th scope="col"style="text-align: center">
+								<span translate="promise.procurement.master.formulapenilaian.list.catatan">Catatan</span>
+							</th>
+						</tr>
+					</thead>
+					<tbody ng-repeat="formulapenilaian in formulaPenilaianList"> 
+						<tr >
+							<td style="text-align: center" ng-bind="{{ $index+1 }}"></td>
+							<td style="text-align: center">
+								<input type="text" id="input-id-1" class="form-control" ng-model="formulapenilaian.fPCode" /> <br>
+								 
+							</td> 
+							<td style="text-align: center" class="col-counting">
+								<input type="number"  promise-numbers-only min="0" class="form-control" ng-model="formulapenilaian.fPBatasKiri" />
+								<select class="form-control " ng-model="formulapenilaian.fPPersamaanKiri">
+									
+									<option value="ge">>=</option>
+									<option value="le"><=</option>
+									<option value="gt">></option>
+									<option value="lt"><</option>
+								</select>
+								<span>X</span>
+								<select class="form-control " ng-model="formulapenilaian.fPPersamaanKanan">
+									
+									<option value="le"><=</option>
+									<option value="gt">></option>
+									<option value="lt"><</option>
+								</select>
+								<input type="number" promise-numbers-only min="0" class="form-control" ng-model="formulapenilaian.fPBatasKanan" />
+								
+							</td> 
+							<td style="text-align: center"> 
+								<input type="number"  promise-numbers-only min="0" class="form-control" ng-model="formulapenilaian.fPPoint" />
+							
+							</td> 
+							<td style="text-align: center"><input type="text" class="form-control" ng-model="formulapenilaian.fPDescription" />
+							</td> 
+							<td style="text-align: center"><input type="text" class="form-control" ng-model="formulapenilaian.fPNote" />
+							</td>
+						</tr>
+						
+						<tr>
+						  <td colspan="6" style="text-align: left"><strong style="color: red" translate={{formulapenilaian.errorMessageKode}} ></strong>
+						 
+						  </td>
+					  </tr>
+						
+						
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<br/>
+		<br/>
+		<div class="form-group" style="text-align:center; margin-top:15px;">
+			<div class="">
+				<button type="button" ripple="" class="mr btn btn-sm bg-default" ng-click="back()">
+					<span translate="template.button.kembali"></span>
+				</button>
+				<button type="button" ripple="" class="mr btn btn-sm bg-primary" ng-click="save()">
+					<span translate="template.button.simpan"></span>
+				</button>
+				<br />
+			</div>
+		</div>
+	</div>
+</div>
+<!--END CONTROLLER-->

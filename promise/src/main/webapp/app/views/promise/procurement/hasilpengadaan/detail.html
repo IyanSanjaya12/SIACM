@@ -1,0 +1,181 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.vendor.HasilPengadaan.View.Judul"></span>
+</div>
+<!--START CONTROLLER-->
+<div ng-controller="HasilPengadaanDetilController as form">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<em class="fa fa-table">&nbsp;</em>
+		<span translate="promise.procurement.vendor.HasilPengadaan.View.DataPengadaan"></span>
+	</h4>
+	<div class="panel panel-primary">
+		<div class="panel-body">
+			<div class="col-md-12">
+				<div class="table-responsive">
+					<table id="table-ext-1" class="table table-bordered table-hover" width="100%">
+						<tbody>
+							<tr>
+								<td style="text-align:left" width="40%"><span translate="promise.procurement.vendor.HasilPengadaan.View.NoPengadaan"></span></td>
+								<td style="text-align:left" width="60%">{{form.dataPengadaan.nomorNotaDinas}}</td>
+							</tr>
+							<tr>
+								<td><span translate="promise.procurement.vendor.HasilPengadaan.View.NamaPengadaan"></span></td>
+								<td>{{form.dataPengadaan.namaPengadaan}}</td>
+							</tr>
+							<tr>
+								<td><span translate="promise.procurement.vendor.HasilPengadaan.View.JenisPengadaan"></span></td>
+								<td>{{form.dataPengadaan.jenisPengadaan.nama}}</td>
+							</tr>
+							<tr>
+								<td><span translate="promise.procurement.vendor.HasilPengadaan.View.MetodePengadaan"></span></td>
+								<td>{{form.dataPengadaan.metodePengadaan.nama}}</td>
+							</tr>
+							<tr>
+								<td><span translate="promise.procurement.vendor.HasilPengadaan.View.Kualifikasi"></span></td>
+								<td>{{form.dataPengadaan.kualifikasiVendor.nama}}</td>
+							</tr>
+							<tr>
+								<td><span translate="promise.procurement.vendor.HasilPengadaan.View.BidangSubBidang"></span></td>
+								<td>
+									<div ng-repeat="bd in form.dataPengadaan.bidang">
+										<li style="margin-left:12px" ng-bind="bd.subBidangUsaha.bidangUsaha.nama"></li>
+										<ul class="fa fa-long-arrow-right" ng-bind="bd.subBidangUsaha.nama">
+										</ul>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td><span translate="promise.procurement.vendor.HasilPengadaan.View.Keterangan"></span></td>
+								<td>{{form.dataPengadaan.keterangan}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading" ng-if="form.metodePengadaanId==1||form.metodePengadaanId==2||form.metodePengadaanId==3">
+		<em class="fa fa-table">&nbsp;</em>
+		<span translate="promise.procurement.vendor.HasilPengadaan.View.DetailPelelangan"></span>
+	</h4>
+	<div class="panel panel-primary" ng-if="form.metodePengadaanId==1||form.metodePengadaanId==2||form.metodePengadaanId==3">
+		<div class="panel-body">
+			<div class="col-xs-12">
+				<div class="table-responsive">
+					<table ng-table="tableDetailPelelangan" class="table table-hover table-condensed table-striped bg-white">
+						<thead>
+							<tr style="font-weight: bold">
+								<th scope="col"style="width:20%; text-align:left"><span translate="promise.procurement.vendor.HasilPengadaan.View.NamaVendor"></span>
+								</th>
+								<th scope="col"style="width:10%; text-align:center"><span translate="promise.procurement.vendor.HasilPengadaan.View.PengambilanDokumen"></span>
+								</th>
+								<!-- <th scope="col"style="width:10%; text-align:center"><span translate="promise.procurement.vendor.HasilPengadaan.View.Penjelasan"></span>
+								</th> -->
+								<th scope="col"style="width:10%; text-align:center"><span translate="promise.procurement.vendor.HasilPengadaan.View.Pemasukan"></span>
+								</th>
+								<th scope="col"style="width:10%; text-align:center"><span translate="promise.procurement.vendor.HasilPengadaan.View.Pembukaan"></span>
+								</th>
+								<th scope="col"style="width:10%; text-align:center"><span translate="promise.procurement.vendor.HasilPengadaan.View.EvaluasiAdmin"></span>
+								</th>
+								<th scope="col"style="width:10%; text-align:center"><span translate="promise.procurement.vendor.HasilPengadaan.View.Teknis"></span>
+								</th>
+								<th scope="col"style="width:10%; text-align:right"><span translate="promise.procurement.vendor.HasilPengadaan.View.Harga"></span>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="dataVendor in $data">
+								<td>{{ dataVendor.vendor.nama }}</td>
+								<td align="center">{{ dataVendor.statusPengambilanDokumen }}</td>
+								<!-- <td align="center">{{ dataVendor.statusPenjelasan }}</td> -->
+								<td align="center">{{ dataVendor.statusPemasukan }}</td>
+								<td align="center">{{ dataVendor.statusPembukaan }}</td>
+								<td align="center">{{ dataVendor.evaluasiAdmin }}</td>
+								<td align="center">{{ dataVendor.evaluasiTeknis}}</td>
+								<td align="right">{{ dataVendor.evaluasiHarga}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<em class="fa fa-table">&nbsp;</em>
+		<span translate="promise.procurement.vendor.HasilPengadaan.View.LogPenawaran"></span>
+	</h4>
+	<div class="panel panel-primary">
+		<div class="panel-body">
+			<div class="col-xs-12">
+				<div class="table-responsive">
+					<table ng-table="tableLogPenawaran" class="table table-hover table-condensed table-striped bg-white">
+						<thead>
+							<tr style="font-weight: bold">
+								<th scope="col"style="width:10%; text-align:left"><span translate="promise.procurement.vendor.HasilPengadaan.View.NoLogPenawaran"></span>
+								</th>
+								<th scope="col"style="width:45%; text-align:left"><span translate="promise.procurement.vendor.HasilPengadaan.View.TanggalLogPenawaran"></span>
+								</th>
+								<th scope="col"style="width:45%; text-align:left"><span translate="promise.procurement.vendor.HasilPengadaan.View.NamaLogPenawaran"></span>
+								</th>
+								<th scope="col"style="width:25%; text-align:right" ng-if="form.metodePengadaanId==1||form.metodePengadaanId==2||form.metodePengadaanId==3"><span translate="promise.procurement.vendor.HasilPengadaan.View.HargaLogPenawaran"></span>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="logPenawaran in $data track by $index">
+								<td>{{$index+1}}</td>
+								<td>{{ logPenawaran.created | date: 'dd/MM/yyyy'}}</td>
+								<td>{{ logPenawaran.suratPenawaran.vendor.nama }}</td>
+								<td align="right" ng-if="form.metodePengadaanId==1||form.metodePengadaanId==2||form.metodePengadaanId==3">{{ logPenawaran.nilaiPenawaran | number: 2 }} {{logPenawaran.mataUang.kode}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<em class="fa fa-table">&nbsp;</em>
+		<span translate="promise.procurement.vendor.HasilPengadaan.View.Pemenang"></span>
+	</h4>
+	<div class="panel panel-primary">
+		<div class="panel-body">
+			<div class="col-xs-12">
+				<div class="table-responsive">
+					<table ng-table="tablePemenang" class="table table-hover table-condensed table-striped bg-white">
+						<thead>
+							<tr style="font-weight: bold">
+								<th scope="col"style="width:5%; text-align:left"><span translate="promise.procurement.vendor.HasilPengadaan.View.NoPemenang"></span>
+								</th>
+								<th scope="col"style="width:35%; text-align:left"><span translate="promise.procurement.vendor.HasilPengadaan.View.NamaPemenang"></span>
+								</th>
+								
+								<th scope="col"style="width:20%; text-align:center" ng-if="form.metodePengadaanId==1||form.metodePengadaanId==2||form.metodePengadaanId==3"><span translate="promise.procurement.vendor.HasilPengadaan.View.EvaluasiAdmin"></span>
+								</th>
+								<th scope="col"style="width:20%; text-align:center" ng-if="form.metodePengadaanId==1||form.metodePengadaanId==2||form.metodePengadaanId==3"><span translate="promise.procurement.vendor.HasilPengadaan.View.NilaiTeknisPemenang"></span>
+								</th>
+								<th scope="col"style="width:20%; text-align:center" ng-if="form.metodePengadaanId==1||form.metodePengadaanId==2||form.metodePengadaanId==3"><span translate="promise.procurement.vendor.HasilPengadaan.View.NilaiHargaPemenang"></span>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="dataPemenang in $data">
+								<td>{{$index+1}}</td>
+								<td>{{ dataPemenang.vendor.nama }}</td>
+								<td align="center" ng-if="form.metodePengadaanId==1||form.metodePengadaanId==2||form.metodePengadaanId==3">{{ dataPemenang.evaluasiAdmin | number: 2 }}</td>
+								<td align="center" ng-if="form.metodePengadaanId==1||form.metodePengadaanId==2||form.metodePengadaanId==3">{{ dataPemenang.evaluasiTeknis | number: 2 }}</td>
+								<td align="center" ng-if="form.metodePengadaanId==1||form.metodePengadaanId==2||form.metodePengadaanId==3">{{ dataPemenang.evaluasiHarga | number: 2 }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div align="center">
+		<button ng-class="'bg-' + app.theme.name" ng-click="btnKembali()" class="btn btn-sm pull-center" ripple="">
+			<span class=""><em class="fa fa-chevron-left"></em></span>&nbsp;&nbsp;<font color="white"><span translate="promise.procurement.panitia.jadwalpengadaan.detil.KEMBALI"></span></font>
+		</button>
+	</div>
+</div>

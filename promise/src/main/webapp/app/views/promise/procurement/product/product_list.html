@@ -1,0 +1,769 @@
+<div class="app-view-header">Catalog
+    <!-- <small ng-bind="app.name + ' - ' + app.description"></small> -->
+</div>
+
+<!-- START row-->
+<div class="row" ng-controller="swapViews">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="vermagemenu m-b">
+                            <div class="content-vermagemenu">
+                                <div class="title-vermegamenu bg-primary">
+                                    <h2 ng-click="isCollapsed = !isCollapsed">categories<!--<em class="fa fa-caret-down"></em>--></h2>
+                                </div>
+                                <div collapse="isCollapsed" class="navleft-container">
+                                    <div id="pt_vmegamenu" class="pt_vmegamenu">
+                                        <div data-id="1" class="pt_ver_menu had-child">
+                                            <div class="parentMenu">
+                                                <a ui-sref="app.categoryList({categoryName:'SektorPertanian'})">
+                                                    <span>Sektor Pertanian</span>
+                                                </a>
+                                            </div>
+                                            <div class="popup">
+                                                <div class="content-popup">
+                                                    <div class="column">
+                                                        <div class="itemMenu level1">
+                                                            <a class="itemMenuName level0 actParent" ui-sref="app.categoryList({categoryName:'SektorTanamanPangan'})">
+                                                                <span>Sektor Tanaman Pangan</span>
+                                                            </a>
+                                                            <div class="itemSubMenu level0">
+                                                                <div class="itemMenu level1">
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic elit</span>
+                                                                    </a>
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;1&nbsp;libero</span>
+                                                                    </a>
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;1&nbsp;nulla</span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="column">
+                                                        <div class="itemMenu level1">
+                                                            <a class="itemMenuName level0 actParent" ui-sref="app.categoryList({categoryName:'SektorPerkebunan'})">
+                                                                <span>Sektor Perkebunan</span>
+                                                            </a>
+                                                            <div class="itemSubMenu level0">
+                                                                <div class="itemMenu level1">
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;2&nbsp;elit</span>
+                                                                    </a>
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;2&nbsp;liber</span>
+                                                                    </a>
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;2&nbsp;nulla</span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="column">
+                                                        <div class="itemMenu level1">
+                                                            <a class="itemMenuName level0 actParent" ui-sref="app.categoryList({categoryName:'SektorPeternakan'})">
+                                                                <span>Sektor Peternakan</span>
+                                                            </a>
+                                                            <div class="itemSubMenu level0">
+                                                                <div class="itemMenu level1">
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;3&nbsp;elit</span>
+                                                                    </a>
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;3&nbsp;liber</span>
+                                                                    </a>
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;3&nbsp;liber</span>
+                                                                    </a>
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;3&nbsp;nulla</span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="column">
+                                                        <div class="itemMenu level1">
+                                                            <a class="itemMenuName level0 actParent" ui-sref="app.categoryList({categoryName:'SektorPerikanan'})">
+                                                                <span>Sektor Perikanan</span>
+                                                            </a>
+                                                            <div class="itemSubMenu level0">
+                                                                <div class="itemMenu level1">
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;2&nbsp;elit</span>
+                                                                    </a>
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;2&nbsp;nulla</span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="column">
+                                                        <div class="itemMenu level1">
+                                                            <a class="itemMenuName level0 actParent" ui-sref="app.categoryList({categoryName:'SektorKehutanan'})">
+                                                                <span>Sektor Kehutanan</span>
+                                                            </a>
+                                                            <div class="itemSubMenu level0">
+                                                                <div class="itemMenu level1">
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;2&nbsp;nulla</span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <a ui-sref="app.categoryList({categoryName:'fujitsu'})" class="img-group-cat">
+                                                        <img src="app/img/banner/beras.png">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div data-id="1" class="pt_ver_menu had-child">
+                                            <div class="parentMenu">
+                                                <a ui-sref="app.categoryList({categoryName:'SektorPertambangan'})">
+                                                    <span>Sektor Pertambangan</span>
+                                                </a>
+                                            </div>
+                                            <div class="popup">
+                                                <div class="content-popup">
+                                                    <div class="column">
+                                                        <div class="itemMenu level1">
+                                                            <a class="itemMenuName level0 actParent" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                <span>Sektor Batubara</span>
+                                                            </a>
+                                                            <div class="itemSubMenu level0">
+                                                                <div class="itemMenu level1">
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;1&nbsp;elit</span>
+                                                                    </a>
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;1&nbsp;libero</span>
+                                                                    </a>
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;1&nbsp;nulla</span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="column">
+                                                        <div class="itemMenu level1">
+                                                            <a class="itemMenuName level0 actParent" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                <span>Sektor Minyak & Gas Bumi</span>
+                                                            </a>
+                                                            <div class="itemSubMenu level0">
+                                                                <div class="itemMenu level1">
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;2&nbsp;elit</span>
+                                                                    </a>
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;2&nbsp;liber</span>
+                                                                    </a>
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;2&nbsp;nulla</span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="column">
+                                                        <div class="itemMenu level1">
+                                                            <a class="itemMenuName level0 actParent" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                <span>Sektor Logam & Mineral Lainnya</span>
+                                                            </a>
+                                                            <div class="itemSubMenu level0">
+                                                                <div class="itemMenu level1">
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;3&nbsp;elit</span>
+                                                                    </a>
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;3&nbsp;liber</span>
+                                                                    </a>
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;3&nbsp;liber</span>
+                                                                    </a>
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;3&nbsp;nulla</span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="column">
+                                                        <div class="itemMenu level1">
+                                                            <a class="itemMenuName level0 actParent" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                <span>Sektor Batu-Batuan</span>
+                                                            </a>
+                                                            <div class="itemSubMenu level0">
+                                                                <div class="itemMenu level1">
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;2&nbsp;elit</span>
+                                                                    </a>
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;2&nbsp;nulla</span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="column">
+                                                        <div class="itemMenu level1">
+                                                            <a class="itemMenuName level0 actParent" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                <span>Sektor Pertambangan Lainnya</span>
+                                                            </a>
+                                                            <div class="itemSubMenu level0">
+                                                                <div class="itemMenu level1">
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;2&nbsp;nulla</span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <a ui-sref="app.categoryList({categoryName:'fujitsu'})" class="img-group-cat">
+                                                        <img src="app/img/banner/tambang.png">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div data-id="2" class="pt_ver_menu had-child">
+                                            <div class="parentMenu">
+                                                <a ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                    <span>Industri Dasar</span>
+                                                </a>
+                                            </div>
+                                            <div class="popup">
+                                                <div class="content-popup">
+                                                    <div class="column">
+                                                        <div class="itemMenu level1">
+                                                            <a class="itemMenuName level0 actParent" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                <span>Sektor Semen</span>
+                                                            </a>
+                                                            <div class="itemSubMenu level0">
+                                                                <div class="itemMenu level1">
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;1&nbsp;elit</span>
+                                                                    </a>
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;1&nbsp;libero</span>
+                                                                    </a>
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;1&nbsp;nulla</span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="column">
+                                                        <div class="itemMenu level1">
+                                                            <a class="itemMenuName level0 actParent" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                <span>Sektor Keramik, Porselen & Kaca</span>
+                                                            </a>
+                                                            <div class="itemSubMenu level0">
+                                                                <div class="itemMenu level1">
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;2&nbsp;elit</span>
+                                                                    </a>
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;2&nbsp;liber</span>
+                                                                    </a>
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;2&nbsp;nulla</span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="column">
+                                                        <div class="itemMenu level1">
+                                                            <a class="itemMenuName level0 actParent" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                <span>Sektor Kayu & Pengolahannya</span>
+                                                            </a>
+                                                            <div class="itemSubMenu level0">
+                                                                <div class="itemMenu level1">
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;3&nbsp;elit</span>
+                                                                    </a>
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;3&nbsp;liber</span>
+                                                                    </a>
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;3&nbsp;liber</span>
+                                                                    </a>
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;3&nbsp;nulla</span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="column">
+                                                        <div class="itemMenu level1">
+                                                            <a class="itemMenuName level0 actParent" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                <span>Sektor Pulp & Kertas</span>
+                                                            </a>
+                                                            <div class="itemSubMenu level0">
+                                                                <div class="itemMenu level1">
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;2&nbsp;elit</span>
+                                                                    </a>
+                                                                    <a class="itemMenuName level0 act" ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                                        <span>Electronic&nbsp;2&nbsp;nulla</span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <a ui-sref="app.categoryList({categoryName:'fujitsu'})" class="img-group-cat">
+                                                        <img src="app/img/banner/beras.png">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div data-id="2" class="pt_ver_menu pt_ver_menu_no_child">
+                                            <div class="parentMenu">
+                                                <a ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                    <span>Industri Kimia</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div data-id="2" class="pt_ver_menu pt_ver_menu_no_child">
+                                            <div class="parentMenu">
+                                                <a ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                    <span>Industri Mesin & Alat Berat</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div data-id="2" class="pt_ver_menu pt_ver_menu_no_child">
+                                            <div class="parentMenu">
+                                                <a ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                    <span>Sektor Tekstil & Garmen</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div data-id="2" class="pt_ver_menu pt_ver_menu_no_child">
+                                            <div class="parentMenu">
+                                                <a ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                    <span>Sektor Elektronika</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div data-id="2" class="pt_ver_menu pt_ver_menu_no_child">
+                                            <div class="parentMenu">
+                                                <a ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                    <span>Industri Barang Konsumsi</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div data-id="3" class="pt_ver_menu pt_ver_menu_no_child">
+                                            <div class="parentMenu">
+                                                <a ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                    <span>Properti & Real Estate</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div data-id="3" class="pt_ver_menu pt_ver_menu_no_child">
+                                            <div class="parentMenu">
+                                                <a ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                    <span>Utilitas</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div data-id="3" class="pt_ver_menu pt_ver_menu_no_child">
+                                            <div class="parentMenu">
+                                                <a ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                    <span>Infrastruktur & Transportasi</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div data-id="3" class="pt_ver_menu pt_ver_menu_no_child">
+                                            <div class="parentMenu">
+                                                <a ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                    <span>Keuangan</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div data-id="3" class="pt_ver_menu pt_ver_menu_no_child">
+                                            <div class="parentMenu">
+                                                <a ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                    <span>Perdagangan & Investasi</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div data-id="3" class="pt_ver_menu pt_ver_menu_no_child">
+                                            <div class="parentMenu">
+                                                <a ui-sref="app.categoryList({categoryName:'fujitsu'})">
+                                                    <span>Jasa</span>
+                                                </a>
+                                            </div>
+                                        </div>
+<!--                                        <div class="more-wrap pt_ver_menu">
+                                            <div class="parentMenu">
+                                                <a href="#" class="more-ver-menu">
+                                                    <span><em class="fa fa-plus"></em>More Categories</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="close-wrap pt_ver_menu over-menu">
+                                            <div class="parentMenu">
+                                                <a href="#" class="close-ver-menu">
+                                                    <span><em class="fa fa-minus"></em>Close Menu</span>
+                                                </a>
+                                            </div>
+                                        </div>-->
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="col-md-9 col-sm-12 col-xs-12 p-l-0">
+                        <div class="custom-category row">
+                            <div class="col-md-12">
+                                <!-- product fillter -->
+                                <div class="filter-search">
+                                    <div class="col-filter">
+                                        <div class="col-md-4 no-padding text-right">
+                                            <label class="control-label">Main Product</label>
+                                        </div>
+                                        <div class="col-md-8 search-icon">
+                                            <input type="text" class="form-control" ng-model="searchBox" ng-blur="searchTxt()">
+                                        </div>
+                                    </div>
+                                    <div class="col-filter">
+                                        <div class="col-md-4 no-padding text-right">
+                                            <label class="control-label">Location</label>
+                                        </div>
+                                        <div class="col-md-8 search-icon">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-filter">
+                                        <div class="col-md-4 no-padding text-right">
+                                            <label class="control-label">Member Type</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <select id="input-member" class="form-control">
+                                                <option value="0" selected="selected">Gold</option>
+                                                <option value="1">Premium</option>
+                                                <option value="2">Diamond</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="sort-lg">
+                                        <button type="button" ng-click="swap('list')" class="btn btn-default list-view selected" id="list-view" title="List"><span>list</span></button>
+                                        <button type="button" ng-click="swap('grid')" class="btn btn-default grid-view" id="grid-view" title="Grid"><span>grid</span></button>
+                                    </div>
+                                </div>
+                                <!-- product fillter -->
+
+                                <div id="prodwrap" class="custom-products add-quickview">
+                                    <div class="product-layout product-list col-xs-12" angular-grid="pics" ag-options="angularGridOptions">
+                                        <div class="product-thumb">
+                                            <div class="item-inner">
+                                                <div class="images-container">
+                                                    <a class="product-image" ui-sref="app.promise.procurement-ecatalogDetail({productName:'KacangGaruda'})">
+                                                        <img class="img2" src="app/img/product/garing-garuda.jpg" alt="Kacang Garuda" />
+                                                        <img src="app/img/product/garuda-roasted-flavored.png" alt="Kacang Garuda">
+                                                    </a>
+                                                </div><!--images-container-->
+                                                <div class="des-detail two-col">
+                                                    <h2 class="product-name">
+                                                        <a ui-sref="app.promise.procurement-ecatalogDetail({productName:'KacangGaruda'})">Kacang Garuda</a>
+                                                    </h2>
+                                                    <!-- rating -->
+                                                    <div ng-controller="MyRating" class="ratings">
+                                                        <div ng-init="xx = 2" class="">
+                                                            <rating ng-model="xx" readonly="true" state-on="'glyphicon-star text-warning'" state-off="'glyphicon-star-empty'"></rating>
+                                                        </div>
+                                                    </div>
+                                                    <!-- / rating -->
+                                                    <h2 class="product-name">
+                                                        2.000 IDR
+                                                    </h2>
+                                                    <div class="short-des">
+                                                        Kacang Kulit Garuda terbuat dari kacang tanah pilihan yang garing dan istimewa renyahnya serta isi yang padat. Berbagai penelitian menunjukan bahwa kacang mengandung berbagai zat gizi penting yang baik bagi kesehatan kita, bahkan kandungan asam lemak tak jenuh (unsaturated fatty acids) didalamnya dapat menurunkan resiko penyakit jantung koroner. Kacang Kulit Garuda cocok disajikan sebagai makanan ringan saat santai atau dalam perjalanan, serta baik untuk dikonsumsi oleh semua usia.
+                                                    </div>
+
+                                                    <div class="m-b cat-label">
+                                                        <strong>Category : </strong>
+                                                        <a class="label label-primary" ui-sref="app.companyList">Makanan</a>
+                                                        <a class="label label-primary" ui-sref="app.companyList">Industri Dasar</a>
+                                                    </div>
+
+                                                </div>
+                                                <div class="list-pt">
+                                                    <h3>PT Tudung Putra Jaya (TPJ)</h3>
+                                                    <div>Pati | <span class="text-strong" tooltip="Gold Member 100% payment protection with their selected Trade Assurance suppliers"><span class="pl4 text-warning"><em class="fa fa-shield"> </em></span> Gold Member</span></div>
+                                                    <div>Reputasi :                                                
+                                                        <!-- rating -->
+                                                        <div ng-controller="MyRating" class="ratings">
+                                                            <div ng-init="xx = 5" class="">
+                                                              <rating ng-model="xx" readonly="true" state-on="'glyphicon-star text-warning'" state-off="'glyphicon-star-empty'"></rating>
+                                                            </div>
+                                                        </div>
+                                                        <!-- / rating -->
+                                                    </div>
+                                                    <div>Transaksi : 501</div>
+                                                    <!-- <a ui-sref="#" class="btn btn-xs btn-info">Contact</a> -->
+                                                    <a ui-sref="#" class="btn btn-xs btn-primary">Compare</a>
+                                                    <a ui-sref="#" class="btn btn-xs btn-warning">Add to Cart</a>
+                                                </div>
+                                            </div> <!-- item-inner -->
+                                        </div>
+
+
+                                        <div class="product-thumb">
+                                            <div class="item-inner">
+                                                <div class="images-container">
+                                                    <a class="product-image" ui-sref="app.promise.procurement-ecatalogDetail({productName:'GarudaFood'})">
+                                                        <img class="img2" src="app/img/product/chocolatosheader.jpg" alt="Chocholatos" />
+                                                        <img src="app/img/product/chocholatos.png" alt="Chocholatos" />
+                                                    </a>
+                                                </div><!--images-container-->
+                                                <div class="des-detail two-col">
+                                                    <h2 class="product-name">
+                                                        <a ui-sref="app.promise.procurement-ecatalogDetail({productName:'GarudaFood'})">Chocholatos</a>
+                                                    </h2>
+                                                    <!-- rating -->
+                                                    <div ng-controller="MyRating" class="ratings">
+                                                        <div ng-init="xx = 5" class="">
+                                                          <rating ng-model="xx" readonly="true" state-on="'glyphicon-star text-warning'" state-off="'glyphicon-star-empty'"></rating>
+                                                        </div>
+                                                    </div>
+                                                    <!-- / rating -->
+                                                    <h2 class="product-name">
+                                                        1.000 IDR
+                                                    </h2>
+                                                    <div class="short-des">
+                                                        Chocolatos merupakan inovasi baru dari GarudaFood dengan menghadirkan wafer stik yang lebih besar dan isi krim coklat yang lebih padat. Perpaduan antara wafer stik dan krim coklatnya memberikan citarasa serta kepuasan tersendiri dalam menikmati wafer stik, yang tidak dapat kita temui pada produk-produk wafer stik pada umumnya. Kombinasi wafer stik dan coklatnya merupakan perpaduan selera dan kualitas prima. â€œChocolatos, Mamma mia lezatosâ€�
+                                                    </div>
+
+                                                    <div class="m-b cat-label">
+                                                        <strong>Category : </strong>
+                                                        <a class="label label-primary" ui-sref="app.companyList">Makanan</a>
+                                                        <a class="label label-primary" ui-sref="app.companyList">Industri Dasar</a>
+                                                    </div>
+
+                                                </div>
+                                                <div class="list-pt">
+                                                    <h3> PT Tudung Putra Jaya (TPJ)</h3>
+                                                    <div>Pati | <span class="text-strong" tooltip="Gold Member 100% payment protection with their selected Trade Assurance suppliers"><span class="pl4 text-warning"><em class="fa fa-shield"> </em></span> Gold Member</span></div>
+                                                    <div>Reputasi :                                                
+                                                        <!-- rating -->
+                                                        <div ng-controller="MyRating" class="ratings">
+                                                            <div ng-init="xx = 5" class="">
+                                                              <rating ng-model="xx" readonly="true" state-on="'glyphicon-star text-warning'" state-off="'glyphicon-star-empty'"></rating>
+                                                            </div>
+                                                        </div>
+                                                        <!-- / rating -->
+                                                    </div>
+                                                    <div>Transaksi : 501</div>
+                                                    <!-- <a ui-sref="#" class="btn btn-xs btn-info">Contact</a> -->
+                                                    <a ui-sref="#" class="btn btn-xs btn-primary">Compare</a>
+                                                    <a ui-sref="#" class="btn btn-xs btn-warning">Add to Cart</a>
+                                                </div>
+                                            </div> <!-- item-inner -->
+                                        </div>
+
+                                        <div class="product-thumb">
+                                            <div class="item-inner">
+                                                <div class="images-container">
+                                                    <a class="product-image" ui-sref="app.promise.procurement-ecatalogDetail({productName:'PilusGaruda'})">
+                                                        <img class="img2" src="app/img/product/snack_pilus.jpg" alt="Pilus Garuda" />
+                                                        <img src="app/img/product/Snack_Pilus_Original_95gr.jpg" alt="Pilus Garuda">
+                                                    </a>
+                                                </div><!--images-container-->
+                                                <div class="des-detail two-col">
+                                                    <h2 class="product-name">
+                                                        <a ui-sref="app.promise.procurement-ecatalogDetail({productName:'PilusGaruda'})">Pilus Garuda</a>
+                                                    </h2>
+                                                    <!-- rating -->
+                                                    <div ng-controller="MyRating" class="ratings">
+                                                        <div ng-init="xx = 3" class="">
+                                                          <rating ng-model="xx" readonly="true" state-on="'glyphicon-star text-warning'" state-off="'glyphicon-star-empty'"></rating>
+                                                        </div>
+                                                    </div>
+                                                    <!-- / rating -->
+                                                    <h2 class="product-name">
+                                                        1.800 IDR
+                                                    </h2>
+                                                    <div class="short-des">
+                                                        Pilus Garuda adalah Snack cracker berbentuk Ball dengan Gabungan 4 rasa menajadi satu kedalam satu pack. Rasa Sapi Panggang, Rumput laut, Pedas dan Original PilusÂ  Garuda adalah Snack cracker berbentuk Ball dengan Gabungan 4 rasa menajadi satu kedalam satu pack. Rasa Sapi Panggang, Rumput laut, Pedas dan Original
+                                                    </div>
+
+                                                    <div class="m-b cat-label">
+                                                        <strong>Category : </strong>
+                                                        <a class="label label-primary" ui-sref="app.companyList">Makanan</a>
+                                                        <a class="label label-primary" ui-sref="app.companyList">Industri Dasar</a>
+                                                    </div>
+
+                                                </div>
+                                                <div class="list-pt">
+                                                    <h3> PT Tudung Putra Jaya (TPJ)</h3>
+                                                    <div>Pati | <span class="text-strong" tooltip="Gold Member 100% payment protection with their selected Trade Assurance suppliers"><span class="pl4 text-warning"><em class="fa fa-shield"> </em></span> Gold Member</span></div>
+                                                    <div>Reputasi :                                                
+                                                        <!-- rating -->
+                                                        <div ng-controller="MyRating" class="ratings">
+                                                            <div ng-init="xx = 5" class="">
+                                                              <rating ng-model="xx" readonly="true" state-on="'glyphicon-star text-warning'" state-off="'glyphicon-star-empty'"></rating>
+                                                            </div>
+                                                        </div>
+                                                        <!-- / rating -->
+                                                    </div>
+                                                    <div>Transaksi : 501</div>
+                                                    <!-- <a ui-sref="#" class="btn btn-xs btn-info">Contact</a> -->
+                                                    <a ui-sref="#" class="btn btn-xs btn-primary">Compare</a>
+                                                    <a ui-sref="#" class="btn btn-xs btn-warning">Add to Cart</a>
+                                                </div>
+                                            </div> <!-- item-inner -->
+                                        </div>
+
+                                        <div class="product-thumb">
+                                            <div class="item-inner">
+                                                <div class="images-container">
+                                                    <a class="product-image" ui-sref="app.promise.procurement-ecatalogDetail({productName:'LeoKeripikKentang'})">
+                                                        <img class="img2" src="app/img/product/leo-hot-spicy.jpg" alt="Leo Keripik Kentang" />
+                                                        <img src="app/img/product/leo-sapi-panggang.jpg" alt="Leo Keripik Kentang">
+                                                    </a>
+                                                </div><!--images-container-->
+                                                <div class="des-detail two-col">
+                                                    <h2 class="product-name">
+                                                        <a ui-sref="app.promise.procurement-ecatalogDetail({productName:'LeoKeripikKentang'})">Leo Keripik Kentang</a>
+                                                    </h2>
+                                                    <!-- rating -->
+                                                    <div ng-controller="MyRating" class="ratings">
+                                                        <div ng-init="xx = 4" class="">
+                                                          <rating ng-model="xx" readonly="true" state-on="'glyphicon-star text-warning'" state-off="'glyphicon-star-empty'"></rating>
+                                                        </div>
+                                                    </div>
+                                                    <!-- / rating -->
+                                                    <h2 class="product-name">
+                                                        12.000 IDR
+                                                    </h2>
+                                                    <div class="short-des">
+                                                        LEO Keripik Kentang rasa sapi panggang adalah keripik kentang berbentuk unik, renyah, rasa yang enak dan sangat terasa bumbu sapi panggang-nya. Cocok menemani kita-kita disaat bersantai, nonton TV, bertamasya, atapun kegiatan lainnya. Dengan LEO keripik kentang rasa sapi panggang kegiatan kalian akan semakin asyik. LEO, Lebih Banyak..Lebih Puas.
+                                                    </div>
+
+                                                    <div class="m-b cat-label">
+                                                        <strong>Category : </strong>
+                                                        <a class="label label-primary" ui-sref="app.companyList">Makanan</a>
+                                                        <a class="label label-primary" ui-sref="app.companyList">Industri Dasar</a>
+                                                    </div>
+
+                                                </div>
+                                                <div class="list-pt">
+                                                    <h3> PT Tudung Putra Jaya (TPJ)</h3>
+                                                    <div>Pati | <span class="text-strong" tooltip="Gold Member 100% payment protection with their selected Trade Assurance suppliers"><span class="pl4 text-warning"><em class="fa fa-shield"> </em></span> Gold Member</span></div>
+                                                    <div>Reputasi :                                                
+                                                        <!-- rating -->
+                                                        <div ng-controller="MyRating" class="ratings">
+                                                            <div ng-init="xx = 5" class="">
+                                                              <rating ng-model="xx" readonly="true" state-on="'glyphicon-star text-warning'" state-off="'glyphicon-star-empty'"></rating>
+                                                            </div>
+                                                        </div>
+                                                        <!-- / rating -->
+                                                    </div>
+                                                    <div>Transaksi : 501</div>
+                                                    <!-- <a ui-sref="#" class="btn btn-xs btn-info">Contact</a> -->
+                                                    <a ui-sref="#" class="btn btn-xs btn-primary">Compare</a>
+                                                    <a ui-sref="#" class="btn btn-xs btn-warning">Add to Cart</a>
+                                                </div>
+                                            </div> <!-- item-inner -->
+                                        </div>
+
+                                        <div class="product-thumb">
+                                            <div class="item-inner">
+                                                <div class="images-container">
+                                                    <a class="product-image" ui-sref="app.promise.procurement-ecatalogDetail({productName:'AptaPlus'})">
+                                                        <img class="img2" src="app/img/product/aptaplus.png" alt="Apta Plus" />
+                                                        <img src="app/img/product/apta.png" alt="Apta Plus">
+                                                    </a>
+                                                </div><!--images-container-->
+                                                <div class="des-detail two-col">
+                                                    <h2 class="product-name">
+                                                        <a ui-sref="app.promise.procurement-ecatalogDetail({productName:'AptaPlus'})">Apta Plus</a>
+                                                    </h2>
+                                                    <!-- rating -->
+                                                    <div ng-controller="MyRating" class="ratings">
+                                                        <div ng-init="xx = 2" class="">
+                                                            <rating ng-model="xx" readonly="true" state-on="'glyphicon-star text-warning'" state-off="'glyphicon-star-empty'"></rating>
+                                                        </div>
+                                                    </div>
+                                                    <!-- / rating -->
+                                                    <h2 class="product-name">
+                                                        98.000 IDR
+                                                    </h2>
+                                                    <div class="short-des">
+                                                        Sumber serat, serta mengandung 12 vitamin (tinggi vitamin B1, B2, B3, B6, B9, B12, dan vitamin D); 7 mineral, dan kalsium tinggi untuk membantu Anda menjalani aktivitas sehari-hari
+                                                    </div>
+
+                                                    <div class="m-b cat-label">
+                                                        <strong>Category : </strong>
+                                                        <a class="label label-primary" ui-sref="app.companyList">Industria Kimia</a>
+                                                    </div>
+
+                                                </div>
+                                                <div class="list-pt">
+                                                    <h3>PT Combiphar</h3>
+                                                    <div>Jakarta | <span class="text-strong" tooltip="Gold Member 100% payment protection with their selected Trade Assurance suppliers"><span class="pl4 text-warning"><em class="fa fa-shield"> </em></span> Gold Member</span></div>
+                                                    <div>Reputasi :                                                
+                                                        <!-- rating -->
+                                                        <div ng-controller="MyRating" class="ratings">
+                                                            <div ng-init="xx = 5" class="">
+                                                              <rating ng-model="xx" readonly="true" state-on="'glyphicon-star text-warning'" state-off="'glyphicon-star-empty'"></rating>
+                                                            </div>
+                                                        </div>
+                                                        <!-- / rating -->
+                                                    </div>
+                                                    <div>Transaksi : 501</div>
+                                                    <!-- <a ui-sref="#" class="btn btn-xs btn-info">Contact</a> -->
+                                                    <a ui-sref="#" class="btn btn-xs btn-primary">Compare</a>
+                                                    <a ui-sref="#" class="btn btn-xs btn-warning">Add to Cart</a>
+                                                </div>
+                                            </div> <!-- item-inner -->
+                                        </div>
+
+                                        
+
+
+                                    </div>
+                                </div><!--custom-products-->
+
+                                <div class="page-option col-md-2">
+                                    <span class="page-opt-text">Show :</span>
+                                    <a href="#" class="page-opt-num">20</a>
+                                    <a href="#" class="page-opt-num">30</a>
+                                    <a href="#" class="page-opt-num">50</a>
+                                </div>
+                                <div class="col-md-6 text-center">
+                                    <pagination first-text="<<" previous-text="<" next-text=">" last-text=">>" total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" boundary-links="true" class="pagination-sm"></pagination>
+                                </div>
+                                <div class="page-option col-md-4 text-right">
+                                    <span class="page-goto-text">Go to page</span>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="...">
+                                        <span class="input-group-btn perauto">
+                                            <button class="btn btn-primary" type="button">Go!</button>
+                                        </span>
+                                    </div><!-- /input-group -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END row-->

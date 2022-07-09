@@ -1,0 +1,86 @@
+<link rel="stylesheet" href="app/views/promise/procurement/portal/portal-css/custom-styles.css">
+
+<div class="app-view-header">Compare Product
+</div>
+<!-- START row-->
+<div class="row" ng-controller="ecatalogPortalCompareCtrl as vm">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="comparison">
+						  <table class="table table-striped-custom" >
+						    <thead>
+						      <tr>
+						        <th scope="col"class="tl tl2"></th>
+						       	<th scope="col"class="tl tl2"></th>
+						       	<th scope="col"class="tl tl2"></th>
+						       	<th scope="col"class="tl tl2"></th>
+						      </tr>
+						      <tr>
+						      	<th scope="col"class="tl"></th>
+						        <th scope="col"class="compare-heading" ng-repeat="catalog in catalogList">
+						        	<div class="wrapper">
+						        		<a class="badge" tooltip-placement="top" tooltip="Delete" ng-click="removeCompareInView(catalog)" style="float:  right;">
+                                        <em class="fa fa-times"></em>
+	                                    </a>
+							        	<div class="catalog-title">
+							        		{{catalog.namaIND}}
+							        	</div>
+						        	</div>
+                                    <div class="cmpImg">
+                                         <img ng-src="{{catalog.catalogImageList[0].loadFile}}" class="img-rounded center-image" on-error="{{gambarDefault}}">
+                                    </div>
+                                    <div class="catalog-price">
+                                    	{{catalog.harga | number:2 }}
+                                    </div>
+                                    <div class="catalog-rating">
+                                    	<rating ng-model="catalog.rating" readonly="true" state-on="'glyphicon-star text-warning'" state-off="'glyphicon-star-empty'"></rating>
+                                    </div>
+                                    <div class="catalog-location">
+                                        <span>{{catalog.catalogLocationList[0].officeAddress}}</span>
+                                    </div>
+                                    <div class="catalog-stock">
+                                    	Stock: <span>{{catalog.catalogLocationList[0].stockProduct + ' ' + catalog.satuan.nama}}</span>
+                                    </div>
+                                    <div class="vendor-catalog">
+                                    	<a class="" ui-sref="app.promise.procurement-catalog-vendor-detail({dataVendor: catalog.vendor})" ng-bind="catalog.vendor.nama">
+                                		</a>
+                                    </div>
+                                    <div class="vendor-rating">
+                                    	<rating ng-model="catalog.vendor.performanceAvg" readonly="true" state-on="'glyphicon-star text-warning'" state-off="'glyphicon-star-empty'"></rating>
+                                    </div>
+						        </th>
+						      </tr>
+						    </thead>
+						    <tbody>
+						      <tr class="compare" ng-repeat ="catalogAttribute in vm.catalogAttribute">
+						      	<td class="compare-row">
+						      		<span ng-bind="catalogAttribute.attributeCatalog"></span>
+						      	</td>
+						      	<td class="compare-row">
+						      		<span ng-bind="catalogAttribute.nilai1"></span>
+						        </td>
+						        <td class="compare-row" ng-show="catalogAttribute.nilai2">
+						      		<span ng-bind="catalogAttribute.nilai2"></span>
+						        </td>
+						        <td class="compare-row" ng-show="catalogAttribute.nilai3">
+						      		<span ng-bind="catalogAttribute.nilai3"></span>
+						        </td>
+						      </tr>
+						    
+						  </table>
+						</div>
+                    </div>
+            	</div>
+            	
+            	<br/>
+            	<div class="wrapper-button">
+            		<button type="button" class="btn btn-primary btn-sm btn-addon" ng-click="vm.kembali()">
+                    	<em class="fa fa-chevron-left"></em>Kembali
+                	</button>
+				</div>
+                
+        </div>
+    </div>
+</div>

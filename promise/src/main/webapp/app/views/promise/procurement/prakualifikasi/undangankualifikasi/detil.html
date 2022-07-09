@@ -1,0 +1,99 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.vendor.undangankualifikasi.JUDUL"></span>
+	<small><span translate="promise.procurement.vendor.undangankualifikasi.KETERANGAN"></span></small>
+</div>
+<!--START CONTROLLER-->
+<div ng-controller="UndanganKualifikasiDetilController">
+<promise-view-data-pengadaan pengadaan-id=pengadaanId></promise-view-data-pengadaan>
+    <!-- Panel 3 -->
+	<div class="panel panel-primary">
+		<h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-calendar">&nbsp;</em>
+         	<span>Jadwal Pengadaan</span>
+        </h4>
+		<div class="panel-body">
+			<div class="table-responsive">
+				<table id="table-ext-2" class="table table-bordered table-hover">
+					<tbody>
+						<tr ng-repeat="jadwal in jadwalPengadaanList">
+							<td style="text-align:left; vertical-align:middle" width="40%">
+								{{ jadwal.tahapanPengadaan.tahapan.nama }}
+							</td>
+							<td style="text-align:left; vertical-align:middle">
+Mulai Tanggal {{ jadwal.waktuAwal | date : 'dd-MM-yyyy HH:mm' }} sampai dengan {{ jadwal.waktuAkhir | date : 'dd-MM-yyyy HH:mm' }}
+								<br/>
+								{{ jadwal.lokasi!='undefined'? 'Lokasi '+jadwal.lokasi : '' }}
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+
+		<div align="center" ng-if="loadingDaftarPengadaan == true"><strong><em>Loading Pendaftaran Pengadaan...</em><img src="app/img/loading.gif" width="20px" border="0"/></strong>
+		</div>
+
+		<div align="center">
+			<strong style="color:red">{{ messageError }}</strong>
+
+			<strong ng-if="btnDaftarPengadaanStatus==false" style="color:green">Selamat Anda sudah terdaftar</strong>
+			<br/>
+
+			<button ng-class="'bg-' + app.theme.name" ng-click="btnKembali()" class="btn btn-primary btn-sm pull-center" ripple="">
+				<span class=""><em class="fa fa-chevron-left"></em></span>&nbsp;&nbsp;<font color="white"><span translate="promise.procurement.vendor.undangankualifikasi.detil.KEMBALI"></span></font>
+			</button>
+			<button ng-show="btnDaftarPengadaanStatus" ng-class="'bg-' + app.theme.name" ng-click="btnDaftarPengadaan()" class="btn btn-primary btn-sm pull-center" ripple="">
+				<span class=""><em class="fa fa-sign-in"></em></span>&nbsp;&nbsp;<font color="white"><span translate="promise.procurement.vendor.undangankualifikasi.detil.DAFTAR"></span></font>
+			</button>
+		</div>
+        <br>
+	</div>
+
+	<script type="text/ng-template" id="/hasilpendaftaran.html">
+		<div id="pendaftaran">
+			<div class="modal-header">
+				<button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="cancel()">×</button>
+				<h3 id="myModalLabel" class="modal-title">
+            <span translate="promise.procurement.vendor.undangankualifikasi.hasildaftar.HASILPENDAFTARAN"></span>
+        </h3>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-xs-12" align="right"><em><small>hash code : {{ token }}</small></em>
+						<br/>
+						<br/>
+					</div>
+					<div class="col-xs-12" align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px" border="0"/></strong>
+					</div>
+					<div class="col-xs-12" align="center">
+						<h2>Perusahaan Anda : {{ vendor.nama }},</h2>telah terdaftar untuk mengikuti <strong>{{ pengadaan.namaPengadaan }}</strong>
+						<br/> dengan Nomor Pengadaan <strong>{{ pengadaan.nomorNotaDinas }}</strong>
+						<br/>
+						<br/>
+						<p>Mohon untuk selalu memperhatikan Jadwal Pengadaan, jika anda melewati batas waktu yang telah ditentukan anda tidak dapat mengikuti proses pengadaan selanjutnya.</p>
+						<br/>
+						<p>Berikut ini adalah dokumen pengadaan silahkan untuk mendownload</p>
+						<div align="center" ng-repeat="file in download">
+							<a href="#" ng-click="downloadFile(file)">{{ file.nama }}</a>
+						</div>
+						<br/>
+						<br/> Terima Kasih
+					</div>
+					<div class="col-xs-12" align="center" ng-bind-html="messageSuccess" style="color : green"></div>
+					<div class="col-xs-12" align="center" ng-bind-html="messageError" style="color : red"></div>
+				</div>
+				<br/>
+			</div>
+			<div class="modal-footer" align="center">
+				<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="btn btn-primary btn-sm pull-center" ng-click="cancel()">
+					<span class=""><em class="fa fa-times"></em></span>&nbsp;&nbsp;<font color="white">
+				<span translate="">Tutup</span>
+			</button>
+
+			<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="btn btn-primary btn-sm pull-center" ng-click="printDiv('pendaftaran')">
+				<span class=""><em class="fa fa-print"></em></span>&nbsp;&nbsp;<font color="white">
+			<span translate="promise.procurement.vendor.undangankualifikasi.hasildaftar.CETAK"></span>
+		</button>
+	</div>
+</div>
+</script>

@@ -1,0 +1,425 @@
+<!--
+SPESIFIC VIEW OF THE SELEKSI KUALIFIKASI MENU FROM PRAKUALIFIKASI MODULE
+---------------------- START CONTROLLER ---------------------------------
+-->
+
+<div class="app-view-header">
+    <span translate="promise.procurement.panitia.seleksikualifikasi.JUDUL"></span>
+    <small><span translate="promise.procurement.panitia.seleksikualifikasi.view.seleksikeuangan.JUDUL"></span></small>
+</div>
+<toaster-container toaster-options="{'position-class': 'toast-top-center', 'close-button':true}"></toaster-container>
+
+<div ng-controller="SeleksiKeuanganController as form">
+    <form method="" action="" novalidate="" class="form-horizontal">
+        <div id="seleksiKeuangan">
+            <promise-view-data-pengadaan pengadaan-id=pengadaanId></promise-view-data-pengadaan>
+            
+            
+<!-------------------------------------------------------------------- Table Ke 4 --------------------------------------------------------------------------->
+
+<div class="panel panel-primary">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-university">&nbsp;</em><span translate="promise.procurement.panitia.seleksikualifikasi.view.seleksiadministrasi.TABELVENDOR"></span></h4>
+   	<div class="panel-body">
+   		<div class="col-md-12">
+      		<div>
+          		<div align="center" ng-if="loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+             	<div class="table-responsive" style="overflow:visible">
+              		<table ng-table="daftarVendorTable" class="table table-hover table-condensed table-striped bg-white">
+                  		<thead>
+                      		<tr style="font-weight: bold">
+                          		<th scope="col"style="width:5%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.seleksikualifikasi.view.seleksiadministrasi.NO"></span>
+                              	</th>
+                              	<th scope="col"style="width:25%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.seleksikualifikasi.view.seleksiadministrasi.NAMAVENDOR"></span>
+                              	</th>
+                              	<th scope="col"style="width:20%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.seleksikualifikasi.view.seleksiadministrasi.TELEPON"></span>
+                              	</th>
+                              	<th scope="col"style="width:33%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.seleksikualifikasi.view.seleksiadministrasi.ALAMAT"></span>
+                              	</th>
+                              	<th scope="col"style="width:20%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.seleksikualifikasi.view.seleksikeuangan.STATUSKELULUSAN"></span>
+                              	</th>
+                              	<th scope="col"style="width:15%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.seleksikualifikasi.view.seleksikeuangan.AKSI"></span>
+                              	</th>
+                        	</tr>
+                  		</thead>
+                 		<tbody>
+                      		<tr ng-repeat="ppm in $data">
+                         		<td style="text-align:center; vertical-align:middle">
+                                	{{ $index+1 }}
+                            	</td>
+                        		<td style="text-align:center; vertical-align:middle">
+                                	{{ ppm.vendor.nama}}
+                            	</td>
+                             	<td style="text-align:center; vertical-align:middle">
+                                	{{ ppm.vendor.nomorTelpon }}
+                            	</td>
+                            	<td style="text-align:center; vertical-align:middle">
+                            		{{ ppm.vendor.alamat }}
+                             	</td>
+                           		<td style="text-align:center; vertical-align:middle">
+                                	{{ ppm.vendor.statusKelulusan }}
+                          		</td>
+                          		<td style="text-align:center; vertical-align:middle">
+                                	<div>
+                                    	<button type="button" class="mr btn btn-primary btn-circle btn-xs" ng-click="viewModal($index, ppm)">
+                                        	<em class="fa fa-search"></em>
+                                    	</button>
+                                	</div>
+                          		</td>
+                      		</tr>
+                  		</tbody>
+         			</table>
+    			</div>
+  			</div>
+ 		</div>
+   	</div>
+</div>
+
+
+
+
+
+		</div>
+      	
+      	<div align="center">
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="back()"><em class="fa fa-arrow-circle-left">&nbsp;</em>
+                <span translate="promise.procurement.panitia.seleksikualifikasi.view.btn.KEMBALI"></span>
+            </button>
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="printDiv('seleksiKeuangan')" ng-show="detilPengadaan.tahapanPengadaan.tahapan.id>1009"><em class="fa fa-print">&nbsp;</em>
+                <span translate="promise.procurement.panitia.seleksikualifikasi.view.btn.PRINT"></span>
+            </button>
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="lanjut()" ng-show="detilPengadaan.tahapanPengadaan.tahapan.id>=1009" >
+                <span translate="promise.procurement.panitia.seleksikualifikasi.view.btn.LANJUT"></span>&nbsp;<em class="fa fa-check"></em>
+            </button>
+        </div>
+        <br>
+ 	</form>
+</div>
+
+
+
+<!-------------------------------------------------- MODAL DATA KRITERIA KUALIFIKASI ------------------------------------------>
+<script type="text/ng-template" id="/daftarKriteriaKeuangan.html">
+<toaster-container toaster-options="{'position-class': 'toast-top-center', 'close-button':true}"></toaster-container>
+<div class="app-view-header"></div>
+<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+	<span translate="promise.procurement.panitia.seleksikualifikasi.view.seleksikemampuandasar.JUDULMODAL"></span>
+</h4>
+<div align="center" ng-if="loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+<div class="modal-body">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-university">&nbsp;</em><span translate="promise.procurement.panitia.seleksikualifikasi.view.seleksiadministrasi.TABELVENDOR"></span></h4>
+	<div class="col-xs-12">
+		<table class="table table-bordered table-hover">
+			<tbody>
+				<tr>
+     				<td style="text-align:left;vertical-align:top" width="40%">Nama Penyedia Barang/Jasa</td>	
+					<td style="text-align:left;vertical-align:top" width="60%">{{ vendor.nama }}</td>
+          		</tr>
+				<tr>
+     				<td style="text-align:left;vertical-align:top" width="40%">Kualifikasi</td>	
+					<td style="text-align:left;vertical-align:top" width="60%">{{ vendor.kualifikasi }}</td>
+          		</tr>
+				<tr>
+     				<td style="text-align:left;vertical-align:top" width="40%">Bidang: Sub Bidang</td>	
+					<td style="text-align:left;vertical-align:top" width="60%">
+						<div class="col-sm-8" ng-repeat="bd in bidangUsahaList">
+							<li style="margin-left:12px" ng-bind="bd.subBidangUsaha.bidangUsaha.nama"></li>
+          					<ul class="fa fa-long-arrow-right" ng-bind="bd.subBidangUsaha.nama"></ul>                 
+						</div>
+					</td>
+          		</tr>
+			</tbody>
+		</table>
+	</div>
+	<p>&nbsp;</p>
+		<div>
+			<div class="col-xs-12">
+				<div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong></div>
+				<form method="" action="#" novalidate="" class="form-horizontal">		                
+					<fieldset>
+						<div class="row">
+							<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+								<span translate="promise.procurement.RegistrasiVendor.DataKeuangan.SubJudul1"></span>
+							</h4>
+						</div>
+		            	<div class="row">
+				        	<label class="col-sm-3 control-label"><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.NomorAudit"></span>
+				            	<label class="text-danger">*)</label>
+				            </label>
+				            <div class="col-sm-6">
+				            	<input name="nomorAudit" type="text" class="form-control shadow-z1 input-sm" ng-model="dataKeuangan.nomorAudit">
+				                <p ng-show="dataKeuangan.nomorAuditError" style="color:red">nomor Audit Harus diisi</p>
+                                <br/>
+				        	</div>
+						</div>
+		            	<div class="row">
+				        	<label class="col-sm-3 control-label"><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.TanggalAudit"></span>
+				            	<label class="text-danger">*)</label>
+				            </label>
+				            <div class="col-sm-3">
+								<div class="input-group">
+                        			<input name="tanggalAudit" type="text" datepicker-popup="dd/MM/yyyy" ng-model="dataKeuangan.tanggalAudit" is-open="tanggalAuditStatus"  class="form-control shadow-z1 input-sm" show-button-bar="false" readonly="true" required/>
+                            		<span class="input-group-btn">
+										<button type="button" ng-click="tanggalAuditOpen($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+											<em class="fa fa-calendar"></em>
+										</button>
+									</span>
+								</div>
+				                <p ng-show="dataKeuangan.tanggalAuditError" style="color:red">tanggal Audit Harus diisi</p>
+                                <br/>
+				        	</div>
+						</div>
+		            	<div class="row">
+				        	<label class="col-sm-3 control-label"><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.NamaAudit"></span>
+				            	<label class="text-danger">*)</label>
+				            </label>
+				            <div class="col-sm-6">
+				            	<input name="namaAudit" type="text" class="form-control shadow-z1 input-sm" ng-model="dataKeuangan.namaAudit">
+				                <p ng-show="dataKeuangan.namaAuditError" style="color:red">nama Audit Harus diisi</p>
+                                <br/>
+				        	</div>
+						</div>
+						<div class="row">
+							<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+								<span translate="promise.procurement.RegistrasiVendor.DataKeuangan.SubJudul2"></span>
+							</h4>
+						</div>
+		            	<div class="row">
+				        	<label class="col-sm-3 control-label"><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.TahunKeuangan"></span>
+				            	<label class="text-danger">*)</label>
+				            </label>
+				            <div class="col-sm-2">
+				            	<input name="tahunKeuangan" type="number" class="form-control shadow-z1 input-sm" ng-model="dataKeuangan.tahunKeuangan" ng-blur="validasiTahun(dataKeuangan.tahunKeuangan)">
+				                <p ng-show="dataKeuangan.tahunKeuanganError" style="color:red">tahun Keuangan Harus diisi</p>
+                                <br/>
+				        	</div>
+						</div>
+						<div class="row">
+							<table class="table table-hover table-condensed table-striped bg-white">
+								<thead>
+									<tr style="font-weight: bold">
+                                    	<th scope="col"style="width:5%; text-align:left"></th>
+                                    	<th scope="col"style="width:15%; text-align:left"></th>
+                                    	<th scope="col"style="width:15%; text-align:left"></th>
+                                    	<th scope="col"style="width:15%; text-align:left"></th>
+                                    	<th scope="col"style="width:5%; text-align:left"></th>
+                                    	<th scope="col"style="width:15%; text-align:left"></th>
+                                    	<th scope="col"style="width:15%; text-align:left"></th>
+                                    	<th scope="col"style="width:15%; text-align:left"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td colspan="4"><center><span translate="">AKTIVA</span></center></td>
+										<td colspan="4"><center><span translate="">PASIVA</span></center></td>
+									</tr>
+									<tr>
+										<td><span translate="">I</span></td>
+										<td colspan="3"><span translate="">Aktiva Lancar, terdiri dari :</span></td>
+										<td><span translate="">IV</span></td>
+										<td colspan="3"><span translate="">Hutang Jangka Pendek, terdiri dari :</span></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><span translate="">Kas</span></td>
+										<td><input name="dataKas" type="number" class="form-control shadow-z1 input-sm" ng-model="dataKeuangan.kas" ng-change="tambahAktivaLancar(); rugiLaba(); totalPasiva()"></td>
+										<td></td>
+										<td></td>
+										<td><span translate="">Hutang Dagang</span></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="dataKeuangan.hutangDagang" ng-change="tambahPasiva(); rugiLaba(); totalPasiva()"></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><span translate="">Bank</span></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="dataKeuangan.bank" ng-change="tambahAktivaLancar(); rugiLaba(); totalPasiva()"></td>
+										<td></td>
+										<td></td>
+										<td><span translate="">Hutang Pajak</span></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="dataKeuangan.hutangPajak" ng-change="tambahPasiva(); rugiLaba(); totalPasiva()"></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><span translate="">Total Piutang</span></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="dataKeuangan.totalPiutang" ng-change="tambahAktivaLancar(); rugiLaba(); totalPasiva()"></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><span translate="">Persediaan Barang</span></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="dataKeuangan.persediaanBarang" ng-change="tambahAktivaLancar(); rugiLaba(); totalPasiva()"></td>
+										<td></td>
+										<td></td>
+										<td><span translate="">Hutang Lainnya</span></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="dataKeuangan.hutangLainnya" ng-change="tambahPasiva(); rugiLaba(); totalPasiva()"></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><span translate="">Pekerjaan dalam proses</span></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="dataKeuangan.pekerjaanDalamProses" ng-change="tambahAktivaLancar(); rugiLaba(); totalPasiva()"></td>
+										<td></td>
+										<td></td>
+										<td><span translate="">Total (IV)</span></td>
+										<td></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="dataKeuangan.totalHutangJangkaPendek" ng-change="totalPasiva()" readonly></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><span translate="">Total (I)</span></td>
+										<td></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="dataKeuangan.totalAktivaLancar" ng-change="totalAktiva()" readonly></td>
+										<td><span translate="">V</span></td>
+										<td><span translate="">Hutang Jangka Panjang</span></td>
+										<td></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="dataKeuangan.hutangJangkaPanjang" ng-change="totalPasiva(); rugiLaba(); totalPasiva()"></td>
+									</tr>
+									<tr>
+										<td><span translate="">II</span></td>
+										<td><span translate="">Aktiva Tetap, terdiri dari</span></td>
+										<td></td>
+										<td></td>
+										<td><span translate="">VI</span></td>
+										<td><span translate="">Kekayaan bersih (I + II + III) - (IV + V)</span></td>
+										<td></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="dataKeuangan.kekayaanBersih" ng-change="totalPasiva()" readonly></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><span translate="">Peralatan dan mesin</span></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="dataKeuangan.peralatanDanMesin" ng-change="tambahAktivaTetap(); rugiLaba(); totalPasiva()"></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><span translate="">Inventaris</span></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="dataKeuangan.inventaris" ng-change="tambahAktivaTetap(); rugiLaba(); totalPasiva()"></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><span translate="">Gedung - gedung</span></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="dataKeuangan.gedungGedung" ng-change="tambahAktivaTetap(); rugiLaba(); totalPasiva()"></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><span translate="">Total (II)</span></td>
+										<td></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="dataKeuangan.totalAktivaTetap" ng-change="totalAktiva()" readonly></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><span translate="">III</span></td>
+										<td><span translate="">Aktiva Lainnya (III)</span></td>
+										<td></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="dataKeuangan.aktivaLainnya" ng-change="totalAktiva(); rugiLaba(); totalPasiva()"></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><span translate="">Total</span></td>
+										<td></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="dataKeuangan.totalAktiva" readonly></td>
+										<td></td>
+										<td><span translate="">Total</span></td>
+										<td></td>
+										<td><input type="number" class="form-control shadow-z1 input-sm" ng-model="dataKeuangan.totalPasiva" readonly></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+		        	</fieldset>
+				</form>
+			</div>
+		</div>
+
+	<p>&nbsp;</p>
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-list">&nbsp;</em><span translate="promise.procurement.panitia.seleksikualifikasi.view.seleksikeuangan.SUBJUDULMODAL"></span></h4>
+   	<div class="col-xs-12">
+	<div align="center" ng-if="loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+		<table class="table table-hovertable-condensed table-striped bg-white">
+  			<thead>
+         		<tr style="background-color:#EEEEEE">
+              		<th scope="col"style="text-align:center" width="300px"><span translate="promise.procurement.panitia.seleksikualifikasi.view.seleksikeuangan.FP">FP</span>
+                	</th>
+               		<th scope="col"style="text-align:center" width="300px"><span translate="promise.procurement.panitia.seleksikualifikasi.view.seleksikeuangan.FL">FL</span>
+           			</th>
+         			<th scope="col"style="text-align:center" width="500px"><span translate="promise.procurement.panitia.seleksikualifikasi.view.seleksikeuangan.KB">KB</span>
+         			</th>
+					<th scope="col"style="text-align:center" width="500px"><span translate="promise.procurement.panitia.seleksikualifikasi.view.seleksikeuangan.NK">NK</span>
+           			</th>
+					<th scope="col"style="text-align:center" width="500px"><span translate="promise.procurement.panitia.seleksikualifikasi.view.seleksikeuangan.PRESTASI">Prestasi</span>
+           			</th>
+					<th scope="col"style="text-align:center" width="500px"><span translate="promise.procurement.panitia.seleksikualifikasi.view.seleksikeuangan.NILAISKK">Nilai SKK</span> (Besar Ambang : {{ nilaiBatasAmbang }} )
+           			</th>
+         		</tr>
+    		</thead>
+ 			<tbody>
+   				<tr>
+          			<td style="text-align:center">{{ vendor.FP }}</td>
+              		<td style="text-align:center">{{ vendor.FL }}</td>
+					<td style="text-align:center">{{ vendor.KB | number:2 }}</td>
+              		<td style="text-align:center">
+						<input type="number" ng-model="vendor.NK" ng-change="setNilaiSKK()" min="0" style="text-align:center; vertical-align:middle; width:100px"/>
+					</td>
+					<td style="text-align:center">
+						<input type="number" ng-model="vendor.prestasi" ng-change="setNilaiSKK()" min="0" style="text-align:center; vertical-align:middle; width:100px"/>
+					</td>
+					<td style="text-align:center">{{ vendor.nilaiSKK | number:2 }}</td>
+           		</tr>
+       		</tbody>
+		</table>
+		<div class="col-sm-9">
+			<p style="color:red; font: italic bold 12px Georgia, serif">* Catatan</p>
+            <p style="color:red; font: italic bold 12px Georgia, serif">Nilai = FP*FL*KB-(NK-Prestasi)</p>
+			<p style="color:red; font: italic bold 12px Georgia, serif">FP = Faktor Perputaran Modal</p>
+			<p style="color:red; font: italic bold 12px Georgia, serif">FL = Faktor Likuiditas</p>
+			<p style="color:red; font: italic bold 12px Georgia, serif">KB = Kekayaan Bersih</p>
+			<p style="color:red; font: italic bold 12px Georgia, serif">NK = Nilai Kontrak pekerjaan dalam pelaksanaan</p>
+    	</div>
+		<div class="form-group">
+			<div class="col-lg-offset-2 col-lg-10">
+				<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="btnBatal()">
+   					<span class="btn-label"><em class="fa fa-chevron-left"></em></span>
+     		  		<span translate="promise.procurement.panitia.seleksikualifikasi.view.btn.KEMBALI"></span>
+   				</button>
+  		 		<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="btnSimpan()" ng-disabled="view">
+   					<span translate="promise.procurement.panitia.seleksikualifikasi.view.btn.SIMPAN"></span>
+   					<span class="btn-label btn-label-right"><em class="fa fa-chevron-right"></em></span>
+   				</button>
+			</div>
+		</div>
+	</div>
+    <p>&nbsp;</p>
+</div>
+</script>

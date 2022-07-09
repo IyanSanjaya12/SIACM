@@ -1,0 +1,58 @@
+<!-- 
+GENERAL VIEW OF THE PROCUREMENT SYSTEM 
+---------- START CONTROLLER ----------
+-->
+
+<div class="app-view-header">
+    <span translate="promise.procurement.panitia.pengambilandokumen.JUDUL">Pengambilan Dokumen</span>
+</div>
+
+<div class="panel panel-primary" ng-controller="PengambilanDokumenController as form">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-tasks">&nbsp;</em><span translate="promise.procurement.panitia.pengambilandokumen.SUBJUDUL">Pengambilan Dokumen</span></h4>
+    <div class="panel-body">
+        <br/>
+        <div class="col-md-12">
+            <div>
+                <div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px" border="0"/></strong></div>
+                <table datatable="ng" class="row-border hover table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"style="text-align:center">No
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.pengambilandokumen.list.NOMOR">No Pengadaan</span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.pengambilandokumen.list.NAMA">Nama Pengadaan</span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.pengambilandokumen.list.TAHAPAN">Tahapan Saat Ini</span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.pengambilandokumen.list.TANGGAL">Tanggal</span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.pengambilandokumen.list.AKSI">Aksi</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="data in pengadaanList">
+                            <td style="text-align:center">{{ $index+1 }}</td>
+                            <td style="text-align:center">{{ data.nomorNotaDinas }}</td>
+                            <td style="text-align:center">{{ data.namaPengadaan }}</td>
+                            <td style="text-align:center"><a href='#'>{{ data.tahapanPengadaan.tahapan.nama }}</a></td>
+                            <td style="text-align:center">{{ data.tanggalNotaDinas | date:'dd/MM/yyyy'}}</td>
+                            <td style="text-align:center">
+                                <div>
+                                    <button type="button" class="mr btn btn-primary btn-circle btn-xs" ng-click="view(data)" ng-show="data.tahapanPengadaan.tahapan.id!=6 && data.tahapanPengadaan.tahapan.id!=5">
+                                        <em class="fa fa-search"></em>
+                                    </button>
+                                    <button type="button" class="mr btn btn-success btn-circle btn-xs" ng-click="view(data)" ng-show="data.tahapanPengadaan.tahapan.id==6 || data.tahapanPengadaan.tahapan.id==5">
+                                        <em class="fa fa-pencil fa-lg"></em>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END CONTROLLER-->

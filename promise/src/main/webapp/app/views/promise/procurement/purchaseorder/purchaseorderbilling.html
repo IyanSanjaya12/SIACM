@@ -1,0 +1,111 @@
+<div class="m-b-xs p-b-xs">
+		<div class="row">
+			<div class="col-md-8">
+				<br>
+				<div class="form-group">
+					<label class="col-md-3 control-label">PO Number</label>
+					<div class="col-md-7">
+						<div class="input-group">
+							<input type="text" promise-alphanumericlimitedspecialsymbol-only ng-model="form.purchaseOrder.poNumber" class="form-control" ng-disabled="inputDisable" />	<span class="input-group-btn">
+													<button type="button" ng-click="btnGenerateNumber()" ng-disabled="btnDisable" class="btn btn-default">
+															Generate
+														</button>
+												</span>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">PO Date</label>
+					<div class="col-md-7">
+						<div class="input-group">
+							<input type="text" datepicker-popup="{{form.format}}" ng-model="form.purchaseOrder.purchaseOrderDate" is-open="form.poDateOpened" min-date="form.minDate" max-date="false" datepicker-options="form.dateOptions" date-disabled="form.disabled(form.date, form.mode)" close-text="Close" class="form-control" readonly /> <span class="input-group-btn">
+								<button type="button" ng-click="form.poDateOpen($event)" class="btn btn-default" ripple="">
+									<em class="fa fa-calendar"></em>
+								</button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">PR Number</label>
+					<div class="col-md-7">
+						<select class="form-control" ng-model="form.purchaseOrder.purchaseRequest.id" disabled="disabled">
+							<option ng-repeat="purchaseRequest in form.purchaseRequestList" value="{{purchaseRequest.id}}" ng-bind="purchaseRequest.prnumber" ng-selected="purchaseRequest.id == form.purchaseOrder.purchaseRequest"></option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">Vendor</label>
+					<div class="col-md-7">
+						<select class="form-control" ng-model="form.vendor.id" disabled="disabled">
+							<option ng-repeat="vendor in form.vendorList" value="{{vendor.id}}" ng-bind="vendor.nama+', '+vendor.alamat" ng-selected="vendor.id == form.vendor.id"></option>
+						</select>
+					</div>
+					<br/>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">Company Name</label>
+					<div class="col-md-7">
+						<input type="text" ng-model="form.purchaseOrder.addressBook.organisasi.nama" class="form-control" disabled="disabled">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-12 control-label text-left">Select billing address from your address book or enter a new address</label>
+					<div class="col-md-12">
+						<select class="form-control" ng-model="form.purchaseOrder.addressBook.id" ng-change="form.selectBillingAdress()">
+							<option ng-repeat="billingAddress in form.billingAddressList" value="{{billingAddress.id}}" ng-bind="billingAddress.addressLabel+', '+billingAddress.streetAddress"></option>
+							<option value="0">New Address</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">Full Name</label>
+					<div class="col-md-7">
+						<input promise-alphabet-only type="text" ng-model="form.purchaseOrder.fullName" class="form-control">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">Address</label>
+					<div class="col-md-7">
+						<textarea class="form-control" ng-model="form.purchaseOrder.streetAddress"></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">Telephone</label>
+					<div class="col-md-7">
+						<input promise-numbers-only type="text" ng-model="form.purchaseOrder.telephone1" class="form-control">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-7 col-md-offset-3">
+						<div class="checkbox c-checkbox needsclick" ng-show="form.po.billTo.billingAddress==0">
+							<label class="needsclick">
+								<input type="checkbox" value="true" class="needsclick" ng-model="form.po.billTo.saveAddress" /> <span class="fa fa-check"></span> Save to address book</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-7 col-md-offset-3">
+						<div class="radio-inline c-radio">
+							<label>
+								<input id="inlineradio1" type="radio" name="i-radio" ng-value="true" checked="checked" ng-model="form.shipToThisAddress" ng-change="form.getShippingDefalut()" ng-disabled="shipToDisable" /> <span class="fa fa-circle"></span>Ship to this address</label>
+						</div>
+						<div class="radio-inline c-radio">
+							<label>
+								<input id="inlineradio2" type="radio" name="i-radio" ng-value="false" ng-model="form.shipToThisAddress" ng-change="form.getShippingDefalut()" ng-disabled="shipToDisable" /> <span class="fa fa-circle"></span>Ship to different address</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row m-t b-t p-t">
+			<div class="col-md-12 text-center">
+				<a class="btn btn-default" ng-click="form.btnKembaliIndex()">
+					<span translate="promise.procurement.master.attribute.btn.KEMBALI"></span>
+				</a>
+				<a ng-class="'bg-' + app.theme.name" class="btn btn-primary" ng-click="tabs[1].active=true;">
+					<span translate="promise.procurement.master.attribute.btn.SELANJUTNYA"></span>
+				</a>
+			</div>
+		</div>
+	</div>

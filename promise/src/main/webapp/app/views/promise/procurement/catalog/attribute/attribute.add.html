@@ -1,0 +1,71 @@
+<div class="app-view-header"> <span translate="promise.procurement.master.attribute.JUDUL"></span>
+	<small><span translate="promise.procurement.master.attribute.KETERANGAN_ADD"></span></small>
+</div>
+<div class="panel panel-primary" ng-controller="AttributeAddController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-tasks"></em>
+            <span translate="promise.procurement.master.attribute.JUDUL"></span>
+			<a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+					<em class="fa fa-chevron-circle-down"></em>
+			</a>
+	</h4>
+	<form class="form-horizontal" name="form">
+		
+		<div class="panel-body collapse in">
+			<div class="form-group">
+				<label class="col-lg-3 control-label required">Label</label>
+				<div class="col-lg-7">
+					<input name="label" class="form-control" maxlength="250" ng-model="vm.attribute.name" ng-blur="cekValidSame(vm.attribute.name)"><strong style="color: red" translate={{vm.errorMessageLabel}}></strong>
+				</div>
+			</div>
+			<fieldset>
+				<h4 class="page-header no-margin">Translation</h4>
+				<div class="form-group m-t">
+					<label class="col-lg-3 control-label required">IND</label>
+					<div class="col-lg-7">
+						<input name="translateInd" class="form-control" maxlength="250" ng-model="vm.attribute.translateInd"><strong style="color: red" translate={{vm.errorMessageInd}}></strong>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-3 control-label required">ENG</label>
+					<div class="col-lg-7">
+						<input name="translateEng" class="form-control" maxlength="250" ng-model="vm.attribute.translateEng"><strong style="color: red" translate={{vm.errorMessageEng}}></strong>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-3 control-label required">Input Type</label>
+					<div class="col-lg-4 no-search">
+						<select name="formType" class="form-control m-b shadow-z1 input-sm" chosen="" ng-model="vm.attribute.inputType" ng-options="type.name for type in vm.inputTypeList track by type.id" ng-change="vm.changeInputType()">
+							<option value="" disabled selected>++ Pilih ++</option>
+						</select><strong style="color: red" translate={{vm.errorMessageInputType}}></strong>
+					</div>
+				</div>
+				<div class="row-clone-group" ng-show="vm.attribute.inputType.name == 'Checkbox' || vm.attribute.inputType.name == 'Radio' || vm.attribute.inputType.name == 'Selectbox'">
+					<div class="row-clone" ng-repeat="dv in vm.attribute.attributeOptionList">
+						<div class="form-group">
+							<label class="col-lg-3 control-label" ng-bind="$index+1"></label>
+							<div class="col-lg-7">
+								<input class="form-control" maxlength="250" ng-model="dv.name">
+							</div> <a class="col-lg-1 text-left control-label text-danger" ng-click="vm.deleteOption(dv)"><em class="fa fa-close"></em></a>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-lg-offset-3 col-lg-7 text-right">
+							<a class="btn btn-primary btn-sm btn-add pull-right" ng-click="vm.addOption()"> Add Value</a>
+							<!-- <button class="btn btn-xs btn-info" ng-click="vm.addOption()">Add Value</button> -->
+						</div>
+					</div>
+	            </div>
+            </fieldset>
+            <br>
+            <div class="form-group">
+				<div class="text-center">
+					<a class="btn btn-default" ng-click="vm.kembali()"> <span translate="promise.procurement.master.attribute.btn.KEMBALI"></span>
+					</a>
+					<a ng-class="'bg-' + app.theme.name" class="btn btn-primary" ng-click="vm.simpan()"> <span translate="promise.procurement.master.attribute.btn.SIMPAN"></span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

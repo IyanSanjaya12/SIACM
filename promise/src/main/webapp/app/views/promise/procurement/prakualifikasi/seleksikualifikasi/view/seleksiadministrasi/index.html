@@ -1,0 +1,181 @@
+<!--
+SPESIFIC VIEW OF THE SELEKSI KUALIFIKASI MENU FROM PRAKUALIFIKASI MODULE
+---------------------- START CONTROLLER ---------------------------------
+-->
+
+<div class="app-view-header">
+    <span translate="promise.procurement.panitia.seleksikualifikasi.JUDUL"></span>
+    <small><span translate="promise.procurement.panitia.seleksikualifikasi.view.seleksiadministrasi.JUDUL"></span></small>
+</div>
+<toaster-container toaster-options="{'position-class': 'toast-top-center', 'close-button':true}"></toaster-container>
+
+<div ng-controller="SeleksiAdministrasiController as form">
+    <form method="" action="" novalidate="" class="form-horizontal">
+        <div id="seleksiAdministrasi">
+            <promise-view-data-pengadaan pengadaan-id=pengadaanId></promise-view-data-pengadaan>
+            
+<!-------------------------------------------------------------------- Table Ke 4 --------------------------------------------------------------------------->
+<div class="panel panel-primary">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-university">&nbsp;</em><span translate="promise.procurement.panitia.seleksikualifikasi.view.seleksiadministrasi.TABELVENDOR"></span></h4>
+   	<div class="panel-body">
+   		<div class="col-md-12">
+      		<div>
+          		<div align="center" ng-if="loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+             	<div class="table-responsive" style="overflow:visible">
+              		<table ng-table="daftarVendorTable" class="table table-hover table-condensed table-striped bg-white">
+                  		<thead>
+                      		<tr style="font-weight: bold">
+                          		<th scope="col"style="width:5%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.seleksikualifikasi.view.seleksiadministrasi.NO"></span>
+                              	</th>
+                              	<th scope="col"style="width:25%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.seleksikualifikasi.view.seleksiadministrasi.NAMAVENDOR"></span>
+                              	</th>
+                              	<th scope="col"style="width:20%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.seleksikualifikasi.view.seleksiadministrasi.TELEPON"></span>
+                              	</th>
+                              	<th scope="col"style="width:33%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.seleksikualifikasi.view.seleksiadministrasi.ALAMAT"></span>
+                              	</th>
+                              	<th scope="col"style="width:20%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.seleksikualifikasi.view.seleksiadministrasi.STATUSKELULUSAN"></span>
+                              	</th>
+                              	<th scope="col"style="width:15%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.seleksikualifikasi.view.seleksiadministrasi.AKSI"></span>
+                              	</th>
+                        	</tr>
+                  		</thead>
+                 		<tbody>
+                      		<tr ng-repeat="ppm in $data">
+                         		<td style="text-align:center; vertical-align:middle">
+                                	{{ $index+1 }}
+                            	</td>
+                        		<td style="text-align:center; vertical-align:middle">
+                                	{{ ppm.vendor.nama}}
+                            	</td>
+                             	<td style="text-align:center; vertical-align:middle">
+                                	{{ ppm.vendor.nomorTelpon }}
+                            	</td>
+                            	<td style="text-align:center; vertical-align:middle">
+                            		{{ ppm.vendor.alamat }}
+                             	</td>
+                           		<td style="text-align:center; vertical-align:middle">
+                                	{{ ppm.vendor.statusKelulusan }}
+                          		</td>
+                          		<td style="text-align:center; vertical-align:middle">
+                                	<div>
+                                    	<button type="button" class="mr btn btn-primary btn-circle btn-xs" ng-click="viewModal($index, ppm)">
+                                        	<em class="fa fa-search"></em>
+                                    	</button>
+                                	</div>
+                          		</td>
+                      		</tr>
+                  		</tbody>
+         			</table>
+    			</div>
+  			</div>
+ 		</div>
+   	</div>
+</div>
+            
+            
+      	</div>
+      	
+      	<div align="center">
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="back()"><em class="fa fa-arrow-circle-left">&nbsp;</em>
+                <span translate="promise.procurement.panitia.seleksikualifikasi.view.btn.KEMBALI"></span>
+            </button>
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="printDiv('seleksiAdministrasi')" ng-show="detilPengadaan.tahapanPengadaan.tahapan.id>1009"><em class="fa fa-print">&nbsp;</em>
+                <span translate="promise.procurement.panitia.seleksikualifikasi.view.btn.PRINT"></span>
+            </button>
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="lanjut()" ng-show="detilPengadaan.tahapanPengadaan.tahapan.id>=1009" >
+                <span translate="promise.procurement.panitia.seleksikualifikasi.view.btn.LANJUT"></span>&nbsp;<em class="fa fa-check"></em>
+            </button>
+        </div>
+        <br>
+ 	</form>
+</div>
+
+
+
+<!-------------------------------------------------- MODAL DATA KRITERIA KUALIFIKASI ------------------------------------------>
+<script type="text/ng-template" id="/daftarKriteriaKualifikasiAdmin.html">
+<toaster-container toaster-options="{'position-class': 'toast-top-center', 'close-button':true}"></toaster-container>
+<div class="app-view-header"></div>
+<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+	<span translate="promise.procurement.panitia.seleksikualifikasi.view.seleksiadministrasi.JUDULMODAL"></span>
+</h4>
+<div align="center" ng-if="loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+<div class="modal-body">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-university">&nbsp;</em><span translate="promise.procurement.panitia.seleksikualifikasi.view.seleksiadministrasi.TABELVENDOR"></span></h4>
+	<div class="col-xs-12">
+		<table class="table table-bordered table-hover">
+			<tbody>
+				<tr>
+     				<td style="text-align:left;vertical-align:top" width="40%">Nama Penyedia Barang/Jasa</td>	
+					<td style="text-align:left;vertical-align:top" width="60%">{{ vendor.nama }}</td>
+          		</tr>
+				<tr>
+     				<td style="text-align:left;vertical-align:top" width="40%">Kualifikasi</td>	
+					<td style="text-align:left;vertical-align:top" width="60%">{{ vendor.kualifikasi }}</td>
+          		</tr>
+				<tr>
+     				<td style="text-align:left;vertical-align:top" width="40%">Bidang: Sub Bidang</td>	
+					<td style="text-align:left;vertical-align:top" width="60%">
+						<div class="col-sm-8" ng-repeat="bd in bidangUsahaList">
+							<li style="margin-left:12px" ng-bind="bd.subBidangUsaha.bidangUsaha.nama"></li>
+          					<ul class="fa fa-long-arrow-right" ng-bind="bd.subBidangUsaha.nama"></ul>                 
+						</div>
+					</td>
+          		</tr>
+			</tbody>
+		</table>
+	</div>
+	<p>&nbsp;</p>
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-list">&nbsp;</em><span translate="promise.procurement.panitia.kriteriakualifikasi.view.daftarkriteriaadmin.JUDUL"></span></h4>
+   	<div class="col-xs-12">
+	<div align="center" ng-if="loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+		<table ng-table="daftarKriteriaAdminTable" class="table table-hovertable-condensed table-striped bg-white">
+  			<thead>
+         		<tr style="background-color:#EEEEEE">
+              		<th scope="col"style="text-align:center" width="20px"><span translate="promise.procurement.panitia.kriteriakualifikasi.view.daftarkriteriaadmin.NO">Nomor</span>
+                	</th>
+               		<th scope="col"style="text-align:center" width="500px"><span translate="promise.procurement.panitia.kriteriakualifikasi.view.daftarkriteriaadmin.NAMAKRITERIA">Nama Kriteria</span>
+           			</th>
+         			<th scope="col"style="text-align:center" width="500px"><span translate="promise.procurement.panitia.kriteriakualifikasi.view.daftarkriteriaadmin.NILAIKRITERIA">Nilai Kriteria (Memenuhi)</span>
+         			</th>
+         		</tr>
+    		</thead>
+ 			<tbody>
+   				<tr ng-repeat = "dka in $data">
+          			<td style="text-align:center">{{ $index+1 }}</td>
+              		<td style="text-align:center">{{ dka.masterKriteriaKualifikasiAdministrasi.nama }}</td>
+              		<td style="text-align:center">
+						<div class="checkbox c-checkbox c-checkbox-rounded">
+                    		<label>
+                    			<input type="checkbox" name="dka.masterKriteriaKualifikasiAdministrasi.nama" ng-model="dka.active" ng-change="changeAdminCheck(dka, active)"/><span class="fa fa-check"></span>
+							</label>
+                     	</div>
+					</td>
+           		</tr>
+       		</tbody>
+		</table>
+		<div class="form-group">
+			<div class="col-lg-offset-2 col-lg-10">
+				<div class="checkbox c-checkbox c-checkbox-rounded">
+          		 	<label>
+        				<input type="checkbox" name="checkAll" ng-model="lulus" ng-change="pilihSemua(lulus)"/><span class="fa fa-check"></span>Memenuhi Kriteria Administrasi
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-lg-offset-2 col-lg-10">
+				<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="btnBatal()">
+   					<span class="btn-label"><em class="fa fa-chevron-left"></em></span>
+     		  		<span translate="promise.procurement.RegistrasiVendor.kembali"></span>
+   				</button>
+  		 		<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="btnSimpan()" ng-disabled="view">
+   					<span translate="promise.procurement.RegistrasiVendor.simpan"></span>
+   					<span class="btn-label btn-label-right"><em class="fa fa-chevron-right"></em></span>
+   				</button>
+			</div>
+		</div>
+	</div>
+    <p>&nbsp;</p>
+</div>
+</script>

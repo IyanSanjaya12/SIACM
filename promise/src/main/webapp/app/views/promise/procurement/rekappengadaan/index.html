@@ -1,0 +1,166 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.panitia.RekapPengadaan.Index.Judul"></span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary form-horizontal" ng-controller="RekapPengadaanIndexController as form">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <em class="fa fa-tasks">&nbsp;</em>
+        <span translate="promise.procurement.panitia.RekapPengadaan.Index.SubJudul1"></span>
+    </h4>
+    <div class="panel-body">
+
+        <div class="form-group">            
+            <label class="col-lg-2 control-label" translate="promise.procurement.panitia.RekapPengadaan.Index.Cabang"></label>
+            <div class="col-lg-4">
+
+                <ui-select ng-model="form.dataOrganisasi" theme="bootstrap">
+                    <ui-select-match placeholder="++ Semua ++">{{$select.selected.nama}}</ui-select-match>
+                    <ui-select-choices repeat="organisasi in form.OrganisasiList | propsFilter: {id: $select.search}">
+                        <div ng-bind-html="organisasi.nama | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+
+        <div class="form-group">            
+            <label class="col-lg-2 control-label" translate="promise.procurement.panitia.RekapPengadaan.Index.Periode"></label>
+            <div class="col-lg-4">
+                <p class="input-group">
+                    <input type="text" datepicker-popup="dd-MM-yyyy" ng-model="form.tglAwal" is-open="form.tglAwalOpened" close-text="Close" class="form-control" readonly="" />
+                    <span class="input-group-btn">
+                        <button type="button" ng-click="form.tglAwalOpen($event)" class="btn btn-default" ripple="">
+                            <em class="fa fa-calendar"></em>
+                        </button>
+                    </span>
+                </p>
+            </div>
+            <label class="col-lg-1 text-center control-label">s/d</label>
+            <div class="col-md-3">
+                <p class="input-group">
+                    <input type="text" datepicker-popup="dd-MM-yyyy" ng-model="form.tglAkhir" is-open="form.tglAkhirOpened" close-text="Close" class="form-control" readonly="" style="background-color:white;" />
+                    <span class="input-group-btn">
+                        <button type="button" ng-click="form.tglAkhirOpen($event)" class="btn btn-default" ripple="">
+                            <em class="fa fa-calendar"></em>
+                        </button>
+                    </span>
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-12 text-right">
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="form.searchRekapPengadaan()">
+                <h5><span translate="promise.procurement.panitia.RekapPengadaan.Index.ButtonCari"></span></h5>
+            </button>
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="form.showFilterAdvanced()">
+                <h5><span translate="promise.procurement.panitia.RekapPengadaan.Index.ButtonAdvancedSearch"></span></h5>
+            </button>
+            <a ng-class="'bg-' + app.theme.name" ng-mousedown="csv.generate()" ng-href="{{ csv.link() }}" download="RekapPengadaan.csv" class="mr btn btn-labeled btn-success">
+                <h5><span translate="promise.procurement.panitia.RekapPengadaan.Index.ButtonExcell"></span></h5>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="panel panel-primary form-horizontal" ng-controller="RekapPengadaanIndexController as form">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <em class="fa fa-tasks">&nbsp;</em>
+        <span translate="promise.procurement.panitia.RekapPengadaan.Index.SubJudul2"></span>
+    </h4>
+
+    <div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px"></strong></div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table ng-table="tableSummaryPengadaan" export-csv="csv" class="table table-hover table-condensed table-striped bg-white">
+                <!-- <thead>
+                    <tr style="font-weight: bold">
+                        <th scope="col"style="width:5%; text-align:left"><span translate="promise.procurement.panitia.RekapPengadaan.Index.No"></span></th>
+                        <th scope="col"style="width:30%; text-align:left"><span translate="promise.procurement.panitia.RekapPengadaan.Index.Wilayah"></span></th>
+                        <th scope="col"style="width:30%; text-align:center"><span translate="promise.procurement.panitia.RekapPengadaan.Index.JumlahPengadaan"></span></th>
+                        <th scope="col"style="width:30%; text-align:center"><span translate="promise.procurement.panitia.RekapPengadaan.Index.TotalPengadaan"></span></th>
+                        <th scope="col"style="width:5%; text-align:left"><span translate="promise.procurement.panitia.RekapPengadaan.Index.Aksi"></span></th>
+                    </tr>
+                </thead> -->
+                <tbody>
+                    <tr ng-repeat="dataPengadaan in $data">
+                        <td style="text-align: center"  data-title="'No'">{{ ($index+1)}}</td>
+                        <td data-title="'Wilayah'">{{ dataPengadaan.nama }}</td>
+                        <td style="text-align: center" data-title="'Jumlah Pengadaan'">{{ dataPengadaan.jumlahPengadaan }}</td>
+                        <td style="text-align: right" data-title="'Total Pengadaan (Rp)'">{{ dataPengadaan.nilaiHPSPengadaan | number: 2 }}</td>
+                        <td style="white-space: nowrap; text-align:center">
+                            <div>
+                                <button type="button" class="mr btn btn-success btn-circle btn-xs" ng-click="buttonViewIndex(dataPengadaan)">		
+                                    <em  class="fa fa-search"></em>                                            
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th scope="col"colspan="3" style="text-align: right"><span translate="promise.procurement.inisialisasi.tambahbumn.TBLTOTALHRG"></span></th>
+                        <th scope="col"style="text-align: right">{{ form.totalNilaiHPSPengadaan| number : 2 }}</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+<!--END CONTROLLER-->
+<!-- MODAL ADVANCED SEARCH -->
+<script type="text/ng-template" id="/advancedSearchModal.html">
+	<div class="panel panel-primary">
+        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+            <center>
+                <span translate="promise.procurement.panitia.RekapPengadaan.Index.JudulModal"></span>
+            </center>
+        </h4>
+        <div class="panel-body">
+            <div class="col-md-12" style="margin:5px;">
+                <div class="col-md-4">
+                        <span translate="promise.procurement.panitia.RekapPengadaan.Index.JenisPengadaan"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <ui-select ng-model="selectedJenisPengadaan" theme="bootstrap">
+                            <ui-select-match placeholder="++ Semua ++">{{$select.selected.nama}}</ui-select-match>
+                            <ui-select-choices repeat="jenisPengadaan in jenisPengadaanList | propsFilter: {id: $select.search}">
+                                <div ng-bind-html="jenisPengadaan.nama | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+            </div>
+            <div class="col-md-12" style="margin:5px;">
+                    <div class="col-md-4">
+                        <span translate="promise.procurement.panitia.RekapPengadaan.Index.MetodePengadaan"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <ui-select ng-model="selectedMetodePengadaan" theme="bootstrap">
+                            <ui-select-match placeholder="++ Semua ++">{{$select.selected.nama}}</ui-select-match>
+                            <ui-select-choices repeat="metodePengadaan in metodePengadaanList | propsFilter: {id: $select.search}">
+                                <div ng-bind-html="metodePengadaan.nama | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+            </div>
+            <div class="col-md-12" style="margin:5px;">
+                    <div class="col-md-4">
+                        <span translate="promise.procurement.panitia.RekapPengadaan.Index.MataUang"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <ui-select ng-model="selectedMataUang" theme="bootstrap">
+                            <ui-select-match placeholder="++ Semua ++">{{$select.selected.nama}}</ui-select-match>
+                            <ui-select-choices repeat="mataUang in mataUangList | propsFilter: {id: $select.search}">
+                                <div ng-bind-html="mataUang.nama | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+            </div>
+            <div class="col-md-12" style="margin:5px; text-align:right;">
+                <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="addFilterSearch()">
+                    <h5><span translate="promise.procurement.panitia.RekapPengadaan.Index.ButtonCari"></span></h5>
+                </button>
+                <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="backToSearchForm()">
+                    <h5><span translate="promise.procurement.panitia.RekapPengadaan.View.ButtonKembali"></span></h5>
+                </button>
+            </div>
+        </div>
+    </div>
+</script>

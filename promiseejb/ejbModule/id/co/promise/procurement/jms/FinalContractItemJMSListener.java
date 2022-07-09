@@ -1,0 +1,49 @@
+package id.co.promise.procurement.jms;
+
+import id.co.promise.procurement.entity.StoreJMS;
+import id.co.promise.procurement.master.StoreJMSSession;
+import id.co.promise.procurement.utils.Constant;
+
+import java.util.Date;
+
+import javax.annotation.Resource;
+import javax.ejb.ActivationConfigProperty;
+import javax.ejb.EJB;
+import javax.ejb.MessageDriven;
+import javax.ejb.MessageDrivenContext;
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.MessageListener;
+import javax.jms.TextMessage;
+
+import org.jboss.logging.Logger;
+
+@MessageDriven(mappedName = "FINALCONTRACTITEM", activationConfig = {
+		@ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
+		@ActivationConfigProperty(propertyName = "destination", propertyValue = "java:/jms/queue/FINALCONTRACTITEM_IN") })
+public class FinalContractItemJMSListener implements MessageListener {
+	final static Logger log = Logger.getLogger(FinalContractItemJMSListener.class);
+	@Resource private MessageDrivenContext mdc;
+	@EJB private StoreJMSSession storeJMSSession;
+
+	@Override
+	public void onMessage(Message message) {
+		try {
+			TextMessage msg = (TextMessage) message;
+			String result 	= "";
+			log.info(">> Message final contract item listener : " + msg.getText());
+			result = msg.getText();
+			StoreJMS storeJMS = new StoreJMS();
+			storeJMS.setStoreJmsCreated(new Date());
+			storeJMS.setStoreJmsData(result);
+			storeJMS.setStoreJmsModule(Constant.JMS_FINAL_CONTRACT_ITEM);
+			storeJMS.setStoreJmsStat(Constant.ZERO_VALUE);
+			storeJMSSession.insertStoreJMS(storeJMS, null);
+		} catch (JMSException ex) {
+			mdc.setRollbackOnly();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}

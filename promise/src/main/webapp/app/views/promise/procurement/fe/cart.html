@@ -1,0 +1,239 @@
+<div class="app-view-header">Shopping Cart
+    <!-- <small ng-bind="app.name + ' - ' + app.description"></small> -->
+</div>
+
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="GeneralCtrl">
+    
+    <div class="panel-body">
+        <div class="row form-horizontal">
+            <div class="col-md-6">
+                <a ui-sref="app.rfq_add" class="btn btn-warning btn-ns btn-addon"> Continue Shopping</a>
+            </div>
+            <div class="col-md-6 text-right">
+                <a ui-sref="app.rfq_add" class="btn btn-danger btn-ns btn-addon"> Create PR</a>
+            </div>
+            
+            <div class="col-md-12 table-responsive">
+                <div class="cart-col">
+                    <div class="cart-head">
+                        <div class="col-md-6">
+                            <h4 class="bold">ITEM</h4>
+                        </div>
+                        <div class="col-md-2">
+                            <h4 class="bold">HARGA</h4>
+                        </div>
+                        <div class="col-md-2">
+                            <h4 class="bold">JUMLAH</h4>
+                        </div>
+                        <div class="col-md-2">
+                            <h4 class="bold">SUBTOTAL</h4>
+                        </div>
+                    </div>
+
+                    <div class="cart-item">
+                        <h4 class="bold">Seller : PT. Garuda Food</h4>
+                        <div class="col-md-6">
+                            <div class="cart-img col-md-2 no-padding">
+                                <img class="thumb80 img-rounded" src="app/img/product/aptaplus.png">
+                            </div>
+                            <div class="cart-text col-md-10">
+                                <a href="#" class="cart-title" target="_blank">
+                                    <h4>Cosmos CRJ-101 Rice Cooker</h4>
+                                </a>
+                                <div class="cart-desc">
+                                    Program Bundling Cosmos CRJ-101 Rice Cooker & Cosmos CTL-110 Electric Kettle.
+                                </div>
+                                <div class="cart-action action-col">
+                                    <a class="badge bg-danger" ng-click="ConfirmAlert()" tooltip-placement="top" tooltip="Delete">
+                                        <em class="glyphicon glyphicon-trash"></em>
+                                    </a>
+                                    <a class="badge bg-info" ng-click="save()" tooltip-placement="top" tooltip="Save for later">
+                                        <em class="glyphicon glyphicon-floppy-saved"></em>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <span class="cart-price">
+                                Rp. 230.000
+                            </span>
+                            <span class="cart-unit">
+                                /Kg
+                            </span>
+                        </div>
+                        <div class="col-md-2">
+                            <input ui-jq="TouchSpin" type="text" value="1" class="input-sm form-control" data-min='1' data-max="10" data-step="1" >
+                        </div>
+                        <div class="col-md-2">
+                            <div class="cart-price">
+                                Rp. 230.000
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-offset-6 col-md-6 cart-sub-total">
+                    <h3>
+                        <span>SUBTOTAL</span>
+                        <span class="pull-right">Rp. 60.000</span>
+                    </h3>
+                    <h2>
+                        <strong>
+                            <span>GRAND TOTAL</span>
+                            <span class="pull-right">Rp. 60.000</span>
+                        </strong>
+                    </h2>
+                </div>
+
+                <div class="button-cart">
+                    <a class="btn btn-lg btn-warning">
+                        <strong>Continue Shopping</strong>
+                    </a>
+                    <a class="btn btn-lg btn-danger pull-right">
+                        <strong>Create PR</strong>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END CONTROLLER-->
+
+<script type="text/ng-template" id="modal.html">
+    <div class="modal-header">
+        <button class="close" ng-click="cancel()"><em class="fa fa-close"></em></button>
+        <h4 class="modal-title">Payment Monitoring</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row form-horizontal">
+            <div class="col-md-12">
+                <div class="pull-left bg-primary">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label class="col-lg-5 text-left control-label">PO Number</label>
+                            <label class="col-lg-7 text-left control-label">123456</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-5 text-left control-label">PO Date</label>
+                            <label class="col-lg-7 text-left control-label">12-02-2016</label>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Vendor</label>
+                            <div class="col-lg-9">
+                                <div class="col-lg-12 text-strong p-t">PT. Global Integrasi Data</div>
+                                <div class="col-lg-12">Gedung Sona Topas, Jl. Jend. Sudirman Kav. 26 Jakarta Selatan</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h4>Items List</h4>
+
+        <table class="table table-sm table-striped standard">
+            <thead>
+                <tr>
+                    <th scope="col">Item</th>
+                    <th scope="col">Qty</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Unit</th>
+                    <th scope="col">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Laptop DELL Inspiron N4050</td>
+                    <td>5/10</td>
+                    <td class="number">4.000.000,-</td>
+                    <td>piece</td>
+                    <td class="number">20.000.000,-</td>
+                </tr>
+                <tr>
+                    <td>Laptop LENOVO</td>
+                    <td>6/10</td>
+                    <td class="number">5.000.000,-</td>
+                    <td>piece</td>
+                    <td class="number">30.000.000,-</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="row form-horizontal">
+            <div class="col-md-12">
+                <div class="pull-left w100 bg-primary">
+                    <div class="col-md-12">
+                        <div class="form-group no-margin">
+                            <label class="col-lg-4 text-left control-label">Sub Total</label>
+                            <label class="col-lg-6 control-label">50.000.000,-</label>
+                        </div>
+                        <div class="form-group no-margin">
+                            <label class="col-lg-4 text-left control-label">Pinalty</label>
+                            <label class="col-lg-6 control-label">5.000.000,-</label>
+                            <label class="col-lg-2 control-label">(late)</label>
+                        </div>
+                        <div class="form-group no-margin">
+                            <label class="col-lg-4 text-left control-label">PPn</label>
+                            <label class="col-lg-6 control-label">4.500.000,-</label>
+                        </div>
+                        <div class="form-group">
+                            <h4 class="col-lg-4 text-left control-label">Total Amount</h4>
+                            <h4 class="col-lg-6 control-label">49.500.000,-</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</script>
+
+<script type="text/ng-template" id="claim.html">
+    <div class="modal-header">
+        <button class="close" ng-click="cancel()"><em class="fa fa-close"></em></button>
+        <h4 class="modal-title">Claim Invioce</h4>
+    </div>
+    <div class="modal-body form-horizontal">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="col-lg-5 text-left control-label">Upload</label>
+                    <div class="col-lg-9">
+                        <input class="filestyle" type="file">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <table class="table table-sm table-striped standard">
+            <thead>
+                <tr>
+                    <th scope="col">Tanggal Upload</th>
+                    <th scope="col">Nama Dokumen</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>13-07-2016</td>
+                    <td><a href="">Dokumen Claim 1</a></td>
+                </tr>
+                <tr>
+                    <td>13-07-2016</td>
+                    <td><a href="">Dokumen Claim 2</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group text-center">
+                    <button class="btn btn-primary" ng-click="cancel()" />Simpan
+                </div>
+            </div>
+        </div>
+    </div>
+</script>

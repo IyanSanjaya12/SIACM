@@ -1,0 +1,33 @@
+<div ng-controller="PortalController as form">
+	<div ng-show="form.loading" align="center">
+		<strong><em>Loading... <img src="app/img/loading.gif" border="0"
+				height="20px" /></em></strong>
+	</div>
+	<div class="portal-wrapper" ng-show="!form.loading">
+		<header
+			ng-include="'app/views/promise/procurement/portal/navbar.html'"></header>
+
+		<!--  banner -->
+		<section class="">
+			<div class="row full-width shadow-z1">
+				<div ng-controller="PortalCarouselController" animate-enabled="true">
+					<carousel interval="myInterval"> <slide
+						ng-repeat="slide in slides" active="slide.active"> <img
+						ng-src="{{slide.image}}" style="margin: auto;" alt=""
+						class="wd-wide" />
+					<div class="carousel-caption">
+						<p>{{slide.text}}</p>
+					</div>
+					</slide> </carousel>
+				</div>
+			</div>
+		</section>
+		<!--  end banner -->
+		<br>
+
+		<div class="row">
+			<div class="col-md-12 fw-boxed"></div>
+			 ini news
+		</div>
+	</div>
+</div>

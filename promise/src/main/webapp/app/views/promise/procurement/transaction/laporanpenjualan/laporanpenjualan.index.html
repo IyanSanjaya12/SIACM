@@ -1,0 +1,90 @@
+<div class="app-view-header">
+	<span translate="laporanpenjualan.judul"></span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="LaporanPenjualanIndexController as vm ">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <em class="fa fa-tasks"></em>
+        <span translate="laporanpenjualan.judul"></span>
+        <a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+            <em class="fa fa-chevron-circle-down"></em>
+        </a>
+    </h4>
+	<div class="panel-body collapse in">
+		<div class="col-lg-12 p-b b-b m-b">
+			<div class="col-md-12">
+				<div class="form-group">
+					<label class="col-md-2 text-left control-label">Transaksi Dari</label>
+					<div class="col-md-3">
+						<div class="input-group">			
+							<input placeholder="Start Date" type="text" datepicker-popup="dd/MM/yyyy"
+							max-date="vm.param.endDate" ng-model="vm.param.startDate"
+							is-open="tanggalStartStatus" ng-change="getListPaging()"
+							class="form-control" show-button-bar="true"
+							readonly="true" required /> 
+							<span class="input-group-btn">
+								<button type="button" ng-click="tanggalStartOpen($event)" class="btn btn-default" ripple="">
+									<em class="fa fa-calendar"></em>
+								</button>
+							</span>
+						</div>
+					</div>
+					<label class="col-md-1 text-left control-label">Sampai</label>
+					<div class="col-md-3">
+						<div class="input-group">			
+							<input placeholder="End Date" type="text" datepicker-popup="dd/MM/yyyy"
+							min-date="vm.param.startDate" ng-model="vm.param.endDate"
+							is-open="tanggalEndStatus"
+							class="form-control" show-button-bar="true"
+							readonly="true" required /> 
+							<span class="input-group-btn">
+								<button type="button" ng-click="tanggalEndOpen($event)" class="btn btn-default" ripple="">
+									<em class="fa fa-calendar"></em>
+								</button>
+							</span>
+						</div>
+					</div>
+					<div class="text-right">
+				  		<button type="button" id="search" class="btn btn-primary" title="Filter" ng-click="doFilter()">
+			       	 		<em class="fa fa-search"></em>&nbsp;Filter
+		          		</button>&nbsp;
+		          		
+		          		<button type="button" id="print" class="btn btn-print" title="Print" ng-click="doPrint()">
+			       	 		&nbsp;Print
+		          		</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br />
+		<div class="col-md-12">
+			<div class="text-center" ng-if="vm.loading == true"> <strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px" /></strong>
+			</div>
+			<table datatable="ng" class="row-border hover table-striped">
+				<thead>
+					<tr>
+						<th scope="col"> <span translate="laporanpenjualan.list.nomor"></span></th>
+						<th scope="col"> <span translate="laporanpenjualan.list.nofaktur"></span></th>
+						<th scope="col"> <span translate="laporanpenjualan.list.tglpenjualan"></span></th>
+						<th scope="col"> <span translate="laporanpenjualan.list.nopolisi"></span></th>
+						<th scope="col" style="text-align:left"> <span translate="laporanpenjualan.list.namapelanggan"></span></th>
+						<th scope="col" style="text-align:right"> <span translate="laporanpenjualan.list.potonganharga"></span></th>
+						<th scope="col" style="text-align:right"> <span translate="laporanpenjualan.list.total"></span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="laporanPenjualan in vm.laporanPenjualanList">
+						<td class="text-center">{{ $index+1 }}</td>
+						<td style="text-align:center" ng-bind="laporanPenjualan.noFaktur"></td>
+						<td style="text-align:center" ng-bind="laporanPenjualan.tanggal | date:'dd/MM/yyyy'"></td>
+						<td style="text-align:center" ng-bind="laporanPenjualan.pelanggan.noPolisi"></td>
+						<td style="text-align:left" ng-bind="laporanPenjualan.pelanggan.nama"></td>
+						<td style="text-align:right" ng-bind="(laporanPenjualan.totalDiskon | currency : '')"></td>
+						<td style="text-align:right" ng-bind="(laporanPenjualan.hargaSetelahDiskon | currency : '')"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<!--END CONTROLLER-->

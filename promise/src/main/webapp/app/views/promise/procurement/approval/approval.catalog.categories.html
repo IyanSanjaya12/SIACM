@@ -1,0 +1,58 @@
+<script type="text/ng-template" id="nodes_renderer.html">
+	<div ui-tree-handle class="tree-node tree-node-content">
+	    	<a class="btn btn-success btn-xs" data-nodrag ng-click="toggle(this)">
+	            <span ng-class="{'fa fa-chevron-right': collapsed, 'fa fa-chevron-down': !collapsed}"></span>
+	        </a>
+	    	<label class="c-checkbox">
+							<input class="form-control m-b input-sm" type="checkbox" ng-model="node.value" ng-click="pickCategory(node)"  
+										 ng-disabled="node.categoryChildList && node.categoryChildList.length > 0"/>
+	            <span class="fa fa-check m-sm"></span>
+	            <strong>{{node.translateInd}} </strong>
+	        </label>
+	    </div>
+	    <ol ng-if="node.categoryChildList != null" ui-tree-nodes="" ng-model="node.categoryChildList" ng-class="{hidden: !collapsed}">
+	    	<li ng-repeat="node in node.categoryChildList" data-nodrag ng-include="'nodes_renderer.html'" ui-tree-node></li>
+	    </ol>
+</script>
+<!-- /* perubahan KAI 14/12/2020 [20852]*/ -->
+<script type="text/ng-template" id="nodes_renderer_history.html">
+	<div ui-tree-handle class="tree-node tree-node-content">
+	    	<a class="btn btn-success btn-xs" data-nodrag ng-click="toggle(this)">
+	            <span ng-class="{'fa fa-chevron-right': collapsed, 'fa fa-chevron-down': !collapsed}"></span>
+	        </a>
+	    	<label class="c-checkbox">
+							<input class="form-control m-b input-sm" type="checkbox" ng-model="node.value" ng-click="pickCategory(node)"  
+										 ng-disabled="node.categoryChildList && node.categoryChildList.length > 0"/>
+	            <span class="fa fa-check m-sm"></span>
+	            <strong>{{node.translateInd}} </strong>
+	        </label>
+	    </div>
+	    <ol ng-if="node.categoryChildList != null" ui-tree-nodes="" ng-model="node.categoryChildList" ng-class="{hidden: !collapsed}">
+	    	<li ng-repeat="node in node.categoryChildList" data-nodrag ng-include="'nodes_renderer_history.html'" ui-tree-node></li>
+	    </ol>
+</script>
+<div class="row" ui-tree="" data-nodrop-enabled="true" data-drag-delay="2000000000000">
+	<div class="col-md-12">
+		<!-- <button class="btn btn-xs btn-primary" ng-click="expandAll()">Expand all</button>
+        <button class="btn btn-xs btn-info" ng-click="collapseAll()">Collapse all</button> -->
+		<ol class="no-icon" ui-tree-nodes="disabled" ng-model="catalog.categoryList">
+			<li ng-repeat="node in catalog.categoryList" ng-include="'nodes_renderer.html'" ui-tree-node="disabled"></li>
+		</ol>
+	</div>
+	<hr>
+	<!-- /* perubahan KAI 14/12/2020 [20852]*/ -->
+	<div class="col-md-12" ng-show="vm.categoryShow && vm.todo != 'add'">
+		<h4 style="color: red;font-weight: bold;font-style: italic;">Perubahan</h4><br>
+		<!-- <button class="btn btn-xs btn-primary" ng-click="expandAll()">Expand all</button>
+        <button class="btn btn-xs btn-info" ng-click="collapseAll()">Collapse all</button> -->
+		<ol class="no-icon" ui-tree-nodes="disabled" ng-model="catalogHistory.categoryList">
+			<li ng-repeat="node in catalogHistory.categoryList" ng-include="'nodes_renderer_history.html'" ui-tree-node="disabled"></li>
+		</ol>
+	</div>
+	<div class="col-md-12 text-center" style="margin-top: 30px">
+		<a class="btn btn-default" ng-click="backToGeneral()"> <span translate="promise.procurement.master.attribute.btn.SEBELUMNYA"></span>
+		</a>
+		<a class="btn btn-primary" ng-click="goToImages()"> <span translate="promise.procurement.master.attribute.btn.SELANJUTNYA"></span>
+		</a>
+	</div>
+</div>

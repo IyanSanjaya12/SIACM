@@ -1,0 +1,126 @@
+  <!-- CONTENT -->
+<div class="app-view-header">
+</div>
+
+<div class="panel panel-primary" ng-controller="MonitoringVendorController as vm">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><span >Monitoring Vendor</span>
+
+    </h4>
+    <div class="panel-body">
+    <div align="right">
+    	      <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled mb 2" ng-click="export()">
+                <span class="btn-label"> <em class="fa fa-plus"></em> </span>
+                <span> Export</span>
+            </button>
+    	 </div>
+        <div class="row p-b m-b">
+	        <div class="col-md-2">
+	                <div class="input-group">
+										<ui-select name="departement" ng-model="vm.departement" 
+											theme="bootstrap"> <ui-select-match
+											placeholder="Departement">{{$select.selected.nama}}</ui-select-match>
+										<ui-select-choices
+											repeat="departement in vm.departementList | filter: $select.search">
+										<div ng-bind-html="departement.nama | highlight: $select.search"></div>
+										</ui-select-choices> </ui-select>
+					         	</div>
+	        </div>
+            <div class="col-md-2">
+                <div class="input-group">
+									<ui-select name="status" ng-model="vm.status" 
+										theme="bootstrap"> <ui-select-match
+										placeholder="Status">{{$select.selected.name}}</ui-select-match>
+									<ui-select-choices
+										repeat="status in statusList | filter: $select.search">
+									<div ng-bind-html="status.name | highlight: $select.search"></div>
+									</ui-select-choices> </ui-select>
+				         	</div>
+            </div>
+            <div class="col-md-2">
+                <div class="input-group">
+				               	<input placeholder="Start" type="text" datepicker-popup="dd/MM/yyyy" max-date="endDate" ng-model="startDate" is-open="tanggalStartStatus"  class="form-control shadow-z1 input-sm" show-button-bar="true" readonly="true" required/>
+				   				<span class="input-group-btn">
+									<button type="button" ng-click="tanggalStartOpen($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+										<em class="fa fa-calendar"></em>
+									</button>
+								</span>
+				         	</div>
+            </div>
+            <div class="col-md-2">
+                <div class="input-group">
+				               	<input placeholder="End" min-date="startDate" type="text" datepicker-popup="dd/MM/yyyy" ng-model="endDate" is-open="tanggalEndStatus"  class="form-control shadow-z1 input-sm" show-button-bar="true" readonly="true" required/>
+				   				<span class="input-group-btn">
+									<button type="button" ng-click="tanggalEndOpen($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+										<em class="fa fa-calendar"></em>
+									</button>
+								</span>
+				         	</div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <div >
+                            <input class="form-control shadow-z1 input-sm" placeholder="Nama Vendor" type="text" ng-model="nama">
+                        </div>
+                    </div>
+                </div>
+            </div>	
+            <div class="col-md-1">
+                <div class="input-group">
+                                <button ng-disabled="vm.loading" ng-click="getSearchAndSort()" class="btn btn-primary">Apply</button>
+				         	</div>
+            </div>
+            
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div align="center" ng-if="loading == true">
+                    <strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px"/></strong>
+                </div>
+                <div class="table-responsive" style="overflow: auto;">
+                    <table class="table standard table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                            	<th scope="col"style="text-align:center" ><span>No</span></th>
+                                <th scope="col"style="text-align:center" ><span>Nama Vendor</span></th>
+                                <th scope="col"style="text-align:center" ><span>Mendaftar di Unit</span></th>
+                                <th scope="col"style="text-align:center" ><span>Departement</span></th>
+                                <th scope="col"style="text-align:center" ><span>Email</span></th>
+                                <th scope="col"style="text-align:center" ><span>Tanggal Registrasi</span></th>
+                                <th scope="col"style="text-align:center" ><span>Status</span></th>
+                                <th scope="col"style="text-align:center" ><span>Update Terakhir</span></th>
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="data in vendorProfileList ">
+                            <tr>
+                                <td style="text-align:left">
+                                {{(currentPage-1)*maxRecord +$index+1}}
+                                </td>
+                                <td ng-bind="data.vendorProfile.namaPerusahaan"></td>
+                                <td ng-bind="data.vendorProfile.unitTerdaftar"></td>
+                                <td ng-bind="data.businessArea.nama"></td>
+                                <td ng-bind="data.vendorProfile.email"></td>
+                                <td ng-bind="data.vendorProfile.vendor.created | date:'dd/MM/yyyy'"></td>
+                                <td>
+                                <span ng-if="data.vendorProfile.vendor.status == 1">Aktif</span>
+                                <span ng-if="data.vendorProfile.vendor.status == 0">Non Aktif</span>
+                                </td>
+                                <td ng-bind="data.vendorProfile.vendor.updated | date:'dd/MM/yyyy'"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="page-option col-md-2">
+                	<span class="page-opt-text">Show :</span>
+                    <a class="page-opt-num" ng-click="pageChanged(10)">10</a>
+                    <a class="page-opt-num" ng-click="pageChanged(25)">25</a>
+                    <a class="page-opt-num" ng-click="pageChanged(100)">100</a>
+                </div>
+                <div class="text-right">
+                	<pagination first-text="<<" previous-text="<" next-text=">" last-text=">>" items-per-page="maxRecord" total-items="totalItems" ng-model="currentPage" max-size="maxSize" boundary-links="true" class="pagination-sm" ng-click="setPage(currentPage)"></pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

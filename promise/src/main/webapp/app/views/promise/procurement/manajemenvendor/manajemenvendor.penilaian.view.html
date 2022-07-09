@@ -1,0 +1,96 @@
+<div class="app-view-header">
+	<span translate="">Riwayat Penilaian Kinerja Rekanan</span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="PenilaianVendorViewController as form">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+    	<em class="fa fa-tasks">&nbsp;</em>
+    	<span translate="">Riwayat Penilaian Kinerja Rekanan</span>
+    </h4>
+	<div class="panel-body">
+		<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-tasks">&nbsp;</em>
+			<span translate="">Data Rekanan</span>
+		</h4>
+		<div class="row">
+			<div class="col-md-3">Kode Rekanan</div>
+			<div class="col-md-6"><p class="input-group" ng-bind="form.dataVendor.id"></p></div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">Nama Rekanan</div>
+			<div class="col-md-6"><p class="input-group" ng-bind="form.dataVendor.nama"></p></div>
+		</div>
+		
+		<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-tasks">&nbsp;</em>
+			<span translate="">Data Penilaian Rekanan</span>
+		</h4>
+		<div align="right">
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="form.penilaianAdd()">
+                <span class="btn-label"><em class="fa fa-plus"></em></span>
+                <span>Tambah</span>
+            </button>
+        </div>
+        <br/>
+		<div align="center" ng-if="form.loading == true">
+			<strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px"></strong>
+		</div>
+		<div class="table-responsive">
+			<table datatable="ng" class="row-border hover table-striped">
+				<thead>
+					<tr>
+						<th scope="col"style="text-align:center">
+							<span translate="">No</span>
+						</th>
+						<th scope="col"style="text-align:center">
+							<span translate="">Nomor Purchase Order</span>
+						</th>
+						<th scope="col"style="text-align:center">
+							<span translate="">Tanggal Purchase Order</span>
+						</th>
+						<th scope="col"style="text-align:center">
+							<span translate="">Tanggal Penilaian</span>
+						</th>
+						<th scope="col"style="text-align:center">
+							<span translate="">Kesimpulan Penilaian</span>
+						</th>
+						<th scope="col"style="text-align:center">
+							<span translate="">Aksi</span>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="vp in form.penilaianRekananList">
+						<td style="text-align:center">{{ $index+1 }}</td>
+						<td style="text-align:center" ng-bind="vp.purchaseOrder.poNumber"></td>
+						<td style="text-align:center" ng-bind="vp.purchaseOrder.purchaseOrderDate  == null ? '' : vp.purchaseOrder.purchaseOrderDate | date:'yyyy-MM-dd'"></td>
+						<td style="text-align:center" ng-bind="vp.vPerfTglPenilaian == null ? '' : vp.vPerfTglPenilaian | date:'yyyy-MM-dd'"></td>
+						<td style="text-align:center" ng-bind="vp.vPerfNilaiAkhir + ' ' + vp.vPerfKesimpulanPenilaian"></td>
+						<td style="text-align:center;width:150px;">
+							<button type="button" class="mr btn btn-primary btn-circle btn-xs" ng-click="form.penilaianView(vp)">
+								<em class="fa fa-search"></em>
+							</button>
+							<button type="button" class="mr btn btn-success btn-circle btn-xs" ng-click="form.penilaianEdit(vp)">
+								<em class="fa fa-pencil fa-lg"></em>
+							</button>
+							<button type="button" class="mr btn btn-danger btn-circle btn-xs" ng-click="form.penilaianDelete(vp.vPerfId)">
+								<em class="fa fa-trash"></em>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<br/>
+		<fieldset>
+			<div class="form-group">
+				<label for="input-id-1" class="col-sm-2 control-label"><span></span></label>
+				<div class="col-sm-5">
+					<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-sm" ng-click="form.penilaianBack()">
+						<span class="btn-label"> <em class="fa fa-chevron-left"></em></span><span>Kembali</span>
+					</button>
+				</div>
+			</div>
+		</fieldset>
+	</div>	
+</div>

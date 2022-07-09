@@ -1,0 +1,83 @@
+<div class="app-view-header">	<span translate="promise.procurement.master.emailsmtp.judul"></span>
+</div>
+<div class="panel panel-primary" ng-controller="EmailSMTPController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-tasks"></em>
+			<span translate="promise.procurement.master.emailsmtp.subjudul"></span>
+			<a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+				<em class="fa fa-chevron-circle-down"></em>
+			</a>
+		</h4>
+	<div class="panel-body collapse in">
+		<div class="text-center" ng-if="vm.loading == true">	<strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0" /></em></strong>
+		</div>
+		<form action="#" name="formSMTPServer" novalidate="" class="form-horizontal" ng-class="{'submitted' : vm.submitted}">
+			<div class="form-group">
+				<label class="col-sm-4 control-label required">	<span translate="promise.procurement.master.emailsmtp.list.host"></span>
+				</label>
+				<div class="col-sm-4">
+					<input id="input-id-1" name="host" maxlength="120" type="text" ng-model="vm.smtpServer.host" class="form-control" required ng-blur="delValidation($event)" />
+					<div class="input-error" ng-show="(vm.submitted && formSMTPServer.host.$invalid)">
+						<p ng-show="formSMTPServer.host.$error.required" translate="template.error.field_kosong"></p>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label required">	<span translate="promise.procurement.master.emailsmtp.list.port"></span>
+				</label>
+				<div class="col-sm-4">
+					<input id="input-id-2" type="number" maxlength="20" name="port" ng-model="vm.smtpServer.port" class="form-control" required ng-blur="delValidation($event)" />
+					<div class="input-error" ng-show="(vm.submitted && formSMTPServer.port.$invalid)">
+						<p ng-show="formSMTPServer.port.$error.required" translate="template.error.field_kosong"></p>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label required">	<span translate="promise.procurement.master.emailsmtp.list.username"></span>
+				</label>
+				<div class="col-sm-4">
+					<input id="input-id-3" type="email" maxlength="120" name="userName" ng-model="vm.smtpServer.username" class="form-control" ng-blur="delValidation($event)" required/>
+					<div class="input-error" ng-show="(vm.submitted && formSMTPServer.userName.$invalid)">
+						<p ng-show="formSMTPServer.userName.$error.required" translate="template.error.field_kosong"></p>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label required">	<span translate="promise.procurement.master.emailsmtp.list.password"></span>
+				</label>
+				<div class="col-sm-4">
+					<input id="input-id-3" type="password" name="password" ng-model="vm.smtpServer.password" class="form-control" ng-blur="delValidation($event)" required/>
+					<div class="input-error" ng-show="(vm.submitted && formSMTPServer.password.$invalid)">
+						<p ng-show="formSMTPServer.password.$error.required" translate="template.error.field_kosong"></p>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label required"><span translate="promise.procurement.master.emailsmtp.list.emailfrom"></span>
+				</label>
+				<div class="col-sm-4">
+					<input id="input-id-3" type="text" name="emailForm" maxlength="120" ng-model="vm.smtpServer.emailFrom" class="form-control" ng-blur="delValidation($event)" required/>
+					<div class="input-error" ng-show="(vm.submitted && formSMTPServer.emailForm.$invalid)">
+						<p ng-show="formSMTPServer.emailForm.$error.required" translate="template.error.field_kosong"></p>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">	<span translate="promise.procurement.master.emailsmtp.list.ssl"></span>
+				</label>
+				<div class="col-sm-4">
+					<div class="checkbox c-checkbox needsclick">
+						<label class="needsclick">
+							<input type="checkbox" ng-model="vm.smtpServer.ssl" class="needsclick" />	<span class="fa fa-check"></span>
+							<strong translate="promise.procurement.master.emailsmtp.list.keteranganssl"></strong>
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="panel-footer text-center">
+				<button type="button" ripple="" class="btn btn-primary" ng-click=" save(formSMTPServer.$valid)">	<span translate="template.button.simpan"></span>
+				</button>
+			</div>
+		</form>
+	</div>
+</div>

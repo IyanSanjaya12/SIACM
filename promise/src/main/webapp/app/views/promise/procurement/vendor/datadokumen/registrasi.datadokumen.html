@@ -1,0 +1,760 @@
+<!--
+SPESIFIC VIEW EDIT OF THE DATA DOKUMEN MENU
+------------ START CONTROLLER -------------
+-->
+
+<div class="app-view-header">
+    <span translate="">SETTING VENDOR</span> 
+    <small><span translate="promise.procurement.RegistrasiVendor.edit"></span></small>
+	&nbsp;<small><span translate="" style="color:green; font: italic bold 12px Georgia, serif"></span></small>
+</div>
+
+<div ng-controller="RegistrasiDataDokumenController as vm">
+
+<!------------------------------------------------------------ START CONTROLLER ---------------------------------------------------------------------->
+<div class="panel panel-primary">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><span translate="{{vm.subjudul}}">Data Dokumen</span></h4>
+</div>
+<div class="panel-body">
+	<div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong></div>
+  	<div class="col-sm-15">
+       	<div class="table-responsive">
+			<table class="table table-hover table-condensed table-striped bg-white"> 
+				<thead>
+            	    <tr style="font-weight: bold">
+                	    <th scope="col"style="width:20%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.DataDokumen.Subject"></span>
+                    	</th>
+                   		<th scope="col"style="width:15%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.DataDokumen.NomorDokumen"></span>
+                       	</th>
+                       	<th scope="col"style="width:15%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.DataDokumen.TanggalTerbit"></span>
+                       	</th>
+                       	<th scope="col"style="width:15%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.DataDokumen.TanggalBerakhir"></span>
+                       	</th>
+                       	<th scope="col"style="width:25%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.DataDokumen.UploadFile"></span>
+                       	</th>
+                	</tr>
+            	</thead>
+               	<tbody>
+                   	<tr>
+                   		<td colspan="15">
+                   			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+					   			<span translate="promise.procurement.RegistrasiVendor.DataDokumen.SubJudul1"></span>
+							</h4>
+                        </td>                            		
+                   	</tr>
+                   	<tr>
+                   		<td><span translate="promise.procurement.RegistrasiVendor.DataDokumen.VendorRegistrasiForm"></span>
+                   			<font color="red"><span ng-bind="VendorRegistrasiFormExpired"></span></font>
+                   		</td>
+                   		<td><input type="text" class="form-control shadow-z1 input-sm" ng-model="vm.VendorRegistrasiForm.namaDokumen"></td>
+                   		<td>
+                 			<div class="input-group">
+				             	<input type="text" datepicker-popup="dd/MM/yyyy" ng-model="vm.VendorRegistrasiForm.tanggalTerbit" is-open="vm.tanggalTerbitStatusVRF"  class="form-control shadow-z1 input-sm" show-button-bar="true" readonly="true" required/>
+						        <span class="input-group-btn">
+									<button type="button" ng-click="tanggalTerbitOpen1($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+										<em class="fa fa-calendar"></em>
+									</button>
+								</span>
+				    		</div>
+                   		</td>
+                   		<td>
+                   			<div class="input-group">
+				               	<input type="text" datepicker-popup="dd/MM/yyyy" ng-model="vm.VendorRegistrasiForm.tanggalBerakhir" is-open="vm.tanggalBerakhirStatusVRF"  class="form-control shadow-z1 input-sm" show-button-bar="true" readonly="true" required/>
+				   				<span class="input-group-btn">
+									<button type="button" ng-click="tanggalBerakhirOpen1($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+										<em class="fa fa-calendar"></em>
+									</button>
+								</span>
+				        	</div>
+                     	</td>
+                     	<td>
+                     		<input filestyle="" type="file" data-button-text="Cari File" data-class-button="btn btn-default" data-class-input="form-control inline" nv-file-select="" uploader="uploadVendorRegistrasiForm" class="form-control" />
+                     	</td>
+              		</tr>
+                    <tr>
+                    	<td><span translate="promise.procurement.RegistrasiVendor.DataDokumen.SalinanAktePendirian"></span>
+                   			<font color="red"><span ng-bind="SalinanAktePendirianExpired"></span></font>
+                   		</td>
+                    	<td><input type="text" class="form-control shadow-z1 input-sm" ng-model="vm.SalinanAktePendirian.namaDokumen"></td>
+                    	<td>
+                    		<div class="input-group">
+				               	<input type="text" datepicker-popup="dd/MM/yyyy" ng-model="vm.SalinanAktePendirian.tanggalTerbit" is-open="vm.tanggalTerbitStatusSAP"  class="form-control shadow-z1 input-sm" show-button-bar="true" readonly="true" required/>
+				        		<span class="input-group-btn">
+									<button type="button" ng-click="tanggalTerbitOpen2($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+										<em class="fa fa-calendar"></em>
+									</button>
+								</span>
+				        	</div>
+                   		</td>
+                   		<td>
+                   			<div class="input-group">
+				               	<input type="text" datepicker-popup="dd/MM/yyyy" ng-model="vm.SalinanAktePendirian.tanggalBerakhir" is-open="vm.tanggalBerakhirStatusSAP"  class="form-control shadow-z1 input-sm" show-button-bar="true" readonly="true" required/>
+				   				<span class="input-group-btn">
+									<button type="button" ng-click="tanggalBerakhirOpen2($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+										<em class="fa fa-calendar"></em>
+									</button>
+								</span>
+				         	</div>
+                       	</td>
+                       	<td>
+                  			<input filestyle="" type="file" data-button-text="Cari File" data-class-button="btn btn-default" data-class-input="form-control inline" nv-file-select="" uploader="uploadSalinanAktePendirian" class="form-control" />
+                   		</td>
+                  	</tr>
+                  	<tr>
+                   		<td><span translate="promise.procurement.RegistrasiVendor.DataDokumen.SuratKeteranganBebas"></span>
+                   			<font color="red"><span ng-bind="SKBExpired"></span></font>
+                   			<div></div>
+                   			<button class="mr btn bg-default btn-xs" ng-click ="openHistorySKB()"><u>History</u></button>
+                   		</td>
+                   		<td><input type="text" class="form-control shadow-z1 input-sm" ng-model="vm.SKB.namaDokumen"></td>
+                   		<td>
+                 			<div class="input-group">
+				             	<input type="text" datepicker-popup="dd/MM/yyyy" ng-model="vm.SKB.tanggalTerbit" is-open="vm.tanggalTerbitStatusSKB"  class="form-control shadow-z1 input-sm" show-button-bar="true" readonly="true" required/>
+						        <span class="input-group-btn">
+									<button type="button" ng-click="tanggalTerbitOpen12($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+										<em class="fa fa-calendar"></em>
+									</button>
+								</span>
+				    		</div>
+                   		</td>
+                   		<td>
+                   			<div class="input-group">
+				               	<input type="text" datepicker-popup="dd/MM/yyyy" ng-model="vm.SKB.tanggalBerakhir" is-open="vm.tanggalBerakhirStatusSKB"  class="form-control shadow-z1 input-sm" show-button-bar="true" readonly="true" required/>
+				   				<span class="input-group-btn">
+									<button type="button" ng-click="tanggalBerakhirOpen12($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+										<em class="fa fa-calendar"></em>
+									</button>
+								</span>
+				        	</div>
+                     	</td>
+                     	<td>
+                     		<input filestyle="" type="file" data-button-text="Cari File" data-class-button="btn btn-default" data-class-input="form-control inline" nv-file-select="" uploader="uploadSKB" class="form-control" />
+                     	</td>
+              		</tr>
+                   	<tr>
+                   		<td>
+                  			<span translate="promise.procurement.RegistrasiVendor.DataDokumen.SalinanTandaDaftar"></span><strong style="color:red"> *</strong>
+                    		<p ng-show="vm.SalinanTandaDaftarError" style="color:red">Salinan Tanda Daftar Harus Berdokumen</p>
+                       		<br/>
+                   			<font color="red"><span ng-bind="SalinanTandaDaftarExpired"></span></font>                   		
+                    	</td>
+                    	<td><input type="text" class="form-control shadow-z1 input-sm" ng-model="vm.SalinanTandaDaftar.namaDokumen"></td>
+                    	<td>
+                    		<div class="input-group">
+				             	<input type="text" datepicker-popup="dd/MM/yyyy" ng-model="vm.SalinanTandaDaftar.tanggalTerbit" is-open="vm.tanggalTerbitStatusSTD"  class="form-control shadow-z1 input-sm" show-button-bar="true" readonly="true" required/>
+				    	            <span class="input-group-btn">
+										<button type="button" ng-click="tanggalTerbitOpen3($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+											<em class="fa fa-calendar"></em>
+										</button>
+									</span>
+				           	</div>
+                   		</td>
+                   		<td>
+				        	<div class="input-group">
+				               	<input type="text" datepicker-popup="dd/MM/yyyy" ng-model="vm.SalinanTandaDaftar.tanggalBerakhir" is-open="vm.tanggalBerakhirStatusSTD"  class="form-control shadow-z1 input-sm" show-button-bar="true" readonly="true" required/>
+				                <span class="input-group-btn">
+									<button type="button" ng-click="tanggalBerakhirOpen3($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+										<em class="fa fa-calendar"></em>
+									</button>
+								</span>
+				            </div>
+                    	</td>
+                    	<td>
+                    		<input filestyle="" type="file" data-button-text="Cari File" data-class-button="btn btn-default" data-class-input="form-control inline" nv-file-select="" uploader="uploadSalinanTandaDaftar" class="form-control" />
+                    	</td>
+                 	</tr>
+                    <tr>
+                    	<td><span translate="promise.procurement.RegistrasiVendor.DataDokumen.SalinanSuratIjinUsaha"></span>
+                   			<font color="red"><span ng-bind="SalinanSuratIjinUsahaExpired"></span></font>
+                   		</td>
+                    	<td><input type="text" class="form-control shadow-z1 input-sm" ng-model="vm.SalinanSuratIjinUsaha.namaDokumen"></td>
+                    	<td>
+                    		<div class="input-group">
+				              	<input type="text" datepicker-popup="dd/MM/yyyy" ng-model="vm.SalinanSuratIjinUsaha.tanggalTerbit" is-open="vm.tanggalTerbitStatusSIUP"  class="form-control shadow-z1 input-sm" show-button-bar="true" readonly="true" required/>
+				               	<span class="input-group-btn">
+									<button type="button" ng-click="tanggalTerbitOpen4($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+										<em class="fa fa-calendar"></em>
+									</button>
+								</span>
+				         	</div>
+                     	</td>
+                   		<td>
+                  			<div class="input-group">
+				               	<input type="text" datepicker-popup="dd/MM/yyyy" ng-model="vm.SalinanSuratIjinUsaha.tanggalBerakhir" is-open="vm.tanggalBerakhirStatusSIUP"  class="form-control shadow-z1 input-sm" show-button-bar="true" readonly="true" required/>
+				                <span class="input-group-btn">
+									<button type="button" ng-click="tanggalBerakhirOpen4($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+										<em class="fa fa-calendar"></em>
+									</button>
+								</span>
+				            </div>
+                  		</td>
+                  		<td>
+                   			<input filestyle="" type="file" data-button-text="Cari File" data-class-button="btn btn-default" data-class-input="form-control inline" nv-file-select="" uploader="uploadSalinanSuratIjinUsaha" class="form-control" />
+                   		</td>
+                   	</tr>
+                   	<tr>
+                   		<td align="left">
+                   			<div align="left" class="col-md-4">
+				             <label>IS PKS</label>
+				         	</div>
+				      		<div class="col-md-2">
+					         	<div class="checkbox c-checkbox needsclick">
+					            	<label class="needsclick">
+					                	<input ng-model="isPks" type="checkbox" class="needsclick" ng-click="isPKSChecked(isPks)" /><span class="fa fa-check"></span>
+					             	</label>
+					         	</div>
+				      		</div>
+				     	</td>
+				     	<td style="text-align:center">
+				     		<span translate="promise.procurement.RegistrasiVendor.DataDokumen.NomorDokumen"></span>
+				     	</td>
+				     	<td style="text-align:center">
+							<span translate="promise.procurement.RegistrasiVendor.DataDokumen.TanggalTerbit"></span>
+				        </td>
+				        <td style="text-align:center">
+				     		<span translate="promise.procurement.RegistrasiVendor.DataDokumen.TanggalBerakhir"></span>
+				     	</td>
+				     	<td style="text-align:center">
+							<span translate="promise.procurement.RegistrasiVendor.DataDokumen.UploadFile"></span>
+				         </td>
+                    </tr>
+                   	<tr ng-hide="!isPks">
+                    	<td><span translate="promise.procurement.RegistrasiVendor.DataDokumen.dokumenPKS"></span>
+                   			<font color="red"><span ng-bind="DokumenPksExpired"></span></font>
+                   		</td>
+                    	<td><input type="text" class="form-control shadow-z1 input-sm" ng-model="vm.DokumenPks.namaDokumen"></td>
+                    	<td>
+                    		<div class="input-group">
+				              	<input type="text" datepicker-popup="dd/MM/yyyy" ng-model="vm.DokumenPks.tanggalTerbit" is-open="vm.tanggalTerbitStatusPKS"  class="form-control shadow-z1 input-sm" show-button-bar="true" readonly="true" required/>
+				               	<span class="input-group-btn">
+									<button type="button" ng-click="tanggalTerbitOpen8($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+										<em class="fa fa-calendar"></em>
+									</button>
+								</span>
+				         	</div>
+                     	</td>
+                   		<td>
+                  			<div class="input-group">
+				               	<input type="text" datepicker-popup="dd/MM/yyyy" ng-model="vm.DokumenPks.tanggalBerakhir" is-open="vm.tanggalBerakhirStatusPKS"  class="form-control shadow-z1 input-sm" show-button-bar="true" readonly="true" required/>
+				                <span class="input-group-btn">
+									<button type="button" ng-click="tanggalBerakhirOpen8($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+										<em class="fa fa-calendar"></em>
+									</button>
+								</span>
+				            </div>
+                  		</td>
+                  		<td>
+                   			<input filestyle="" type="file" data-button-text="Cari File" data-class-button="btn btn-default" data-class-input="form-control inline" nv-file-select="" uploader="uploadDokumenPks" class="form-control" />
+                   		</td>
+                   	</tr>
+                   	<tr ng-hide="isPks">
+                    	<td><span translate="promise.procurement.RegistrasiVendor.DataDokumen.dokumenSPR"></span>
+                   			<font color="red"><span ng-bind="DokumenSprExpired"></span></font>
+                   		</td>
+                    	<td><input type="text" class="form-control shadow-z1 input-sm" ng-model="vm.DokumenSpr.namaDokumen"></td>
+                    	<td>
+                    		<div class="input-group">
+				              	<input type="text" datepicker-popup="dd/MM/yyyy" ng-model="vm.DokumenSpr.tanggalTerbit" is-open="vm.tanggalTerbitStatusSPR"  class="form-control shadow-z1 input-sm" show-button-bar="true" readonly="true" required/>
+				               	<span class="input-group-btn">
+									<button type="button" ng-click="tanggalTerbitOpen9($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+										<em class="fa fa-calendar"></em>
+									</button>
+								</span>
+				         	</div>
+                     	</td>
+                   		<td>
+                  			<div class="input-group">
+				               	<input type="text" datepicker-popup="dd/MM/yyyy" ng-model="vm.DokumenSpr.tanggalBerakhir" is-open="vm.tanggalBerakhirStatusSPR"  class="form-control shadow-z1 input-sm" show-button-bar="true" readonly="true" required/>
+				                <span class="input-group-btn">
+									<button type="button" ng-click="tanggalBerakhirOpen9($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+										<em class="fa fa-calendar"></em>
+									</button>
+								</span>
+				            </div>
+                  		</td>
+                  		<td>
+                   			<input filestyle="" type="file" data-button-text="Cari File" data-class-button="btn btn-default" data-class-input="form-control inline" nv-file-select="" uploader="uploadDokumenSpr" class="form-control" />
+                   		</td>
+                   	</tr>
+                   	<tr ng-hide="isPks">
+                    	<td><span translate="promise.procurement.RegistrasiVendor.DataDokumen.dokumenSPB"></span>
+                   			<font color="red"><span ng-bind="DokumenSpbExpired"></span></font>
+                   		</td>
+                    	<td><input type="text" class="form-control shadow-z1 input-sm" ng-model="vm.DokumenSpb.namaDokumen"></td>
+                    	<td>
+                    		<div class="input-group">
+				              	<input type="text" datepicker-popup="dd/MM/yyyy" ng-model="vm.DokumenSpb.tanggalTerbit" is-open="vm.tanggalTerbitStatusSPB"  class="form-control shadow-z1 input-sm" show-button-bar="true" readonly="true" required/>
+				               	<span class="input-group-btn">
+									<button type="button" ng-click="tanggalTerbitOpen10($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+										<em class="fa fa-calendar"></em>
+									</button>
+								</span>
+				         	</div>
+                     	</td>
+                   		<td>
+                  			<div class="input-group">
+				               	<input type="text" datepicker-popup="dd/MM/yyyy" ng-model="vm.DokumenSpb.tanggalBerakhir" is-open="vm.tanggalBerakhirStatusSPB"  class="form-control shadow-z1 input-sm" show-button-bar="true" readonly="true" required/>
+				                <span class="input-group-btn">
+									<button type="button" ng-click="tanggalBerakhirOpen10($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+										<em class="fa fa-calendar"></em>
+									</button>
+								</span>
+				            </div>
+                  		</td>
+                  		<td>
+                   			<input filestyle="" type="file" data-button-text="Cari File" data-class-button="btn btn-default" data-class-input="form-control inline" nv-file-select="" uploader="uploadDokumenSpb" class="form-control" />
+                   		</td>
+                   	</tr>
+                   	
+                   	
+                   	<tr>
+                   		<td colspan="15">
+            	   			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+					   			<span translate="promise.procurement.RegistrasiVendor.DataDokumen.SubJudul3"></span>
+							</h4>
+                        </td>                            		
+                   	</tr>
+                   	<tr>
+                  		<td>
+                   			<span translate="promise.procurement.RegistrasiVendor.DataDokumen.BuktiFisikPerusahaan"></span><strong style="color:red"> *</strong>
+                   			<p ng-show="vm.buktiFisikPerusahaanError" style="color:red">Bukti Fisik Perusahaan Harus Berdokumen</p>
+                       		<br/>
+                   			<font color="red"><span ng-bind="BuktiFisikPerusahaanExpired"></span></font>
+                  		</td>
+                   		<td><input type="text" class="form-control shadow-z1 input-sm" ng-model="vm.BuktiFisikPerusahaan.namaDokumen"></td>
+                  		<td>
+                   			<div class="input-group">
+			                   	<input type="text" datepicker-popup="dd/MM/yyyy" ng-model="vm.BuktiFisikPerusahaan.tanggalTerbit" is-open="vm.tanggalTerbitStatusBFP"  class="form-control shadow-z1 input-sm" show-button-bar="true" readonly="true" required/>
+				                    <span class="input-group-btn">
+										<button type="button" ng-click="tanggalTerbitOpen5($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+											<em class="fa fa-calendar"></em>
+										</button>
+									</span>
+					        </div>
+                    	</td>
+                   		<td>
+                   			<div class="input-group">
+			                  	<input type="text" datepicker-popup="dd/MM/yyyy" ng-model="vm.BuktiFisikPerusahaan.tanggalBerakhir" is-open="vm.tanggalBerakhirStatusBFP"  class="form-control shadow-z1 input-sm" show-button-bar="true" readonly="true" required/>
+			                    <span class="input-group-btn">
+									<button type="button" ng-click="tanggalBerakhirOpen5($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+										<em class="fa fa-calendar"></em>
+									</button>
+								</span>
+			                </div>
+                  		</td>
+                  		<td>
+                   			<input filestyle="" type="file" data-button-text="Cari File" data-class-button="btn btn-default" data-class-input="form-control inline" nv-file-select="" uploader="uploadBuktiFisikPerusahaan" class="form-control" />
+                   		</td>
+                   	</tr>
+                   	<tr>
+                   		<td><span translate="promise.procurement.RegistrasiVendor.DataDokumen.DokumenQuality"></span>
+                   			<font color="red"><span ng-bind="DokumenQualityExpired"></span></font>
+                  		</td>
+                   		<td><input type="text" class="form-control shadow-z1 input-sm" ng-model="vm.DokumenQuality.namaDokumen"></td>
+                  		<td>
+                  			<div class="input-group">
+				               	<input type="text" datepicker-popup="dd/MM/yyyy" ng-model="vm.DokumenQuality.tanggalTerbit" is-open="vm.tanggalTerbitStatusDQ"  class="form-control shadow-z1 input-sm" show-button-bar="true" readonly="true" required/>
+				                <span class="input-group-btn">
+									<button type="button" ng-click="tanggalTerbitOpen6($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+										<em class="fa fa-calendar"></em>
+									</button>
+								</span>
+				            </div>
+                   		</td>
+                   		<td>
+                   			<div class="input-group">
+				               	<input type="text" datepicker-popup="dd/MM/yyyy" ng-model="vm.DokumenQuality.tanggalBerakhir" is-open="vm.tanggalBerakhirStatusDQ"  class="form-control shadow-z1 input-sm" show-button-bar="true" readonly="true" required/>
+				                <span class="input-group-btn">
+									<button type="button" ng-click="tanggalBerakhirOpen6($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+										<em class="fa fa-calendar"></em>
+									</button>
+								</span>
+				            </div>
+                		</td>
+                		<td>
+                  			<input filestyle="" type="file" data-button-text="Cari File" data-class-button="btn btn-default" data-class-input="form-control inline" nv-file-select="" uploader="uploadDokumenQuality" class="form-control" />
+                   		</td>
+                   	</tr>
+                   	<tr>
+                  		<td>
+                  			<span translate="promise.procurement.RegistrasiVendor.DataDokumen.DokumenTeknik"></span><strong style="color:red"> *</strong>
+	                   			<font color="red"><span ng-bind="DokumenTeknikExpired"></span>
+	                   			</font>
+                    		<p ng-show="vm.DokumenTeknikError" style="color:red">Dokumen Teknik Harus Berdokumen</p>
+                       		<br/>
+                    	</td>
+                   		<td><input type="text" class="form-control shadow-z1 input-sm" ng-model="vm.DokumenTeknik.namaDokumen"></td>
+                   		<td>
+                   			<div class="input-group">
+				               	<input type="text" datepicker-popup="dd/MM/yyyy" ng-model="vm.DokumenTeknik.tanggalTerbit" is-open="vm.tanggalTerbitStatusDT"  class="form-control shadow-z1 input-sm" show-button-bar="true" readonly="true" required/>
+				                <span class="input-group-btn">
+									<button type="button" ng-click="tanggalTerbitOpen7($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+										<em class="fa fa-calendar"></em>
+									</button>
+								</span>
+				            </div>
+                   		</td>
+                   		<td>
+                  			<div class="input-group">
+				              	<input type="text" datepicker-popup="dd/MM/yyyy" ng-model="vm.DokumenTeknik.tanggalBerakhir" is-open="vm.tanggalBerakhirStatusDT"  class="form-control shadow-z1 input-sm" show-button-bar="true" readonly="true" required/>
+				                <span class="input-group-btn">
+									<button type="button" ng-click="tanggalBerakhirOpen7($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+										<em class="fa fa-calendar"></em>
+									</button>
+								</span>
+				            </div>
+                   		</td>
+                   		<td>
+                  			<input filestyle="" type="file" data-button-text="Cari File" data-class-button="btn btn-default" data-class-input="form-control inline" nv-file-select="" uploader="uploadDokumenTeknik" class="form-control" />
+                   		</td>
+                   	</tr>
+                </tbody>
+			</table>
+			
+			<div class="panel panel-primary">
+				<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+  					<span translate="promise.procurement.RegistrasiVendor.DataDokumen.SubJudul4"></span>
+				</h4>
+			    <div class="panel-body">
+			    	<div class="row">
+				    	<div class="col-md-2">
+				    		<span translate="promise.procurement.RegistrasiVendor.DataDokumen.NomorDokumen"></span>
+	                   		<font color="red"><span ng-bind="DokumenQualityExpired"></span></font>
+						</div>
+						<div class="col-md-3">
+							<input type="text" class="form-control shadow-z1 input-sm" ng-model="vm.VendorSkd.namaDokumen">
+						</div>
+						<div class="col-md-1">
+						</div>
+						<div class="col-md-2">
+							<span translate="promise.procurement.RegistrasiVendor.DataDokumen.AlamatDokumen"></span>
+						</div>
+						<div class="col-md-3">
+							<input type="text" class="form-control shadow-z1 input-sm" ng-model="vm.VendorSkd.alamat">
+						</div>
+			    	</div>
+			    	<br/>
+			    	<div class="row">
+				    	<div class="col-md-2">
+				    		<span translate="promise.procurement.RegistrasiVendor.DataDokumen.TanggalTerbit"></span>
+						</div>
+						<div class="col-md-3">
+							<div class="input-group">
+				               	<input type="text" datepicker-popup="dd/MM/yyyy" ng-model="vm.VendorSkd.tanggalTerbit" is-open="vm.tanggalTerbitStatusSKD"  class="form-control shadow-z1 input-sm" show-button-bar="true" readonly="true" required/>
+				                <span class="input-group-btn">
+									<button type="button" ng-click="tanggalTerbitOpen11($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+										<em class="fa fa-calendar"></em>
+									</button>
+								</span>
+				            </div>
+						</div>
+						<div class="col-md-1">
+						</div>
+						<div class="col-md-2">
+							<span translate="promise.procurement.RegistrasiVendor.DataDokumen.TanggalBerakhir"></span>
+						</div>
+						<div class="col-md-3">
+							<div class="input-group">
+				              	<input type="text" datepicker-popup="dd/MM/yyyy" ng-model="vm.VendorSkd.tanggalBerakhir" is-open="vm.tanggalBerakhirStatusSKD"  class="form-control shadow-z1 input-sm" show-button-bar="true" readonly="true" required/>
+				                <span class="input-group-btn">
+									<button type="button" ng-click="tanggalBerakhirOpen11($event)" class="btn btn-default shadow-z1 input-sm " ripple="">
+										<em class="fa fa-calendar"></em>
+									</button>
+								</span>
+				            </div>
+						</div>
+			    	</div>
+			    	<br/>
+			    	<div class="row">
+				    	<div class="col-md-2">
+				    		<span translate="promise.procurement.RegistrasiVendor.DataDokumen.UploadFile"></span>
+						</div>
+						<div class="col-md-4">
+							<input filestyle="" type="file" data-button-text="Cari File" data-class-button="btn btn-default" data-class-input="form-control inline" nv-file-select="" uploader="uploadVendorSkd" class="form-control" />
+						</div>
+			    	</div>
+			    </div>
+			</div>
+			
+			<br>
+		</div>
+  	</div>
+  	
+  	<div class="col-sm-7">
+  		<div class="table-responsive">
+			<table class="table table-hover table-condensed table-striped bg-white"> 
+				<thead>
+            	    <tr style="font-weight: bold">
+                	    <th scope="col"style="width:15%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.DataDokumen.Subject"></span>
+                    	</th>
+                   		<th scope="col"style="width:30%; text-align:center"><span translate="promise.procurement.RegistrasiVendor.DataDokumen.OldFile"></span>
+                       	</th>
+                	</tr>
+            	</thead>
+            	<tbody>
+            		<tr>
+                   		<td colspan="12">
+                   			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+					   			<span></span>
+							</h4>
+                        </td>       
+                	</tr>
+                    <tr ng-show="tampilDataVRF">
+                    	<td>
+                  			<span translate="promise.procurement.RegistrasiVendor.DataDokumen.VendorRegistrasiForm"></span>
+                    		<br/>
+                    	</td>  
+                        <td align="center">
+                     		<span title="download file"><a href="{{ downloadFileVRF }}" download><em><u>{{ vm.VendorRegistrasiForm.pathFile }}</u></em></a></span>
+                     	</td>
+                    </tr>
+                    <tr ng-show="tampilDataSAP">
+                    	<td>
+                  			<span translate="promise.procurement.RegistrasiVendor.DataDokumen.SalinanAktePendirian"></span>
+                    		<br/>
+                    	</td>  
+                        <td align="center">
+                     		<span title="download file"><a href="{{ downloadFileSAP }}" download><em><u>{{ vm.SalinanAktePendirian.pathFile }}</u></em></a></span>
+                     	</td>
+                    </tr>
+                    <tr ng-show="tampilDataSKB">
+                    	<td>
+                  			<span translate="promise.procurement.RegistrasiVendor.DataDokumen.SuratKeteranganBebas"></span>
+                    		<br/>
+                    	</td>  
+                        <td align="center">
+                     		<span title="download file"><a href="{{ downloadFileSKB }}" download><em><u>{{ vm.SKB.pathFile }}</u></em></a></span>
+                     	</td>
+                    </tr>
+            		<tr ng-show="tampilDataTDP">
+                    	<td>
+                  			<span translate="promise.procurement.RegistrasiVendor.DataDokumen.SalinanTandaDaftar"></span>
+                    		<br/>
+                    	</td>  
+                        <td align="center">
+                     		<span title="download file"><a href="{{ downloadFileTDP }}" download><em><u>{{ vm.SalinanTandaDaftar.pathFile }}</u></em></a></span>
+                     	</td>
+                    </tr>
+                    <tr ng-show="tampilDataSIUP">
+                    	<td>
+                  			<span translate="promise.procurement.RegistrasiVendor.DataDokumen.SalinanSuratIjinUsaha"></span>
+                    		<br/>
+                    	</td>  
+                        <td align="center">
+                     		<span title="download file"><a href="{{ downloadFileSIUP }}" download><em><u>{{ vm.SalinanSuratIjinUsaha.pathFile }}</u></em></a></span>
+                     	</td>
+                    </tr> 
+                    <tr ng-show="tampilDataPKS">
+                    	<td>
+                  			<span translate="promise.procurement.RegistrasiVendor.DataDokumen.dokumenPKS"></span>
+                    		<br/>
+                    	</td>  
+                        <td align="center">
+                     		<span title="download file"><a href="{{ downloadFilePKS }}" download><em><u>{{ vm.DokumenPks.pathFile }}</u></em></a></span>
+                     	</td>
+                    </tr>
+                    <tr ng-show="tampilDataSPR">
+                    	<td>
+                  			<span translate="promise.procurement.RegistrasiVendor.DataDokumen.dokumenSPR"></span>
+                    		<br/>
+                    	</td>  
+                        <td align="center">
+                     		<span title="download file"><a href="{{ downloadFileSPR }}" download><em><u>{{ vm.DokumenSpr.pathFile }}</u></em></a></span>
+                     	</td>
+                    </tr>
+                    <tr ng-show="tampilDataSPB">
+                    	<td>
+                  			<span translate="promise.procurement.RegistrasiVendor.DataDokumen.dokumenSPB"></span>
+                    		<br/>
+                    	</td>  
+                        <td align="center">
+                     		<span title="download file"><a href="{{ downloadFileSPB }}" download><em><u>{{ vm.DokumenSpb.pathFile }}</u></em></a></span>
+                     	</td>
+                    </tr>   
+                    <tr ng-show="tampilDataBFP">
+                  		<td>
+                   			<span translate="promise.procurement.RegistrasiVendor.DataDokumen.BuktiFisikPerusahaan"></span>
+                   			<br/>
+                  		</td>
+                  		<td align="center">
+                     		<span title="download file"><a href="{{ downloadFileBFP }}" download><em><u>{{ vm.BuktiFisikPerusahaan.pathFile }}</u></em></a></span>
+                     	</td>
+                  	</tr>
+                  	<tr ng-show="tampilDataDT">
+                  		<td>
+                  			<span translate="promise.procurement.RegistrasiVendor.DataDokumen.DokumenTeknik"></span>
+                    		<br/>
+                    	</td>
+                    	<td align="center">
+                     		<span title="download file"><a href="{{ downloadFileDT }}" download><em><u>{{ vm.DokumenTeknik.pathFile }}</u></em></a></span>
+                     	</td>
+                    </tr>
+                  	<tr ng-show="tampilDataDQ">
+                  		<td>
+                  			<span translate="promise.procurement.RegistrasiVendor.DataDokumen.DokumenQuality"></span>
+                    		<br/>
+                    	</td>
+                    	<td align="center">
+                     		<span title="download file"><a href="{{ downloadFileDQ }}" download><em><u>{{ vm.DokumenQuality.pathFile }}</u></em></a></span>
+                     	</td>
+                    </tr>
+                    <tr ng-show="tampilDataSKD">
+                    	<td>
+                  			Vendor SKD
+                    		<br/>
+                    	</td>  
+                        <td align="center">
+                     		<span title="download file"><a href="{{ downloadFileSKD }}" download><em><u>{{ vm.VendorSkd.pathFile }}</u></em></a></span>
+                     	</td>
+                    </tr> 
+            	</tbody>
+			</table>
+		</div>
+	</div>
+		
+  	<div class="col-sm-12" ng-show="uploadSalinanTandaDaftar.isHTML5 && tampilTDP">
+  		<span><strong>{{vm.uploadingText}}{{ namaFileTDP }}</strong></span>
+		<div style="margin-bottom: 0;" class="progress progress-xs" align="center" >
+			<div class="progress-bar progress-bar-striped active" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" role="progressbar" ng-style="{ 'width': progressTime + '%' }" class="progress-bar"></div>
+		</div>
+	</div>
+	<div class="col-sm-12" ng-show="uploadSalinanTandaDaftar.isHTML5 && tampilBFP">
+  		<span><strong>{{vm.uploadingText}}{{ namaFileBFP }}</strong></span>
+		<div style="margin-bottom: 0;" class="progress progress-xs" align="center" >
+			<div class="progress-bar progress-bar-striped active" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" role="progressbar" ng-style="{ 'width': progressTime + '%' }" class="progress-bar"></div>
+		</div>
+	</div>
+	<div class="col-sm-12" ng-show="uploadSalinanTandaDaftar.isHTML5 && tampilDT">
+  		<span><strong>{{vm.uploadingText}}{{ namaFileDT }}</strong></span>
+		<div style="margin-bottom: 0;" class="progress progress-xs" align="center" >
+			<div class="progress-bar progress-bar-striped active" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" role="progressbar" ng-style="{ 'width': progressTime + '%' }" class="progress-bar"></div>
+		</div>
+	</div>
+	<div class="col-sm-12" ng-show="uploadSalinanTandaDaftar.isHTML5 && tampilVRF">
+  		<span><strong>{{vm.uploadingText}}{{ namaFileVRF }}</strong></span>
+		<div style="margin-bottom: 0;" class="progress progress-xs" align="center" >
+			<div class="progress-bar progress-bar-striped active" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" role="progressbar" ng-style="{ 'width': progressTime + '%' }" class="progress-bar"></div>
+		</div>
+	</div>
+	<div class="col-sm-12" ng-show="uploadSalinanTandaDaftar.isHTML5 && tampilSKB">
+  		<span><strong>{{vm.uploadingText}}{{ namaFileSKB }}</strong></span>
+		<div style="margin-bottom: 0;" class="progress progress-xs" align="center" >
+			<div class="progress-bar progress-bar-striped active" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" role="progressbar" ng-style="{ 'width': progressTime + '%' }" class="progress-bar"></div>
+		</div>
+	</div>
+	<div class="col-sm-12" ng-show="uploadSalinanTandaDaftar.isHTML5 && tampilSAP">
+  		<span><strong>{{vm.uploadingText}}{{ namaFileSAP }}</strong></span>
+		<div style="margin-bottom: 0;" class="progress progress-xs" align="center" >
+			<div class="progress-bar progress-bar-striped active" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" role="progressbar" ng-style="{ 'width': progressTime + '%' }" class="progress-bar"></div>
+		</div>
+	</div>
+	<div class="col-sm-12" ng-show="uploadSalinanTandaDaftar.isHTML5 && tampilSIUP">
+  		<span><strong>{{vm.uploadingText}}{{ namaFileSIUP }}</strong></span>
+		<div style="margin-bottom: 0;" class="progress progress-xs" align="center" >
+			<div class="progress-bar progress-bar-striped active" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" role="progressbar" ng-style="{ 'width': progressTime + '%' }" class="progress-bar"></div>
+		</div>
+	</div>
+	<div class="col-sm-12" ng-show="uploadSalinanTandaDaftar.isHTML5 && tampilDQ">
+  		<span><strong>{{vm.uploadingText}}{{ namaFileDQ }}</strong></span>
+		<div style="margin-bottom: 0;" class="progress progress-xs" align="center" >
+			<div class="progress-bar progress-bar-striped active" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" role="progressbar" ng-style="{ 'width': progressTime + '%' }" class="progress-bar"></div>
+		</div>
+	</div>
+	<div class="col-sm-12" ng-show="uploadSalinanTandaDaftar.isHTML5 && tampilPKS">
+  		<span><strong>{{vm.uploadingText}}{{ namaFilePKS }}</strong></span>
+		<div style="margin-bottom: 0;" class="progress progress-xs" align="center" >
+			<div class="progress-bar progress-bar-striped active" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" role="progressbar" ng-style="{ 'width': progressTime + '%' }" class="progress-bar"></div>
+		</div>
+	</div>
+	<div class="col-sm-12" ng-show="uploadSalinanTandaDaftar.isHTML5 && tampilSPR">
+  		<span><strong>{{vm.uploadingText}}{{ namaFileSPR }}</strong></span>
+		<div style="margin-bottom: 0;" class="progress progress-xs" align="center" >
+			<div class="progress-bar progress-bar-striped active" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" role="progressbar" ng-style="{ 'width': progressTime + '%' }" class="progress-bar"></div>
+		</div>
+	</div>
+	<div class="col-sm-12" ng-show="uploadSalinanTandaDaftar.isHTML5 && tampilSPB">
+  		<span><strong>{{vm.uploadingText}}{{ namaFileSPB }}</strong></span>
+		<div style="margin-bottom: 0;" class="progress progress-xs" align="center" >
+			<div class="progress-bar progress-bar-striped active" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" role="progressbar" ng-style="{ 'width': progressTime + '%' }" class="progress-bar"></div>
+		</div>
+	</div>
+	<div class="col-sm-12" ng-show="uploadSalinanTandaDaftar.isHTML5 && tampilSKD">
+  		<span><strong>{{vm.uploadingText}}{{ namaFileSKD }}</strong></span>
+		<div style="margin-bottom: 0;" class="progress progress-xs" align="center" >
+			<div class="progress-bar progress-bar-striped active" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" role="progressbar" ng-style="{ 'width': progressTime + '%' }" class="progress-bar"></div>
+		</div>
+	</div>
+</div>
+
+                                        
+<div align="center">
+	<button type="button" ripple="" class="mr btn btn-sm bg-default" ng-click="backToDashboard()">
+		<!-- <span class="btn-label"><em class="fa fa-chevron-left"></em></span> -->
+		<span translate="promise.procurement.RegistrasiVendor.kembali"></span>
+	</button>
+    <button type="button" ng-disabled="vm.disable==true" ripple="" class="mr btn btn-sm bg-primary" ng-click="btnSimpan()">
+       	<span translate="template.button.save_as_draft"></span>
+      	<!-- <span class="btn-label btn-label-right"><em class="fa fa-chevron-right"></em></span> -->
+    </button>
+    <button ng-class="'bg-' + app.theme.name" ng-disabled="vm.disable==true" type="button" ripple="" class="mr btn btn-labeled btn-sm" ng-click="btnUploaded()">
+       	<span translate="promise.procurement.RegistrasiVendor.DataDokumen.ProsesUpload"></span>
+      	<span class="btn-label btn-label-right"><em class="fa fa-upload"></em></span>
+    </button>
+	<button ng-class="'bg-' + app.theme.name" ng-disabled="vm.disable==true || vm.valid==false" type="button" ripple="" class="mr btn btn-sm bg-primary" ng-click="approval()">
+		       	<span translate="template.button.send_approval"></span>    
+	</button>
+</div>
+
+
+</div>
+<script type="text/ng-template" id="SKBHistoryView.html">
+    <div class="modal-header">
+        <h3 class="modal-title"><span translate="promise.procurement.RegistrasiVendor.DataDokumen.HistorySKB"></span></h3>
+    </div>
+    <div class="modal-body form-horizontal">
+        <div align="center" ng-if="loading == true">
+            <strong><em>Loading... <img src="app/img/loading.gif" border="0" height="20px"/></em></strong>
+        </div>
+        <table datatable="ng" class="row-border hover table-striped">
+            <thead>
+                <tr>
+                    
+                    <th scope="col"style="text-align:center"><span translate="template.tabel.nomor"></span>
+                    </th>
+                    <th scope="col"style="text-align:center"><span translate="promise.procurement.RegistrasiVendor.DataDokumen.NomorDokumen"></span>
+                    </th>
+                    <th scope="col"style="text-align:center"><span translate="promise.procurement.RegistrasiVendor.DataDokumen.Subject"></span>
+                    </th>
+                    <th scope="col"style="text-align:center"><span translate="promise.procurement.RegistrasiVendor.DataDokumen.TanggalTerbit"></span>
+                    </th>
+                    <th scope="col"style="text-align:center"><span translate="promise.procurement.RegistrasiVendor.DataDokumen.TanggalBerakhir"></span>
+                    </th>
+					<th scope="col"style="text-align:center"><span translate="promise.procurement.RegistrasiVendor.DataDokumen.NamaDokumen"></span>
+                    </th>
+					<th scope="col"style="text-align:center"><span>Download</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="SKB in SKBHistoryList">
+                    <td style="text-align:centor;width=5px">{{ ($index + 1) }}</td>
+                    <td style="text-align:left">{{ SKB.namaDokumen }}</td>
+                    <td style="text-align:left">{{ SKB.subject }}</td>
+                    <td style="text-align:left">{{ SKB.tanggalTerbit | date:'dd/MM/yyyy' }}</td>
+					<td style="text-align:left">{{ SKB.tanggalBerakhir | date:'dd/MM/yyyy' }}</td>
+                    <td style="text-align:left">{{ SKB.pathFile}}
+                    </td>
+                    <td style="text-align:center">
+                        <a href="{{ downloadLink+SKB.fileName }}"><i
+						class="fa fa-cloud-download"></em></a>
+						</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="modal-footer text-center">
+            <button class="btn btn-warning" type="button" ng-click="closeModal()">Batal</button>
+        </div>
+    </div>
+</script>

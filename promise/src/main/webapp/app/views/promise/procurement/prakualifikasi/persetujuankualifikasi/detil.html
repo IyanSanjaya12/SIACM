@@ -1,0 +1,103 @@
+<div class="app-view-header">
+    <span translate="">Persetujuan Kualifikasi Pengadaan</span>
+</div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<div ng-controller="PersetujuanKualifikasiPengadaanDetailController as form">
+    <promise-view-data-pengadaan pengadaan-id=pengadaan.id></promise-view-data-pengadaan>
+    <form name="myform" class="form-validate form-horizontal" role="form" novalidate>
+        <div class="panel panel-primary">
+            <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-tasks">&nbsp;</em><span translate="">Nota Dinas Persetujuan Kualifikasi Pengadaan</span></h4>
+            <div ng-show="form.loading" align="center"><strong><em>Loading... <img src="app/img/loading.gif" border="0" height="20px"/></em></strong>
+            </div>
+            <div ng-show="!form.loading" class="panel-body">
+                <table id="table-ext-1" class="table table-bordered table-hover" width="100%">
+                    <tbody>
+                        <tr>
+                            <td style="text-align:left;  vertical-align:top"><span translate="">Nomor Nota</span><small style="color:red">&nbsp;*</small>
+                            </td>
+                            <td style="text-align:left;  vertical-align:top" width="60%">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control input-sm" id="nomor" name="nomor" ng-model="form.persetujuan.nomorNota" ng-disabled="!isEditable" required="" />
+                                    </div>
+                                    <div class="col-sm-12" ng-show="myform.nomor.$error.required && (myform.$submitted || myform.nomor.$touched)" style="color:red">Masukkan Nomor Nota Dinas</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left;valign=top"><span translate="">Tanggal Persetujuan</span><small style="color:red">&nbsp;*</small>
+                            </td>
+                            <td style="text-align:left; valign=top" width="60%">
+                                <div class="row">
+                                    <div class="col-sm-10 col-lg-4">
+                                        <div class="input-group">
+                                            <input type="text" name="tanggalPersetujuan" datepicker-popup="{{form.format}}" ng-model="form.persetujuan.tanggalPersetujuan" is-open="form.tanggalPersetujuanOpened" min-date="form.minDate" max-date="false" datepicker-options="form.dateOptions" date-disabled="form.disabled(form.date, form.mode)" close-text="Close" class="form-control shadow-z1 input-sm" ng-change="updatetanggalPersetujuan()" readonly="true" required="" readonly style="background-color:white;" />
+                                            <span class="input-group-btn">
+											<button type="button" ng-click="form.tanggalPersetujuanOpen($event)" class="btn btn-default shadow-z1 input-sm " ripple="" ng-show="isEditable">
+												<em class="fa fa-calendar"></em>
+											</button>
+										</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12" ng-show="myform.tanggalPersetujuan.$error.required && (myform.$submitted || myform.tanggalPersetujuan.$touched)" style="color:red">Masukkan Tanggal Persetujuan</div>
+                                </div>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="text-align:left;  vertical-align:top"><span translate="">Keterangan</span>
+                            </td>
+                            <td style="text-align:left;  vertical-align:top" width="60%">
+                                <textarea rows="4" cols="50" class="form-control input-sm" id="" ng-model="form.persetujuan.keterangan" ng-disabled="!isEditable" maxlength="250">
+                                </textarea>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <!-- hasil kualifikasi-->
+        <div class="panel panel-primary">
+            <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-tasks">&nbsp;</em><span translate="">Data Penyedia Barang/Jasa</span></h4>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <div align="center" ng-if="loadingHasilKualifikasi == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px" border="0"/></strong>
+                    </div>
+                    <table datatable="ng" class="row-border hover table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col"style="text-align:left">NO</th>
+                                <th scope="col"style="text-align:left"><span translate="">Nama Penyedia Barang/Jasa</span></th>
+                                <th scope="col"style="text-align:left"><span translate="">Telepon</span></th>
+                                <th scope="col"style="text-align:left"><span translate="">Alamat</span></th>
+                                <th scope="col"style="text-align:left"><span translate="">Status</span></tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="hasilKualifikasi in hasilKualifikasiList">
+                                <td style="text-align:center;width=5px">{{ ($index + 1) }}</td>
+                                <td style="text-align:left">{{ hasilKualifikasi.vendor.nama }}</td>
+                                <td style="text-align:left">{{ hasilKualifikasi.vendor.nomorTelpon }}</td>
+                                <td style="text-align:left">{{ hasilKualifikasi.vendor.alamat }}</td>
+                                <td style="text-align:left">{{ hasilKualifikasi.statusMemenuhi==true? 'Memenuhi' : 'Tidak Memenuhi' }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div ng-show="loadingSaving" align="right"><strong><em>Saving... <img src="app/img/loading.gif" border="0" height="20px"/></em></strong>
+        </div>
+        <div align="center" ng-show="statusSimpan"><strong style="color:green">Simpan Persetujuan Kualifkasi Berhasil</strong></div>
+        <div align="center">
+            <button ng-class="'bg-' + app.theme.name" ng-click="gotoIndex()" class="btn btn-primary btn-sm pull-center" ripple="">
+                <span class=""><em class="fa fa-chevron-left"></em></span>&nbsp;&nbsp;<font color="white"><span translate="">Kembali</span></font>
+            </button>
+            <button type="submit" ng-hide="statusSimpan" ng-class="'bg-' + app.theme.name" ng-click="saveData()" class="btn btn-primary btn-sm pull-center" ripple="">
+                <span class=""><em class="fa fa-sign-in"></em></span>&nbsp;&nbsp;<font color="white"><span translate="">Simpan</span></font>
+            </button>
+        </div>
+    </form>
+</div>

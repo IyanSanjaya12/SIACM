@@ -1,0 +1,181 @@
+<div class="app-view-header"> 
+	<span translate="promise.procurement.master.addressbook.judul"></span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="addressBookViewController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-tasks"></em>
+			<span ng-if="vm.toDo=='Add'" translate="promise.procurement.master.addressbook.view.subjudul_tambah"></span>
+			<span ng-if="vm.toDo=='Edit'" translate="promise.procurement.master.addressbook.view.subjudul_ubah"></span>
+			<a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+				<em class="fa fa-chevron-circle-down"></em>
+			</a>
+		</h4>
+	<form class="form-horizontal" name="formAddress Book">
+		<div class="panel-body collapse in">
+			<div class="col-lg-6">
+				<div class="form-group">
+					<label class="col-lg-4 control-label required">
+						<span translate="promise.procurement.master.addressbook.view.label_alamat"></span>
+					</label>
+					<div class="col-lg-8">
+						<input name="addressLabel" class="form-control" ng-blur="cekValidSame(vm.addressBook.addressLabel)" ng-model="vm.addressBook.addressLabel" maxlength="50" placeholder="Kantor Utama, Cabang, Gedung, etc">	<strong style="color: red" translate={{vm.errorMessageLabel}}></strong> 
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-12">
+				<fieldset>
+					<h4 class="page-header no-margin"><span translate="promise.procurement.master.addressbook.view.informasi_kontak"></h4>
+					<!-- <legend translate="promise.procurement.master.addressbook.view.informasi_kontak"></legend> -->
+					<div class="form-group m-t">
+						<label class="col-lg-2 control-label required">
+							<span translate="promise.procurement.master.addressbook.view.nama_lengkap"></span>
+						</label>
+						<div class="col-lg-8">
+							<input name="fullName" maxlength="50" class="form-control" ng-model="vm.addressBook.fullName">	<strong style="color: red" translate={{vm.errorMessageNamaLengkap}}></strong> 
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 control-label required">
+							<span translate="promise.procurement.master.addressbook.view.nomor_telepon"></span>
+						</label>
+						<div class="col-lg-8">
+							<input promise-numbers-only name="telephone" maxlength="25" class="form-control" ng-model="vm.addressBook.telephone">	<strong style="color: red" translate={{vm.errorMessageTelepon}}></strong> 
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 control-label required">
+							<span translate="promise.procurement.master.addressbook.view.fax"></span>
+						</label>
+						<div class="col-lg-8">
+							<input promise-numbers-only name="fax" class="form-control" maxlength="12" ng-model="vm.addressBook.fax">	<strong style="color: red" translate={{vm.errorMessageFax}}></strong> 
+						</div>
+					</div>
+				</fieldset>
+				<br>
+			</div>
+			
+			<div class="col-lg-12">
+				<fieldset>
+					<h4 class="page-header no-margin"><span translate="promise.procurement.master.addressbook.view.alamat"></h4>
+					<!-- <legend translate="promise.procurement.master.addressbook.view.alamat"></legend> -->
+					<div class="form-group m-t">
+						<label class="col-lg-2 control-label required">
+							<span translate="promise.procurement.master.addressbook.view.alamat_jalan"></span>
+						</label>
+						<div class="col-lg-8">
+							<input name="streetAddress" maxlength="120" class="form-control" ng-model="vm.addressBook.streetAddress">	<strong style="color: red" translate={{vm.errorMessageJalan}}></strong> 
+						</div>
+					</div>
+					<!-- <div class="form-group">
+	                    <label class="col-lg-2 control-label">Country</label>
+	                    <div class="col-lg-8 no-search">
+	                    	<select name="country" class="form-control m-b shadow-z1 input-sm" ng-model="vm.addressBook.country">
+	                        	<option value="" disabled selected>++ Pilih ++</option>
+	                        	<option value="Indonesia">Indonesia</option>
+	                        	<option value="Malaysia">Malaysia</option>
+	                        	<option value="Singapura">Singapura</option>
+	                        	<option value="Australia">Australia</option>
+	                        </select>
+	                    </div>
+	                </div> -->
+	                <div class="form-group">
+						<label class="col-lg-2 control-label required">
+							<span translate="promise.procurement.master.bank.view.provinsi"></span>
+						</label>
+						<div class="col-lg-8 no-search">
+							<select name="district" class="form-control m-b shadow-z1 input-sm" 
+							ng-model="vm.addressBook.provinsi" theme="bootstrap" ng-required="true" required>
+								<option value="" disabled selected>++ Pilih ++</option>
+								<option ng-repeat="option in vm.provinsiList" value="{{option}}" ng-selected="{{option.id}} == {{vm.addressBook.provinsi.id}}">{{option.nama}}</option>
+							</select> <strong style="color: red" translate={{vm.errorMessageProvinsi}}></strong> 
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 control-label required">
+							<span translate="promise.procurement.master.addressbook.view.kota"></span>
+						</label>
+						<div class="col-lg-8 no-search">
+							<input name="streetAddress" maxlength="30" class="form-control" ng-model="vm.addressBook.city"> 
+							<strong style="color: red" translate={{vm.errorMessageKota}}></strong> 
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 control-label required">
+							<span translate="promise.procurement.master.addressbook.view.distrik"></span>
+						</label>
+						<div class="col-lg-8 no-search">
+							<input name="streetAddress" maxlength="30" class="form-control" ng-model="vm.addressBook.district">
+							<strong style="color: red" translate={{vm.errorMessageDistrict}}></strong> 
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 control-label required">
+							<span translate="promise.procurement.master.addressbook.view.kelurahan"></span>
+						</label>
+						<div class="col-lg-8 no-search">
+							<input name="streetAddress" maxlength="20" class="form-control" ng-model="vm.addressBook.subDistrict">
+							<strong style="color: red" translate={{vm.errorMessageSubDistrict}}></strong>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 control-label required">
+							<span translate="promise.procurement.master.addressbook.view.kode_pos"></span>
+						</label>
+						<div class="col-lg-8">
+							<input name="postalCode" maxlength="5" class="form-control" ng-model="vm.addressBook.postalCode"> <strong style="color: red" translate={{vm.errorMessageKodePos}}></strong>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 control-label required">
+							<span translate="promise.procurement.master.addressbook.view.organisasi"></span>
+						</label>
+						<div class="col-lg-8 no-search">
+							<select name="district" class="form-control m-b shadow-z1 input-sm" 
+							ng-model="vm.addressBook.organisasi" theme="bootstrap" 
+							ng-options="org.nama for org in vm.organisasiList track by org.id" ng-required="true" required>
+								<option value="" disabled selected>++ Pilih ++</option>
+							</select>
+							<strong style="color: red" translate={{vm.errorMessageOrg}}></strong> 
+						</div>
+					</div>
+				</fieldset>
+				<br>
+			</div>
+			<div class="col-lg-12">
+				<div class="c-checkbox">
+					<label>
+						<input type="checkbox" ng-model="vm.addressBook.status" class="form-control" />	<span class="fa fa-check m-sm"></span> Status</label>
+				</div>
+			</div>
+			<!-- KAI - 20201217 - [21150] -->
+			<!-- <div class="col-lg-12">
+				<div class="c-checkbox">
+					<label>
+						<input type="checkbox" ng-model="vm.addressBook.defaultBillingAddress" class="form-control" />	<span class="fa fa-check m-sm"></span>
+						<strong translate="promise.procurement.master.addressbook.view.billingaddress"></strong> 
+					</label>
+				</div>
+			</div> -->
+			<div class="col-lg-12">
+				<div class="c-checkbox">
+					<label>
+						<input type="checkbox" ng-model="vm.addressBook.defaultShippingAddress" class="form-control" />	<span class="fa fa-check m-sm"></span> 	<strong translate="promise.procurement.master.addressbook.view.shippingaddress"></strong>
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="panel-footer">
+			<div class="form-group">
+				<div align="center">
+					<br/>
+					<br/>
+					<button type="button" ripple="" class="btn btn-default" ng-click="back()"><span translate="template.button.kembali"></span>
+					</button>
+					<button type="button" ripple="" class="btn btn-primary" ng-click="save()"><span translate="template.button.simpan"></span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

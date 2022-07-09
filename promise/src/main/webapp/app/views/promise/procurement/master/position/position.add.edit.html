@@ -1,0 +1,64 @@
+<div class="app-view-header"> 
+	<span translate="jabatan.judul"></span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="PositionAddEditController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-tasks"></em>
+			<span ng-if="vm.todo=='add'" translate="jabatan.judulTambah"></span>
+			<span ng-if="vm.todo=='edit'" translate="jabatan.judulEdit"></span>
+			<a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+				<em class="fa fa-chevron-circle-down"></em>
+			</a>
+		</h4>
+	<form class="form-horizontal" name="positionForm">
+		<div class="panel-body collapse in">			
+			<div class="col-lg-12">
+				<fieldset>
+					<h4 class="page-header no-margin"><span translate="jabatan.jabatan"></h4>
+					<div class="form-group m-t">
+						<label class="col-lg-2 control-label required">
+							<span translate="jabatan.list.namajabatan"></span>
+						</label>
+						<div class="col-lg-8">
+							<input name="namaPosition" maxlength="255" class="form-control" ng-model="vm.position.nama">
+							<strong style="color: red" translate={{vm.errorMessageNama}}></strong> 
+						</div>
+					</div>
+	                <div class="form-group">
+						<label class="col-lg-2 control-label required">
+							<span translate="jabatan.list.kodejabatan"></span>
+						</label>
+						<div class="col-lg-8">
+							<input name="kodePosition" maxlength="255" class="form-control" ng-model="vm.position.kode">
+							<strong style="color: red" translate={{vm.errorMessageKode}}></strong> 
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 control-label required">
+							<span translate="jabatan.list.keterangan"></span>
+						</label>
+						<div class="col-lg-8 no-search">
+							<textarea  class="form-control shadow-z1 input-sm"  ng-model="vm.position.keterangan" style="margin: 0px; width: 350px; height: 125px;"></textarea> 
+							<strong style="color: red" translate={{vm.errorMessageKeterangan}}></strong> 
+						</div>
+					</div>
+				</fieldset>
+				<br><br>
+			</div>
+			<br>
+		</div>
+		<div class="panel-footer">
+			<div class="form-group">
+				<div align="center">
+					<br/>
+					<br/>
+					<button type="button" ripple="" class="btn btn-default" ng-click="back()"><span translate="template.button.kembali"></span>
+					</button>
+					<button type="button" ripple="" class="btn btn-primary" ng-click="save()"><span translate="template.button.simpan"></span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,79 @@
+<div class="app-view-header">	<span translate="promise.procurement.master.sla_vendor.judul"></span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="MasterAdminSLAVendorViewController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<em class="fa fa-tasks"></em>
+		<span translate="promise.procurement.master.sla_vendor.view.subjudul_ubah"></span>
+		<a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+			<em class="fa fa-chevron-circle-down"></em>
+		</a>
+	</h4>
+	<div class="panel-body collapse in">
+		<!-- <div align="right">
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="form.formulaPenilaianAddRow()">
+                <span class="btn-label"><em class="fa fa-plus"></em></span>
+                <span>Tambah Baris</span>
+            </button>
+        </div>
+        <br/> -->
+		<div class="row">
+			<div class="col-md-2">	
+				<span translate="promise.procurement.master.sla_vendor.view.kode_proses"></span> :
+			</div>
+			<div class="col-md-5">	
+				<span ng-bind="vm.slaVendorProses.slaVendor.kode"></span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">	
+				<span translate="promise.procurement.master.sla_vendor.view.nama_proses"></span> :
+			</div>
+			<div class="col-md-5"> 
+				<span ng-bind="vm.slaVendorProses.slaVendor.namaProses"></span>
+			</div>
+		</div>
+		<div class="col-md-12">
+			<div class="table-responsive">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col"style="text-align: center">
+								<span translate="template.tabel.nomor">Nomor</span>
+							</th>
+							<th scope="col"style="text-align: center">
+								<span translate="promise.procurement.master.sla_vendor.view.kode">Kode</span>
+							</th>
+							<th scope="col"style="text-align: center">
+								<span translate="promise.procurement.master.sla_vendor.view.nama">Nama</span>
+							</th>
+							<th scope="col"style="text-align: center">
+								<span translate="promise.procurement.master.sla_vendor.view.jumlah_hari">Jumlah Hari</span>
+							</th>
+						</tr>
+					</thead>
+					<tr>
+						<td style="text-align: center" ng-bind="{{ $index+1 }}"></td>
+						<td style="text-align: center" ng-bind="vm.slaVendorProses.kode"></td>
+						<td style="text-align: center" ng-bind="vm.slaVendorProses.tahapan"></td>
+						<td style="text-align: center">
+							<input type="text" maxlength="3" class="form-control" ng-model="vm.slaVendorProses.jmlHari" promise-currency-blur/>	<strong style="color: red" translate={{vm.errorJumlahHari}}></strong>
+							<br />
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<br />
+		<div class="form-group">
+			<div class="col-md-12" align="center">
+				<button type="button" ripple="" class="mr btn btn-sm bg-default" ng-click="back()">	<span translate="template.button.kembali"></span>
+				</button>
+				<button type="button" ripple="" class="mr btn btn-sm bg-primary" ng-click="save()">	<span translate="template.button.simpan"> </span>
+				</button>
+				<br />
+			</div>
+		</div>
+	</div>
+</div>
+<!--END CONTROLLER-->

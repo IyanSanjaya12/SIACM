@@ -1,0 +1,27 @@
+<nav role="navigation" ng-controller="HeaderNavController" class="navbar topnavbar  shadow-z1">
+
+	<div class="navbar-header">
+		<a ui-sref="page.portal">
+			<img src="app/img/LOGO-SIACM.png" alt="ProMISE" class="brand-logo" />
+		</a>
+        
+	
+	</div>
+    
+    
+    <div collapse="headerMenuCollapsed" class="nav-wrapper collapse navbar-collapse">
+		<ul class="nav navbar-nav">
+			
+            <li ng-controller="RegVendorFooterController">
+                <a ripple="">{{ tanggallengkap }}, {{ tempatjam }}&nbsp;&nbsp;</a>
+            </li>
+            <li><a ripple="" ui-sref="page.portal">HOME</a></li>
+			<!-- <li><a ripple="" ui-sref="page.promiselogin">BACK TO LOGIN</a></li> -->
+			
+		</ul>
+	</div>
+	<a ui-sref="front.portal" class="logo-2">
+        <img src="app/img/logo-satu.png" alt="ProMISE" class="brand-logo" style="height: 55px;"/>
+   	</a>
+</nav>
+

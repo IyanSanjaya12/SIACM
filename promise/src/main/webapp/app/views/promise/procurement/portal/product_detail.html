@@ -1,0 +1,350 @@
+<link rel="stylesheet" href="app/views/promise/procurement/portal/portal-css/custom-styles.css">
+
+<!-- content -->
+<div class="app-content" ng-controller="productCtrl as vm">
+    <div class="app-content-body">
+    
+        <div class="container">
+        	<div class="row">
+           		<div class="col-md-4">
+           			<button type="button" class="btn btn-primary" ng-click="backToCatalogList()">Back</button>
+           		</div>
+           	</div>
+           	<br/>
+            <div class="panel b-a padder padder-v">
+                <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                        <div class="thumbnails-image">
+                            <a class="thumbnail">
+                                <img id="zoom_01"
+                                    ng-src="{{catalog.catalogImageList[0].loadFile}}"
+                                    data-zoom-image="{{catalog.catalogImageList[0].loadFile}}"
+                                    ez-plus
+                                    ezp-model="zoomModelGallery01"
+                                    ezp-options="zoomOptions"
+                                    on-error-src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+                                   />
+                           	</a>
+                        </div>
+
+                        <div class="wrapper-img-additional">
+                            <div class="image-additional" id="gallery_01">
+                                <a
+                                   
+                                   ng-repeat="image2 in imagesForGallery"
+                                   ng-click="setActiveImageInGallery('zoomModelGallery01',image2);"
+
+                                   data-image="{{approot}}{{image2.small}}"
+                                   data-zoom-image="{{approot}}{{image2.large}}"
+
+                                   class="thumbnail col-md-3">
+                                    <img ng-src="{{approot}}{{image2.thumb}}"/>
+                                </a>
+                            </div>
+                       </div>
+
+                    </div>
+                    <!--col-1-->
+                    <div class="col-md-8 col-sm-12">
+                        <div class="product-shop-inner">
+                            <div class="product-name">
+                                <h1 ng-bind="catalog.namaIND"></h1>
+                            </div>
+                            <div class="product-name">
+                                <strong><em><h3 class="price-show" ng-if="catalog.harga_eproc == null || catalog.harga_eproc == 0" ng-bind="(catalog.harga | currency:'')+' '+catalog.mataUang.kode"></h3></em></strong>	
+                                <strong><em><h3 class="price-show" ng-if="catalog.harga_eproc != null && catalog.harga_eproc != 0"ng-bind="(catalog.harga_eproc | currency:'')+' '+catalog.mataUang.kode"></h3></em></strong>
+                                <del><strong><em><h4 ng-if="catalog.harga_eproc != null && catalog.harga_eproc != 0" ng-bind="(catalog.harga | currency:'')+' '+catalog.mataUang.kode"></h4></em></strong></del>
+                            
+                                <br/>
+                            </div>
+                            <!-- rating -->
+                            <div class="rating">
+                                <span>
+                                    <rating ng-model="catalog.rating" readonly="true" state-on="'glyphicon-star text-warning'" state-off="'glyphicon-star-empty'"></rating>
+                                </span>
+                                <a class="reviewtab" ng-click="tulisComment()" ng-bind="commentSize +' reviews'"></a> <!-- <span class="reviewtab">/</span> <a class="reviewtab" ng-click="tulisComment()">Write a review</a> -->
+                            </div>
+                            
+                            <div class="short-description" ng-bind-html="catalog.deskripsiIND"></div>
+                            <ul class="list-unstyled infor-product">
+                                <!-- <li class="list-infor-product">Brand:<span>{{ catalog.vendor.alamat }}</span></li> -->
+                                <li class="list-infor-product">Shipping From:<span>{{ catalog.vendorProfile.kota }}</span></li>
+                                <li class="list-infor-product">Estimated Delivery Time:<span>5-10 working days</span></li>            
+                                <li class="list-infor-product">Availability:<span>In Stock</span></li>            
+                            </ul><!--infor-product-->
+                            <div class="add-to-cart">
+                                <div class="col-sm-4 no-padding m-r">
+                                    <input type="text" value="{{ catalog.catalogLocationList[0].stockProduct }}" class="input-sm form-control" data-min='1' data-max="10" data-step="1" readonly>
+                                </div>
+                                <a class="btn btn-warning btn-xs" ng-click="addCartCatalog(catalog)">Add to Cart</a>
+                                <a class="btn btn-info btn-sm" ng-click="addCompareCatalog(catalog)">Add to Compare</a>
+                            </div>
+							<br/>
+                        </div><!--product-shop-inner-->
+
+                        <div class="related-products-view">
+                            <div class="related-title">
+                                <span>Supplier Detail</span>
+                            </div>
+                            <div class="view-related">
+                                <div class="row_items">
+                                    <div class="item_product">
+                                        <div class="caption">
+                                            <h2 class="product-name">
+                                                <a ui-sref="appportal.procurement-catalog-vendor-detail({dataVendor: catalog.vendor})" ng-bind="catalog.vendor.nama"></a>
+                                            </h2>
+                                            <p class="des-newproduct">
+                                                <ul class="no-style" ng-if="catalog.catalogKontrakList != undefined">
+                                                    <li><strong ng-bind="hitungLamaBerdiri(catalog.vendorProfile.tanggalBerdiri)"></strong> Years Supplier</li>
+                                                    <li><strong ng-bind="catalog.catalogKontrakList.length"></strong> Transactions</li>
+                                                    <li><strong ng-bind="jumlahTerjual"></strong> Products sold</li>
+                                                </ul>
+                                                <ul class="no-style" ng-if="catalog.catalogKontrakList == undefined">
+                                                    <li><strong ng-bind="hitungLamaBerdiri(catalog.vendorProfile.tanggalBerdiri)"></strong> Years Supplier</li>
+                                                    <li><strong>0 </strong>Transactions</li>
+                                                    <li><strong>0 </strong>Products sold</li>
+                                                </ul>
+                                            </p>
+                                            <!-- <div class="contact-widget">
+                                                <a href="#" ng-click="mailTo(catalog.vendorProfile.email)"><em class="fa fa-phone-square"></em> Contact Now</a>
+                                            </div> -->
+                                        </div><!-- caption-->
+                                    </div><!--item_product-->
+                                </div>
+                            </div>
+                        </div><!--related-products-view-->      
+                    </div><!--col-2-->
+                </div>
+            </div>
+        
+	        <div class="panel b-a padder pt10">
+				<div class="row">
+				    <div class="col-md-12">
+				        <tabset class="tab-container">
+                            <tab heading="Product Detail">
+                                <div class="cpt_product_description ">
+                                    <table class="table detail no-border" ng-repeat="attList in catalog.catalogAttributeList">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                	<label class="col-sm-2 control-label" ng-bind="attList.attributePanelGroup.attribute.translateInd"></label>
+													<div class="col-sm-4">
+														<label>: </label>
+														<label ng-if="attList.attributePanelGroup.attribute.inputType.name != 'Date'" ng-bind-html="attList.nilai"></label>
+														<label ng-if="attList.attributePanelGroup.attribute.inputType.name == 'Date'" ng-bind="attList.nilai | date:'dd MMM yyyy'"></label>
+													</div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </tab>
+                            <tab heading="Comment" active="writeComment">
+                            	<div class="box">
+                                    <h3 class="title"><span translate="promise.procurement.master.catalog.list.CommentList">Comment List</span></h3>
+                                    <table class="table table-striped detail">
+                                        <tbody>
+                                            <tr ng-repeat="comment in catalogCommentList">
+                                                <td class="trust">  </td>
+                                                <td class="name">
+													<div class="form-group">
+														<p ng-bind="comment.user.namaPengguna"></p>
+														<p ng-bind="comment.roleUser"></p>
+														<p ng-bind="comment.organisasi"></p>
+													</div>
+												</td>
+                                                <td class="name">
+                                                	<div class="form-group">
+													</div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <br/>
+                                <div class="comment_rate form-horizontal" ng-if="okForComment">
+                                	<h3 class="title"><span translate="promise.procurement.master.catalog.list.Comment"></span></h3>
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label"><span translate="promise.procurement.master.catalog.list.Rating"></span></label>
+                                        <div class="col-lg-8">
+                                            <!-- rating -->
+                                            <div class="rating m-h small">
+                                                <div ng-init="xx = 0" class="">
+                                                    <rating ng-model="dataRating.rating" readonly="false" state-on="'glyphicon-star text-warning'" state-off="'glyphicon-star-empty'"></rating>
+                                                </div>
+                                            </div>
+                                            <!-- / rating -->
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">Your Comment</label>
+                                        <div class="col-lg-8">
+                                            <!-- Wysiswyg editor-->
+                                            <div text-angular="" name="ratingComment" class="btn-group-small" ng-model="dataRating.ratingComment"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-2 col-lg-8">
+                                            <!-- Wysiswyg editor-->
+                                            <a class="btn btn-success" ng-click="saveRating(dataRating)">Submit</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </tab>
+                            <tab heading="Company Profile">
+                            	<div class="profile-text" ng-if="catalog.vendor.deskripsi != undefined">
+                            		<label ng-bind-html="catalog.vendor.deskripsi"></label>
+                            	</div>
+                                <div class="profile-text" ng-if="catalog.vendor.deskripsi == undefined">
+                                	Tidak Ada Deskripsi.
+                                </div>
+                                <div class="box">
+                                    <h3 class="title">Factory Information</h3>
+                                    <table class="table table-striped detail">
+                                        <tbody>
+                                            <tr>
+                                                <td class="trust">  </td>
+                                                <td class="name">Factory Size (Sq.meters):</td>
+                                                <td>Below 1,000 square meters &nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="trust">  </td>
+                                                <td class="name">Factory Location:</td>
+                                                <td ng-bind="catalog.vendor.alamat +', '+catalog.vendor.kota"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="trust"></td>
+                                                <td class="name">Number of Production Lines:</td>
+                                                <td>5 &nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="trust">  </td>
+                                                <td class="name">Number of R&amp;D Staff:</td>
+                                                <td>5 - 10 People &nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="trust">  </td>
+                                                <td class="name">Number of QC Staff:</td>
+                                                <td>5 - 10 People &nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="trust"></td>
+                                                <td class="name">Contract Manufacturing:</td>
+                                                <td> OEM Service Offered &nbsp; </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </tab>
+
+                        </tabset>
+                    </div>
+                </div>
+            </div>
+        
+        	<div class="panel b-a padder pb10" ng-controller="productCtrl">
+                <div class="row">
+                    <div class="module-title">
+                        <h3>SIMILAR PRODUCT FROM OTHER SUPPLIER</h3>
+                     </div>
+                     <div class="module-loop pb0 clearfix" >
+                		<wrap-owlcarousel class="owl-carousel"   
+                      		data-options="{
+	                    		items:{{ panjangData }}, 
+	                    		margin:10,
+	                    		autoplay:true,
+	                    		autoplayHoverPause:true, 
+                   				autoplaySpeed:1000,
+	                    		dots:true, 
+	                    		loop:true,
+	                    		responsive: {       
+	                                '0': {  items: 1, margin: 5 },
+	                                '480': { items: 3,  margin: 5 },
+	                                '640': { items: 5, margin: 5 }
+	                            } }">
+		                     <div wrap-owlcarousel-item="" ng-repeat="ctl in catalogList" class="row_items">
+		                     	<div class="item">
+                               		<div class="item-inner">
+                                       <div class="images-container">
+                                           <a class="product-image" ui-sref="appportal.productDetail({dataCatalog: ctl})">
+                                               
+                                               <img ng-src="{{ctl.catalogImageList[0].loadFile}}" />
+                                           </a>
+                                       </div>
+                                       <div class="des-container">
+                                           <h2 class="product-name">
+                                               <a class="product" style="height : auto;" ui-sref="appportal.productDetail({dataCatalog: ctl})">{{ ctl.namaIND }}</a>
+                                               <a class="supplier" style="height : auto;" ui-sref="app.promise.procurement-catalog-vendor-detail({dataVendor: ctl.vendor})"><strong ng-bind="ctl.vendor.nama"></strong></a>
+                                               <a class="supplier" style="height : auto;"><span ng-bind="ctl.vendor.alamat + (ctl.vendor.kota!=null?', '+ctl.vendor.kota:'')"></span></a>
+                                           </h2>
+                                           <div class="ratings">
+                                               <div ng-init="xx" class="">
+                                                 <rating ng-model="ctl.rating" readonly="true" state-on="'glyphicon-star text-warning'" state-off="'glyphicon-star-empty'"></rating>
+                                               </div>
+                                           </div>
+                                           <div class="price-box box-special">
+                                               <p class="special-price"><span class="price" ng-bind="(ctl.harga | currency:'')+' '+ctl.mataUang.kode"></span></p>
+                                               <p class="old-price"><span class="price"></span></p>
+                                           </div>
+                                           <div class="text-center m-b">
+                                               <a ui-sref="app.promise.procurement-catalog-vendor-detail({dataVendor: ctl.vendor})" class="btn btn-sm btn-primary btn-addon">
+                                                   <em class="fa fa-chevron-right pull-right"></em>Contact Supplier
+                                               </a>
+                                           </div>
+                                       </div>
+                                   </div>
+	                        	</div>
+						    </div>
+                                
+                        </wrap-owlcarousel>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END row-->
+
+<!----------------------- MODAL MAIL COMPOSE --------------------------------->
+<script type="text/ng-template" id="/mail.compose.html">
+	<div class="app-view-header">
+        <h3 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        	<span>Compose Email</span>
+    	</h3>
+    </div>
+	<div class="mb-mail-compose">
+	   <div class="clearfix mb">
+	      <div class="pull-left">
+	         <button type="button" ng-class="{'active':mailCC}" ng-click="mailCC = !mailCC" class="btn btn-default btn-sm" ng-model="mailCC">CC</button>
+	      </div>
+	   </div>
+	   <div class="panel panel-default">
+	      <div class="panel-body">
+	         <form role="form-horizontal" method="post">
+	            <div class="input-group form-group">
+	               <span class="input-group-addon text-sm">To:</span>
+	               <input type="text" class="form-control" disabled ng-model="emailTujuan" />
+	            </div>
+	            <div ng-show="mailCC" name="emailCC" class="input-group form-group">
+	               <span class="input-group-addon text-sm">CC:</span>
+	               <input type="text" class="form-control" ng-model="emailCC" />
+	            </div>
+	            <div class="input-group form-group">
+	               <span class="input-group-addon text-sm">Subject:</span>
+	               <input type="text" ng-model="emailSubject" class="form-control" />
+	            </div>
+	            <div class="mb-editor">
+	               <!-- Wysiswyg editor-->
+	               <div text-angular="" name="emailIsi" ng-model="emailIsi" name="wysiswyg-editor" ta-toolbar="[['h1','h2','h3'],['bold','italics', 'underline'],['quote'],['ul','ol'],['insertImage','insertLink']]" class="btn-group-small"></div>
+	               <p ng-show="emailIsiError" style="color:red">Harus Diisi!</p>
+	            </div>
+	         </form>
+	      </div>
+	      <div class="form-group">
+	        <a href="#" class="btn" ng-click="btnBatal()">Close</a>
+	        <a href="#" class="btn btn-primary" ng-click="btnKirim()">Send</a>
+	     </div>
+	     <br/>
+	   </div>
+	</div>
+</script>

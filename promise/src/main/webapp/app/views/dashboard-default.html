@@ -1,0 +1,115 @@
+<div class="app-view-header">
+  Dashboard Default
+</div>
+<div ng-controller="DashboardDefaultController" class="row custom-col-dashboard">
+  <div class="col-12" style="padding: 0 2vw;" ng-if="!isVendor && !isAdmin">
+    <div class="dashboard-filter">
+      <div class="dashboard-filter-select">
+        <div class="dashboard-filter-group">
+          <label for="testing">Organization: </label>
+          <promise-select
+            on-change="handleFilterOrganization"
+            ng-model="organizationFilter"
+            options="organizationFilterObject.data"
+            view-field="{{organizationFilterObject.viewField}}"
+            placeholder="Pilih Organisasi"
+          >
+          </promise-select>
+        </div>
+        <div class="dashboard-filter-group">
+          <label for="testing">Tahun: </label>
+          <promise-select on-change="handleFilterYear" ng-model="yearFilter" options="yearArray" placeholder="Pilih Tahun"> </promise-select>
+        </div>
+      </div>
+    </div>
+   <div class="row">
+    <div class="col-sm-6 col-lg-8" style="padding-right: 0.5rem;">
+    	<promise-chart type="line" dataSets="chartData.monitoringPembelian" >
+    		<div style="width: max-content; min-width: 200px;" class="col-sm-6 col-lg-8">
+	    		<promise-select on-change="handleMonitoringPembelianSelect" 
+	    			ng-model="yearFilter" 
+	    			options="yearArray" 
+	    			placeholder="Pilih Tahun"> </promise-select>
+    		</div>
+    	</promise-chart>
+	</div>
+    <div class="col-sm-6 col-lg-4" style="padding-left: 0.5rem;">
+       <!--  <promise-chart on-change="handleChange" type="bar" dataSets="chartData.monitoringKinerjaPenyedia">
+          <div style="width: max-content;">
+            <input
+              type="date"
+              ng-model="dateFilter.startDate"
+              ng-change="handleFilterMonitoringKinerjaPenyedia(dateFilter.startDate, 'startDate')"
+              style="border: none; border-bottom: 1px solid #e0e0e0;"
+            />
+            <input type="date" ng-model="dateFilter.endDate" ng-change="handleFilterMonitoringKinerjaPenyedia(dateFilter.endDate, 'endDate')" style="border: none; border-bottom: 1px solid #e0e0e0;" />
+          </div>
+        </promise-chart> -->
+		<promise-chart type="bar" dataSets="chartData.monitoringProsesPembelian">
+        	<div style="width: max-content;">
+	            <input
+	              type="date"
+	              ng-model="dateFilter.monitoringProsesPembelian.startDate"
+	              ng-change="handleFilterMonitoringProsesPembelian(dateFilter.monitoringProsesPembelian.startDate, 'startDate')"
+	              style="border: none; border-bottom: 1px solid #e0e0e0;"
+	            />
+	            <input
+	              type="date"
+	              ng-model="dateFilter.monitoringProsesPembelian.endDate"
+	              ng-change="handleFilterMonitoringProsesPembelian(dateFilter.monitoringProsesPembelian.endDate, 'endDate')"
+	              style="border: none; border-bottom: 1px solid #e0e0e0;"
+	            />
+          	</div>
+        </promise-chart>
+      </div> 
+    </div>  
+
+    <div class="row">
+      <div class="col-sm-6 col-lg-8" style="padding-right: 0.5rem;">
+        <promise-chart type="bar" dataSets="chartData.monitoringCatalog">
+          <div style="width: max-content; min-width: 200px;" class="col-sm-6 col-lg-8">
+            <promise-multiple-select
+              option-list="chartData.categoryList"
+              ng-model="categorySelected"
+              on-change="handleMonitoringCatalogSelect"
+              view-field="description"
+              value-field="id"
+            ></promise-multiple-select>
+          </div>
+          <input
+              type="date"
+              ng-model="dateFilter.tglMulai"
+              style="border: none; border-bottom: 1px solid #e0e0e0;"
+            />
+            <input type="date" ng-model="dateFilter.tglAkhir" style="border: none; border-bottom: 1px solid #e0e0e0;" />
+        </promise-chart>
+      </div>
+      <div class="col-sm-6 col-lg-4" style="padding-left: 0.5rem;">
+        <promise-chart type="pie" dataSets="chartData.monitoringMasaKontrakCatalog">
+          <div style="width: max-content;">
+            <input type="date" ng-model="dateFilter.maxDate" ng-change="handleFilterMonitoringMasaKontrakCatalog(dateFilter.maxDate)" style="border: none; border-bottom: 1px solid #e0e0e0;" />
+          </div>
+        </promise-chart>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12 col-lg-12" >
+        <promise-chart type="bar" dataSets="chartData.monitoringVendor">
+          <div style="width: fit-content; min-width: 200px;">
+            <promise-multiple-select
+              option-list="chartData.SBUList"
+              ng-model="monitoringVendorSelected"
+              on-change="handleMonitoringVendorSelect"
+              view-field="nama"
+              value-field="id"
+            ></promise-multiple-select>
+          </div>
+        </promise-chart>
+      </div>
+      <!-- <div class="col-sm-6 col-lg-4" style="padding: 0 0.5rem;">
+       
+      </div> -->
+    </div>
+  </div>
+</div>

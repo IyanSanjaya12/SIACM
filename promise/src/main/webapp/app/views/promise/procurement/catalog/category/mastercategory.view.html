@@ -1,0 +1,79 @@
+<div class="app-view-header"> <span translate="promise.procurement.master.mastercategory.judul"></span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="MasterCategoryViewController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-tasks"></em>
+			<span ng-if="vm.toDo=='add'" translate="promise.procurement.master.mastercategory.view.subjudul_tambah"></span>
+		<span ng-if="vm.toDo=='edit'" translate="promise.procurement.master.mastercategory.view.subjudul_ubah"></span>
+			<a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+					<em class="fa fa-chevron-circle-down"></em>
+			</a>
+	</h4>
+	<div class="col-12 text-center" ng-if="loading == true"> <strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong>
+	</div>
+	<form class="form-horizontal">
+		<div class="panel-body collapse in">
+			<div class="form-group">
+				<label for="input-id-1" class="col-sm-3 control-label required"> <span translate="promise.procurement.master.mastercategory.list.deskripsi"></span>
+				</label>
+				<div class="col-lg-7">
+					<textarea id="input-id-1" maxlength="250" name="description" class="form-control" ng-model="vm.category.description"></textarea> <strong style="color: red" translate={{vm.errorMessageDeskripsi}}></strong>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="input-id-2" class="col-sm-3 control-label"><span translate="promise.procurement.master.mastercategory.list.parent"></span>
+				</label>
+				<div class="col-lg-7">
+					<input id="input-id-2" name="parentlabel" class="form-control" ng-model="vm.category.parentCategory.translateInd" disabled="true">
+				</div>
+			</div>
+			<!-- <div class="form-group">
+                <label class="col-lg-3 control-label">Urutan</label>
+                <div class="col-lg-7">
+                    <input name="weight" class="form-control" ng-model="data.urutan">
+                </div>
+            </div> -->
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Enabled</label>
+				<div class="col-lg-2">
+					<div class="c-checkbox">
+						<label>
+							<input type="checkbox" ng-model="vm.category.flagEnabled" /> <span class="fa fa-check m-sm"></span>
+						</label>
+					</div>
+				</div>
+			</div>
+			<fieldset>
+				<h4 class="page-header no-margin"><span
+                    translate="promise.procurement.master.mastercategory.view.terjemahan"></span></h4>
+				<div class="form-group m-t">
+					<label class="col-sm-3 control-label required"> Admin</label>
+					<div class="col-lg-7">
+						<input id="input-id-3" maxlength="250" name="admin_translation" class="form-control" ng-model="vm.category.adminLabel"> <strong style="color: red" translate={{vm.errorMessageAdmin}}></strong>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label required"> IND</label>
+					<div class="col-lg-7">
+						<input name="ind_translation" maxlength="250" class="form-control" ng-model="vm.category.translateInd"> <strong style="color: red" translate={{vm.errorMessageTranslateId}}></strong>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label required"> ENG</label>
+					<div class="col-lg-7">
+						<input name="eng_translation" maxlength="250" class="form-control" ng-model="vm.category.translateEng"> <strong style="color: red" translate={{vm.errorMessageTranslatEn}}></strong> 
+					</div>
+				</div>
+			</fieldset>
+			<div class="form-group">
+				<div class="col-12 text-center">
+					<button type="button" ripple="" class="btn btn-default" ng-click="back()"> <span translate="template.button.kembali"></span>
+					</button>
+					<button type="button" ripple="" class="btn btn-primary" ng-click="save()"> <span translate="template.button.simpan"></span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

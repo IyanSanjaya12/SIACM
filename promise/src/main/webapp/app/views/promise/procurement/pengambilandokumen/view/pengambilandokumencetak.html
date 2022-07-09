@@ -1,0 +1,103 @@
+<!--
+SPESIFIC VIEW OF THE FIRST DETAIL EVALUASI TEKNIS MENU
+------------- START CONTROLLER -------------
+-->
+
+<div class="app-view-header">
+    <span translate="promise.procurement.panitia.pengambilandokumen.JUDUL">PENGAMBILAN DOKUMEN</span>
+</div>
+
+<div ng-controller="PengambilanDokumenCetakController as form">
+    <form method="post" action="#" novalidate="" class="form-horizontal">
+        <div id="pengambilanDokumen">
+            <promise-view-data-pengadaan pengadaan-id=pengadaanId></promise-view-data-pengadaan>
+            <!--Table Ke 4 -->
+            <div class="panel panel-primary">
+                <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-group">&nbsp;</em><span translate="promise.procurement.panitia.pengambilandokumen.view.vendor.JUDUL">Status Pengambilan Dokumen</span></h4>
+                <div class="panel-body">
+                    <br/>
+                    <div class="col-md-12">
+                        <div>
+                            <div class="loading" align="center" ng-if="loading == true"><strong><em>Loading...<img src="app/img/loading.gif" width="20px" border="0"/></em></strong></div>
+                            <div class="table-responsive" style="overflow:visible">
+                                <table class="table table-hover table-condensed table-striped bg-white">
+                                    <thead>
+                                        <tr style="font-weight: bold">
+                                            <th scope="col"style="width:5%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.pengambilandokumen.view.vendor.NO"></span>
+                                            </th>
+                                            <th scope="col"style="width:25%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.pengambilandokumen.view.vendor.NAMA"></span>
+                                            </th>
+                                            <th scope="col"style="width:15%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.pengambilandokumen.view.vendor.TGLDAFTAR"></span>
+                                            </th>
+                                            <th scope="col"style="width:23%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.pengambilandokumen.view.vendor.TGLPENGAMBILAN"></span>
+                                            </th>
+                                            <th scope="col"style="width:13%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.pengambilandokumen.view.vendor.TELEPON"></span>
+                                            </th>
+                                            <th scope="col"style="width:19%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.pengambilandokumen.view.vendor.ALAMAT"></span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="ppm in listVendors">
+                                            <td style="text-align:center; vertical-align:middle">
+                                                {{ $index+1 }}
+                                            </td>
+                                            <td style="text-align:left; vertical-align:middle">
+                                                {{ ppm.vendor.nama}}
+                                            </td>
+                                            <td style="text-align:center; vertical-align:middle">
+                                                {{ ppm.tanggalDaftar | date :'dd-MM-yyyy'}}
+                                            </td>
+                                            <td style="text-align:center; vertical-align:middle">
+                                                {{ ppm.tglAmbil | date :'dd-MM-yyyy'}}
+                                            </td>
+                                            <td style="text-align:center; vertical-align:middle">
+                                                {{ ppm.vendor.nomorTelpon }}
+                                            </td>
+                                            <td style="text-align:left; vertical-align:middle">
+                                                {{ ppm.vendor.alamat }}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--END Table Ke 4 -->
+        </div>
+        <div align="center">
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="back()"><em class="fa fa-arrow-circle-left">&nbsp;</em>
+                <span translate="promise.procurement.panitia.pengambilandokumen.view.btn.KEMBALI"></span>
+            </button>
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="printDiv('pengambilanDokumen')" ng-show="view==true && detilPengadaan.tahapanPengadaan.tahapan.id>6"><em class="fa fa-print">&nbsp;</em>
+                <span translate="promise.procurement.panitia.pengambilandokumen.view.btn.PRINT"></span>
+            </button>
+<!--             <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="goModalConfirmation()" ng-show="disableSave==false && detilPengadaan.tahapanPengadaan.tahapan.id==6 " ng-disabled="btnSimpanDisable">
+                <span translate="promise.procurement.panitia.pengambilandokumen.view.btn.SIMPAN"></span>&nbsp;<em class="fa fa-check"></em>
+            </button> -->
+        </div>
+        <br>
+    </form>
+</div>
+<!--END CONTROLLER-->
+
+<!--MODAL CONFIRMATION-->
+<script type="text/ng-template" id="/ModalConfirmation.html">
+    <div class="modal-header">
+        <button type="button" data-dismiss="modal" aria-hidden="true" class="close">×</button>
+        <h4 id="myModalLabel" class="modal-title">Konfirmasi</h4>
+    </div>
+    <div class="modal-body">
+        <p>Apakah anda yakin untuk simpan data ?</p>
+    </div>
+    <div class="modal-footer">
+        <div align="center">
+            <button ng-click="cancel()" class="btn btn-warning">Cancel</button>
+            <button ng-click="ok()" class="btn btn-primary">OK</button>
+        </div>
+    </div>
+</script>
+
+<!--END MODAL CONFIRMATION-->

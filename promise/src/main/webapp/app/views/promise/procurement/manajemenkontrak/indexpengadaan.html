@@ -1,0 +1,17 @@
+<div class="app-view-header">
+    <span translate="promise.procurement.manajemenkontrak.buatkontrak.list.judul"></span> 
+    <!-- <small><span translate="promise.procurement.panitia.pembukaanpenawaran.KETERANGAN"></span></small> -->
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="DaftarPengadaanKontrakController as form">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-tasks">&nbsp;</em><span translate="promise.procurement.manajemenkontrak.buatkontrak.list.subjudul"></span></h4>
+    <div class="panel-body">
+        <br/>
+        <div class="row form-horizontal">
+            <div class="col-md-12">
+                <table datatable="" dt-options="form.dtOptions" dt-columns="form.dtColumns" dt-instance="form.dtInstance" id="viewpengadaanIndex" class="row-border hover"></table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END CONTROLLER-->

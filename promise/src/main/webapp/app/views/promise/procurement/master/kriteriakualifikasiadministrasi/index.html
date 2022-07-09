@@ -1,0 +1,61 @@
+<div class="app-view-header">
+    <span translate="promise.procurement.master.kriteriakualifikasiadministrasi.JUDUL">Kriteria Administrasi</span>
+    &nbsp;<small><span translate="promise.procurement.master.kriteriakualifikasiadministrasi.KETERANGAN" style="color:green; font: italic bold 12px Georgia, serif"></span></small>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="MasterKriteriaKualifikasiAdministrasiController as form">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><span translate="promise.procurement.master.kriteriakualifikasiadministrasi.SUBJUDUL">Kriteria
+            Administrasi</span></h4>
+    <div class="panel-body">
+        <div align="right">
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="form.add()">
+                <span class="btn-label"><em class="fa fa-plus"></em></span>
+                <span translate="promise.procurement.master.kriteriakualifikasiadministrasi.TAMBAH"></span>
+            </button>
+        </div>
+        <br />
+        <div class="col-md-12">
+            <div>
+                <div align="center" ng-if="form.loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif"
+                            border="0" width="20px" /></strong>
+                </div>
+                <table datatable="ng" class="row-border hover table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.master.kriteriakualifikasiadministrasi.list.NOMOR">Nomor</span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.master.kriteriakualifikasiadministrasi.list.NAMA">Kriteria
+                                    Kualifikasi Administrasi</span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.master.kriteriakualifikasiadministrasi.KETERANGAN">Keterangan</span>
+                            </th>
+                            <th scope="col"style="text-align:center; width:10%"><span translate="promise.procurement.master.kriteriakualifikasiadministrasi.list.AKSI">Aksi</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="jp in form.masterKriteriaKualifikasiAdministrasiList">
+                            <td style="text-align:center">{{ $index+1 }}</td>
+                            <td>{{ jp.nama }}</td>
+                            <td>{{ jp.keterangan }}</td>
+                            <td style="text-align:center">
+
+                                <div>
+                                    <button ng-if="jp.id > 4" type="button" ng-class="'bg-' + app.theme.name" class="mr btn btn-xs"
+                                        ng-click="form.edit(jp)">
+                                        <em class="fa fa-pencil fa-lg"></em>
+                                    </button>
+                                    <button ng-if="jp.id > 4" type="button" class="mr btn btn-danger btn-xs" ng-click="form.del(jp.id)">
+                                        <em class="fa fa-trash fa-lg"></em>
+                                    </button>
+                                </div>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END CONTROLLER-->

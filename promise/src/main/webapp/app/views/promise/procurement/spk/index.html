@@ -1,0 +1,52 @@
+<!-- 
+GENERAL VIEW OF THE PROCUREMENT SYSTEM 
+---------- START CONTROLLER ----------
+-->
+
+<div class="app-view-header">
+    <span translate="promise.procurement.panitia.spk.JUDUL">SPK</span>
+</div>
+
+<div class="panel panel-primary" ng-controller="SPKController as form">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-tasks">&nbsp;</em><span translate="promise.procurement.panitia.spk.SUBJUDUL">SPK</span></h4>
+    <div class="panel-body">
+        <br/>
+        <div class="col-md-12">
+            <div>
+                <div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px" border="0"/></strong></div>
+                <table datatable="ng" class="row-border hover table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"style="text-align:center">No
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.spk.listPengadaan.NOMOR">No Pengadaan</span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.spk.listPengadaan.NAMA">Nama Pengadaan</span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.spk.listPengadaan.VENDOR">Nama Vendor</span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.spk.listPengadaan.AKSI">Aksi</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="pp in form.pengadaanList">
+                            <td style="text-align:left">{{ ($index+1)}}</td>
+                            <td style="text-align:left">{{ pp.nomorNotaDinas }}</td>
+                            <td style="text-align:left">{{ pp.namaPengadaan }}</td>                            
+                            <td style="text-align:left">{{ pp.vendor.nama }}</td>
+                            <td style="white-space: nowrap; text-align:center">
+                                <div>		
+                                    <button type="button" class="mr btn btn-primary btn-circle btn-xs" ng-click="form.view(pp)">		
+                                            <em  class="fa fa-search"></em>                                            
+									</button>
+								</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END CONTROLLER-->

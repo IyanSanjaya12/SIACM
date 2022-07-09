@@ -1,0 +1,69 @@
+<!-- 
+GENERAL VIEW OF THE PROCUREMENT SYSTEM 
+---------- START CONTROLLER ----------
+-->
+
+<div class="app-view-header">
+    <span translate="promise.procurement.panitia.evaluasiadministrasi.JUDUL"></span> 
+</div>
+
+<div class="panel panel-primary" ng-controller="EvaluasiAdministrasiController as form">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-tasks">&nbsp;</em><span translate="promise.procurement.panitia.evaluasiadministrasi.SUBJUDUL"></span></h4>
+    <div class="panel-body">
+        <br/>
+        <div class="col-md-12">
+            <div>
+                <div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px" border="0"/></strong>
+				</div>
+                <table datatable="ng" class="row-border hover table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"style="text-align:center">No
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.evaluasiadministrasi.list.NOMOR"></span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.evaluasiadministrasi.list.NAMA"></span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.evaluasiadministrasi.list.POSISI"></span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.evaluasiadministrasi.list.CREATEDATE"></span>
+                            </th>
+                            <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.evaluasiadministrasi.list.AKSI"></span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="ea in form.evaluasiAdministrasiList">
+                            <td style="text-align:center">{{ $index+1 }}</td>
+                            <td style="text-align:center">{{ ea.nomorNotaDinas }}</td>
+                            <td style="text-align:center">{{ ea.namaPengadaan }}</td>
+                            <td style="text-align:center"><a href="" ng-click="form.view(ea)">{{ea.tahapanPengadaan.tahapan.nama}}</a>
+                            </td>
+                            <td style="text-align:center">{{ ea.tahapanPengadaan.tahapan.created | date:'dd/MM/yyyy'}}</td>
+                            <!-- 
+                            <td style="text-align:center">
+                                <div>
+                                    <button ng-if="ea.tahapanPengadaan.tahapan.id == 11" type="button" class="mr btn btn-success btn-circle btn-xs" ng-click="form.view(ea)">
+                                        <em class="fa fa-pencil fa-lg"></em>
+                                    </button>
+                                    <button ng-if="ea.tahapanPengadaan.tahapan.id != 11" type="button" class="mr btn btn-primary btn-circle btn-xs" ng-click="form.view(ea)">
+                                        <em class="fa fa-search"></em>
+                                    </button>
+                                </div>
+                            </td>
+                             -->
+                            <td style="text-align:center">
+                                <div>
+                                    <button type="button" class="mr btn btn-success btn-circle btn-xs" ng-click="form.view(ea)">
+                                        <em class="fa fa-pencil fa-lg"></em>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END CONTROLLER-->

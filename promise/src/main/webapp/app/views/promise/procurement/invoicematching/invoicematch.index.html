@@ -1,0 +1,212 @@
+<div class="app-view-header">
+	<span>Invoice Monitoring</span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="InvoiceMatchingIndexController as form">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><span>Invoice Monitoring</span></h4>
+	<div class="panel-body">
+	<div class="row p-b m-b">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="col-md-12 text-left control-label">Search</label>
+                    <div class="col-md-12">
+                        <div class="search-icon">
+                            <input class="form-control" placeholder="po number/purchase by/date" type="text" ng-model="pencarian.cari" ng-change="getSearchAndSort(pencarian)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="col-md-12 text-left control-label">Vendor Name</label>
+                    <div class="col-md-12">
+                        <div class="search-icon">
+                            <input class="form-control" placeholder="vendor name" type="text" ng-model="pencarian.vendor" ng-change="getSearchAndSort(pencarian)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="col-md-12 text-left control-label">Item Name</label>
+                    <div class="col-md-12">
+                        <div class="search-icon">
+                            <input class="form-control" placeholder="item name" type="text" ng-model="pencarian.item" ng-change="getSearchAndSort(pencarian)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="col-md-12 text-left control-label">Sort by </label>
+                    <div class="col-md-12">
+                        <select class="form-control" ng-model="pencarian.urut" ng-change="getSearchAndSort(pencarian)">
+                            <option value="" disabled selected>++ Pilih ++</option>
+                            <option ng-repeat="option in sortDRList" value="{{option.value}}">{{option.name}}</option>	
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+           
+        <div class="row">
+            <div class="col-md-12">
+                <div align="center" ng-if="loading == true">
+                    <strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px"/></strong>
+                </div>
+                <div class="table-responsive">
+                    <table class="table standard table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col"style="text-align:left"><span>PO Number</span></th>
+                                <th scope="col"style="text-align:left"><span>PO Date</span></th>
+                                <th scope="col"style="text-align:left"><span>Vendor</span></th>
+                                <th scope="col"style="text-align:left"><span>Status</span></th>
+                                <th scope="col"style="text-align:left"><span>Action</span></th>
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="data in poList ">
+                            <tr>
+                                <td style="text-align:left">
+                                {{ data.po.poNumber }}
+                                    <br/>
+                                    <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled" ng-click="getDetil(data)" id="btnDetil_{{data.po.id}}">Show Detil</button>
+                                </td>
+                                <td ng-bind="data.po.purchaseOrderDate | date:'dd/MM/yyyy'"></td>
+                                <td ng-bind="data.poitem[0].vendorName"></td>
+                                <td><label ng-bind="data.po.status" class="label label-success text-bold" /> </td>
+                                <td style="white-space: nowrap; text-align:center">
+                                        <button ng-if="data.po.status == 'DONE' " ripple="" ng-click="viewMatchInvoice(data.po)" title="Match Invoice" class="btn btn-sm btn-primary">
+                                            Match Invoice
+                                            <em class="fa fa-pencil fa-lg"></em>
+                                        </button>
+                                        <button ng-if="data.po.status == 'On Process' " disabled ripple="" ng-click="viewMatchInvoice(data.po)" title="Match Invoice" class="btn btn-sm btn-primary">
+                                            Match Invoice
+                                            <em class="fa fa-pencil fa-lg"></em>
+                                        </button>
+                                    </td>
+                            </tr>
+                            
+                            <tr id="info_{{data.po.id}}" style="display:none">
+                                <td id="cell_info_{{data.po.id}}" colspan="6"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="page-option col-md-2">
+                	<span class="page-opt-text">Show :</span>
+                    <a class="page-opt-num" ng-click="pageChanged(5)">5</a>
+                    <a class="page-opt-num" ng-click="pageChanged(10)">10</a>
+                    <a class="page-opt-num" ng-click="pageChanged(25)">25</a>
+                </div>
+                <div class="text-right">
+                	<pagination first-text="<<" previous-text="<" next-text=">" last-text=">>" items-per-page="maxRecord" total-items="totalItems" ng-model="currentPage" max-size="maxSize" boundary-links="true" class="pagination-sm" ng-click="setPage(currentPage)"></pagination>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>
+<script type="text/ng-template" id="/matchview.html">
+	<div class="modal-header" ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="cancel()">×</button>
+		<h3 id="myModalLabel" class="modal-title">Invoice Matching</h3>
+	</div>
+	<div class="modal-body" align="center">
+		<div class="row">
+			<div class="col-lg-8">
+				<div class="table-responsive">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">No</th>
+						<th scope="col">Item</th>
+						<th scope="col">Qty</th>
+						<th scope="col">Unit</th>
+						<th scope="col"style="text-align:right">Price</th>
+						<th scope="col"style="text-align:right">Total</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="data in matchInvoiceList">
+						<td> {{$index+1}} </td>
+						<td> {{data.purchaseOrderItem.item.nama}} </td>
+						<td> {{data.pass}} </td>
+						<td> {{data.purchaseOrderItem.item.satuanId.nama}} </td>
+						<td> {{data.purchaseOrderItem.unitPrice | number:2 }} </td>
+						<td> {{data.pass * data.purchaseOrderItem.unitPrice | number:2 }} </td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+			</div>
+			<div class="col-lg-4">
+				<h4>Vendor Invoice</h4>
+				<br/>
+				<strong>{{matchInvoiceNamaVendor}}</strong><br/>
+				{{matchInvoiceAlamatVendor}}
+				<br/><br/><br/>
+				<div align="right">
+					<h4>Total Cost: <strong>{{matchInvoiceTotal | number:2}}</strong></h4>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer" style="background-color:#EEEEEE">
+		<button ng-click="ok()" class="btn btn-primary">Create SPB</button>
+		<button ng-click="cancel()" class="btn btn-warning">Cancel</button>
+	</div>
+</script>
+
+<script type="text/ng-template" id="/viewlog.html">
+<div class="modal-header">
+	<button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="cancel()">×</button>
+<h3 id="myModalLabel" class="modal-title">Delivery Received</h3>
+</div>
+<div class="modal-body">
+	<div class="row">
+		<h4><strong><div class="col-md-2">View Log : </div>
+		<div class="col-md-8">{{ itemName }}</div></strong></h4>
+	</div>
+	<div class="row">
+		<div class="col-md-2"><p>&nbsp;&nbsp;Total Delivery : </p></div>
+		<div class="col-md-4">{{ totalD }}</div>
+	</div>
+	<div class="table-responsive">
+		<table class="table table-striped table-bordered table-hover">
+			<thead>
+				<tr>
+					<th scope="col"style="width:10%; text-align:left"><span>Date</span>
+					</th>
+					<th scope="col"style="width:5%; text-align:left"><span>Pass</span>
+					</th>
+					<th scope="col"style="width:5%; text-align:left"><span>Failed</span>
+					</th>
+					<th scope="col"style="width:15%; text-align:left"><span>Note</span>
+					</th>
+					<th scope="col"style="width:20%; text-align:left"><span>Attachment</span>
+					</th>
+					<th scope="col"style="width:10%; text-align:left"><span>User</span>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="data in listItem">
+					<td>{{ data.drLog.dateReceived | date:'dd/MMM/yyyy' }}</td>
+					<td>{{ data.drLog.pass }}</td>
+					<td>{{ data.drLog.failed }}</td>
+					<td>{{ data.drLog.comment }}</td>
+					<td><a href="#" ng-click="viewFile(data.drLog.attachRealName)" data-toggle="tooltip" title="Download {{ data.drLog.attachFileName }}">{{ data.drLog.attachFileName }}</a></td>
+					<td>{{ data.user }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="text-right">
+	<pagination first-text="<<" previous-text="<" next-text=">" last-text=">>" items-per-page="maxRec" total-items="totItems" ng-model="currPage" max-size="mSize" boundary-links="true" class="pagination-sm" ng-click="setPage(currPage)"></pagination>
+</div>
+<div class="modal-footer">
+	<button ng-click="ok()" class="btn btn-primary">OK</button>
+</div>
+</script>

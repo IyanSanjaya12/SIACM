@@ -1,0 +1,125 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.panitia.negosiasi.JUDUL"></span>&nbsp;Satuan
+</div>
+<toaster-container
+	toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<div ng-controller="NegosiasiSatuanDetailPenawaranController as form">
+	<!-- <promise-view-data-pengadaan pengadaan-id=pengadaanId hide-item ></promise-view-data-pengadaan> -->
+	<form name="myform" class="form-validate form-horizontal" role="form" novalidate>
+		
+		<!-- MATERIAL -->
+			<div class="panel panel-primary">
+			<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+				<em class="fa fa-group">&nbsp;</em> <span>Penawaran Negosiasi</span>
+			</h4>
+			<div ng-show="loading" align="center">
+				<strong><em>Loading... <img src="app/img/loading.gif" border="0"
+						height="20px" /></em></strong>
+			</div>
+			<div ng-show="!loading" class="panel-body">
+				<div class="row">
+					<div class="col-xs-12"> 
+						<div class="table-responsive">
+							<table
+								class="table table-hover table-condensed table-striped bg-white">
+								<thead>
+									<tr style="font-weight: bold">
+										<th scope="col"width="5%"  style="text-align: center; vertical-align: top"><span translate="promise.procurement.panitia.penjelasan.kehadiranvendor.NOMOR"></span></th>
+										<th scope="col"width="15%" style="text-align: left; vertical-align: top"><span>NAMA</span></th>
+										<!-- <th scope="col"style="text-align: center; vertical-align: top"><span>TELEPON</span></th> -->
+										<!-- <th scope="col"style="text-align: lef; vertical-align: top"><span>ALAMAT</span><small style="color: red;">&nbsp;*</small></th> -->
+										<th scope="col"width="15%" style="text-align: right; vertical-align: top"><span>PRICE OFFER<br>ORIGINAL</span></th>
+										<th scope="col"width="15%" style="text-align: right; vertical-align: top"><span>PRICE OFFER<br>(Rp. AFTER KURS)</span></th>
+										<th scope="col"width="15%" style="text-align: right; vertical-align: top"><span>REVISION</span></th>
+										<th scope="col"width="15%" style="text-align: right; vertical-align: top"><span>PRICE NEGO (Rp.)</span></th>
+										<th scope="col"width="10%" style="text-align: center; vertical-align: top" width=""><span>STATUS</span></th>
+										<th scope="col"width="10%" style="text-align: center; vertical-align: top"><span>AKSI</span></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr
+										ng-repeat="vendorNegosiasi in form.vendorNegosiasiList">
+										<!-- using inner form for validation -->
+
+										<td style="text-align: center; vertical-align: center">{{$index+1}}</td>
+										<td style="text-align: left; vertical-align: center">{{vendorNegosiasi.negosiasiFirstFromVendor.vendor.nama}}</td>
+										
+										<!-- PENAWARAN ORIGINAL DARI VENDOR ( WITH PRICE CONDITION )-->
+										
+										<td style="text-align: right; vertical-align: center" >
+											<!-- DALAM CURRENCY ASLI -->
+											{{vendorNegosiasi.negosiasiFirstFromVendor.nilaiPenawaranAfterCondition | currency:vendorNegosiasi.negosiasiFirstFromVendor.suratPenawaran.mataUang.kode+" "}} 
+										<td style="text-align: right; vertical-align: center">
+											<!-- DALAM CURRENCY IDR -->
+											{{vendorNegosiasi.negosiasiFirstFromVendor.nilaiPenawaranAfterCondition * vendorNegosiasi.kursPengadaan.nilai | currency:"IDR "}}</td>
+										<!-- PENAWARAN REVISION AFTER NEGO DARI VENDOR DALAM IDR -->
+										
+										<td style="text-align: right; vertical-align: center">
+											{{vendorNegosiasi.negosiasiLastFromVendor.nilaiPenawaranAfterCondition * vendorNegosiasi.kursPengadaan.nilai | currency:"IDR "}}</td>
+										<td style="text-align: right; vertical-align: center">
+										
+										
+										<input ng-disabled="loadingSaving || vendorNegosiasi.isDeal" promise-currency-blur type="text" style="text-align: right;  name="vendorNegosiasi.negosiasi.nilaiPenawaranAfterCondition" class="form-control input-sm" id=""
+											ng-model="vendorNegosiasi.negosiasiLastFromPanitia.nilaiPenawaranAfterCondition"/></td>
+											<!-- Status.. Dealing or Last Offer -->
+										
+										<td style="text-align: center; vertical-align: center" >
+											<strong ng-show="vendorNegosiasi.isDeal" class="text-success">LAST OFFER</strong>
+											<strong ng-show="!vendorNegosiasi.isDeal"" class="text-info">DEALING</strong>
+										</td>
+										
+										<td style="text-align: center; vertical-align: center" >
+										
+											 <div ng-show="loadingSaving" align="center">
+					 							<strong><em>Sending... <img src="app/img/loading.gif" border="0" height="20px"/></em></strong>
+       										 </div>
+											
+											<div ng-show="!loadingSaving && !loading" >
+												<!-- DETIL -->
+												<button  type="button"  class="btn btn-xs bg-primary" title="Detil" ng-click="showDetail(vendorNegosiasi.negosiasiLastFromVendor, vendorNegosiasi.itemPengadaan.id)">
+	  												<em class="fa fa-search"></em>
+												</button>
+          			 							
+          			 							<!-- HISTORY -->
+          			 							<!-- Munculkan hanya ketika panitia sudah memasukan penawaran -->
+          			 							<button ng-show="form.isPanitiaOffered" type="button"  class="btn btn-xs bg-primary" title="History" ng-click="showHistory(vendorNegosiasi.negosiasiLastFromVendor, vendorNegosiasi.itemPengadaan.id)">
+	  												<em class="fa icon-paper-stack"></em>
+												</button>
+												
+												<!--  Deal -->
+								          		<button ng-show="!vendorNegosiasi.isDeal" type="button" class="btn btn-xs btn-success" title="Deal Price" ng-click="dealPrice(vendorNegosiasi, vendorNegosiasi.itemPengadaan.id)">
+	  												<em class="fa fa-check"></em>
+												</button>
+												
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		
+		<!--END KEHADIRAN VENDOR-->
+		
+		<div ng-show="!loadingSaving && !loading">
+         			 <button ripple="" class="btn btn-primary btn-sm pull-left bg-primary" ng-click="back()" ng-class="'bg-' + app.theme.name" style="margin-right: 5px">
+          		 	  <span class=""><em class="fa fa-chevron-left"></em></span>&nbsp;&nbsp;<font color="white"><span  class="ng-scope">Back</span></font>
+        				  <span class="ripple"></span>
+        			 </button>
+        			 <button ripple="" class="btn btn-primary btn-sm  pull-right bg-primary" ng-click="sendPriceToVendor()" ng-class="'bg-' + app.theme.name" >
+           		     <span class=""><em class="fa fa-sign-in"></em></span>&nbsp;&nbsp;<font color="white"><span  class="ng-scope">Send Price To Vendor</span></font>
+         				 <span class="ripple"></span>
+         			</button>
+      	</div>
+      	<br>
+      	<br>
+        		
+	</form>
+</div>
+
+
+

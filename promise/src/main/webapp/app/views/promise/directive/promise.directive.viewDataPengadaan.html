@@ -1,0 +1,195 @@
+<div class="panel panel-primary ng-cloak">
+    <h4 ng-class="'bg-' + $root.app.theme.name" class="panel-heading"><em class="fa fa-tasks">&nbsp;</em><span translate="promise.procurement.panitia.penjelasan.SUBJUDULDETILPENGADAAN"></span></h4>
+    <div class="loading" ng-show="isLoading" align="center"><strong><em>Loading... <img src="app/img/loading.gif" border="0" height="20px"/></em></strong></div>
+    <div ng-show="!isLoading" class="panel-body">
+        <br/>
+        <div ng-show="!isLoading" class="col-md-12">
+            <div>
+                <div ng-show="!isLoading" class="table-responsive">
+                    <table ng-show="!isLoading" id="table-ext-1" class="table table-bordered table-hover" width="100%">
+                        <tbody>
+                            <tr>
+                                <td style="text-align:left;vertical-align:top" width="40%">Nama Pengadaan</td>
+                                <td style="text-align:left;vertical-align:top" width="60%" ng-bind="viewDataPengadaan.namaPengadaan"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left;vertical-align:top">Jenis Pengadaan / Kategori Pengadaan</td>
+                                <td style="text-align:left;vertical-align:top" ng-bind="viewDataPengadaan.jenisPengadaan.nama"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left;vertical-align:top">Metode Pengadaan</td>
+                                <td style="text-align:left;vertical-align:top" ng-bind="viewDataPengadaan.metodePengadaan.nama"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left;vertical-align:top">Kualifikasi Pengadaan</td>
+                                <td style="text-align:left;vertical-align:top" ng-bind="viewDataPengadaan.kualifikasiPengadaan.nama"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left;vertical-align:top">Metode Penawaran Harga</td>
+                                <td style="text-align:left;vertical-align:top" ng-bind="viewDataPengadaan.metodePenawaranHarga.nama"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left;vertical-align:top">Sistem Evaluasi Penawaran Harga</td>
+                                <td style="text-align:left;vertical-align:top" ng-bind="viewDataPengadaan.sistemEvaluasiPenawaran.nama"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left;vertical-align:top">Mata Uang</td>
+                                <td style="text-align:left;vertical-align:top" ng-bind="viewDataPengadaan.mataUang.kode"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left;vertical-align:top">Kualifikasi Penyedia Barang/Jasa</td>
+                                <td style="text-align:left;vertical-align:top" ng-bind="viewDataPengadaan.kualifikasiVendor.nama"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left;vertical-align:top">Bidang - Sub Bidang Usaha</td>
+                                <td style="text-align:left;vertical-align:top">
+                                    <div ng-repeat="bd in bidangUsahaList">
+                                        <li style="margin-left:12px" ng-bind="bd.subBidangUsaha.bidangUsaha.nama"></li>
+                                        <ul class="fa fa-long-arrow-right" ng-bind="bd.subBidangUsaha.nama">
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left;vertical-align:top">Keterangan Pengadaan</td>
+                                <td style="text-align:left;vertical-align:top" ng-bind="viewDataPengadaan.keterangan"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- LIST VENDOR -->
+<div ng-hide="hideItem||(!isVendorNotEmpty)" class="panel panel-primary barang-panel ng-cloak">
+<h4 ng-class="'bg-' + $root.app.theme.name" class="panel-heading"><em class="fa fa-tasks">&nbsp;</em> <span translate="">List Vendor</span></h4>
+<div class="loading" ng-show="isLoading" align="center"><strong><em>Loading... <img src="app/img/loading.gif" border="0" height="20px"/></em></strong></div>
+<div ng-show="!isLoading" class="panel-body">
+        <br/>
+	<table datatable="ng" class="row-border hover table-striped table-bordered table-striped table-bordered">
+		<thead>
+			<tr>
+				<th scope="col"style="text-align: center; width: 5%"><span
+					translate="template.tabel.nomor"></span></th>
+				<th scope="col"style="text-align: center; width: 20%"><span
+					translate="promise.procurement.master.datadaftarvendor.list.nama_vendor1"></span>
+				</th>
+				<th scope="col"style="text-align: center; width: 10%"><span
+					translate="promise.procurement.master.datadaftarvendor.list.TLP"></span>
+				</th>
+				<th scope="col"style="text-align: center; width: 10%"><span
+					translate="promise.procurement.master.datadaftarvendor.list.ALAMAT"></span>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="vendorList in dataVendorList">
+				<td style="text-align: center">{{ $index+1 }}</td>
+				<td style="text-align: center" ng-bind="vendorList.nama"></td>
+				<td style="text-align: center" ng-bind="vendorList.nomorTelpon"></td>
+				<td style="text-align: center" ng-bind="vendorList.alamat"></td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+
+
+<!--BARANG -->
+<div ng-hide="hideItem||(!isMaterialNotEmpty)" class="panel panel-primary barang-panel ng-cloak">
+    <h4 ng-class="'bg-' + $root.app.theme.name" class="panel-heading"><em class="fa fa-archive">&nbsp;</em><span translate="promise.procurement.panitia.penjelasan.view.RINCIANKEBMATERIAL">Rincian Kebutuhan Material</span></h4>
+    <div class="loading" ng-show="isLoading" align="center"><strong><em>Loading... <img src="app/img/loading.gif" border="0" height="20px"/></em></strong>
+    </div>
+    <div ng-show="!isLoading" class="panel-body">
+        <br/>
+        <div class="col-md-12">
+            <div>
+                <div class="table-responsive">
+                    <table ng-table="materialList" class="row-border hover table-striped">
+                        <thead>
+                            <tr style="background-color:#EEEEEE">
+                                <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.penjelasan.view.NO"></span>
+                                </th>
+                                <th scope="col"style="width:10%; text-align:center; vertical-align:middle"><span translate="promise.procurement.panitia.penjelasan.view.KODEMATERIAL"></span>
+                                </th>
+                                <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.penjelasan.view.NAMAMATERIAL"></span>
+                                </th>
+                                <th scope="col"style="width:8%; text-align:center"><span translate="promise.procurement.panitia.penjelasan.view.KUANTITAS"></span>
+                                </th>
+                                <th scope="col"style="width:10%; text-align:center"><span translate="promise.procurement.panitia.penjelasan.view.SATUAN"></span>
+                                </th>
+                                <th scope="col"style="width:15%; text-align:center"><span translate="promise.procurement.panitia.penjelasan.view.HPS"></span>
+                                </th>
+                                <th scope="col"style="width:17%; text-align:center"><span translate="promise.procurement.panitia.penjelasan.view.HRGTOTALHPS"></span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="mt in $data">
+                                <td style="text-align:center; vertical-align:middle">{{$index+1}}</td>
+                                <td style="text-align:center; vertical-align:middle">{{mt.item.kode}}</td>
+                                <td style="vertical-align:middle">{{mt.item.nama}}</td>
+                                <td style="text-align:center; vertical-align:middle">{{mt.kuantitas}}</td>
+                                <td style="text-align:center; vertical-align:middle">{{mt.item.satuanId.nama}}</td>
+                                <td style="text-align:right; vertical-align:middle">{{mt.nilaiHPS | number:2}} {{mt.mataUang.kode}}</td>
+                                <td style="text-align:right; vertical-align:middle">{{mt.totalHPS | number:2}} {{mt.mataUang.kode}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--JASA -->
+<div ng-hide="hideItem||(!isJasaNotEmpty)" class="panel panel-primary jasa-panel ng-cloak">
+    <h4 ng-class="'bg-' + $root.app.theme.name" class="panel-heading"><em class="fa fa-briefcase">&nbsp;</em><span translate="promise.procurement.panitia.penjelasan.view.RINCIANJASA">Rincian Kebutuhan Jasa</span></h4>
+    <div class="loading" ng-show="isLoading" align="center"><strong><em>Loading... <img src="app/img/loading.gif" border="0" height="20px"/></em></strong>
+    </div>
+    <div ng-show="!isLoading" class="panel-body">
+        <br/>
+        <div class="col-md-12">
+            <div>
+                <div class="table-responsive">
+                    <table ng-table="jasaList" class="table table-bordered table-hover table-striped table-bordered">
+                        <thead>
+                            <tr style="background-color:#EEEEEE">
+                                <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.penjelasan.view.NO"></span>
+                                </th>
+                                <th scope="col"style="width:10%; text-align:center; vertical-align:middle"><span translate="promise.procurement.inisialisasi.tambahbumn.TBLKDMATERIAL"></span>
+                                </th>
+                                <th scope="col"style="text-align:center"><span translate="promise.procurement.panitia.penjelasan.view.NAMAMATERIAL"></span>
+                                </th>                                
+                                <th scope="col"style="width:8%; text-align:center"><span translate="promise.procurement.panitia.penjelasan.view.KUANTITAS"></span>
+                                </th>
+                                <th scope="col"style="width:10%; text-align:center"><span translate="promise.procurement.panitia.penjelasan.view.SATUAN"></span>
+                                </th>
+                                <th scope="col"style="width:15%; text-align:center"><span translate="promise.procurement.panitia.penjelasan.view.HPS"></span>
+                                </th>
+                                <th scope="col"style="width:17%; text-align:center"><span translate="promise.procurement.panitia.penjelasan.view.HRGTOTALHPS"></span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="mt in $data">
+                                <td style="text-align:center; vertical-align:middle">{{index+1}}</td>
+                                <td style="text-align:center; vertical-align:middle">{{mt.item.kode}}</td>
+                                <td style="vertical-align:middle">{{mt.item.nama}}</td>
+                                <td style="text-align:center; vertical-align:middle">{{mt.kuantitas}}</td>
+                                <td style="text-align:center; vertical-align:middle">{{mt.item.satuanId.nama}}</td>
+                                <td style="text-align:right; vertical-align:middle">{{mt.nilaiHPS | number:2}} {{mt.mataUang.kode}}</td>
+                                <td style="text-align:right; vertical-align:middle">{{mt.totalHPS | number:2}} {{mt.mataUang.kode}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-hide="hideItem || totalHPSBarangJasa<=0" class="panel panel-primary ng-cloak" style="padding-right:30px;" align="right">
+    <br/>
+    <span><h4><strong>Total Nilai HPS </strong>: <strong class="text-primary">{{totalHPSBarangJasa| number:2}} IDR</strong></h4></span><span>&nbsp;</span>
+</div>

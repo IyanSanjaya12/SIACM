@@ -1,0 +1,50 @@
+<link rel="stylesheet" href="app/views/promise/procurement/portal/portal-css/custom-styles.css">
+
+
+<link rel="stylesheet" href="app/views/promise/procurement/portal/portal-css/stylesheet.css">
+                    <wrap-owlcarousel class="owl-carousel"   
+                        data-options="{autoPlay: true, stopOnHover: true,  
+                        slideSpeed : 300, paginationSpeed : 400, singleItem : true, items : 4, dots:true,
+                            responsive: {       
+                                '0': {  items: 1, margin: 5 },
+                                '480': { items: 2,  margin: 5 },
+                                '640': { items: 3, margin: 5 }
+                            }
+                        }">    
+                   
+                        <div owl-carousel-item class="row_items" ng-repeat="pl in productList">
+                            <div class="item">
+                                <div class="item-inner">
+                                    <div class="images-container">
+                                        <a class="product-image" ui-sref="{{pl.url}}">
+                                            <img ng-repeat="img in pl.img_url" ng-class="$index >= 1 ? 'img2' : ' '" src="{{img.img_alt_url}}" alt="{{img.img_name}}"/>
+                                        </a>
+                                    </div><!--images-container-->
+                                    <div class="des-container">
+                                        <h2 class="product-name">
+                                            <a class="product" ui-sref="{{pl.url}}">{{pl.product_title}}</a>
+                                            <a class="supplier" ui-sref="{{pl.product_company_url}}"><strong>{{pl.product_company_name}}</strong></a>
+                                            <a class="supplier">{{pl.product_company_address}}</a>
+                                        </h2>
+                                        <!-- rating -->
+                                        <div ng-controller="MyRating" class="ratings">
+                                            <div ng-init="xx = pl.rate" class="text-lg">
+                                              <rating ng-model="xx" readonly="true" state-on="'glyphicon-star text-warning'" state-off="'glyphicon-star-empty'"></rating>
+                                            </div>
+                                        </div>
+                                        <!-- / rating -->
+                                        <div class="price-box box-special">
+                                            <p class="special-price"><span class="price">{{pl.price}}</span></p>
+                                            <p class="old-price"><span class="price">{{pl.price}}</span></p>
+                                        </div>
+                                        <div class="text-center m-b">
+                                            <a ui-sref="{{pl.product_company_url}}" class="btn btn-sm btn-primary btn-addon">
+                                                <em class="fa fa-chevron-right pull-right"></em>Negotiate
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div> <!-- item-inner -->
+                            </div> <!-- item -->
+                        </div>
+                        
+                    </wrap-owlcarousel>

@@ -1,0 +1,147 @@
+<div class="app-view-header"> <span translate="promise.procurement.master.bank.judul"></span>
+	<small> 
+		<span translate="promise.procurement.master.bank.keterangan"></span>
+	</small>
+</div>
+<div class="panel panel-primary" ng-controller="BankViewController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-tasks"></em>
+			<span ng-if="vm.toDo=='add'" translate="promise.procurement.master.bank.view.subjudul_tambah"></span>
+			<span ng-if="vm.toDo=='edit'" translate="promise.procurement.master.bank.view.subjudul_ubah"></span>
+			<a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+					<em class="fa fa-chevron-circle-down"></em>
+			</a>
+	</h4>
+	<div class="panel-body collapse in">
+		<div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong>
+		</div>
+		<form method="post" action="#" novalidate="" class="form-horizontal" ng-class="{'submitted' : vm.submitted}" name="formBank">
+			<div class="form-group">
+				<label for="input-id-1" class="col-sm-4 control-label required">	<span translate="promise.procurement.master.bank.view.namabank"></span>
+				</label>
+				<div class="col-sm-4">
+					<input name="namaBank" promise-alphanumeric-only id="input-id-1" type="text" promise-alphanumeric-only class="form-control" ng-model="vm.bank.namaBank" maxlength="120" required ng-blur="delValidation($event)" />
+					<div class="input-error" ng-show="(vm.submitted && formBank.namaBank.$invalid)">
+						<p ng-show="formBank.namaBank.$error.required" translate="template.error.field_kosong"></p>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="input-id-2" class="col-sm-4 control-label required">	<span translate="promise.procurement.master.bank.view.kodebank"></span>
+				</label>
+				<div class="col-sm-4">
+					<input name="kodeBank" promise-numbers-only-copy id="input-id-2" type="text" class="form-control" ng-model="vm.bank.kodeBank" maxlength="120" required ng-blur="delValidation($event)" />
+					<div class="input-error" ng-show="(vm.submitted && formBank.kodeBank.$invalid)">
+						<p ng-show="formBank.kodeBank.$error.required" translate="template.error.field_kosong"></p>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="input-id-3" class="col-sm-4 control-label required">	<span translate="promise.procurement.master.bank.view.namakantor"></span>
+				</label>
+				<div class="col-sm-4">
+					<input name="namaKantorBank" maxlength="120" promise-alphanumeric-only id="input-id-3" type="text" promise-alphanumeric-only class="form-control" ng-model="vm.bank.namaKantor" required ng-blur="delValidation($event)" />
+					<div class="input-error" ng-show="(vm.submitted && formBank.namaKantorBank.$invalid)">
+						<p ng-show="formBank.namaKantorBank.$error.required" translate="template.error.field_kosong"></p>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="input-id-4" class="col-sm-4 control-label required">	<span translate="promise.procurement.master.bank.view.alamat"></span>
+				</label>
+				<div class="col-sm-4">
+					<textarea name="alamatBank" rows="4" cols="50" class="form-control input-sm ng-valid-maxlength" id="" ng-model="vm.bank.alamat" maxlength="512" required ng-blur="delValidation($event)"></textarea>
+					<div class="input-error" ng-show="(vm.submitted && formBank.alamatBank.$invalid)">
+						<p ng-show="formBank.alamatBank.$error.required" translate="template.error.field_kosong"></p>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="input-id-5" class="col-sm-4 control-label required">	<span translate="promise.procurement.master.bank.view.provinsi"></span>
+				</label>
+				<div class="col-sm-4">
+					<div ng-class="(vm.submitted && formBank.propinsi.$invalid) ? 'border-error' : !formBank.propinsi.$invalid ? '' : 'border-success'" ng-required="true" required>
+						<ui-select name="propinsi" ng-model="vm.list.propinsi" theme="bootstrap" ng-change="pilihKota()" ng-required="true" required>
+							<ui-select-match placeholder="++ Pilih ++">{{$select.selected.lokasi_nama}}</ui-select-match>
+							<ui-select-choices repeat="provinsi in vm.provinsiList | filter: $select.search">
+								<div ng-bind-html="provinsi.lokasi_nama | highlight: $select.search"></div>
+							</ui-select-choices>
+						</ui-select>
+					</div>
+					<div class="input-error" ng-show="(vm.submitted && formApproval.propinsi.$invalid)">
+						<p ng-show="formBank.propinsi.$error.required" translate="template.error.field_kosong"></p>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="input-id-6" class="col-sm-4 control-label required">	<span translate="promise.procurement.master.bank.view.kota">
+				</label>
+				<div class="col-sm-4">
+					<div ng-class="(vm.submitted && formBank.kota.$invalid) ? 'border-error' : !formBank.kota.$invalid ? '' : 'border-success'" ng-required="true" required>
+						<ui-select name="kota" ng-model="vm.list.kota" theme="bootstrap" ng-required="true" required>
+							<ui-select-match placeholder="++ Pilih ++">{{$select.selected.lokasi_nama}}</ui-select-match>
+							<ui-select-choices repeat="kotaPerusahaan in vm.kotaList | filter: $select.search">
+								<div ng-bind-html="kotaPerusahaan.lokasi_nama | highlight: $select.search"></div>
+							</ui-select-choices>
+						</ui-select>
+					</div>
+					<div class="input-error" ng-show="(vm.submitted && formBank.kota.$invalid)">
+						<p ng-show="formBank.kota.$error.required" translate="template.error.field_kosong"></p>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="input-id-7" class="col-sm-4 control-label required"> 
+					<span translate="promise.procurement.master.bank.view.kodepos">
+				</label>
+				<div class="col-sm-4">
+					<input name="kodePosBank" maxlength="120" promise-numbers-only-copy id="input-id-1" type="text" promise-alphanumeric-only class="form-control" ng-model="vm.bank.kodePos" required ng-blur="delValidation($event)" />
+					<div class="input-error" ng-show="(vm.submitted && formBank.kodePosBank.$invalid)">
+						<p ng-show="formBank.kodePosBank.$error.required" translate="template.error.field_kosong"></p>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="input-id-8" class="col-sm-4 control-label required"> 
+					<span translate="promise.procurement.master.bank.view.telepon"></span>
+				</label>
+				<div class="col-sm-4">
+					<input name="teleponBank" maxlength="20" id="input-id-1" type="text" promise-alphanumeric-only class="form-control" ng-model="vm.bank.telepon" required ng-blur="delValidation($event)" />
+					<div class="input-error" ng-show="(vm.submitted && formBank.teleponBank.$invalid)">
+						<p ng-show="formBank.teleponBank.$error.required" translate="template.error.field_kosong"></p>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="input-id-9" class="col-sm-4 control-label required">	<span translate="promise.procurement.master.bank.view.statuskantor"></span>
+				</label>
+				<div class="col-sm-4">
+					<div ng-class="(vm.submitted && formBank.statusKantor.$invalid) ? 'border-error' : !formBank.statusKantor.$invalid ? '' : 'border-success'" ng-required="true" required>
+						<select class="form-control" ng-class="vm.bank.statusKantor == null && vm.submitted  ? 'error-required' : ''" name="statusKantor" ng-model="vm.bank.statusKantor" theme="bootstrap" ng-required="true" required>
+							<option value="Kantor Pusat">Kantor Pusat</option>
+							<option value="Kantor Cabang (Dalam Negeri)">Kantor Cabang</option>
+							<option value="Kantor Cabang Pembantu (Dalam Negeri)">Kantor Cabang Pembantu</option>
+							<option value="Kantor Kas">Kantor Kas</option>
+						</select>
+					</div>
+					<!-- <div class="input-error" ng-show="(vm.submitted)">
+        					<p ng-show="vm.bank.statusKantor == null" translate="template.error.field_kosong"></p>
+        				</div>  -->
+					<div class="input-error" ng-show="(vm.submitted && formBank.statusKantor.$invalid)">
+						<p ng-show="formBank.statusKantor.$error.required" translate="template.error.field_kosong"></p>
+					</div>
+				</div>
+			</div>
+			<br/>
+			<div class="form-group">
+				<div class="col-md-12 text-center">
+					<button type="button" ripple="" class="btn btn-secondary" ng-click="back()">	<span translate="template.button.kembali"></span>
+					</button>
+					<button type="button" ripple="" class="btn btn-primary" ng-click="save(formBank.$valid)">	<span translate="template.button.simpan"></span>
+					</button>
+					<br />
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

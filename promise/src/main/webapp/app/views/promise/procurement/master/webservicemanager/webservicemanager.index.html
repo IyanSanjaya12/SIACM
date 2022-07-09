@@ -1,0 +1,65 @@
+<div class="app-view-header">
+    <span translate="promise.procurement.master.webservicemanager.JUDUL">/span>
+    <small><span translate="promise.procurement.master.webservicemanager.KETERANGAN"></span></small>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="WebServiceManagerController as form">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-tasks"></em> <span translate="promise.procurement.master.webservicemanager.SUBJUDUL"></span></h4>
+    <div class="panel-body">        
+        <div align="right">
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="btnAdd()">
+                <span class="btn-label"><em class="fa fa-plus"></em></span>
+                <span translate="promise.procurement.master.aksi.TAMBAH"></span>
+            </button>
+        </div>
+        <br/>
+        <div class="row form-horizontal">
+            <div class="col-md-12">
+                <table datatable="" dt-options="form.dtOptions" dt-columns="form.dtColumns" dt-instance="form.dtInstance" id="aksiIndex" class="row-border hover"></table>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/ng-template" id="/deleteWebServices.html">
+    <div class="modal-header" ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="cancel()">×</button>
+        <h3 id="myModalLabel" class="modal-title"><em class="fa fa-trash-o"></em>Hapus Web Services</h3>
+    </div>
+    <div class="modal-body">
+        <strong>Anda yakin ingin menghapus Services?</strong>
+    </div>
+    <div class="modal-footer" style="background-color:#EEEEEE">
+        <button ng-click="ok()" class="btn btn-primary">OK</button>
+        <button ng-click="cancel()" class="btn btn-warning">Cancel</button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="/detilWebServices.html">
+    <div class="modal-header" ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <button type="button" data-dismiss="modal" aria-hidden="true" class="close" ng-click="cancel()">×</button>
+        <h3 id="myModalLabel" class="modal-title"><em class="fa fa-trash-o"></em>Detil {{ws.services}} {{ws.function}}</h3>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-4">Services Name</div>
+            <div class="col-md-8">{{ws.services}}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">Function</div>
+            <div class="col-md-8">{{ws.function}}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">Path</div>
+            <div class="col-md-8"><a href="./{{ws.path}}" target="_blank">{{ws.path}}</a></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">Public</div>
+            <div class="col-md-8">{{(ws.isPublic==true?'Yes':'No')}}</div>
+        </div>
+    </div>
+    <div class="modal-footer" style="background-color:#EEEEEE">
+        <button ng-click="ok()" class="btn btn-primary">OK</button>
+        <button ng-click="cancel()" class="btn btn-warning">Cancel</button>
+    </div>
+</script>
+<!--END CONTROLLER-->

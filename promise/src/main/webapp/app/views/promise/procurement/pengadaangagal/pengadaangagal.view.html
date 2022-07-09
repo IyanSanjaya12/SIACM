@@ -1,0 +1,51 @@
+<div class="app-view-header">Pengadaan Gagal
+    <!-- <small ng-bind="app.name + ' - ' + app.description"></small> -->
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="PengadaanGagalViewController as form">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <span >Pengadaan Gagal - View</span>
+    </h4>
+    <div class="panel-body">
+        <!--------------------------------------------------------------------------------------------------->
+        <promise-view-data-pengadaan pengadaan-id=pengadaanId></promise-view-data-pengadaan>
+        <!--------------------------------------------------------------------------------------------------->
+
+        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+            <span>Data Berita Acara Pengdaan Gagal</span>
+        </h4>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col col-lg-2">
+                    <strong>Nomor Berita Acara</strong>
+                </div>
+                <div class="col col-lg-4">
+                    {{form.pengadaanGagal.noBeritaAcara}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-lg-2">
+                    <strong>Tanggal Berita Acara</strong>
+                </div>
+                <div class="col-sm-10 col-lg-3">
+                    {{form.pengadaanGagal.tglBeritaAcara}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-lg-2">
+                    <strong>Keterangan</strong>
+                </div>
+            </div>
+            <div ng-bind-html="form.pengadaanGagal.keteranganWithSce" style="background-color:#D3D3D3;padding:10px 10px 10px 10px"></div>
+
+            <div ng-show="loadingSaving" align="center"><strong><em>Saving... <img src="app/img/loading.gif" border="0" height="20px"/></em></strong>
+            </div>
+            <div align="center">
+                <button ng-class="'bg-' + app.theme.name" ng-click="btnBack()" class="btn btn-primary btn-sm pull-center" ripple="">
+                    <span class=""><em class="fa fa-chevron-left"></em></span>&nbsp;&nbsp;<font color="white"><span translate="promise.procurement.panitia.persetujuan.btn.KEMBALI"></span></font>
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>

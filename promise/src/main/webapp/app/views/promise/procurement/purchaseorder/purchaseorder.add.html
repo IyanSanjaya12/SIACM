@@ -1,0 +1,408 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.master.purchaseOrder.judul"></span> <small><span translate="promise.procurement.master.purchaseOrder.po"></span></small>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary"
+	ng-controller="PurchaseOrderAddController as form">
+	<toaster-container
+		toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<em class="fa fa-tasks"></em> <span ng-if="form.toDo=='add'"><span translate="promise.procurement.master.purchaseOrder.create"></span></span>
+		<span ng-if="form.toDo=='detail'"><span translate="promise.procurement.master.purchaseOrder.detail"></span></span> <a
+			class="pull-right btn-collapse" data-toggle="collapse"
+			data-parent=".panel" href=".panel-body" aria-expanded="true"
+			aria-controls="panel-body"> <em class="fa fa-chevron-circle-down"></em>
+		</a>
+	</h4>
+	<div class="panel-body collapse in">
+		<div class="text-center" ng-if="vm.loading == true">
+			<strong><em>Loading...</em><img src="app/img/loading.gif" border="0"
+				width="20px" /></strong>
+		</div>
+		<form method="post" action="#" novalidate="" class="form-horizontal row-clone-group" ng-class="{'submitted' : form.submitted}" name="poForm">
+			<tabset> <!--START Billing To--> <tab heading="Billing To"
+				active="tabs[0].active" ng-init="">
+			<div class="m-b-xs p-b-xs">
+				<div class="row">
+					<div class="col-md-8">
+						<div class="form-group">
+							<label class="col-md-3 control-label"><span translate="promise.procurement.master.purchaseOrder.table.poNumber"></span></label>
+							<div class="col-md-7">
+								<div class="input-group">
+									<input type="text"
+										promise-alphanumericlimitedspecialsymbol-only
+										ng-model="form.po.ponumber" readonly
+										class="form-control" />
+									
+								</div>
+							</div>
+						</div>
+						<div ng-if="form.toDo=='detail'" class="form-group">
+							<label class="col-md-3 control-label required"><span translate="promise.procurement.master.purchaseOrder.poDate"></span></label>
+							<div class="col-md-7">
+								<div class="input-group">
+									<input type="text" datepicker-popup="{{form.format}}"
+										ng-model="form.po.billTo.podate" is-open="form.poDateOpened"
+										min-date="form.minDate" max-date="false"
+										datepicker-options="form.dateOptions"
+										date-disabled="form.disabled(form.date, form.mode)"
+										close-text="Close" class="form-control" readonly /> <span
+										class="input-group-btn">
+										<button type="button" ng-click="form.poDateOpen($event)"
+											class="btn btn-default" ripple="" >
+											<em class="fa fa-calendar"></em>
+										</button>
+										
+									</span>
+								</div>
+								<strong style="color: red">{{errormessagePoDate}}</strong>
+							</div>
+							
+						</div>
+						
+						<div ng-if="form.toDo=='add'" class="form-group">
+							<label class="col-md-3 control-label required"><span translate="promise.procurement.master.purchaseOrder.poDate"></span></label>
+							<div class="col-md-7">
+								<div class="input-group">
+									<input type="text" datepicker-popup="{{form.format}}"
+										ng-model="form.po.billTo.podate" is-open="form.poDateOpened"
+										min-date="form.minDate" max-date="false"
+										datepicker-options="form.dateOptions"
+										date-disabled="form.disabled(form.date, form.mode)"
+										close-text="Close" class="form-control" /> <span
+										class="input-group-btn">
+										<button type="button" ng-click="form.poDateOpen($event)"
+											class="btn btn-default" ripple="" >
+											<em class="fa fa-calendar"></em>
+										</button>
+										
+									</span>
+								</div>
+								<strong style="color: red">{{errormessagePoDate}}</strong>
+							</div>
+							
+						</div>
+
+
+						<div class="form-group">
+							<label class="col-md-3 control-label"><span translate="promise.procurement.master.purchaseOrder.prNumberPo"></span></label>
+							<div class="col-md-7">
+								<div class="input-group">
+									<input type="text"
+										promise-alphanumericlimitedspecialsymbol-only
+										ng-model="bookingOrder.prnumber" readonly
+										class="form-control" />
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-md-3 control-label"><span translate="promise.procurement.master.purchaseOrder.table.vendorName"></span></label>
+							<div class="col-md-7">
+								<input type="text" ng-model="form.prItemListPo[0].vendor.nama"
+									class="form-control" readonly>
+								
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-md-3 control-label"><span translate="promise.procurement.master.purchaseOrder.companyName"></span></label>
+							<div class="col-md-7">
+								<input type="text" ng-model="bookingOrder.department"
+									class="form-control" readonly>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-12 text-center">
+						<a class="btn btn-default" ng-click="btnKembaliIndex()"> <span
+							translate="promise.procurement.master.attribute.btn.KEMBALI"></span>
+						</a> <a ng-class="'bg-' + app.theme.name" class="btn btn-primary"
+							ng-click="nextDataShipto()?tabs[1].active=true:tabs[0].active=true">
+							<span
+							translate="promise.procurement.master.attribute.btn.SELANJUTNYA"></span>
+						</a>
+					</div>
+				</div>
+			</div>
+			</tab> <!--Shipping To--> <tab heading="Summary" active="tabs[1].active"
+				ng-click="nextDataShipto()?tabs[1].active=true:tabs[0].active=true"
+				ng-init="">
+			<div class="col-lg-12">
+				<div class="form-group">
+					<label class="col-lg-2 control-label"><span translate="promise.procurement.master.purchaseOrder.companyName"></span></label>
+					<div class="col-lg-6">
+						<input promise-alphabet-only type="text" ng-model="form.addresBookList[0].purchaseRequestItemList[0].purchaserequest.department" class="form-control" readonly>
+					</div>
+				</div>
+			</div>
+			<div class="row-clone" ng-repeat="shipTo in form.addresBookList"
+				ng-init="indexShip = $index+1">
+				<div class="col-lg-12">
+					<div class="form-group">
+						<label class="col-lg-2 control-label">Shipping {{$index+1}}</label>
+					</div>
+				</div>
+				<fieldset class="p-t-xl" ng-show="indexShip">
+					<div class="col-lg-12">
+						<div class="form-group">
+							<label class="col-lg-2 control-label"><span translate="promise.procurement.master.purchaseOrder.purchaseOrderName"></span></label>
+							<div class="col-lg-6">
+								<input promise-alphabet-only type="text" ng-model="shipTo.addressBook.fullName" class="form-control" readonly>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-lg-12">
+						<div class="form-group">
+							<label class="col-lg-2 control-label"><span translate="promise.procurement.master.purchaseOrder.purchaseOrderAddress"></span></label>
+							<div class="col-lg-6">
+								<textarea class="form-control" ng-model="shipTo.addressBook.streetAddress" readonly></textarea>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-lg-12">
+						<div class="form-group">
+							<label class="col-lg-2 control-label"><span translate="promise.procurement.master.purchaseOrder.purchaseOrderTelp"></span></label>
+							<div class="col-lg-6">
+								<input promise-numbers-only type="text"
+									ng-model="shipTo.addressBook.telephone" class="form-control" readonly>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-lg-12">
+						<div class="form-group">
+							<label class="col-lg-2 control-label"><span translate="promise.procurement.master.purchaseOrder.purchaseOrderSla"></span></label>
+								<div class="col-lg-4">
+									<input promise-numbers-only type="text" promise-numbers-only-copy 
+									ng-model="form.prItemListPo[$index].slaDeliveryTime" class="form-control" readonly>
+								</div>
+							<label class="control-label"><span translate="promise.procurement.master.purchaseOrder.purchaseOrderHari"></span></label>
+						</div>
+					</div>
+					
+					<div class="col-lg-12">
+						<div class="form-group">
+							<label class="col-lg-2 control-label"><span translate="promise.procurement.master.purchaseOrder.estimatedDeliveryTime"></span></label>
+							<div class="col-lg-6">
+								<div class="input-group">
+									<input type="text"
+										ng-model="form.estimatedList[$index]" readonly
+										class="form-control" />
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-lg-12">
+						<div ng-if="form.toDo=='detail'" class="form-group">
+							<label class="col-lg-2 control-label required"><span translate="promise.procurement.master.purchaseOrder.proposedDeliveryTime"></span></label>
+							<div class="col-lg-6">
+								<div class="input-group">
+									<input ng-change="form.validationCompany(indexShip, shipTo)"
+										type="text" name ="deliveryTime" datepicker-popup="{{form.format}}"
+										ng-model="form.deliveryTimeList[$index]" is-open="shipTo.poDateOpened"
+										min-date="form.minDate" max-date="false"
+										datepicker-options="form.dateOptions"
+										date-disabled="form.disabled(form.date, form.mode)"
+										close-text="Close" class="form-control" readonly required ng-blur="delValidation($event)"/> <span
+										class="input-group-btn">
+										<button type="button"
+											ng-click="form.poDateOpenDynamic($index, $event)"
+											class="btn btn-default" ripple="">
+											<em class="fa fa-calendar"></em>
+										</button>
+									</span>
+									
+								</div>
+								<div class="input-error" ng-show="(form.submitted && poForm.deliveryTime.$invalid)">
+							<p ng-show="poForm.deliveryTime.$error.required" translate="template.error.field_kosong"></p>
+        					
+        				</div>
+							</div>
+						</div>
+						
+						<div ng-if="form.toDo=='add'" class="form-group">
+							<label class="col-lg-2 control-label required"><span translate="promise.procurement.master.purchaseOrder.proposedDeliveryTime"></span></label>
+							<div class="col-lg-6">
+								<div class="input-group">
+									<input ng-change="form.validationCompany(indexShip, shipTo)"
+										type="text" name ="shipTo.deliveryTime" datepicker-popup="{{form.format}}"
+										ng-model="form.deliveryTimeList[$index]" is-open="shipTo.poDateOpened"
+										min-date="form.minDate" max-date="false"
+										datepicker-options="form.dateOptions"
+										date-disabled="form.disabled(form.date, form.mode)"
+										close-text="Close" class="form-control" required ng-blur="delValidation($event)"/> <span
+										class="input-group-btn">
+										<button type="button"
+											ng-click="form.poDateOpenDynamic($index, $event)"
+											class="btn btn-default" ripple="">
+											<em class="fa fa-calendar"></em>
+										</button>
+									</span>
+									
+								</div>
+								<div class="input-error" ng-show="(form.submitted && poForm.deliveryTime.$invalid)">
+							<p ng-show="poForm.deliveryTime.$error.required" translate="template.error.field_kosong"></p>
+        					
+        				</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="col-lg-12">
+						<fieldset class="p-t-xl" ng-repeat="poItem in shipTo.purchaseRequestItemList"
+							ng-init="indexItem = $index+1" >
+							<label class="fieldset-label"><span translate="promise.procurement.master.purchaseOrder.poItem"></span> {{(indexItem)}} </label>
+							<!--item -->
+							<div class="row">
+								<div class="col-md-6 product-inline">
+									<div class="cek-text">
+										<div >
+											<label class="col-lg-4 p-l-0 p-v-0 text-left control-label required">Tax Code</label> <label
+												class="col-lg-2 p-l-0 p-v-0 text-left control-label">:</label>
+											<ui-select name ="taxCode[$index]" ng-model="form.taxCode[indexShip][$index]"
+											ng-if="form.toDo == 'add'" class="col-lg-6 p-l-0 p-v-0 text-right control-label">
+												<ui-select-match placeholder="">{{$select.selected.code}}</ui-select-match>
+		                                            <ui-select-choices repeat="taxCode in taxCodeList | filter: $select.search">
+		                                                <div ng-bind-html="taxCode.code| highlight: $select.search"></div>
+		                                            </ui-select-choices>
+		                                    </ui-select>
+		                                    <input type="text" ng-if="form.toDo == 'detail'" ng-model="shipTo.purchaseOrderItemList[$index].taxCode" class="col-lg-6 p-l-0 p-v-0 text-right control-label" readonly>
+		                                    <strong style="color: red">{{errormessagetaxcode[indexShip][$index]}}</strong>
+										</div>
+									
+										<div >
+											<label class="col-lg-4 p-l-0 p-v-0 text-left control-label"><span translate="promise.procurement.master.purchaseOrder.poItemNama"></span></label> <label
+												class="col-lg-2 p-l-0 p-v-0 text-left control-label">:</label>
+											<label class="col-lg-6 p-l-0 p-v-0 text-right control-label">{{
+												poItem.catalog.namaIND }}</label>
+										</div>
+
+										<div >
+											<label class="col-lg-4 p-l-0 p-v-0 text-left control-label"><span translate="promise.procurement.master.purchaseOrder.poItemQty"></span></label>
+											<label class="col-lg-2 p-l-0 p-v-0 text-left control-label">:</label>
+											<label class="col-lg-6 p-l-0 p-v-0 text-right control-label">{{poItem.quantity}}
+												unit</label>
+										</div>
+
+										<div >
+											<label class="col-lg-4 p-l-0 p-v-0 text-left control-label"><span translate="promise.procurement.master.purchaseOrder.poItemUnitPrice"></span></label> 
+											<label
+												class="col-lg-2 p-l-0 p-v-0 text-left control-label">:</label>
+											<label class="col-lg-6 p-l-0 p-v-0 text-right control-label">{{
+												poItem.price | number:2}} {{poItem.matauang}}</label>
+										</div>
+										<div>
+											<label class="col-lg-4 p-l-0 p-v-0 text-left control-label"><span translate="promise.procurement.master.purchaseOrder.poItemTotalPrice"></span></label> 
+											<label
+												class="col-lg-2 p-l-0 p-v-0 text-left control-label">:</label>
+											<label class="col-lg-6 p-l-0 p-v-0 text-right control-label">{{
+												(poItem.quantity * poItem.price) | number:2}}
+												{{poItem.matauang }}</label>
+										</div>
+										<div>
+											<label class="col-lg-4 p-l-0 p-v-0 text-left control-label"><span translate="promise.procurement.master.catalog.view.postal_fee"></span></label> 
+											<label
+												class="col-lg-2 p-l-0 p-v-0 text-left control-label">:</label>
+											<label class="col-lg-6 p-l-0 p-v-0 text-right control-label">{{ poItem.ongkosKirim | number:2}}
+												{{poItem.matauang }}</label>
+										</div>
+										
+										<div>
+											<label class="col-lg-4 p-l-0 p-v-0 text-left control-label"><span translate="promise.procurement.master.purchaseOrder.poItemSubTotal"></span></label> 
+											<label
+												class="col-lg-2 p-l-0 p-v-0 text-left control-label">:</label>
+											<label class="col-lg-6 p-l-0 p-v-0 text-right control-label">{{ shipTo.subTotalList[$index] | number:2}}
+												{{poItem.matauang }}</label>
+										</div>
+										<div>
+											<label class="col-lg-4 p-l-0 p-v-0 text-left control-label"><span translate="promise.procurement.master.purchaseOrder.poItemPpn"></span></label> 
+											<label
+												class="col-lg-2 p-l-0 p-v-0 text-left control-label">:</label>
+											<label class="col-lg-6 p-l-0 p-v-0 text-right control-label">{{ shipTo.ppnList[$index] | number:2}}
+												{{poItem.matauang }}</label>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</fieldset>
+						
+						<div class="col-lg-12">
+							<div class="row">
+								<div class="col-md-6 product-inline">
+									<div class="cek-qty">
+										<label class="col-lg-4 p-l-0 p-v-0 text-left control-label">
+											<span translate="promise.procurement.master.purchaseOrder.poItemSubTotal"></span></label> <label
+											class="col-lg-2 p-l-0 p-v-0 text-left control-label">:</label>
+										<label class="col-lg-6 p-l-0 p-v-0 text-right control-label">{{ shipTo.subTotal | number:2}}
+												{{poItem.matauang }}</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-12">
+							<div class="row">
+								<div class="col-md-6 product-inline">
+									<div class="cek-qty">
+										<label class="col-lg-4 p-l-0 p-v-0 text-left control-label">
+											<span translate="promise.procurement.master.purchaseOrder.poItemPpn"></span> </label> <label
+											class="col-lg-2 p-l-0 p-v-0 text-left control-label">:</label>
+										<label class="col-lg-6 p-l-0 p-v-0 text-right control-label">{{ shipTo.ppn | number:2}}
+												{{poItem.matauang }}</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-12">
+							<div class="row">
+								<div class="col-md-6 product-inline">
+									<div class="cek-qty">
+										<label class="col-lg-4 p-l-0 p-v-0 text-left control-label"><span translate="promise.procurement.master.purchaseOrder.poItemGrandTotal"></span></label> <label
+											class="col-lg-2 p-l-0 p-v-0 text-left control-label">:</label>
+										<label class="col-lg-6 p-l-0 p-v-0 text-right control-label">{{
+											shipTo.hasilAkhir | number : 2}} {{poItem.matauang }}</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+			</div>
+			<div class="col-lg-12">
+				<div class="row">
+					<div class="col-md-6 product-inline">
+						<div class="cek-qty">
+							<label class="col-lg-4 p-l-0 p-v-0 text-left control-label">Grand Total</label> <label
+								class="col-lg-2 p-l-0 p-v-0 text-left control-label">:</label>
+							<label class="col-lg-6 p-l-0 p-v-0 text-right control-label">{{
+								form.addresBookList[0].grandTotal | number : 2}} {{poItem.matauang }}</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br/><br/><br/>
+			<div class="row">
+				<div class="col-12 text-center">
+					<a class="btn btn-default" ng-click="tabs[0].active=true;"> <span translate="promise.procurement.master.attribute.btn.KEMBALI"></span>
+					</a>
+					 <a ng-if="form.toDo == 'add'"  ng-class="'bg-' + app.theme.name" class="btn btn-primary"
+						ng-disabled="isProcessing || vm.loading == true" ng-hide="statusSimpan"
+						ng-click="btnSimpan(poForm.$valid)">
+						<span translate="promise.procurement.master.attribute.btn.SIMPAN"></span>
+					</a>
+					<a ng-if="form.toDo != 'add'" class="btn btn-default" ng-click="cetakPO()">
+						<span translate="promise.procurement.master.attribute.btn.CETAK"></span>
+					</a>
+				</div>
+			</div>
+			</fieldset></tabset>
+
+		</form>
+	</div>
+</div>

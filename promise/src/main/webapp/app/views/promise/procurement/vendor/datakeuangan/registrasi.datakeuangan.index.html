@@ -1,0 +1,92 @@
+<div class="app-view-header">
+	<span translate="">SETTING VENDOR</span>
+	<small><span translate="promise.procurement.RegistrasiVendor.edit"></span></small>
+	&nbsp;<small><span translate="" style="color:green; font: italic bold 12px Georgia, serif"></span></small>
+</div>
+<toaster-container toaster-options="{'position-class': 'toast-top-center', 'close-button':true}"></toaster-container>
+
+<div ng-controller="RegistrasiDataKeuanganController as vm">
+
+
+
+	<!------------------------------------------------------------ START CONTROLLER ---------------------------------------------------------------------->
+	<div class="panel panel-primary">
+		<h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><span translate={{vm.subjudul}}>Data Bank</span></h4>
+		<h4 class="page-header clearfix">
+			<div class="pull-right">
+				<button ng-disabled="vm.disable==true" ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled"
+				 ng-click="add()">
+					<span class="btn-label"><em class="fa fa-plus"></em></span>
+					<span translate="template.button.tambah"></span>
+				</button>
+			</div>
+		</h4>
+		<div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong></div>
+		<div class="panel-body">
+			<div class="col-xs-12">
+				<div class="table-responsive">
+					<table ng-table="tableKeuanganVendor" class="table table-hover table-condensed table-striped bg-white">
+						<thead>
+							<tr style="font-weight: bold">
+
+								<th scope="col"style="width:10%; text-align:center"><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.list.tahun_keuangan"></span>
+								</th>
+								<th scope="col"style="width:10%; text-align:center"><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.list.kas"></span>
+								</th>
+								<th scope="col"style="width:10%; text-align:center"><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.list.total_aktiva"></span>
+								</th>
+								<th scope="col"style="width:10%; text-align:center"><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.list.total_kewajiban"></span>
+								</th>
+								<th scope="col"style="width:10%; text-align:center"><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.list.rugi_laba"></span>
+								</th>
+								<th scope="col"style="width:10%; text-align:center"><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.list.aktiva_lancar"></span>
+								</th>
+								<th scope="col"style="width:10%; text-align:center"><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.list.hutang_lancar"></span>
+								</th>
+								<th scope="col"style="width:10%; text-align:center"><span translate="promise.procurement.RegistrasiVendor.DataKeuangan.list.rasio_likuiditas"></span>
+								</th>
+								<th scope="col"style="width:5%; text-align:center"><span translate="template.tabel.aksi"></span>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="dataKeuangan in $data">
+
+								<td style="text-align:center">{{ dataKeuangan.tahunKeuangan }}</td>
+								<td style="text-align:center">{{ dataKeuangan.kas | number : 2 }}</td>
+								<td style="text-align:center">{{ dataKeuangan.totalAktiva | number : 2 }}</td>
+								<td style="text-align:center">{{ dataKeuangan.totalHutangJangkaPendek + dataKeuangan.hutangJangkaPanjang |
+									number : 2 }}</td>
+								<td style="text-align:center">{{ dataKeuangan.kekayaanBersih | number : 2 }}</td>
+								<td style="text-align:center">{{ dataKeuangan.totalAktivaLancar | number : 2 }}</td>
+								<td style="text-align:center">{{ dataKeuangan.totalHutangJangkaPendek | number : 2 }}</td>
+								<td style="text-align:center">{{ dataKeuangan.totalAktivaLancar / dataKeuangan.totalHutangJangkaPendek | number
+									: 2 }}</td>
+								<td style="white-space: nowrap; text-align:center">
+									<button ng-disabled="vm.disable==true" ng-click="edit(dataKeuangan)" title="Edit" ng-class="'bg-' + app.theme.name"
+									 class="mr btn btn-xs">
+										<em class="fa fa-pencil fa-lg"></em>
+									</button>
+									<button ng-disabled="vm.disable==true" ng-click="del(dataKeuangan)" title="Delete" class="mr btn btn-danger btn-xs">
+										<em class="fa fa-trash fa-lg"></em>
+
+									</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div align="center">
+		<button ng-disabled="vm.disable==true || vm.valid==false" ng-class="'bg-' + app.theme.name" type="button" ripple=""
+		 class="mr btn btn-sm bg-primary" ng-click="approval()">
+			<span translate="template.button.send_approval"></span>
+		</button>
+	</div>
+
+
+
+</div>

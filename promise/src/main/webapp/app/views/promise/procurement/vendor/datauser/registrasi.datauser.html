@@ -1,0 +1,130 @@
+<!--
+SPESIFIC VIEW EDIT OF THE DATA USER LOGIN MENU
+--------------- START CONTROLLER -------------
+-->
+
+
+<div ng-controller="RegistrasiDataUserController as vm">
+<form method="post" action="#" novalidate="" class="form-horizontal">
+
+<!------------------------------------------------------------ START CONTROLLER ---------------------------------------------------------------------->
+<div ng-show="vm.loading" align="center" style="padding-top:20%">
+        <strong><em><img src="app/img/loading.gif" border="0" height="20px" /></em></strong>
+    </div>
+<div class="app-view-header">
+    <span ng-if="vm.isVendor" translate="promise.procurement.RegistrasiVendor.Judul"></span> 
+    <span ng-if="!vm.isVendor" translate="promise.procurement.UbahDataUser.Judul"></span>
+	&nbsp;<small><span translate="" style="color:green; font: italic bold 12px Georgia, serif"></span></small>
+</div>
+<toaster-container toaster-options="{'position-class': 'toast-top-center', 'close-button':true}"></toaster-container>
+
+
+<div class="panel panel-primary">
+	<h4 ng-if="vm.isVendor" ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-folder">&nbsp;</em><span translate="promise.procurement.RegistrasiVendor.data_login.judul"></span></h4>
+	<h4 ng-if="!vm.isVendor" ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-folder">&nbsp;</em><span translate="promise.procurement.UbahDataUser.SubJudul"></span></h4>
+	<div class="panel-body">
+		        <div class="row">
+		            <div class="col-md-12">
+		                <div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong></div>
+		                <form method="post" action="#" novalidate="" class="form-horizontal">		                
+		                    <div class="form-group">
+				                	<label class="col-md-2 col-sm-3 control-label"><span translate="promise.procurement.RegistrasiVendor.data_login.nama_pengguna"></span>
+				                    	<strong style="color:red">*</strong>
+				                    </label>
+				                    <div class="col-md-5 col-sm-6">
+				                    	<input promise-alphanumeric-only name="namaPengguna" type="text" class="form-control shadow-z1 input-sm" ng-model="vm.user.namaPengguna">
+				                        <strong style="color: red" translate={{vm.errorNamaPengguna}}> </strong>
+                                		<br/>
+				                    </div>
+								</div>
+								<div class="form-group">
+				                	<label class="col-md-2 col-sm-3 control-label"><span translate="promise.procurement.RegistrasiVendor.data_login.user_id"></span>
+				                    <strong style="color:red">*</strong>
+				                    </label>
+									<div class="col-md-5 col-sm-6">
+										<input style="color:red; font: italic bold 12px Georgia, serif" name="userId" type="text" class="form-control shadow-z1 input-sm" ng-model="vm.user.email" ng-disabled="true"/>
+										<br />
+									</div>
+								</div>
+								<div class="form-group">
+				                	<label class="col-md-2 col-sm-3 control-label"><span translate="promise.procurement.RegistrasiVendor.data_login.password"></span>
+				                    	<strong style="color:red">*</strong>
+				                    </label>
+				                    <div class="col-md-5 col-sm-6">
+				                    	<input name="password" type="password" autocomplete="off" class="form-control shadow-z1 input-sm" ng-model="vm.user.password" ng-disabled="true"/>
+                                		<br/>
+				                    </div>
+								</div>
+								<div class="form-group">
+				                	<label class="col-md-2 col-sm-3 control-label"><span translate="promise.procurement.RegistrasiVendor.data_login.password_baru"></span>
+				                    </label>
+				                    <div class="col-md-5 col-sm-6">
+				                    	<input name="newPassword" type="password" autocomplete="off" class="form-control shadow-z1 input-sm" ng-model="vm.newPassword"/>
+                                		<strong style="color: red" translate={{vm.errorPassword}}> </strong>
+                                		<br/>
+				                    </div>
+								</div>
+								<div class="form-group">
+				                	<label class="col-md-2 col-sm-3 control-label"><span translate="promise.procurement.RegistrasiVendor.data_login.retype_password"></span>
+				                    
+				                    </label>
+				                    <div class="col-md-5 col-sm-6">
+				                    	<input name="retypePassword" type="password" autocomplete="off" class="form-control shadow-z1 input-sm" ng-model="vm.retypePassword"/>
+				                        <strong style="color: red" translate={{vm.errorRetypePassword}}> </strong>
+                                		<br/>
+				                    </div>
+								</div>
+								<div class="form-group" ng-show="vm.isVendor">
+				                	<label class="col-md-2 col-sm-3 control-label">
+				                    	<span translate="promise.procurement.RegistrasiVendor.data_login.logo_user"></span>
+				                    </label>
+				                    <div class="col-md-5 col-sm-6">
+				                    	<input filestyle="" type="file" data-button-translate="" data-class-button="btn btn-default" data-class-input="form-control inline" nv-file-select="" uploader="uploadVendorLogo" class="form-control" />
+				                    
+				                    	<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-sm" ng-click="uploadLogo()">
+											<span translate="template.button.upload"></span>
+											<span class="btn-label btn-label-right"><em class="fa fa-upload"></em></span>
+										</button>
+									</div>
+									<div class="col-md-5 col-sm-6">
+										<p style="color:green" ng-repeat="item in uploadVendorLogo.queue"><em ng-if="item.isUploaded">{{ item.file.name }}</em></p>
+									</div>	
+									<br/>
+								</div>
+								<div class="form-group" ng-show="vm.isVendor">
+				                	<label class="col-md-2 col-sm-3 control-label">
+				                    	<span translate="promise.procurement.RegistrasiVendor.data_login.head_image"></span>
+				                    </label>
+				                    <div class="col-md-5 col-sm-6">
+				                    	<input filestyle="" type="file" data-button-translate="" data-class-button="btn btn-default" data-class-input="form-control inline" nv-file-select="" uploader="uploadVendorHeadImg" class="form-control"/>
+				                    	<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-sm" ng-click="uploadHeaderImg()">
+											<span translate="template.button.upload"></span>
+											<span class="btn-label btn-label-right"><em class="fa fa-upload"></em></span>
+										</button>
+									</div>
+									<div class="col-sm-5">
+										<p style="color:green" ng-repeat="item in uploadVendorHeadImg.queue"><em ng-if="item.isUploaded">{{ item.file.name }}</em></p>
+									</div>
+									<br/>
+								</div>					
+								<div class="col-sm-9">
+									<p style="color:red; font: italic bold 12px Arial"><span translate="promise.procurement.RegistrasiVendor.data_login.catatan1"></span></p>
+                                	<p style="color:red; font: italic bold 12px Arial"><span translate="promise.procurement.RegistrasiVendor.data_login.catatan2"></span></p>
+                                </div>
+		                  </form>
+		            </div>		            
+		       </div>
+		</div>
+</div>
+
+<div align="center">
+	<button type="button" ripple="" class="mr btn btn-sm bg-default" ng-click="back()">
+		<span translate="template.button.kembali"></span>
+	</button>
+	<button type="button" ripple="" class="mr btn btn-sm bg-primary" ng-click="save()">
+		<span translate="template.button.simpan"> </span>
+	</button>  
+</div>
+
+</form>
+</div>

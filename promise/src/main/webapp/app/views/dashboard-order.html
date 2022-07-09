@@ -1,0 +1,152 @@
+<div class="app-view-header"><span translate="promise.procurement.dashboard.JUDUL"></span>
+    <!-- <small ng-bind="app.name + ' - ' + app.description"><span translate="promise.procurement.dashboard.SUBJUDUL"></span></small> -->
+</div>
+<div ng-controller="DashboardOrderController as vm" class="row">
+       <!-- START dashboard content-->
+    <div class="col-lg-8">
+        <!-- START Tabbed panel-->
+     
+            <div class="row">
+                <div class="col-lg-5 col-lg-offset-1">
+                        <div class="bg-violet small-box">
+                            <div class="icon"><em class="fa fa-users"></em></div>
+                            <div class="inner">
+                                <h3 class="text-right text-thin mt"> {{countVendor}} </h3>
+                                <p class="text-right"><span translate="promise.procurement.dashboard.VENDORDASHBOARD"></span></p>
+                            </div>
+                            <div ripple="" ng-click="go('/app/promise/procurement/vendor/daftarvendor')" class="clickable small-box-footer">
+                                <span translate="promise.procurement.dashboard.INFO"></span>
+                            <em class="fa fa-arrow-circle-right"></em>
+                            </div>
+                        </div>
+                </div>
+                <div class="col-lg-5">
+                	<div class="bg-purple small-box">
+                    	<div class="icon"><em class="fa fa-user"></em></div>
+                     	<div class="inner">
+                        	<h3 class="text-right text-thin mt"> {{vendorList.length}} </h3>
+                         	<p class="text-right"><span translate="promise.procurement.dashboard.CALONVENDORDASHBOARD"></span></p>
+                     	</div>
+                     	<div ripple="" ng-click="goToAfcoApprovalList()" class="clickable small-box-footer">
+                        	<span translate="promise.procurement.dashboard.INFO"></span>
+                     		<em class="fa fa-arrow-circle-right"></em>
+                     	</div>
+                 	</div>
+                </div>
+            </div>
+      
+        
+        <div class="panel panel-primary">
+            <div ng-class="'bg-'+ app.theme.name" >
+                
+                <div ripple="" ng-click="changeGraph('minggu')" class="btn pull-right text-thin ">
+                    <span translate="promise.procurement.dashboard.MINGGU"></span>
+                </div>
+                <div ripple="" ng-click="changeGraph('bulan')" class="btn pull-right text-thin ">
+                    <span translate="promise.procurement.dashboard.BULAN"></span>
+                </div>
+                <div  ripple="" ng-click="changeGraph('tahun')" class="btn  pull-right text-thin ">
+                    <span translate="promise.procurement.dashboard.TAHUN"></span>
+                </div>
+                
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-body text-center">
+                <div class="center" fusioncharts width="600" height="400" type="mscolumn3d" chart="{{attrs}}" categories="{{categories}}" dataset="{{dataset}}">
+                </div>
+            </div>
+            <div class="panel-footer text-center text-primary">
+                <span translate="promise.procurement.dashboard.ANALITYC"></span>    
+            </div>
+        </div>
+
+        <!-- END Tabbed panel-->
+        <!-- START Responsive table-->
+        
+    </div>
+   
+        
+    <aside class="col-lg-4">
+        <div class="row">
+            <div class="col-lg-6 col-sm-3 col-xs-6">
+               <div class="small-box bg-primary">
+                    <div class="inner">
+                        <h1 class="text-thin mt"> {{countApprovalBlacklist}} </h1>
+                        <div class="text-right text-sm text-muted"></div>
+                        <div class="text-right text-thin text-muted">
+                            <span translate="promise.procurement.dashboard.APPROVALBLACKLIST"></span>
+                        </div>
+                    </div>
+                    <div ripple="" ng-click="goTo('blacklist')" class="clickable small-box-footer">
+                        <span translate="promise.procurement.dashboard.INFO"></span>
+                    <em class="fa fa-arrow-circle-right"></em>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-3 col-xs-6">
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h1 class="text-thin mt"> {{countApprovalUnblacklist}} </h1>
+                        <div class="text-right text-sm text-muted"></div>
+                        <div class="text-right text-thin text-muted">
+                            <span translate="promise.procurement.dashboard.APPROVALUNBLACKLIST"></span>
+                        </div>
+                    </div>
+                    <div ripple="" ng-click="goTo('unblacklist')" class="clickable small-box-footer">
+                        <span translate="promise.procurement.dashboard.INFO"></span>
+                    <em class="fa fa-arrow-circle-right"></em>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-sm-3 col-xs-6">
+               <div class="small-box bg-amber">
+                    <div class="inner">
+                        <h1 class="text-thin mt"> {{countApprovalSeleksiCalonVendor}} </h1>
+                        <div class="text-right text-sm text-muted"></div>
+                        <div class="text-right text-thin text-muted">
+                            <span translate="promise.procurement.dashboard.APPROVALSELECTIONVENDOR"></span>
+                        </div>
+                    </div>
+                    <div ripple="" ng-click="goTo('calon')" class="clickable small-box-footer">
+                        <span translate="promise.procurement.dashboard.INFO"></span>
+                    <em class="fa fa-arrow-circle-right"></em>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-3 col-xs-6">
+                <div class="small-box bg-gray">
+                    <div class="inner">
+                        <h1 class="text-thin mt"> {{countApprovalPerpanjanganTDR}} </h1>
+                        <div class="text-right text-sm text-muted"></div>
+                        <div class="text-right text-thin text-muted">
+                            <span translate="promise.procurement.dashboard.APPROVALEXTENSIONTDR"></span>
+                        </div>
+                    </div>
+                    <div ripple="" ng-click="goTo('sertifikat')" class="clickable small-box-footer">
+                        <span translate="promise.procurement.dashboard.INFO"></span>    
+                        <em class="fa fa-arrow-circle-right"></em>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+             <div class="col-lg-6 col-lg-offset-3 col-sm-12 col-xs-6">
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h1 class="text-thin mt"> {{countBlacklistVendor}} </h1>
+                        <div class="text-right text-sm text-muted"></div>
+                        <div class="text-right text-thin text-muted">
+                            <span translate="promise.procurement.dashboard.VENDORBLACKLISTDASHBOARD"></span>
+                        </div>
+                    </div>
+                    <div ripple="" ng-click="go('/app/promise/procurement/manajemenvendor/blacklistvendor')" class="clickable small-box-footer">
+                            <span translate="promise.procurement.dashboard.INFO"></span>
+                        <em class="fa fa-arrow-circle-right"></em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>   
+</div>

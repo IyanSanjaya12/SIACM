@@ -1,0 +1,77 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.manajemenvendor.penilaiankerjarekanan.JUDUL"></span>
+</div>
+<div class="panel panel-primary" ng-controller="PenilaianVendorController as form">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+    	<em class="fa fa-tasks">&nbsp;</em>
+    	<span translate="promise.procurement.manajemenvendor.penilaiankerjarekanan.PENCARIANDATAREKANAN"></span>
+    </h4>
+	<div class="panel-body">
+		<!-- <div class="row">
+			<div class="col-md-3"><span translate="promise.procurement.manajemenvendor.penilaiankerjarekanan.list.NOMORREKANAN"></span></div>
+			<div class="col-md-2">
+				<input type="text" class="form-control shadow-z1 input-sm" ng-model="form.filter.nomorAwal" />
+			</div>
+			<div class="col-md-2"><span translate="promise.procurement.manajemenvendor.penilaiankerjarekanan.list.SAMPAIDENGAN"></span></div>
+			<div class="col-md-2">
+				<input type="text" class="form-control shadow-z1 input-sm" ng-model="form.filter.nomorAkhir" />
+			</div>
+		</div>
+		<br/> -->
+		<div class="row">
+			<div class="col-md-3"><span translate="promise.procurement.manajemenvendor.penilaiankerjarekanan.list.NAMAREKANAN"></span></div>
+			<div class="col-md-6">
+				<input type="text" class="form-control shadow-z1 input-sm"  ng-model="form.filter.namaVendor" />
+			</div>
+		</div>
+		<br/>
+		<div class="row">
+			<div class="col-md-3"><span translate="promise.procurement.manajemenvendor.penilaiankerjarekanan.list.BIDANGUSAHA"></span></div>
+			<div class="col-md-4">
+				<select class="form-control" ng-model="form.filter.bidangUsaha" ng-change="form.getSubBidangUsaha()">
+					<option></option>
+					<option ng-repeat="fp in form.bidangUsahaList" value='{{fp.id}}' ng-bind='fp.nama'> </option> 
+				</select>				 
+			</div>
+		</div>
+		<br/>
+		<div class="row">
+			<div class="col-md-3"><span translate="promise.procurement.manajemenvendor.penilaiankerjarekanan.list.SUBBIDANGUSAHA"></span></div>
+			<div class="col-md-6">
+				<select class="form-control" ng-model="form.filter.subBidangUsaha">
+					<option></option>
+					<option ng-repeat="fp in form.subBidangUsahaList" value='{{fp.id}}' ng-bind='fp.nama'> </option> 
+				</select>
+			</div>
+		</div>
+		<br/>
+		<div class="row">
+			<div class="col-md-3"><span translate="promise.procurement.manajemenvendor.penilaiankerjarekanan.list.PERNAHDINILAISEBELUMNYA"></span></div>
+			<div class="col-md-6">
+				 
+					<input id="inlineCheckbox1" type="checkbox" ng-true-value="'1'" ng-false-value="''" ng-model="form.filter.pernahdinilai"/>Pernah Dinilai 
+				<br/>
+				
+					<input id="inlineCheckbox2" type="checkbox" ng-true-value="'1'" ng-false-value="''" ng-model="form.filter.belumpernahdinilai"/>Belum Pernah Dinilai 
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				<br/>
+				<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="form.reloadData()"><span translate="">Cari</span></button>
+ 			</div>
+		</div>
+		<br/>
+		<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+			<em class="fa fa-tasks">&nbsp;</em>
+			<span translate="promise.procurement.manajemenvendor.penilaiankerjarekanan.list.HASILPENCARIANDATAREKANAN"></span>
+		</h4>
+		<div class="" style="margin-top: 20px; margin-bottom: 20px">
+        	<button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-sm" ng-click="exportExcel()">
+                <span>Export Excel</span>
+            </button>    
+        </div>
+		<table datatable="" dt-options="form.dtOptions" dt-columns="form.dtColumns" dt-instance="form.dtInstance" id="form.manajemenpenilaianvendor" class="row-border hover"></table>
+	</div>
+</div>

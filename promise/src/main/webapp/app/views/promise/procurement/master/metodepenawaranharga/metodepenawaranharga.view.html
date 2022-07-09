@@ -1,0 +1,40 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.master.metodepenawaranharga.judul">Metode Penawaran Harga</span> 
+	<!-- <small><span translate="promise.procurement.master.metodepenawaranharga.tambah.TAMBAH"></span></small> -->
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="MetodePenawaranHargaViewController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<span ng-if="vm.toDo=='add'" translate="promise.procurement.master.metodepenawaranharga.view.subjudul_tambah"></span>
+		<span ng-if="vm.toDo=='edit'" translate="promise.procurement.master.metodepenawaranharga.view.subjudul_ubah"></span>
+	</h4>
+    <div class="panel-body">
+		<form method="post" action="#" novalidate="" class="form-horizontal">
+			<fieldset>
+				<div class="form-group">
+					<label for="input-id-1" class="col-md-2 col-sm-3 control-label">
+						<span translate="promise.procurement.master.metodepenawaranharga.view.nama"></span>
+						<strong style="color: red">*</strong>
+					</label>
+					<div class="col-md-5 col-sm-6">
+						<input id="input-id-1" promise-alphanumeric-only type="text" class="form-control" ng-model="vm.metodePenawaranHarga.nama" maxlength="250" />
+						<strong style="color: red" translate={{vm.errorMessageNama}}></strong>
+						<br />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-md-5 col-md-push-2 col-sm-5 col-sm-push-3">
+						<button type="button" ripple="" class="mr btn btn-sm bg-default" ng-click="back()">
+							<span translate="template.button.kembali"></span>			
+						</button>
+						<button type="button" ripple="" class="mr btn btn-sm bg-primary" ng-click="save()">
+							<span translate="template.button.simpan"></span>
+						</button>
+						<br />
+					</div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</div>

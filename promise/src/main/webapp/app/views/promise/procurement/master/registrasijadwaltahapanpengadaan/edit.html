@@ -1,0 +1,115 @@
+<div class="app-view-header">
+    <span translate="promise.procurement.master.registrasijadwaltahapanpengadaan.JUDUL"></span>
+    <small><span translate="promise.procurement.master.registrasijadwaltahapanpengadaan.tambah.UBAH"></span></small>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="RegistrasiJadwalTahapanPengadaanUbahController as form">
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    <div class="panel-body">
+        <div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong></div>
+        <form method="post" action="#" novalidate="" class="form-horizontal">
+            <fieldset>
+                <div class="form-group">
+                    <label for="" class="col-sm-3 control-label"><span translate="promise.procurement.master.registrasijadwaltahapanpengadaan.list.TAHAPANPENGADAAN"></span><label class="text-danger">*)</label></label>
+                    <div class="col-sm-8">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <ui-select ng-model="form.tahapanPengadaan.selected" theme="bootstrap" ng-disabled="disabled">
+                                    <ui-select-match placeholder="++ Pilih ++">{{$select.selected.kode}}</ui-select-match>
+                                    <ui-select-choices repeat="tahapanPengadaan in tahapanPengadaanList | propsFilter: {id: $select.search}">
+                                        <div ng-bind-html="tahapanPengadaan.kode | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="input-id-1" class="col-sm-3 control-label"><span translate="promise.procurement.master.registrasijadwaltahapanpengadaan.list.JADWAL"></span></label>
+                    <div class="col-sm-5">
+                        <div class="checkbox c-checkbox c-checkbox-rounded">
+                            <label>
+                                <input id="inlineradio10" type="checkbox" ng-model="form.isJadwal" ng-checked="form.isJadwal == true" />
+                                <span class="fa fa-check"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="input-id-1" class="col-sm-3 control-label"><span translate="promise.procurement.master.registrasijadwaltahapanpengadaan.list.LOKASI"></span></label>
+                    <div class="col-sm-5">
+                        <div class="checkbox c-checkbox c-checkbox-rounded">
+                            <label>
+                                <input id="inlineradio10" type="checkbox" ng-model="isLokasi" ng-checked="isLokasi == true" />
+                                <span class="fa fa-check"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="input-id-1" class="col-sm-3 control-label"><span translate="promise.procurement.master.registrasijadwaltahapanpengadaan.list.UNDANGAN"></span></label>
+                    <div class="col-sm-5">
+                        <div class="checkbox c-checkbox c-checkbox-rounded">
+                            <label>
+                                <input id="inlineradio10" type="checkbox" ng-model="form.isNoUndangan" ng-checked="form.isNoUndangan == true" />
+                                <span class="fa fa-check"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="input-id-1" class="col-sm-3 control-label"><span translate="promise.procurement.master.registrasijadwaltahapanpengadaan.list.TGLAWAL"></span></label>
+                    <div class="col-sm-5">
+                        <div class="checkbox c-checkbox c-checkbox-rounded">
+                            <label>
+                                <input id="inlineradio10" type="checkbox" ng-model="form.isTglAwal" ng-checked="form.isTglAwal == true" />
+                                <span class="fa fa-check"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="input-id-1" class="col-sm-3 control-label"><span translate="promise.procurement.master.registrasijadwaltahapanpengadaan.list.TGLAKHIR"></span></label>
+                    <div class="col-sm-5">
+                        <div class="checkbox c-checkbox c-checkbox-rounded">
+                            <label>
+                                <input id="inlineradio10" type="checkbox" ng-model="form.isTglAkhir" ng-checked="form.isTglAkhir == true" />
+                                <span class="fa fa-check"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="input-id-1" class="col-sm-3 control-label"><span translate="promise.procurement.master.registrasijadwaltahapanpengadaan.list.WAKTUAWAL"></span></label>
+                    <div class="col-sm-5">
+                        <div class="checkbox c-checkbox c-checkbox-rounded">
+                            <label>
+                                <input id="inlineradio10" type="checkbox" ng-model="form.isWaktuAwal" ng-checked="form.isWaktuAwal == true" />
+                                <span class="fa fa-check"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="input-id-1" class="col-sm-3 control-label"><span translate="promise.procurement.master.registrasijadwaltahapanpengadaan.list.WAKTUAKHIR"></span></label>
+                    <div class="col-sm-5">
+                        <div class="checkbox c-checkbox c-checkbox-rounded">
+                            <label>
+                                <input id="inlineradio10" type="checkbox" ng-model="form.isWaktuAkhir" ng-checked="form.isWaktuAkhir == true" />
+                                <span class="fa fa-check"></span>
+                            </label>
+                        </div>
+                        <br/>
+                        <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-sm" ng-click="form.kembali()">
+                            <span class="btn-label">
+						  	<em class="fa fa-chevron-left"></em>
+						  </span><span translate="promise.procurement.master.itemtype.tambah.KEMBALI"></span>
+                        </button>
+                        <button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="form.simpan()"><span translate="promise.procurement.master.itemtype.tambah.SIMPAN"></span></button>
+                    </div>
+                </div>
+                <div align="left"><strong style="background-color: yellow;color:green">{{message}}</strong></div>
+            </fieldset>
+        </form>
+    </div>
+</div>

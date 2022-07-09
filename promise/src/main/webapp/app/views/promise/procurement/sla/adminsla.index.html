@@ -1,0 +1,61 @@
+<div class="app-view-header">
+	<span translate="promise.procurement.master.adminsla.JUDUL"></span> <small><span
+		translate="promise.procurement.master.adminsla.KETERANGAN"></span></small>
+</div>
+<div class="panel panel-primary"
+	ng-controller="AdminSlaController as form">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+		<span translate="promise.procurement.master.adminsla.SUBJUDUL"></span>
+	</h4>
+	<div class="panel-body">
+
+
+		<div class="col-md-12">
+			<div>
+				<div align="center" ng-if="form.loading == true">
+					<strong><em>Loading...</em><img src="app/img/loading.gif" border="0"
+						width="20px"></strong>
+				</div>
+				<table datatable="ng" class="row-border hover table-striped">
+					<thead>
+						<tr>
+							<th scope="col"style="text-align: center"><span
+								translate="promise.procurement.master.adminsla.list.NOMOR"></span></th>
+							<th scope="col"style="text-align: center"><span
+								translate="promise.procurement.master.adminsla.list.NAMA"></span>
+							</th>
+							<th scope="col"style="text-align: center"><span
+								translate="promise.procurement.master.adminsla.list.TAHAPAN"></span>
+							</th>
+							<th scope="col"style="text-align: center"><span
+								translate="promise.procurement.master.adminsla.list.JUMLAH_HARI"></span>
+							</th>
+							<th scope="col"style="text-align: center"><span
+								translate="promise.procurement.master.adminsla.list.AKSI"></span></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="p in form.pengadaanList">
+							<td style="text-align: center" width="10%">{{ $index+1 }}</td>
+							<td style="text-align: center" width="40%">{{ p.namaPengadaan }}</td>
+							<td style="text-align: center" width="30%">{{ p.tahapanPengadaan.tahapan.nama }}</td>
+							<td style="text-align: center" width="20%">{{ p.jumlahHariSla }} Hari</td>
+							<td style="text-align:center">	
+									<div>
+										<button  type="button" class="mr btn btn-primary btn-circle btn-xs" ng-click="form.view(p)">
+											<em  class="fa fa-search"></em>
+										</button>								
+									</div>
+						    </td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="panel-footer text-center">
+		<div class="form-group">&nbsp;</div>
+	</div>
+
+</div>
+<!--END CONTROLLER-->

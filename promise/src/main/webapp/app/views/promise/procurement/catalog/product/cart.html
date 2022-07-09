@@ -1,0 +1,76 @@
+<div class="app-view-header">Shopping Cart
+    <!-- <small ng-bind="app.name + ' - ' + app.description"></small> -->
+</div>
+
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="ecatalogCartCtrl as vm">
+  <div class="panel-body">
+
+    <div class="cart-checkout">
+      <ul class="ul-cart">
+        <li class="li-cart-header">
+          <div class="left">
+            <input type="checkbox" ng-checked="isCheckedAllItem" ng-model="isCheckedAllItem" ng-change="onCheckAllItem()">
+            <p class="text-header">Pilih Semua Product</p>
+          </div>
+          <div class="right">
+            <p ng-click="removeSelectedItem()" ng-style="{'display': checkedItem.length === 0 ? 'none' : 'inital'}">Hapus</p>
+          </div>
+        </li>
+        <li class="cart-list-item" ng-repeat="catalog in catalogList">
+          <input type="checkbox" ng-checked="checkedItem[$index]" ng-model="checkedItem[$index]" ng-change="onCheckOneItem($index)">
+          <div class="list-item">
+            <div class="list-item-vendor">
+              <h3>
+                <a href="/" class="list-item-vendor-name" ng-bind="catalog.vendor.nama"></a>
+                <span class="list-item-error" ng-if="catalog.isQtyCart0 == true">Jumlah item tidak boleh 0 atau kosong</span>	
+                <span ng-if="catalog.isQtyCart0 != true" ng-show="catalog.harga_eproc == null || catalog.harga_eproc == 0" class="list-item-total" ng-bind="catalog.mataUang.kode+' '+((catalog.qtyCartItem * catalog.harga) | currency:'')"></span>
+                <span ng-if="catalog.isQtyCart0 != true" ng-show="catalog.harga_eproc != null && catalog.harga_eproc != 0" class="list-item-total" ng-bind="catalog.mataUang.kode+' '+((catalog.qtyCartItem * catalog.harga_eproc) | currency:'')"></span>
+              </h3>
+              <span class="list-item-vendor-location"><em class="glyphicon glyphicon-map-marker"></em> Jakarta Pusat</span>
+            </div>
+            <div class="list-item-product">
+              <div class="list-item-product-left">
+                <div class="list-item-product-image">
+                  <img ng-src="{{catalog.catalogImageList[0].loadFile}}" on-error="{{gambarDefault}}" />
+                </div>
+              </div>
+              <div class="list-item-product-right">
+                <h2 class="list-item-product-title">
+                  <a href="/" ng-bind="catalog.namaIND"></a>
+                </h2>
+                <p ng-bind-html="catalog.deskripsiIND"><p> <!-- catalogue description -->
+                <div class="list-item-product-price">
+                  <span ng-show="catalog.harga_eproc == null || catalog.harga_eproc == 0" class="cart-price" ng-bind="catalog.mataUang.kode+' '+(catalog.harga | currency:'')"></span>
+                  <span ng-show="catalog.harga_eproc != null && catalog.harga_eproc != 0" class="cart-price" ng-bind="catalog.mataUang.kode+' '+(catalog.harga_eproc | currency:'')"></span>
+                  <span class="cart-unit" ng-bind="'/'+catalog.satuan.nama"></span>
+               </div>
+            </div>
+            <div class="list-item-footer">
+                <h5 style="display: inline-block; font-size: 12px;">
+                  <!-- <a href="/">Tulis Catatan Untuk Tokoh</a> -->
+                </h5>
+                <div class="cart-input-group">
+                  <em class="fa fa-trash i-btn" style="margin-right: 5px; background: #f7442c;" ng-click="removeItem($index)" tooltip-placement="top" tooltip="Delete"></em>
+                  <em class="fa fa-minus btn btn-success i-btn" ng-click="decrementItem($index)" tooltip-placement="top" tooltip="Minus" ng-disabled="catalog.qtyCartItem === 1"></em>
+                  <!-- <input type="text" class="input-sm" value="0"> -->
+                  <input type="number" promise-numbers-only ng-model="catalog.qtyCartItem" class="input-sm" min="1" max="100000" ng-change="onChangeItemQty()">
+                  <em class="fa fa-plus btn btn-success i-btn" ng-click="incrementItem($index)" tooltip-placement="top" tooltip="Add"></em>
+                </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div class="cart-sticky">
+        <h4 style="margin: 0;">Ringkasan Belanja</h4>
+        <div class="total-price" style="font-size: 16px;">
+          <p>Total Price <span> {{ grandTotalCurrency }} {{ grandTotal | currency:'' }}</span></p>
+        </div>
+        <button class="btn btn-warning btn-sm btn-continue-shopping" style="font-size: 16px;" ng-click="btnCatalogList()">CONTINUE SHOPPING</button>
+        <button class="btn btn-primary btn-sm btn-create-bo" style="font-size: 16px;" ng-click="btnCreateSO()">CREATE PURCHASE REQUEST</button>
+      </div>
+    </div>
+</div>
+    
+<!--END CONTROLLER-->
+  

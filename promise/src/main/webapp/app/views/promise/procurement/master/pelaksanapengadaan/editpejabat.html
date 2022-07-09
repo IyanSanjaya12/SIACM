@@ -1,0 +1,175 @@
+<div class="app-view-header">
+    <span translate="promise.procurement.master.pelaksanapengadaan.JUDUL"></span>
+    <small><span translate="promise.procurement.master.pelaksanapengadaan.tambah.UBAH"></span></small>
+</div>
+<!--START CONTROLLER-->
+<div ng-controller="PelaksanaPengadaanUbahPejabatController as form">
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    <div class="panel panel-primary">
+        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><span translate="promise.procurement.master.pelaksanapengadaan.tambah.DATAPEJABAT"></span></h4>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-7">
+                    <form novalidate="" class="form-horizontal">
+                        <fieldset>
+                            <div class="form-group">
+                                <label for="" class="col-sm-3 control-label"><span translate="promise.procurement.master.pelaksanapengadaan.tambah.KANTOR"></span>
+                                </label>
+                                <div class="col-sm-6">
+                                    <input type="text" ng-model="output" readonly class="form-control input-sm" tooltip="Pilih di Menu Tree !!!" tooltip-trigger="focus" tooltip-placement="right" style="background-color:white" ng-click="klikTree=true" ripple="" />
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="form-group">
+                                <label for="" class="col-sm-3 control-label"><span translate="promise.procurement.master.pelaksanapengadaan.tambah.DIVISI"></span>
+                                </label>
+                                <div class="col-sm-8" ng-show="notParent">
+                                    <div class="row">
+                                        <div class="col-sm-9">
+                                            <ui-select ng-model="form.divisi.selected" theme="bootstrap" ng-disabled="disabled" class="text-left" tooltip="Kantor / Cabang kosong !!!" tooltip-trigger="mouseenter" tooltip-placement="right">
+                                                <ui-select-match placeholder="Masukan Kantor / Cabang Terlebih Dahulu">{{$select.selected.label}}</ui-select-match>
+                                                <ui-select-choices repeat="divisi in divisiList | filter: $select.search" refresh-delay="0">
+                                                    <div ng-bind-html="divisi.label| highlight: $select.search"></div>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-9" ng-show="hasParent">
+                                    <div class="row">
+                                        <div class="col-sm-8" ng-click="klikTree=false">
+                                            <ui-select ng-model="form.divisi.selected" theme="bootstrap" ng-disabled="disabled" class="text-left" disabled="disabled">
+                                                <ui-select-match placeholder="Masukan Nama Divisi...">{{$select.selected.label}}</ui-select-match>
+                                                <ui-select-choices repeat="divisi in divisiList | filter: $select.search" refresh-delay="0">
+                                                    <div ng-bind-html="divisi.label| highlight: $select.search"></div>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="form-group">
+                                <label for="" class="col-sm-3 control-label"><span translate="promise.procurement.master.pelaksanapengadaan.tambah.NAMAPEJABAT"></span>
+                                </label>
+                                <div class="col-sm-8">
+                                    <input type="text" ng-model="form.nama" class="form-control input-sm" ng-click="klikTree=false" ripple="" />
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="form-group">
+                                <label for="" class="col-sm-3 control-label"><span translate="promise.procurement.master.pelaksanapengadaan.tambah.TGLBERLAKU"></span>
+                                </label>
+                                <div class="clearfix">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="input-group">
+                                                <input type="text" datepicker-popup="{{form.format}}" ng-model="form.berlakuMulai" ng-change="chngTglMulai()" is-open="form.tanggalOpenedAwal" min-date="false" max-date="false" datepicker-options="form.dateOptions" date-disabled="form.disabled(form.date, form.mode)" close-text="Close" class="form-control input-sm" readonly style="background-color:white;" placeholder="Mulai..." />
+                                                <span class="input-group-btn">
+                                               <button type="button" ng-click="form.tanggalOpenAwal($event)" class="btn btn-default input-sm " ripple="">
+                                                  <em class="fa fa-calendar"></em>
+                                               </button>
+                                            </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="input-group">
+                                                <input type="text" datepicker-popup="{{form.format}}" ng-model="form.berlakuSelesai" is-open="form.tanggalOpenedAkhir" min-date="form.berlakuMulai" max-date="false" datepicker-options="form.dateOptions" date-disabled="form.disabled(form.date, form.mode)" close-text="Close" class="form-control input-sm" readonly style="background-color:white;" placeholder="Selesai..." />
+                                                <span class="input-group-btn">
+                                               <button type="button" ng-click="form.tanggalOpenAkhir($event)" class="btn btn-default input-sm " ripple="">
+                                                  <em class="fa fa-calendar"></em>
+                                               </button>
+                                            </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="row" ng-show="klikTree">
+                    <div class="col-md-5 container-fh">
+                        <div chained-animation="fadeInDown" class="col-md-12">
+                            <div class="row pv">
+                                <span class="mt"><font size="2"><strong>&nbsp;&nbsp;&nbsp;&nbsp;Tree Control API :</strong></font></span>
+                            </div>
+                            <div class="btn-group btn-group-justified mb"><a ng-click="my_tree.select_first_branch()" class="btn btn-default btn-sm mb">First Branch</a><a ng-click="my_tree.expand_branch()" class="btn btn-default btn-sm">Expand</a>
+                            </div>
+                            <div class="btn-group btn-group-justified mb"><a ng-click="my_tree.expand_all()" class="btn btn-default btn-sm">Expand All</a><a ng-click="my_tree.collapse_all()" class="btn btn-default btn-sm">Collapse All</a>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div chained-animation="fadeInUp" class="well wd-wide" style="background-color:#F0F8FF;">
+                                <span ng-if="doing_async"><strong><em>Loading...</em><img src="app/img/loading.gif" width="15px" border="0"/></strong></span>
+                                <abn-tree tree-data="my_data" tree-control="my_tree" on-select="my_tree_handler(branch)" expand-level="2" initial-selection="Granny Smith"></abn-tree>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-primary">
+        <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><span translate="promise.procurement.master.pelaksanapengadaan.tambah.PICPEJABAT"></span></h4>
+        <div class="panel-body">
+            <div class="col-md-12">
+                <table class="table table-hover table-bordered table-striped bg-white">
+                    <tr>
+                        <td style="width:10%" rowspan="2">
+                            <span translate="promise.procurement.master.pelaksanapengadaan.tambah.PIC"></span>
+                        </td>
+                        <td style="width:10%">
+                            <span translate="promise.procurement.master.pelaksanapengadaan.tambah.NAMA"></span>
+                        </td>
+                        <td>
+                            <div class="row">
+                                <div class="col-sm-4" ng-click="klikTree=false">
+                                    <ui-select ng-model="form.pic.selected" ng-change="changeAnggota()" theme="bootstrap" ng-disabled="disabled" class="text-left">
+                                        <ui-select-match placeholder="Masukkan Nama...">{{$select.selected.user.namaPengguna}}</ui-select-match>
+                                        <ui-select-choices repeat="pic in picList | filter: $select.search" refresh-delay="0">
+                                            <div ng-bind-html="pic.user.namaPengguna| highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width:10%" colspan="1">
+                            <span translate="promise.procurement.master.pelaksanapengadaan.tambah.LOGIN"></span>
+                        </td>
+                        <td>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <input type="text" ng-model="form.pic.selected.user.username" readonly class="form-control input-sm" style="background-color:white" ng-click="klikTree=false" ripple="" />
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <br />
+                <div class="form-group">
+					<div class="col-md-5 col-md-push-2 col-sm-5 col-sm-push-3">
+						<button type="button" ripple="" class="mr btn btn-sm bg-default" ng-click="back()">
+							<span translate="template.button.kembali"></span>
+						</button>
+						<button type="button" ripple="" class="mr btn btn-sm bg-primary" ng-click="simpan()">
+							<span translate="template.button.simpan"></span>
+						</button>
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
+    <!----------------BUTTON SIMPAN--------------------->
+    <!-- <div align="center">
+        <button ng-class="'bg-' + app.theme.name" ng-click="back()" class="btn btn-primary btn-sm pull-center" ripple="">
+            <span class=""><em class="fa fa-chevron-left"></em></span>&nbsp;&nbsp;<font color="white"><span translate="promise.procurement.inisialisasi.tambahbumn.BATAL"></span></font>
+        </button>
+        <button ng-class="'bg-' + app.theme.name" ng-click="simpan()" class="btn btn-primary btn-sm pull-center" ripple="">
+            <span class=""><em class="fa fa-sign-in"></em></span>&nbsp;&nbsp;<font color="white"><span translate="promise.procurement.master.metodepenyampaiandokumenpengadaan.tambah.SIMPAN"></span></font>
+        </button>
+    </div> -->
+    <!------------------------------------->
+</div>

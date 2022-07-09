@@ -1,0 +1,159 @@
+<div class="app-view-header"> <span translate="promise.procurement.master.alurpengadaan.JUDUL"></span>
+	<small>
+        <span translate="promise.procurement.master.alurpengadaan.tambah.TAMBAH"></span>
+    </small>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="AlurPengadaanAddController as form">
+	<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <em class="fa fa-tasks"></em>
+        <span translate="promise.procurement.master.alurpengadaan.tambah.TAMBAH"></span>
+        <a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+            <em class="fa fa-chevron-circle-down"></em>
+        </a>
+    </h4>
+    <div class="panel-body collapse in">
+		<div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong>
+		</div>
+		<form method="post" novalidate="" class="form-horizontal">
+			<fieldset>
+				<div class="form-group">
+					<label for="input-id-1" class="col-sm-3 control-label"><span translate="promise.procurement.master.alurpengadaan.tambah.NAMA"></span>
+						<label class="text-danger">*)</label>
+					</label>
+					<div class="col-sm-5">
+						<input id="input-id-1" type="text" class="form-control" ng-model="form.alurPengadaan.nama" />
+						<br/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="input-id-1" class="col-sm-3 control-label"><span translate="promise.procurement.master.alurpengadaan.tambah.KETERANGAN"></span>
+					</label>
+					<div class="col-sm-5">
+						<input type="text" class="form-control" ng-model="form.alurPengadaan.keterangan" />
+						<br/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="" class="col-sm-3 control-label"><span translate="promise.procurement.master.kondisipengadaan.list.JENIS"></span>
+						<label class="text-danger">*)</label>
+					</label>
+					<div class="col-sm-8">
+						<div class="row">
+							<div class="col-sm-4">
+								<ui-select ng-model="form.alurPengadaan.jenisPengadaan" theme="bootstrap" ng-disabled="disabled">
+									<ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+									<ui-select-choices repeat="jenisPengadaan in jenisPengadaanList | propsFilter: {id: $select.search}">
+										<div ng-bind-html="jenisPengadaan.nama | highlight: $select.search"></div>
+									</ui-select-choices>
+								</ui-select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<br/>
+				<div class="form-group">
+					<label for="" class="col-sm-3 control-label"><span translate="promise.procurement.master.kondisipengadaan.list.METODE"></span>
+						<label class="text-danger">*)</label>
+					</label>
+					<div class="col-sm-8">
+						<div class="row">
+							<div class="col-sm-4">
+								<ui-select ng-model="form.alurPengadaan.metodePengadaan" theme="bootstrap" ng-disabled="disabled">
+									<ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+									<ui-select-choices repeat="metodePengadaan in metodePengadaanList | propsFilter: {id: $select.search}">
+										<div ng-bind-html="metodePengadaan.nama | highlight: $select.search"></div>
+									</ui-select-choices>
+								</ui-select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<br/>
+				<div class="form-group">
+					<label for="" class="col-sm-3 control-label"><span translate="promise.procurement.master.kondisipengadaan.list.METODEPENYAMPAIAN"></span>
+						<label class="text-danger">*)</label>
+					</label>
+					<div class="col-sm-8">
+						<div class="row">
+							<div class="col-sm-4">
+								<ui-select ng-model="form.alurPengadaan.metodePenyampaianDokumenPengadaan" theme="bootstrap" ng-disabled="disabled">
+									<ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+									<ui-select-choices repeat="metodePenyampaianDokumenPengadaan in metodePenyampaianDokumenPengadaanList | propsFilter: {id: $select.search}">
+										<div ng-bind-html="metodePenyampaianDokumenPengadaan.nama | highlight: $select.search"></div>
+									</ui-select-choices>
+								</ui-select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<br/>
+				<div class="form-group">
+					<label for="" class="col-sm-3 control-label"><span translate="promise.procurement.master.kondisipengadaan.list.METODEPENAWARANHARGA"></span>
+						<label class="text-danger">*)</label>
+					</label>
+					<div class="col-sm-8">
+						<div class="row">
+							<div class="col-sm-4">
+								<ui-select ng-model="form.alurPengadaan.metodePenawaranHarga" theme="bootstrap" ng-disabled="disabled">
+									<ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+									<ui-select-choices repeat="metodePenawaranHarga in metodePenawaranHargaList | propsFilter: {id: $select.search}">
+										<div ng-bind-html="metodePenawaranHarga.nama | highlight: $select.search"></div>
+									</ui-select-choices>
+								</ui-select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<br/>
+				<div class="form-group">
+					<label for="" class="col-sm-3 control-label"><span translate="promise.procurement.master.kondisipengadaan.list.SISTEMEVALUASIPENAWARAN"></span>
+						<label class="text-danger">*)</label>
+					</label>
+					<div class="col-sm-8">
+						<div class="row">
+							<div class="col-sm-4">
+								<ui-select ng-model="form.alurPengadaan.sistemEvaluasiPenawaran" theme="bootstrap" ng-disabled="disabled">
+									<ui-select-match placeholder="++ Pilih ++">{{$select.selected.nama}}</ui-select-match>
+									<ui-select-choices repeat="sistemEvaluasiPenawaran in sistemEvaluasiPenawaranList | propsFilter: {id: $select.search}">
+										<div ng-bind-html="sistemEvaluasiPenawaran.nama | highlight: $select.search"></div>
+									</ui-select-choices>
+								</ui-select>
+							</div>
+						</div>
+						<!--</div>
+                </div>
+                <br/>
+                <div class="form-group">
+                    <label for="" class="col-sm-3 control-label"><span translate="promise.procurement.master.kondisipengadaan.list.METODELELANG"></span>
+                        <label class="text-danger">*)</label>
+                    </label>
+                    <div class="col-sm-8">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="checkbox c-checkbox c-checkbox-rounded">
+                                    <label>
+                                        <input type="checkbox" ng-model="form.alurPengadaan.metodeLelang" />
+                                        <span class="fa fa-check"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>-->
+						<br/>
+						<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-labeled btn-sm" ng-click="form.back()"> <span class="btn-label">
+						  	<em class="fa fa-chevron-left"></em>
+						  </span><span translate="promise.procurement.master.itemtype.tambah.KEMBALI"></span>
+						</button>
+						<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="form.save()"><span translate="promise.procurement.master.itemtype.tambah.SIMPAN"></span>
+						</button>
+						<button ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm" ng-click="form.edit()" ng-disabled="form.alurPengadaan.id==undefined">Ubah</button>
+					</div>
+				</div>
+				<!--<br/>-->
+				<div align="left"><strong style="background-color: yellow;color:green">{{message}}</strong>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</div>

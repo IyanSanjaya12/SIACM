@@ -1,0 +1,61 @@
+<div class="app-view-header">
+    <span translate="promise.procurement.master.kriteria_teknis.judul"></span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="KriteriaTeknisController as vm">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <span translate="promise.procurement.master.kriteria_teknis.subjudul">Data Kriteria Teknis</span>
+    </h4>
+    <div class="panel-body">
+        <div align="right">
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled " ng-click="add()">
+                <span class="btn-label"><em class="fa fa-plus"></em></span>
+                <span translate="template.button.tambah"></span>
+            </button>
+        </div>
+        <br />
+        <div class="col-md-12">
+            <div align="center" ng-if="loading == true">
+                <strong><em>Loading...</em><img src="app/img/loading.gif" width="20px" border="0" /></strong>
+            </div>
+            <table datatable="ng" class="row-border hover table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col"style="text-align:center"><span translate="template.tabel.nomor">Nomor</span>
+                        </th>
+                        <th scope="col"style="text-align:center"><span translate="promise.procurement.master.kriteria_teknis.list.kriteria_teknis">Kriteria
+                                Teknis</span>
+                        </th>
+                        <th scope="col"style="text-align:center"><span translate="promise.procurement.master.kriteria_teknis.list.keterangan">Keterangan</span>
+                        </th>
+                        <th scope="col"style="text-align:center; width:10%"><span translate="template.tabel.aksi">Aksi</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="kriteriaTeknis in vm.kriteriaTeknisList">
+                        <td style="text-align:center">{{ $index+1 }}</td>
+                        <td ng-bind="kriteriaTeknis.nama"></td>
+                        <td ng-bind="kriteriaTeknis.keterangan"></td>
+                        <td style="text-align:center">
+
+                            <div>
+                                <button ng-if="kriteriaTeknis.id > 4" type="button" ng-class="'bg-' + app.theme.name"
+                                    class="mr btn btn-xs" ng-click="edit(kriteriaTeknis)">
+                                    <em class="fa fa-pencil fa-lg"></em>
+                                </button>
+                                <button ng-if="kriteriaTeknis.id > 4" type="button" class="mr btn btn-danger btn-xs"
+                                    ng-click="del(kriteriaTeknis.id)">
+                                    <em class="fa fa-trash fa-lg"></em>
+                                </button>
+                            </div>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+<!--END CONTROLLER-->

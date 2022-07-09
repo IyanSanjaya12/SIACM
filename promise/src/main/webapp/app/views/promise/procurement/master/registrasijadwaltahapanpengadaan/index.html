@@ -1,0 +1,132 @@
+<div class="app-view-header">
+    <span translate="promise.procurement.master.registrasijadwaltahapanpengadaan.JUDUL"></span>
+    <small><span translate="promise.procurement.master.registrasijadwaltahapanpengadaan.KETERANGAN"></span></small>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="RegistrasiJadwalTahapanPengadaanController as form ">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><span translate="promise.procurement.master.registrasijadwaltahapanpengadaan.SUBJUDUL"></span></h4>
+    <div class="panel-body">
+        <div align="right">
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled btn-success" ng-click="form.add()">
+                <span class="btn-label"><em class="fa fa-plus"></em></span>
+                <span translate="promise.procurement.master.alurpengadaan.TAMBAH"></span>
+            </button>
+        </div>
+        <br />
+        <div class="col-md-12">
+            <div>
+                <div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" border="0"
+                            width="20px" /></strong>
+                </div>
+                <table datatable="ng" class="row-border hover table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"style="text-align:center; width:5%"><span translate="promise.procurement.master.alurpengadaan.list.NOMOR">Nomor</span>
+                            </th>
+                            <th scope="col"style="text-align:center; width:15%"><span translate="promise.procurement.master.registrasijadwaltahapanpengadaan.list.TAHAPANPENGADAAN"></span>
+                            </th>
+                            <th scope="col"style="text-align:left; width:10%"><span translate="promise.procurement.master.registrasijadwaltahapanpengadaan.list.JADWAL"></span>
+                            </th>
+                            <th scope="col"style="text-align:center; width:10%"><span translate="promise.procurement.master.registrasijadwaltahapanpengadaan.list.LOKASI"></span>
+                            </th>
+                            <th scope="col"style="text-align:center; width:10%"><span translate="promise.procurement.master.registrasijadwaltahapanpengadaan.list.UNDANGAN"></span>
+                            </th>
+                            <th scope="col"style="text-align:center; width:10%"><span translate="promise.procurement.master.registrasijadwaltahapanpengadaan.list.TGLAWAL"></span>
+                            </th>
+                            <th scope="col"style="text-align:center; width:10%"><span translate="promise.procurement.master.registrasijadwaltahapanpengadaan.list.TGLAKHIR"></span>
+                            </th>
+                            <th scope="col"style="text-align:center; width:10%"><span translate="promise.procurement.master.registrasijadwaltahapanpengadaan.list.WAKTUAWAL"></span>
+                            </th>
+                            <th scope="col"style="text-align:center; width:10%"><span translate="promise.procurement.master.registrasijadwaltahapanpengadaan.list.WAKTUAKHIR"></span>
+                            </th>
+                            <th scope="col"style="text-align:center; width:10%"><span translate="promise.procurement.master.alurpengadaan.list.AKSI">Aksi</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="tabel in form.registrasiJadwalTahapanPengadaanList">
+                            <td style="text-align:center">{{ $index+1 }}</td>
+                            <td style="text-align:center">{{ tabel.tahapanPengadaan.kode }}</td>
+                            <td style="text-align:center; vertical-align:middle">
+                                <div class="checkbox c-checkbox c-checkbox-rounded">
+                                    <label>
+                                        <input id="inlineradio10" type="checkbox" ng-model="tabel.isJadwal" ng-checked="tabel.isJadwal == true"
+                                            onclick="return false" />
+                                        <span class="fa fa-check"></span>
+                                    </label>
+                                </div>
+                            </td>
+                            <td style="text-align:center; vertical-align:middle">
+                                <div class="checkbox c-checkbox c-checkbox-rounded">
+                                    <label>
+                                        <input id="inlineradio20" type="checkbox" ng-model="tabel.isLokasi" ng-checked="tabel.isLokasi == true"
+                                            onclick="return false" />
+                                        <span class="fa fa-check"></span>
+                                    </label>
+                                </div>
+                            </td>
+                            <td style="text-align:center; vertical-align:middle">
+                                <div class="checkbox c-checkbox c-checkbox-rounded">
+                                    <label>
+                                        <input id="inlineradio30" type="checkbox" ng-model="tabel.isNoUndangan"
+                                            ng-checked="tabel.isNoUndangan == true" onclick="return false" />
+                                        <span class="fa fa-check"></span>
+                                    </label>
+                                </div>
+                            </td>
+                            <td style="text-align:center; vertical-align:middle">
+                                <div class="checkbox c-checkbox c-checkbox-rounded">
+                                    <label>
+                                        <input id="inlineradio40" type="checkbox" ng-model="tabel.isTglAwal" ng-checked="tabel.isTglAwal == true"
+                                            onclick="return false" />
+                                        <span class="fa fa-check"></span>
+                                    </label>
+                                </div>
+                            </td>
+                            <td style="text-align:center; vertical-align:middle">
+                                <div class="checkbox c-checkbox c-checkbox-rounded">
+                                    <label>
+                                        <input id="inlineradio50" type="checkbox" ng-model="tabel.isTglAkhir"
+                                            ng-checked="tabel.isTglAkhir == true" onclick="return false" />
+                                        <span class="fa fa-check"></span>
+                                    </label>
+                                </div>
+                            </td>
+                            <td style="text-align:center; vertical-align:middle">
+                                <div class="checkbox c-checkbox c-checkbox-rounded">
+                                    <label>
+                                        <input id="inlineradio60" type="checkbox" ng-model="tabel.isWaktuAwal"
+                                            ng-checked="tabel.isWaktuAwal == true" onclick="return false" />
+                                        <span class="fa fa-check"></span>
+                                    </label>
+                                </div>
+                            </td>
+                            <td style="text-align:center; vertical-align:middle">
+                                <div class="checkbox c-checkbox c-checkbox-rounded">
+                                    <label>
+                                        <input id="inlineradio70" type="checkbox" ng-model="tabel.isWaktuAkhir"
+                                            ng-checked="tabel.isWaktuAkhir == true" onclick="return false" />
+                                        <span class="fa fa-check"></span>
+                                    </label>
+                                </div>
+                            </td>
+                            <td style="text-align:center">
+                                <div>
+                                    <button ng-if="tabel.id > 0" type="button" ng-class="'bg-' + app.theme.name" class="mr btn btn-xs"
+                                        ng-click="form.edit(tabel)">
+                                        <em class="fa fa-pencil fa-lg"></em>
+                                    </button>
+                                    <button ng-if="tabel.id > 0" type="button" class="mr btn btn-danger btn-xs"
+                                        ng-click="form.del(tabel.id)">
+                                        <em class="fa fa-trash fa-lg"></em>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END CONTROLLER-->

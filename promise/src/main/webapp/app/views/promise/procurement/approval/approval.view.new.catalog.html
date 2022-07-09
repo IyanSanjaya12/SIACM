@@ -1,0 +1,43 @@
+<div class="app-view-header"> 
+    <span>Approval Catalog</span>
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="approvalViewCatalogController as vm">
+	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <em class="fa fa-tasks"></em>
+        <span>Approval Catalog ({{vm.status}})</span>
+        <a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
+        	<em class="fa fa-chevron-circle-down"></em>
+        </a>
+    </h4>
+	<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+	<form class="form-horizontal" name="formManageCatalog">
+		<div class="panel-body collapse in">
+            <div class="clear-fix"></div>
+            <tabset>
+                <tab active="pane.active" ng-repeat="pane in panes" heading="{{pane.heading}}" >
+                    <div class="form-group" ng-include="pane.include" ></div>
+                </tab>
+            </tabset>
+		</div>
+		<div class="row">
+			<div class="text-center">
+				<h3>Approve this Request</h3>
+					<span>This Request Needs Your Approval</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group text-center">
+				<a class="btn btn-success" ng-click="btnSimpan(1, catalog.catalogKontrak)">Approve</a>
+				<a class="btn btn-danger" ng-click="btnSimpan(2, null)">Reject</a>
+			</div>
+			<div class="form-group">
+				<label class="col-lg-4 control-label text-right required">Note</label>
+				<div class="col-lg-4">                      
+					<textarea  class="form-control shadow-z1 input-sm"  ng-model="vm.note" style="margin: 0px; width: 350px; height: 125px;"></textarea>
+					<strong style="color:red">{{errorNoteMessage}}</strong>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

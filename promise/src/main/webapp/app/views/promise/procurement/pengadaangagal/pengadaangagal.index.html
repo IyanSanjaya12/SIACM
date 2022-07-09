@@ -1,0 +1,72 @@
+<div class="app-view-header">Pengadaan Gagal
+    <!-- <small ng-bind="app.name + ' - ' + app.description"></small> -->
+</div>
+<!--START CONTROLLER-->
+<div class="panel panel-primary" ng-controller="PengadaanGagalController as form">
+    <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+        <span >Pengadaan Gagal</span>
+      
+    </h4>
+    <div class="panel-body">
+    	<div align="right">
+            <button ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled mb 2" ng-click="btnAddPengadaanGagal()">
+                <span class="btn-label"> <em class="fa fa-plus"></em> </span>
+                <span >Tambah Pengadaan Gagal</span>
+            </button>
+	    </div>
+    
+        <div class="row form-horizontal">
+            <div class="col-md-12">
+                <table datatable="" dt-options="form.dtOptions" dt-columns="form.dtColumns" dt-instance="form.dtInstance" id="pengadanGagalIndex" class="row-border hover"></table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END CONTROLLER-->
+<script type="text/ng-template" id="pengdaan_search.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Daftar Pengadaan</h3>
+    </div>
+    <div class="modal-body form-horizontal">
+        <div align="center" ng-if="loading == true">
+            <strong><em>Loading... <img src="app/img/loading.gif" border="0" height="20px"/></em></strong>
+        </div>
+        <table datatable="ng" class="row-border hover table-striped">
+            <thead>
+                <tr>
+                    <th scope="col"style="text-align:center">No
+                    </th>
+                    <th scope="col"style="text-align:center"><span translate="proc.no_procurement">No Pengadaan</span>
+                    </th>
+                    <th scope="col"style="text-align:center"><span translate="proc.name_procurement">Nama Pengadaan</span>
+                    </th>
+                    <th scope="col"style="text-align:center"><span translate="general.date">Tanggal</span>
+                    </th>
+                    <th scope="col"style="text-align:center"><span translate="general.position">Tahapan Saat Ini</span>
+                    </th>
+                    <th scope="col"style="text-align:center"><span translate="general.action">Aksi</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="pengadaan in jadwalPengadaanList|orderBy:'-tanggalNotaDinas'">
+                    <td style="text-align:centor;width=5px">{{ ($index + 1) }}</td>
+                    <td style="text-align:left">{{ pengadaan.nomorNotaDinas }}</td>
+                    <td style="text-align:left">{{ pengadaan.namaPengadaan }}</td>
+                    <td style="text-align:left">{{ pengadaan.tanggalNotaDinas | date:'dd/MM/yyyy' }}</td>
+                    <td style="text-align:left"><a href="">{{ pengadaan.tahapanPengadaan.tahapan.nama }}</a>
+                    </td>
+                    <td class="action-col">
+                        <a class="view-order badge bg-primary" ng-click="choice(pengadaan)">
+                            <em class="fa fa-search"></em>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="modal-footer text-center">
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Batal</button>
+        </div>
+    </div>
+</script>

@@ -1,0 +1,76 @@
+<!--
+SPESIFIC VIEW EDIT OF THE DATA SEGMENTASI MENU
+--------------- START CONTROLLER -------------
+-->
+<div class="app-view-header">
+    <span translate="">SETTING VENDOR</span> 
+    <small><span translate="promise.procurement.RegistrasiVendor.edit"></span></small>
+	&nbsp;<small><span translate="" style="color:green; font: italic bold 12px Georgia, serif"></span></small>
+</div>
+<!------------------------------------------------------------ START CONTROLLER ---------------------------------------------------------------------->
+<div ng-controller="RegistrasiDataSegmentasiController as vm">
+<div class="panel panel-primary" >
+	  <h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
+    	<span translate="{{vm.subjudul}} "></span>
+    </h4>
+   		<div align="right">
+       		<button ng-disabled="vm.disable==true" ng-class="'bg-' + app.theme.name" type="button" class="mr btn btn-labeled" ng-click="add()">
+                <span class="btn-label"><em class="fa fa-plus"></em></span>									
+				<span translate="template.button.tambah"></span>
+            </button>                                                
+     	</div>
+  	<div align="center" ng-if="loading == true"><strong><em>Loading...</em><img src="app/img/loading.gif" width="20px"></strong></div>			
+   	<div class="panel-body">
+   		<div class="col-xs-12">
+        	<div class="table-responsive">
+            	<table ng-table="vm.tableSegmentasiVendor" class="table table-hover table-condensed table-striped bg-white">
+                	<thead>
+                    	<tr style="font-weight: bold">
+                        	<th scope="col"style="width:5%; text-align:left"><span translate="template.tabel.nomor"></span>
+                        	</th>
+                        	<th scope="col"style="width:20%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.DataSegmentasi.bidang_usaha"></span>
+                           	</th>
+                            <th scope="col"style="width:20%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.DataSegmentasi.subbidang"></span>
+                            </th>
+                            <th scope="col"style="width:10%; text-align:center"><span translate="promise.procurement.RegistrasiVendor.DataSegmentasi.asosiasi"></span>
+                            </th>
+                            <th scope="col"style="width:10%; text-align:center"><span translate="template.tabel.nomor"></span>
+                            </th>
+                            <th scope="col"style="width:15%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.DataSegmentasi.tanggal_mulai"></span>
+                            </th>
+                            <th scope="col"style="width:15%; text-align:left"><span translate="promise.procurement.RegistrasiVendor.DataSegmentasi.tanggal_berakhir"></span>
+                            </th>
+                            <th scope="col"style="width:5%; text-align:center"><span translate="template.tabel.aksi"></span>
+                            </th>
+                      	</tr>
+             		</thead>
+                   	<tbody>
+                    	<tr ng-repeat="dataSegmentasi in $data">
+                        	<td style="text-align:center">{{$index+1}}</td>
+                            <td>{{ dataSegmentasi.subBidangUsaha.bidangUsaha.nama }}</td>
+                            <td>{{ dataSegmentasi.subBidangUsaha.nama }}</td>
+                            <td>{{ dataSegmentasi.asosiasi }}</td>
+                            <td>{{ dataSegmentasi.nomor }}</td>
+							<td>{{ dataSegmentasi.tanggalMulai | date:"dd/MM/yyyy" }}</td>
+							<td>{{ dataSegmentasi.tanggalBerakhir | date:"dd/MM/yyyy" }}</td>
+                            <td style="white-space: nowrap; text-align:center">
+                            	<button ng-disabled="vm.disable==true" ng-click="edit(dataSegmentasi)" title="Edit" class="btn btn-sm btn-success">
+                                	<em class="fa fa-pencil fa-lg"></em>
+                              	</button>
+                               	<button ng-disabled="vm.disable==true||vm.deletestatus==false" ng-click="del(dataSegmentasi)" title="Delete" class="btn btn-sm btn-danger">
+                                	<em class="fa fa-trash fa-lg"></em>
+                               	</button>
+                         	</td>
+                     	</tr>
+                	</tbody>
+        		</table>
+         	</div>
+      	</div>
+   	</div>   		
+</div>
+<div align="center">
+		    <button ng-disabled="vm.disable==true || vm.valid==false" ng-class="'bg-' + app.theme.name" type="button" ripple="" class="mr btn btn-sm bg-primary" ng-click="approval()">
+		       	<span translate="template.button.send_approval"></span>
+		    </button>
+		</div>
+		</div>

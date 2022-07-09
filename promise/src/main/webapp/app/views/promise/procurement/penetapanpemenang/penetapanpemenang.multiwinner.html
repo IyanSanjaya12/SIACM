@@ -1,0 +1,125 @@
+<div class="app-view-header">
+    <span translate="promise.procurement.panitia.penetapanpemenang.JUDUL"></span>
+    <!--<small><span translate="promise.procurement.panitia.pembukaanpenawaran.total.TOTAL"></span></small>-->
+</div>
+<!--START CONTROLLER-->
+<div ng-controller="PenetapanMultiwinnerController as form">
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    <div id="penetapanPemenang">
+        <!--------------------------------------------------------------------------------------------------->
+        <promise-view-data-pengadaan pengadaan-id=pengadaanId></promise-view-data-pengadaan>
+        <!--------------------------------------------------------------------------------------------------->
+
+        <!--START-->
+        <div class="panel panel-primary">
+            <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-group">&nbsp;</em>
+        <span translate="promise.procurement.panitia.penetapanpemenang.list.TBLPENETAPANPEMENANG"></span>
+                                        </h4>
+            <div class="panel-body">
+                <table datatable="ng" class="row-border hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Nama Penyedia</th>
+                            <th scope="col">Evaluasi Admin</th>
+                            <th scope="col">Evaluasi Teknis</th>
+                            <th scope="col">Evaluasi Harga</th>
+                            <th scope="col">Item</th>
+                            <th scope="col"width="200px">Harga Satuan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="penawaran in dataPenawaran | orderBy:'vendor.nama'">
+                            <td>{{ ($index+1) }}</td>
+                            <td>{{ penawaran.vendor.nama }}</td>
+                            <td align="center">{{ penawaran.nilaiAdmin |number:0}}</td>
+                            <td align="center">{{ penawaran.nilaiTeknis|number:0 }}</td>
+                            <td align="center">{{ penawaran.nilaiHarga|number:0}}</td>
+                            <td>{{ penawaran.item.nama }}</td>
+                            <td align="right">{{ penawaran.nilaiPenawaran | number:2 }} {{ penawaran.mataUang.kode}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--Penetapan Pemenang-->
+            <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-group">&nbsp;</em>
+                <span translate="">Penetapan Pemenang</span>
+            </h4>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table standard table-striped hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Kode Item</th>
+                                <th scope="col">Nama Item</th>
+                                <th scope="col"width="30%">Vendor & Kuantitas</th>
+                                <th scope="col">Unit</th>
+                                <th scope="col">HPS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="itemPengadaan in dataItemPengadaan">
+                                <td>{{ ($index+1) }}</td>
+                                <td>{{ itemPengadaan.item.kode }}</td>
+                                <td align="left">{{ itemPengadaan.item.nama }}</td>
+                                <td align="left">
+                                    <div id="vendorList{{itemPengadaan.id}}">
+
+                                    </div>
+                                </td>
+                                <td align="center">{{ itemPengadaan.item.satuanId.nama }}</td>
+                                <td align="center">
+                                    <button type="button" class="mr btn btn-success btn-circle btn-xs" ng-click="addVendor(itemPengadaan)">
+                                        <em class="fa fa-plus"></em>
+                                    </button>
+                                    <button type="button" class="mr btn btn-danger btn-circle btn-xs" ng-click="delVendor(itemPengadaan)">
+                                        <em class="fa fa-trash fa-lg"></em>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- jenis kontrak -->
+            <h4 ng-class="'bg-' + app.theme.name" class="panel-heading"><em class="fa fa-group">&nbsp;</em>
+                <span translate="promise.procurement.panitia.penetapanpemenang.JENISKONTRAK"></span>
+            </h4>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <strong><span translate="promise.procurement.panitia.penetapanpemenang.JENISKONTRAK"></span></strong>
+                    </div>
+                    <div class="col-lg-6">
+                        <select ng-model="jenisKontrak" class="form-control">
+                            <option ng-repeat="jenisKontrak in jenisKontrakList | orderBy:'nama'" value="{{jenisKontrak.id}}">{{jenisKontrak.nama}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="panel-default">
+        <div class="col-xs-12">
+            <div class="checkbox c-checkbox c-checkbox-rounded">
+                <label>
+                    <input id="inlineradio10" type="checkbox" ng-click="status" />
+                    <span class="fa fa-check"></span><code><strong>Munculkan Hasil Pengadaan Pada Halaman Vendor</strong></code>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div ng-show="!isValid" align="center"><strong class="text-danger">Jumlah kuantitas kebutuhan dan jumlah kuantitas vendor harus sama!</strong></div>
+    <!----------------BUTTON SIMPAN--------------------->
+    <div align="center">
+        <button ng-class="'bg-' + app.theme.name" ng-click="btnBack()" class="btn btn-primary btn-sm pull-center" ripple="">
+            <span class=""></span>&nbsp;&nbsp;<font color="white"><span translate="template.button.batal"></span></font>
+        </button>
+        <button ng-disabled="!isValid" ng-class="'bg-' + app.theme.name" ng-click="btnSimpan()" class="btn btn-primary btn-sm pull-center" ripple="">
+            <span class=""><em class="fa fa-sign-in"></em></span>&nbsp;&nbsp;<font color="white"><span translate="template.button.simpan"></span></font>
+        </button>
+    </div>
+    <!------------------------------------->
+</div>
