@@ -5,7 +5,7 @@
         .module('naut')
         .controller('LaporanPenjualanIndexController', LaporanPenjualanIndexController);
 
-    function LaporanPenjualanIndexController(RequestService, $scope, $http, $rootScope, $resource, $location, $state, ModalService) {
+    function LaporanPenjualanIndexController($window, RequestService, $scope, $http, $rootScope, $resource, $location, $state, ModalService, $filter) {
         var vm = this;
         $scope.formats = ['dd-MMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate', 'dd-MM-yyyy', 'yyyy-MM-dd'];
         $scope.format = $scope.formats[0];
@@ -21,9 +21,10 @@
 		}
 		var newDate = new Date();
 		newDate.setDate(newDate.getDate() - 30);
+		var today = new Date();
 		vm.param = {
-			startDate : new Date(newDate),
-			endDate : new Date()
+			startDate : $filter('date')(newDate, "dd/MM/yyyy"),
+			endDate : $filter('date')(today, "dd/MM/yyyy")
 
 		};
 
@@ -42,7 +43,9 @@
             $scope.getLaporanPenjualanList();
         }
         $scope.doPrint = function(){
-			RequestService.doPrint({reportFileName:'CetakLaporanPenjualan', startDate:vm.param.startDate, endDate:vm.param.endDate});
+			$window.open($rootScope.backendAddress + '/procurement/report/printReportGet?reportFileName=laporanPenjualan&startDate=' 
+				+$filter('date')(vm.param.startDate, "yyyy-MM-dd")+'&endDate='+$filter('date')(vm.param.endDate, "yyyy-MM-dd"), '_blank');
+			//RequestService.doPrint({reportFileName:'laporanPenjualan', startDate:vm.param.startDate, endDate:vm.param.endDate});
 		}
         $scope.edit = function(laporanPenjualan){
         	$state.go('app.promise.procurement-transaction-laporanPenjualan-detail', {
@@ -55,6 +58,6 @@
         $scope.getLaporanPenjualanList();
     }
 
-    LaporanPenjualanIndexController.$inject = ['RequestService', '$scope', '$http', '$rootScope', '$resource', '$location', '$state', 'ModalService'];
+    LaporanPenjualanIndexController.$inject = ['$window','RequestService', '$scope', '$http', '$rootScope', '$resource', '$location', '$state', 'ModalService', '$filter'];
 
 })();
