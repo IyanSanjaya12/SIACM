@@ -56,8 +56,8 @@ public class GeneratorServices {
 	    //check IPADDRESS before replace
 	    
 	    //Uncomment untuk Koneksi lewat local
-		String backendAddressRoot = "http://localhost:8082"; 
-		String cmAppLink = "http://localhost:8082/cm/dashboard.promise";
+		String backendAddressRoot = "http://localhost:8181"; 
+		String cmAppLink = "http://localhost:8181/cm/dashboard.promise";
 		String pmAppLink = "http://localhost:18989/kai/dashboard.promise"; //"http://localhost:18989/kai/dashboard.promise";
 		String interfacing = "FALSE";
 		 

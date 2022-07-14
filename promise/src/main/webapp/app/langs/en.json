@@ -5407,7 +5407,8 @@
 			"pembantu":"Mechanic Servant",
 			"qty":"Quantitity",
 			"totalHarga":"Total Price (IDR)",
-			"potonganharga":"Discount (IDR)"
+			"potonganharga":"Discount (IDR)",
+			"haragabefore":"Price Before Discount(IDR)"
 		}
 	}
 }
