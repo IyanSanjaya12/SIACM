@@ -19,12 +19,12 @@
 		$scope.themes = settings.availableThemes();
 		$scope.setTheme = settings.setTheme;
 		
-		$rootScope.backendAddress = "http://localhost:8082/promisews";
-		$rootScope.backendAddressIP = 'http://localhost:8082';
-		$rootScope.uploadBackendAddress      = 'http://localhost:8082/promisews/procurement/file/upload';		
-		$rootScope.viewUploadBackendAddress  = 'http://localhost:8082/promisews/file/view';	
-		$rootScope.cmAppLink  = 'http://localhost:8082/promisecmclient/dashboard.promise'; 
-        $rootScope.forumAppLink="http://localhost:8082/forum/";  
+		$rootScope.backendAddress = "http://localhost:8181/promisews";
+		$rootScope.backendAddressIP = 'http://localhost:8181';
+		$rootScope.uploadBackendAddress      = 'http://localhost:8181/promisews/procurement/file/upload';		
+		$rootScope.viewUploadBackendAddress  = 'http://localhost:8181/promisews/file/view';	
+		$rootScope.cmAppLink  = 'http://localhost:8181/promisecmclient/dashboard.promise'; 
+        $rootScope.forumAppLink="http://localhost:8181/forum/";  
         $rootScope.pmAppLink  = ''; 
 /*
         $rootScope.backendAddress = "http://promise.local/promisews";

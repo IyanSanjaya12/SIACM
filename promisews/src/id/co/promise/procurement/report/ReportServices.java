@@ -92,8 +92,7 @@ public class ReportServices {
 			logger.info("Report, connection.isClosed()? = "+ dbUtilities.getConnection());
 			
 
-			bytes = JasperRunManager.runReportToPdf(stream, parameter,
-					dbUtilities.getConnection());
+			bytes = JasperRunManager.runReportToPdf(stream, parameter, dbUtilities.getConnection());
 
 			OutputStream ouputStream = httpServletResponse.getOutputStream();
 			ouputStream.write(bytes, 0, bytes.length);
@@ -171,8 +170,7 @@ public class ReportServices {
 			DBUtilities dbUtilities = new DBUtilities();
 			logger.info("Report, connection.isClosed()? = "+ dbUtilities.getConnection());
 
-			bytes = JasperRunManager.runReportToPdf(stream, parameter,
-					dbUtilities.getConnection());
+			bytes = JasperRunManager.runReportToPdf(stream, parameter, dbUtilities.getConnection());
 
 			OutputStream ouputStream = httpServletResponse.getOutputStream();
 			ouputStream.write(bytes, 0, bytes.length);

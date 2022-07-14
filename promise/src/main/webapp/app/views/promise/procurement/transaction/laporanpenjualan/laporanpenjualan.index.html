@@ -68,6 +68,7 @@
 						<th scope="col"> <span translate="laporanpenjualan.list.tglpenjualan"></span></th>
 						<th scope="col"> <span translate="laporanpenjualan.list.nopolisi"></span></th>
 						<th scope="col" style="text-align:left"> <span translate="laporanpenjualan.list.namapelanggan"></span></th>
+						<th scope="col" style="text-align:right"> <span translate="laporanpenjualan.list.haragabefore"></span></th>
 						<th scope="col" style="text-align:right"> <span translate="laporanpenjualan.list.potonganharga"></span></th>
 						<th scope="col" style="text-align:right"> <span translate="laporanpenjualan.list.total"></span></th>
 					</tr>
@@ -79,6 +80,7 @@
 						<td style="text-align:center" ng-bind="laporanPenjualan.tanggal | date:'dd/MM/yyyy'"></td>
 						<td style="text-align:center" ng-bind="laporanPenjualan.pelanggan.noPolisi"></td>
 						<td style="text-align:left" ng-bind="laporanPenjualan.pelanggan.nama"></td>
+						<td style="text-align:right" ng-bind="(laporanPenjualan.totalPembayaran | currency : '')"></td>
 						<td style="text-align:right" ng-bind="(laporanPenjualan.totalDiskon | currency : '')"></td>
 						<td style="text-align:right" ng-bind="(laporanPenjualan.hargaSetelahDiskon | currency : '')"></td>
 					</tr>

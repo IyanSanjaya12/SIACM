@@ -33,6 +33,12 @@ public class BarangService {
 		return barangSession.getbarangList();
 	}
 	
+	@Path("/getBarangListMinimum")
+	@GET
+	public List<Barang> getBarangListMinimum() {
+		return barangSession.getbarangListMinimum();
+	}
+	
 	@Path("/save")
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

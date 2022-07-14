@@ -38,6 +38,9 @@ public class PenjualanDetail {
 	@ManyToOne
 	@JoinColumn(name = "PENJUALAN_ID", referencedColumnName = "PENJUALAN_ID")
 	private Penjualan penjualan;
+	
+	@Column(name = "HARGA_BELI")
+	private Double hargaBeli;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="CREATED")
@@ -59,6 +62,14 @@ public class PenjualanDetail {
 	
 	@Transient
 	private Boolean isOpenForm;
+
+	public Double getHargaBeli() {
+		return hargaBeli;
+	}
+
+	public void setHargaBeli(Double hargaBeli) {
+		this.hargaBeli = hargaBeli;
+	}
 
 	public Integer getId() {
 		return id;

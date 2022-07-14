@@ -5425,7 +5425,8 @@
 			"pembantu":"Perbantuan",
 			"qty":"Quantitas",
 			"totalHarga":"Total Harga (IDR)",
-			"potonganharga":"Potongan Harga (IDR)"
+			"potonganharga":"Potongan Harga (IDR)",
+			"haragabefore":"Harga Sebelum Diskon(IDR)"
 		}
 	}
 }

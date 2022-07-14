@@ -121,10 +121,11 @@ public class PenjualanService {
 		try {
 			Penjualan penjualan = penjualanSession.insert(penjualanDto.getPenjualan(), token);
 			for(PenjualanDetail penjualanDetail : penjualanDto.getPenjualanDetailList()) {
-				penjualanDetail.setPenjualan(penjualan);
-				penjualanDetailSession.insert(penjualanDetail, token);
 				Barang barang = new Barang();
 				barang = barangSession.getbarang(penjualanDetail.getBarang().getId());
+				penjualanDetail.setPenjualan(penjualan);
+				penjualanDetail.setHargaBeli(barang.getHargaBeli());
+				penjualanDetailSession.insert(penjualanDetail, token);
 				barang.setJumlah(barang.getJumlah() - penjualanDetail.getQuantity());
 				if(barang != null) {
 					barangSession.update(barang, token);					
