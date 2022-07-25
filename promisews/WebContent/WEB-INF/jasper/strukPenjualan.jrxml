@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="strukPenjualan" printOrder="Horizontal" pageWidth="630" pageHeight="400" orientation="Landscape" columnWidth="560" leftMargin="50" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2e747219-5aa7-4e37-b777-828d43dc47b6">
+	<property name="ireport.zoom" value="1.7715610000000013"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="penjualanId" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+	*, mb.nama MOBIL
+FROM
+	TB_PENJUALAN pj
+	LEFT OUTER JOIN TB_PELANGGAN pl ON pj.PELANGGAN_ID = pl.PELANGGAN_ID
+	LEFT OUTER JOIN TB_MOBIL mb ON pl.MOBIL_ID = mb.MOBIL_ID
+WHERE
+	pj.ISDELETE = 0
+	AND pj.PENJUALAN_ID = $P{penjualanId}]]>
+	</queryString>
+	<field name="PENJUALAN_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CREATED" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DELETED" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DISKON" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="GARANSI" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HARGA_DISKON" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ISDELETE" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="JENIS_GARANSI" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KEMBALIAN" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NO_FAKTUR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PEMBAYARAN" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TANGGAL" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TOTAL" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="UPDATED" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="USERID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KARYAWAN_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MOBIL_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PELANGGAN_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PERBANTUAN_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TOTAL_PEMBAYARAN" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KEPALA_MEKANIK" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HARGA_SETELAH_DISKON" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TOTAL_DISKON" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ALAMAT" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NAMA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NO_POLISI" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TELEPON" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MERK" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MOBIL" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="109" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="21" y="8" width="222" height="24" forecolor="#CC3300" uuid="e1f2fe5b-aeb6-4bff-b515-271a2a64e3fb"/>
+				<textElement>
+					<font fontName="Times New Roman" size="20" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Centra Auto AC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="32" y="32" width="211" height="23" forecolor="#000000" uuid="c724fb2f-1449-460f-b07c-47d44d58970c"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[(Car AC Workshop)]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement x="272" y="5" width="280" height="99" uuid="fd4e078f-eede-4b85-9ff6-3e522bfe412f"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="278" y="10" width="79" height="20" uuid="85236c9a-8083-417e-a24f-080415914116"/>
+				<text><![CDATA[Tgl]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="278" y="28" width="79" height="20" uuid="1c0be3e8-81db-4d0c-b3ed-44acba5fbf30"/>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="278" y="46" width="79" height="20" uuid="28ba273e-fabe-4478-9c5e-01866e493582"/>
+				<text><![CDATA[Telp]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="278" y="64" width="79" height="20" uuid="2b4700ea-fa18-4589-b1be-c4bbec1d3be4"/>
+				<text><![CDATA[No. Polisi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="278" y="82" width="79" height="20" uuid="cca258a2-20e7-4a9c-84ef-6494fd902124"/>
+				<text><![CDATA[Jenis Kendaraan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="357" y="10" width="11" height="20" uuid="06e7895d-06b4-4be5-884b-65b0df1448a9"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="357" y="28" width="11" height="20" uuid="b8273363-e5a5-4574-aff3-ba0a305fbb63"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="357" y="46" width="11" height="20" uuid="288ca2aa-ee74-4b95-a88d-421feae7904a"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="357" y="82" width="11" height="20" uuid="63ce9800-3cf0-4dd7-88b5-26644bb8238d"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="357" y="64" width="11" height="20" uuid="a16f1953-d225-47e9-8530-669bfcad0b35"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="368" y="10" width="184" height="20" uuid="7c0cc727-651e-49e8-a090-7739c771324a"/>
+				<textFieldExpression><![CDATA[$F{TANGGAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="368" y="28" width="184" height="20" uuid="0cd0d45c-8706-4a4a-a2a6-09a58cd660c8"/>
+				<textFieldExpression><![CDATA[$F{NAMA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="368" y="46" width="184" height="20" uuid="bb467904-50e8-49ad-ba0e-744bf72fa75a"/>
+				<textFieldExpression><![CDATA[$F{TELEPON}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="368" y="64" width="184" height="20" uuid="0c2d9781-4a4b-42e8-874a-277c2c182dfa"/>
+				<textFieldExpression><![CDATA[$F{NO_POLISI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="20" y="60" width="223" height="40" forecolor="#3300CC" uuid="a2a5f965-c5c5-43a4-91b3-c0d306fea2c7"/>
+				<textElement>
+					<font size="9" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Komp. Ruko Sutera Niaga I No. 31, Alam Sutera \n"+
+"Jl.Raya Serpong, Tangerang Selatan 15325 \n"+
+"Telp 021 - 5398669, 0817-8912-07"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="368" y="82" width="184" height="20" uuid="42e7546f-03eb-491c-8a3e-eeaf9d27add5"/>
+				<textFieldExpression><![CDATA[$F{MERK}+" "+$F{MOBIL}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="59" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="552" height="59" uuid="b4d2d7c0-a54f-48ac-8778-cfaac2663e24"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="penjualanId">
+					<subreportParameterExpression><![CDATA[$P{penjualanId}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "strukPenjualan_subreport.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+</jasperReport>

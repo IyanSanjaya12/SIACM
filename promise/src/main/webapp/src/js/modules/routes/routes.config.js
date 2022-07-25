@@ -7164,6 +7164,32 @@
                   displayName: 'Data Bonus' 
               }
           })
+          
+          .state('app.promise.procurement-approval-barang-index', {
+        	url: '/Approval/Barang',
+          	templateUrl: Route.base('promise/procurement/approval/approval.data.barang.index.html'),
+          	resolve: {
+	              assets: Route.require('datatables')
+	          },
+	          data: {
+	              displayName: 'Approval Master Barang' 
+	          }
+	     })
+      
+      	.state('app.promise.procurement-approval-barang-detail', {
+	          url: '/Approval/Barang/Detail',
+	          templateUrl: Route.base('promise/procurement/approval/approval.data.barang.detail.html'),
+	          params: {
+	              todo: null,
+	              barangHistory:null
+	          },
+	          resolve: {
+	              assets: Route.require('datatables','ui.select')
+	          },
+	          data: {
+	              displayName: 'Approval Master Barang' 
+	          }
+      	})
           ;
           
            /*========================================================== END CENTRA AUTO AC =================================================================================*/

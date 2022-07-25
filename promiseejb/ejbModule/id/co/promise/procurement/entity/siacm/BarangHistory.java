@@ -13,18 +13,20 @@ import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
 @Entity
-@Table(name = "TB_BARANG")
+@Table(name = "TB_BARANG_HISTORY")
 @TableGenerator(name = "tableSequence", table = "SEQUENCE", pkColumnName = "TABLE_SEQ_NAME", 
-valueColumnName = "TABLE_SEQ_VALUE", pkColumnValue = "T2_BARANG", initialValue = 1, allocationSize = 1)
-public class Barang {
-	
+valueColumnName = "TABLE_SEQ_VALUE", pkColumnValue = "TB_BARANG_HISTORY", initialValue = 1, allocationSize = 1)
+public class BarangHistory {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "BARANG_ID")
+	@Column(name = "BARANG_HISTORY_ID")
 	private Integer id;
+	
+	@ManyToOne
+	@JoinColumn(name = "BARANG_ID", referencedColumnName = "BARANG_ID")
+	private Barang barang;
 
 	@Column(name = "NAMA")
 	private String nama;
@@ -66,18 +68,23 @@ public class Barang {
 	@Column(name="ISDELETE")
 	private Integer isDelete;
 	
-	@Column(name="ISAPPROVAL")
-	private Integer isApproval;
+	@Column(name="STATUS")
+	private Integer status;
+	
+	@Column(name = "KETERANGAN")
+	private String keterangan;
 	
 	@Column(name="STATUS_BARANG")
 	private Integer statusBarang;
 	
-	@Transient
-	private Boolean isRevisi;
-	
-	@Transient
-	private Integer barang;
-	
+	public Barang getBarang() {
+		return barang;
+	}
+
+	public void setBarang(Barang barang) {
+		this.barang = barang;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -182,12 +189,20 @@ public class Barang {
 		this.hargaBeli = hargaBeli;
 	}
 
-	public Integer getIsApproval() {
-		return isApproval;
+	public Integer getStatus() {
+		return status;
 	}
 
-	public void setIsApproval(Integer isApproval) {
-		this.isApproval = isApproval;
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public String getKeterangan() {
+		return keterangan;
+	}
+
+	public void setKeterangan(String keterangan) {
+		this.keterangan = keterangan;
 	}
 
 	public Integer getStatusBarang() {
@@ -197,22 +212,5 @@ public class Barang {
 	public void setStatusBarang(Integer statusBarang) {
 		this.statusBarang = statusBarang;
 	}
-
-	public Boolean getIsRevisi() {
-		return isRevisi;
-	}
-
-	public void setIsRevisi(Boolean isRevisi) {
-		this.isRevisi = isRevisi;
-	}
-
-	public Integer getBarang() {
-		return barang;
-	}
-
-	public void setBarang(Integer barang) {
-		this.barang = barang;
-	}
-	
 	
 }

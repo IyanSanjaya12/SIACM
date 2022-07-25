@@ -5287,6 +5287,7 @@
 		"judulEdit":"Edit Barang",
 		"barang": "Barang",
 		"tipe": "Jenis Barang",
+		"persetujuan":"Persetujuan Data Barang",
 		"list": {
 			"nomor": "No",
 			"namabarang": "Nama Barang",

@@ -100,6 +100,26 @@ WHERE
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="TOTAL_KEUNTUNGAN" class="java.lang.Double"/>
+	<group name="footer">
+		<groupExpression><![CDATA[$V{PAGE_NUMBER}]]></groupExpression>
+		<groupFooter>
+			<band height="50">
+				<textField>
+					<reportElement mode="Opaque" x="6" y="0" width="787" height="37" backcolor="#CCCCCC" uuid="ce5a2af7-0fd3-4755-a56c-4a00c65335dc"/>
+					<box leftPadding="2" rightPadding="2">
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
+					<textFieldExpression><![CDATA["TOTAL KEUNTUNGAN :  "+msg("{0,number,#,##0.00}", ($F{TOTAL_KEUNTUNGAN}))]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -397,21 +417,4 @@ WHERE
 			</textField>
 		</band>
 	</detail>
-	<columnFooter>
-		<band height="44">
-			<textField>
-				<reportElement mode="Opaque" x="6" y="0" width="787" height="37" backcolor="#CCCCCC" uuid="ce5a2af7-0fd3-4755-a56c-4a00c65335dc"/>
-				<box leftPadding="2" rightPadding="2">
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Arial"/>
-				</textElement>
-				<textFieldExpression><![CDATA["TOTAL KEUNTUNGAN :  "+msg("{0,number,#,##0.00}", ($F{TOTAL_KEUNTUNGAN}))]]></textFieldExpression>
-			</textField>
-		</band>
-	</columnFooter>
 </jasperReport>

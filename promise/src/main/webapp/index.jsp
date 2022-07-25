@@ -1013,6 +1013,9 @@
     <script src="src/js/modules/promise/procurement/master/barang/barang.index.controller.js"></script>
     <script src="src/js/modules/promise/procurement/master/barang/barang.add.edit.controller.js"></script>
     
+    <script src="src/js/modules/promise/procurement/master/barang/approval.barang.index.controller.js"></script>
+    <script src="src/js/modules/promise/procurement/master/barang/approval.barang.detail.controller.js"></script>
+    
     <script src="src/js/modules/promise/procurement/transaction/penjualan/penjualan.index.controller.js"></script>
     <script src="src/js/modules/promise/procurement/transaction/penjualan/penjualan.detail.controller.js"></script>
     

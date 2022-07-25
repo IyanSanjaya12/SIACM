@@ -72,6 +72,7 @@ public class BarangSession extends AbstractFacadeWithAudit<Barang>{
 	}
 
 	public Barang update(Barang barang, Token token) {
+		barang.setIsDelete(0);
 		barang.setUpdated(new Date());
 		super.edit(barang, AuditHelper.OPERATION_UPDATE, token);
 		return barang;

@@ -5269,6 +5269,7 @@
 		"judulEdit":"Edit Item",
 		"barang": "Item",
 		"tipe": "Item Type",
+		"persetujuan":"Approval Data Item",
 		"list": {
 			"nomor": "No",
 			"namabarang": "Item Name",

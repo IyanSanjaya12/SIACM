@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response;
 
 import id.co.promise.procurement.entity.Token;
 import id.co.promise.procurement.entity.siacm.Barang;
+import id.co.promise.procurement.entity.siacm.BarangHistory;
 import id.co.promise.procurement.security.TokenSession;
 
 @Stateless
@@ -24,6 +25,10 @@ import id.co.promise.procurement.security.TokenSession;
 public class BarangService {
 	@EJB
 	BarangSession barangSession;
+	
+	@EJB
+	BarangHistorySession barangHistorySession;
+	
 	@EJB
 	TokenSession tokenSession;
 	
@@ -45,11 +50,33 @@ public class BarangService {
 	public Response save(Barang barang, @HeaderParam("Authorization") String strToken ) {
 		Token token = tokenSession.findByToken(strToken);
 		try {
+			BarangHistory barangHistory = new BarangHistory();
+			Barang barangNew = new Barang();
 			if(barang.getId() != null) {
-				barangSession.update(barang, token);
-			}else {
-				barangSession.insert(barang, token);
+				barangHistory.setBarang(barang);
+				if(barang.getIsRevisi()) {
+					barangHistory.setBarang(barangSession.getbarang(barang.getBarang()));
+				}
+				barangNew = barangHistory.getBarang();
+				barangNew.setIsApproval(1);//waitingForApproval
+				barangSession.update(barangNew, token);
 			}
+			barangHistory.setHarga(barang.getHarga());
+			barangHistory.setHargaBeli(barang.getHargaBeli());
+			barangHistory.setJumlah(barang.getJumlah());
+			barangHistory.setKode(barang.getKode());
+			barangHistory.setMobil(barang.getMobil());
+			barangHistory.setNama(barang.getNama());
+			barangHistory.setStokMinimal(barang.getStokMinimal());
+			barangHistory.setStatusBarang(barang.getStatusBarang());
+			if(barang.getIsRevisi()) {
+				barangHistory.setStatus(1);
+				barangHistory.setId(barang.getId());
+				barangHistorySession.update(barangHistory, token);
+			}else {
+				barangHistorySession.insert(barangHistory, token);				
+			}
+			
 			return Response.ok(barang).build();
 		} catch (Exception e) {
 			e.printStackTrace();

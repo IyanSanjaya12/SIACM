@@ -3,23 +3,13 @@
 
     angular
         .module('naut')
-        .controller('BarangAddEditController', BarangAddEditController);
+        .controller('BarangHistoryDetailController', BarangHistoryDetailController);
 
-    function BarangAddEditController(RequestService, $scope, $http, $rootScope, $resource, $location, $state, $stateParams, $log, ModalService) {
+    function BarangHistoryDetailController(RequestService, $scope, $http, $rootScope, $resource, $location, $state, $stateParams, $log, ModalService) {
         var vm = this;
         vm.todo = ($stateParams.todo != undefined) ? $stateParams.todo : null;
-        vm.barang = ($stateParams.barang != undefined) ? $stateParams.barang : null;
-        if (angular.equals(vm.todo, 'add')){
-        	vm.barang = {
-        			nama : '',
-        			kode: '',
-        			harga:'',
-        			jumlah:'',
-        			stokMinimal:'',
-        			mobil:{}
-        			
-        	}
-        }
+        vm.barangHistory = ($stateParams.barangHistory != undefined) ? $stateParams.barangHistory : null;
+        
         $scope.getMobilList = function () {
             vm.loading = true;
             RequestService.doGET('/master/mobil/getMobilList')
@@ -31,19 +21,18 @@
 				vm.loading = false;
 			});
         }
+        $scope.btnSimpan = function(status){
+        	vm.barangHistory.status = status;
+        	$scope.save();
+        }
         $scope.save = function (){
-        	if(angular.equals(vm.todo,'revisi')){
-        		vm.barang.isRevisi = true;
-        	}else{
-        		vm.barang.isRevisi = false;
-        	}
         	if($scope.checkValidasi()){
         		RequestService.modalConfirmation().then(function(result) {
 					ModalService.showModalInformationBlock();
-					RequestService.doPOSTJSON('/master/barang/save', vm.barang).then(function success(data) {
+					RequestService.doPOSTJSON('/master/barangHistory/save', vm.barangHistory).then(function success(data) {
 						ModalService.closeModalInformation();
 						RequestService.informSaveSuccess();
-						$state.go ('app.promise.procurement-master-barang-index');
+						$state.go ('app.promise.procurement-approval-barang-index');
 					}, function error(response) {
 						ModalService.closeModalInformation();
 						$log.info("proses gagal");
@@ -55,44 +44,44 @@
         $scope.checkValidasi = function(){
         	var error = 'silahkan isi kolom ini!';
         	var valid = true;
-        	if(!RequestService.validasiEmpty(vm.barang.nama)){
+        	if(!RequestService.validasiEmpty(vm.barangHistory.nama)){
         		vm.errorMessageNama = error;
         		valid = false;
         	}else{
         		vm.errorMessageNama = '';
         	}
-        	if(!RequestService.validasiEmpty(vm.barang.kode)){
+        	if(!RequestService.validasiEmpty(vm.barangHistory.kode)){
         		vm.errorMessageKode = error;
         		valid = false;
         	}else{
         		vm.errorMessageKode = '';
         	}
-        	if(!RequestService.validasiEmpty(vm.barang.hargaBeli)){
+        	if(!RequestService.validasiEmpty(vm.barangHistory.hargaBeli)){
         		vm.errorMessageHargaBeli = error;
         		valid = false;
         	}else{
         		vm.errorMessageHargaBeli = '';
         	}
-        	if(!RequestService.validasiEmpty(vm.barang.harga)){
+        	if(!RequestService.validasiEmpty(vm.barangHistory.harga)){
         		vm.errorMessageHarga = error;
         		valid = false;
         	}else{
         		vm.errorMessageHarga = '';
         	}
-        	if(!RequestService.validasiEmpty(vm.barang.jumlah)){
+        	if(!RequestService.validasiEmpty(vm.barangHistory.jumlah)){
         		vm.errorMessageStok = error;
         		valid = false;
         	}else{
         		vm.errorMessageStok = '';
         	}
         		
-        	if(!RequestService.validasiEmpty(vm.barang.stokMinimal)){
+        	if(!RequestService.validasiEmpty(vm.barangHistory.stokMinimal)){
         		vm.errorMessageStokMinimal = error;
         		valid = false;
         	}else{
         		vm.errorMessageStokMinimal = '';
         	}
-        	if(!RequestService.validasiEmpty(vm.barang.mobil)){
+        	if(!RequestService.validasiEmpty(vm.barangHistory.mobil)){
         		vm.errorMessageMobil = error;
         		valid = false;
         	}else{
@@ -104,10 +93,10 @@
         $scope.getMobilList();
         
         $scope.back = function (){
-        	$state.go ('app.promise.procurement-master-barang-index');
+        	$state.go ('app.promise.procurement-master-barangHistory-index');
         }
     }
 
-    BarangAddEditController.$inject = ['RequestService', '$scope', '$http', '$rootScope', '$resource', '$location', '$state', '$stateParams', '$log', 'ModalService'];
+    BarangHistoryDetailController.$inject = ['RequestService', '$scope', '$http', '$rootScope', '$resource', '$location', '$state', '$stateParams', '$log', 'ModalService'];
 
 })();

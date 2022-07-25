@@ -5,7 +5,7 @@
         .module('naut')
         .controller('PenjualanDetailController', PenjualanDetailController);
 
-    function PenjualanDetailController(RequestService, $scope, $http, $filter, $rootScope, $resource, $location, $state, $stateParams, $log, ModalService, toaster) {
+    function PenjualanDetailController(RequestService, $scope, $http, $filter, $rootScope, $resource, $location, $state, $stateParams, $log, ModalService, toaster, $window) {
         var vm = this;
         vm.todo = ($stateParams.todo != undefined) ? $stateParams.todo : null;
         vm.penjualan = ($stateParams.penjualan != undefined) ? $stateParams.penjualan : null;
@@ -195,6 +195,10 @@
 			$scope.getTotalPenjualan();
 		}
 		
+		$scope.doPrint = function(penjualanId){
+			$window.open($rootScope.backendAddress + '/procurement/report/printReportGet?reportFileName=strukPenjualan&penjualanId='+penjualanId, '_blank');
+		}
+		
 		$scope.save = function (){
 			var pejualanDto = {
 					penjualan: vm.penjualan,
@@ -202,13 +206,19 @@
 			}
         	if($scope.checkValidasi()){
         		RequestService.modalConfirmation().then(function(result) {
-					ModalService.showModalInformationBlock();
+//					ModalService.showModalInformationBlock();
 					RequestService.doPOSTJSON('/transaction/penjualan/save', pejualanDto).then(function success(data) {
-						ModalService.closeModalInformation();
-						RequestService.informSaveSuccess();
+//						ModalService.closeModalInformation();
+						RequestService.modalConfirmation("Apakah ingin mencetak Struk?").then(function(result) {
+							$scope.doPrint(data.penjualan.id);
+							RequestService.informSaveSuccess();
+						}, function error(response) {
+							$log.info("proses gagal");
+							RequestService.informError("Terjadi Kesalahan Pada System");
+		    			});
 						$state.go ('app.promise.procurement-transaction-penjualan-index');
 					}, function error(response) {
-						ModalService.closeModalInformation();
+//						ModalService.closeModalInformation();
 						$log.info("proses gagal");
 						RequestService.informError("Terjadi Kesalahan Pada System");
 					});
@@ -221,6 +231,6 @@
         }
     }
 
-    PenjualanDetailController.$inject = ['RequestService', '$scope', '$http', '$filter', '$rootScope', '$resource', '$location', '$state', '$stateParams', '$log', 'ModalService', 'toaster'];
+    PenjualanDetailController.$inject = ['RequestService', '$scope', '$http', '$filter', '$rootScope', '$resource', '$location', '$state', '$stateParams', '$log', 'ModalService', 'toaster', '$window'];
 
 })();

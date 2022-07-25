@@ -266,10 +266,9 @@
 				<div align="center">
 					<br/>
 					<br/>
-					<button type="button" ripple="" class="btn btn-default" ng-click="back()"><span translate="template.button.kembali"></span>
-					</button>
-					<button ng-show="vm.todo != 'edit'" type="button" ripple="" class="btn btn-primary" ng-click="save()"><span translate="template.button.simpan"></span>
-					</button>
+					<button type="button" ripple="" class="btn btn-default" ng-click="back()"><span translate="template.button.kembali"></span></button>
+					<button ng-show="vm.todo != 'edit'" type="button" ripple="" class="btn btn-primary" ng-click="save()"><span translate="template.button.simpan"></span></button>
+					<button ng-show="vm.todo == 'edit'" type="button" id="print" class="btn btn-print btn-primary" title="Print" ng-click="doPrint(vm.penjualan.id)">&nbsp;Print</button>
 				</div>
 			</div>
 		</div>

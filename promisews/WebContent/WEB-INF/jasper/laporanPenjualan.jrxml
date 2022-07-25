@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="laporanPenjualan" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fe5957da-b777-467c-8b26-572c0ad4ae5a">
-	<property name="ireport.zoom" value="0.8264462809917356"/>
+	<property name="ireport.zoom" value="1.2100000000000009"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<import value="net.sf.jasperreports.engine.*"/>
@@ -91,109 +91,137 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="230" splitType="Stretch">
-			<staticText>
-				<reportElement x="247" y="15" width="308" height="31" uuid="4c2fb628-4347-449c-83e1-ebb6a35c4c7f"/>
-				<textElement>
-					<font size="18" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Laporan Penjualan Centra Auto AC ]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="281" y="52" width="56" height="20" uuid="eda3071a-c0b5-4506-bbab-5980555911f8"/>
-				<textElement>
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Periode:]]></text>
-			</staticText>
+		<band height="451" splitType="Stretch">
 			<textField>
-				<reportElement x="346" y="53" width="79" height="20" uuid="571e0ade-3d56-4648-8a44-bee2675b3ed6"/>
-				<textElement>
-					<font size="12" isBold="true"/>
+				<reportElement x="290" y="57" width="223" height="40" forecolor="#3300CC" uuid="12826efb-36b9-4d52-ade3-8e118dd7e85a"/>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="false" isItalic="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{startDate}]]></textFieldExpression>
-			</textField>
-			<subreport>
-				<reportElement x="0" y="96" width="802" height="115" uuid="70821be6-1080-45d9-a994-99d8bd9c56f2"/>
-				<subreportParameter name="SUBREPORT_DIR">
-					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="startDate">
-					<subreportParameterExpression><![CDATA[$P{startDate}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="endDate">
-					<subreportParameterExpression><![CDATA[$P{endDate}]]></subreportParameterExpression>
-				</subreportParameter>
-				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "laporanPenjualan_detail.jasper"]]></subreportExpression>
-			</subreport>
-			<textField>
-				<reportElement x="448" y="53" width="79" height="20" uuid="72d48f99-c80b-4320-ae78-07b464623340"/>
-				<textElement>
-					<font size="12" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{endDate}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Komp. Ruko Sutera Niaga I No. 31, Alam Sutera \n"+
+"Jl.Raya Serpong, Tangerang Selatan 15325 \n"+
+"Telp 021 - 5398669, 0817-8912-07"]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="420" y="53" width="23" height="20" uuid="e68bfcb7-9796-47f2-ab88-3d5d85fe6f3c"/>
-				<textElement>
-					<font size="12" isBold="true"/>
+				<reportElement mode="Opaque" x="290" y="11" width="222" height="24" forecolor="#CC3300" uuid="6db980c4-67fb-425c-92c3-4d547e21969f"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="20" isBold="true" isItalic="true"/>
 				</textElement>
-				<text><![CDATA[s/d]]></text>
+				<text><![CDATA[Centra Auto AC]]></text>
 			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="296" y="35" width="211" height="23" forecolor="#000000" uuid="70d7b38b-f261-4599-85ab-f29446d3a83e"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[(Car AC Workshop)]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="97" width="802" height="2" uuid="4f2183cf-ab1d-411d-bc9c-c77d43c369cb"/>
+			</line>
+			<frame>
+				<reportElement positionType="Float" x="0" y="99" width="802" height="176" uuid="54220262-fce9-4200-9494-72f531230813"/>
+				<staticText>
+					<reportElement x="253" y="9" width="308" height="31" uuid="4c2fb628-4347-449c-83e1-ebb6a35c4c7f"/>
+					<textElement>
+						<font size="18" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Laporan Penjualan Centra Auto AC ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="287" y="46" width="56" height="20" uuid="eda3071a-c0b5-4506-bbab-5980555911f8"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Periode:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="352" y="47" width="79" height="20" uuid="571e0ade-3d56-4648-8a44-bee2675b3ed6"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{startDate}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="454" y="47" width="79" height="20" uuid="72d48f99-c80b-4320-ae78-07b464623340"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{endDate}]]></textFieldExpression>
+				</textField>
+				<subreport>
+					<reportElement x="0" y="73" width="802" height="95" uuid="70821be6-1080-45d9-a994-99d8bd9c56f2"/>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="startDate">
+						<subreportParameterExpression><![CDATA[$P{startDate}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="endDate">
+						<subreportParameterExpression><![CDATA[$P{endDate}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "laporanPenjualan_detail.jasper"]]></subreportExpression>
+				</subreport>
+				<staticText>
+					<reportElement x="431" y="47" width="23" height="20" uuid="e68bfcb7-9796-47f2-ab88-3d5d85fe6f3c"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[s/d]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="0" y="275" width="802" height="176" uuid="150bf178-a3c6-4333-94e2-7bf273399e15"/>
+				<textField>
+					<reportElement x="450" y="46" width="79" height="20" uuid="207d70e7-78b7-4f04-bd6a-e731134cc25e"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{endDate}]]></textFieldExpression>
+				</textField>
+				<subreport>
+					<reportElement x="0" y="77" width="802" height="99" uuid="3c243cd2-6e6c-4709-99fd-cbe832578db1"/>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="startDate">
+						<subreportParameterExpression><![CDATA[$P{startDate}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="endDate">
+						<subreportParameterExpression><![CDATA[$P{endDate}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "laporanPenjualan_detail2.jasper"]]></subreportExpression>
+				</subreport>
+				<staticText>
+					<reportElement x="422" y="46" width="23" height="20" uuid="5f894776-e815-4f38-adb1-cea4a54e9d0e"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[s/d]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="283" y="45" width="56" height="20" uuid="ca5cc699-1eb1-4d78-b720-63d8fe41ba8e"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Periode:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="348" y="46" width="79" height="20" uuid="b694d01c-d917-4ecb-b0e4-9c1e1fea4466"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{startDate}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="287" y="8" width="229" height="31" uuid="9aa95384-6c6b-427e-8eb2-da63e2d18bde"/>
+					<textElement>
+						<font size="18" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Detail Transaksi Penjualan]]></text>
+				</staticText>
+			</frame>
 		</band>
 	</title>
-	<pageHeader>
-		<band height="220">
-			<subreport>
-				<reportElement x="0" y="78" width="802" height="126" uuid="3c243cd2-6e6c-4709-99fd-cbe832578db1"/>
-				<subreportParameter name="SUBREPORT_DIR">
-					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="startDate">
-					<subreportParameterExpression><![CDATA[$P{startDate}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="endDate">
-					<subreportParameterExpression><![CDATA[$P{endDate}]]></subreportParameterExpression>
-				</subreportParameter>
-				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "laporanPenjualan_detail2.jasper"]]></subreportExpression>
-			</subreport>
-			<staticText>
-				<reportElement x="287" y="9" width="229" height="31" uuid="9aa95384-6c6b-427e-8eb2-da63e2d18bde"/>
-				<textElement>
-					<font size="18" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Detail Transaksi Penjualan]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="450" y="47" width="79" height="20" uuid="207d70e7-78b7-4f04-bd6a-e731134cc25e"/>
-				<textElement>
-					<font size="12" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{endDate}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="348" y="47" width="79" height="20" uuid="b694d01c-d917-4ecb-b0e4-9c1e1fea4466"/>
-				<textElement>
-					<font size="12" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{startDate}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="283" y="46" width="56" height="20" uuid="ca5cc699-1eb1-4d78-b720-63d8fe41ba8e"/>
-				<textElement>
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Periode:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="422" y="47" width="23" height="20" uuid="5f894776-e815-4f38-adb1-cea4a54e9d0e"/>
-				<textElement>
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[s/d]]></text>
-			</staticText>
-		</band>
-	</pageHeader>
 </jasperReport>

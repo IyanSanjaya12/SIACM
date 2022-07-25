@@ -3,9 +3,9 @@
 
     angular
         .module('naut')
-        .controller('PenjualanDetailController', PenjualanDetailController);
+        .controller('LaporanPenjualanDetailController', LaporanPenjualanDetailController);
 
-    function PenjualanDetailController(RequestService, $scope, $http, $filter, $rootScope, $resource, $location, $state, $stateParams, $log, ModalService, toaster) {
+    function LaporanPenjualanDetailController(RequestService, $scope, $http, $filter, $rootScope, $resource, $location, $state, $stateParams, $log, ModalService, toaster) {
         var vm = this;
         vm.todo = ($stateParams.todo != undefined) ? $stateParams.todo : null;
         vm.penjualan = ($stateParams.penjualan != undefined) ? $stateParams.penjualan : null;
@@ -221,6 +221,6 @@
         }
     }
 
-    PenjualanDetailController.$inject = ['RequestService', '$scope', '$http', '$filter', '$rootScope', '$resource', '$location', '$state', '$stateParams', '$log', 'ModalService', 'toaster'];
+    LaporanPenjualanDetailController.$inject = ['RequestService', '$scope', '$http', '$filter', '$rootScope', '$resource', '$location', '$state', '$stateParams', '$log', 'ModalService', 'toaster'];
 
 })();

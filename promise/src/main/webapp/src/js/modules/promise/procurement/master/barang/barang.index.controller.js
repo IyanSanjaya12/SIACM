@@ -19,6 +19,19 @@
 				vm.loading = false;
 			});
         }
+        
+        $scope.getBarangHistoryList = function () {
+            vm.loading = true;
+            RequestService.doGET('/master/barangHistory/getBarangHistoryRevisiList')
+            .then(function success(data) {
+				vm.barangHistoryList = data;
+				vm.loading = false;
+			}, function error(response) {
+				RequestService.informInternalError();
+				vm.loading = false;
+			});
+        }
+        
         $scope.add = function(){
         	$state.go('app.promise.procurement-master-barang-add-edit', {
 				todo : 'add',
@@ -28,6 +41,15 @@
         $scope.edit = function(barang){
         	$state.go('app.promise.procurement-master-barang-add-edit', {
 				todo : 'edit',
+				barang : barang
+			});
+        }
+        $scope.revisi = function(barang){
+        	barang.barang = barang.barang.id;
+        	delete barang['status'];
+        	delete barang['keterangan'];
+        	$state.go('app.promise.procurement-master-barang-add-edit', {
+				todo : 'revisi',
 				barang : barang
 			});
         }
@@ -46,6 +68,7 @@
         }
         
         $scope.getBarangList();
+        $scope.getBarangHistoryList();
     }
 
     BarangIndexController.$inject = ['RequestService', '$scope', '$http', '$rootScope', '$resource', '$location', '$state', 'ModalService'];

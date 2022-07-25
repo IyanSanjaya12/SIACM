@@ -11,46 +11,89 @@
         </a>
     </h4>
 	<div class="panel-body collapse in">
-		<div class="text-right pr">
-			<button ng-class="'bg-' + app.theme.name" type="button" class="btn btn-primary btn-add" ng-click="add()"> 
-				<span translate="barang.list.tambah"></span>
-			</button>
-		</div>
-		<br />
-		<div class="col-md-12">
-			<div class="text-center" ng-if="vm.loading == true"> <strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px" /></strong>
-			</div>
-			<table datatable="ng" class="row-border hover table-striped">
-				<thead>
-					<tr>
-						<th scope="col"> <span translate="barang.list.nomor"></span></th>
-						<th scope="col" style="text-align:left"> <span translate="barang.list.namabarang"></span></th>
-						<th scope="col" style="text-align:left"> <span translate="barang.list.kodebarang"></span></th>
-						<th scope="col" style="text-align:right"> <span translate="barang.list.harga"></span></th>
-						<th scope="col" style="text-align:right"> <span translate="barang.list.stok"></span></th>
-						<th scope="col" style="text-align:right"> <span translate="barang.list.stokminimal"></span></th>
-						<th scope="col" style="text-align:left"> <span translate="barang.list.jenismobil"></span></th>
-						<th scope="col"> <span translate="barang.list.aksi"></span></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="barang in vm.barangList">
-						<td class="text-center">{{ $index+1 }}</td>
-						<td ng-bind="barang.nama"></td>
-						<td ng-bind="barang.kode"></td>
-						<td style="text-align:right" ng-bind="(barang.harga | currency : '')"></td>
-						<td style="text-align:right" ng-if="barang.jumlah <= barang.stokMinimal" bgcolor="#e6e6e6"><strong><font color="red">{{barang.jumlah}}</font></strong></td>
-						<td style="text-align:right" ng-if="barang.jumlah > barang.stokMinimal">{{barang.jumlah}}</td>
-						<td style="text-align:right" ng-bind="barang.stokMinimal"></td>
-						<td ng-bind="barang.mobil.nama"></td>
-						<td style="text-align:center">
-							<button type="button" ng-class="'bg-' + app.theme.name" class="btn btn-primary btn-sm btn-edit" ng-click="edit(barang)"></button>
-							<button type="button" class="btn btn-danger btn-sm btn-delete" ng-click="deleteBarang(barang)"></button>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<tabset class="tab-container small-tab"> 
+  				<tab heading="Data Barang">
+				<div class="text-right pr">
+					<button ng-class="'bg-' + app.theme.name" type="button" class="btn btn-primary btn-add" ng-click="add()"> 
+						<span translate="barang.list.tambah"></span>
+					</button>
+				</div>
+				<br />
+				<div class="col-md-12">
+					<div class="text-center" ng-if="vm.loading == true"> <strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px" /></strong>
+					</div>
+					<table datatable="ng" class="row-border hover table-striped">
+						<thead>
+							<tr>
+								<th scope="col"> <span translate="barang.list.nomor"></span></th>
+								<th scope="col" style="text-align:left"> <span translate="barang.list.namabarang"></span></th>
+								<th scope="col" style="text-align:left"> <span translate="barang.list.kodebarang"></span></th>
+								<th scope="col" style="text-align:right"> <span translate="barang.list.harga"></span></th>
+								<th scope="col" style="text-align:right"> <span translate="barang.list.stok"></span></th>
+								<th scope="col" style="text-align:right"> <span translate="barang.list.stokminimal"></span></th>
+								<th scope="col" style="text-align:left"> <span translate="barang.list.jenismobil"></span></th>
+								<th scope="col" style="text-align:left">Status Approval</th>
+								<th scope="col"> <span translate="barang.list.aksi"></span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="barang in vm.barangList">
+								<td class="text-center">{{ $index+1 }}</td>
+								<td ng-bind="barang.nama"></td>
+								<td ng-bind="barang.kode"></td>
+								<td style="text-align:right" ng-bind="(barang.harga | currency : '')"></td>
+								<td style="text-align:right" ng-if="barang.jumlah <= barang.stokMinimal" bgcolor="#e6e6e6"><strong><font color="red">{{barang.jumlah}}</font></strong></td>
+								<td style="text-align:right" ng-if="barang.jumlah > barang.stokMinimal">{{barang.jumlah}}</td>
+								<td style="text-align:right" ng-bind="barang.stokMinimal"></td>
+								<td ng-bind="barang.mobil.nama"></td>
+								<td style="text-align:right" ng-bind="barang.isApproval == 1?'Menunggu Persetujuan':barang.isApproval == 2?'Revisi':'Disetujui'"></td>
+								<td style="text-align:center">
+									<button ng-if="barang.isApproval != 1" type="button" ng-class="'bg-' + app.theme.name" class="btn btn-primary btn-sm btn-edit" ng-click="edit(barang)"></button>
+									<!-- <button type="button" class="btn btn-danger btn-sm btn-delete" ng-click="deleteBarang(barang)"></button> -->
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</tab>
+			<tab heading="Data Revisi">
+				<div class="col-md-12">
+					<div class="text-center" ng-if="vm.loading == true"> <strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px" /></strong>
+					</div>
+					<table datatable="ng" class="row-border hover table-striped">
+						<thead>
+							<tr>
+								<th scope="col"> <span translate="barang.list.nomor"></span></th>
+								<th scope="col" style="text-align:left"> <span translate="barang.list.namabarang"></span></th>
+								<th scope="col" style="text-align:left"> <span translate="barang.list.kodebarang"></span></th>
+								<th scope="col" style="text-align:right"> <span translate="barang.list.harga"></span></th>
+								<th scope="col" style="text-align:right"> <span translate="barang.list.stok"></span></th>
+								<th scope="col" style="text-align:right"> <span translate="barang.list.stokminimal"></span></th>
+								<th scope="col" style="text-align:left"> <span translate="barang.list.jenismobil"></span></th>
+								<th scope="col" style="text-align:left">Keterangan</th>
+								<th scope="col"> <span translate="barang.list.aksi"></span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="bh in vm.barangHistoryList">
+								<td class="text-center">{{ $index+1 }}</td>
+								<td ng-bind="bh.nama"></td>
+								<td ng-bind="bh.kode"></td>
+								<td style="text-align:right" ng-bind="(bh.harga | currency : '')"></td>
+								<td style="text-align:right" ng-if="bh.jumlah <= bh.stokMinimal" bgcolor="#e6e6e6"><strong><font color="red">{{bh.jumlah}}</font></strong></td>
+								<td style="text-align:right" ng-if="bh.jumlah > bh.stokMinimal">{{bh.jumlah}}</td>
+								<td style="text-align:right" ng-bind="bh.stokMinimal"></td>
+								<td ng-bind="bh.mobil.nama"></td>
+								<td ng-bind="bh.keterangan"></td>
+								<td style="text-align:center">
+									<button type="button" ng-class="'bg-' + app.theme.name" class="btn btn-primary btn-sm btn-search" ng-click="revisi(bh)"></button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+	    	</tab>
+		</tabset>
 	</div>
 </div>
 <!--END CONTROLLER-->

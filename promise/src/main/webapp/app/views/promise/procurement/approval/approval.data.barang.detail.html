@@ -1,13 +1,11 @@
 <div class="app-view-header"> 
-	<span translate="barang.judul"></span>
+	<span translate="barang.persetujuan"></span>
 </div>
 <!--START CONTROLLER-->
-<div class="panel panel-primary" ng-controller="BarangAddEditController as vm">
+<div class="panel panel-primary" ng-controller="BarangHistoryDetailController as vm">
 	<h4 ng-class="'bg-' + app.theme.name" class="panel-heading">
 			<em class="fa fa-tasks"></em>
-			<span ng-if="vm.todo=='add'" translate="barang.judulTambah"></span>
-			<span ng-if="vm.todo=='edit'" translate="barang.judulEdit"></span>
-			<span ng-if="vm.todo=='revisi'">Revisi Data Barang</span>
+			<span  translate="barang.persetujuan"></span>
 			<a class="pull-right btn-collapse" data-toggle="collapse" data-parent=".panel" href=".panel-body" aria-expanded="true" aria-controls="panel-body">
 				<em class="fa fa-chevron-circle-down"></em>
 			</a>
@@ -22,7 +20,7 @@
 							<span translate="barang.list.namabarang"></span>
 						</label>
 						<div class="col-lg-8">
-							<input name="namaBarang" maxlength="255" class="form-control" ng-model="vm.barang.nama">
+							<input name="namaBarang" maxlength="255" class="form-control" ng-model="vm.barangHistory.nama" disabled>
 							<strong style="color: red" translate={{vm.errorMessageNama}}></strong> 
 						</div>
 					</div>
@@ -31,7 +29,7 @@
 							<span translate="barang.list.kodebarang"></span>
 						</label>
 						<div class="col-lg-8">
-							<input name="kodeBarang" maxlength="255" class="form-control" ng-model="vm.barang.kode">
+							<input name="kodeBarang" maxlength="255" class="form-control" ng-model="vm.barangHistory.kode" disabled>
 							<strong style="color: red" translate={{vm.errorMessageKode}}></strong> 
 						</div>
 					</div>
@@ -40,7 +38,7 @@
 							<span translate="barang.list.hargabeli"></span>
 						</label>
 						<div class="col-lg-8 no-search">
-							<input name="hargaBeli" maxlength="30" promise-numbers-only-copy promise-currency-blur class="form-control" ng-model="vm.barang.hargaBeli"> 
+							<input name="hargaBeli" maxlength="30" disabled promise-numbers-only-copy promise-currency-blur class="form-control" ng-model="vm.barangHistory.hargaBeli"> 
 							<strong style="color: red" translate={{vm.errorMessageHargaBeli}}></strong> 
 						</div>
 					</div>
@@ -49,7 +47,7 @@
 							<span translate="barang.list.harga"></span>
 						</label>
 						<div class="col-lg-8 no-search">
-							<input name="hargaBarang" maxlength="30" promise-numbers-only-copy promise-currency-blur class="form-control" ng-model="vm.barang.harga"> 
+							<input name="hargaBarang" maxlength="30" disabled promise-numbers-only-copy promise-currency-blur class="form-control" ng-model="vm.barangHistory.harga"> 
 							<strong style="color: red" translate={{vm.errorMessageHarga}}></strong> 
 						</div>
 					</div>
@@ -58,7 +56,7 @@
 							<span translate="barang.list.stok"></span>
 						</label>
 						<div class="col-lg-8 no-search">
-							<input name="stokBarang" maxlength="30" promise-numbers-only-copy class="form-control" ng-model="vm.barang.jumlah"> 
+							<input name="stokBarang" maxlength="30" disabled promise-numbers-only-copy class="form-control" ng-model="vm.barangHistory.jumlah"> 
 							<strong style="color: red" translate={{vm.errorMessageStok}}></strong> 
 						</div>
 					</div>
@@ -67,7 +65,7 @@
 							<span translate="barang.list.stokminimal"></span>
 						</label>
 						<div class="col-lg-8 no-search">
-							<input name="stokMinimal" promise-numbers-only-copy maxlength="30" class="form-control" ng-model="vm.barang.stokMinimal">
+							<input name="stokMinimal" disabled promise-numbers-only-copy maxlength="30" class="form-control" ng-model="vm.barangHistory.stokMinimal">
 							<strong style="color: red" translate={{vm.errorMessageStokMinimal}}></strong> 
 						</div>
 					</div>
@@ -76,7 +74,7 @@
 							Status Barang
 						</label>
 						<div class="col-lg-8">
-							<select name = "statusBarang" class="form-control" ng-model="vm.barang.statusBarang">
+							<select name = statusBarang" class="form-control" ng-model="vm.barang.statusBarang">
 								<option value="" selected disabled>+pilih+</option>
 								<option value="1">Aktif</option>
 								<option value="0">Non AKtif</option>
@@ -92,8 +90,8 @@
 							<span translate="mobil.nama"></span>
 						</label>
 						<div class="col-lg-8 no-search">
-							<ui-select ng-model="vm.barang.mobil" theme="bootstrap" reset-search-input="false" ng-change="changeNomorKontrak()">
-			                    <ui-select-match placeholder="Select Tipe Mobil">{{vm.barang.mobil.nama}}</ui-select-match>
+							<ui-select ng-model="vm.barangHistory.mobil" disabled theme="bootstrap" reset-search-input="false" ng-change="changeNomorKontrak()">
+			                    <ui-select-match placeholder="Select Tipe Mobil">{{vm.barangHistory.mobil.nama}}</ui-select-match>
 			                    <ui-select-choices repeat="data in vm.mobilList" refresh="findMobil($select.search)" refresh-delay="0">
 			                        <div ng-bind-html="data.nama | highlight: $select.search" ></div>
 			                    </ui-select-choices>
@@ -106,11 +104,10 @@
 							<span translate="mobil.merk"></span>
 						</label>
 						<div class="col-lg-8">
-							<input name="streetAddress" class="form-control" ng-model="vm.barang.mobil.merk" disabled>
+							<input name="merk" disabled class="form-control" ng-model="vm.barangHistory.mobil.merk" disabled>
 							<strong style="color: red" translate={{vm.errorMessage}}></strong> 
 						</div>
 					</div>
-					
 				</fieldset>
 				<br>
 			</div>
@@ -118,13 +115,22 @@
 		</div>
 		<div class="panel-footer">
 			<div class="form-group">
-				<div align="center">
-					<br/>
-					<br/>
-					<button type="button" ripple="" class="btn btn-default" ng-click="back()"><span translate="template.button.kembali"></span>
-					</button>
-					<button type="button" ripple="" class="btn btn-primary" ng-click="save()"><span translate="template.button.simpan"></span>
-					</button>
+				<div class="text-center">
+					<h3>Approve this Request</h3>
+					<span>This Request Needs Your Approval</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="form-group text-center">
+					<a class="btn btn-success" ng-click="btnSimpan(1)">Approve</a>
+					<a class="btn btn-warning" ng-click="btnSimpan(2)">Revisi</a>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-4 control-label text-right required">Note</label>
+					<div class="col-lg-4">                      
+						<textarea  class="form-control shadow-z1 input-sm"  ng-model="vm.barangHistory.keterangan" style="margin: 0px; width: 350px; height: 125px;"></textarea>
+						<strong style="color:red">{{errorNoteMessage}}</strong>
+					</div>
 				</div>
 			</div>
 		</div>
