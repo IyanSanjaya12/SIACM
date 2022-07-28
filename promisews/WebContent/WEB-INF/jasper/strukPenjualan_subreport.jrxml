@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="strukPenjualan_subreport" pageWidth="802" pageHeight="555" orientation="Landscape" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="b37d140b-b18b-48a5-878c-18efe4ab4045">
-	<property name="ireport.zoom" value="1.9487171000000045"/>
+	<property name="ireport.zoom" value="1.6105100000000043"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="penjualanId" class="java.lang.String">
@@ -19,7 +19,8 @@
 	pj.TOTAL_PEMBAYARAN,
 	pj.DISKON,
 	pj.GARANSI,
-	pj.JENIS_GARANSI
+	pj.JENIS_GARANSI,
+	pj.JASA
 FROM
 	TB_PENJUALAN_DETAIL pjd
 	LEFT OUTER JOIN TB_PENJUALAN pj ON pjd.PENJUALAN_ID = pj.PENJUALAN_ID
@@ -55,6 +56,9 @@ WHERE
 	<field name="JENIS_GARANSI" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="JASA" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -87,7 +91,7 @@ WHERE
 				<text><![CDATA[Jumlah]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="478" y="5" width="85" height="37" backcolor="#FFFFFF" uuid="620f9271-797b-446a-afcf-27432bdf7e48"/>
+				<reportElement mode="Opaque" x="477" y="5" width="85" height="37" backcolor="#FFFFFF" uuid="620f9271-797b-446a-afcf-27432bdf7e48"/>
 				<box leftPadding="2" rightPadding="2">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -97,7 +101,7 @@ WHERE
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Harga (IDR)]]></text>
+				<text><![CDATA[Total Harga (IDR)]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="67" y="5" width="273" height="37" backcolor="#FFFFFF" uuid="149bee6a-c366-4eda-ac3f-9cad2fdb8c6f"/>
@@ -156,7 +160,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{NAMA}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="409" y="0" width="69" height="34" uuid="e6aefbc4-e650-4533-83e7-87207c4f388a"/>
+				<reportElement x="409" y="0" width="68" height="34" uuid="e6aefbc4-e650-4533-83e7-87207c4f388a"/>
 				<box leftPadding="2" rightPadding="4">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -169,7 +173,7 @@ WHERE
 				<textFieldExpression><![CDATA[NumberFormat.getIntegerInstance().format((int) ($F{QUANTITY} + 0.5))]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="478" y="0" width="85" height="34" uuid="097dd47c-fbcf-47d3-ba7d-b5f6f5643faf"/>
+				<reportElement x="477" y="0" width="85" height="34" uuid="097dd47c-fbcf-47d3-ba7d-b5f6f5643faf"/>
 				<box leftPadding="2" rightPadding="4">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -198,16 +202,8 @@ WHERE
 	</detail>
 	<columnFooter>
 		<band height="94" splitType="Stretch">
-			<staticText>
-				<reportElement x="16" y="74" width="51" height="20" uuid="338fa52f-6a80-481f-b291-b5b5308de83f"/>
-				<text><![CDATA[Garansi        :]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="79" y="74" width="183" height="20" uuid="e4d6c972-d9ca-4676-a97f-d027094c6a0c"/>
-				<textFieldExpression><![CDATA[NumberFormat.getIntegerInstance().format((int) ($F{GARANSI} + 0.5))+"\t"+$F{JENIS_GARANSI}]]></textFieldExpression>
-			</textField>
 			<rectangle>
-				<reportElement x="16" y="0" width="547" height="48" uuid="1a1d7e49-16c1-48d6-aefe-86d5c10c08fd"/>
+				<reportElement x="16" y="0" width="546" height="67" uuid="0411a183-4133-4c39-9389-7ecc26f53565"/>
 			</rectangle>
 			<staticText>
 				<reportElement x="16" y="4" width="100" height="14" uuid="deeb57d0-95dc-4b72-acad-6f5df4844b57"/>
@@ -220,17 +216,8 @@ WHERE
 				<text><![CDATA[Diskon]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="16" y="33" width="100" height="14" uuid="5a4b817c-02e8-434f-b10b-c164404edd3b"/>
-				<box leftPadding="10"/>
-				<text><![CDATA[Total Setelah Diskon]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="115" y="4" width="10" height="14" uuid="74992d05-9f10-483b-b6ca-d02b9f3eb9c1"/>
-				<text><![CDATA[:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="115" y="33" width="10" height="14" uuid="4da62c95-82bc-4365-bbca-aa852db7519c"/>
-				<text><![CDATA[:]]></text>
+				<reportElement x="16" y="74" width="51" height="20" uuid="338fa52f-6a80-481f-b291-b5b5308de83f"/>
+				<text><![CDATA[Garansi        :]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="115" y="19" width="10" height="14" uuid="fe6ef4e0-4fea-497c-b415-f61c13ba6b4a"/>
@@ -244,13 +231,44 @@ WHERE
 			<textField>
 				<reportElement x="125" y="33" width="148" height="14" uuid="d81f8ef4-97ac-480c-b130-6d1716412239"/>
 				<box leftPadding="4" rightPadding="0"/>
-				<textFieldExpression><![CDATA[msg("{0,number,#,##0.00}", ($F{HARGA_SETELAH_DISKON}))]]></textFieldExpression>
+				<textFieldExpression><![CDATA[msg("{0,number,#,##0.00}", ($F{JASA}))]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="125" y="19" width="148" height="14" uuid="42812dbc-32a4-4a8b-ae81-ecca5913b13c"/>
 				<box leftPadding="4" rightPadding="0"/>
 				<textFieldExpression><![CDATA[msg("{0,number,#,##0.00}", ($F{DISKON}))+" %"]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="125" y="48" width="148" height="14" uuid="f654697e-188e-475f-ad49-491eda8e39b4"/>
+				<box leftPadding="4" rightPadding="0"/>
+				<textFieldExpression><![CDATA[msg("{0,number,#,##0.00}", ($F{HARGA_SETELAH_DISKON}))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="16" y="48" width="100" height="14" uuid="29c73c86-8f5d-4958-866e-001f9442459c"/>
+				<box leftPadding="10"/>
+				<text><![CDATA[Total Setelah Diskon]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="115" y="33" width="10" height="14" uuid="4da62c95-82bc-4365-bbca-aa852db7519c"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="79" y="74" width="183" height="20" uuid="e4d6c972-d9ca-4676-a97f-d027094c6a0c"/>
+				<textFieldExpression><![CDATA[NumberFormat.getIntegerInstance().format((int) ($F{GARANSI} + 0.5))+"\t"+$F{JENIS_GARANSI}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="115" y="48" width="10" height="14" uuid="1efdc717-7680-4364-96aa-2830b3a94275"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="115" y="4" width="10" height="14" uuid="74992d05-9f10-483b-b6ca-d02b9f3eb9c1"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="16" y="33" width="100" height="14" uuid="5a4b817c-02e8-434f-b10b-c164404edd3b"/>
+				<box leftPadding="10"/>
+				<text><![CDATA[Jasa]]></text>
+			</staticText>
 		</band>
 	</columnFooter>
 </jasperReport>

@@ -5362,6 +5362,7 @@
 		"pembayaran":"Payment",
 		"kembalian":"Return",
 		"kepalamekanik":"Chief Mechanic",
+		"jasa":"Service",
 		"list": {
 			"nomor": "No",
 			"nofaktur": "Transaction Number",

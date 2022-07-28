@@ -50,7 +50,7 @@ public class BarangSession extends AbstractFacadeWithAudit<Barang>{
 	}
 	@SuppressWarnings("unchecked")
 	public List<Barang> getbarangListMinimum(){
-		Query query = em.createQuery("SELECT barang FROM Barang barang WHERE barang.isDelete = 0 AND barang.jumlah <= (barang.stokMinimal+1)");
+		Query query = em.createQuery("SELECT barang FROM Barang barang WHERE barang.isDelete = 0 AND barang.jumlah <= (barang.stokMinimal)");
 		return query.getResultList();
 	}
 	@SuppressWarnings("unchecked")

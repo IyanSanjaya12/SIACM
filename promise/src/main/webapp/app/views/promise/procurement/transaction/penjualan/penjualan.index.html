@@ -27,6 +27,7 @@
 						<th scope="col"> <span translate="penjualan.list.nofaktur"></span></th>
 						<th scope="col"> <span translate="penjualan.list.tglpenjualan"></span></th>
 						<th scope="col"> <span translate="penjualan.list.nopolisi"></span></th>
+						<th scope="col"> <span translate="penjualan.jasa"></span></th>
 						<th scope="col" style="text-align:right"> <span translate="penjualan.list.total"></span></th>
 						<th scope="col"> <span translate="penjualan.list.aksi"></span></th>
 					</tr>
@@ -37,6 +38,7 @@
 						<td style="text-align:center" ng-bind="penjualan.noFaktur"></td>
 						<td style="text-align:center" ng-bind="penjualan.tanggal | date:'dd/MM/yyyy'"></td>
 						<td style="text-align:center" ng-bind="penjualan.pelanggan.noPolisi"></td>
+						<td style="text-align:center" ng-bind="(penjualan.jasa | currency : '')"></td>
 						<td style="text-align:right" ng-bind="(penjualan.hargaSetelahDiskon | currency : '')"></td>
 						<td style="text-align:center">
 							<button type="button" ng-class="'bg-' + app.theme.name" class="btn btn-primary btn-sm fa fa-search" ng-click="edit(penjualan)"></button>

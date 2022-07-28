@@ -19,12 +19,12 @@
 			$event.stopPropagation();
 			$scope.tanggalEndStatus = true;
 		}
-		var newDate = new Date();
-		newDate.setDate(newDate.getDate() - 30);
-		var today = new Date();
+		var startDate = new Date();
+		startDate.setDate(startDate.getMonth() - 1);
+		var endDate = new Date();
 		vm.param = {
-			startDate : $filter('date')(newDate, "dd/MM/yyyy"),
-			endDate : $filter('date')(today, "dd/MM/yyyy")
+			startDate : $filter('date')(startDate, "dd/MM/yyyy"),
+			endDate : $filter('date')(endDate, "dd/MM/yyyy")
 
 		};
 

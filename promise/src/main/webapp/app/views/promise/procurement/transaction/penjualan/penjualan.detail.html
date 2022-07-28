@@ -204,6 +204,12 @@
 				<fieldset>
 					<h4 class="page-header no-margin"><span translate="penjualan.detailpembayaran"></span></h4>
 					<div class="form-group"><br>
+						<label class="col-lg-2 control-label"><span translate="penjualan.jasa"></span></label>
+						<div class="col-md-3">
+							<input ng-disabled="vm.todo=='edit'" promise-currency-blur ng-blur="changeJasa(vm.penjualan.jasa)" name="jasa" promise-numbers-only-copy class="form-control" ng-model="vm.penjualan.jasa" >&nbsp;
+						</div>
+					</div>
+					<div class="form-group">
 						<label class="col-lg-2 control-label"><span translate="penjualan.garansi"></span></label>
 						<div class="col-md-3">
 							<input ng-disabled="vm.todo=='edit'" name="garansi" promise-numbers-only-copy class="form-control" ng-model="vm.penjualan.garansi" maxlength="2">&nbsp;
@@ -236,7 +242,7 @@
 					<div class="form-group m-t">
 						<label class="col-lg-2 control-label"><span translate="penjualan.totalpembayaran"></span></label>
 						<div class="col-md-6">
-							<input name="totalpembayaran" promise-currency-blur disabled class="form-control" ng-model="vm.penjualan.hargaSetelahDiskon">
+							<input name="totalpembayaran" promise-currency-blur disabled class="form-control" ng-model="vm.grandTotal">
 						</div>
 					</div>
 				</fieldset><br>

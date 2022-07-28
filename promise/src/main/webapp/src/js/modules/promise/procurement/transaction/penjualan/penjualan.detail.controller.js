@@ -18,6 +18,8 @@
 			$event.stopPropagation();
 			$scope.tanggalGaransitStatus = true;
 		}
+        vm.grandTotal = 0;
+        vm.tampJasa = 0;
         
         if (vm.todo == 'edit'){
 			if (vm.penjualan != null){
@@ -42,6 +44,7 @@
 				vm.generateCode = data.code;
 				vm.penjualan.noFaktur = data.code;
 				vm.penjualan.tanggal = new Date();
+				vm.penjualan.hargaSetelahDiskon = 0;
 				vm.tanggalView = $filter('date')(new Date(), "dd/MM/yyyy HH:mm:ss");
 			});
 		}
@@ -176,11 +179,19 @@
 		$scope.changeDiscount = function(diskon){
 			vm.penjualan.totalDiskon = ((diskon/100) * vm.penjualan.totalPembayaran);
 			vm.penjualan.hargaSetelahDiskon = vm.penjualan.totalPembayaran - vm.penjualan.totalDiskon;
+			vm.grandTotal = vm.penjualan.hargaSetelahDiskon + vm.tampJasa;
+		}
+		
+		$scope.changeJasa = function(jasa){
+			vm.grandTotal = 0;
+			vm.grandTotal = vm.penjualan.hargaSetelahDiskon + parseInt(jasa);
+			vm.tampJasa = parseInt(jasa);				
+			
 		}
 		
 		$scope.changePayment = function(payment){
-			if(parseInt(payment) >= parseInt(vm.penjualan.hargaSetelahDiskon)){
-				vm.penjualan.kembalian = payment - vm.penjualan.hargaSetelahDiskon;
+			if(parseInt(payment) >= parseInt(vm.grandTotal)){
+				vm.penjualan.kembalian = payment - vm.grandTotal;
 				vm.isValid = true;
 				vm.errorMessagePembayaran = "";
 			}else{
@@ -206,9 +217,10 @@
 			}
         	if($scope.checkValidasi()){
         		RequestService.modalConfirmation().then(function(result) {
-//					ModalService.showModalInformationBlock();
+        			pejualanDto.penjualan.hargaSetelahDiskon = vm.grandTotal;
+					ModalService.showModalInformationBlock();
 					RequestService.doPOSTJSON('/transaction/penjualan/save', pejualanDto).then(function success(data) {
-//						ModalService.closeModalInformation();
+						ModalService.closeModalInformation();
 						RequestService.modalConfirmation("Apakah ingin mencetak Struk?").then(function(result) {
 							$scope.doPrint(data.penjualan.id);
 							RequestService.informSaveSuccess();
@@ -218,7 +230,7 @@
 		    			});
 						$state.go ('app.promise.procurement-transaction-penjualan-index');
 					}, function error(response) {
-//						ModalService.closeModalInformation();
+						ModalService.closeModalInformation();
 						$log.info("proses gagal");
 						RequestService.informError("Terjadi Kesalahan Pada System");
 					});

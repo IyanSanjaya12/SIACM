@@ -78,6 +78,9 @@ public class Penjualan {
 	@Column(name = "JENIS_GARANSI")
 	private String jenisGaransi;
 	
+	@Column(name = "JASA")
+	private Double jasa;
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="CREATED")
 	private Date created;
@@ -97,6 +100,14 @@ public class Penjualan {
 	private Integer isDelete;
 	
 	
+	public Double getJasa() {
+		return jasa;
+	}
+
+	public void setJasa(Double jasa) {
+		this.jasa = jasa;
+	}
+
 	public Double getTotalPembayaran() {
 		return totalPembayaran;
 	}
