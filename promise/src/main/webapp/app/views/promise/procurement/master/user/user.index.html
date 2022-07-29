@@ -11,6 +11,12 @@
 			</a>
 	</h4>
 	<div class="panel-body collapse in">
+		<div class="text-right pr">
+			<button ng-class="'bg-' + app.theme.name" type="button" class="btn btn-primary btn-add" ng-click="add()"> 
+				<span translate="penjualan.list.tambah"></span>
+			</button>
+		</div>
+		<br>
 		<div class="col-md-12">
 			<div align="center" ng-if="vm.loading == true"> <strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px" /></strong>
 			</div>
@@ -21,8 +27,7 @@
 						</th>
 						<th scope="col"><span translate="promise.procurement.master.user.list.nama"></span>
 						</th>
-						<th scope="col"><span translate="promise.procurement.master.user.list.departemen">Departemen</span>
-						</th>
+						<th scope="col">Jabatan</th>
 						<th scope="col"><span translate="promise.procurement.master.user.list.role_user"></span>
 						</th>
 						<th scope="col"><span translate="promise.procurement.master.user.list.status">Status</span>

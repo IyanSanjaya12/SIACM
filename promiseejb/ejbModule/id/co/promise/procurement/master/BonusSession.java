@@ -1,5 +1,7 @@
 package id.co.promise.procurement.master;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -42,8 +44,22 @@ public class BonusSession extends AbstractFacadeWithAudit<Bonus> {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Bonus> getbonusList(){
-		Query query = em.createQuery("SELECT bonus FROM Bonus bonus WHERE bonus.isDelete = 0");
+	public List<Bonus> getbonusList(String startDate, String endDate) throws ParseException{
+		Date startDateNew = new Date();
+		Date endDateNew = new Date();
+		
+		String strQuery = "SELECT bonus FROM Bonus bonus WHERE bonus.isDelete = 0 ";
+		if(!(startDate.equals("") && endDate.contentEquals(""))) {
+			startDateNew = new SimpleDateFormat("yyyy-MM-dd").parse(startDate);
+			endDateNew = new SimpleDateFormat("yyyy-MM-dd").parse(endDate);
+			strQuery += " AND bonus.penjualan.tanggal > :startDate AND bonus.penjualan.tanggal <= :endDate ";
+		}
+		Query query = em.createQuery(strQuery);
+		if(!(startDate.equals("") && endDate.contentEquals(""))) {
+			query.setParameter("startDate", startDateNew);
+			query.setParameter("endDate", endDateNew);
+		}
+		
 		return query.getResultList();
 	}
 	

@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="laporanBonusPenjualan_subreport" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="c29c0dc2-ef04-4dad-ac22-4933b42be384">
+	<property name="ireport.zoom" value="1.4641000000000013"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="startDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="endDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+	kw.NAMA,
+	bn.PERSENTASE,
+	pj.TANGGAL,
+	pj.HARGA_SETELAH_DISKON,
+	bn.NILAI_BONUS,
+	pj.NO_FAKTUR
+
+FROM
+	TB_BONUS bn
+	LEFT OUTER JOIN TB_PENJUALAN pj ON bn.PENJUALAN_ID = pj.PENJUALAN_ID
+	LEFT OUTER JOIN TB_KARYAWAN kw ON bn.KARYAWAN_ID = kw.KARYAWAN_ID
+WHERE
+	bn.ISDELETE = 0
+	AND pj.TANGGAL > $P{startDate}
+	AND pj.TANGGAL <= $P{endDate}]]>
+	</queryString>
+	<field name="NAMA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PERSENTASE" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TANGGAL" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HARGA_SETELAH_DISKON" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NILAI_BONUS" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NO_FAKTUR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="48" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="363" y="11" width="74" height="37" backcolor="#99CCFF" uuid="9238a585-91ce-4204-a5d7-4a0ec9f6558e"/>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Penjualan (IDR)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="240" y="11" width="54" height="37" backcolor="#99CCFF" uuid="3224d052-3705-40e0-9c1c-3e7b5a4e6326"/>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tanggal Penjualan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="167" y="11" width="73" height="37" backcolor="#99CCFF" uuid="92d47471-5777-4cc5-8e5f-dc02b05516a5"/>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Persentase (%)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="71" y="11" width="96" height="37" backcolor="#99CCFF" uuid="d52e4213-9a50-498b-b2bc-5a5260bdcfc4"/>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Kryawan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="38" y="11" width="33" height="37" backcolor="#99CCFF" uuid="feee85ae-d01d-4636-9211-5a1a5f116a35"/>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="437" y="11" width="81" height="37" backcolor="#99CCFF" uuid="1e1488ab-9a16-4967-ac68-cab46a0fb9f0"/>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nomor Penjualan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="294" y="11" width="69" height="37" backcolor="#99CCFF" uuid="8f030297-1c1b-4925-9ece-cf3f58465a45"/>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bonus (IDR)]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="34" splitType="Stretch">
+			<textField>
+				<reportElement x="240" y="0" width="54" height="34" uuid="b2ae5029-d2e8-4725-98a0-4e2249b794f6"/>
+				<box leftPadding="2" rightPadding="3">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format($F{TANGGAL})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="294" y="0" width="69" height="34" uuid="6889e0c9-6da9-4432-b8f7-6cb5cb186a5a"/>
+				<box leftPadding="2" rightPadding="3">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[msg("{0,number,#,##0.00}", ($F{NILAI_BONUS}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="71" y="0" width="96" height="34" uuid="f2f89b39-148f-4e31-b776-933977c9b28b"/>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NAMA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="167" y="0" width="73" height="34" uuid="cc116d04-f5d7-4219-aa66-5a2cbf2a72b9"/>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[NumberFormat.getIntegerInstance().format((int) ($F{PERSENTASE} + 0.5))+" %"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="363" y="0" width="74" height="34" uuid="e490844c-f753-4029-a2af-9cf23c2d6989"/>
+				<box leftPadding="2" rightPadding="3">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[msg("{0,number,#,##0.00}", ($F{HARGA_SETELAH_DISKON}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="38" y="0" width="33" height="34" uuid="55e277b5-a8fa-4635-b594-fbf41dbe6aeb"/>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="437" y="0" width="81" height="34" uuid="086a2b29-98a7-4899-b429-732d9973fdcc"/>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NO_FAKTUR}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

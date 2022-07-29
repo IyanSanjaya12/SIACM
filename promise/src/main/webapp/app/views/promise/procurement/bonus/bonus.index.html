@@ -11,6 +11,53 @@
         </a>
     </h4>
 	<div class="panel-body collapse in">
+		<div class="panel-body collapse in">
+		<div class="col-lg-12 p-b b-b m-b">
+			<div class="col-md-12">
+				<div class="form-group">
+					<label class="col-md-2 text-left control-label">Transaksi Dari</label>
+					<div class="col-md-3">
+						<div class="input-group">			
+							<input placeholder="Start Date" type="text" datepicker-popup="dd/MM/yyyy"
+							max-date="vm.param.endDate" ng-model="vm.param.startDate"
+							is-open="tanggalStartStatus" ng-change="getListPaging()"
+							class="form-control" show-button-bar="true"
+							readonly="true" required /> 
+							<span class="input-group-btn">
+								<button type="button" ng-click="tanggalStartOpen($event)" class="btn btn-default" ripple="">
+									<em class="fa fa-calendar"></em>
+								</button>
+							</span>
+						</div>
+					</div>
+					<label class="col-md-1 text-left control-label">Sampai</label>
+					<div class="col-md-3">
+						<div class="input-group">			
+							<input placeholder="End Date" type="text" datepicker-popup="dd/MM/yyyy"
+							min-date="vm.param.startDate" ng-model="vm.param.endDate"
+							is-open="tanggalEndStatus"
+							class="form-control" show-button-bar="true"
+							readonly="true" required /> 
+							<span class="input-group-btn">
+								<button type="button" ng-click="tanggalEndOpen($event)" class="btn btn-default" ripple="">
+									<em class="fa fa-calendar"></em>
+								</button>
+							</span>
+						</div>
+					</div>
+					<div class="text-right">
+				  		<button type="button" id="search" class="btn btn-primary" title="Filter" ng-click="doFilter()">
+			       	 		<em class="fa fa-search"></em>&nbsp;Filter
+		          		</button>&nbsp;
+		          		
+		          		<button type="button" id="print" class="btn btn-print" title="Print" ng-click="doPrint()">
+			       	 		&nbsp;Print
+		          		</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br />
 		<div class="col-md-12">
 			<div class="text-center" ng-if="vm.loading == true"> <strong><em>Loading...</em><img src="app/img/loading.gif" border="0" width="20px" /></strong>
 			</div>
@@ -20,16 +67,18 @@
 						<th scope="col"> <span translate="bonus.list.nomor"></span></th>
 						<th scope="col" style="text-align:left"> <span translate="bonus.list.nama"></span></th>
 						<th scope="col"> <span translate="bonus.list.persentase"></span></th>
+						<th scope="col" style="text-align:right"> <span translate="penjualan.list.tglpenjualan"></span></th>
 						<th scope="col" style="text-align:right"> <span translate="bonus.list.bonus"></span></th>
 						<th scope="col" style="text-align:right"> <span translate="bonus.list.totalpenjualan"></span></th>
 						<th scope="col"> <span translate="bonus.list.nomorpenjualan"></span></th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="bonus in vm.bonusList">
+					<tr ng-repeat="bonus in vm.bonusList.data">
 						<td class="text-center">{{ $index+1 }}</td>
 						<td ng-bind="bonus.karyawan.nama"></td>
 						<td style="text-align:center" ng-bind="bonus.persentase">&nbsp;%</td>
+						<td style="text-align:center" ng-bind="bonus.penjualan.tanggal | date:'dd/MM/yyyy'"></td>
 						<td style="text-align:right" ng-bind="bonus.nilaiBonus | currency : ''"></td>
 						<td style="text-align:right" ng-bind="(bonus.penjualan.hargaSetelahDiskon | currency : '')"></td>
 						<td style="text-align:center" ng-bind="bonus.penjualan.noFaktur"></td>

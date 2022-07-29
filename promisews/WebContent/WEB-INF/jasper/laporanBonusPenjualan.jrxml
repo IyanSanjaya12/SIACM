@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="laporanBonusPenjualan" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cf658f64-ed09-4cd2-8ecd-395d349d6810">
+	<property name="ireport.zoom" value="1.7715610000000017"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="startDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="endDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+	*
+FROM
+	TB_BONUS bn
+	LEFT OUTER JOIN TB_PENJUALAN pj ON bn.PENJUALAN_ID = pj.PENJUALAN_ID
+	LEFT OUTER JOIN TB_KARYAWAN kw ON bn.KARYAWAN_ID = kw.KARYAWAN_ID
+WHERE
+	bn.ISDELETE = 0]]>
+	</queryString>
+	<field name="BONUS_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CREATED" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DELETED" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ISDELETE" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NILAI_BONUS" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PERSENTASE" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="UPDATED" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="USERID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KARYAWAN_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PENJUALAN_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DISKON" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="GARANSI" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HARGA_DISKON" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="JENIS_GARANSI" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KEMBALIAN" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NO_FAKTUR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PEMBAYARAN" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TANGGAL" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TOTAL" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MOBIL_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PELANGGAN_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PERBANTUAN_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TOTAL_PEMBAYARAN" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KEPALA_MEKANIK" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HARGA_SETELAH_DISKON" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TOTAL_DISKON" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="JASA" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ALAMAT" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NAMA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NIK" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TELEPON" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="JABATAN_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="259" splitType="Stretch">
+			<line>
+				<reportElement x="4" y="86" width="547" height="2" uuid="b5a88d74-30b0-48bd-be23-5e66856e21f8"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="154" y="24" width="246" height="23" forecolor="#000000" uuid="7c8a06d4-9717-4e44-8c81-e76d1f7e246e"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[(Car AC Workshop)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="148" y="1" width="257" height="24" forecolor="#CC3300" uuid="64126e84-127b-4377-abe1-d055a155096d"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="16" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Centra Auto AC]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="148" y="46" width="258" height="40" forecolor="#3300CC" uuid="1d034b3e-35ea-4681-96fa-91b451ddf677"/>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Komp. Ruko Sutera Niaga I No. 31, Alam Sutera \n"+
+"Jl.Raya Serpong, Tangerang Selatan 15325 \n"+
+"Telp 021 - 5398669, 0817-8912-07"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="312" y="120" width="73" height="20" uuid="121e9e96-7dba-4d56-a72f-6c43f9e4a312"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{endDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="292" y="120" width="19" height="20" uuid="090603f3-a609-4394-a5dd-779736440565"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[s/d]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="166" y="119" width="56" height="20" uuid="48cd12a8-0c0c-40c2-8c21-e9b4312750e4"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Periode:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="224" y="120" width="67" height="20" uuid="c51f3ef3-031d-4f35-bd1c-3455f6ee1492"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{startDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="136" y="87" width="283" height="31" uuid="e6fab0e4-91f6-4744-a81c-2918dfbb7075"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Laporan Bonus Penjualan Centra Auto AC ]]></text>
+			</staticText>
+			<frame>
+				<reportElement x="4" y="144" width="547" height="115" uuid="fa77356c-6393-4826-8ce8-82b24f2f713f"/>
+				<subreport>
+					<reportElement x="0" y="15" width="547" height="100" uuid="85a85606-5895-48f5-8c58-364c2194c87d"/>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="startDate">
+						<subreportParameterExpression><![CDATA[$P{startDate}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="endDate">
+						<subreportParameterExpression><![CDATA[$P{endDate}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "laporanBonusPenjualan_subreport.jasper"]]></subreportExpression>
+				</subreport>
+			</frame>
+		</band>
+	</title>
+</jasperReport>
