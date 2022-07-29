@@ -32,7 +32,7 @@
 								<th scope="col" style="text-align:right"> <span translate="barang.list.stok"></span></th>
 								<th scope="col" style="text-align:right"> <span translate="barang.list.stokminimal"></span></th>
 								<th scope="col" style="text-align:left"> <span translate="barang.list.jenismobil"></span></th>
-								<th scope="col" style="text-align:left">Status Approval</th>
+								<th scope="col" style="text-align:center">Status Approval</th>
 								<th scope="col"> <span translate="barang.list.aksi"></span></th>
 							</tr>
 						</thead>
@@ -46,7 +46,7 @@
 								<td style="text-align:right" ng-if="barang.jumlah > barang.stokMinimal">{{barang.jumlah}}</td>
 								<td style="text-align:right" ng-bind="barang.stokMinimal"></td>
 								<td ng-bind="barang.mobil.nama"></td>
-								<td style="text-align:right" ng-bind="barang.isApproval == 1?'Menunggu Persetujuan':barang.isApproval == 2?'Revisi':'Disetujui'"></td>
+								<td style="text-align:center" ng-bind="barang.isApproval == 1?'Menunggu Persetujuan':barang.isApproval == 2?'Revisi':'Disetujui'"></td>
 								<td style="text-align:center">
 									<button ng-if="barang.isApproval != 1" type="button" ng-class="'bg-' + app.theme.name" class="btn btn-primary btn-sm btn-edit" ng-click="edit(barang)"></button>
 									<!-- <button type="button" class="btn btn-danger btn-sm btn-delete" ng-click="deleteBarang(barang)"></button> -->
@@ -86,7 +86,7 @@
 								<td ng-bind="bh.mobil.nama"></td>
 								<td ng-bind="bh.keterangan"></td>
 								<td style="text-align:center">
-									<button type="button" ng-class="'bg-' + app.theme.name" class="btn btn-primary btn-sm btn-search" ng-click="revisi(bh)"></button>
+									<button type="button" ng-class="'bg-' + app.theme.name" class="btn btn-primary btn-sm btn-edit" ng-click="revisi(bh)"></button>
 								</td>
 							</tr>
 						</tbody>

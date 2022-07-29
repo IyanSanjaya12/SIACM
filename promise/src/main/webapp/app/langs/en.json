@@ -5284,7 +5284,7 @@
 		}
 	},
 	"karyawan": {
-		"judul": "Master Employee",
+		"judul": "Data Employee",
 		"judulTambah":"Add Employee",
 		"judulEdit":"Edit Employee",
 		"karyawan": "Employee",
@@ -5300,7 +5300,7 @@
 		}
 	},
 	"jabatan": {
-		"judul": "Master Position",
+		"judul": "Data Position",
 		"judulTambah":"Add Position",
 		"judulEdit":"Edit Position",
 		"jabatan": "Position",
@@ -5317,7 +5317,7 @@
 	"mobil":{
 		"nama":"Car Name",
 		"merk":"Car Brand",
-		"judul": "Master Mobil",
+		"judul": "Data Mobil",
 		"judulTambah":"Add Car",
 		"judulEdit":"Edit Car",
 		"mobil": "Car",
@@ -5332,7 +5332,7 @@
 		}
 	},
 	"pelanggan": {
-		"judul": "Master Customer",
+		"judul": "Data Customer",
 		"judulTambah":"Add Customer",
 		"judulEdit":"Edit Customer",
 		"pelanggan": "Customer",

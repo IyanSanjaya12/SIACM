@@ -5282,7 +5282,7 @@
 		}
 	},
 	"barang": {
-		"judul": "Master Barang",
+		"judul": "Data Barang",
 		"judulTambah":"Tambah Barang",
 		"judulEdit":"Edit Barang",
 		"barang": "Barang",
@@ -5302,23 +5302,23 @@
 		}
 	},
 	"karyawan": {
-		"judul": "Master Karyawan",
+		"judul": "Data Karyawan",
 		"judulTambah":"Tambah Karyawan",
 		"judulEdit":"Edit Karyawan",
 		"karyawan": "Karyawan",
 		"list": {
 			"nomor": "No",
 			"namakaryawan": "Nama Karyawan",
-			"nikkaryawan": "NIK Karyawan",
+			"nikkaryawan": "NIK",
 			"jabatan": "Jabatan",
 			"alamat": "Alamat",
-			"telepon": "Telpon",
+			"telepon": "No Telpon",
 			"aksi": "Aksi",
 			"tambah":"Tambah"
 		}
 	},
 	"jabatan": {
-		"judul": "Master Jabatan",
+		"judul": "Data Jabatan",
 		"judulTambah":"Tambah Jabatan",
 		"judulEdit":"Edit Jabatan",
 		"jabatan": "Jabatan",
@@ -5335,7 +5335,7 @@
 	"mobil":{
 		"nama":"Nama Mobil",
 		"merk":"Merk Mobil",
-		"judul": "Master Mobil",
+		"judul": "Data Mobil",
 		"judulTambah":"Tambah Mobil",
 		"judulEdit":"Edit Mobil",
 		"mobil": "Mobil",

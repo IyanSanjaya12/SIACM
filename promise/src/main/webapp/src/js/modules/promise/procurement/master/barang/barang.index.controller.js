@@ -45,7 +45,7 @@
 			});
         }
         $scope.revisi = function(barang){
-        	barang.barang = barang.barang.id;
+        	barang.barang = barang.id;
         	delete barang['status'];
         	delete barang['keterangan'];
         	$state.go('app.promise.procurement-master-barang-add-edit', {

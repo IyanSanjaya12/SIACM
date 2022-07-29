@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="laporanPenjualan_detail" pageWidth="802" pageHeight="555" orientation="Landscape" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="dc83a77a-0038-4892-8006-22f0db40ea18">
 	<property name="ireport.zoom" value="1.9487171000000014"/>
-	<property name="ireport.x" value="469"/>
+	<property name="ireport.x" value="599"/>
 	<property name="ireport.y" value="0"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
@@ -117,7 +117,7 @@ WHERE
 	<title>
 		<band height="54" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Opaque" x="637" y="17" width="39" height="37" backcolor="#99CCFF" uuid="247af523-45c4-4501-9671-8e901e539c02"/>
+				<reportElement mode="Opaque" x="603" y="17" width="53" height="37" backcolor="#99CCFF" uuid="247af523-45c4-4501-9671-8e901e539c02"/>
 				<box leftPadding="2" rightPadding="2">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -169,7 +169,7 @@ WHERE
 				<text><![CDATA[Jenis Mobil]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="587" y="17" width="50" height="37" backcolor="#99CCFF" uuid="640da178-c9b4-4335-89db-9a75f62fbfd4"/>
+				<reportElement mode="Opaque" x="529" y="17" width="74" height="37" backcolor="#99CCFF" uuid="640da178-c9b4-4335-89db-9a75f62fbfd4"/>
 				<box leftPadding="2" rightPadding="2">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -273,20 +273,7 @@ WHERE
 				<text><![CDATA[Mekanik]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="529" y="17" width="58" height="37" backcolor="#99CCFF" uuid="ff21f73b-6757-4ac0-bf0f-8909585c43a6"/>
-				<box leftPadding="2" rightPadding="2">
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="10" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Harga Beli(IDR)]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="676" y="17" width="46" height="37" backcolor="#99CCFF" uuid="06898468-fb23-4583-88d5-81c74c98c004"/>
+				<reportElement mode="Opaque" x="656" y="17" width="66" height="37" backcolor="#99CCFF" uuid="06898468-fb23-4583-88d5-81c74c98c004"/>
 				<box leftPadding="2" rightPadding="2">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -355,7 +342,7 @@ WHERE
 				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format($F{TANGGAL})]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="637" y="0" width="39" height="34" uuid="a641a993-690f-4307-aa14-b2fbfbcd6581"/>
+				<reportElement x="603" y="0" width="53" height="34" uuid="a641a993-690f-4307-aa14-b2fbfbcd6581"/>
 				<box leftPadding="2" rightPadding="2">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -407,7 +394,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{NO_POLISI}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="587" y="0" width="50" height="34" uuid="44b1d5c3-1371-45ea-b70e-4c43db5b451c"/>
+				<reportElement x="529" y="0" width="74" height="34" uuid="44b1d5c3-1371-45ea-b70e-4c43db5b451c"/>
 				<box leftPadding="2" rightPadding="2">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -459,20 +446,7 @@ WHERE
 				<textFieldExpression><![CDATA[msg("{0,number,#,##0.00}", ($F{HARGA_SETELAH_DISKON}))]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="529" y="0" width="58" height="34" uuid="0953ded5-c543-4ab5-a9b0-1359b4435b20"/>
-				<box leftPadding="2" rightPadding="2">
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial"/>
-				</textElement>
-				<textFieldExpression><![CDATA[msg("{0,number,#,##0.00}", ($F{TOTAL_PEMBAYARAN}))]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="676" y="0" width="46" height="34" uuid="05b424d4-1422-446d-9eb1-a020e4d1718b"/>
+				<reportElement x="656" y="0" width="66" height="34" uuid="05b424d4-1422-446d-9eb1-a020e4d1718b"/>
 				<box leftPadding="2" rightPadding="2">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
